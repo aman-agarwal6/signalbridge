@@ -1,0 +1,2 @@
+# Preserve PDF byte offsets even when Windows text normalization is enabled.
+*.pdf binary

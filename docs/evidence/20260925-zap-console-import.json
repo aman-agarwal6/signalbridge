@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-zap-console-import",
+  "recorded_at": "2026-09-25T09:02:35.627929+00:00",
+  "runs": [
+    {
+      "run_id": "3ea4b0c1-680a-4fbd-8ac2-0cd65bc04a2b",
+      "status": "failed",
+      "exercise_verified": true,
+      "coverage": "incomplete",
+      "receipt_sha256": "3c9fc6087e55e553a259f46f078f1a2e3a29a508d056dde81b4b246d213ac7d2",
+      "execution_sha256": "690175efac36001eae6696f8afce92da65e92d76e2bb0e8bb621da8498d9212f",
+      "counts": null
+    },
+    {
+      "run_id": "9136c7c9-3515-4797-8518-24f80d0ce148",
+      "status": "passed",
+      "exercise_verified": true,
+      "coverage": "fixed-fixture-only",
+      "receipt_sha256": "01a15d61755a9d710e8f0b4f27092e011f805a41525023cc3ac2faa68bf7ff38",
+      "execution_sha256": "690175efac36001eae6696f8afce92da65e92d76e2bb0e8bb621da8498d9212f",
+      "counts": {
+        "requests": 3,
+        "header_positive_paths": 2,
+        "header_negative_paths": 1,
+        "reported_findings": 5
+      }
+    }
+  ],
+  "new_receipts": 2,
+  "new_audit_records": 2,
+  "repeat_imports_created_duplicates": false,
+  "other_table_counts_unchanged": true,
+  "ingestion_remains_disabled": true,
+  "limits": [
+    "No new scanner execution or application coverage.",
+    "Authenticated page behavior uses disposable test-client checks; no visual browser verification.",
+    "Table counts are not a byte-for-byte database comparison."
+  ],
+  "source_sha256": "0ec2ea14961ed7092fb9c8f6900057cccddc97a9586e8a13ce9a09db4a4d60cf",
+  "source_file_count": 242,
+  "retained_development_failures": [
+    "Initial focused suite rejected route-sample arrays through an object-only decoder; corrected strict wrapping, then all focused tests passed.",
+    "An overview assertion expected a page where SignalBridge intentionally redirects; corrected the assertion and verified authorization metrics in BetTail.",
+    "Four initial import invocations rejected the intentionally ingestion-disabled internal workspace; no writes occurred. The importer now requires that ingestion remain disabled."
+  ]
+}

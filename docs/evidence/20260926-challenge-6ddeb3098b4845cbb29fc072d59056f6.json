@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-detection-challenge-receipt",
+  "run_id": "6ddeb3098b4845cbb29fc072d59056f6",
+  "execution_verified": true,
+  "source_sha256": "ed8714517b4999e7e8862b0f5596138417b60395049827a2e8916f1c6f670c87",
+  "source_file_count": 255,
+  "source_unchanged": true,
+  "git_head_at_execution": "601b75d892c1d15c4bfd78610a04e06171b1f146",
+  "working_tree_dirty_at_execution": true,
+  "python": "3.14.4",
+  "exit_code": 0,
+  "result_sha256": "2dbb78d28b335a189e73064bcdb96df9a6f9fbb977144d33f747f7d907eaf559",
+  "provenance_sha256": "9102e36569d8869fe68771ac3cc27298a104185686dad304b1ead0677eb09b22",
+  "log_sha256": {
+    "stdout.txt": "06a7d2f05e7f2c4a4c6418acc6185ffac99f30903f0d4db1a05bca2e002fc00e",
+    "stderr.txt": "9e4cf89d1e26f18348ddb5d9abdffed28b6d71e3464057f6149906523420dccf"
+  },
+  "results": {
+    "schema_version": 1,
+    "kind": "detection-challenge-v1",
+    "declaration_sha256": "6709461d435e6dad7f89cf9e447f3629423caf9728e11118858ddcdae0cf8345",
+    "started_at": "2026-09-26T01:29:03.575798+00:00",
+    "execution_status": "completed",
+    "database": "disposable in-memory SQLite",
+    "transport": "Django in-process test client",
+    "rows": [
+      {
+        "id": "C01",
+        "observed_rules": [
+          "R1"
+        ],
+        "case_count": 1,
+        "accepted": 3,
+        "duplicates": 0,
+        "processed": 3
+      },
+      {
+        "id": "C02",
+        "observed_rules": [],
+        "case_count": 0,
+        "accepted": 3,
+        "duplicates": 0,
+        "processed": 3
+      },
+      {
+        "id": "C03",
+        "observed_rules": [
+          "R1"
+        ],
+        "case_count": 1,
+        "accepted": 3,
+        "duplicates": 0,
+        "processed": 3
+      },
+      {
+        "id": "C04",
+        "observed_rules": [
+          "R1"
+        ],
+        "case_count": 1,
+        "accepted": 3,
+        "duplicates": 0,
+        "processed": 3
+      },
+      {
+        "id": "C05",
+        "observed_rules": [],
+        "case_count": 0,
+        "accepted": 2,
+        "duplicates": 2,
+        "processed": 2
+      },
+      {
+        "id": "C06",
+        "observed_rules": [],
+        "case_count": 0,
+        "accepted": 3,
+        "duplicates": 0,
+        "processed": 3
+      },
+      {
+        "id": "C07",
+        "observed_rules": [
+          "R1"
+        ],
+        "case_count": 1,
+        "accepted": 3,
+        "duplicates": 0,
+        "processed": 3
+      },
+      {
+        "id": "C08",
+        "observed_rules": [
+          "R1"
+        ],
+        "case_count": 1,
+        "accepted": 3,
+        "duplicates": 0,
+        "processed": 3
+      },
+      {
+        "id": "C09",
+        "observed_rules": [],
+        "case_count": 0,
+        "accepted": 1,
+        "duplicates": 0,
+        "processed": 1
+      },
+      {
+        "id": "C10",
+        "observed_rules": [
+          "R2"
+        ],
+        "case_count": 1,
+        "accepted": 1,
+        "duplicates": 0,
+        "processed": 1
+      },
+      {
+        "id": "C11",
+        "observed_rules": [],
+        "case_count": 0,
+        "accepted": 1,
+        "duplicates": 0,
+        "processed": 1
+      },
+      {
+        "id": "C12",
+        "observed_rules": [
+          "R1"
+        ],
+        "case_count": 1,
+        "accepted": 3,
+        "duplicates": 0,
+        "processed": 3
+      },
+      {
+        "id": "C13",
+        "observed_rules": [
+          "R2"
+        ],
+        "case_count": 1,
+        "accepted": 1,
+        "duplicates": 1,
+        "processed": 1
+      },
+      {
+        "id": "C14",
+        "observed_rules": [
+          "R1"
+        ],
+        "case_count": 2,
+        "accepted": 4,
+        "duplicates": 0,
+        "processed": 4
+      },
+      {
+        "id": "C15",
+        "observed_rules": [],
+        "case_count": 0,
+        "accepted": 3,
+        "duplicates": 0,
+        "processed": 3
+      },
+      {
+        "id": "C16",
+        "observed_rules": [
+          "R2"
+        ],
+        "case_count": 2,
+        "accepted": 2,
+        "duplicates": 0,
+        "processed": 2
+      },
+      {
+        "id": "P01",
+        "observed_rules": [],
+        "case_count": 0,
+        "accepted": 3,
+        "duplicates": 0,
+        "processed": 3
+      },
+      {
+        "id": "P02",
+        "observed_rules": [],
+        "case_count": 0,
+        "accepted": 3,
+        "duplicates": 0,
+        "processed": 3
+      },
+      {
+        "id": "P03",
+        "observed_rules": [],
+        "case_count": 0,
+        "accepted": 2,
+        "duplicates": 0,
+        "processed": 2
+      }
+    ],
+    "requests_executed": 50,
+    "records_processed": 47,
+    "summary": {
+      "rule_contract": {
+        "met": 16,
+        "total": 16,
+        "failed_ids": []
+      },
+      "capability_probes": {
+        "alert_observed": 0,
+        "total": 3,
+        "unmet_ids": [
+          "P01",
+          "P02",
+          "P03"
+        ]
+      }
+    },
+    "finished_at": "2026-09-26T01:29:03.988973+00:00",
+    "duration_seconds": 0.413781
+  },
+  "limits": [
+    "Predeclared builder-authored cases; authors knew the rules. Not an independent blind holdout.",
+    "Rule-contract checks and desired capability probes have separate denominators.",
+    "A completed execution can contain contract failures and unsupported capabilities.",
+    "Synthetic source labels are fixture metadata; no real access or attacker activity was observed.",
+    "Membership changes lack an authoritative affected-member relationship in this event contract.",
+    "In-process SQLite with accidental network/process guards; not production capacity or an OS sandbox."
+  ]
+}

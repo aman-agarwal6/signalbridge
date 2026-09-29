@@ -1,0 +1,18 @@
+<nav aria-label="Main navigation"><div class="nav-label">INVESTIGATE</div>
+<a {% if page == 'overview' %}class="active" aria-current="page"{% endif %} href="/?app={{ app.slug }}">{% include "parts/icon.html" with name="overview" %} Overview</a>
+{% if app.slug != 'signalbridge' %}
+<a {% if page == 'investigations' %}class="active" aria-current="page"{% endif %} href="/investigations/?app={{ app.slug }}">{% include "parts/icon.html" with name="cases" %} Investigations <span class="nav-count">{{ nav_open_count }}</span></a>
+<a {% if page == 'events' %}class="active" aria-current="page"{% endif %} href="/events/?app={{ app.slug }}">{% include "parts/icon.html" with name="events" %} Event explorer</a>
+{% endif %}
+<div class="nav-label">VALIDATE</div>
+<a {% if page == 'practice' %}class="active" aria-current="page"{% endif %} href="/practice/?app={{ app.slug }}">{% include "parts/icon.html" with name="cases" %} Analyst practice</a>
+{% if lab_app %}<a {% if page == 'lab' %}class="active" aria-current="page"{% endif %} href="/lab/?app=signalbridge">{% include "parts/icon.html" with name="checks" %} Capability lab</a>{% endif %}
+<a {% if page == 'detections' %}class="active" aria-current="page"{% endif %} href="/detections/?app={{ app.slug }}">{% include "parts/icon.html" with name="shield" %} Detections & coverage</a>
+<a {% if page == 'findings' %}class="active" aria-current="page"{% endif %} href="/findings/?app={{ app.slug }}">{% include "parts/icon.html" with name="shield" %} Security findings</a>
+{% if app.slug != 'signalbridge' %}
+<a {% if page == 'checks' %}class="active" aria-current="page"{% endif %} href="/checks/?app={{ app.slug }}">{% include "parts/icon.html" with name="checks" %} Authorization checks</a>
+<a {% if page == 'replay' %}class="active" aria-current="page"{% endif %} href="/replay/?app={{ app.slug }}">{% include "parts/icon.html" with name="replay" %} Replay lab</a>
+{% endif %}
+<div class="nav-label">WORKSPACE</div>
+<a {% if page == 'integrations' %}class="active" aria-current="page"{% endif %} href="/integrations/?app={{ app.slug }}">{% include "parts/icon.html" with name="integrations" %} Integrations</a>
+<a {% if page == 'requirements' %}class="active" aria-current="page"{% endif %} href="/requirements/?app={{ app.slug }}">{% include "parts/icon.html" with name="reports" %} Requirements & reports</a></nav>

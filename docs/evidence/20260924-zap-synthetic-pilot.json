@@ -1,0 +1,76 @@
+{
+  "kind": "signalbridge-soc-pilot-receipt",
+  "receipt_digest": "d2c27bd377a70a7be71c162fce1f9285788f314e75f1ee2a11b21759c3094c30",
+  "result": {
+    "app": "signalbridge",
+    "checks": [
+      {
+        "id": "fixed_synthetic_controls",
+        "status": "passed"
+      },
+      {
+        "id": "matching_created_running_exited_gates",
+        "status": "passed"
+      },
+      {
+        "id": "fresh_stopped_metadata_gate",
+        "status": "passed"
+      }
+    ],
+    "evidence_kind": "soc_pilot",
+    "limitations": [
+      "Builder-operated synthetic local pilot; not an independent or tamper-proof audit.",
+      "Receipts are consistency-checked; a trusted local administrator can replace evidence.",
+      "Container metadata was sampled before, during, after and again at import; not continuous monitoring.",
+      "No SignalBridge, BetTail, Netted or production application security assessment was performed.",
+      "A stopped one-time pilot does not establish an ongoing connection or enterprise parity.",
+      "Only complete passing bundles are imported; failed raw attempts remain outside this imported history.",
+      "Scanner reports remain claimed reports with unknown coverage, even when this separate pilot passes."
+    ],
+    "pilot": {
+      "continuous_connection": false,
+      "counts": {
+        "header_negative_paths": 1,
+        "header_positive_paths": 2,
+        "reported_findings": 5,
+        "requests": 3
+      },
+      "provenance": {
+        "containers": [
+          {
+            "id": "52f387b26463b3eeef9c69d63c332ff12b25782294c8441f075df82cefa73bbd",
+            "image_id": "sha256:71db37cd5b75663b35758d10aaec05bf6fbac23f5020e3046c70e628a5f84efa",
+            "image_reference": "zaproxy/zap-stable@sha256:71db37cd5b75663b35758d10aaec05bf6fbac23f5020e3046c70e628a5f84efa",
+            "name": "signalbridge-soc-zap-pilot"
+          },
+          {
+            "id": "0b3bc117f0e4ef180723c058dd5df39b203ffba0c7d0000fcde9dc1092ed48d4",
+            "image_id": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d",
+            "image_reference": "python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d",
+            "name": "signalbridge-soc-zap-target"
+          }
+        ],
+        "fresh_stopped_gate_required": true,
+        "receipt_sha256": {
+          "created": "0a03dc298b893b28ee636efa715fa996595871585855aa49e4f9fe9c797eee07",
+          "exited": "d63722aac483466090319a082300347f410e48437137a2d54373f4d64a20b9f2",
+          "running": "dc17d9431b66fac88fe32a2ff25449cf23abe3eb3267cee749810ffb5abc578f",
+          "runtime": "2c31fc545411f91ad2025c7b7176567b5620c2b2174823b203a98c1e09100982",
+          "zap_report": "0f712ff5a9c5c61d488349a95b8ec5ce9c951b8d1be681d362b713676c52a68a"
+        },
+        "source_sha256": "1c75fa372af0e8235e1af51c2687e860d9a181e9b833fc6f8215ee055c093b43",
+        "verification": "builder_local_receipt_consistency_and_fresh_stopped_gate"
+      },
+      "recorded_at": "2026-09-24T21:37:48.114107+00:00",
+      "run_id": "e01e620d-2e5b-46f8-aa14-7bc59e74d9af",
+      "runtime_version": "2.17.0",
+      "scope": "synthetic_fixture",
+      "source_app_assessed": false,
+      "stopped_at_end": true
+    },
+    "status": "passed",
+    "tool": "zap"
+  },
+  "schema_version": 1,
+  "source_sha256": "1c75fa372af0e8235e1af51c2687e860d9a181e9b833fc6f8215ee055c093b43"
+}

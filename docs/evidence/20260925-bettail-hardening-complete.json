@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-bettail-hardening-completion",
+  "status": "repair_and_scoped_service_retest_passed",
+  "checked_at": "2026-09-25T15:29:01.857592+00:00",
+  "git_head_at_execution": "992d912618050c1ffbb668e58a948ed46d35e3c6",
+  "source_sha256": "d3f8aea9a096f7531235c80dcf8f6a5d1748a446aacf376a0ef1c817154acbed",
+  "source_file_count": 247,
+  "repair_run_uuid": "42eeb2cd-29c6-4adf-a6ab-e1cf98604984",
+  "authorization": "Owner explicitly approved the isolated repair after returning and restarting Windows.",
+  "containers": {
+    "replaced": 6,
+    "originals_retained": 6,
+    "data_volumes_preserved": 2,
+    "services_retested": 8,
+    "maximum_memory_mib": 4256,
+    "maximum_cpu_quota": 5.75,
+    "swap_enabled": false,
+    "automatic_restart": false,
+    "backend_host_port_bindings": 0,
+    "relay_loopback_only": true,
+    "all_services_stopped_after": true,
+    "running_container_count_after": 0
+  },
+  "credential_checks": {
+    "roles": 8,
+    "checks_per_role": 4,
+    "checks_passed": 32,
+    "checks": [
+      {
+        "role": "postgres",
+        "new_password_accepted": true,
+        "old_default_rejected": true,
+        "wrong_password_rejected": true,
+        "positive_retest": true
+      },
+      {
+        "role": "authenticator",
+        "new_password_accepted": true,
+        "old_default_rejected": true,
+        "wrong_password_rejected": true,
+        "positive_retest": true
+      },
+      {
+        "role": "supabase_auth_admin",
+        "new_password_accepted": true,
+        "old_default_rejected": true,
+        "wrong_password_rejected": true,
+        "positive_retest": true
+      },
+      {
+        "role": "supabase_storage_admin",
+        "new_password_accepted": true,
+        "old_default_rejected": true,
+        "wrong_password_rejected": true,
+        "positive_retest": true
+      },
+      {
+        "role": "pgbouncer",
+        "new_password_accepted": true,
+        "old_default_rejected": true,
+        "wrong_password_rejected": true,
+        "positive_retest": true
+      },
+      {
+        "role": "supabase_replication_admin",
+        "new_password_accepted": true,
+        "old_default_rejected": true,
+        "wrong_password_rejected": true,
+        "positive_retest": true
+      },
+      {
+        "role": "supabase_read_only_user",
+        "new_password_accepted": true,
+        "old_default_rejected": true,
+        "wrong_password_rejected": true,
+        "positive_retest": true
+      },
+      {
+        "role": "supabase_admin",
+        "new_password_accepted": true,
+        "old_default_rejected": true,
+        "wrong_password_rejected": true,
+        "positive_retest": true
+      }
+    ],
+    "path": "internal backend TCP address using SCRAM; not trusted database loopback",
+    "credential_values_published": 0
+  },
+  "migrations": {
+    "count": 68,
+    "records_unchanged": true,
+    "records_sha256": "aeea889518786e7c17dc3dd44c062207fc58501b21bb1ff0420c963faf84dca3",
+    "migration_digest": "d101c7136840ae5e0fcfcad534b9b4d882ad7db651577a6193e89da0ffebfedd",
+    "snapshot_digest": "1b53511c58642fec4d1d4351e66689662f99bc6986e5067f5f08c0990b603ad0",
+    "source_revision": "286c2d7461917eb1177122b67be270f963af1232"
+  },
+  "external_jobs": {
+    "feed": false,
+    "statistics": false,
+    "push": false,
+    "cron": "off"
+  },
+  "preflight": {
+    "status": "ready_for_live_verification",
+    "report_sha256": "64d5862c8dc418d1a44a4293b8be322768342c4ee9729c6df6e899f6e17a8609"
+  },
+  "application_retest": {
+    "run_uuid": "a1ffa9eb-b712-4dae-a44d-214e3d6b81db",
+    "started_at": "2026-09-25T15:22:12.206934+00:00",
+    "finished_at": "2026-09-25T15:26:06.010587+00:00",
+    "route": {
+      "executed": 23,
+      "passed": 23,
+      "stages": {
+        "setup": 4,
+        "assertion": 16,
+        "restoration": 3
+      }
+    },
+    "service": {
+      "executed": 32,
+      "passed": 32,
+      "stages": {
+        "setup": 10,
+        "assertion": 18,
+        "restoration": 4
+      }
+    },
+    "request_count": 69,
+    "route_report_sha256": "d48ff19295ed4b520074abb8899ec354caa8a5a83f4db2a2dd914de5238be733",
+    "service_report_sha256": "184228200d6ae48b7ac77aae7c992d998b26f84843070254e7ceae9ebfa9e261",
+    "restoration": "restored_and_retested",
+    "runtime": {
+      "node_version": "v24.20.0",
+      "supabase_ssr_version": "0.12.7",
+      "next_mode": "development"
+    },
+    "source_unchanged": true,
+    "harness_sha256": {
+      "bettail-routes.mjs": "97d9a6eb955288af1076149ab1365935d657ab8d559db76ea675f66c48479ae3",
+      "supabase-http.mjs": "1b28b7b95261be35ff6649db63f0455a38bac3da74bcd0c5c4d62856c78a9824",
+      "runtime.mjs": "20b3c8a65a68e7a02be7181aa3274fabdc6398857ef24f8f31dee15023639ff0"
+    },
+    "execution_sha256": "f23f23aaaf7bdb12e40548faa3f40f8970e3f1e188ed310631b76e82a5f0e0b7",
+    "isolation_before_sha256": "bf5282df1e72954ff5a9375f33b2ed2db25609e3087f51766c38dbac74bf919b",
+    "isolation_after_sha256": "2bfddce942f6f2e15aa95323cf26f4d76537a39076aecc07baa0b620ee99f7c2"
+  },
+  "preservation": {
+    "data_archives": 2,
+    "data_archive_bytes": 76139520,
+    "archive_hashes_rechecked": true,
+    "configuration_files_restored_and_verified": 5,
+    "service_volume_backup_restoration_tested": false
+  },
+  "private_operator_source_sha256": {
+    "apply_containers.py": "2488bb156a51741f2a1835419f804bfcc20a00163db1eb30b9d8ac10739dc93a",
+    "apply_containers_resume.py": "bb40a3062302dd262e576587e164c34f95e515874db8295230f958f34076e091",
+    "inspect_authentication.py": "df47bc69f3988e1375093a534ad85a965d4c957ee74d82608a848eddd10f59ba",
+    "rotate_credentials.py": "017f488bfe98bd8c89a07467270c34b4aa026afd5d508f800cd444282c14148c",
+    "retest_services.py": "ca2247d3cf1796dbb3c3210260f52a803893be71c311e207fd19c638d713d3fe"
+  },
+  "retained_failures": [
+    "First replacement pass stopped on gateway configuration ownership mismatch; no service started. Exact ownership and contents verified by the continuation.",
+    "Authentication-rule inspection as the ordinary postgres role was rejected; the protected view was inspected using the existing local administrator."
+  ],
+  "limits": [
+    "Builder-operated test of two copied Next development routes and selected genuine local services, not all BetTail functionality or M1 completion.",
+    "Trusted local database administrative access remains; local OS and Docker administrators are in the trust boundary.",
+    "Original containers and archived data are preserved; starting old containers is not a verified rollback. Service-volume backup restoration was not tested.",
+    "Source projects, migrations, paid services and production environments were not changed. No image downloads were needed.",
+    "Credential checks, service assertions, route assertions and core software tests have separate denominators."
+  ]
+}

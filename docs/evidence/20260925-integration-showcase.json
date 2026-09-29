@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-integration-showcase-review",
+  "recorded_at": "2026-09-25T16:58:27.730027+00:00",
+  "source_sha256": "83e11de55f84879f7b82f4691d60297b743d56284f75a01ecc9ee0d55e9d962e",
+  "source_file_count": 248,
+  "core_receipt": "20260925T165612619135Z-3249a5b9.json",
+  "tests": 1036,
+  "owner_feedback": "This is the right direction",
+  "content": "Replaced fictional employer cases with reconciled Wazuh records, ZAP failure/retry and source-linked implementation. Fictional learning remains in Analyst practice.",
+  "record_dataset": "20260925-wazuh-reviewed-records.json",
+  "native_executions": "Historical receipts only; no new Wazuh, ZAP or Shuffle execution during presentation work.",
+  "checks": {
+    "focused_export_package": 43,
+    "full_core_groups": 9,
+    "console_post_restart": "Signed-in session and submitted labelled QA note retained; no editable submitted notes; missing citation still flagged.",
+    "portable_visual": "Owner direction accepted; final keyboard/mobile acceptance unverified because browser policy blocks local files."
+  },
+  "limits": [
+    "AI-assisted builder checks, not independent assessment.",
+    "Recorded local lab results, not live or continuous monitoring.",
+    "Owner-written investigation, recording, public hosting and Shuffle workflow remain pending."
+  ],
+  "publication_checks": {
+    "reviewed_publishable_files": 457,
+    "known_private_value_matches": 0,
+    "local_guide_links_checked": 388,
+    "preserved_historical_files": 160,
+    "pdf_visual_review": "All 17 changed pages rendered and visually reviewed; final technical pages 11-12 re-rendered after CI wording correction. No clipping, overlap or missing glyphs observed.",
+    "pdfs": {
+      "SignalBridge_Analyst_Handbook.pdf": {
+        "pages": 20,
+        "named_destinations": 50,
+        "verified_content_elements": 369,
+        "sha256": "f0ceb953b2127fde84e66a72246eb879f9ccca83a1ea6855d0d21eafcf402371"
+      },
+      "SignalBridge_Technical_Handbook.pdf": {
+        "pages": 23,
+        "named_destinations": 24,
+        "verified_content_elements": 261,
+        "sha256": "67b4263adae8ae45193cdcdb45ebdc46c69fae794f3bad0d9580dab4eeee3ffb"
+      },
+      "SignalBridge_Management_Briefing.pdf": {
+        "pages": 2,
+        "named_destinations": 0,
+        "verified_content_elements": 53,
+        "sha256": "a4c1016469b7cc1fc9778bcabcff44af3e6f7929074be9c2c5775dd9e45c80db"
+      }
+    },
+    "portfolio": {
+      "status": "passed",
+      "unique_ids": 16,
+      "tool_selectors": 3,
+      "record_disclosures": 64,
+      "private_value_matches": 0,
+      "reviewed_metrics_match": true,
+      "html_sha256": "35dd97449def7db0cfa7f748b8a3415f117e54098e526bc0defd09bb2140536d",
+      "browser_keyboard_mobile": "unverified; local-file automation policy blocks access",
+      "owner_direction": "accepted"
+    }
+  }
+}

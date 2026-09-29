@@ -1,0 +1,2747 @@
+{
+  "schema_version": 2,
+  "kind": "signalbridge-public-portfolio",
+  "generated_at": "2026-09-26T01:29:05.033572+00:00",
+  "core": {
+    "checks": [
+      {
+        "duration_seconds": 49.381,
+        "exit_code": 0,
+        "log_sha256": {
+          "stderr": "e9f421da2a65453f42a9ee45c983b5a538e682ce2c606b4a320dedb079fd9a07",
+          "stdout": "945d7e847e7d6932596d270883841baee4aedc4f5438563fd249670a8304dc3b"
+        },
+        "name": "django-tests",
+        "passed": true,
+        "tests": {
+          "errors": 0,
+          "expected_failures": 0,
+          "failures": 0,
+          "skipped": 0,
+          "successful_summary": true,
+          "tests_run": 1030,
+          "unexpected_successes": 0
+        }
+      },
+      {
+        "duration_seconds": 0.971,
+        "exit_code": 0,
+        "log_sha256": {
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "f87ceb15410bde28ff826ce26228e0576558258fa64d145847921a593a61ee63"
+        },
+        "name": "django-check",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.973,
+        "exit_code": 0,
+        "log_sha256": {
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "93e6e2d5be3c054add80c0f19101608803f7ca8a7df1fa41f76bbb9a1f570f4a"
+        },
+        "name": "migration-drift",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.048,
+        "exit_code": 0,
+        "log_sha256": {
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+        },
+        "name": "ruff-check",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.046,
+        "exit_code": 0,
+        "log_sha256": {
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "a8974443d12f9736423157c869f658ab1b4fc18c2ff99f12bf2cb579052f9e5b"
+        },
+        "name": "ruff-format",
+        "passed": true
+      },
+      {
+        "duration_seconds": 6.481,
+        "exit_code": 0,
+        "log_sha256": {
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "fa06bf2e9828d1a7a244cc0514737921a1c43690374f8226a7a0899510ebe50b"
+        },
+        "name": "publication-scan",
+        "passed": true
+      },
+      {
+        "duration_seconds": 0.222,
+        "exit_code": 0,
+        "log_sha256": {
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "378a2607772cd014be004a724cab2c16d2be57d5d1e0e61afcd5b3baa3206e34"
+        },
+        "name": "node-courier-tests",
+        "passed": true,
+        "tests": {
+          "cancelled": 0,
+          "failures": 0,
+          "passed_tests": 13,
+          "skipped": 0,
+          "successful_summary": true,
+          "suites": 0,
+          "tests_run": 13,
+          "todo": 0
+        }
+      },
+      {
+        "duration_seconds": 0.177,
+        "exit_code": 0,
+        "log_sha256": {
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "de4fefd51a8eafa739b961784594d9db88622619984868beda132f2efd1daa0e"
+        },
+        "name": "node-http-harness-mock-tests",
+        "passed": true,
+        "tests": {
+          "cancelled": 0,
+          "failures": 0,
+          "passed_tests": 17,
+          "skipped": 0,
+          "successful_summary": true,
+          "suites": 0,
+          "tests_run": 17,
+          "todo": 0
+        }
+      },
+      {
+        "duration_seconds": 0.191,
+        "exit_code": 0,
+        "log_sha256": {
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "d830e564a3e740fdc7cf4d8d22e3e6aa160297193f0511c2376c51453153da66"
+        },
+        "name": "node-bettail-route-mock-tests",
+        "passed": true,
+        "tests": {
+          "cancelled": 0,
+          "failures": 0,
+          "passed_tests": 23,
+          "skipped": 0,
+          "successful_summary": true,
+          "suites": 0,
+          "tests_run": 23,
+          "todo": 0
+        }
+      }
+    ],
+    "coverage_limits": [
+      "Builder-operated local core verification; not an independent audit.",
+      "Node courier, HTTP-harness and BetTail route suites use mocks; they do not contact real services.",
+      "No real Supabase auth, source-app HTTP/storage, PostgreSQL concurrency or container tests.",
+      "No dependency advisory lookup, remote CI, deployment or production validation.",
+      "Hashes identify content; a filesystem administrator can replace logs and receipts.",
+      "Documentation and generated evidence are excluded from the source digest."
+    ],
+    "duration_seconds": 59.889,
+    "finished_at": "2026-09-26T01:28:55.030603+00:00",
+    "kind": "signalbridge-core-verification-receipt",
+    "passed": true,
+    "revision": "601b75d892c1d15c4bfd78610a04e06171b1f146",
+    "run_id": "20260926T012755140657Z-59e297b9",
+    "schema_version": 1,
+    "source_file_count": 255,
+    "source_sha256": "ed8714517b4999e7e8862b0f5596138417b60395049827a2e8916f1c6f670c87",
+    "source_unchanged": true,
+    "started_at": "2026-09-26T01:27:55.141484+00:00",
+    "working_tree_dirty": true,
+    "receipt": "20260926T012755140657Z-59e297b9.json",
+    "receipt_sha256": "42a1510e2faa6a90ced36bae7fb3b6af366e0c65bb2021ed619a5026d32c1c9a"
+  },
+  "historical_baseline": {
+    "receipt": "20260924-offline-simulation.json",
+    "receipt_sha256": "d58ad57975b8d62a4cfa5850a4f4915495e634e334ddf0912254108b6f1d2ac8",
+    "run_id": "a69f778bb91d433691bc1c1e70b5f260",
+    "source_sha256": "adae7bc5ca52c84f87da77ef04a4fc9faef9a4671675bfa0d054a3af624158fd",
+    "source_file_count": 126,
+    "revision": "a6398ec42994e26deabe646d980c86c29f326a9c",
+    "working_tree_dirty": true,
+    "python": "3.14.4",
+    "result_sha256": "5ee88efc509d50f5e393cbc3e0b0b7680f99bdb9689f3e33c0e0b27cf14ea673",
+    "provenance_sha256": "ebe14661f1e6e972ccff8e74992cb173faf624772595f9cee6429502818bc417",
+    "status": "partial",
+    "matches_current_source": false,
+    "results": {
+      "schema_version": 1,
+      "kind": "signalbridge-offline-capability-simulation",
+      "started_at": "2026-09-24T04:40:05.353490+00:00",
+      "finished_at": "2026-09-24T04:40:07.878200+00:00",
+      "execution_status": "completed_with_known_coverage_gap",
+      "database": "disposable in-memory SQLite",
+      "transport": "Django in-process test client",
+      "safety": {
+        "synthetic_only": true,
+        "network_guard": true,
+        "child_process_guard": true,
+        "production_database": false,
+        "max_requests": 750,
+        "max_worker_records": 700
+      },
+      "scenarios": [
+        {
+          "id": "authorized_read",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "distinct_private_failures",
+          "expected_rule": "R1",
+          "observed_rules": [
+            "R1"
+          ],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "same_resource_retries",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "below_threshold",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "bucket_boundary_gap",
+          "expected_rule": "R1",
+          "observed_rules": [],
+          "known_limitation": true,
+          "coverage_met": false
+        },
+        {
+          "id": "revoked_read_allowed",
+          "expected_rule": "R2",
+          "observed_rules": [
+            "R2"
+          ],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "controlled_policy_fault",
+          "expected_rule": "R2",
+          "observed_rules": [
+            "R2"
+          ],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "successful_membership_change",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "session_errors_not_private_reads",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "dependency_errors",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "mixed_sources",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "cross_application",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "mixed_environments",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "out_of_order",
+          "expected_rule": "R1",
+          "observed_rules": [
+            "R1"
+          ],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "duplicate_delivery",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        }
+      ],
+      "controls": {
+        "tampered_signature_rejected_without_event": true,
+        "duplicate_content_conflict_rejected": true,
+        "configured_600_per_minute_limit": true
+      },
+      "not_tested": [
+        "Endpoint or cloud inventory",
+        "Live adversary exploitation",
+        "Production traffic",
+        "Multi-node availability",
+        "PostgreSQL concurrency or crash durability",
+        "Network HTTP latency",
+        "Competitor products",
+        "Independent blind holdout",
+        "Automated external response"
+      ],
+      "detection_quality": {
+        "true_positive_scenarios": 4,
+        "false_negative_scenarios": 1,
+        "false_positive_scenarios": 0,
+        "true_negative_scenarios": 10,
+        "recall": 0.8,
+        "precision": 1.0,
+        "denominator": "15 declared, builder-authored synthetic scenarios; not independent production prevalence"
+      },
+      "bounded_load": {
+        "accepted_events": 600,
+        "processed_events": 600,
+        "source_rate_limit": "600 per application per minute",
+        "ingest_seconds": 1.638864,
+        "processing_seconds": 0.698761,
+        "in_process_requests_per_second": 366.11,
+        "in_process_request_p50_ms": 2.671,
+        "in_process_request_p95_ms": 2.842,
+        "alerts_from_benign_load": 0,
+        "limits": "Single-process SQLite harness timing includes test-client overhead; not network or production capacity."
+      },
+      "scenario_records_processed": 34,
+      "final_queue": {
+        "processed": 634,
+        "pending": 0,
+        "dead": 0
+      },
+      "duration_seconds": 2.524703,
+      "requests_executed": 639,
+      "coverage": {
+        "met": 14,
+        "total": 15,
+        "known_misses": [
+          "bucket_boundary_gap"
+        ],
+        "unexpected_misses_or_alerts": []
+      }
+    }
+  },
+  "current_simulation": {
+    "receipt": "20260926-simulation-cbf23a2222b6459cafd84af7d29aa4a5.json",
+    "receipt_sha256": "5193d9c7e172d59d7eaa82c49ecf5af4b3c7b333898781adf5f7369612a77217",
+    "run_id": "cbf23a2222b6459cafd84af7d29aa4a5",
+    "source_sha256": "ed8714517b4999e7e8862b0f5596138417b60395049827a2e8916f1c6f670c87",
+    "source_file_count": 255,
+    "revision": "601b75d892c1d15c4bfd78610a04e06171b1f146",
+    "working_tree_dirty": true,
+    "python": "3.14.4",
+    "result_sha256": "bf6729cd78e6fd93802b2236622870e37e6ea0c261dd3f2efdbafad98d2e9754",
+    "provenance_sha256": "2b0f7e5568eae29c68a62c78281eb3a1a36c08d642f56c2e38fe0654d61c8fb3",
+    "status": "passed",
+    "matches_current_source": true,
+    "results": {
+      "schema_version": 1,
+      "kind": "signalbridge-offline-capability-simulation",
+      "started_at": "2026-09-26T01:28:57.262119+00:00",
+      "finished_at": "2026-09-26T01:29:00.642478+00:00",
+      "execution_status": "completed",
+      "database": "disposable in-memory SQLite",
+      "transport": "Django in-process test client",
+      "safety": {
+        "synthetic_only": true,
+        "network_guard": true,
+        "child_process_guard": true,
+        "production_database": false,
+        "max_requests": 750,
+        "max_worker_records": 700
+      },
+      "scenarios": [
+        {
+          "id": "authorized_read",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "distinct_private_failures",
+          "expected_rule": "R1",
+          "observed_rules": [
+            "R1"
+          ],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "same_resource_retries",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "below_threshold",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "bucket_boundary_gap",
+          "expected_rule": "R1",
+          "observed_rules": [
+            "R1"
+          ],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "revoked_read_allowed",
+          "expected_rule": "R2",
+          "observed_rules": [
+            "R2"
+          ],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "controlled_policy_fault",
+          "expected_rule": "R2",
+          "observed_rules": [
+            "R2"
+          ],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "successful_membership_change",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "session_errors_not_private_reads",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "dependency_errors",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "mixed_sources",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "cross_application",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "mixed_environments",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "out_of_order",
+          "expected_rule": "R1",
+          "observed_rules": [
+            "R1"
+          ],
+          "known_limitation": false,
+          "coverage_met": true
+        },
+        {
+          "id": "duplicate_delivery",
+          "expected_rule": null,
+          "observed_rules": [],
+          "known_limitation": false,
+          "coverage_met": true
+        }
+      ],
+      "controls": {
+        "tampered_signature_rejected_without_event": true,
+        "duplicate_content_conflict_rejected": true,
+        "configured_600_per_minute_limit": true
+      },
+      "not_tested": [
+        "Endpoint or cloud inventory",
+        "Live adversary exploitation",
+        "Production traffic",
+        "Multi-node availability",
+        "PostgreSQL concurrency or crash durability",
+        "Network HTTP latency",
+        "Competitor products",
+        "Independent blind holdout",
+        "Automated external response"
+      ],
+      "detection_quality": {
+        "true_positive_scenarios": 5,
+        "false_negative_scenarios": 0,
+        "false_positive_scenarios": 0,
+        "true_negative_scenarios": 10,
+        "recall": 1.0,
+        "precision": 1.0,
+        "denominator": "15 declared, builder-authored synthetic scenarios; not independent production prevalence"
+      },
+      "bounded_load": {
+        "accepted_events": 600,
+        "processed_events": 600,
+        "source_rate_limit": "600 per application per minute",
+        "ingest_seconds": 2.294773,
+        "processing_seconds": 0.824699,
+        "in_process_requests_per_second": 261.46,
+        "in_process_request_p50_ms": 3.634,
+        "in_process_request_p95_ms": 4.885,
+        "alerts_from_benign_load": 0,
+        "limits": "Single-process SQLite harness timing includes test-client overhead; not network or production capacity."
+      },
+      "scenario_records_processed": 34,
+      "final_queue": {
+        "processed": 634,
+        "pending": 0,
+        "dead": 0
+      },
+      "duration_seconds": 3.38035,
+      "requests_executed": 639,
+      "coverage": {
+        "met": 15,
+        "total": 15,
+        "known_misses": [],
+        "unexpected_misses_or_alerts": []
+      }
+    }
+  },
+  "detection_challenge": {
+    "receipt": "20260926-challenge-6ddeb3098b4845cbb29fc072d59056f6.json",
+    "receipt_sha256": "f173a5503b1f78122f7a47f3c8fd9abbfb4da8e4758dacf2e7b5a8949dad8247",
+    "run_id": "6ddeb3098b4845cbb29fc072d59056f6",
+    "source_sha256": "ed8714517b4999e7e8862b0f5596138417b60395049827a2e8916f1c6f670c87",
+    "source_file_count": 255,
+    "revision": "601b75d892c1d15c4bfd78610a04e06171b1f146",
+    "working_tree_dirty": true,
+    "python": "3.14.4",
+    "result_sha256": "2dbb78d28b335a189e73064bcdb96df9a6f9fbb977144d33f747f7d907eaf559",
+    "provenance_sha256": "9102e36569d8869fe68771ac3cc27298a104185686dad304b1ead0677eb09b22",
+    "status": "partial",
+    "matches_current_source": true,
+    "results": {
+      "schema_version": 1,
+      "kind": "detection-challenge-v1",
+      "declaration_sha256": "6709461d435e6dad7f89cf9e447f3629423caf9728e11118858ddcdae0cf8345",
+      "started_at": "2026-09-26T01:29:03.575798+00:00",
+      "execution_status": "completed",
+      "database": "disposable in-memory SQLite",
+      "transport": "Django in-process test client",
+      "rows": [
+        {
+          "id": "C01",
+          "observed_rules": [
+            "R1"
+          ],
+          "case_count": 1,
+          "accepted": 3,
+          "duplicates": 0,
+          "processed": 3
+        },
+        {
+          "id": "C02",
+          "observed_rules": [],
+          "case_count": 0,
+          "accepted": 3,
+          "duplicates": 0,
+          "processed": 3
+        },
+        {
+          "id": "C03",
+          "observed_rules": [
+            "R1"
+          ],
+          "case_count": 1,
+          "accepted": 3,
+          "duplicates": 0,
+          "processed": 3
+        },
+        {
+          "id": "C04",
+          "observed_rules": [
+            "R1"
+          ],
+          "case_count": 1,
+          "accepted": 3,
+          "duplicates": 0,
+          "processed": 3
+        },
+        {
+          "id": "C05",
+          "observed_rules": [],
+          "case_count": 0,
+          "accepted": 2,
+          "duplicates": 2,
+          "processed": 2
+        },
+        {
+          "id": "C06",
+          "observed_rules": [],
+          "case_count": 0,
+          "accepted": 3,
+          "duplicates": 0,
+          "processed": 3
+        },
+        {
+          "id": "C07",
+          "observed_rules": [
+            "R1"
+          ],
+          "case_count": 1,
+          "accepted": 3,
+          "duplicates": 0,
+          "processed": 3
+        },
+        {
+          "id": "C08",
+          "observed_rules": [
+            "R1"
+          ],
+          "case_count": 1,
+          "accepted": 3,
+          "duplicates": 0,
+          "processed": 3
+        },
+        {
+          "id": "C09",
+          "observed_rules": [],
+          "case_count": 0,
+          "accepted": 1,
+          "duplicates": 0,
+          "processed": 1
+        },
+        {
+          "id": "C10",
+          "observed_rules": [
+            "R2"
+          ],
+          "case_count": 1,
+          "accepted": 1,
+          "duplicates": 0,
+          "processed": 1
+        },
+        {
+          "id": "C11",
+          "observed_rules": [],
+          "case_count": 0,
+          "accepted": 1,
+          "duplicates": 0,
+          "processed": 1
+        },
+        {
+          "id": "C12",
+          "observed_rules": [
+            "R1"
+          ],
+          "case_count": 1,
+          "accepted": 3,
+          "duplicates": 0,
+          "processed": 3
+        },
+        {
+          "id": "C13",
+          "observed_rules": [
+            "R2"
+          ],
+          "case_count": 1,
+          "accepted": 1,
+          "duplicates": 1,
+          "processed": 1
+        },
+        {
+          "id": "C14",
+          "observed_rules": [
+            "R1"
+          ],
+          "case_count": 2,
+          "accepted": 4,
+          "duplicates": 0,
+          "processed": 4
+        },
+        {
+          "id": "C15",
+          "observed_rules": [],
+          "case_count": 0,
+          "accepted": 3,
+          "duplicates": 0,
+          "processed": 3
+        },
+        {
+          "id": "C16",
+          "observed_rules": [
+            "R2"
+          ],
+          "case_count": 2,
+          "accepted": 2,
+          "duplicates": 0,
+          "processed": 2
+        },
+        {
+          "id": "P01",
+          "observed_rules": [],
+          "case_count": 0,
+          "accepted": 3,
+          "duplicates": 0,
+          "processed": 3
+        },
+        {
+          "id": "P02",
+          "observed_rules": [],
+          "case_count": 0,
+          "accepted": 3,
+          "duplicates": 0,
+          "processed": 3
+        },
+        {
+          "id": "P03",
+          "observed_rules": [],
+          "case_count": 0,
+          "accepted": 2,
+          "duplicates": 0,
+          "processed": 2
+        }
+      ],
+      "requests_executed": 50,
+      "records_processed": 47,
+      "summary": {
+        "rule_contract": {
+          "met": 16,
+          "total": 16,
+          "failed_ids": []
+        },
+        "capability_probes": {
+          "alert_observed": 0,
+          "total": 3,
+          "unmet_ids": [
+            "P01",
+            "P02",
+            "P03"
+          ]
+        }
+      },
+      "finished_at": "2026-09-26T01:29:03.988973+00:00",
+      "duration_seconds": 0.413781
+    }
+  },
+  "same_declared_scenarios": true,
+  "integrations": {
+    "scope": "Historical executions of real tools with local lab inputs; no live service connection.",
+    "wazuh": {
+      "run_id": "9432c474-f48e-4b70-87a8-9fd7d33bf51c",
+      "version": "4.14.8",
+      "counts": {
+        "alerts": 31,
+        "duplicates": 0,
+        "inputs": 64,
+        "missing": 0,
+        "nonalerts": 33,
+        "received": 64,
+        "rule_cases": 27
+      },
+      "finished_at": "2026-09-25T05:51:08.743050+00:00",
+      "duration_seconds": 26.785,
+      "source_counts": {
+        "legacy_unclassified": 26,
+        "migration_lab": 14,
+        "synthetic_demo": 24
+      },
+      "input_sha256": "3c9f218f013fcc7a0f4fefafacef71e0160fd532c02ce54246cf408f12e3dd86",
+      "records": [
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "9f1f1ea2-2780-4d22-af7c-9875bce0d102",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.150000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "policy_regression",
+          "source": "migration_lab",
+          "rule_id": "100201",
+          "level": 12,
+          "meaning": "Observed boundary signal",
+          "interpretation": "Allowed read with a lab-observed boundary-change reason. Verify the permission context.",
+          "short_id": "9f1f1ea2"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "be113c63-0a02-4308-986a-dcde4030ff4c",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "membership_removed",
+          "source": "synthetic_demo",
+          "rule_id": "100202",
+          "level": 5,
+          "meaning": "Synthetic boundary signal",
+          "interpretation": "Allowed read from a declared synthetic scenario. A detector exercise, not a breach.",
+          "short_id": "be113c63"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "e9ec6fca-405e-442e-9ca7-20dc72a26675",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "membership_removed",
+          "source": "synthetic_demo",
+          "rule_id": "100202",
+          "level": 5,
+          "meaning": "Synthetic boundary signal",
+          "interpretation": "Allowed read from a declared synthetic scenario. A detector exercise, not a breach.",
+          "short_id": "e9ec6fca"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "1c92ffff-b00d-4fdf-ac49-c621f1a7752f",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "synthetic_demo",
+          "rule_id": "100203",
+          "level": 3,
+          "meaning": "Denied request",
+          "interpretation": "The request was denied. This may show a working permission boundary.",
+          "short_id": "1c92ffff"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "5682a54d-4c0f-4c42-9716-154878e1a23e",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.142000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "migration_lab",
+          "rule_id": "100203",
+          "level": 3,
+          "meaning": "Denied request",
+          "interpretation": "The request was denied. This may show a working permission boundary.",
+          "short_id": "5682a54d"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "5bf24e40-0e64-4510-bb99-bac32e280b6c",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "synthetic_demo",
+          "rule_id": "100203",
+          "level": 3,
+          "meaning": "Denied request",
+          "interpretation": "The request was denied. This may show a working permission boundary.",
+          "short_id": "5bf24e40"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "6d2238b3-f468-4b90-939f-9b4d4e8fa2b5",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "synthetic_demo",
+          "rule_id": "100203",
+          "level": 3,
+          "meaning": "Denied request",
+          "interpretation": "The request was denied. This may show a working permission boundary.",
+          "short_id": "6d2238b3"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "8c1b3d1e-c1a8-41c3-80f6-58d8e53e5498",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "synthetic_demo",
+          "rule_id": "100203",
+          "level": 3,
+          "meaning": "Denied request",
+          "interpretation": "The request was denied. This may show a working permission boundary.",
+          "short_id": "8c1b3d1e"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "a7cbe333-c7ed-4681-89c9-1d95ee62517b",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "synthetic_demo",
+          "rule_id": "100203",
+          "level": 3,
+          "meaning": "Denied request",
+          "interpretation": "The request was denied. This may show a working permission boundary.",
+          "short_id": "a7cbe333"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "bc831255-279c-4ed8-b1b7-81302827e118",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.160000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "migration_lab",
+          "rule_id": "100203",
+          "level": 3,
+          "meaning": "Denied request",
+          "interpretation": "The request was denied. This may show a working permission boundary.",
+          "short_id": "bc831255"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "d3c3ba3c-bbf6-457a-919c-dab7b66e1f41",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "synthetic_demo",
+          "rule_id": "100203",
+          "level": 3,
+          "meaning": "Denied request",
+          "interpretation": "The request was denied. This may show a working permission boundary.",
+          "short_id": "d3c3ba3c"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "0a0037f7-cd5c-475b-b2eb-f2b629c08c15",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.145000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "migration_lab",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "0a0037f7"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "0d8975a0-2978-42dc-811e-6c4708318c93",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "0d8975a0"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "10147ef0-b895-4e35-a338-199f23f55a0a",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "10147ef0"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "2a356653-bc58-416a-a7c0-e566b3f45fde",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "2a356653"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "2f714712-4850-4a3b-a809-364f99777804",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "2f714712"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "2f7ae5d6-f0d9-4208-a548-195cc391c496",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "2f7ae5d6"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "3d3a26fa-3175-446e-8003-9c506a167a2b",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.144000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "migration_lab",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "3d3a26fa"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "407fe5ed-1497-406d-b1a1-158f8ed50222",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.157000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "migration_lab",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "407fe5ed"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "41e870d3-b3b3-41d8-86cb-525f6226f7eb",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "41e870d3"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "49a5b15e-9ad3-4036-84c7-98036a3dbc6b",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "49a5b15e"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "4aa3ccc2-70ba-4cdc-8d48-2afe10e55906",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "4aa3ccc2"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "5176d4ee-8575-44b6-8d05-0a551d5290eb",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "5176d4ee"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "53d9bef4-9cd4-4942-a00e-d2c5c18d1374",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.099000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "migration_lab",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "53d9bef4"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "732652ff-e625-40ff-9e98-d57ac3385308",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "732652ff"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "7ad01e84-68ab-4bcf-9293-77022f815a0a",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "7ad01e84"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "8769669b-e312-4b65-a4cf-2d7a7e9d3917",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.147000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "migration_lab",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "8769669b"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "b6b8d23d-ba83-4272-bdf9-801a70f72806",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "b6b8d23d"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "d5e027d2-0e9d-481c-8b00-022c7aa1441d",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "d5e027d2"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "da635a75-046a-4b34-858e-4b02a13a29eb",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "synthetic_demo",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "da635a75"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "efb73408-e131-46e4-93a9-d5f28c06a933",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.156000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "migration_lab",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "efb73408"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "0007dd48-5c1f-4292-bd17-aac0471da23d",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.280000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "0007dd48"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "083599dd-5718-409c-ae05-c85c5d82e6b8",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:01:23.768000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "083599dd"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "09e156b9-b1d6-49da-b207-43e5709e79b5",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:01:23.768000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "09e156b9"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "14a7af01-3efb-44e9-ae91-99247f01ef41",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "member",
+          "source": "synthetic_demo",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "14a7af01"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "181ba3e8-6203-4391-9897-9ac4f2b4c5ef",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:01:23.768000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "181ba3e8"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "1842110a-ab02-4a6f-8dc7-6f2c15897b17",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:01:23.768000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "1842110a"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "19e54285-90ab-447f-a699-3e6613b2cbc0",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.282000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "19e54285"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "1cf3355e-31db-4688-869f-2b73290a6093",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.296000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "owner",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "1cf3355e"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "221cbec0-1b8b-4725-9610-8137b10a90fa",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:01:23.768000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "221cbec0"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "3c2a5e5a-b0fa-4bce-a338-bd8fcdb31b57",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:01:23.768000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "3c2a5e5a"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "466ee734-fd65-4863-a186-b1c0bc5a6645",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.289000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "owner",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "466ee734"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "5aa7a4fd-e113-44c6-ace1-3ddb1d4d5dce",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "member",
+          "source": "synthetic_demo",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "5aa7a4fd"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "64dac00e-552f-4b15-ae15-f6f336df47a9",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.292000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "64dac00e"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "6950c558-19cf-45c3-9d95-c1d0c1c3552e",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.237000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "owner",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "6950c558"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "6b3a48f9-e323-4a9f-a70d-e78aef467210",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:01:23.768000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "membership_removed",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "6b3a48f9"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "6e4948cd-a7d4-41e1-b6e5-3fac134cd859",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:01:23.768000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "6e4948cd"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "6fc57b92-8c3f-4a37-9e6a-60ac93a97aff",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.238000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "6fc57b92"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "70d41830-086e-4c0e-b841-2e3f10dce81b",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.161000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "member",
+          "source": "migration_lab",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "70d41830"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "7101a38c-0a37-4007-9a1c-5dc5011d0308",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.283000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "7101a38c"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "85c5650d-469d-413f-85b1-722b482e3e0e",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.276000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "owner",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "85c5650d"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "92bfd6c7-573c-40b8-af52-7810c2022324",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:01:23.768000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "92bfd6c7"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "972b42bf-8776-4972-80fe-df9f6653e8a0",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:01:23.768000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "972b42bf"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "980ca376-59e5-43f3-9e55-0563474f0685",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.097000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "member",
+          "source": "migration_lab",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "980ca376"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "a08797ec-978c-4e75-9f38-edbe22d8aee0",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.279000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "a08797ec"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "a2d78da3-7b7a-4a52-b4a8-21f722528111",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.149000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "member",
+          "source": "migration_lab",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "a2d78da3"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "a6151d91-fbdc-474f-b67e-0cee3a6b066e",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.285000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "policy_regression",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "a6151d91"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "b35a765b-1283-4230-9338-c5812afdac1e",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.285000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "owner",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "b35a765b"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "ba37a9fb-0122-4b64-960b-9cbbe895ea74",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.294000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "ba37a9fb"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "ca963698-8261-4c0b-9a6c-ccf13d970207",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.139000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "member",
+          "source": "migration_lab",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "ca963698"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "d8817646-7265-496b-b476-e89ff5c06485",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:01:23.768000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "member",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "d8817646"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "db58fa8f-229e-485b-8877-4bc03682da6a",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.291000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "db58fa8f"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "df67ef80-d9e1-47e6-9110-8a2df06f7304",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:01:23.768000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "df67ef80"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "f447bdc7-d379-41a2-85d9-c00bdcca98b0",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.154000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "member",
+          "source": "migration_lab",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "f447bdc7"
+        }
+      ],
+      "rules": [
+        {
+          "id": "100201",
+          "title": "Observed boundary signal",
+          "count": 1
+        },
+        {
+          "id": "100202",
+          "title": "Synthetic boundary signal",
+          "count": 2
+        },
+        {
+          "id": "100203",
+          "title": "Denied request",
+          "count": 8
+        },
+        {
+          "id": "100204",
+          "title": "Record not visible",
+          "count": 20
+        }
+      ],
+      "isolation": {
+        "cpus": 1,
+        "exit_code": 0,
+        "final_state": "exited",
+        "memory_mib": 1536,
+        "network": "none",
+        "oom": false,
+        "parent_deadline_seconds": 160,
+        "pids": 256,
+        "ports": 0
+      }
+    },
+    "zap": {
+      "runs": [
+        {
+          "run_id": "3ea4b0c1-680a-4fbd-8ac2-0cd65bc04a2b",
+          "failed": true,
+          "accepted": 0,
+          "counts": null,
+          "duration_seconds": 16.403,
+          "finished_at": "2026-09-25T08:33:28.036409+00:00",
+          "scanner_exit_code": 1,
+          "stopped": true,
+          "coverage": "incomplete",
+          "imported_receipt_sha256": "3c9fc6087e55e553a259f46f078f1a2e3a29a508d056dde81b4b246d213ac7d2"
+        },
+        {
+          "run_id": "9136c7c9-3515-4797-8518-24f80d0ce148",
+          "failed": false,
+          "accepted": 3,
+          "counts": {
+            "requests": 3,
+            "header_positive_paths": 2,
+            "header_negative_paths": 1,
+            "reported_findings": 5
+          },
+          "duration_seconds": 20.619,
+          "finished_at": "2026-09-25T08:34:00.820748+00:00",
+          "scanner_exit_code": 0,
+          "stopped": true,
+          "coverage": "fixed-fixture-only",
+          "imported_receipt_sha256": "01a15d61755a9d710e8f0b4f27092e011f805a41525023cc3ac2faa68bf7ff38"
+        }
+      ],
+      "version": "2.17.0",
+      "import_duplicates": false,
+      "import_receipts": 2,
+      "audit_records": 2
+    },
+    "receipts": [
+      {
+        "receipt": "20260925-wazuh-product-backfill.json",
+        "receipt_sha256": "979414281e871b8f421217b4a71e30cf630f6c47913a7181510d4f44092e4ba4",
+        "reviewed_content_sha256": "f3a158f93ffaa0134e75ac849215f3cdf2835c8dc459cef1e794773f6987d673"
+      },
+      {
+        "receipt": "20260925-wazuh-reviewed-records.json",
+        "receipt_sha256": "84032e7011cc4f58b705ba66f57ff8e73d6db597b519baca49ced40160952170",
+        "reviewed_content_sha256": "b7695ad3df9be7d49ce2645e2f57a02bbd358c2af28802cb6aef303c3203a239"
+      },
+      {
+        "receipt": "20260925-zap-repeat-failure.json",
+        "receipt_sha256": "a219e04dfc48b2e6ef0fe066f6258ea7fb201afa0dd46b992daac3de8dda3222",
+        "reviewed_content_sha256": "4a41d658caef9fa36580b7e2c9a2aab520ab336d3a468d104fc79e870a68d86b"
+      },
+      {
+        "receipt": "20260925-zap-console-import.json",
+        "receipt_sha256": "4648d981ea046514ef6a708ef30775898fef1cb27908016c5850b27a3d434239",
+        "reviewed_content_sha256": "27d7dbb254d358ea0f1b6f969479d6b6eb32b16fb3cfb77ab9a5875254d8c205"
+      }
+    ]
+  },
+  "limits": [
+    "Builder-operated evidence, not an independent audit or an enterprise benchmark.",
+    "Core verification and synthetic simulation are different executions with separate dates.",
+    "The current source is compared with the core and current simulation receipts at generation only.",
+    "Public receipts are reviewed summaries, not signatures or independently attested executions.",
+    "Receipt bytes are hashed here; original private logs, raw results and provenance are not reread.",
+    "A matching source digest does not verify runtime configuration, dependencies or deployment.",
+    "No runtime AI, live attacker exercise, production capacity or competitor superiority is measured."
+  ],
+  "story": {
+    "rules": {
+      "path": "integrations/wazuh/signalbridge_rules.xml",
+      "executed_sha256": "9d31bff5f315b92108c8e6e1b56880e5511d30055d56496a33dfc1f3217f241b",
+      "examples": [
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "9f1f1ea2-2780-4d22-af7c-9875bce0d102",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.150000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "policy_regression",
+          "source": "migration_lab",
+          "rule_id": "100201",
+          "level": 12,
+          "meaning": "Observed boundary signal",
+          "interpretation": "Allowed read with a lab-observed boundary-change reason. Verify the permission context.",
+          "short_id": "9f1f1ea2",
+          "anchor": "record-9f1f1ea2-2780-4d22-af7c-9875bce0d102",
+          "base_matches": true,
+          "checks": [
+            {
+              "field": "export_version",
+              "actual": "1",
+              "expected": "^1$",
+              "matches": true
+            },
+            {
+              "field": "app",
+              "actual": "bettail",
+              "expected": "^(bettail|netted)$",
+              "matches": true
+            },
+            {
+              "field": "environment",
+              "actual": "lab",
+              "expected": "^(lab|test)$",
+              "matches": true
+            },
+            {
+              "field": "source",
+              "actual": "migration_lab",
+              "expected": "^(migration_lab|synthetic_demo)$",
+              "matches": true
+            },
+            {
+              "field": "event_id",
+              "actual": "9f1f1ea2-2780-4d22-af7c-9875bce0d102",
+              "expected": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+              "matches": true
+            },
+            {
+              "field": "occurred_at",
+              "actual": "2026-09-24T02:05:58.150000+00:00",
+              "expected": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$",
+              "matches": true
+            },
+            {
+              "field": "operation",
+              "actual": "private_record.read",
+              "expected": "^(private_record\\.read|membership\\.change|session\\.verify)$",
+              "matches": true
+            },
+            {
+              "field": "outcome",
+              "actual": "allowed",
+              "expected": "^(allowed|denied|not_visible|error)$",
+              "matches": true
+            },
+            {
+              "field": "reason",
+              "actual": "policy_regression",
+              "expected": "^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$",
+              "matches": true
+            },
+            {
+              "field": "source",
+              "actual": "migration_lab",
+              "expected": "^migration_lab$",
+              "matches": true
+            },
+            {
+              "field": "operation",
+              "actual": "private_record.read",
+              "expected": "^private_record\\.read$",
+              "matches": true
+            },
+            {
+              "field": "outcome",
+              "actual": "allowed",
+              "expected": "^allowed$",
+              "matches": true
+            },
+            {
+              "field": "reason",
+              "actual": "policy_regression",
+              "expected": "^(membership_removed|policy_regression)$",
+              "matches": true
+            }
+          ],
+          "reasoning": "The parent rule and every displayed child condition match. The recorded Wazuh rule and level agree with these predicates.",
+          "example_title": "Observed boundary signal"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "be113c63-0a02-4308-986a-dcde4030ff4c",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T05:14:57.315000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "membership_removed",
+          "source": "synthetic_demo",
+          "rule_id": "100202",
+          "level": 5,
+          "meaning": "Synthetic boundary signal",
+          "interpretation": "Allowed read from a declared synthetic scenario. A detector exercise, not a breach.",
+          "short_id": "be113c63",
+          "anchor": "record-be113c63-0a02-4308-986a-dcde4030ff4c",
+          "base_matches": true,
+          "checks": [
+            {
+              "field": "export_version",
+              "actual": "1",
+              "expected": "^1$",
+              "matches": true
+            },
+            {
+              "field": "app",
+              "actual": "bettail",
+              "expected": "^(bettail|netted)$",
+              "matches": true
+            },
+            {
+              "field": "environment",
+              "actual": "lab",
+              "expected": "^(lab|test)$",
+              "matches": true
+            },
+            {
+              "field": "source",
+              "actual": "synthetic_demo",
+              "expected": "^(migration_lab|synthetic_demo)$",
+              "matches": true
+            },
+            {
+              "field": "event_id",
+              "actual": "be113c63-0a02-4308-986a-dcde4030ff4c",
+              "expected": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+              "matches": true
+            },
+            {
+              "field": "occurred_at",
+              "actual": "2026-09-24T05:14:57.315000+00:00",
+              "expected": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$",
+              "matches": true
+            },
+            {
+              "field": "operation",
+              "actual": "private_record.read",
+              "expected": "^(private_record\\.read|membership\\.change|session\\.verify)$",
+              "matches": true
+            },
+            {
+              "field": "outcome",
+              "actual": "allowed",
+              "expected": "^(allowed|denied|not_visible|error)$",
+              "matches": true
+            },
+            {
+              "field": "reason",
+              "actual": "membership_removed",
+              "expected": "^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$",
+              "matches": true
+            },
+            {
+              "field": "source",
+              "actual": "synthetic_demo",
+              "expected": "^synthetic_demo$",
+              "matches": true
+            },
+            {
+              "field": "operation",
+              "actual": "private_record.read",
+              "expected": "^private_record\\.read$",
+              "matches": true
+            },
+            {
+              "field": "outcome",
+              "actual": "allowed",
+              "expected": "^allowed$",
+              "matches": true
+            },
+            {
+              "field": "reason",
+              "actual": "membership_removed",
+              "expected": "^(membership_removed|policy_regression)$",
+              "matches": true
+            }
+          ],
+          "reasoning": "The parent rule and every displayed child condition match. The recorded Wazuh rule and level agree with these predicates.",
+          "example_title": "Synthetic comparison"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "1c92ffff-b00d-4fdf-ac49-c621f1a7752f",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "reason": "membership_required",
+          "source": "synthetic_demo",
+          "rule_id": "100203",
+          "level": 3,
+          "meaning": "Denied request",
+          "interpretation": "The request was denied. This may show a working permission boundary.",
+          "short_id": "1c92ffff",
+          "anchor": "record-1c92ffff-b00d-4fdf-ac49-c621f1a7752f",
+          "base_matches": true,
+          "checks": [
+            {
+              "field": "export_version",
+              "actual": "1",
+              "expected": "^1$",
+              "matches": true
+            },
+            {
+              "field": "app",
+              "actual": "bettail",
+              "expected": "^(bettail|netted)$",
+              "matches": true
+            },
+            {
+              "field": "environment",
+              "actual": "lab",
+              "expected": "^(lab|test)$",
+              "matches": true
+            },
+            {
+              "field": "source",
+              "actual": "synthetic_demo",
+              "expected": "^(migration_lab|synthetic_demo)$",
+              "matches": true
+            },
+            {
+              "field": "event_id",
+              "actual": "1c92ffff-b00d-4fdf-ac49-c621f1a7752f",
+              "expected": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+              "matches": true
+            },
+            {
+              "field": "occurred_at",
+              "actual": "2026-09-24T02:10:19.763000+00:00",
+              "expected": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$",
+              "matches": true
+            },
+            {
+              "field": "operation",
+              "actual": "private_record.read",
+              "expected": "^(private_record\\.read|membership\\.change|session\\.verify)$",
+              "matches": true
+            },
+            {
+              "field": "outcome",
+              "actual": "denied",
+              "expected": "^(allowed|denied|not_visible|error)$",
+              "matches": true
+            },
+            {
+              "field": "reason",
+              "actual": "membership_required",
+              "expected": "^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$",
+              "matches": true
+            },
+            {
+              "field": "operation",
+              "actual": "private_record.read",
+              "expected": "^private_record\\.read$",
+              "matches": true
+            },
+            {
+              "field": "outcome",
+              "actual": "denied",
+              "expected": "^denied$",
+              "matches": true
+            }
+          ],
+          "reasoning": "The parent rule and every displayed child condition match. The recorded Wazuh rule and level agree with these predicates.",
+          "example_title": "Denied request"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "0a0037f7-cd5c-475b-b2eb-f2b629c08c15",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:05:58.145000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "migration_lab",
+          "rule_id": "100204",
+          "level": 3,
+          "meaning": "Record not visible",
+          "interpretation": "The record was not visible. Absence alone does not establish an authorization denial.",
+          "short_id": "0a0037f7",
+          "anchor": "record-0a0037f7-cd5c-475b-b2eb-f2b629c08c15",
+          "base_matches": true,
+          "checks": [
+            {
+              "field": "export_version",
+              "actual": "1",
+              "expected": "^1$",
+              "matches": true
+            },
+            {
+              "field": "app",
+              "actual": "bettail",
+              "expected": "^(bettail|netted)$",
+              "matches": true
+            },
+            {
+              "field": "environment",
+              "actual": "lab",
+              "expected": "^(lab|test)$",
+              "matches": true
+            },
+            {
+              "field": "source",
+              "actual": "migration_lab",
+              "expected": "^(migration_lab|synthetic_demo)$",
+              "matches": true
+            },
+            {
+              "field": "event_id",
+              "actual": "0a0037f7-cd5c-475b-b2eb-f2b629c08c15",
+              "expected": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+              "matches": true
+            },
+            {
+              "field": "occurred_at",
+              "actual": "2026-09-24T02:05:58.145000+00:00",
+              "expected": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$",
+              "matches": true
+            },
+            {
+              "field": "operation",
+              "actual": "private_record.read",
+              "expected": "^(private_record\\.read|membership\\.change|session\\.verify)$",
+              "matches": true
+            },
+            {
+              "field": "outcome",
+              "actual": "not_visible",
+              "expected": "^(allowed|denied|not_visible|error)$",
+              "matches": true
+            },
+            {
+              "field": "reason",
+              "actual": "resource_unavailable",
+              "expected": "^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$",
+              "matches": true
+            },
+            {
+              "field": "operation",
+              "actual": "private_record.read",
+              "expected": "^private_record\\.read$",
+              "matches": true
+            },
+            {
+              "field": "outcome",
+              "actual": "not_visible",
+              "expected": "^not_visible$",
+              "matches": true
+            }
+          ],
+          "reasoning": "The parent rule and every displayed child condition match. The recorded Wazuh rule and level agree with these predicates.",
+          "example_title": "Hidden record"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "0007dd48-5c1f-4292-bd17-aac0471da23d",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T01:42:45.280000+00:00",
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "reason": "resource_unavailable",
+          "source": "legacy_unclassified",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "0007dd48",
+          "anchor": "record-0007dd48-5c1f-4292-bd17-aac0471da23d",
+          "base_matches": false,
+          "checks": [
+            {
+              "field": "export_version",
+              "actual": "1",
+              "expected": "^1$",
+              "matches": true
+            },
+            {
+              "field": "app",
+              "actual": "bettail",
+              "expected": "^(bettail|netted)$",
+              "matches": true
+            },
+            {
+              "field": "environment",
+              "actual": "lab",
+              "expected": "^(lab|test)$",
+              "matches": true
+            },
+            {
+              "field": "source",
+              "actual": "legacy_unclassified",
+              "expected": "^(migration_lab|synthetic_demo)$",
+              "matches": false
+            },
+            {
+              "field": "event_id",
+              "actual": "0007dd48-5c1f-4292-bd17-aac0471da23d",
+              "expected": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+              "matches": true
+            },
+            {
+              "field": "occurred_at",
+              "actual": "2026-09-24T01:42:45.280000+00:00",
+              "expected": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$",
+              "matches": true
+            },
+            {
+              "field": "operation",
+              "actual": "private_record.read",
+              "expected": "^(private_record\\.read|membership\\.change|session\\.verify)$",
+              "matches": true
+            },
+            {
+              "field": "outcome",
+              "actual": "not_visible",
+              "expected": "^(allowed|denied|not_visible|error)$",
+              "matches": true
+            },
+            {
+              "field": "reason",
+              "actual": "resource_unavailable",
+              "expected": "^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$",
+              "matches": true
+            }
+          ],
+          "reasoning": "The parent gate rejects these fields: source. Child rules are not eligible. Unknown classification is not a benign result.",
+          "example_title": "Unclassified source"
+        },
+        {
+          "app": "bettail",
+          "environment": "lab",
+          "event_id": "14a7af01-3efb-44e9-ae91-99247f01ef41",
+          "export_version": 1,
+          "occurred_at": "2026-09-24T02:10:19.763000+00:00",
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "reason": "member",
+          "source": "synthetic_demo",
+          "rule_id": null,
+          "level": null,
+          "meaning": "Archived without custom alert",
+          "interpretation": "Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.",
+          "short_id": "14a7af01",
+          "anchor": "record-14a7af01-3efb-44e9-ae91-99247f01ef41",
+          "base_matches": true,
+          "checks": [
+            {
+              "field": "export_version",
+              "actual": "1",
+              "expected": "^1$",
+              "matches": true
+            },
+            {
+              "field": "app",
+              "actual": "bettail",
+              "expected": "^(bettail|netted)$",
+              "matches": true
+            },
+            {
+              "field": "environment",
+              "actual": "lab",
+              "expected": "^(lab|test)$",
+              "matches": true
+            },
+            {
+              "field": "source",
+              "actual": "synthetic_demo",
+              "expected": "^(migration_lab|synthetic_demo)$",
+              "matches": true
+            },
+            {
+              "field": "event_id",
+              "actual": "14a7af01-3efb-44e9-ae91-99247f01ef41",
+              "expected": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+              "matches": true
+            },
+            {
+              "field": "occurred_at",
+              "actual": "2026-09-24T02:10:19.763000+00:00",
+              "expected": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$",
+              "matches": true
+            },
+            {
+              "field": "operation",
+              "actual": "private_record.read",
+              "expected": "^(private_record\\.read|membership\\.change|session\\.verify)$",
+              "matches": true
+            },
+            {
+              "field": "outcome",
+              "actual": "allowed",
+              "expected": "^(allowed|denied|not_visible|error)$",
+              "matches": true
+            },
+            {
+              "field": "reason",
+              "actual": "member",
+              "expected": "^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$",
+              "matches": true
+            }
+          ],
+          "reasoning": "The record passes the parent gate, but no custom child rule matches its operation, outcome and reason. No alert is not a safety verdict.",
+          "example_title": "Known source, no custom alert"
+        }
+      ],
+      "reconciled_records": 64,
+      "scope": "Explanation of the reviewed historical predicates, not a new Wazuh execution. The current XML matches the executed snapshot after newline normalization."
+    },
+    "authorization": {
+      "run_id": "ba5bf541-0dcc-4559-835f-6c918eb15ac0",
+      "finished_at": "2026-09-24T18:34:01.932112+00:00",
+      "receipt": "20260924-bettail-next-routes.json",
+      "stages": [
+        {
+          "title": "Before removal",
+          "explanation": "The member can retrieve the known state and image.",
+          "checks": [
+            {
+              "id": "member_next_exact_state_visible",
+              "stage": "assertion",
+              "status": "passed",
+              "duration_ms": 121,
+              "http_status": 200,
+              "outcome": "allowed",
+              "label": "Member \u00b7 state"
+            },
+            {
+              "id": "member_next_exact_image_visible",
+              "stage": "assertion",
+              "status": "passed",
+              "duration_ms": 101,
+              "http_status": 200,
+              "outcome": "allowed",
+              "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15",
+              "label": "Member \u00b7 image"
+            }
+          ]
+        },
+        {
+          "title": "Remove membership",
+          "explanation": "An owner removes membership; the existing session is retained.",
+          "checks": [
+            {
+              "id": "route_member_removed",
+              "stage": "setup",
+              "status": "passed",
+              "duration_ms": 8,
+              "outcome": "membership_removed",
+              "label": "Membership change"
+            }
+          ]
+        },
+        {
+          "title": "Check the same session",
+          "explanation": "Authentication still succeeds. Identity alone does not grant permission.",
+          "checks": [
+            {
+              "id": "removed_member_same_session_still_auth_valid",
+              "stage": "assertion",
+              "status": "passed",
+              "duration_ms": 35,
+              "http_status": 200,
+              "outcome": "same_session_authenticated",
+              "label": "Retained session"
+            }
+          ]
+        },
+        {
+          "title": "Recheck access and owner control",
+          "explanation": "The former member's state request is denied. The image is not visible; the owner can still retrieve both.",
+          "checks": [
+            {
+              "id": "removed_member_same_cookie_next_state_denied",
+              "stage": "assertion",
+              "status": "passed",
+              "duration_ms": 87,
+              "http_status": 403,
+              "outcome": "denied",
+              "label": "Former member \u00b7 state"
+            },
+            {
+              "id": "removed_member_same_cookie_next_image_hidden",
+              "stage": "assertion",
+              "status": "passed",
+              "duration_ms": 80,
+              "http_status": 404,
+              "outcome": "not_visible",
+              "label": "Former member \u00b7 image"
+            },
+            {
+              "id": "owner_next_state_survives_removal",
+              "stage": "assertion",
+              "status": "passed",
+              "duration_ms": 161,
+              "http_status": 200,
+              "outcome": "allowed",
+              "label": "Owner control \u00b7 state"
+            },
+            {
+              "id": "owner_next_image_survives_removal",
+              "stage": "assertion",
+              "status": "passed",
+              "duration_ms": 99,
+              "http_status": 200,
+              "outcome": "allowed",
+              "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15",
+              "label": "Owner control \u00b7 image"
+            }
+          ]
+        },
+        {
+          "title": "Restore membership",
+          "explanation": "The lab restores membership before its final positive checks.",
+          "checks": [
+            {
+              "id": "route_membership_restored",
+              "stage": "restoration",
+              "status": "passed",
+              "duration_ms": 11,
+              "outcome": "membership_restored",
+              "label": "Membership recovery"
+            }
+          ]
+        },
+        {
+          "title": "Verify restored access",
+          "explanation": "The member sees the state and the same known image again.",
+          "checks": [
+            {
+              "id": "restored_member_next_state_visible",
+              "stage": "restoration",
+              "status": "passed",
+              "duration_ms": 108,
+              "http_status": 200,
+              "outcome": "allowed",
+              "label": "Restored member \u00b7 state"
+            },
+            {
+              "id": "restored_member_next_image_visible",
+              "stage": "restoration",
+              "status": "passed",
+              "duration_ms": 94,
+              "http_status": 200,
+              "outcome": "allowed",
+              "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15",
+              "label": "Restored member \u00b7 image"
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "executed": 23,
+        "passed": 23,
+        "stages": {
+          "setup": 4,
+          "assertion": 16,
+          "restoration": 3
+        }
+      },
+      "source": {
+        "migration_digest": "d101c7136840ae5e0fcfcad534b9b4d882ad7db651577a6193e89da0ffebfedd",
+        "snapshot_digest": "1b53511c58642fec4d1d4351e66689662f99bc6986e5067f5f08c0990b603ad0",
+        "source_revision": "286c2d7461917eb1177122b67be270f963af1232"
+      },
+      "source_dirty": true,
+      "receipt_sha256": "5af01366d4f4ee9845469b282ff51361359492cd9a2120cf86a5a665e107d5e6",
+      "limits": "Historical local checks of /api/state and /api/chat-image on a copied development app with synthetic identities. Separate from the Wazuh ledger replay; these are not the same events. A 404 alone does not prove authorization denial."
+    },
+    "engineering": [
+      {
+        "title": "Interrupted delivery",
+        "problem": "A write stops after only part of an event batch reaches the file.",
+        "control": "Verify the retained prefix and append only the missing suffix; acknowledge only after the write is flushed.",
+        "adverse_test": "Seed a half-written batch, retry twice, and verify one exact complete copy plus an unchanged second retry.",
+        "source": "bridge/soc_delivery.py",
+        "symbol": "_append",
+        "test_source": "tests/test_soc_delivery.py",
+        "test": "test_partial_write_recovers_exactly_once",
+        "limit": "Local file recovery; this does not prove Wazuh receipt or exactly-once delivery across replay runs.",
+        "implementation": {
+          "path": "bridge/soc_delivery.py",
+          "symbol": "_append",
+          "line": 177
+        },
+        "regression": {
+          "path": "tests/test_soc_delivery.py",
+          "symbol": "test_partial_write_recovers_exactly_once",
+          "line": 261
+        }
+      },
+      {
+        "title": "Lost acknowledgement",
+        "problem": "File bytes are complete, but the database still says the batch is pending.",
+        "control": "Recognize the exact existing bytes, flush them again and advance the database checkpoint without appending a duplicate.",
+        "adverse_test": "Place the complete batch before its checkpoint and verify the retry performs a flush without changing file bytes.",
+        "source": "bridge/soc_delivery.py",
+        "symbol": "publish",
+        "test_source": "tests/test_soc_delivery.py",
+        "test": "test_full_file_before_database_commit_recovers_without_reappend",
+        "limit": "An injected acknowledgement gap, not a physical power-loss or PostgreSQL crash experiment.",
+        "implementation": {
+          "path": "bridge/soc_delivery.py",
+          "symbol": "publish",
+          "line": 206
+        },
+        "regression": {
+          "path": "tests/test_soc_delivery.py",
+          "symbol": "test_full_file_before_database_commit_recovers_without_reappend",
+          "line": 276
+        }
+      },
+      {
+        "title": "Damaged evidence",
+        "problem": "An imported receipt is changed to claim extra records, a different application or a continuous connection.",
+        "control": "Revalidate the latest receipt before presentation and show that it needs review instead of retaining a verified state.",
+        "adverse_test": "Alter receipt fields, including with a recalculated digest, and require the console to suppress its verified result.",
+        "source": "bridge/wazuh_backfill_presentation.py",
+        "symbol": "backfill_card",
+        "test_source": "tests/test_wazuh_backfill_evidence.py",
+        "test": "test_damaged_latest_receipt_never_falls_back_to_green",
+        "limit": "Consistency checking under a trusted local administrator; hashes are not independent attestation.",
+        "implementation": {
+          "path": "bridge/wazuh_backfill_presentation.py",
+          "symbol": "backfill_card",
+          "line": 22
+        },
+        "regression": {
+          "path": "tests/test_wazuh_backfill_evidence.py",
+          "symbol": "test_damaged_latest_receipt_never_falls_back_to_green",
+          "line": 394
+        }
+      },
+      {
+        "title": "Failed scan presented as clean",
+        "problem": "A target outage is relabelled as a successful scan or given successful finding counts.",
+        "control": "Require the outage mode to remain failed with incomplete coverage and reject contradictory reports.",
+        "adverse_test": "Change failure status, finding counts or scanner exit code separately; each contradictory bundle must be rejected.",
+        "source": "bridge/zap_repeat_evidence.py",
+        "symbol": "validate_result",
+        "test_source": "tests/test_zap_repeat_evidence.py",
+        "test": "test_failed_scan_cannot_claim_pass_counts_or_successful_report",
+        "limit": "Offline validation tests supplement the separate historical ZAP outage and retry shown above.",
+        "implementation": {
+          "path": "bridge/zap_repeat_evidence.py",
+          "symbol": "validate_result",
+          "line": 41
+        },
+        "regression": {
+          "path": "tests/test_zap_repeat_evidence.py",
+          "symbol": "test_failed_scan_cannot_claim_pass_counts_or_successful_report",
+          "line": 182
+        }
+      }
+    ],
+    "receipts": [
+      {
+        "receipt": "20260924-bettail-next-routes.json",
+        "receipt_sha256": "5af01366d4f4ee9845469b282ff51361359492cd9a2120cf86a5a665e107d5e6"
+      }
+    ],
+    "sources": [
+      {
+        "path": "integrations/wazuh/signalbridge_rules.xml",
+        "sha256": "9d31bff5f315b92108c8e6e1b56880e5511d30055d56496a33dfc1f3217f241b"
+      },
+      {
+        "path": "bridge/soc_delivery.py",
+        "sha256": "0c18ec4aa8b516bdbcab4c0a5940fc6eb160ae1c3ad2aa9cea3acff4a70c998b"
+      },
+      {
+        "path": "tests/test_soc_delivery.py",
+        "sha256": "c94b02edf19d4fe07abd62d0748f52696c0ee28b53ae5696cbef2234ce8ab298"
+      },
+      {
+        "path": "bridge/wazuh_backfill_presentation.py",
+        "sha256": "82049b9441726f0f4c68a1c3279efe6c91427bbe3e0d689d044fd8f205ac8c6b"
+      },
+      {
+        "path": "tests/test_wazuh_backfill_evidence.py",
+        "sha256": "69c13ef20f09bc6e490135e49c0324dee68ecbf3a7907ba46f5986a67ea16287"
+      },
+      {
+        "path": "bridge/zap_repeat_evidence.py",
+        "sha256": "b581031fd37c6685b767a11ce6465dd89442535c75c90c4790fb59b1ee0c2a9a"
+      },
+      {
+        "path": "tests/test_zap_repeat_evidence.py",
+        "sha256": "0f10805a490fc2f5d9c06068f59809533512b59fb0897fd77709955f11c5d09b"
+      }
+    ]
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "kind": "signalbridge-soc-pilot-receipt",
+  "receipt_digest": "6ddec45fe229510741116c496a34b6bbc03ebd245b675b420ab063f555930d7c",
+  "result": {
+    "app": "signalbridge",
+    "checks": [
+      {
+        "id": "fixed_synthetic_controls",
+        "status": "passed"
+      },
+      {
+        "id": "matching_created_running_exited_gates",
+        "status": "passed"
+      },
+      {
+        "id": "fresh_stopped_metadata_gate",
+        "status": "passed"
+      }
+    ],
+    "evidence_kind": "soc_pilot",
+    "limitations": [
+      "Builder-operated synthetic local pilot; not an independent or tamper-proof audit.",
+      "Receipts are consistency-checked; a trusted local administrator can replace evidence.",
+      "Container metadata was sampled before, during, after and again at import; not continuous monitoring.",
+      "No SignalBridge, BetTail, Netted or production application security assessment was performed.",
+      "A stopped one-time pilot does not establish an ongoing connection or enterprise parity.",
+      "Only complete passing bundles are imported; failed raw attempts remain outside this imported history.",
+      "Scanner reports remain claimed reports with unknown coverage, even when this separate pilot passes."
+    ],
+    "pilot": {
+      "continuous_connection": false,
+      "counts": {
+        "alerts": 12,
+        "collection_inputs": 19,
+        "fixture_inputs": 18,
+        "logtest_cases": 27,
+        "negative_controls": 7,
+        "tail_sentinels": 1
+      },
+      "provenance": {
+        "containers": [
+          {
+            "id": "7056e8cf0ee79d151b08005da368668322834425c5b7bc14e30890236bec3d44",
+            "image_id": "sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0",
+            "image_reference": "wazuh/wazuh-manager@sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0",
+            "name": "signalbridge-soc-wazuh-pilot"
+          }
+        ],
+        "fresh_stopped_gate_required": true,
+        "receipt_sha256": {
+          "alerts": "405b6fd6a13d736f5c870d4c181ae002c3731fe62186270d3542b8bed2153b28",
+          "created": "1a32b2de5bbf3e68c9a2a9d1c5353815a14ce2f0312866d0e21bce0894e14511",
+          "exited": "695e3d1353d8e86105ba3f78bba20b21b33e8c1e4e8d1e0b0507f772739b5755",
+          "run_context": "c2be6234b135e554c2093a1da7d116dac29c847e9550d0c2edf3b26e7ef27534",
+          "running": "ffc08abba0a1e7d914c7cc952b02595f1c7944dc3299d17b32756e60d3bc8cb2",
+          "runtime": "bddbba13023b2e2e9d1398265d27e12c8ade3ce7d2c6bf4ff83fb47f7be9a905"
+        },
+        "source_sha256": "5d9543e89dd2c581414375abcb763f1da269be69e53641d93ca46f9e8cfe3d0f",
+        "verification": "builder_local_receipt_consistency_and_fresh_stopped_gate"
+      },
+      "recorded_at": "2026-09-25T00:26:03.947953+00:00",
+      "run_binding": {
+        "alerts_sha256": "405b6fd6a13d736f5c870d4c181ae002c3731fe62186270d3542b8bed2153b28",
+        "context_sha256": "c2be6234b135e554c2093a1da7d116dac29c847e9550d0c2edf3b26e7ef27534",
+        "finished_at": "2026-09-25T00:26:03.452478+00:00",
+        "observations": [
+          {
+            "app": "bettail",
+            "event_id": "0e14e2ca-87a0-58c7-92d1-dfa30d493371",
+            "level": 3,
+            "outcome": "denied",
+            "reason": "membership_required",
+            "rule_id": "100203",
+            "source": "migration_lab"
+          },
+          {
+            "app": "bettail",
+            "event_id": "14c6cd23-c5f8-5f4b-9f9f-cfaba9047403",
+            "level": 5,
+            "outcome": "allowed",
+            "reason": "membership_removed",
+            "rule_id": "100202",
+            "source": "synthetic_demo"
+          },
+          {
+            "app": "bettail",
+            "event_id": "27208e40-47d8-5e5c-a596-b4346a63075d",
+            "level": 3,
+            "outcome": "not_visible",
+            "reason": "membership_removed",
+            "rule_id": "100204",
+            "source": "migration_lab"
+          },
+          {
+            "app": "bettail",
+            "event_id": "74e37ca6-325e-504c-87b8-263e051a7e0c",
+            "level": 3,
+            "outcome": "denied",
+            "reason": "membership_removed",
+            "rule_id": "100203",
+            "source": "migration_lab"
+          },
+          {
+            "app": "bettail",
+            "event_id": "79180f4a-1b66-571a-8d65-2a77b5045503",
+            "level": 3,
+            "outcome": "not_visible",
+            "reason": "resource_unavailable",
+            "rule_id": "100204",
+            "source": "migration_lab"
+          },
+          {
+            "app": "bettail",
+            "event_id": "816d57d3-edc4-5c4b-8ba9-c453282b4d88",
+            "level": 3,
+            "outcome": "denied",
+            "reason": "membership_required",
+            "rule_id": "100203",
+            "source": "synthetic_demo"
+          },
+          {
+            "app": "bettail",
+            "event_id": "981615a4-4c48-5771-845b-d1eff1d1f75d",
+            "level": 5,
+            "outcome": "allowed",
+            "reason": "membership_removed",
+            "rule_id": "100202",
+            "source": "synthetic_demo"
+          },
+          {
+            "app": "bettail",
+            "event_id": "9a2408d8-e077-5ed7-8523-39a55538c372",
+            "level": 5,
+            "outcome": "allowed",
+            "reason": "policy_regression",
+            "rule_id": "100202",
+            "source": "synthetic_demo"
+          },
+          {
+            "app": "netted",
+            "event_id": "ab0c2df1-93ce-57c0-970e-e364016a24d0",
+            "level": 12,
+            "outcome": "allowed",
+            "reason": "policy_regression",
+            "rule_id": "100201",
+            "source": "migration_lab"
+          },
+          {
+            "app": "bettail",
+            "event_id": "bbac02b7-9b0b-5664-a10f-08f4ca912734",
+            "level": 12,
+            "outcome": "allowed",
+            "reason": "membership_removed",
+            "rule_id": "100201",
+            "source": "migration_lab"
+          },
+          {
+            "app": "bettail",
+            "event_id": "cb1381a1-fd34-5e10-9965-26cc8b9ffc8f",
+            "level": 4,
+            "outcome": "error",
+            "reason": "dependency_unavailable",
+            "rule_id": "100205",
+            "source": "migration_lab"
+          },
+          {
+            "app": "bettail",
+            "event_id": "ee9d7e40-b379-5858-b4d1-ee7b041acdc5",
+            "level": 4,
+            "outcome": "error",
+            "reason": "dependency_unavailable",
+            "rule_id": "100205",
+            "source": "migration_lab"
+          }
+        ],
+        "run_id": "33cb06bd-3f3c-49b4-b203-a7d29d70c825",
+        "started_at": "2026-09-25T00:25:38.705634+00:00",
+        "version": 2
+      },
+      "run_id": "33cb06bd-3f3c-49b4-b203-a7d29d70c825",
+      "runtime_version": "4.14.8",
+      "scope": "synthetic_fixture",
+      "source_app_assessed": false,
+      "stopped_at_end": true
+    },
+    "status": "passed",
+    "tool": "wazuh"
+  },
+  "schema_version": 1,
+  "source_sha256": "5d9543e89dd2c581414375abcb763f1da269be69e53641d93ca46f9e8cfe3d0f"
+}

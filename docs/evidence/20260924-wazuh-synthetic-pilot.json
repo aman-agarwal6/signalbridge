@@ -1,0 +1,71 @@
+{
+  "kind": "signalbridge-soc-pilot-receipt",
+  "receipt_digest": "cf80b25dae383ab2c4fb1b8b51884975290b50298aaafa57b9e30a2f60f81740",
+  "result": {
+    "app": "signalbridge",
+    "checks": [
+      {
+        "id": "fixed_synthetic_controls",
+        "status": "passed"
+      },
+      {
+        "id": "matching_created_running_exited_gates",
+        "status": "passed"
+      },
+      {
+        "id": "fresh_stopped_metadata_gate",
+        "status": "passed"
+      }
+    ],
+    "evidence_kind": "soc_pilot",
+    "limitations": [
+      "Builder-operated synthetic local pilot; not an independent or tamper-proof audit.",
+      "Receipts are consistency-checked; a trusted local administrator can replace evidence.",
+      "Container metadata was sampled before, during, after and again at import; not continuous monitoring.",
+      "No SignalBridge, BetTail, Netted or production application security assessment was performed.",
+      "A stopped one-time pilot does not establish an ongoing connection or enterprise parity.",
+      "Only complete passing bundles are imported; failed raw attempts remain outside this imported history.",
+      "Scanner reports remain claimed reports with unknown coverage, even when this separate pilot passes."
+    ],
+    "pilot": {
+      "continuous_connection": false,
+      "counts": {
+        "alerts": 12,
+        "collection_inputs": 19,
+        "fixture_inputs": 18,
+        "logtest_cases": 27,
+        "negative_controls": 7,
+        "tail_sentinels": 1
+      },
+      "provenance": {
+        "containers": [
+          {
+            "id": "e277408a6cbf57429d8bb7731dfffaf2b4a4267627006d336ccb930268e91bc8",
+            "image_id": "sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0",
+            "image_reference": "wazuh/wazuh-manager@sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0",
+            "name": "signalbridge-soc-wazuh-pilot"
+          }
+        ],
+        "fresh_stopped_gate_required": true,
+        "receipt_sha256": {
+          "created": "26db93dc8f61c0d4232dbd07e5a8af7003d3e525b6cec4cfd25d956f86b0eeb7",
+          "exited": "46b353257fe28076f0691283aa4a266d6c6f522f83aaa98507773707d6ca440d",
+          "running": "40deff672c63501824b93d9b068f45280508e48baa7d3563fee1a018f2f88b98",
+          "runtime": "0fb5ed512eaac3d3bdbd519dfd27cb1535d3ef4fc4e8743ee331a4c0c396e8c8"
+        },
+        "source_sha256": "4a9cba901bd1d6eb6bc32ce040009842aac4802b0c8b6dd3bd7987f3ef2ff8a7",
+        "verification": "builder_local_receipt_consistency_and_fresh_stopped_gate"
+      },
+      "recorded_at": "2026-09-24T19:53:00.872055+00:00",
+      "run_id": "3b2d87c8-0be2-4ca6-b901-062e7c10bf70",
+      "runtime_version": "4.14.8",
+      "scope": "synthetic_fixture",
+      "source_app_assessed": false,
+      "stopped_at_end": true
+    },
+    "status": "passed",
+    "tool": "wazuh"
+  },
+  "schema_version": 1,
+  "source_sha256": "4a9cba901bd1d6eb6bc32ce040009842aac4802b0c8b6dd3bd7987f3ef2ff8a7"
+}

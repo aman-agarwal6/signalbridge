@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-zap-repeat-and-failure-receipt",
+  "source_sha256": "690175efac36001eae6696f8afce92da65e92d76e2bb0e8bb621da8498d9212f",
+  "source_file_count": 237,
+  "recorded_at": "2026-09-25T08:39:55.053750+00:00",
+  "runs": [
+    {
+      "run_id": "3ea4b0c1-680a-4fbd-8ac2-0cd65bc04a2b",
+      "mode": "unavailable-target",
+      "observation": {
+        "scan_status": "failed",
+        "exercise_verified": true,
+        "version": "2.17.0",
+        "failure_code": "target_unavailable",
+        "driver_errors": [
+          "unexpected_http_status"
+        ],
+        "target_accepted": 0,
+        "coverage": "incomplete",
+        "counts": null
+      },
+      "started_at": "2026-09-25T08:33:14.011711+00:00",
+      "finished_at": "2026-09-25T08:33:28.036409+00:00",
+      "duration_seconds": 16.403,
+      "stopped_at_end": true,
+      "fresh_stopped_gate": true,
+      "scanner_exit_code": 1,
+      "target_exit_code": 137,
+      "target_stop": "owned operator stop, not OOM",
+      "image_references": {
+        "signalbridge-zap-3ea4b0c1": "zaproxy/zap-stable@sha256:71db37cd5b75663b35758d10aaec05bf6fbac23f5020e3046c70e628a5f84efa",
+        "signalbridge-zap-target-3ea4b0c1": "python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+      },
+      "container_ids": [
+        "24f9ca55cf252ae93d7a31ed2e47f9165bc0f0eba9dd77c4f174371d4d405786",
+        "fde73732776ee3ca4939faa7486f9144a02db3c5fdf132c930381eb37b94a0ba"
+      ],
+      "package_sha256": "84155a4549d0eec40ce3b14afe37ffaa5bad16ba4c749bd15462d4dbe63cd5da",
+      "evidence_sha256": {
+        "created": "e57ad887980e3d719a5107c5cfee50b02e5904bfd693c0f75c86bd0a880e64f8",
+        "running": "4eed76c92cb39df791d10b6516b8a57307a23ad4a5d48d6417dba75cd7b0c46b",
+        "exited": "fc0aa406f5f8e32799a572b69e2aea30389b77f2376bc61c9736869ebd03c05a",
+        "routes": "f48e2cf4c789f1eb0c0fbb0852405965758b573350b6f8619bff215a83f8f432",
+        "runtime": "f90ad37ce629cf9c48da2912b51cb3eb209e7201b54ae7372d73b82c06048409",
+        "target_stop": "65675614dcf8a4d985cf6c872d2a8a7b4f22fc7fe2fbdb359e9d604a032d44aa",
+        "host": "96b11fbd3aa01731e6cc30717b116c41ae0a8c0dc44878c30d3442390b70d3af"
+      }
+    },
+    {
+      "run_id": "9136c7c9-3515-4797-8518-24f80d0ce148",
+      "mode": "normal",
+      "observation": {
+        "scan_status": "passed",
+        "exercise_verified": true,
+        "version": "2.17.0",
+        "counts": {
+          "requests": 3,
+          "header_positive_paths": 2,
+          "header_negative_paths": 1,
+          "reported_findings": 5
+        },
+        "target_accepted": 3
+      },
+      "started_at": "2026-09-25T08:33:45.625811+00:00",
+      "finished_at": "2026-09-25T08:34:00.820748+00:00",
+      "duration_seconds": 20.619,
+      "stopped_at_end": true,
+      "fresh_stopped_gate": true,
+      "scanner_exit_code": 0,
+      "target_exit_code": 137,
+      "target_stop": "owned operator stop, not OOM",
+      "image_references": {
+        "signalbridge-zap-9136c7c9": "zaproxy/zap-stable@sha256:71db37cd5b75663b35758d10aaec05bf6fbac23f5020e3046c70e628a5f84efa",
+        "signalbridge-zap-target-9136c7c9": "python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+      },
+      "container_ids": [
+        "04de736af3bb9e729e812d6aad018fd1fd56cb2ad1920eb6a4155c98e2d065e2",
+        "ba056c8b622d963d2bc4d69462c7d93ee1e869d0b908543ec6d0e0d989608914"
+      ],
+      "package_sha256": "84155a4549d0eec40ce3b14afe37ffaa5bad16ba4c749bd15462d4dbe63cd5da",
+      "evidence_sha256": {
+        "created": "7d1dac17683cb7da0850f00eca9c8674d3e9c26ceb791ca1384afbebfee254e0",
+        "running": "0908d8e643e9e7e4f81716bf1229ada482882d53bd64218497413bc11685ad8d",
+        "exited": "8626929261dbc083c24c5da806aad395a3608e371700b8216e4f5cb793161c41",
+        "routes": "f48e2cf4c789f1eb0c0fbb0852405965758b573350b6f8619bff215a83f8f432",
+        "runtime": "c23a52bb9250a3efdda21d712826ac187a140cd812c9b9c1eff80192665b26e7",
+        "report": "ed3480d2eeb88921cf9eeae312d7c14143da0e51756c02c78ab623bf64195df6",
+        "host": "5fb2794759829052eaad9b2c8770a8fc136b6f6e470188142a560d022b9b0758"
+      }
+    }
+  ],
+  "import_replay": {
+    "schema_version": 1,
+    "kind": "signalbridge-zap-memory-import-replay",
+    "passed": true,
+    "source_sha256": "690175efac36001eae6696f8afce92da65e92d76e2bb0e8bb621da8498d9212f",
+    "source_file_count": 237,
+    "report_sha256": [
+      "0f712ff5a9c5c61d488349a95b8ec5ce9c951b8d1be681d362b713676c52a68a",
+      "ed3480d2eeb88921cf9eeae312d7c14143da0e51756c02c78ab623bf64195df6"
+    ],
+    "checks": [
+      {
+        "check": "genuine_historical_report_import",
+        "passed": true
+      },
+      {
+        "check": "report_claims_remain_unknown",
+        "passed": true
+      },
+      {
+        "check": "identical_reimport_is_noop_including_reviews_and_audit",
+        "passed": true
+      },
+      {
+        "check": "fresh_genuine_run_preserves_distinct_rule_path_findings",
+        "passed": true
+      },
+      {
+        "check": "observations_reference_exact_report_identities",
+        "passed": true
+      },
+      {
+        "check": "fresh_report_repeat_is_noop",
+        "passed": true
+      },
+      {
+        "check": "viewer_rejected",
+        "passed": true
+      },
+      {
+        "check": "foreign_workspace_rejected",
+        "passed": true
+      },
+      {
+        "check": "runtime_failure_not_a_scan_report",
+        "passed": true
+      },
+      {
+        "check": "off_target_derived_report_rejected_without_writes",
+        "passed": true
+      },
+      {
+        "check": "write_failure_rolls_back_entire_import",
+        "passed": true
+      },
+      {
+        "check": "empty_derived_report_does_not_close_findings_or_claim_coverage",
+        "passed": true
+      },
+      {
+        "check": "other_workspace_has_no_scanner_records",
+        "passed": true
+      }
+    ],
+    "counts": {
+      "ScanRun": 3,
+      "Finding": 6,
+      "FindingObservation": 10,
+      "Audit": 4
+    },
+    "limits": [
+      "Two genuine synthetic-fixture reports replayed into memory-only SQLite.",
+      "Mutated empty/off-target reports and transaction failures are synthetic derivative checks, not further scanner executions.",
+      "No live application database, web session, remote API or production data used.",
+      "Not PostgreSQL concurrency/crash recovery or independent review."
+    ],
+    "private_receipt_sha256": "10dc14bbe57ebf42260ab859c82fc6079a4d6a0de54f31c65c6d82e76c132f9f"
+  },
+  "report_variation": {
+    "findings_each": 5,
+    "shared_rule_path_identities": 4,
+    "union_rule_path_identities": 6,
+    "difference": "Rule 10020-1 occurred on / in the older report and /login/ in the new report. Neither report established exhaustive endpoint coverage."
+  },
+  "retained_failures": [
+    {
+      "stage": "preparation",
+      "code": "unexpected_package_files",
+      "native_resources_created": 0,
+      "receipt_sha256": "2d274d8172bdfb849d02a31e592849e9ea7575b31972eda11493b3e0d5abf04a"
+    },
+    {
+      "stage": "import_replay_v1",
+      "code": "fresh_genuine_run_adds_observations_not_duplicate_findings",
+      "receipt_sha256": "096dd905be1aa686823f9cf2e043b39525719921e40bb9332e6cecb0c9393e1d"
+    }
+  ],
+  "console_import": "New repeat receipts are standalone; the console retains the earlier historical pilot. Report replay used a separate memory database.",
+  "limits": [
+    "Historical builder-operated three-request synthetic fixture, not an application scan.",
+    "No active scanning, crawling, authentication, automatic response or continuous connection.",
+    "Isolation and routes are sampled; no continuous packet or hostile-administrator proof.",
+    "Known header controls do not measure general scanner accuracy or enterprise parity.",
+    "Failed scans are incomplete; findings remain claimed reports with unknown coverage.",
+    "Failed/interrupted attempts retain their lock and evidence for operator inspection.",
+    "13 replay checks are separate from core test totals and native request counts.",
+    "No SignalBridge, BetTail or Netted application assessment or automated remediation."
+  ]
+}

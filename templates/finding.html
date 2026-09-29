@@ -1,0 +1,59 @@
+{% extends "base.html" %}{% load console %}{% block content %}
+<a class="back-link" href="/findings/?app={{ app.slug }}">← Security findings</a>
+<div class="page-heading case-heading"><div><div class="eyebrow tool-kicker">{% include "parts/tool_identity.html" with tool=finding.tool compact=True %}<span>{{ finding.tool|upper }} / {{ finding.rule_id }}</span></div><h1>{{ finding.guidance.title }}</h1><p>{% if finding.path %}{{ finding.path }}{% if finding.line %}:{{ finding.line }}{% endif %}{% elif finding.package %}{{ finding.package }} {{ finding.package_version }}{% else %}Location not supplied by this report{% endif %}</p></div><span class="badge {{ finding.status }}">{{ finding.get_status_display }}</span></div>
+<div class="notice"><div><strong>{{ finding.review.label }}</strong><p>{{ finding.review.detail }}</p>{% if newer_report %}<p>A newer report from this tool exists without this observation. Its absence does not establish a correction; inspect scan history and compare scope.</p>{% endif %}</div></div>
+<div class="case-layout"><div>
+<section class="panel prose">
+<span class="badge neutral">{{ finding.guidance.kind }}</span><h2>Why this was flagged</h2><p>{{ finding.guidance.why }}</p><p>{{ finding.guidance.explanation }}</p>
+{% if finding.guidance.url %}<p><a href="{{ finding.guidance.url }}" rel="noreferrer noopener" target="_blank">{{ finding.guidance.url_title }} →</a></p>{% endif %}
+<h2 class="spaced">What the evidence establishes</h2>
+<dl class="field-grid">
+<div><dt>{{ finding.guidance.level_label|upper }}</dt><dd>{{ finding.severity }} · tool-reported</dd></div>
+<div><dt>EXPLOITABILITY / CONFIDENCE</dt><dd>Not assessed by this scanner workbench</dd></div>
+<div><dt>EVIDENCE ORIGIN</dt><dd>{{ finding.evidence.trust }}</dd></div>
+<div><dt>REPORTED COVERAGE</dt><dd>{{ finding.evidence.coverage_status|default:"Not recorded" }} · applies to this report only</dd></div>
+<div><dt>FIRST OBSERVED · UTC</dt><dd>{{ finding.first_seen|date:"M d, Y · H:i:s" }}</dd></div>
+<div><dt>LAST OBSERVED · UTC</dt><dd>{{ finding.last_seen|date:"M d, Y · H:i:s" }}</dd></div>
+</dl>
+<p>{{ finding.evidence.scope }}</p><p class="muted">{{ finding.evidence.currentness }}</p>
+{% if finding.evidence.suppressed %}<div class="detail-callout"><strong>Suppressed in the latest source report</strong><p>Suppression is scanner metadata. It does not approve risk or replace an analyst review.</p></div>{% endif %}
+<details class="nested-details"><summary>Source location, hashes and evidence identity</summary><div class="run-provenance">
+<dl class="field-grid">
+<div><dt>RELATIVE SOURCE LOCATION</dt><dd>{% if finding.path %}{{ finding.path }}{% if finding.line %}:{{ finding.line }}{% endif %}{% else %}Not supplied; inspect the dependency or report scope{% endif %}</dd></div>
+<div><dt>RECORDED FILE SHA-256</dt><dd class="mono">{{ finding.evidence.source_file_digest|default:"No source-file hash is bound to this observation" }}</dd></div>
+{% if finding.package %}<div><dt>REQUIREMENTS INPUT SHA-256</dt><dd class="mono">{{ finding.evidence.requirements_digest|default:"No local requirements manifest recorded" }}</dd></div>{% endif %}
+<div><dt>SOURCE REVISION</dt><dd class="mono">{{ finding.evidence.source_revision|default:"Not recorded for imported claims" }}</dd></div>
+<div><dt>NORMALIZED REPORT SHA-256</dt><dd class="mono">{{ finding.evidence.report_digest }}</dd></div>
+<div><dt>FINDING IDENTITY</dt><dd class="mono">{{ finding.fingerprint }}</dd></div>
+</dl>
+<p>Compare the recorded file hash before relying on a line number; edits can move the reported code. The revision alone does not capture uncommitted changes. This page never opens report-supplied paths or fetches report-supplied URLs.</p>
+{% if finding.evidence.run_id %}<a class="button small" href="/scans/{{ finding.evidence.run_id }}/export/?app={{ app.slug }}">Download this observation's run evidence</a>{% endif %}
+</div></details>
+</section>
+<section class="panel prose">
+<h2>How to validate</h2><ol>{% for step in finding.guidance.validate %}<li>{{ step }}</li>{% endfor %}</ol>
+<h2 class="spaced">Remediation and retest</h2><p>{{ finding.guidance.remediation }}</p>
+{% if finding.package %}<p><strong>Scanner-suggested fix versions:</strong> {{ finding.fix_versions|join:", "|default:"None supplied; this does not mean the package is safe or unfixable" }}. Verify advisory applicability and compatibility before an upgrade.</p>{% endif %}
+<div class="detail-callout"><strong>What remains unknown</strong><p>{{ finding.guidance.unknowns }}</p><p>{{ finding.evidence.limit }}</p></div>
+<p class="muted">Raw scanner messages, code snippets and absolute paths are excluded from stored observations. Review the source locally and retain sanitized validation evidence.</p>
+</section>
+<section class="panel"><div class="panel-heading"><div><h2>Observation history</h2><p>Most recent 20 immutable observations. A new observation does not erase an earlier review.</p></div></div>
+{% for observation in observations %}<details class="run-record"><summary><span class="record-title"><strong>{{ observation.scan_run.tool }} · {{ observation.scan_run.created_at|date:"M d, Y · H:i" }} UTC</strong><small>{{ observation.evidence.trust }} · report coverage {{ observation.scan_run.coverage_status }}</small></span><span class="chevron"></span></summary><div class="run-provenance">
+<p>{% if observation.suppressed %}<strong>Suppressed in the source report.</strong> Retained for review.{% else %}Not suppressed by the source report.{% endif %}</p>
+<dl class="field-grid"><div><dt>REPORT SHA-256</dt><dd class="mono">{{ observation.scan_run.digest }}</dd></div><div><dt>SOURCE FILE SHA-256</dt><dd class="mono">{{ observation.evidence.source_file_digest|default:"No source-file binding" }}</dd></div><div><dt>SOURCE REVISION</dt><dd class="mono">{{ observation.scan_run.source_revision|default:"Not supplied" }}</dd></div><div><dt>SUPPRESSION STATUS</dt><dd>{{ observation.suppression_statuses|join:", "|default:"None reported" }}</dd></div></dl>
+<a class="button small" href="/scans/{{ observation.scan_run.pk }}/export/?app={{ app.slug }}">Download normalized evidence</a><details class="nested-details"><summary>Normalized observation</summary><pre>{{ observation.snapshot|pretty_json }}</pre></details>
+</div></details>{% empty %}<div class="empty-state"><p>No recorded observation is available. A review cannot be recorded until evidence exists.</p></div>{% endfor %}
+</section>
+</div><div class="case-side">
+<section class="panel prose"><h2>Record a review</h2><p>The decision will reference the latest observation and its report/source hashes. A disposition records your assessment; it does not mark a finding fixed.</p>
+{% if can_write and finding.evidence.available %}<form method="post" class="disposition-form">{% csrf_token %}<input type="hidden" name="version" value="{{ finding.version }}">
+<label for="status">Disposition</label><select id="status" name="status"><option value="open" {% if finding.status == 'open' %}selected{% endif %}>Needs review</option><option value="reviewed" {% if finding.status == 'reviewed' %}selected{% endif %}>Reviewed</option><option value="accepted_risk" {% if finding.status == 'accepted_risk' %}selected{% endif %}>Accepted risk</option><option value="false_positive" {% if finding.status == 'false_positive' %}selected{% endif %}>False positive</option></select>
+<label for="rationale">Review rationale</label><textarea id="rationale" name="rationale" rows="6" maxlength="2000" required aria-describedby="review-help" placeholder="Source/version checked; validation and outcome; why this disposition; remaining risk and next review."></textarea>
+<p id="review-help" class="muted">For accepted risk, include scope, compensating controls and a follow-up review date. For a false positive, explain the validated boundary. Keep secrets and personal data out of this note.</p><button class="button primary">Save review</button>
+</form>{% elif not can_write %}<div class="detail-callout">Analyst or reviewer access is required to record a review.</div>{% endif %}
+</section>
+<section class="panel"><div class="panel-heading"><h2>Review history</h2></div>
+{% for audit in history %}<div class="audit-row"><strong>{{ audit.actor.username|default:"Local operator" }} · {{ audit.detail.status|human }}</strong><small>{{ audit.created_at|date:"M d · H:i:s" }} UTC</small><p>{{ audit.detail.rationale }}</p><details class="nested-details"><summary>Evidence reviewed</summary>{% if audit.detail.evidence %}<pre>{{ audit.detail.evidence|pretty_json }}</pre>{% else %}<p>Earlier review: no immutable observation binding was recorded.</p>{% endif %}</details></div>{% empty %}<div class="empty-state"><p>No review has been recorded.</p></div>{% endfor %}
+</section>
+</div></div>
+{% endblock %}

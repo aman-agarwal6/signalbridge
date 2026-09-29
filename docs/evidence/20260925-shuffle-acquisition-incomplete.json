@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-shuffle-acquisition-checkpoint",
+  "status": "acquisition_unverified",
+  "shuffle_executed": false,
+  "application_source_sha256": "e30aeb6089b50af0a4f8eb1ec7ddd23c83b646f28e2237bedba6d151bff9f6a5",
+  "local_checkpoint_commit": "efcfee5",
+  "attempts": [
+    {
+      "phase": "acquisition",
+      "run_uuid": "3b7d037b-e8a7-4f0c-bc2c-9f128f2bb11e",
+      "outcome": "failed",
+      "reason": "host_deadline_without_terminal_receipt",
+      "completed_at": "2026-09-25T03:15:22.9478483Z",
+      "elapsed_seconds": 1205.086,
+      "terminal_receipt_validated": false,
+      "automatic_cleanup_confirmed": true,
+      "serial_bytes": 258,
+      "serial_sha256": "d2f7489690eae13686dd709323f3ed6a84cb4e25e38486e3c61cab6537a8f826",
+      "host_record_sha256": "1c4677b4da7ed2b3faa7097a01bb161d3a0d38fbdae48f2ecbf4ca654abba90c",
+      "after_profile_sha256": "388519f83c8a33ba74780901092007636f3cc8b3ab727edf73f9bedc93e30421",
+      "executed_controller_sha256": "e86a2e8ef12b21daccf483ab8e504b85b0571f12f6eddf1bb1c9897b29efd682",
+      "seed_sha256": "ce4d5d7c817dad0fb710949e9fb9e4756fd278af285562a8698a5b1b4c88a48b",
+      "readiness_envelope_accepted": true,
+      "executed_guest_sha256": "8303b27ddb7541f1fac52915ac7a1cc9f60da53e4c5f0b6f89ed207f6daee786",
+      "executed_builder_sha256": "b6824064b8ff2ff90cc1cf002ef3d24a6e95d87fd20d31698e1bca432e600e77"
+    },
+    {
+      "phase": "offline_diagnostic",
+      "run_uuid": "0dd411d4-8f35-42b5-8bf5-1c109374e871",
+      "outcome": "failed",
+      "reason": "incomplete_serial_with_nul_rejected",
+      "completed_at": "2026-09-25T03:17:27.1620948Z",
+      "elapsed_seconds": 56.203,
+      "terminal_receipt_validated": false,
+      "automatic_cleanup_confirmed": true,
+      "serial_bytes": 3027,
+      "serial_sha256": "f79e1a837de52cebcb43b1b53aea26cb5a73358339a0a154906402e348f02fa8",
+      "host_record_sha256": "0a00db9a4e0d7bf82813b6459e9754219c5dc50e83b1d59141a0032dba6617f1",
+      "after_profile_sha256": "52f0b2d20f9b99fd3bacbbbf3fd15625928a849a6bfa41299bcb6e5ee4b92f10",
+      "executed_controller_sha256": "fe7fd51d45baa8f66c1637818ee27be4dcd3ac5c2daf1da6dfe2591bde518913",
+      "seed_sha256": "0b5411867b314bc288731ef064ce55448dfe0a71fe7da86fd6c22e0210d4d46e"
+    },
+    {
+      "phase": "compact_offline_diagnostic",
+      "run_uuid": "eab3a289-b530-4d42-9b9f-902fd256ce99",
+      "outcome": "failed",
+      "reason": "host_deadline_without_serial_bytes",
+      "completed_at": "2026-09-25T03:31:06.9203181Z",
+      "elapsed_seconds": 255.231,
+      "terminal_receipt_validated": false,
+      "automatic_cleanup_confirmed": true,
+      "serial_bytes": 0,
+      "serial_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "host_record_sha256": "23d3b9c43abaea589a7f36ce821aa3088552596af5919e40601487d128d54611",
+      "after_profile_sha256": "99084ad9d9668251519c50fa18b96144cb15eeeecd168feb532e031d29041b2d",
+      "executed_controller_sha256": "84ddbae3012145ff95ae667db893e5ebcd8d227066282dd468068d11de0d2164",
+      "seed_sha256": "9bb5250c51976387cded89b0734196da0f7cc195770986360e541f73aee5c977"
+    }
+  ],
+  "parked": {
+    "vm_state": "poweroff",
+    "all_eight_network_adapters": "absent",
+    "startup_iso": "detached",
+    "serial_channels": "disabled"
+  },
+  "next_step": "Identify guest boot/provisioning stall with bounded offline diagnostics; preserve partial state before a reviewed resume.",
+  "limits": [
+    "No complete acquisition receipt; installed package and image state remains unverified.",
+    "Partial diagnostic text was rejected and was not promoted to a successful finding.",
+    "Host metadata confirms configuration and cleanup, not independently measured containment or zero egress.",
+    "Virtualization timing warnings were observed; no definitive root cause was established.",
+    "No native Shuffle workflow, operational integration or enterprise parity is established.",
+    "Private scripts and raw logs remain outside public artifacts; this is builder-generated evidence."
+  ]
+}

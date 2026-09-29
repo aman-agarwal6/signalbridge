@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-bettail-route-attempt",
+  "run_id": "55b91f82-14b5-455f-a112-4d0c322182ef",
+  "status": "failed",
+  "started_at": "2026-09-24T18:15:10.088443+00:00",
+  "finished_at": "2026-09-24T18:19:09.277011+00:00",
+  "source": {
+    "provenance": {
+      "migration_digest": "d101c7136840ae5e0fcfcad534b9b4d882ad7db651577a6193e89da0ffebfedd",
+      "snapshot_digest": "1b53511c58642fec4d1d4351e66689662f99bc6986e5067f5f08c0990b603ad0",
+      "source_revision": "286c2d7461917eb1177122b67be270f963af1232"
+    },
+    "source_dirty": true,
+    "migration_count": 68,
+    "lab_state_sha256": "a04d2d79a7196756d4d75dfed1a2677948fbd49d7d44ca34cfd78dae35e1fc68",
+    "reviewed_harness_sha256": {
+      "bettail-routes.mjs": "122226f2ebc2b70da4b715e4bb775ef00f67e92516e93a82a10be3b142740465",
+      "supabase-http.mjs": "1b28b7b95261be35ff6649db63f0455a38bac3da74bcd0c5c4d62856c78a9824",
+      "runtime.mjs": "20b3c8a65a68e7a02be7181aa3274fabdc6398857ef24f8f31dee15023639ff0"
+    },
+    "runtime_contract_sha256": "adf6052ff42887538b26fd14124acfdc6392db570c546203169678ffcbe8a3e8",
+    "runner_sha256": "3810718a6fffd9813170fb81529819b387bfa6b3f1292f2cb693cd9e8606afb4"
+  },
+  "execution_sha256": "0dc654bc877e9867e6de03bf59a2d147641ecf9c0e612c25aa67117154db38de",
+  "route_report_sha256": "0702b08a41409ba24c9e2a1fc890a02f96e9d880917cdc3ca5c0d407062e7994",
+  "service_report_sha256": "34f3dba32191ab735048b80247833a442d2c144c0dd7c970c05d3999ab18e7b6",
+  "route": {
+    "status": "failed",
+    "error_code": "unexpected_error",
+    "checks": [
+      {
+        "id": "owner_sdk_cookie_session_verified",
+        "stage": "setup",
+        "status": "failed",
+        "error_code": "unexpected_error"
+      }
+    ],
+    "restoration": {
+      "required": false,
+      "attempted": false,
+      "status": "not_needed"
+    }
+  },
+  "service": {
+    "status": "passed",
+    "executed_steps": 32,
+    "passed_steps": 32,
+    "restoration": {
+      "required": true,
+      "attempted": true,
+      "status": "restored_and_retested"
+    }
+  },
+  "isolation": {
+    "before": "passed",
+    "after": "passed",
+    "before_sha256": "a7b48fda87f077fcb916c4698c7c9832a3962b0eb799f925668e8538dd7fddc5",
+    "after_sha256": "e3c0a94368cafc4056ce1b259bd29062d1aaa1fe1131f38cc478dcb35495d6f3",
+    "source_stable": true,
+    "topology_stable": true
+  },
+  "recovery_required": false,
+  "lock_retained": false,
+  "limits": [
+    "Builder-operated local evidence, not independent audit or enterprise-platform parity.",
+    "Only two development Next GET routes and synthetic official-SDK password sessions are covered.",
+    "No interactive OTP/OAuth flow, production cookie/refresh proof, signed URL, policy fault or source-owned event delivery.",
+    "Synthetic identities and objects are retained privately; membership restoration is checked separately.",
+    "Isolation is checked before and after, not monitored continuously; the host/Docker administrator is trusted.",
+    "Timeout requires manual recovery review; the runner never kills a possibly restoring child or stops services.",
+    "Request counts cover harness-issued requests only, excluding Next upstream calls, warmup and isolation probes.",
+    "Exclusive files and atomic recovery updates do not establish fsync-backed host-crash durability."
+  ]
+}

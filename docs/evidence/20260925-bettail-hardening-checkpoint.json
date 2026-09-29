@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-bettail-hardening-checkpoint",
+  "status": "native_repair_not_applied_approval_required",
+  "source_sha256": "d402653cceff2a6067d226217f2031e81018f9f1cbb7a3e1dfcb25270ebab721",
+  "source_file_count": 228,
+  "git_head_at_review": "bf3d9c0644bfe3e72bbd7c0626c9cb3cebe53d99",
+  "working_tree_dirty": true,
+  "preflight": {
+    "status": "blocked",
+    "started_at": "2026-09-25T07:12:26.426521+00:00",
+    "finished_at": "2026-09-25T07:12:26.886354+00:00",
+    "duration_seconds": 0.46,
+    "errors": [
+      "automatic_restart_policy",
+      "backend_configured_port_binding",
+      "configured_resource_limit",
+      "coordinated_credentials_required",
+      "resource_override_or_swap"
+    ],
+    "report_sha256": "b2db07eac3e2b0cda92ac54aeaa79e24608963880d01a1ea9caff0fe005dfe8e",
+    "script_sha256": "beb8530b4fcc6eb24f750105ca2c18726ba9949249f9b4dbf576c0f04170db58",
+    "topology_sha256": "1754cbd2d64aa3f819df96c45b204a6aef6ddcc5fbd01a8e3f7b23699ab10218",
+    "containers_stopped": 8,
+    "running_container_count": 0,
+    "core_services_without_memory_or_cpu_caps": 6,
+    "core_services_with_automatic_restart": 6,
+    "backend_services_with_requested_host_ports": 3,
+    "generated_credential_present": false,
+    "source_tree_review": "not_run_startup_blocked"
+  },
+  "preservation": {
+    "data_archives": 2,
+    "data_archive_bytes": 76139520,
+    "configuration_archives": 5,
+    "archive_hashes_rechecked": true,
+    "restore_tested": false
+  },
+  "native_operations": {
+    "replacement_executed": false,
+    "password_rotation_executed": false,
+    "services_started": 0,
+    "downloads": 0
+  },
+  "approval": "Automatic approval review rejected replacement because of service/configuration disruption risk while the owner was unavailable; no bypass or retry occurred.",
+  "limits": [
+    "Stopped configuration inspection does not establish effective host-port exposure.",
+    "Credential role/client rotation and new/old/wrong-password tests have not run.",
+    "No live service or runtime-isolation retest; previous genuine receipts remain historical.",
+    "Private archive validation is not restoration proof.",
+    "A blocked preflight does not modify unsafe native settings or prevent a trusted operator using Docker directly."
+  ]
+}

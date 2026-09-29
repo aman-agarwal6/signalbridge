@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-isolated-shuffle-guest-base-receipt",
+  "status": "guest_base_verified",
+  "shuffle_executed": false,
+  "checked_at": "2026-09-25T02:32:24.7192989Z",
+  "virtualbox_version": "7.2.20r175154",
+  "ubuntu_release": "24.04 / 20260911",
+  "ubuntu_ova_sha256": "ff79f630b7c845c0bb0f157db735837a9be4714be9e44ed54f11af156e4cc33a",
+  "ubuntu_signing_key_fingerprint": "D2EB44626FDDC30B513D5BB71A5D6C4C7DB87C81",
+  "checksum_signature_verified": true,
+  "approved_limits": {
+    "ram_mib": 8192,
+    "virtual_cpus": 4,
+    "disk_max_mib": 61440,
+    "staging_max_gib": 8,
+    "host_free_floor_gib": 25,
+    "serial_max_bytes": 4194304,
+    "serial_wait_seconds": 240
+  },
+  "final_run": {
+    "kind": "signalbridge-isolated-guest-smoke-validation",
+    "guest_checks_validated": true,
+    "automated_cleanup_passed": true,
+    "original_host_failure": null,
+    "guest": {
+      "schema": 1,
+      "kind": "signalbridge-shuffle-guest-smoke",
+      "run_uuid": "912e891a-0606-4c32-9d0e-015e4aece11f",
+      "timestamp_utc": "2026-09-25T02:30:15Z",
+      "os_id": "ubuntu",
+      "os_version_id": "24.04",
+      "cpu_count": 4,
+      "mem_total_bytes": 8327016448,
+      "network_devices": [
+        "lo"
+      ],
+      "rootfs_total_bytes": 61285326848,
+      "unlocked_password_accounts": 0,
+      "outcome": "pass"
+    },
+    "host_start": "2026-09-25T02:27:57.210356+00:00",
+    "host_end": "2026-09-25T02:30:53.105519+00:00",
+    "serial_bytes": 334,
+    "serial_sha256": "444c75baa178514c85255751be0f722980eb1375a7deb8bafcac1d73d97fa15b",
+    "vm_id": "0f459824-652e-4645-9a1f-c46251ff90ee",
+    "profile_before_sha256": "3dbeb80e8077543ea279cebbb8d2ec1834ddb5d72752eaf5da763c44e8d73bf7",
+    "profile_after_sha256": "fc8a90275764d7f8509316caae7e7bfd0fd31438922bc61583f4b4df90841669",
+    "host_controller_sha256": "67dd4065a5aa630f46d30d1bdc2027f3d2a54bf4eaea6ab1cd606377cf2ac5b2",
+    "seed_builder_sha256": "79605541959fe5ecf09e90440d9a9728b005889df06bfbc205dda751437cb12f",
+    "limits": [
+      "Builder-operated Ubuntu boot and metadata check only; no Shuffle execution.",
+      "No packet capture, malicious guest or hypervisor escape testing.",
+      "Trusted host operator; metadata and local files are not independently attested."
+    ]
+  },
+  "prior_run": {
+    "run_id": "56a2d020-0381-45c5-bc4b-d30a0832e8f2",
+    "guest_checks_validated": true,
+    "automated_cleanup_passed": false,
+    "reason": "controller checked transient stopping state",
+    "cleanup_reconciled": true,
+    "validated_record_sha256": "0535b2f6dbd5c1904f30ff210d3ea41c564ce1d5b608dfbab0bb73306f868536"
+  },
+  "parked": {
+    "vm_state": "poweroff",
+    "all_eight_network_adapters": "absent",
+    "startup_iso": "detached",
+    "serial_channel": "disabled",
+    "shared_folders": "absent",
+    "clipboard_dragdrop_usb_remote_display": "disabled"
+  },
+  "host_inventory": {
+    "old_vm_registrations_preserved": 4,
+    "new_owned_vm_count": 1,
+    "running_vm_count": 0,
+    "free_bytes": 112859869184
+  },
+  "limits": [
+    "Ubuntu boot, resource and configuration evidence only; no Shuffle workflow executed.",
+    "Guest report and host metadata are builder-controlled, not independent attestation.",
+    "No hostile guest, packet capture, hypervisor escape, capacity load or long-duration test.",
+    "First run required cleanup reconciliation; the corrected repeat passed automated cleanup.",
+    "Reviewed runner snapshots and raw logs remain private; no host configuration or credential dump is published."
+  ]
+}

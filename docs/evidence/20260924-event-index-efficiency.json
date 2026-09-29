@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-event-index-microbenchmark-receipt",
+  "run_id": "a71fa29b0e9b478985046897d91ff7f7",
+  "started_at": "2026-09-24T05:44:42.820509+00:00",
+  "finished_at": "2026-09-24T05:44:42.878012+00:00",
+  "source_sha256": "882859deb3ff3e745f887596cc83ac4853ba29ef6abcf10655a01077f57e1308",
+  "source_file_count": 144,
+  "source_unchanged": true,
+  "git": {
+    "head": "e31592d64e49adeb50f23c013845721a42fec47b",
+    "dirty": true
+  },
+  "results": {
+    "schema_version": 1,
+    "kind": "signalbridge-event-index-microbenchmark",
+    "sqlite_version": "3.50.4",
+    "rows_per_app": 10000,
+    "applications": 2,
+    "timing_repetitions": 25,
+    "before": {
+      "matched_records": 60,
+      "sqlite_vm_instructions": 50078,
+      "query_plan": [
+        "SEARCH bridge_event USING INDEX existing_app_fk (integration_id=?)"
+      ],
+      "median_ms": 0.4916
+    },
+    "after": {
+      "matched_records": 60,
+      "sqlite_vm_instructions": 200,
+      "query_plan": [
+        "SEARCH bridge_event USING COVERING INDEX sb_event_app_received (integration_id=? AND received_at>?)"
+      ],
+      "median_ms": 0.0028
+    },
+    "instruction_reduction_percent": 99.6,
+    "limits": [
+      "Fixed in-memory relational microbenchmark of the collector's scoped COUNT query.",
+      "Minimal table models its predicate/index columns, not the entire application schema.",
+      "No live data, HTTP, collector throughput, PostgreSQL or enterprise capacity is measured.",
+      "Instruction counts use SQLite's progress handler; timings run separately without it.",
+      "The additional index consumes storage and adds work to event insertions and deletion."
+    ]
+  }
+}

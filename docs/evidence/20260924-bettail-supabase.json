@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-isolated-supabase-receipt",
+  "app": "bettail",
+  "created_at": "2026-09-24T04:15:37.110270+00:00",
+  "http": {
+    "run_id": "067adf51-bf34-492a-8021-a2242a485e2f",
+    "status": "passed",
+    "started_at": "2026-09-24T04:13:04.125Z",
+    "finished_at": "2026-09-24T04:13:05.262Z",
+    "duration_ms": 1138,
+    "source": {
+      "migration_digest": "d101c7136840ae5e0fcfcad534b9b4d882ad7db651577a6193e89da0ffebfedd",
+      "harness_sha256": "1b28b7b95261be35ff6649db63f0455a38bac3da74bcd0c5c4d62856c78a9824",
+      "lab_state_sha256": "a04d2d79a7196756d4d75dfed1a2677948fbd49d7d44ca34cfd78dae35e1fc68",
+      "harness_unchanged": true,
+      "lab_state_unchanged": true
+    },
+    "runtime": {
+      "node_version": "v24.14.1"
+    },
+    "checks": [
+      {
+        "id": "owner_auth_creation_and_password_login",
+        "stage": "setup",
+        "status": "passed",
+        "duration_ms": 249,
+        "http_status": 200,
+        "outcome": "authenticated"
+      },
+      {
+        "id": "owner_profile_ready",
+        "stage": "setup",
+        "status": "passed",
+        "duration_ms": 62,
+        "outcome": "profile_completed"
+      },
+      {
+        "id": "member_auth_creation_and_password_login",
+        "stage": "setup",
+        "status": "passed",
+        "duration_ms": 198,
+        "http_status": 200,
+        "outcome": "authenticated"
+      },
+      {
+        "id": "member_profile_ready",
+        "stage": "setup",
+        "status": "passed",
+        "duration_ms": 45,
+        "outcome": "profile_completed"
+      },
+      {
+        "id": "outsider_auth_creation_and_password_login",
+        "stage": "setup",
+        "status": "passed",
+        "duration_ms": 214,
+        "http_status": 200,
+        "outcome": "authenticated"
+      },
+      {
+        "id": "outsider_profile_ready",
+        "stage": "setup",
+        "status": "passed",
+        "duration_ms": 47,
+        "outcome": "profile_completed"
+      },
+      {
+        "id": "synthetic_group_and_pick_seeded",
+        "stage": "setup",
+        "status": "passed",
+        "duration_ms": 42,
+        "outcome": "synthetic_fixture_ready"
+      },
+      {
+        "id": "owner_exact_row_visible",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 4,
+        "http_status": 200,
+        "outcome": "allowed"
+      },
+      {
+        "id": "owner_snapshot_visible",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 31,
+        "http_status": 200,
+        "outcome": "allowed"
+      },
+      {
+        "id": "member_exact_row_visible",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 3,
+        "http_status": 200,
+        "outcome": "allowed"
+      },
+      {
+        "id": "member_snapshot_visible",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 22,
+        "http_status": 200,
+        "outcome": "allowed"
+      },
+      {
+        "id": "outsider_exact_row_hidden",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 3,
+        "http_status": 200,
+        "outcome": "not_visible"
+      },
+      {
+        "id": "outsider_snapshot_denied",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 3,
+        "http_status": 400,
+        "outcome": "denied",
+        "response_code": "P0001"
+      },
+      {
+        "id": "anonymous_table_read_denied",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 3,
+        "http_status": 401,
+        "outcome": "denied",
+        "response_code": "42501"
+      },
+      {
+        "id": "anonymous_snapshot_denied",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 3,
+        "http_status": 401,
+        "outcome": "denied",
+        "response_code": "42501"
+      },
+      {
+        "id": "private_image_reserved_and_uploaded",
+        "stage": "setup",
+        "status": "passed",
+        "duration_ms": 36,
+        "http_status": 200,
+        "outcome": "private_object_created",
+        "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+      },
+      {
+        "id": "owner_draft_image_visible",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 10,
+        "http_status": 200,
+        "outcome": "allowed",
+        "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+      },
+      {
+        "id": "member_unattached_draft_hidden",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 9,
+        "http_status": 400,
+        "outcome": "not_visible",
+        "response_code": "NoSuchKey"
+      },
+      {
+        "id": "owner_image_attached_to_comment",
+        "stage": "setup",
+        "status": "passed",
+        "duration_ms": 14,
+        "outcome": "attachment_recorded"
+      },
+      {
+        "id": "owner_attached_image_visible",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 10,
+        "http_status": 200,
+        "outcome": "allowed",
+        "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+      },
+      {
+        "id": "member_attached_image_visible",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 9,
+        "http_status": 200,
+        "outcome": "allowed",
+        "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+      },
+      {
+        "id": "outsider_attached_image_hidden",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 8,
+        "http_status": 400,
+        "outcome": "not_visible",
+        "response_code": "NoSuchKey"
+      },
+      {
+        "id": "member_removed",
+        "stage": "setup",
+        "status": "passed",
+        "duration_ms": 6,
+        "outcome": "membership_removed"
+      },
+      {
+        "id": "removed_member_same_jwt_still_valid",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 37,
+        "http_status": 200,
+        "outcome": "authenticated"
+      },
+      {
+        "id": "removed_member_exact_row_hidden",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 4,
+        "http_status": 200,
+        "outcome": "not_visible"
+      },
+      {
+        "id": "removed_member_snapshot_denied",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 3,
+        "http_status": 400,
+        "outcome": "denied",
+        "response_code": "P0001"
+      },
+      {
+        "id": "removed_member_new_image_request_hidden",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 9,
+        "http_status": 400,
+        "outcome": "not_visible",
+        "response_code": "NoSuchKey"
+      },
+      {
+        "id": "owner_read_survives_removal",
+        "stage": "assertion",
+        "status": "passed",
+        "duration_ms": 4,
+        "http_status": 200,
+        "outcome": "allowed"
+      },
+      {
+        "id": "membership_restored",
+        "stage": "restoration",
+        "status": "passed",
+        "duration_ms": 6,
+        "outcome": "membership_restored"
+      },
+      {
+        "id": "restored_member_exact_row_visible",
+        "stage": "restoration",
+        "status": "passed",
+        "duration_ms": 3,
+        "http_status": 200,
+        "outcome": "allowed"
+      },
+      {
+        "id": "restored_member_snapshot_visible",
+        "stage": "restoration",
+        "status": "passed",
+        "duration_ms": 23,
+        "http_status": 200,
+        "outcome": "allowed"
+      },
+      {
+        "id": "restored_member_image_visible",
+        "stage": "restoration",
+        "status": "passed",
+        "duration_ms": 11,
+        "http_status": 200,
+        "outcome": "allowed",
+        "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+      }
+    ],
+    "restoration": {
+      "required": true,
+      "attempted": true,
+      "status": "restored_and_retested"
+    },
+    "limitations": [
+      "Next application routes were not exercised; these are direct Auth, PostgREST and Storage HTTP checks.",
+      "Administrative email confirmation does not test email delivery or ownership verification.",
+      "No policy fault was introduced; no signed-URL revocation, source-route emitter or outbox was tested.",
+      "The source binding is the supplied migration manifest digest; it is not a claim that a Next source snapshot ran."
+    ]
+  },
+  "http_report_sha256": "480468b977aa1e1a43984f9163a44f85b24b8a04dc038a84f2eaa8fddc570751",
+  "check_stage_counts": {
+    "setup": 10,
+    "assertion": 18,
+    "restoration": 4
+  },
+  "migrations": {
+    "status": "passed",
+    "started_at": "2026-09-24T04:08:04.614869+00:00",
+    "finished_at": "2026-09-24T04:08:37.485310+00:00",
+    "snapshot_digest": "1b53511c58642fec4d1d4351e66689662f99bc6986e5067f5f08c0990b603ad0",
+    "source_revision": "286c2d7461917eb1177122b67be270f963af1232",
+    "source_dirty": true
+  },
+  "migration_count": 68,
+  "migration_report_sha256": "5775ae7e8b52cd14becbdf075d01e4bd2cd7eb687728757fe6ccfb953e48f59b",
+  "isolation": {
+    "before_http": {
+      "receipt": "20260924T040837473312Z-8e112735.json",
+      "sha256": "e412a3359564eb85fdbe7c213cda5d1393bc205c5c37fda52ecc8036e3b65a5e",
+      "started_at": "2026-09-24T04:08:06.875396+00:00",
+      "finished_at": "2026-09-24T04:08:37.472742+00:00",
+      "status": "passed",
+      "source_hashes": {
+        "lab_config_sha256": "d2b420043992a413230d13cb90befeefb4823e169615de694b19b739d7971382",
+        "relay_source_sha256": "3b31b9fe7ad06fe8f12674b9bfd764095b3a1964772b7d167215d0de93d1fc82",
+        "verifier_source_sha256": "6dae639c64b2b909bbbbbabb4d60694bbf8e02dbc861c8d31efa3ce9a2658c70"
+      },
+      "topology_sha256": "e58566bd4c2b440b277798518d43b062f4ae058b2f36b2b2c1049bc5c51b26fd",
+      "runtime": {
+        "ipv4_default_route": false,
+        "ipv6_default_route": false,
+        "external_tcp": "blocked",
+        "cron_launch_active_jobs": "off"
+      }
+    },
+    "after_http": {
+      "receipt": "20260924T041412298296Z-d5d87661.json",
+      "sha256": "d4ae27f6d63569552a457f17d9f39a879a7d861f08c67f3327b7c1842b9fe8e9",
+      "started_at": "2026-09-24T04:13:41.672386+00:00",
+      "finished_at": "2026-09-24T04:14:12.297701+00:00",
+      "status": "passed",
+      "source_hashes": {
+        "lab_config_sha256": "d2b420043992a413230d13cb90befeefb4823e169615de694b19b739d7971382",
+        "relay_source_sha256": "3b31b9fe7ad06fe8f12674b9bfd764095b3a1964772b7d167215d0de93d1fc82",
+        "verifier_source_sha256": "6dae639c64b2b909bbbbbabb4d60694bbf8e02dbc861c8d31efa3ce9a2658c70"
+      },
+      "topology_sha256": "e58566bd4c2b440b277798518d43b062f4ae058b2f36b2b2c1049bc5c51b26fd",
+      "runtime": {
+        "ipv4_default_route": false,
+        "ipv6_default_route": false,
+        "external_tcp": "blocked",
+        "cron_launch_active_jobs": "off"
+      }
+    }
+  },
+  "images": [
+    {
+      "container": "supabase_db_signalbridge-bettail-lab",
+      "image_id": "sha256:6942962433a569e87f228b4d4ab7e11db5deca64e43babb3a038443ad6c4f1bb"
+    },
+    {
+      "container": "supabase_kong_signalbridge-bettail-lab",
+      "image_id": "sha256:1b53405d8680a09d6f44494b7990bf7da2ea43f84a258c59717d4539abf09f6d"
+    },
+    {
+      "container": "supabase_auth_signalbridge-bettail-lab",
+      "image_id": "sha256:c0c25187a6b835e65a6f6e6c6b39d090e832d40e6de5186f2c038e0411944232"
+    },
+    {
+      "container": "supabase_rest_signalbridge-bettail-lab",
+      "image_id": "sha256:85258123312dc496ad4c2ed832154a65e9746f84df0d6d09b44229ff9230c08e"
+    },
+    {
+      "container": "supabase_storage_signalbridge-bettail-lab",
+      "image_id": "sha256:105a2584129c9600aebed6f5ac49ca4371c92b996ecd1af7179750333e9e2120"
+    },
+    {
+      "container": "supabase_inbucket_signalbridge-bettail-lab",
+      "image_id": "sha256:37a38e48e9338cd7e89dfeb487f37b02ebfcd9cb23111bed2d345e79d37d6dd6"
+    },
+    {
+      "container": "signalbridge-bettail-relay",
+      "image_id": "sha256:105a2584129c9600aebed6f5ac49ca4371c92b996ecd1af7179750333e9e2120"
+    }
+  ],
+  "limits": [
+    "Builder-operated local checks, not an independent audit or production test.",
+    "Raw logs, credentials, synthetic identity data and source snapshots remain private.",
+    "The current operator can modify containers, source, logs or receipts; hashes are consistency evidence, not tamper-proof attestation.",
+    "The before/after environment samples do not provide continuous monitoring.",
+    "The original full M1 gate remains incomplete."
+  ]
+}

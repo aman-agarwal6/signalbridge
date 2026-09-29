@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-write-authorization-regression-receipt",
+  "finding": "Case writes could use membership/account state read earlier in the request after that authorization had been withdrawn.",
+  "environment": "Disposable local Django/SQLite test database with synthetic identities; no real account or investigation changed.",
+  "before": {
+    "revision": "03572e40944de20d29ce596f43da56e3948f251b",
+    "test_count": 5,
+    "failed_denial_cases": 4,
+    "positive_control_passed": 1,
+    "observation": "All four withdrawn-permission requests increased the case version from 1 to 2; denial was not enforced.",
+    "changes_injected": [
+      "Analyst downgraded to viewer before note save",
+      "Analyst downgraded to viewer before disposition",
+      "Selected membership removed while foreign-workspace role remains",
+      "Database account disabled after initial scope check"
+    ],
+    "retained_source_sha256": "0eabdc83ae6a9555e45d5be1d81762619bd6474ec1a5fa8504459d55c66b59b1",
+    "retained_test_sha256": "d545889008a73e082639431239e59c42a2fe4af2af9f844d93259fc7e77b45c5",
+    "write_observation_log_sha256": "3d72e106cbb14616252de47d78b2662f16069a42a114c215cf933161d6083f01",
+    "initial_status_log_sha256": "55a160ba56870de9ab99b860d19ea3bc78917539eefeffabd88445984bb69fc0"
+  },
+  "correction": {
+    "behavior": "Refresh current account and app role inside the write transaction; acquire permission locks before object locks; bind locked objects to the same authorized app.",
+    "workflows": [
+      "Case notes/dispositions",
+      "Replay proposal/decision",
+      "Scanner import/triage",
+      "Private analyst practice"
+    ],
+    "data_minimization": "Permission query selects required membership keys, role and active flag; account password and profile fields are not selected."
+  },
+  "after": {
+    "core_receipt": "20260925T092738447056Z-f5176cc5.json",
+    "source_sha256": "6f4e147c56044c137ba98cdcb90775fd8b7cc42838e90802c72d4754605500c2",
+    "source_file_count": 243,
+    "git_head_at_execution": "03572e40944de20d29ce596f43da56e3948f251b",
+    "working_tree_dirty_at_execution": true,
+    "new_regression_tests": 13,
+    "test_source_sha256": "ca7c63aecacc9a9e98bfb1ae6ce2c3b3899223764c6048cfe6aaf2998b2fdf3b",
+    "test_cases": [
+      "test_note_rejected_when_role_revoked_after_scope_check",
+      "test_disposition_rejected_when_role_revoked_after_scope_check",
+      "test_deleted_membership_cannot_borrow_other_workspace_role",
+      "test_account_disabled_after_scope_check_cannot_write",
+      "test_authorized_case_note_still_saves_and_audits",
+      "test_authorized_case_disposition_still_saves_and_audits",
+      "test_case_moved_after_scope_check_cannot_use_stale_workspace_binding",
+      "test_disabled_account_cannot_start_practice_with_stale_user_object",
+      "test_disabled_account_cannot_reveal_or_save_practice",
+      "test_replay_creation_rechecks_account_after_evaluation",
+      "test_replay_move_between_authorization_and_lock_rolls_back",
+      "test_finding_move_between_authorization_and_lock_rolls_back",
+      "test_write_guard_refuses_to_run_without_transaction"
+    ],
+    "python_tests_passed": 939,
+    "mocked_node_tests_passed": 53,
+    "failed_tests": 0,
+    "skipped_tests": 0
+  },
+  "retained_development_failure": {
+    "receipt": "20260925T092251339106Z-858123ad.json",
+    "cause": "A deferred-field query used an unsupported related primary-key alias; 91 test errors exposed it. Corrected by allowing automatic primary-key selection; fresh full verification passed.",
+    "errors": 91
+  },
+  "limits": [
+    "Deterministic permission changes at controlled request boundaries; not a timing exploit or evidence of real misuse.",
+    "SQLite verification does not prove PostgreSQL row-lock, deadlock or concurrent revocation behavior.",
+    "No app-wide security guarantee, independent audit or production validation.",
+    "Builder-held hashes identify evidence but do not protect against a trusted filesystem administrator."
+  ]
+}

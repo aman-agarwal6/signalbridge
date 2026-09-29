@@ -1,0 +1,447 @@
+[
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000000001",
+    "app": "bettail",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000064",
+    "resource": "00000000000000000000000000000000000000000000000000000000000001f5",
+    "episode": "00000000-0000-4000-8000-000000000200",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000000002",
+    "app": "bettail",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000064",
+    "resource": "00000000000000000000000000000000000000000000000000000000000001f6",
+    "episode": "00000000-0000-4000-8000-000000000200",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000000003",
+    "app": "bettail",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000064",
+    "resource": "00000000000000000000000000000000000000000000000000000000000001f7",
+    "episode": "00000000-0000-4000-8000-000000000200",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000000004",
+    "app": "bettail",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000065",
+    "resource": "00000000000000000000000000000000000000000000000000000000000001f8",
+    "episode": "00000000-0000-4000-8000-000000000201",
+    "operation": "private_record.read",
+    "outcome": "allowed",
+    "reason": "member",
+    "context": null
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000000005",
+    "app": "bettail",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000066",
+    "resource": "00000000000000000000000000000000000000000000000000000000000001f9",
+    "episode": "00000000-0000-4000-8000-000000000202",
+    "operation": "private_record.read",
+    "outcome": "denied",
+    "reason": "membership_required",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000000006",
+    "app": "bettail",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000066",
+    "resource": "00000000000000000000000000000000000000000000000000000000000001fa",
+    "episode": "00000000-0000-4000-8000-000000000202",
+    "operation": "private_record.read",
+    "outcome": "denied",
+    "reason": "membership_required",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000000007",
+    "app": "bettail",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000066",
+    "resource": "00000000000000000000000000000000000000000000000000000000000001fb",
+    "episode": "00000000-0000-4000-8000-000000000202",
+    "operation": "private_record.read",
+    "outcome": "denied",
+    "reason": "membership_required",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000000008",
+    "app": "bettail",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000067",
+    "resource": "00000000000000000000000000000000000000000000000000000000000001fc",
+    "episode": "00000000-0000-4000-8000-000000000203",
+    "operation": "private_record.read",
+    "outcome": "allowed",
+    "reason": "membership_removed",
+    "context": null
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000000009",
+    "app": "bettail",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000068",
+    "resource": "00000000000000000000000000000000000000000000000000000000000001fd",
+    "episode": "00000000-0000-4000-8000-000000000204",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T12:02:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000000010",
+    "app": "bettail",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000069",
+    "resource": "00000000000000000000000000000000000000000000000000000000000001fe",
+    "episode": "00000000-0000-4000-8000-000000000205",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T12:03:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000000011",
+    "app": "bettail",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "000000000000000000000000000000000000000000000000000000000000006a",
+    "resource": "00000000000000000000000000000000000000000000000000000000000001ff",
+    "episode": "00000000-0000-4000-8000-000000000206",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": null
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000000012",
+    "app": "bettail",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "000000000000000000000000000000000000000000000000000000000000006b",
+    "resource": "0000000000000000000000000000000000000000000000000000000000000200",
+    "episode": "00000000-0000-4000-8000-000000000207",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": false,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000001001",
+    "app": "netted",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "000000000000000000000000000000000000000000000000000000000000044c",
+    "resource": "00000000000000000000000000000000000000000000000000000000000009c5",
+    "episode": "00000000-0000-4000-8000-000000001200",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000001002",
+    "app": "netted",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "000000000000000000000000000000000000000000000000000000000000044c",
+    "resource": "00000000000000000000000000000000000000000000000000000000000009c6",
+    "episode": "00000000-0000-4000-8000-000000001200",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000001003",
+    "app": "netted",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "000000000000000000000000000000000000000000000000000000000000044c",
+    "resource": "00000000000000000000000000000000000000000000000000000000000009c7",
+    "episode": "00000000-0000-4000-8000-000000001200",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000001004",
+    "app": "netted",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "000000000000000000000000000000000000000000000000000000000000044d",
+    "resource": "00000000000000000000000000000000000000000000000000000000000009c8",
+    "episode": "00000000-0000-4000-8000-000000001201",
+    "operation": "private_record.read",
+    "outcome": "allowed",
+    "reason": "member",
+    "context": null
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000001005",
+    "app": "netted",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "000000000000000000000000000000000000000000000000000000000000044e",
+    "resource": "00000000000000000000000000000000000000000000000000000000000009c9",
+    "episode": "00000000-0000-4000-8000-000000001202",
+    "operation": "private_record.read",
+    "outcome": "denied",
+    "reason": "membership_required",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000001006",
+    "app": "netted",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "000000000000000000000000000000000000000000000000000000000000044e",
+    "resource": "00000000000000000000000000000000000000000000000000000000000009ca",
+    "episode": "00000000-0000-4000-8000-000000001202",
+    "operation": "private_record.read",
+    "outcome": "denied",
+    "reason": "membership_required",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000001007",
+    "app": "netted",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "000000000000000000000000000000000000000000000000000000000000044e",
+    "resource": "00000000000000000000000000000000000000000000000000000000000009cb",
+    "episode": "00000000-0000-4000-8000-000000001202",
+    "operation": "private_record.read",
+    "outcome": "denied",
+    "reason": "membership_required",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000001008",
+    "app": "netted",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "000000000000000000000000000000000000000000000000000000000000044f",
+    "resource": "00000000000000000000000000000000000000000000000000000000000009cc",
+    "episode": "00000000-0000-4000-8000-000000001203",
+    "operation": "private_record.read",
+    "outcome": "allowed",
+    "reason": "membership_removed",
+    "context": null
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000001009",
+    "app": "netted",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000450",
+    "resource": "00000000000000000000000000000000000000000000000000000000000009cd",
+    "episode": "00000000-0000-4000-8000-000000001204",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T12:02:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000001010",
+    "app": "netted",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000451",
+    "resource": "00000000000000000000000000000000000000000000000000000000000009ce",
+    "episode": "00000000-0000-4000-8000-000000001205",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": true,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T12:03:00Z"
+    }
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000001011",
+    "app": "netted",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000452",
+    "resource": "00000000000000000000000000000000000000000000000000000000000009cf",
+    "episode": "00000000-0000-4000-8000-000000001206",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": null
+  },
+  {
+    "schema_version": 1,
+    "event_id": "00000000-0000-4000-8000-000000001012",
+    "app": "netted",
+    "environment": "lab",
+    "occurred_at": "2026-09-22T12:02:00Z",
+    "actor": "0000000000000000000000000000000000000000000000000000000000000453",
+    "resource": "00000000000000000000000000000000000000000000000000000000000009d0",
+    "episode": "00000000-0000-4000-8000-000000001207",
+    "operation": "private_record.read",
+    "outcome": "not_visible",
+    "reason": "resource_unavailable",
+    "context": {
+      "managed_device": true,
+      "reauthenticated": false,
+      "valid_from": "2026-09-22T11:00:00Z",
+      "valid_to": "2026-09-22T13:00:00Z",
+      "known_at": "2026-09-22T10:00:00Z"
+    }
+  }
+]
+

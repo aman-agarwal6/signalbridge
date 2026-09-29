@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "profile": "signalbridge-disposable-web-v1",
+  "origin": "http://signalbridge-zap-target:8000",
+  "requests": [
+    {"method": "GET", "path": "/"},
+    {"method": "GET", "path": "/login/"},
+    {"method": "GET", "path": "/health/"}
+  ],
+  "follow_redirects": false,
+  "spider": false,
+  "active_scan": false,
+  "authentication": false,
+  "proposed_runtime_limits": {
+    "scanner_memory_bytes": 2684354560,
+    "scanner_cpus": 1.5,
+    "scanner_pids": 256,
+    "target_memory_bytes": 268435456,
+    "target_cpus": 0.5,
+    "target_pids": 64,
+    "maximum_target_requests": 3,
+    "per_request_timeout_seconds": 5,
+    "response_body_bytes": 262144,
+    "passive_wait_seconds": 60,
+    "total_runtime_seconds": 240,
+    "private_report_bytes": 2097152
+  }
+}

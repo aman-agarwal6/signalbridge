@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "image": "wazuh/wazuh-manager",
+  "tag": "4.14.8",
+  "platform": "linux/amd64",
+  "platform_manifest_digest": "sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0",
+  "tag_index_digest": "sha256:6b53d4cc5c013b08157471d11f7a7c2c45f9e8238f3958e3b2f04ec1773ecbd4",
+  "compressed_layers_mib_approximate": 906.2,
+  "metadata_checked_date": "2026-09-24",
+  "metadata_source": "Parent task read-only Docker registry manifest inspection; image not pulled by this preparation task.",
+  "runtime_verified": false
+}

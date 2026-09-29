@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-local-recovery-receipt",
+  "checked_at": "2026-09-25T05:22:31.382507+00:00",
+  "status": "passed",
+  "backup_id": "33fa1e49-e612-478f-b637-0460c0347836",
+  "restore_run_id": "c2e3012d-1b8f-4399-918a-11b32a08e194",
+  "source_sha256": "b8062895228052606bcd1d773f7cacbb22e8bb1526af437539db2f78da8854fb",
+  "source_file_count": 211,
+  "database_bytes": 1105920,
+  "database_rows": 764,
+  "streams": 1,
+  "stream_bytes": 18263,
+  "copied_schema_and_all_rows_verified": true,
+  "copied_delivery_bytes_verified": true,
+  "writable_restore_and_rollback_verified": true,
+  "working_logical_data_unchanged_during_restore": true,
+  "live_replacement": false,
+  "server_started": false,
+  "backup_manifest_sha256": "681903d8414813aabd9e22cfdbe5f960b83f533cb1f9824ca4c6f5559d3a25ec",
+  "restore_result_sha256": "1c448fab499bb7e95217f8c6dfa512a1febdf0a7b57a0328a9535e1e09f602f0",
+  "limits": [
+    "Private local SQLite/database and delivery-file recovery; no PostgreSQL or production proof.",
+    "Runtime signing keys, credentials files, source checkouts and external-tool evidence are excluded.",
+    "Restoration is a separate copy; it never replaces the working database or starts a server.",
+    "Cooperating writers are briefly locked during backup; trusted local administrators remain a boundary.",
+    "Checksums detect changed content, not malicious replacement of both payload and manifest.",
+    "No host power-loss, lost-machine, encryption-at-rest or off-device disaster-recovery claim."
+  ]
+}

@@ -1,0 +1,18 @@
+{% comment %}Original SignalBridge identity tiles; product names live beside these decorative SVGs. These are not official vendor logos.{% endcomment %}
+<span class="tool-identity-tile{% if compact %} tool-identity-compact{% endif %}{% if tool == 'ruff' or tool == 'Ruff' %} tool-identity-ruff{% elif tool == 'pip-audit' or tool == 'pip' %} tool-identity-pip{% elif tool == 'Wazuh' or tool == 'wazuh' %} tool-identity-wazuh{% elif tool == 'Shuffle' or tool == 'shuffle' %} tool-identity-shuffle{% elif tool == 'ZAP' or tool == 'zap' %} tool-identity-zap{% endif %}" aria-hidden="true">
+  <svg viewBox="0 0 48 48" fill="none" focusable="false" aria-hidden="true">
+    {% if tool == "wazuh" or tool == "Wazuh" %}
+    <path d="m7 15 6 20 11-14 11 14 6-20" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 14h12" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+    {% elif tool == "shuffle" or tool == "Shuffle" %}
+    <path d="M7 13h6c10 0 12 22 22 22h6m-6-6 6 6-6 6M7 35h6c4 0 7-4 10-9m3-6c3-4 5-7 9-7h6m-6-6 6 6-6 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    {% elif tool == "zap" or tool == "ZAP" %}
+    <path d="m24 5 16 6v13c0 8-8 14-16 19C16 38 8 32 8 24V11l16-6Z" stroke="currentColor" stroke-width="2"/><path d="m27 11-12 15h8l-3 11 13-17h-9l3-9Z" fill="currentColor"/>
+    {% elif tool == "ruff" or tool == "Ruff" %}
+    <path d="M12 36V12h12c7 0 11 3 11 8s-4 8-11 8H12m12 0 12 8" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M8 7h7M7 7v7M33 41h8v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    {% elif tool == "pip" or tool == "pip-audit" %}
+    <path d="m23 6 16 9v17l-16 9-16-9V15l16-9Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="m7 15 16 9 16-9M23 24v17M15 11l16 9" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m29 30 4 4 8-9" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    {% else %}
+    <path d="M12 7h17l7 7v27H12V7Zm16 0v9h8M18 23h12M18 30h9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    {% endif %}
+  </svg>
+</span>

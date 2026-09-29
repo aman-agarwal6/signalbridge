@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-local-soc-handoff-receipt",
+  "checked_at": "2026-09-25T01:36:50.149680+00:00",
+  "source_sha256": "f4ac08bb7a2b909b35ccb44cbdc55a4c481ade8eb5f9be6ab64f04528a5ba0ac",
+  "source_file_count": 205,
+  "git_head_at_execution": "b48f49a5c24085008b0a961d5855300e054a90f9",
+  "working_tree_dirty_at_execution": true,
+  "app": "bettail",
+  "source_scope": "existing retained local lab observations",
+  "staged_records": 64,
+  "file_appended_records": 64,
+  "retained_batches": 1,
+  "append_audits": 1,
+  "collector_bytes": 18263,
+  "collector_sha256": "3c9f218f013fcc7a0f4fefafacef71e0160fd532c02ce54246cf408f12e3dd86",
+  "repeat_report_unchanged": true,
+  "manager_receipt": null,
+  "limits": [
+    "Builder-operated local append and repeat check; no Wazuh manager was started.",
+    "No process kill, power interruption, container restart or long-running loss measurement.",
+    "Database and file integrity are locally checked; the administrator remains trusted."
+  ]
+}

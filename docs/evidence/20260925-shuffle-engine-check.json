@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-isolated-shuffle-engine-checkpoint",
+  "status": "guest_engine_verified",
+  "shuffle_executed": false,
+  "images_acquired": false,
+  "validation": {
+    "acquisition_completion_established": false,
+    "automated_cleanup_passed": true,
+    "checked_at": "2026-09-25T03:54:36.002994+00:00",
+    "collection_validated": true,
+    "command_history": {
+      "command_count": 20,
+      "nic_removal_command": 17,
+      "start_command": 5
+    },
+    "controller_sha256": "e24383934eb33c052dc559920c0ce05c2d77e496421d423062c5535b12cf7356",
+    "engine_start_stop_validated": true,
+    "evidence_class": "trusted-builder-offline-diagnostic-only",
+    "guest_observations": {
+      "container_count": 0,
+      "containerd_loopback_listener_count": 1,
+      "docker_cloud_order": [],
+      "docker_min_api": "1.44",
+      "docker_stopped": true,
+      "docker_tcp_listener_count": 0,
+      "docker_version": "29.1.3",
+      "image_count": 0,
+      "inactive_socket_file_present": true,
+      "journal_sha256": "edf1b56111095e48a83b1a7045fe2525f2bf2ad75968e437661b7bdfe47caf60",
+      "journal_signals": [
+        "containerd_timeout"
+      ],
+      "kind": "signalbridge-offline-docker-probe",
+      "network_before": [
+        "lo"
+      ],
+      "network_during": [
+        "docker0",
+        "lo"
+      ],
+      "outcome": "pass",
+      "run_uuid": "e44ad8f2-a5d0-4994-aad4-42295b956436",
+      "schema": 2,
+      "shuffle_executed": false,
+      "target_run_uuid": "3b7d037b-e8a7-4f0c-bc2c-9f128f2bb11e",
+      "tcp_listener_count": 3,
+      "unit_states": {
+        "containerd.service": [
+          "active",
+          "running",
+          "success"
+        ],
+        "docker.service": [
+          "active",
+          "running",
+          "success"
+        ],
+        "docker.socket": [
+          "active",
+          "running",
+          "success"
+        ]
+      }
+    },
+    "host_end": "2026-09-25T03:53:47.183180+00:00",
+    "host_start": "2026-09-25T03:52:52.621702+00:00",
+    "kind": "signalbridge-offline-docker-engine-validation",
+    "limits": [
+      "Guest Docker startup, fixed configuration and stopped-socket checks only; no application containers or image acquisition.",
+      "Pinned package metadata was checked inside the guest; no new independent package or image attestation.",
+      "Host device profiles and builder-controlled guest observations are not independent containment proof.",
+      "Journal signals are bounded pattern matches and can include normal shutdown messages; full logs stay private.",
+      "The initial acquisition stall's precise cause remains unproved; this separate job runs after cloud-final.",
+      "This receipt does not establish Shuffle workflows, production readiness or enterprise parity."
+    ],
+    "profile_sha256": {
+      "after.txt": "6dd3a7a52fd299998054c5acf221624626643741d61e6d6e3cd823fec33e02bd",
+      "before.txt": "a8c2bdc3fbfae61a4103bf18b688cdd010508123cd722e58d1c46fd423d61db5",
+      "initial.txt": "5ece7c5704ecc33e3b8456ba5c4177176673d2fb503bb88da33c20b19e75b437",
+      "running.txt": "ebe7054ca884be60087cc64b002b2baf55d81871a1b4a4019adad29be76834bf"
+    },
+    "reviewed_source_sha256": {
+      "build-guest-docker-probe-v2.ps1": "00895aa245dc552acaffbda79e09bdafc9c4ba4f4cf3dca5a463f4487d858a25",
+      "guest-docker-probe-v2.py": "8bb07e834d7b97cbf55ed5b7b5c0cc70e2aae8f95b382373a1025a2cbb28bc9e",
+      "validate_guest_provision.py": "34c612a9ebe20ee9627effaf7f8b3b8f3d52b8e4b09eb073da971a15d4d45dc2"
+    },
+    "run_uuid": "e44ad8f2-a5d0-4994-aad4-42295b956436",
+    "schema_version": 1,
+    "seed_sha256": "36c979957f5636a447c3a4c1b8c6f47f0dbbde22bf2929d18d83dba5a2852b61",
+    "serial_bytes": 811,
+    "serial_sha256": "da7449928178fb211dac87c69b2141b78dfcecaa937613b50e4dff27553a57fd",
+    "shuffle_execution_established": false,
+    "target_run_uuid": "3b7d037b-e8a7-4f0c-bc2c-9f128f2bb11e",
+    "validator_sha256": "3db99e83af1e60e53dc514cb4e3555d151883ca2c78ef1ed0062db0cab97fa24",
+    "vm_uuid": "0f459824-652e-4645-9a1f-c46251ff90ee"
+  },
+  "receipt_denial_checks": 9,
+  "previous_probe": {
+    "run_uuid": "81cd8e99-a30e-4d26-ad01-ebde7f4cad8e",
+    "terminal_receipt_validated": false,
+    "automatic_host_cleanup_confirmed": true,
+    "serial_sha256": "eabbf13cd4964a7dc4eea09e42d4a4a10c73aa3b61a5858b2040fcb465aa8646",
+    "reason": "Unexpected loopback listener rejected; stopped-engine check required absent socket file; truncated serial rejected."
+  },
+  "changes": [
+    "Require the extra loopback listener to belong to the running containerd process; reject other owners or non-loopback bindings.",
+    "Check inactive service states and refused Unix-socket connection instead of assuming a leftover socket file means a running daemon.",
+    "Pace serial output and allow its hardware transmit queue to drain before guest shutdown.",
+    "Run the bounded engine job after cloud-final without changing host security features."
+  ],
+  "limits": [
+    "No images acquired, no application container executed, no Shuffle workflow verified.",
+    "The exact cause of the first acquisition timeout remains unproved.",
+    "The valid repeat does not turn previous failed attempts into passes.",
+    "Application source remains unchanged; these are lab-engine checks, separate from the 841 application tests."
+  ]
+}

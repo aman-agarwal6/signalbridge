@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-offline-simulation-receipt",
+  "run_id": "78c16301bae44aaa83147735fdb769d5",
+  "execution_verified": true,
+  "source_sha256": "f4ac08bb7a2b909b35ccb44cbdc55a4c481ade8eb5f9be6ab64f04528a5ba0ac",
+  "source_file_count": 205,
+  "source_unchanged": true,
+  "git_head_at_execution": "b48f49a5c24085008b0a961d5855300e054a90f9",
+  "working_tree_dirty_at_execution": true,
+  "python": "3.14.4",
+  "exit_code": 0,
+  "result_sha256": "b88e8ef3ffdd62efe2f428854c6cf3d54e2b9f5ec8b34586377b6ee3fb744aaf",
+  "provenance_sha256": "a5e57e3186e9f0af0ead54ca8b80b3be21783fbe7ad679dc41c96273d6201b3d",
+  "log_sha256": {
+    "stdout.txt": "06a7d2f05e7f2c4a4c6418acc6185ffac99f30903f0d4db1a05bca2e002fc00e",
+    "stderr.txt": "4fb5244b317da48d70d0898e42fadd075ba9b2c9e0327a48b1df993552954743"
+  },
+  "results": {
+    "schema_version": 1,
+    "kind": "signalbridge-offline-capability-simulation",
+    "started_at": "2026-09-25T01:35:13.112702+00:00",
+    "execution_status": "completed",
+    "database": "disposable in-memory SQLite",
+    "transport": "Django in-process test client",
+    "safety": {
+      "synthetic_only": true,
+      "network_guard": true,
+      "child_process_guard": true,
+      "production_database": false,
+      "max_requests": 750,
+      "max_worker_records": 700
+    },
+    "scenarios": [
+      {
+        "id": "authorized_read",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "distinct_private_failures",
+        "expected_rule": "R1",
+        "observed_rules": [
+          "R1"
+        ],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "same_resource_retries",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "below_threshold",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "bucket_boundary_gap",
+        "expected_rule": "R1",
+        "observed_rules": [
+          "R1"
+        ],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "revoked_read_allowed",
+        "expected_rule": "R2",
+        "observed_rules": [
+          "R2"
+        ],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "controlled_policy_fault",
+        "expected_rule": "R2",
+        "observed_rules": [
+          "R2"
+        ],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "successful_membership_change",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "session_errors_not_private_reads",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "dependency_errors",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "mixed_sources",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "cross_application",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "mixed_environments",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "out_of_order",
+        "expected_rule": "R1",
+        "observed_rules": [
+          "R1"
+        ],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "duplicate_delivery",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      }
+    ],
+    "controls": {
+      "tampered_signature_rejected_without_event": true,
+      "duplicate_content_conflict_rejected": true,
+      "configured_600_per_minute_limit": true
+    },
+    "not_tested": [
+      "Endpoint or cloud inventory",
+      "Live adversary exploitation",
+      "Production traffic",
+      "Multi-node availability",
+      "PostgreSQL concurrency or crash durability",
+      "Network HTTP latency",
+      "Competitor products",
+      "Independent blind holdout",
+      "Automated external response"
+    ],
+    "detection_quality": {
+      "true_positive_scenarios": 5,
+      "false_negative_scenarios": 0,
+      "false_positive_scenarios": 0,
+      "true_negative_scenarios": 10,
+      "recall": 1.0,
+      "precision": 1.0,
+      "denominator": "15 declared, builder-authored synthetic scenarios; not independent production prevalence"
+    },
+    "bounded_load": {
+      "accepted_events": 600,
+      "processed_events": 600,
+      "source_rate_limit": "600 per application per minute",
+      "ingest_seconds": 2.170151,
+      "processing_seconds": 0.852072,
+      "in_process_requests_per_second": 276.48,
+      "in_process_request_p50_ms": 3.292,
+      "in_process_request_p95_ms": 5.109,
+      "alerts_from_benign_load": 0,
+      "limits": "Single-process SQLite harness timing includes test-client overhead; not network or production capacity."
+    },
+    "scenario_records_processed": 34,
+    "final_queue": {
+      "processed": 634
+    },
+    "finished_at": "2026-09-25T01:35:16.339035+00:00",
+    "duration_seconds": 3.226329,
+    "requests_executed": 639
+  },
+  "limits": [
+    "Offline guards catch accidental use in this fixed trusted harness; they are not an OS sandbox against arbitrary hostile Python.",
+    "No user code, remote configuration, external URLs, shell commands, exploit payloads or plugins are accepted.",
+    "The workload is bounded to 750 in-process requests, 700 records per worker drain and a 120-second child timeout."
+  ]
+}

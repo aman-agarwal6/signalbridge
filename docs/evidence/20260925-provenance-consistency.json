@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-case-evidence-consistency-fix",
+  "status": "implemented_offline_verified",
+  "source_base_commit": "97e7b9d0da6d946291eb113d642d972be3001f21",
+  "source_sha256": "d3f8aea9a096f7531235c80dcf8f6a5d1748a446aacf376a0ef1c817154acbed",
+  "source_file_count": 247,
+  "core_receipt": "20260925T104803799945Z-9cfa20fa.json",
+  "core_tests": 1031,
+  "python_tests": 978,
+  "mocked_node_tests": 53,
+  "new_regressions": 4,
+  "focused_tests": 64,
+  "before": {
+    "tests": 19,
+    "failures": 3,
+    "subtest_errors": 4,
+    "fault": "Unchanged stored hashes allowed contradictory matching-provenance claims after payload/indexed-field changes; non-object stored payloads could raise comparison errors.",
+    "scope": "Synthetic corruption in a disposable database or in-memory records against the previous committed implementation; no working-data corruption established."
+  },
+  "correction": "A shared, single contents-consistency check gates both provenance and rule comparison; non-object payloads fail closed without echoing content.",
+  "private_log_sha256": {
+    "before.txt": "406a45f8fbd63b8ae60662a27d468f7d2c1de93da38c6cdabe2395d52ed6d4bd",
+    "after.txt": "7f6083755e4468fbc03c29ec94a0ea2627a056214b8f9cbe4e516f1488987b3e",
+    "ci-selection.json": "4f502792eeaf3ecb7f950e30b01fcda21c4320d29b18d82c578e62584b961fb9"
+  },
+  "regression_source_sha256": "8f3e2ace6950f5005a57b5f74b118ab5c23ca072cfc36542e0833c287b07acd7",
+  "development_receipt": "20260925-offline-simulation-provenance-consistency.json",
+  "challenge_receipt": "20260925-detection-challenge-provenance-consistency.json",
+  "ci_selection": {
+    "main": 976,
+    "memory_only": 2,
+    "disjoint_complete": true,
+    "remote_execution": false
+  },
+  "limits": [
+    "Known-rule behavior unchanged: 15/15 development, 16/16 contracts, 0/3 broader probes.",
+    "This checks ordinary stored consistency, not independent source truth or resistance to a trusted database administrator.",
+    "No working data rewritten, migration, lab startup, Windows restart, remote service or public publication.",
+    "Disposable SQLite, HTTP export and mocked Node tests; no PostgreSQL concurrency or new signed-in visual proof."
+  ]
+}

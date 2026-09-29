@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-shuffle-offline-image-verification",
+  "status": "local_image_metadata_verified_workflow_unexecuted",
+  "checked_at": "2026-09-25T15:45:38.558684+00:00",
+  "source_base_commit": "992d912618050c1ffbb668e58a948ed46d35e3c6",
+  "run_uuid": "a2c451cf-337e-47fc-b0de-d2f8b1638e8b",
+  "previous_acquisition_run_uuid": "d7b98441-8fac-42b6-8bc3-a05b73ba2998",
+  "image_availability_and_metadata_validated": true,
+  "shuffle_workflow_executed": false,
+  "images": [
+    {
+      "component": "backend",
+      "reference": "ghcr.io/shuffle/shuffle-backend@sha256:0cc1775e48b7d94b7f16d0be713aa274ced52be24ad521beaaf58c67023fd2e5",
+      "manifest_digest": "sha256:0cc1775e48b7d94b7f16d0be713aa274ced52be24ad521beaaf58c67023fd2e5",
+      "config_digest": "sha256:b9d03d2737b55ff6333a8f76f4cb6f34e66868fc3fd00b1fa8f21bd659c41599",
+      "layer_count": 8,
+      "declared_layer_bytes": 53624425,
+      "metadata_bytes": 4411,
+      "reported_image_size_bytes": 53628836,
+      "layer_bytes_verified": false
+    },
+    {
+      "component": "worker",
+      "reference": "ghcr.io/shuffle/shuffle-worker@sha256:9541c1fef2bc8511727610b565adbd0f7c817c53afee2dd9fef6aad8a971ffb1",
+      "manifest_digest": "sha256:9541c1fef2bc8511727610b565adbd0f7c817c53afee2dd9fef6aad8a971ffb1",
+      "config_digest": "sha256:3266b79f224eae95ad6ab6700d76f77cb67e7b5d8e328566b8bb6489927f4d65",
+      "layer_count": 3,
+      "declared_layer_bytes": 46728244,
+      "metadata_bytes": 3110,
+      "reported_image_size_bytes": 46731354,
+      "layer_bytes_verified": false
+    },
+    {
+      "component": "orborus",
+      "reference": "ghcr.io/shuffle/shuffle-orborus@sha256:3519810b3ca4fe568acefdf15ce6f2deba0ae6f0ff6b84412354d59d663dff31",
+      "manifest_digest": "sha256:3519810b3ca4fe568acefdf15ce6f2deba0ae6f0ff6b84412354d59d663dff31",
+      "config_digest": "sha256:1d0f812b6934fa993555401d5c847ae517e88224865255b3eef374797362aabd",
+      "layer_count": 3,
+      "declared_layer_bytes": 45840828,
+      "metadata_bytes": 2521,
+      "reported_image_size_bytes": 45843349,
+      "layer_bytes_verified": false
+    },
+    {
+      "component": "http",
+      "reference": "docker.io/frikky/shuffle@sha256:4c5b6a0b44890ddc227a3ded9fee09f216dddd268ee0acc33e31dfa95fa724fb",
+      "manifest_digest": "sha256:4c5b6a0b44890ddc227a3ded9fee09f216dddd268ee0acc33e31dfa95fa724fb",
+      "config_digest": "sha256:b7f4230658dd394486f4b137eee3759d4728d42cfe9cb6a569d20bc84505c303",
+      "layer_count": 14,
+      "declared_layer_bytes": 133437828,
+      "metadata_bytes": 10622,
+      "reported_image_size_bytes": 133448450,
+      "layer_bytes_verified": false
+    },
+    {
+      "component": "opensearch",
+      "reference": "opensearchproject/opensearch@sha256:68a688de28fb9bb66601552650b91a52a9fd5e7eac5481dd2b225ecb66fd09b0",
+      "manifest_digest": "sha256:68a688de28fb9bb66601552650b91a52a9fd5e7eac5481dd2b225ecb66fd09b0",
+      "config_digest": "sha256:9c4d3b54042a402a11618658d5309121a349aeb60b375deba29334d033e65fc0",
+      "layer_count": 7,
+      "declared_layer_bytes": 1136729385,
+      "metadata_bytes": 8050,
+      "reported_image_size_bytes": 1136737435,
+      "layer_bytes_verified": false
+    }
+  ],
+  "container_count": 0,
+  "offline_network_adapters": 0,
+  "docker_tcp_listeners": 0,
+  "docker_stopped": true,
+  "automated_shutdown_and_cleanup_verified": true,
+  "duration_seconds": 53.895,
+  "finished_at": "2026-09-25T15:39:12.9849015Z",
+  "source_sha256": {
+    "executed-controller.ps1": "45fc15d3348a8dac56a928bd5233a7cd375d4b3af2ed4c9f78890d991203e95e",
+    "guest-image-store-check.py": "737bff83715b9f20e3c60b9fd8fbc7080535c1151d79895f86db865ff6fffff8",
+    "build-guest-image-store-check.ps1": "1a6789db81aa5172de91f223593bb6eec6fc050fc5916c10b63c64aaed7e5bde"
+  },
+  "verifier_sha256": "30c2e0c63c73d7ac968b61d18b84e8a7622a409c3766015cbf9bb5082165b9da",
+  "seed_sha256": "70c271416a9bd7966e276ce3ac08e2a61b3efbd71825bfc5cd3991291e138fd1",
+  "serial_bytes": 1502,
+  "serial_sha256": "2af61c0c768151492f1b6274675786510966186c8f7d53cbbcd7dae407ff32f2",
+  "profile_sha256": {
+    "initial.txt": "0fcf300fabc39171fd50e86cc3c9f79b6ebed6ae2e0d7ecd966e27c817c759c3",
+    "before.txt": "ed58daaa93df8968a54a25e3aeef05a1ccbd5984993d2f28097204746d542794",
+    "running.txt": "9adfa62db4c686b13891ad9905cbc37026c2bee273e9363505ba09c36426ea9a",
+    "after.txt": "061b033e985d48e81a4c6fe1f855aa80eba23951a80a7aa6f041a75acadb5a43"
+  },
+  "command_history": {
+    "command_count": 20,
+    "start_command": 5,
+    "nic_removal_command": 17
+  },
+  "transitional_profile_limit": "VirtualBox omitted recording_enabled and its section marker while stopping; all stable profiles explicitly showed recording off. Other required transition controls remained present.",
+  "validator_sha256": "edee701fe2fa14d6ba8f8571c725f4cbc2254b9ecec1d70fda4b39f172608a38",
+  "profile_negative_checks": 4,
+  "previous_acquisition": {
+    "status": "unverified_truncated_terminal_receipt",
+    "duration_seconds": 312.443,
+    "serial_bytes": 3178,
+    "complete_records_received": 1,
+    "automatic_cleanup_verified": true,
+    "record_preserved": true
+  },
+  "controls": {
+    "vm_memory_mib": 8192,
+    "vcpus": 4,
+    "host_free_floor_gib": 25,
+    "shared_host_folders": false,
+    "host_docker_socket": false,
+    "downloads_in_verification": false
+  },
+  "limits": [
+    "Separate offline proof of local availability and metadata chains, not validation of the earlier truncated acquisition transport.",
+    "Metadata hashes, descriptor sizes, platform and runtime-reported rootfs identifiers checked by the pinned guest helper. Layer bytes, signatures, vulnerabilities and component compatibility are unverified.",
+    "No application containers, native Shuffle workflow, analyst task, retry or response action was executed.",
+    "Builder-controlled guest observations and host profile reconciliation are not independent attestation or hostile-host containment proof."
+  ]
+}

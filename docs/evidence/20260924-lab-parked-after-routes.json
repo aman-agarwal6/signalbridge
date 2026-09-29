@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-09-24T18:36:09.326321+00:00",
+  "status": "parked",
+  "container_count": 8,
+  "containers": [
+    {
+      "name": "signalbridge-bettail-next",
+      "running": false,
+      "state": "exited"
+    },
+    {
+      "name": "supabase_db_signalbridge-bettail-lab",
+      "running": false,
+      "state": "exited"
+    },
+    {
+      "name": "supabase_kong_signalbridge-bettail-lab",
+      "running": false,
+      "state": "exited"
+    },
+    {
+      "name": "supabase_auth_signalbridge-bettail-lab",
+      "running": false,
+      "state": "exited"
+    },
+    {
+      "name": "supabase_rest_signalbridge-bettail-lab",
+      "running": false,
+      "state": "exited"
+    },
+    {
+      "name": "supabase_storage_signalbridge-bettail-lab",
+      "running": false,
+      "state": "exited"
+    },
+    {
+      "name": "supabase_inbucket_signalbridge-bettail-lab",
+      "running": false,
+      "state": "exited"
+    },
+    {
+      "name": "signalbridge-bettail-relay",
+      "running": false,
+      "state": "exited"
+    }
+  ],
+  "identities_unchanged": true,
+  "recovery_preflight": "clear",
+  "data_preserved": true,
+  "scope": "Only the eight named SignalBridge BetTail lab containers stopped; no volume/container deletion or shared Docker/WSL shutdown."
+}

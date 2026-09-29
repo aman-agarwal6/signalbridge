@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-shuffle-resume-bundle-preparation",
+  "status": "offline_prepared_not_executed",
+  "prepared_run_uuid": "d7b98441-8fac-42b6-8bc3-a05b73ba2998",
+  "previous_preparation_receipt": "20260925-shuffle-image-verifier.json",
+  "source_base_commit": "60e46c79a75c44ddea408d1b2007e720e535a745",
+  "application_source_sha256": "614574d04741868be227115e61e4b837aaf1c30b86b90785b37ebeb5933fbe1d",
+  "application_source_file_count": 245,
+  "source_sha256": {
+    "guest-image-resume.py": "ae20d5be9f51a53a63c5ed491f6ee7ed88fc88d8a587db24564b9aab167eb785",
+    "signalbridge-image-identity.py": "30c2e0c63c73d7ac968b61d18b84e8a7622a409c3766015cbf9bb5082165b9da",
+    "build-guest-image-resume.ps1": "d31d094555b65576ff42b4d37a80993152a936d33c2189032158cdf1416d0f62",
+    "run-guest-image-resume.ps1": "62532a39657e2e784ed5225e0d0c083a862a8d00b74a2e0a35a18dce6e8da89d",
+    "validate_image_resume.py": "73e9e65e127d65970ed38157817e8fb741cbab53460c7eea8ddc712804824701",
+    "test_validate_image_resume.py": "14631888c2ffc8bc7402c0096ae03f0c4117043d72d2eeb1012fc5bdcb43f3fb",
+    "test_controller.ps1": "54cdcac4b785256fb240517d6e7ffa05764df462b82100eea47ab58a04e1ff56",
+    "test_bundle.py": "e93ad719cac9261cd12298eb2129092293f442ed608628d09da0a4603138d939",
+    "guest-image-resume.iso": "c43f18bf97b8f3e63981d0c4d48098e63f9e37e6262b99b488894a47e302abe1"
+  },
+  "iso": {
+    "bytes": 90112,
+    "sha256": "c43f18bf97b8f3e63981d0c4d48098e63f9e37e6262b99b488894a47e302abe1",
+    "maximum_bytes": 4194304,
+    "iso9660_and_joliet": true,
+    "joliet_files": [
+      "meta-data",
+      "user-data"
+    ],
+    "embedded_files_match_inputs": true,
+    "guest_and_verifier_literals_match_sources": true,
+    "cloud_init_native_schema_or_boot_verified": false,
+    "attached_to_vm": false,
+    "staged_in_lab": false
+  },
+  "offline_tests": {
+    "python_receipt_regressions": 13,
+    "cross_file_regressions": 5,
+    "powershell_synthetic_checks": 36,
+    "included_serial_cases": 16,
+    "core_test_count_increase": 0,
+    "native_vm_operations": 0,
+    "controller_top_level_executed": false
+  },
+  "preserved_controller_functions": [
+    "Assert-RunBudget",
+    "Invoke-VBox",
+    "Wait-StableState",
+    "Wait-PoweredDown",
+    "Cleanup-OwnedVM"
+  ],
+  "prepared_controls": [
+    "Reviewed run, firewall and ISO identities required before native commands.",
+    "Guest, verifier, builder and controller source snapshots captured before launch; pinned helper sources checked before writing.",
+    "Duplicate profile keys rejected; ready receipt must bind reviewed firewall before cable activation.",
+    "Exactly two serial records, each at most 4095 bytes plus newline; terminal capture is not a success claim.",
+    "Host validator binds source, ISO, command sequence, timing and final shutdown profile.",
+    "Target, manifest and config identity are distinct; all five targets and two separately reviewed configs are pinned.",
+    "Original resource/deadline/native-command and cleanup functions retained."
+  ],
+  "retained_preparation_failures": [
+    {
+      "issue": "Initial cross-file test had an invalid trailing-backslash string literal.",
+      "result": "Syntax corrected; initial diagnostic retained."
+    },
+    {
+      "issue": "Broad source substitution changed validator pipe name without changing controller pipe name.",
+      "result": "Dedicated cross-file regression reproduced mismatch; precise replacement corrected it, then all five cross-file tests passed."
+    }
+  ],
+  "test_log_sha256": {
+    "validator-final.txt": "1cabacd48f283eec588cf0f838f54b12ac865d6475820313c2bd3e1adc8f17e8",
+    "cross-file-tests.txt": "064446ed3539c7ecc760dae8d1ef8abb2be29845ec3b83f91d35be927f794192",
+    "controller-tests.txt": "5d8b841aa3ced04f3064b551dbef6b198365b1a262ad5fa87cf89c9d18489764",
+    "cross-file-before.txt": "b27b7ef03790d031415a9f31e761957e761377a0f107e13ff7192bfcccd1bbbd",
+    "cross-file-before-2.txt": "39c2f6e5e9e0f079237805c5f5f8d071798b87d7a5141af025e548f9c3b8c4bd"
+  },
+  "pending": [
+    "Owner-deferred Windows restart and fresh capacity/isolation inspection.",
+    "Guest Docker content-store address/namespace verification before trusting image reuse.",
+    "Reviewed deployment of exact private bundle to a new plain lab staging directory.",
+    "Bounded native acquisition, receipt validation and verified cleanup.",
+    "Genuine isolated Shuffle workflow and bounded SignalBridge handoff, including failures/retries/duplicates."
+  ],
+  "limits": [
+    "Preparation uses synthetic receipts and mocks; no new native integration proof.",
+    "The ISO was created and inspected as bytes; no mounting, boot or VM settings change.",
+    "No Docker commands, image downloads, paid service, Windows restart or BetTail repair occurred.",
+    "The host cross-checks trusted builder observations and guest summaries; no independent attestation, full-layer/signature/CVE or measured zero-egress claim.",
+    "The 1012-test core receipt remains current on the unchanged 245-file source manifest; private checks are reported separately.",
+    "Existing failed attempts and prior receipts were preserved."
+  ]
+}

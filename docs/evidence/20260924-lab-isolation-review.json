@@ -1,0 +1,54 @@
+{
+  "kind": "signalbridge-local-isolation-review-receipt",
+  "schema_version": 1,
+  "started_at": "2026-09-24T04:58:10.098047+00:00",
+  "finished_at": "2026-09-24T04:58:40.724120+00:00",
+  "project": "signalbridge-bettail-lab",
+  "status": "passed",
+  "raw_report_sha256": "66f9590e58bc408e7ff71b6b21f579629649ce60464e63f686ea7513b667bcbe",
+  "source_hashes": {
+    "lab_config_sha256": "d2b420043992a413230d13cb90befeefb4823e169615de694b19b739d7971382",
+    "relay_source_sha256": "3b31b9fe7ad06fe8f12674b9bfd764095b3a1964772b7d167215d0de93d1fc82",
+    "verifier_source_sha256": "6dae639c64b2b909bbbbbabb4d60694bbf8e02dbc861c8d31efa3ce9a2658c70"
+  },
+  "topology_sha256": "e58566bd4c2b440b277798518d43b062f4ae058b2f36b2b2c1049bc5c51b26fd",
+  "runtime": {
+    "ipv4_default_route": false,
+    "ipv6_default_route": false,
+    "external_tcp": "blocked",
+    "cron_launch_active_jobs": "off"
+  },
+  "coverage_limits": [
+    "A point-in-time local configuration and connection check, not a hostile-host audit.",
+    "The operating system user and Docker administrator remain trusted.",
+    "One failed external TCP probe is corroboration; topology and routes enforce the boundary.",
+    "No source migration, user authorization, HTTP or storage assertion is established here.",
+    "No proof against an administrator modifying the report or environment after this run."
+  ],
+  "container_count": 7,
+  "published_ports": [
+    {
+      "container": "signalbridge-bettail-relay",
+      "bindings": {
+        "55321/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "55321"
+          }
+        ],
+        "55322/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "55322"
+          }
+        ],
+        "55324/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "55324"
+          }
+        ]
+      }
+    }
+  ]
+}

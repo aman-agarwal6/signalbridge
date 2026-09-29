@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-shuffle-storage-checkpoint",
+  "status": "failed_storage_startup_integration_deferred",
+  "checked_at": "2026-09-25T16:09:00.464411+00:00",
+  "storage_test": {
+    "run_uuid": "404d7734-0c5c-4771-b4c0-2ba57cb3ecd2",
+    "duration_seconds": 141.768,
+    "finished_at": "2026-09-25T16:02:33.0527405Z",
+    "source_sha256": {
+      "guest-storage-security.py": "6361d110c9953c05cce8b7d810cea69b2693ebbc5e35dd9afd44f652ffe2a75a",
+      "build-guest-storage-security.ps1": "7386d95f49217b35c293fc90f3138cc77c7620e497035278ed14dda5728aa5f3",
+      "run-guest-storage-security.ps1": "1f5e176128460aa64296147c43a41c96d1aeff988e844dd63d0166fb796d64c3"
+    },
+    "seed_sha256": "029914654347978da6e2d025efb36c43e5e5332953328d07d6336be132cda409",
+    "serial_sha256": "649d202fe412f93b127280666315cc1315c6cbb4656f3126bee2f857cca29fd0",
+    "serial_bytes": 1099,
+    "command_history": {
+      "command_count": 37,
+      "start_command": 5,
+      "nic_removal_command": 34
+    },
+    "profile_sha256": {
+      "initial.txt": "fce96e4824d6025890b2c221d8daf65d74d544c97adc2d71251eb81013e05466",
+      "before.txt": "82eff02dbd8df156772665f62a9345a5d0288681c3559876f2150f2522de68c1",
+      "running.txt": "10548fb7e836993e144c06002ba3da2be7f5870ba381fc67d5f2562f90510ad5",
+      "after.txt": "dac29fd8bf48f881a0c64fc2d278e8b7d32054ab6de1b020cb6048c614789ffb"
+    },
+    "shutdown_and_detachment_verified": true
+  },
+  "diagnostic": {
+    "run_uuid": "7a3ccea8-6a03-4a80-92dd-eb71dd3b9531",
+    "duration_seconds": 54.982,
+    "finished_at": "2026-09-25T16:06:31.8082108Z",
+    "source_sha256": {
+      "guest-storage-diagnostic.py": "0aaba848faabf17cf6af609dce944c9977033ca6a41232939141589accf0c507",
+      "build-guest-storage-diagnostic.ps1": "9eb848b2b7d93a53b709b843723cba62cfe2473cf84c42e2384dc2bd7eb812b5",
+      "run-guest-storage-diagnostic.ps1": "4120c5e17527ffd30e04915148a87f9f1e43385921c58a482697e1899cf26616"
+    },
+    "seed_sha256": "bc22d9a9a19ed9eb5c9823a97b80fc84888ae647a3640195b6a2d7fd86e734fd",
+    "serial_sha256": "3d0b522a5d2c67a24963c08f42b9a39337cfa9e297d7dc635b6a473d09a9a9be",
+    "serial_bytes": 862,
+    "command_history": {
+      "command_count": 20,
+      "start_command": 5,
+      "nic_removal_command": 17
+    },
+    "profile_sha256": {
+      "initial.txt": "a1a96c43ca5eb4b30dd5bf1a6a2e25a9dfdc673e839a6b6b7431de3b612ed155",
+      "before.txt": "7724cfb6218c40cbe0efb10cae6e411b903b69a531f9880d4c79348b5fbbf90b",
+      "running.txt": "eed246c81e569b7d7b36968a888a170120893e5207f6d7ebe445d1ebcdbc3a4b",
+      "after.txt": "18fabb076030714e7999e70e82a115b5d74a5b933077312a0a5044f8c9a4617b"
+    },
+    "shutdown_and_detachment_verified": true
+  },
+  "observations": {
+    "failure_stage": "storage_security_initialization",
+    "failure_code": "tls_start_deadline",
+    "storage_exit_code": 1,
+    "out_of_memory_reported": false,
+    "password_hasher_exit_code": 0,
+    "tls_auth_scope_checks_completed": false,
+    "shuffle_workflow_executed": false,
+    "guest_containers_stopped": true,
+    "vm_powered_off": true,
+    "network_adapters": 0,
+    "temporary_attachments_detached": true,
+    "native_startup_log_bytes": 3204,
+    "native_startup_log_sha256": "04d022bf468c3ffebd50630c76faf632f9879c84472c6013de4aed2850aa1044"
+  },
+  "decision": "Defer Shuffle infrastructure work from the employer-ready analyst demonstration. Preserve the failed run and do not retry without a focused new hypothesis and acceptance criteria.",
+  "limits": [
+    "The storage process exited with code 1. The collected excerpt contains native-library stack frames but does not establish the root cause.",
+    "No completed certificate, password, role-scope or Shuffle workflow verification. The diagnostic pass means evidence was read, not that the service passed.",
+    "No authentication, certificate or isolation safeguards were disabled to obtain a passing result.",
+    "Host profile reconciliation and guest records are builder-operated evidence, not independent attestation."
+  ],
+  "validator_sha256": "14c4e540406cecfb5462253c4974f9a47a7ffd793173098f502fec75c6ab4711"
+}

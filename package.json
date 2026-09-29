@@ -1,0 +1,14 @@
+{
+  "name": "signalbridge-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:apps": "node integrations/check-apps.mjs",
+    "test:sdk": "node --test integrations/sender.test.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.8"
+  }
+}
+

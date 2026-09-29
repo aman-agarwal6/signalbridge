@@ -1,0 +1,49 @@
+name: signalbridge-local
+services:
+  db:
+    image: postgres:17.11
+    environment:
+      POSTGRES_DB: signalbridge
+      POSTGRES_USER: signalbridge
+      POSTGRES_PASSWORD: ${SB_DB_PASSWORD:?Set a generated local database password}
+    volumes:
+      - signalbridge-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U signalbridge"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [private]
+  web:
+    build: .
+    environment: &environment
+      SB_MODE: local
+      SB_CONTAINER: '1'
+      SB_SECRET_KEY: ${SB_SECRET_KEY:?Set a generated local Django secret}
+      SB_DB_HOST: db
+      SB_DB_PASSWORD: ${SB_DB_PASSWORD:?Set a generated local database password}
+    ports: ["127.0.0.1:8741:8000"]
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes: ["signalbridge-var:/app/var"]
+    networks: [private]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+  worker:
+    build: .
+    command: ["python", "manage.py", "work"]
+    environment: *environment
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes: ["signalbridge-var:/app/var"]
+    networks: [private]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+volumes:
+  signalbridge-db:
+  signalbridge-var:
+networks:
+  private:
+    internal: true

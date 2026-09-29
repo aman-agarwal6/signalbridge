@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-reachable-history-review",
+  "status": "completed_no_matches_in_stated_scope",
+  "executed_at": "2026-09-25T10:38:14.819478+00:00",
+  "source_revision": "c93b81893c273cf937e2692b0a2a556c9c2856d1",
+  "ref_count": 1,
+  "refs_sha256": "2c99c90e635b71cdc9f90ef87131b6d0d688e30e1c8c4fd0a57e5d8cfeb0c62a",
+  "commits": 38,
+  "unique_file_versions": 914,
+  "bytes_read": 20632168,
+  "historical_pdf_versions": 55,
+  "known_credential_discovery_nonempty": true,
+  "matched_objects": 0,
+  "forbidden_runtime_paths": 0,
+  "unsupported_text_encodings": 0,
+  "special_tree_entries": 0,
+  "selected_pattern_rules": [
+    "private_key_marker",
+    "github_token_shape",
+    "aws_access_key_shape",
+    "slack_token_shape",
+    "openai_token_shape",
+    "jwt_shape",
+    "known_local_credential"
+  ],
+  "repository_shape": {
+    "shallow": false,
+    "grafts_present": false,
+    "object_alternates_present": false
+  },
+  "controls": {
+    "status": "passed",
+    "commits": 2,
+    "current_tree_contains_planted_files": false,
+    "older_only_secret_objects_detected": 3,
+    "encodings": [
+      "utf8",
+      "utf-16-le",
+      "utf-16-be"
+    ],
+    "older_only_private_path_detected": true,
+    "matched_value_not_emitted": true,
+    "working_repository_modified": false
+  },
+  "rule_controls": {
+    "positive": 7,
+    "negative": 1,
+    "literal_encoding_checks": 21
+  },
+  "private_evidence_sha256": {
+    "review_history.py": "f6708ba7d31a51ee310e233728076d396f75aa31dde664229411686da7a22c24",
+    "verify_history_controls.py": "6f4fcb9f6c4005bb9561af44a509e75eb926fde9d73ab89e53e0e609cea2d868",
+    "results.json": "0b44bfa51e5bcb4653ea213753c456ea52838cc9243227c91118ccc57680c95d",
+    "controls.json": "99579be0a250fea57df1238f5e199d94418f6e669bb966fe124b01612a4a22af"
+  },
+  "application_source_unchanged": "3a549e5cfa40dd9ec1dd257c70feb857b243e2972b2f4dca27fadb84d8689e37",
+  "limits": [
+    "Only local refs reachable now; excludes reflogs, unreachable objects and remote state.",
+    "Known retained credentials plus six token/key shapes; not complete secret detection.",
+    "No high-entropy detector or external service validation; test literals need review.",
+    "UTF8/PDF text and raw known-value matching in UTF8/UTF16; no arbitrary archive decoding.",
+    "Commit metadata scanned for credentials, not approval to publish personal author identities.",
+    "Builder-operated check, no independent security audit or publication approval.",
+    "Private one-time checker and controls retained locally; not an added product scanner.",
+    "Current technical/reader updates occur after the reviewed Git snapshot and receive separate publication checks.",
+    "No credentials rotated, Git history rewritten, service started, remote contacted or content published."
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-analyst-handoff-review",
+  "recorded_at": "2026-09-25T16:38:02.451181+00:00",
+  "status": "console_checks_passed_portfolio_owner_review_pending",
+  "source_sha256": "cadb0c2c11f66b4e59c7098c222862f329fa1c87410bd2afe4b137cc39d867fd",
+  "source_file_count": 247,
+  "checks": {
+    "prerequisites": "passed; installed local runtime and native SQLite configuration",
+    "lifecycle": "real start, confirmed closed port after stop, and restart passed; data retained",
+    "wazuh_console": "signed-in: 64/64 inputs, 31 custom alerts, 33 without custom alerts, zero missing/duplicate copies; expanded limits and 64-record table",
+    "zap_console": "signed-in: completed three-GET scan versus failed/incomplete zero-request scan remain separate; expanded both receipts",
+    "authorization_console": "historical 18-assertion service report; removed-member private-record row expands and separates the expected denial, controls and scope",
+    "investigation_console": "synthetic R2 list and detail show trigger, evidence source, uncertainty, timeline and analyst controls; operational note/disposition unchanged",
+    "keyboard": "native disclosure expansion/collapse, visible focus, mobile menu expansion and workspace selector exercised",
+    "responsive": "ZAP at measured 1440/390 CSS-pixel widths; practice, investigation and Wazuh at measured 325-pixel width; no document-level horizontal overflow in observed views; wide Wazuh table scrolls inside its container",
+    "practice": "builder-labelled fictional service-error attempt: request two packets, select citations, save, submit, inspect coaching and download; submitted note fields no longer editable",
+    "practice_limit": "four selected choices matched; missing third evidence citation remained Discuss reasoning. AI-authored QA is not owner competency evidence."
+  },
+  "targeted_test_count": 153,
+  "targeted_test_log_sha256": "3fa06d60542c62035b5e7a6064b63cfd564fb4cc7fb25c28fcffd9227bcc4fa7",
+  "qa_export": {
+    "bytes": 8292,
+    "sha256": "5ae6a88357e1b620c9b859e9c22c5d9bfea214544e60f9495dac16d29564e2d8",
+    "public": false,
+    "source": "local browser download"
+  },
+  "portable_demo": {
+    "original_owner_feedback": "Presentation was not visually appealing and was hard to read; not accepted as ready.",
+    "changes": "Larger readable typography, explicit decision path, lighter evidence area, reduced case-label density, clearer measured-results explanation; no external assets or scripts.",
+    "final_visual_keyboard_mobile": "awaiting owner review; file URL blocked by browser-tool safety policy",
+    "subsequent_owner_feedback": "Readability improved, but fictional exercises did not demonstrate the monitoring integration; replaced in the later integration-showcase iteration."
+  },
+  "limits": [
+    "Builder-operated checks, not an independent accessibility/security audit.",
+    "Screen-reader behavior and physical mobile devices untested.",
+    "No native lab, continuous collection or Shuffle workflow executed in this phase.",
+    "Public hosting and owner-written work sample/recording remain outstanding."
+  ]
+}

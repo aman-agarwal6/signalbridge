@@ -1,0 +1,135 @@
+{
+  "collector_stops": [
+    {
+      "checkpoint_sha256": "d41dbd28d7807ab7378799ef0e4f89b6d94ee2ed9f439d1aaa580f68dfc52bcf",
+      "exit_code": 1,
+      "offset": 538
+    },
+    {
+      "checkpoint_sha256": "740152ed7c358d9aa9e727b4477fadc606316592f740388f1c194ae105aaddad",
+      "exit_code": 1,
+      "offset": 1352
+    }
+  ],
+  "container_id": "c401def3d28d60320373fe5046d1d15d472b8ec5bd61d518ff6ed924128acfc7",
+  "controller_sha256": "f9a8b4373fc6bd035d2ed36ab4a1f29a46d68e6de920308abc8e9fbe1c29d966",
+  "counts": {
+    "alerts": 4,
+    "collector_restarts": 2,
+    "duplicate_archive_copies": 0,
+    "nonalert_controls": 3,
+    "rule_checks": 27,
+    "unique_inputs": 7
+  },
+  "duration_seconds": 37.197,
+  "effective_config_sha256": "c711cf98696869f493d182b6376ea3fd8fda6f242580ec9b24109aec29e4c505",
+  "finished_at": "2026-09-25T04:42:00.565583+00:00",
+  "image_reference": "wazuh/wazuh-manager@sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0",
+  "isolation": {
+    "cpus": 1,
+    "exit_code": 0,
+    "final_state": "exited",
+    "fresh_stopped_gate": "passed",
+    "memory_mib": 1536,
+    "network": "none",
+    "oom": false,
+    "pids": 256,
+    "published_ports": 0
+  },
+  "kind": "signalbridge-wazuh-recovery-receipt",
+  "limits": [
+    "Seven fixed synthetic inputs and short quiet windows; not production throughput or long-term losslessness.",
+    "Only collector SIGTERM restart and rotation while stopped were tested; no forced crash, full-manager/host restart, power loss or persistent-volume restoration.",
+    "Archive reconciliation proves these records reached Wazuh; no live SignalBridge outbox handoff or continuous connection is established.",
+    "The archive setting is restricted to sanitized synthetic inputs in this fresh bounded lab; it is not permission to archive production payloads.",
+    "Source hashes and metadata are builder-operated consistency checks, not independent attestation or enterprise parity."
+  ],
+  "partial_line_hold_seconds": 3,
+  "phases": [
+    {
+      "alert_count": 1,
+      "archive_copies": 2,
+      "archives_sha256": "ca8d565d5d3c96721e7f7af221ebdae182296227bf34a497f561ff520e08f8c8",
+      "duplicate_copies": 0,
+      "phase": "live_append",
+      "quiet_seconds": 2,
+      "unique_archived_records": 2
+    },
+    {
+      "alert_count": 2,
+      "archive_copies": 4,
+      "archives_sha256": "2ce8a1d50e731d1dfb6a43c69a5bd20a0bf636326289a544625c314c550b3b29",
+      "duplicate_copies": 0,
+      "phase": "graceful_restart_backlog",
+      "quiet_seconds": 2,
+      "unique_archived_records": 4
+    },
+    {
+      "alert_count": 3,
+      "archive_copies": 5,
+      "archives_sha256": "39ce92acd0f7b6a285b4a176225e1e8644f36a8212d6b675eda9224b5e1b31cc",
+      "duplicate_copies": 0,
+      "phase": "split_line_completed",
+      "quiet_seconds": 2,
+      "unique_archived_records": 5
+    },
+    {
+      "alert_count": 4,
+      "archive_copies": 7,
+      "archives_sha256": "027a50008a7297802948c9c249ff12fb76f261f518076560f4e3bbbe82222237",
+      "duplicate_copies": 0,
+      "phase": "rotation_while_stopped",
+      "quiet_seconds": 2,
+      "unique_archived_records": 7
+    }
+  ],
+  "prior_failed_attempt": {
+    "failure_code": "collector_stop_failed",
+    "interpretation": "Original harness incorrectly required exit 0; pinned Wazuh HandleSIG exits 1. Retest requires the termination log and exact saved input checkpoint.",
+    "run_id": "df299fa3-8208-4a60-bf97-f7d48be6a456",
+    "runtime_sha256": "0a5c3010ea49cf1dc2fcbc4ba389e108fce9d7f2f20e4113f9d8d43ff53ab924",
+    "stopped": true
+  },
+  "record_sha256": {
+    "created-gate.json": "06d02a1f32bcaf478f3aa91f3d6634fe7c8189eb9fc220f6d923e9b8b724d657",
+    "exited-gate.json": "46ef020895433e8b72639e55655e713d689cab1e55f0b7b19a534505bcb90faf",
+    "fresh-stopped-gate.json": "09ad01e4966ce4498b7f212d6ea6691e8609c9d5a56ae13d03956bda23eee335",
+    "host-result.json": "1cf90cb4e13e71ac7e95fe6c47f44bc0cee1cf4531fa26f95e05909d23472289",
+    "running-gate.json": "e315da1939cc86468813c73fc125782bc75fa5a21f699d63b6826793f33a2ab6",
+    "source-manifest.json": "929992bda22f59e35ed0089aefe56a3e73a4ef88174d45d2b7fd4156ef6a2351"
+  },
+  "recorded_at": "2026-09-25T04:44:13.358542+00:00",
+  "run_id": "327b0cbf-9a82-4b0c-a100-a62533ef72ef",
+  "runtime_sha256": {
+    "alerts.jsonl": "11f30dfe8aa14b87aed7cb862ec089f68c2bcab0f942b72afbbf720ba6201651",
+    "archives.jsonl": "027a50008a7297802948c9c249ff12fb76f261f518076560f4e3bbbe82222237",
+    "expected-inputs.json": "b5228ad8a4f0e403c07a388279e16d7a061b5e1b778a38eed2f24c6226f01050",
+    "recovery-result.json": "9fff0bfd7de0666de51c208f8f0e3a47e1e9b08e8ed03fc7824562443f62fffd",
+    "run-context.json": "2b8326c0fbf37575479bbd4c6b655cb702cecc54b3913cc2f0732405ac387c21"
+  },
+  "schema_version": 1,
+  "source_checkpoint": "8241a52",
+  "source_files": {
+    "event-contract.json": "c86db4d8b3c577d58acc00d49429cdb516eeece8e9f68409864369b80cbc93b2",
+    "fixtures/events.jsonl": "21d441f6371998733b708627f7ba00196964d6adc441288b25671ab0d700825b",
+    "fixtures/expectations.json": "51ead3222a8ba54520ef03096a118696ef5a2a33497cf14d7af57b009c4ff982",
+    "image-lock.json": "80b3957b2bea8a782d87531ebee38287633457cd0976a63772ff09647f506c27",
+    "manager-lab.conf": "275c60d0386507349a6e647b2bd7f8802ba0e4aeb690de66ea08cb790d97b234",
+    "run_context.py": "6759e3480648406d1aa8aa8c26b741fc7e00aa515b2cf4463b1a1ee7470650c8",
+    "run_delivery.py": "f9b254f570b6d2ed69a058d16605bb840b1f5676d842523c26b203507b843d06",
+    "run_pilot.py": "e5ab9c3ea13ee33cbdcc47459c64a851b092e9f78c5fc0564e359f9445e65ead",
+    "signalbridge_rules.xml": "9d31bff5f315b92108c8e6e1b56880e5511d30055d56496a33dfc1f3217f241b",
+    "verify_static.py": "a59f7232db9bc2a207da70f87b5f38d838902edb0869384a5c3a68d3f04ff0b4"
+  },
+  "source_sha256": "21b9acbdc88b11fbbeb85fe2075760a1f52585469d94dfcd31d482497ea4d90f",
+  "sources": [
+    "https://github.com/wazuh/wazuh/blob/v4.14.8/src/shared/sig_op.c",
+    "https://github.com/wazuh/wazuh/blob/v4.14.8/src/logcollector/logcollector.c",
+    "https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/localfile.html#only-future-events"
+  ],
+  "started_at": "2026-09-25T04:41:23.370292+00:00",
+  "status": "passed",
+  "tool": "wazuh",
+  "version": "4.14.8",
+  "working_tree_dirty": true
+}

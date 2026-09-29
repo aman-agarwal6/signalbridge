@@ -1,0 +1,555 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-bettail-route-execution-receipt",
+  "run_id": "ba5bf541-0dcc-4559-835f-6c918eb15ac0",
+  "status": "passed",
+  "started_at": "2026-09-24T18:29:58.503700+00:00",
+  "finished_at": "2026-09-24T18:34:01.932112+00:00",
+  "source": {
+    "provenance": {
+      "migration_digest": "d101c7136840ae5e0fcfcad534b9b4d882ad7db651577a6193e89da0ffebfedd",
+      "snapshot_digest": "1b53511c58642fec4d1d4351e66689662f99bc6986e5067f5f08c0990b603ad0",
+      "source_revision": "286c2d7461917eb1177122b67be270f963af1232"
+    },
+    "source_dirty": true,
+    "migration_count": 68,
+    "lab_state_sha256": "a04d2d79a7196756d4d75dfed1a2677948fbd49d7d44ca34cfd78dae35e1fc68",
+    "reviewed_harness_sha256": {
+      "bettail-routes.mjs": "97d9a6eb955288af1076149ab1365935d657ab8d559db76ea675f66c48479ae3",
+      "supabase-http.mjs": "1b28b7b95261be35ff6649db63f0455a38bac3da74bcd0c5c4d62856c78a9824",
+      "runtime.mjs": "20b3c8a65a68e7a02be7181aa3274fabdc6398857ef24f8f31dee15023639ff0"
+    },
+    "runtime_contract_sha256": "9daf77e682b306d6f63683d2f12ba008bcba1edb38f9c9a0099eb7615d9f4cb6",
+    "runner_sha256": "a40fff417a932b481a06333164628a47b392a7c2a714c0b648b2bc805c2a538b"
+  },
+  "source_unchanged": true,
+  "results": {
+    "route": {
+      "executed": 23,
+      "passed": 23,
+      "stages": {
+        "setup": 4,
+        "assertion": 16,
+        "restoration": 3
+      }
+    },
+    "service": {
+      "executed": 32,
+      "passed": 32,
+      "stages": {
+        "setup": 10,
+        "assertion": 18,
+        "restoration": 4
+      }
+    },
+    "request_count": 69,
+    "route_report_sha256": "014666921854a40dda982659c98a9b191c4b2e34821f682f1c8664491788a1ab",
+    "service_report_sha256": "71122737727d0eb70d1667e3ecbd82276f561bd9312c80b46a4c7b53c9bb6d0c",
+    "restoration": "restored_and_retested",
+    "runtime": {
+      "node_version": "v24.20.0",
+      "supabase_ssr_version": "0.12.7",
+      "next_mode": "development"
+    }
+  },
+  "warmup": {
+    "status": "passed",
+    "anonymous_route_statuses": [
+      401,
+      401
+    ],
+    "maximum_seconds": 120
+  },
+  "route_checks": [
+    {
+      "id": "owner_sdk_cookie_session_verified",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 142,
+      "outcome": "authenticated_cookie_session"
+    },
+    {
+      "id": "member_sdk_cookie_session_verified",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 137,
+      "outcome": "authenticated_cookie_session"
+    },
+    {
+      "id": "outsider_sdk_cookie_session_verified",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 131,
+      "outcome": "authenticated_cookie_session"
+    },
+    {
+      "id": "owner_next_exact_state_visible",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 176,
+      "http_status": 200,
+      "outcome": "allowed"
+    },
+    {
+      "id": "owner_next_exact_image_visible",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 114,
+      "http_status": 200,
+      "outcome": "allowed",
+      "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+    },
+    {
+      "id": "member_next_exact_state_visible",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 121,
+      "http_status": 200,
+      "outcome": "allowed"
+    },
+    {
+      "id": "member_next_exact_image_visible",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 101,
+      "http_status": 200,
+      "outcome": "allowed",
+      "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+    },
+    {
+      "id": "outsider_next_state_denied",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 101,
+      "http_status": 403,
+      "outcome": "denied"
+    },
+    {
+      "id": "outsider_next_image_hidden",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 81,
+      "http_status": 404,
+      "outcome": "not_visible"
+    },
+    {
+      "id": "anonymous_next_state_denied",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 43,
+      "http_status": 401,
+      "outcome": "denied"
+    },
+    {
+      "id": "anonymous_next_image_denied",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 38,
+      "http_status": 401,
+      "outcome": "not_visible"
+    },
+    {
+      "id": "invalid_next_state_filter_rejected",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 73,
+      "http_status": 400,
+      "outcome": "invalid_input_rejected"
+    },
+    {
+      "id": "invalid_next_image_id_rejected",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 37,
+      "http_status": 400,
+      "outcome": "invalid_input_rejected"
+    },
+    {
+      "id": "invalid_next_image_scope_rejected",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 35,
+      "http_status": 400,
+      "outcome": "invalid_input_rejected"
+    },
+    {
+      "id": "route_member_removed",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 8,
+      "outcome": "membership_removed"
+    },
+    {
+      "id": "removed_member_same_session_still_auth_valid",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 35,
+      "http_status": 200,
+      "outcome": "same_session_authenticated"
+    },
+    {
+      "id": "removed_member_same_cookie_next_state_denied",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 87,
+      "http_status": 403,
+      "outcome": "denied"
+    },
+    {
+      "id": "removed_member_same_cookie_next_image_hidden",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 80,
+      "http_status": 404,
+      "outcome": "not_visible"
+    },
+    {
+      "id": "owner_next_state_survives_removal",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 161,
+      "http_status": 200,
+      "outcome": "allowed"
+    },
+    {
+      "id": "owner_next_image_survives_removal",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 99,
+      "http_status": 200,
+      "outcome": "allowed",
+      "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+    },
+    {
+      "id": "route_membership_restored",
+      "stage": "restoration",
+      "status": "passed",
+      "duration_ms": 11,
+      "outcome": "membership_restored"
+    },
+    {
+      "id": "restored_member_next_state_visible",
+      "stage": "restoration",
+      "status": "passed",
+      "duration_ms": 108,
+      "http_status": 200,
+      "outcome": "allowed"
+    },
+    {
+      "id": "restored_member_next_image_visible",
+      "stage": "restoration",
+      "status": "passed",
+      "duration_ms": 94,
+      "http_status": 200,
+      "outcome": "allowed",
+      "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+    }
+  ],
+  "service_checks": [
+    {
+      "id": "owner_auth_creation_and_password_login",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 280,
+      "http_status": 200,
+      "outcome": "authenticated"
+    },
+    {
+      "id": "owner_profile_ready",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 285,
+      "outcome": "profile_completed"
+    },
+    {
+      "id": "member_auth_creation_and_password_login",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 224,
+      "http_status": 200,
+      "outcome": "authenticated"
+    },
+    {
+      "id": "member_profile_ready",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 50,
+      "outcome": "profile_completed"
+    },
+    {
+      "id": "outsider_auth_creation_and_password_login",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 222,
+      "http_status": 200,
+      "outcome": "authenticated"
+    },
+    {
+      "id": "outsider_profile_ready",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 46,
+      "outcome": "profile_completed"
+    },
+    {
+      "id": "synthetic_group_and_pick_seeded",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 60,
+      "outcome": "synthetic_fixture_ready"
+    },
+    {
+      "id": "owner_exact_row_visible",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 6,
+      "http_status": 200,
+      "outcome": "allowed"
+    },
+    {
+      "id": "owner_snapshot_visible",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 39,
+      "http_status": 200,
+      "outcome": "allowed"
+    },
+    {
+      "id": "member_exact_row_visible",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 5,
+      "http_status": 200,
+      "outcome": "allowed"
+    },
+    {
+      "id": "member_snapshot_visible",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 28,
+      "http_status": 200,
+      "outcome": "allowed"
+    },
+    {
+      "id": "outsider_exact_row_hidden",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 5,
+      "http_status": 200,
+      "outcome": "not_visible"
+    },
+    {
+      "id": "outsider_snapshot_denied",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 6,
+      "http_status": 400,
+      "outcome": "denied",
+      "response_code": "P0001"
+    },
+    {
+      "id": "anonymous_table_read_denied",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 4,
+      "http_status": 401,
+      "outcome": "denied",
+      "response_code": "42501"
+    },
+    {
+      "id": "anonymous_snapshot_denied",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 4,
+      "http_status": 401,
+      "outcome": "denied",
+      "response_code": "42501"
+    },
+    {
+      "id": "private_image_reserved_and_uploaded",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 49,
+      "http_status": 200,
+      "outcome": "private_object_created",
+      "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+    },
+    {
+      "id": "owner_draft_image_visible",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 11,
+      "http_status": 200,
+      "outcome": "allowed",
+      "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+    },
+    {
+      "id": "member_unattached_draft_hidden",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 9,
+      "http_status": 400,
+      "outcome": "not_visible",
+      "response_code": "NoSuchKey"
+    },
+    {
+      "id": "owner_image_attached_to_comment",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 21,
+      "outcome": "attachment_recorded"
+    },
+    {
+      "id": "owner_attached_image_visible",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 10,
+      "http_status": 200,
+      "outcome": "allowed",
+      "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+    },
+    {
+      "id": "member_attached_image_visible",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 11,
+      "http_status": 200,
+      "outcome": "allowed",
+      "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+    },
+    {
+      "id": "outsider_attached_image_hidden",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 9,
+      "http_status": 400,
+      "outcome": "not_visible",
+      "response_code": "NoSuchKey"
+    },
+    {
+      "id": "member_removed",
+      "stage": "setup",
+      "status": "passed",
+      "duration_ms": 7,
+      "outcome": "membership_removed"
+    },
+    {
+      "id": "removed_member_same_jwt_still_valid",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 37,
+      "http_status": 200,
+      "outcome": "authenticated"
+    },
+    {
+      "id": "removed_member_exact_row_hidden",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 5,
+      "http_status": 200,
+      "outcome": "not_visible"
+    },
+    {
+      "id": "removed_member_snapshot_denied",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 5,
+      "http_status": 400,
+      "outcome": "denied",
+      "response_code": "P0001"
+    },
+    {
+      "id": "removed_member_new_image_request_hidden",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 8,
+      "http_status": 400,
+      "outcome": "not_visible",
+      "response_code": "NoSuchKey"
+    },
+    {
+      "id": "owner_read_survives_removal",
+      "stage": "assertion",
+      "status": "passed",
+      "duration_ms": 5,
+      "http_status": 200,
+      "outcome": "allowed"
+    },
+    {
+      "id": "membership_restored",
+      "stage": "restoration",
+      "status": "passed",
+      "duration_ms": 7,
+      "outcome": "membership_restored"
+    },
+    {
+      "id": "restored_member_exact_row_visible",
+      "stage": "restoration",
+      "status": "passed",
+      "duration_ms": 4,
+      "http_status": 200,
+      "outcome": "allowed"
+    },
+    {
+      "id": "restored_member_snapshot_visible",
+      "stage": "restoration",
+      "status": "passed",
+      "duration_ms": 25,
+      "http_status": 200,
+      "outcome": "allowed"
+    },
+    {
+      "id": "restored_member_image_visible",
+      "stage": "restoration",
+      "status": "passed",
+      "duration_ms": 10,
+      "http_status": 200,
+      "outcome": "allowed",
+      "content_digest": "c90cff659645a312a28804965f3dbc34061338f7234ff5d6ddb2c57e9eadec15"
+    }
+  ],
+  "isolation": {
+    "before": "passed",
+    "after": "passed",
+    "before_sha256": "db9403b3f2128cf63adf49964445aadc541c8fd920b6972dd430ddb938a64101",
+    "after_sha256": "f85671f70f0030eb5fad52c164bb044207c425a968f4f8470fcdd4c549c207a8",
+    "source_stable": true,
+    "topology_stable": true,
+    "source_hashes": {
+      "lab_config_sha256": "d2b420043992a413230d13cb90befeefb4823e169615de694b19b739d7971382",
+      "relay_source_sha256": "3b31b9fe7ad06fe8f12674b9bfd764095b3a1964772b7d167215d0de93d1fc82",
+      "verifier_source_sha256": "6dae639c64b2b909bbbbbabb4d60694bbf8e02dbc861c8d31efa3ce9a2658c70",
+      "route_verifier_sha256": "c078d065d547c8fd4a4db602656c766a41e0ae641b5515be9eb25cbc386270e2",
+      "runtime_contract_sha256": "9daf77e682b306d6f63683d2f12ba008bcba1edb38f9c9a0099eb7615d9f4cb6",
+      "snapshot_digest": "1b53511c58642fec4d1d4351e66689662f99bc6986e5067f5f08c0990b603ad0",
+      "runtime_files_sha256": "c3a72301524ae0823432a8fc16eb968be26737182aa496d9b6ec24d92f2eab15",
+      "harness_files_sha256": "08523a4e201b852dbd63b34764f380b0ccb401d8a6e008ac95f80ba64c30930a",
+      "generated_declaration_adjustment": {
+        "original_sha256": "1862ac4bbbc5192d4bf562161df66ea547ed3e67173100656ab606ae9797db2b",
+        "runtime_sha256": "0f70629890b72a0a82e91972cc032c04b658b26c265373cb711cf576bfbf8fcc"
+      }
+    },
+    "runtime": {
+      "ipv4_default_route": false,
+      "ipv6_default_route": false,
+      "external_tcp": "blocked"
+    }
+  },
+  "recovery_required": false,
+  "lock_retained": false,
+  "execution_sha256": "62f195b663e5826adde1f1ba2c71d11948b29591553d26a27f977bb1b8ce5011",
+  "log_sha256": {
+    "stdout.txt": "0d64571971c737481afbbcd6709e0dc74f3988bbff572166e6b9632233f7eb0e",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "limits": [
+    "Builder-operated local evidence, not independent audit or enterprise-platform parity.",
+    "Only two development Next GET routes and synthetic official-SDK password sessions are covered.",
+    "No interactive OTP/OAuth flow, production cookie/refresh proof, signed URL, policy fault or source-owned event delivery.",
+    "Synthetic identities and objects are retained privately; membership restoration is checked separately.",
+    "Isolation is checked before and after, not monitored continuously; the host/Docker administrator is trusted.",
+    "Timeout requires manual recovery review; the runner never kills a possibly restoring child or stops services.",
+    "Request counts cover harness-issued requests only, excluding Next upstream calls, warmup and isolation probes.",
+    "Exclusive files and atomic recovery updates do not establish fsync-backed host-crash durability."
+  ]
+}

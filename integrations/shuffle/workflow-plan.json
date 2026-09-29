@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "signalbridge-shuffle-workflow-design-not-importable",
+  "execution_verified": false,
+  "name": "SignalBridge synthetic analyst review handoff",
+  "scope": {"app": "bettail", "environment": "lab", "source": "synthetic_demo"},
+  "steps": [
+    {"id": "receive", "purpose": "An authenticated SignalBridge dispatcher executes one fixed private Shuffle workflow with the validated metadata envelope."},
+    {"id": "resolve", "purpose": "One allowlisted integration action re-resolves the original event and current case version inside a disposable SignalBridge instance; stale or cross-scope evidence fails."},
+    {"id": "record_review", "purpose": "The same scoped receiver transactionally creates at most one analyst review task or returns its existing receipt; no source-app mutation occurs."},
+    {"id": "finish", "purpose": "Record the genuine Shuffle execution ID and task ID with input, workflow and receipt hashes, then stop; an analyst makes any investigation decision separately."}
+  ],
+  "limits": {"maximum_envelope_bytes": 4096, "maximum_case_references": 1, "maximum_original_event_references": 1, "maximum_task_creations_per_identity": 1, "maximum_attempts": 3, "maximum_run_seconds": 60, "maximum_http_response_bytes": 16384, "redirects_allowed": false},
+  "forbidden": ["email", "chat messages", "cloud callbacks", "webhook-selected destinations", "account changes", "financial actions", "shell execution actions", "recursive subworkflows", "schedules", "autonomous case closure", "automatic retries after an unknown side effect"],
+  "implementation_gaps": ["isolated Shuffle runtime", "pinned compatible worker/app images", "authenticated dispatcher", "scoped SignalBridge receiver and task model", "transactional idempotency", "imported native Shuffle workflow with actual installation-specific action IDs", "live timeout/retry and recovery evidence"]
+}

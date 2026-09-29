@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-builder-value-audit",
+  "recorded_at": "2026-09-26T01:32:15.960721+00:00",
+  "status": "implemented_and_software_verified",
+  "source_sha256": "ed8714517b4999e7e8862b0f5596138417b60395049827a2e8916f1c6f670c87",
+  "source_file_count": 255,
+  "revision_at_execution": "601b75d892c1d15c4bfd78610a04e06171b1f146",
+  "working_tree_dirty_at_execution": true,
+  "completed_improvements": [
+    "Reconstruct full metrics and compare rendered employer HTML before packaging",
+    "Explain six contrasting Wazuh records using the executed XML predicates; reconcile all 64",
+    "Show the separate historical BetTail authentication, removal, access and restoration sequence",
+    "Connect four implementation decisions to named source and adverse-test functions",
+    "Offer owner-private investigations of retained Wazuh and ZAP evidence",
+    "Record self-reported authorship and assistance; provide a blank human-assessment rubric",
+    "Provide a fixed offline refresh with bounded profiles, evidence rechecks and failure retention"
+  ],
+  "verification": {
+    "core_receipt": "20260926T012755140657Z-59e297b9.json",
+    "check_groups_passed": 9,
+    "python_tests": 1030,
+    "mocked_node_tests": 53,
+    "failures": 0,
+    "skips": 0,
+    "simulation_receipt": "20260926-simulation-cbf23a2222b6459cafd84af7d29aa4a5.json",
+    "development_scenarios": {
+      "met": 15,
+      "total": 15
+    },
+    "challenge_receipt": "20260926-challenge-6ddeb3098b4845cbb29fc072d59056f6.json",
+    "rule_contracts": {
+      "met": 16,
+      "total": 16
+    },
+    "capability_probes": {
+      "alert_observed": 0,
+      "total": 3
+    },
+    "refresh_completed": "013efdc22ed84f5e9877826404e588de",
+    "earlier_failed_core_receipt": "20260926T012612744181Z-963f81b8.json",
+    "failure_reason": "Two loop-binding lint findings in a new test; software tests passed, combined verification correctly failed. Corrected and rerun; failed receipt preserved.",
+    "other_preparation_failures": [
+      "Focused test bootstrap initially lacked disposable Django settings/key",
+      "Two agent fixture preparations hit Windows temporary-directory permissions before test bodies; switched to guarded project fixtures",
+      "Broad lint found an existing publishing-helper import-order issue; corrected"
+    ]
+  },
+  "documents": {
+    "primary_guides": 4,
+    "reader_source_parity": "checked",
+    "pdf_content_links_and_known_private_values": "checked",
+    "changed_pdf_pages_visually_inspected": 23,
+    "pdfs": {
+      "SignalBridge_Analyst_Handbook.pdf": "ce11b25056e96747116722c26b4b1044413ab83ac49a481f1bfa644a80abb22c",
+      "SignalBridge_Management_Briefing.pdf": "397d05bbf54656dc0bdc4e3e331ef7b85288758a1ab43fddf2ac2177bce63a6e",
+      "SignalBridge_Technical_Handbook.pdf": "15d339133c3aa2a13340f683eeddde90b9013512c28592bf10f98181be037ecc"
+    },
+    "historical_evidence_and_archive_files_unchanged": 172
+  },
+  "browser_checks": {
+    "console_startup": "passed; loopback-only console started",
+    "signed_in_new_practice_visual_review": "pending; existing session expired and user sign-in requested",
+    "portable_viewer_visual_keyboard_mobile_review": "not verified; local-file browser access blocked by tool policy",
+    "static_viewer_integrity_and_links": "covered by automated verification and review-package gate"
+  },
+  "limits": [
+    "Builder-operated review, not independent assurance or enterprise parity",
+    "No native Wazuh, ZAP, Shuffle or source-app lab was rerun in this phase",
+    "No owner-authored analysis, human assessment or video has been completed by these changes",
+    "Authorship is self-reported; blank rubric and citation checks do not certify competence",
+    "Raw-byte source fingerprints may require a fresh run after checkout line-ending conversion",
+    "No installation, paid service, public hosting or production connection"
+  ]
+}

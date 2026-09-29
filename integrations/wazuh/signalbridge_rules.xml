@@ -1,0 +1,61 @@
+<!-- Export v1 observations; source-reported context is not independent proof. -->
+<group name="signalbridge,application_security,">
+  <rule id="100200" level="0">
+    <decoded_as>json</decoded_as>
+    <field name="signalbridge.export_version" type="pcre2">^1$</field>
+    <field name="signalbridge.app" type="pcre2">^(bettail|netted)$</field>
+    <field name="signalbridge.environment" type="pcre2">^(lab|test)$</field>
+    <field name="signalbridge.source" type="pcre2">^(migration_lab|synthetic_demo)$</field>
+    <field name="signalbridge.event_id" type="pcre2">^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$</field>
+    <field name="signalbridge.occurred_at" type="pcre2">^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$</field>
+    <field name="signalbridge.operation" type="pcre2">^(private_record\.read|membership\.change|session\.verify)$</field>
+    <field name="signalbridge.outcome" type="pcre2">^(allowed|denied|not_visible|error)$</field>
+    <field name="signalbridge.reason" type="pcre2">^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$</field>
+    <description>SignalBridge export v1 lab observation.</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100201" level="12">
+    <if_sid>100200</if_sid>
+    <field name="signalbridge.source" type="pcre2">^migration_lab$</field>
+    <field name="signalbridge.operation" type="pcre2">^private_record\.read$</field>
+    <field name="signalbridge.outcome" type="pcre2">^allowed$</field>
+    <field name="signalbridge.reason" type="pcre2">^(membership_removed|policy_regression)$</field>
+    <description>SignalBridge SQL lab: source reports access after revocation; review test evidence.</description>
+    <group>signalbridge_revoked_success,signalbridge_observed_lab,</group>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100202" level="5">
+    <if_sid>100200</if_sid>
+    <field name="signalbridge.source" type="pcre2">^synthetic_demo$</field>
+    <field name="signalbridge.operation" type="pcre2">^private_record\.read$</field>
+    <field name="signalbridge.outcome" type="pcre2">^allowed$</field>
+    <field name="signalbridge.reason" type="pcre2">^(membership_removed|policy_regression)$</field>
+    <description>SignalBridge synthetic fixture: simulated access after revocation.</description>
+    <group>signalbridge_revoked_success,signalbridge_synthetic,</group>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100203" level="3">
+    <if_sid>100200</if_sid>
+    <field name="signalbridge.operation" type="pcre2">^private_record\.read$</field>
+    <field name="signalbridge.outcome" type="pcre2">^denied$</field>
+    <description>SignalBridge lab: individual denied read; inspect source and context, not proof of attack.</description>
+    <group>signalbridge_denied_observation,</group>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100204" level="3">
+    <if_sid>100200</if_sid>
+    <field name="signalbridge.operation" type="pcre2">^private_record\.read$</field>
+    <field name="signalbridge.outcome" type="pcre2">^not_visible$</field>
+    <description>SignalBridge lab: row not visible; authorization denial is not established.</description>
+    <group>signalbridge_visibility_observation,</group>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100205" level="4">
+    <if_sid>100200</if_sid>
+    <field name="signalbridge.outcome" type="pcre2">^error$</field>
+    <field name="signalbridge.reason" type="pcre2">^dependency_unavailable$</field>
+    <description>SignalBridge lab: dependency failure may prevent a conclusive security check.</description>
+    <group>signalbridge_coverage_gap,</group>
+    <options>no_full_log</options>
+  </rule>
+</group>

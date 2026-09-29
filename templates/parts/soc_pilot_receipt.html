@@ -1,0 +1,44 @@
+{% if pilot.has_receipt %}
+<div class="tool-capability">
+  <span class="tool-capability-label">Latest imported receipt</span>
+  <p>{{ pilot.summary }}</p>
+  <p>{% if pilot.verified %}Stopped at the end of the test.{% else %}Verification remains incomplete.{% endif %} This is historical evidence; current service state is not checked here.</p>
+</div>
+<details class="tool-details">
+  <summary>Inspect pilot evidence &amp; limits <span class="tool-disclosure-mark" aria-hidden="true">+</span></summary>
+  <div><dl>
+    <div><dt>Scope</dt><dd>SignalBridge's isolated synthetic lab. No BetTail or Netted assessment, production monitoring, or continuous connection.</dd></div>
+    {% for metric in pilot.metrics %}<div><dt>{{ metric.label }}</dt><dd>{{ metric.value }}</dd></div>{% endfor %}
+    <div><dt>Evidence imported · UTC</dt><dd>{{ pilot.imported_at|date:"M d, Y · H:i:s" }}</dd></div>
+    {% if pilot.tested_at %}<div><dt>Recorded test time · UTC</dt><dd>{{ pilot.tested_at|date:"M d, Y · H:i:s" }}</dd></div>{% endif %}
+    {% if pilot.runtime_version %}<div><dt>Recorded tool version</dt><dd>{{ pilot.runtime_version }}</dd></div>{% endif %}
+    {% if pilot.run_id %}<div><dt>Retained pilot run</dt><dd class="mono">{{ pilot.run_id }}</dd></div>{% endif %}
+    {% if pilot.receipt_digest %}<div><dt>Receipt SHA-256</dt><dd class="mono">{{ pilot.receipt_digest }}</dd></div>{% endif %}
+    {% if pilot.image_digest %}<div><dt>Pinned image identity</dt><dd class="mono">{{ pilot.image_digest }}</dd></div>{% endif %}
+    {% if pilot.source_digest %}<div><dt>Recorded source SHA-256</dt><dd class="mono">{{ pilot.source_digest }}</dd></div>{% endif %}
+    <div><dt>What this proves</dt><dd>{{ pilot.proof_note }}</dd></div>
+    {% if pilot.binding_note %}<div><dt>Traceability</dt><dd>{{ pilot.binding_note }}</dd></div>{% endif %}
+    <div><dt>Evidence boundary</dt><dd>Reviewed local receipts and consistency checks, not independent attestation. Failed raw attempts may exist outside this imported history. A local administrator can replace the records. The current checkout and current service state are not compared.</dd></div>
+  </dl></div>
+</details>
+{% if pilot.observations %}
+<details class="tool-details">
+  <summary>Explore the 12 observed signals <span class="tool-disclosure-mark" aria-hidden="true">+</span></summary>
+  <div class="pilot-observations">
+    <p>Every row came from the real rule engine using fabricated lab inputs. Application and source names are fixture labels. Rule levels are Wazuh priorities, not confirmed business impact.</p>
+    {% for observation in pilot.observations %}
+    <details class="pilot-observation">
+      <summary>Rule {{ observation.rule_id }} · {{ observation.app|title }} · {{ observation.outcome_label }}</summary>
+      <p>{{ observation.meaning }}</p>
+      <dl>
+        <div><dt>Rule level</dt><dd>{{ observation.level }}</dd></div>
+        <div><dt>Reported reason</dt><dd>{{ observation.reason_label }}</dd></div>
+        <div><dt>Fixture source label</dt><dd>{{ observation.source }}</dd></div>
+        <div><dt>Run-specific event ID</dt><dd class="mono">{{ observation.event_id }}</dd></div>
+      </dl>
+    </details>
+    {% endfor %}
+  </div>
+</details>
+{% endif %}
+{% endif %}

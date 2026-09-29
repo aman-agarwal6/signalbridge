@@ -1,0 +1,153 @@
+{
+  "checks": [
+    {
+      "duration_seconds": 22.876,
+      "exit_code": 0,
+      "log_sha256": {
+        "stderr": "d88fc6ece415aa8bd77103a79535f835d82748bc1b4899f683034af8f4dbfce8",
+        "stdout": "bb9f0fc708b338d9644436ac99fefb4ebd2db6865c74cfe92ce7905d2fc1968c"
+      },
+      "name": "django-tests",
+      "passed": true,
+      "tests": {
+        "errors": 0,
+        "expected_failures": 0,
+        "failures": 0,
+        "skipped": 0,
+        "successful_summary": true,
+        "tests_run": 745,
+        "unexpected_successes": 0
+      }
+    },
+    {
+      "duration_seconds": 0.77,
+      "exit_code": 0,
+      "log_sha256": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "f87ceb15410bde28ff826ce26228e0576558258fa64d145847921a593a61ee63"
+      },
+      "name": "django-check",
+      "passed": true
+    },
+    {
+      "duration_seconds": 0.785,
+      "exit_code": 0,
+      "log_sha256": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "93e6e2d5be3c054add80c0f19101608803f7ca8a7df1fa41f76bbb9a1f570f4a"
+      },
+      "name": "migration-drift",
+      "passed": true
+    },
+    {
+      "duration_seconds": 0.039,
+      "exit_code": 1,
+      "log_sha256": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "673d5fae65fee4f196afa684113f35b8641414ed9935c566775f3cf8c470f747"
+      },
+      "name": "ruff-check",
+      "passed": false
+    },
+    {
+      "duration_seconds": 0.035,
+      "exit_code": 0,
+      "log_sha256": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "cf764d22188c7061651e8acb52e5167813c88ad8a67aa79ac2a57b241c6d5f0b"
+      },
+      "name": "ruff-format",
+      "passed": true
+    },
+    {
+      "duration_seconds": 3.672,
+      "exit_code": 0,
+      "log_sha256": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "9c86b9bae4c79e52cdcea996c525526c30e06908c4d9701a81230f3fff37d572"
+      },
+      "name": "publication-scan",
+      "passed": true
+    },
+    {
+      "duration_seconds": 0.172,
+      "exit_code": 0,
+      "log_sha256": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "62e38e9e6f7fbc9e83599c31db95d39ce8084bda9a74c278ffba718560d1927a"
+      },
+      "name": "node-courier-tests",
+      "passed": true,
+      "tests": {
+        "cancelled": 0,
+        "failures": 0,
+        "passed_tests": 13,
+        "skipped": 0,
+        "successful_summary": true,
+        "suites": 0,
+        "tests_run": 13,
+        "todo": 0
+      }
+    },
+    {
+      "duration_seconds": 0.121,
+      "exit_code": 0,
+      "log_sha256": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "e1c4fa73e10bee11471c7ed1ce9121ac73de5f618a33b428bc50b987d40074f8"
+      },
+      "name": "node-http-harness-mock-tests",
+      "passed": true,
+      "tests": {
+        "cancelled": 0,
+        "failures": 0,
+        "passed_tests": 17,
+        "skipped": 0,
+        "successful_summary": true,
+        "suites": 0,
+        "tests_run": 17,
+        "todo": 0
+      }
+    },
+    {
+      "duration_seconds": 0.138,
+      "exit_code": 0,
+      "log_sha256": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "3b50eaa4e5d247e141e6d1d7d1950f90d44169a8a79faa410ec9a041c3df851f"
+      },
+      "name": "node-bettail-route-mock-tests",
+      "passed": true,
+      "tests": {
+        "cancelled": 0,
+        "failures": 0,
+        "passed_tests": 23,
+        "skipped": 0,
+        "successful_summary": true,
+        "suites": 0,
+        "tests_run": 23,
+        "todo": 0
+      }
+    }
+  ],
+  "coverage_limits": [
+    "Builder-operated local core verification; not an independent audit.",
+    "Node courier, HTTP-harness and BetTail route suites use mocks; they do not contact real services.",
+    "No real Supabase auth, source-app HTTP/storage, PostgreSQL concurrency or container tests.",
+    "No dependency advisory lookup, remote CI, deployment or production validation.",
+    "Hashes identify content; a filesystem administrator can replace logs and receipts.",
+    "Documentation and generated evidence are excluded from the source digest."
+  ],
+  "duration_seconds": 29.669,
+  "finished_at": "2026-09-25T01:06:03.309702+00:00",
+  "kind": "signalbridge-core-verification-receipt",
+  "passed": false,
+  "revision": "63e0328c1a7328402b309aa9f52f66af06c7c331",
+  "run_id": "20260925T010533639599Z-5409918c",
+  "schema_version": 1,
+  "source_file_count": 201,
+  "source_sha256": "f3c7ea51658e3705b4698765060979e09afb2ce828c2efa71f5f925a1bd5f927",
+  "source_unchanged": true,
+  "started_at": "2026-09-25T01:05:33.640308+00:00",
+  "working_tree_dirty": true
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-shuffle-post-restart-diagnostic",
+  "checked_at": "2026-09-25T15:21:11.655841+00:00",
+  "source_base_commit": "992d912618050c1ffbb668e58a948ed46d35e3c6",
+  "run_uuid": "7116e84a-0a7f-4a72-9cc7-a919c0c8766f",
+  "evidence_class": "builder_operated_offline_metadata_probe",
+  "guest_observation_reconciled": true,
+  "boot_completed": true,
+  "docker_start_stop_observed": true,
+  "existing_image_count": 4,
+  "content_store_address": "/run/containerd/containerd.sock",
+  "content_store_namespace": "moby",
+  "backend_target_metadata_bytes": 1993,
+  "backend_target_digest": "sha256:0cc1775e48b7d94b7f16d0be713aa274ced52be24ad521beaaf58c67023fd2e5",
+  "image_acquisition_complete": false,
+  "shuffle_workflow_executed": false,
+  "automated_cleanup_passed": false,
+  "manual_cleanup_verified": true,
+  "manual_cleanup_checked_at": "2026-09-25T15:07:36.7445934Z",
+  "network_adapters_during_probe": 0,
+  "final_state": "poweroff",
+  "final_network_adapters": 0,
+  "source_sha256": {
+    "executed-controller.ps1": "cdfd040d8f6b5821e76c4223b0084fe0333fbbcd95e0f86abbcea6293bb582a9",
+    "guest-content-probe.py": "58829955d56059f459330d97b78dbae9adbc2e3339bf72789e350f70b2e7d919",
+    "build-guest-content-probe.ps1": "299c5e12fa117b6e8eb1c2d1c80b22ff07e28e1df55e81424dd6fd77043fc4db"
+  },
+  "seed_sha256": "1d35f13e6f75d4cb01bf349f43e81d4d030d478627193d85e2647533a69710df",
+  "serial_sha256": "c0770fe66d99a159eb1c120c863fca38265b174102ac3daab0a826cb2ad1c74c",
+  "retained_failures": [
+    "Windows PowerShell ISO helper required an explicitly qualified COM structure type.",
+    "Strict profile parser initially rejected VirtualBox recording-section marker; stopped before VM changes.",
+    "After guest shutdown VirtualBox state inspection failed transiently; automatic attachment cleanup did not finish. Manual cleanup and final isolation verified."
+  ],
+  "limits": [
+    "One pinned backend metadata blob was read through the expected content store; the remaining image chains and layer bytes were not verified.",
+    "Guest observation and host profile checks are builder-operated, not independent containment attestation.",
+    "Successful boot after restart does not establish that restart resolved every intermittent startup issue.",
+    "No network, image download, application container or Shuffle workflow ran in this diagnostic."
+  ]
+}

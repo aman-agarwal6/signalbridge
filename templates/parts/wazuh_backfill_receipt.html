@@ -1,0 +1,34 @@
+<section class="tool-workspace" aria-labelledby="backfill-title">
+  <div class="tool-workspace-heading">
+    {% include "parts/tool_identity.html" with tool="wazuh" %}
+    <div><div class="tool-kicker">HISTORICAL MANAGER RECEIPT</div><h2 id="backfill-title">What Wazuh actually received</h2><p>One bounded replay of retained BetTail lab metadata.</p></div>
+    <span class="badge {% if backfill.verified %}allowed{% else %}denied{% endif %}">{% if backfill.verified %}Backfill verified{% else %}Receipt needs review{% endif %}</span>
+  </div>
+  {% if backfill.verified %}
+  <dl class="tool-collector-metrics">
+    <div><dt>RECEIVED / INPUTS</dt><dd>{{ backfill.counts.received }} / {{ backfill.counts.inputs }}</dd><span>{{ backfill.counts.missing }} missing · {{ backfill.counts.duplicates }} duplicate copies</span></div>
+    <div><dt>CUSTOM ALERTS</dt><dd>{{ backfill.counts.alerts }}</dd><span>Matched the declared rules; not a vulnerability count</span></div>
+    <div><dt>WITHOUT CUSTOM ALERTS</dt><dd>{{ backfill.counts.nonalerts }}</dd><span>A non-alert is not a benign verdict</span></div>
+  </dl>
+  <div class="detail-callout"><strong>Completed {{ backfill.tested_at|date:"M d, Y · H:i:s" }} UTC · {{ backfill.duration }} seconds</strong><p>The container stopped after testing. This historical receipt covers the recorded snapshot; later ledger additions need another reconciliation. Opening this page does not contact Docker or Wazuh.</p></div>
+  <details class="tool-details"><summary>Understand the result and its limits <span class="tool-disclosure-mark" aria-hidden="true">+</span></summary><div>
+    <dl><div><dt>Source composition</dt><dd>{{ backfill.source_counts.migration_lab|default:0 }} migration-lab observations · {{ backfill.source_counts.synthetic_demo|default:0 }} synthetic examples · {{ backfill.source_counts.legacy_unclassified|default:0 }} legacy unclassified records. These labels are preserved; unknown provenance remains unknown.</dd></div>
+    <div><dt>What was verified</dt><dd>Exact ledger snapshot, archived records, rule IDs and levels, observation times, source hashes, created/running/exited isolation checks and a fresh stopped-container check at import. Separately, {{ backfill.counts.rule_cases }} fixed rule-engine cases passed.</dd></div>
+    <div><dt>What remains unknown</dt><dd>No fresh authorization assessment, continuous connection, sustained throughput, full manager restart or enterprise parity. A three-second quiet window is bounded evidence, not proof that future delivery cannot fail. Repeating the command replays records into a fresh container.</dd></div>
+    <div><dt>Evidence trust</dt><dd>Builder-operated consistency checks. The local administrator can replace evidence and hashes; this is not independent attestation. Failed private attempts are preserved outside this passing-only history.</dd></div></dl>
+  </div></details>
+  <details class="tool-details"><summary>Inspect {{ backfill.counts.received }} received records and rule meanings <span class="tool-disclosure-mark" aria-hidden="true">+</span></summary><div>
+    <p>Open an event to investigate its original context. A denied read may show successful enforcement. Source claims and rule matches need supporting evidence before escalation.</p>
+    <div class="table-wrap"><table><thead><tr><th>Event / source</th><th>Observed outcome</th><th>Wazuh signal</th><th>Analyst interpretation</th></tr></thead><tbody>
+      {% for row in backfill.observations %}<tr><td><a href="/events/?app={{ app.slug }}&amp;q={{ row.event_id }}"><code>{{ row.event_id }}</code></a><br>{{ row.source }}</td><td>{{ row.outcome }}<br><small>{{ row.reason }}</small></td><td>{% if row.rule_id %}Rule {{ row.rule_id }}<br>Level {{ row.level }}{% else %}Archived; no custom alert{% endif %}</td><td>{{ row.meaning }}</td></tr>{% endfor %}
+    </tbody></table></div>
+  </div></details>
+  <details class="tool-details"><summary>Inspect snapshot and receipt identity <span class="tool-disclosure-mark" aria-hidden="true">+</span></summary><div><dl>
+    <div><dt>Run</dt><dd class="break"><code>{{ backfill.run_id }}</code></dd></div>
+    <div><dt>Snapshot</dt><dd>{{ backfill.stream.offset }} bytes · ledger revision {{ backfill.stream.revision }}<br><code>{{ backfill.stream.stream_id }}</code></dd></div>
+    <div><dt>Input SHA-256</dt><dd class="break"><code>{{ backfill.input_digest }}</code></dd></div>
+    <div><dt>Source package SHA-256</dt><dd class="break"><code>{{ backfill.source_digest }}</code></dd></div>
+    <div><dt>Receipt SHA-256</dt><dd class="break"><code>{{ backfill.receipt_digest }}</code></dd></div>
+  </dl></div></details>
+  {% else %}<div class="detail-callout"><strong>The latest imported receipt could not be validated.</strong><p>No received counts or successful-delivery claim are shown. Preserve the record and ask the local operator to inspect the retained evidence; an older passing record does not override this warning.</p></div>{% endif %}
+</section>

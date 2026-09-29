@@ -1,0 +1,92 @@
+{
+  "alert_rule_counts": {
+    "100201": 1,
+    "100202": 2,
+    "100203": 8,
+    "100204": 20
+  },
+  "app": "bettail",
+  "container_id": "a716878b2ba6be3fd3019dd070de02e89eab1a28bb0910fbf37affe63b527320",
+  "controller_sha256": "cbed94eb7325ceb1b6e895ec94329b1dc79624b96931d98f8dcaea9a31e6749e",
+  "counts": {
+    "alerts": 31,
+    "archived_records": 64,
+    "duplicate_archive_copies": 0,
+    "ledger_records": 64,
+    "nonalert_records": 33,
+    "rule_checks": 27
+  },
+  "duration_seconds": 20.164,
+  "effective_config_sha256": "c711cf98696869f493d182b6376ea3fd8fda6f242580ec9b24109aec29e4c505",
+  "finished_at": "2026-09-25T05:02:58.884475+00:00",
+  "image_reference": "wazuh/wazuh-manager@sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0",
+  "implementation": "private bounded prototype; not yet a reusable product command",
+  "input": {
+    "bytes": 18263,
+    "original_mounted_read_only": true,
+    "sha256": "3c9f218f013fcc7a0f4fefafacef71e0160fd532c02ce54246cf408f12e3dd86",
+    "unchanged_after_execution": true
+  },
+  "inspection_sha256": "af7da26ce4443faea3591ad9c7452045cae7639aabbfcee5d19ae03a02bd2e05",
+  "isolation": {
+    "cpus": 1,
+    "exit_code": 0,
+    "final_state": "exited",
+    "fresh_stopped_gate": "passed",
+    "memory_mib": 1536,
+    "network": "none",
+    "oom": false,
+    "pids": 256,
+    "published_ports": 0
+  },
+  "kind": "signalbridge-wazuh-ledger-backfill-receipt",
+  "limits": [
+    "Bounded backfill of 64 retained lab metadata records; not a continuous connection or new live source-app traffic.",
+    "The 26 legacy-unclassified records retain unknown origin classification; absence of an alert does not establish benign behavior.",
+    "The console delivery ledger still reports file acknowledgement only; this separate prototype receipt is not imported as an ongoing manager acknowledgement.",
+    "No forced crash, persistent-volume restore, full-manager or host restart, long-duration loss or throughput claim.",
+    "Private executed prototypes and raw evidence remain local; hashes are builder-operated consistency evidence, not independent attestation."
+  ],
+  "prior_failed_attempt": {
+    "archived_records": 0,
+    "failure_code": "handoff_incomplete",
+    "interpretation": "A fresh collector skipped the existing ledger file. Retest preserved that file and replayed its exact bytes to a new container-only spool after readiness; no checkpoint was fabricated.",
+    "run_id": "eadea644-1106-4ab6-9145-fd97ceae8c73",
+    "saved_offset": 18263,
+    "stopped": true
+  },
+  "quiet_seconds": 3,
+  "record_sha256": {
+    "created-gate.json": "c5396be7c0adc6becfc7f84a95dd052306f0880070ae4a0d05faa9e350c12555",
+    "exited-gate.json": "c9388a2c970d7898eecb62db54cf3999de2cf43ca50002711c11d191fab1fda2",
+    "fresh-stopped-gate.json": "81da9e1282d9ffe59cb9e7dec44ce06326228433909073dd0cf997bc23a7ad82",
+    "host-result.json": "c44609e659fef392a67130e2a3464d302d76bc152157efab0816ef67b09aa839",
+    "running-gate.json": "968a94105203500b3d4fbb9707d009f9e54839b393485c1bca91d0c6aa9c3a69",
+    "source-manifest.json": "19d242784a846a5112d1966d7350fa8ace6493bf17a28c74ee9253a2514bf0be"
+  },
+  "recorded_at": "2026-09-25T05:04:49.053770+00:00",
+  "run_id": "673a2a64-05bf-418c-bbae-fd880ca6e2e0",
+  "runtime_sha256": {
+    "alerts.jsonl": "e96342b1164da00747582c15f4b1175844fab91b4d39042e47751f755770a8c4",
+    "archives.jsonl": "b00ae483c120ded976a424d94585022808c8603532ee774d0d7582c7f5559c42",
+    "handoff-result.json": "7a45f754279c84c9d2c3d906acb3f72c6318d53e2fc220c994a0c5a4208201c4",
+    "run-context.json": "cd15ece8be290b258cecfdc80499ecd183bf755639f010855146058a239b2f3f"
+  },
+  "schema_version": 1,
+  "source_checkpoint": "ec89f95",
+  "source_counts": {
+    "legacy_unclassified": 26,
+    "migration_lab": 14,
+    "synthetic_demo": 24
+  },
+  "source_sha256": "8cd91d00a5abb31280486864a091a4a6006d8dddfd761624dec9d2f94dd2feaa",
+  "sources": [
+    "https://github.com/wazuh/wazuh/blob/v4.14.8/src/logcollector/logcollector.c",
+    "https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/localfile.html#only-future-events"
+  ],
+  "started_at": "2026-09-25T05:02:38.721232+00:00",
+  "status": "passed",
+  "tool": "wazuh",
+  "transport": "read_only_ledger_to_fresh_collector_spool",
+  "version": "4.14.8"
+}

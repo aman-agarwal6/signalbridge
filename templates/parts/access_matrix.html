@@ -1,0 +1,13 @@
+{% with matrix=run.access_coverage %}
+{% if matrix %}
+<section class="access-matrix" aria-labelledby="matrix-{{ run.pk }}">
+<div class="matrix-heading"><div><div class="eyebrow">READ THE EVIDENCE</div><h3 id="matrix-{{ run.pk }}">Who should be able to do what?</h3><p>{{ matrix.layer }} · {{ matrix.rows|length }} selected review objectives</p></div><span class="badge neutral">Historical evidence</span></div>
+<p>{{ matrix.limit }}</p>
+<p>Expand a row to connect the expected behavior to its recorded checks.</p>
+{% for row in matrix.rows %}
+<details class="matrix-row"><summary><span><strong>{{ row.actor }}</strong><small>{{ row.resource }}</small></span><span class="matrix-condition">{{ row.condition }}<small>Expected: {{ row.expected }}</small></span><span class="badge {% if row.status == 'passed' %}passed{% elif row.status == 'failed' %}failed{% else %}neutral{% endif %}">{{ row.status_label }}</span></summary>
+<div class="matrix-body"><p><strong>Why an analyst cares:</strong> {{ row.why }}</p><dl class="field-grid"><div><dt>Action</dt><dd>{{ row.action }}</dd></div><div><dt>Evidence stage</dt><dd>{{ row.stage|title }}</dd></div></dl><strong>Required recorded checks</strong><ul>{% for check in row.required_checks %}<li><code>{{ check }}</code></li>{% endfor %}</ul>{% if run.result.evidence_kind != 'supabase_http' %}<p>The ordinary-role check must also pass. Supplied database claims do not establish genuine login or token validation.</p>{% endif %}<p>Compare these identifiers with the recorded results below. A failed check needs diagnosis; it does not by itself prove a vulnerability.</p></div></details>
+{% endfor %}
+</section>
+{% else %}<div class="detail-callout"><strong>No coverage mapping for this report</strong><p>This report's application or suite is not recognized by the coverage catalog. Inspect its recorded evidence below; no supported objectives are inferred.</p></div>{% endif %}
+{% endwith %}

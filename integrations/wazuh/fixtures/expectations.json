@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "kind": "synthetic_rule_expectations_not_observed_results",
+  "cases": [
+    {
+      "line": 1,
+      "id": "observed_revocation",
+      "export_contract_valid": true,
+      "expected_rule": "100201",
+      "expected_level": 12,
+      "expected_alert": true
+    },
+    {
+      "line": 2,
+      "id": "observed_regression",
+      "export_contract_valid": true,
+      "expected_rule": "100201",
+      "expected_level": 12,
+      "expected_alert": true
+    },
+    {
+      "line": 3,
+      "id": "synthetic_revocation",
+      "export_contract_valid": true,
+      "expected_rule": "100202",
+      "expected_level": 5,
+      "expected_alert": true
+    },
+    {
+      "line": 4,
+      "id": "synthetic_regression",
+      "export_contract_valid": true,
+      "expected_rule": "100202",
+      "expected_level": 5,
+      "expected_alert": true
+    },
+    {
+      "line": 5,
+      "id": "denied_member_required",
+      "export_contract_valid": true,
+      "expected_rule": "100203",
+      "expected_level": 3,
+      "expected_alert": true
+    },
+    {
+      "line": 6,
+      "id": "denied_after_revocation",
+      "export_contract_valid": true,
+      "expected_rule": "100203",
+      "expected_level": 3,
+      "expected_alert": true
+    },
+    {
+      "line": 7,
+      "id": "synthetic_denial",
+      "export_contract_valid": true,
+      "expected_rule": "100203",
+      "expected_level": 3,
+      "expected_alert": true
+    },
+    {
+      "line": 8,
+      "id": "not_visible_unavailable",
+      "export_contract_valid": true,
+      "expected_rule": "100204",
+      "expected_level": 3,
+      "expected_alert": true
+    },
+    {
+      "line": 9,
+      "id": "not_visible_after_revocation",
+      "export_contract_valid": true,
+      "expected_rule": "100204",
+      "expected_level": 3,
+      "expected_alert": true
+    },
+    {
+      "line": 10,
+      "id": "dependency_error",
+      "export_contract_valid": true,
+      "expected_rule": "100205",
+      "expected_level": 4,
+      "expected_alert": true
+    },
+    {
+      "line": 11,
+      "id": "session_dependency_error",
+      "export_contract_valid": true,
+      "expected_rule": "100205",
+      "expected_level": 4,
+      "expected_alert": true
+    },
+    {
+      "line": 12,
+      "id": "member_read_allowed",
+      "export_contract_valid": true,
+      "expected_rule": "100200",
+      "expected_level": 0,
+      "expected_alert": false
+    },
+    {
+      "line": 13,
+      "id": "owner_read_allowed",
+      "export_contract_valid": true,
+      "expected_rule": "100200",
+      "expected_level": 0,
+      "expected_alert": false
+    },
+    {
+      "line": 14,
+      "id": "membership_removal_success",
+      "export_contract_valid": true,
+      "expected_rule": "100200",
+      "expected_level": 0,
+      "expected_alert": false
+    },
+    {
+      "line": 15,
+      "id": "session_allowed_after_removal",
+      "export_contract_valid": true,
+      "expected_rule": "100200",
+      "expected_level": 0,
+      "expected_alert": false
+    },
+    {
+      "line": 16,
+      "id": "session_denied",
+      "export_contract_valid": true,
+      "expected_rule": "100200",
+      "expected_level": 0,
+      "expected_alert": false
+    },
+    {
+      "line": 17,
+      "id": "other_error",
+      "export_contract_valid": true,
+      "expected_rule": "100200",
+      "expected_level": 0,
+      "expected_alert": false
+    },
+    {
+      "line": 18,
+      "id": "unknown_export_version",
+      "export_contract_valid": false,
+      "expected_rule": null,
+      "expected_level": null,
+      "expected_alert": false
+    },
+    {
+      "line": 19,
+      "id": "unknown_app",
+      "export_contract_valid": false,
+      "expected_rule": null,
+      "expected_level": null,
+      "expected_alert": false
+    },
+    {
+      "line": 20,
+      "id": "production_environment",
+      "export_contract_valid": false,
+      "expected_rule": null,
+      "expected_level": null,
+      "expected_alert": false
+    },
+    {
+      "line": 21,
+      "id": "unclassified_source",
+      "export_contract_valid": true,
+      "expected_rule": null,
+      "expected_level": null,
+      "expected_alert": false
+    },
+    {
+      "line": 22,
+      "id": "source_near_miss",
+      "export_contract_valid": false,
+      "expected_rule": null,
+      "expected_level": null,
+      "expected_alert": false
+    },
+    {
+      "line": 23,
+      "id": "operation_near_miss",
+      "export_contract_valid": false,
+      "expected_rule": null,
+      "expected_level": null,
+      "expected_alert": false
+    },
+    {
+      "line": 24,
+      "id": "outcome_near_miss",
+      "export_contract_valid": false,
+      "expected_rule": null,
+      "expected_level": null,
+      "expected_alert": false
+    },
+    {
+      "line": 25,
+      "id": "reason_near_miss",
+      "export_contract_valid": false,
+      "expected_rule": null,
+      "expected_level": null,
+      "expected_alert": false
+    },
+    {
+      "line": 26,
+      "id": "missing_reason",
+      "export_contract_valid": false,
+      "expected_rule": null,
+      "expected_level": null,
+      "expected_alert": false
+    },
+    {
+      "line": 27,
+      "id": "invalid_event_id",
+      "export_contract_valid": false,
+      "expected_rule": null,
+      "expected_level": null,
+      "expected_alert": false
+    }
+  ]
+}

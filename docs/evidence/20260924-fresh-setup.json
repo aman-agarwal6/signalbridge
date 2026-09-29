@@ -1,0 +1,162 @@
+{
+  "checks": [
+    {
+      "duration_seconds": 1.147,
+      "exit_code": 0,
+      "finished_at": "2026-09-24T05:22:27.764785+00:00",
+      "logs": {
+        "migrate.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "migrate.stdout.txt": {
+          "bytes": 1117,
+          "sha256": "713dd9c6a4e519058031c63de00ec91b5186900e48a4cd45609d8f6ec4119967"
+        }
+      },
+      "name": "migrate",
+      "passed": true,
+      "started_at": "2026-09-24T05:22:26.617352+00:00",
+      "timed_out": false,
+      "timeout_seconds": 30
+    },
+    {
+      "duration_seconds": 2.061,
+      "exit_code": 0,
+      "finished_at": "2026-09-24T05:22:29.836814+00:00",
+      "logs": {
+        "bootstrap.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "bootstrap.stdout.txt": {
+          "bytes": 77,
+          "sha256": "62f5ab36eafb5336aa32cb25f16592fc1e4c67a5cfe5340660de5b0e766f7e6d"
+        }
+      },
+      "name": "bootstrap",
+      "passed": true,
+      "started_at": "2026-09-24T05:22:27.776230+00:00",
+      "timed_out": false,
+      "timeout_seconds": 30
+    },
+    {
+      "duration_seconds": 0.736,
+      "exit_code": 0,
+      "finished_at": "2026-09-24T05:22:30.584070+00:00",
+      "logs": {
+        "setup_scanners.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "setup_scanners.stdout.txt": {
+          "bytes": 81,
+          "sha256": "566437918ba8a1dd35cf49d23bac0e0b7f1d21e97085d1f4d7726f1d3c4ece89"
+        }
+      },
+      "name": "setup_scanners",
+      "passed": true,
+      "started_at": "2026-09-24T05:22:29.848177+00:00",
+      "timed_out": false,
+      "timeout_seconds": 30
+    },
+    {
+      "duration_seconds": 0.783,
+      "exit_code": 0,
+      "finished_at": "2026-09-24T05:22:31.377703+00:00",
+      "logs": {
+        "seed_replays.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "seed_replays.stdout.txt": {
+          "bytes": 77,
+          "sha256": "ef208891d0bf72ba96e3d755cb24ed201919b2bfdce592bf09e893893a8f06c1"
+        }
+      },
+      "name": "seed_replays",
+      "passed": true,
+      "started_at": "2026-09-24T05:22:30.594394+00:00",
+      "timed_out": false,
+      "timeout_seconds": 30
+    },
+    {
+      "duration_seconds": 0.64,
+      "exit_code": 0,
+      "finished_at": "2026-09-24T05:22:32.028558+00:00",
+      "logs": {
+        "row_counts.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "row_counts.stdout.txt": {
+          "bytes": 482,
+          "sha256": "5dc52197fe2e4147ddbe0c1ce0fdd3449e95d1c1f76f92cebc636abc099a089f"
+        }
+      },
+      "name": "row_counts",
+      "passed": true,
+      "started_at": "2026-09-24T05:22:31.388559+00:00",
+      "timed_out": false,
+      "timeout_seconds": 30
+    }
+  ],
+  "coverage_limits": [
+    "Builder-operated setup smoke check, not independent attestation or a security test suite.",
+    "Uses a fresh SQLite database and copied public working-tree files, not a Git checkout.",
+    "Reuses the existing virtual environment; no fresh dependency installation is tested.",
+    "No server, browser, Node/npm, scanner execution, network, Docker, Supabase or sibling app test.",
+    "Existing resolved repository is the trusted anchor; OneDrive ancestors outside it are not audited.",
+    "Child Python audit guards are not an OS sandbox against hostile code or an administrator.",
+    "Fresh generated demo credentials, database and logs remain private in the ignored checkout.",
+    "Source manifests exclude documentation; the copied AGENTS.md is hashed separately."
+  ],
+  "duration_seconds": 7.978,
+  "finished_at": "2026-09-24T05:22:32.452498+00:00",
+  "kind": "signalbridge-fresh-setup-receipt",
+  "passed": true,
+  "row_counts": {
+    "counts": {
+      "audits": 11,
+      "check_runs": 0,
+      "events": 0,
+      "findings": 0,
+      "ingest_keys": 4,
+      "integrations": 3,
+      "investigations": 0,
+      "memberships": 9,
+      "replays": 4,
+      "scan_runs": 0,
+      "users": 3
+    },
+    "database": "fresh_local_sqlite",
+    "expected_counts_met": true,
+    "membership_counts_by_role": {
+      "analyst": 3,
+      "reviewer": 3,
+      "viewer": 3
+    },
+    "query_only": true,
+    "replay_counts_by_status": {
+      "approved": 2,
+      "pending": 0,
+      "rejected": 2
+    },
+    "runtime_versions": {
+      "django": "5.2.17",
+      "python": "3.14.4"
+    }
+  },
+  "run_id": "0eb59c0a7b334011883a564d63bd7c15",
+  "schema_version": 1,
+  "source_sha256": "281f21f4f5a08b6626bbb37c5156e57f50d018e369ec8bee8a67af16883d55fb",
+  "source_unchanged": true,
+  "started_at": "2026-09-24T05:22:24.474712+00:00",
+  "source_file_count": 138,
+  "guidance_sha256": "9ac3cb5d6949b58eb90826c17d59209e2880bae4988a6ac7b2e6a5b0482194e7",
+  "guidance_unchanged": true,
+  "helper_sha256": "86f1462b4c50c32b33034a8aab5fda1706c7c5ae1fa1357a956726eda0e523a6",
+  "child_launcher_sha256": "5b09fe1f050d654883d5f650a2ea40de542378c57eb3e4660cc6611c940ba2e0",
+  "result_sha256": "3b520eca84017a45290c3f1ea8bafe1399423794ef9e71c9e6d2432946042882",
+  "provenance_sha256": "2586ec470837455b461fbc6f01fac4732e972df34fe761ccf3fc745be8c7a925"
+}

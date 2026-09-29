@@ -1,0 +1,99 @@
+[
+  {
+    "app": "bettail",
+    "episode": "00000000-0000-4000-8000-000000000200",
+    "scenario": "benign-known",
+    "suspicious": false
+  },
+  {
+    "app": "bettail",
+    "episode": "00000000-0000-4000-8000-000000000201",
+    "scenario": "legitimate",
+    "suspicious": false
+  },
+  {
+    "app": "bettail",
+    "episode": "00000000-0000-4000-8000-000000000202",
+    "scenario": "managed-device-probe",
+    "suspicious": true
+  },
+  {
+    "app": "bettail",
+    "episode": "00000000-0000-4000-8000-000000000203",
+    "scenario": "revoked-read",
+    "suspicious": true
+  },
+  {
+    "app": "bettail",
+    "episode": "00000000-0000-4000-8000-000000000204",
+    "scenario": "expired-context",
+    "suspicious": true
+  },
+  {
+    "app": "bettail",
+    "episode": "00000000-0000-4000-8000-000000000205",
+    "scenario": "future-known-context",
+    "suspicious": true
+  },
+  {
+    "app": "bettail",
+    "episode": "00000000-0000-4000-8000-000000000206",
+    "scenario": "missing-context",
+    "suspicious": false
+  },
+  {
+    "app": "bettail",
+    "episode": "00000000-0000-4000-8000-000000000207",
+    "scenario": "not-reauthenticated",
+    "suspicious": true
+  },
+  {
+    "app": "netted",
+    "episode": "00000000-0000-4000-8000-000000001200",
+    "scenario": "benign-known",
+    "suspicious": false
+  },
+  {
+    "app": "netted",
+    "episode": "00000000-0000-4000-8000-000000001201",
+    "scenario": "legitimate",
+    "suspicious": false
+  },
+  {
+    "app": "netted",
+    "episode": "00000000-0000-4000-8000-000000001202",
+    "scenario": "managed-device-probe",
+    "suspicious": true
+  },
+  {
+    "app": "netted",
+    "episode": "00000000-0000-4000-8000-000000001203",
+    "scenario": "revoked-read",
+    "suspicious": true
+  },
+  {
+    "app": "netted",
+    "episode": "00000000-0000-4000-8000-000000001204",
+    "scenario": "expired-context",
+    "suspicious": true
+  },
+  {
+    "app": "netted",
+    "episode": "00000000-0000-4000-8000-000000001205",
+    "scenario": "future-known-context",
+    "suspicious": true
+  },
+  {
+    "app": "netted",
+    "episode": "00000000-0000-4000-8000-000000001206",
+    "scenario": "missing-context",
+    "suspicious": false
+  },
+  {
+    "app": "netted",
+    "episode": "00000000-0000-4000-8000-000000001207",
+    "scenario": "not-reauthenticated",
+    "suspicious": true
+  }
+]
+

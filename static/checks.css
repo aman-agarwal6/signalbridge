@@ -1,0 +1,22 @@
+.analyst-practice { border: 1px solid #39626b; border-radius: 14px; padding: 20px 24px; background: linear-gradient(115deg, #123337, #102238); margin: 24px 0; }
+.analyst-practice h2 { margin: 5px 0; }
+.analyst-practice details { margin-top: 12px; }
+.analyst-practice summary { color: var(--ink); cursor: pointer; font-weight: 600; padding: 8px 0; }
+.access-matrix { border: 1px solid var(--line); border-radius: 12px; margin: 20px 0; padding: 20px; background: var(--surface-inset); }
+.matrix-heading { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; }
+.matrix-heading h3 { font-size: 19px; margin: 6px 0; }
+.matrix-row { border-top: 1px solid var(--line); border-radius: 0; }
+.matrix-row > summary { display: grid; grid-template-columns: minmax(130px, 1fr) minmax(150px, 1.2fr) auto; gap: 18px; align-items: center; padding: 17px 2px; cursor: pointer; }
+.matrix-row > summary::before { content: none; }
+.matrix-row small { display: block; color: var(--muted); margin-top: 3px; }
+.matrix-row summary strong::before { content: "+"; display: inline-block; width: 18px; color: var(--accent); }
+.matrix-row[open] summary strong::before { content: "−"; }
+.matrix-row .badge { white-space: normal; max-width: 210px; }
+.matrix-body { border-left: 3px solid var(--accent); padding: 4px 18px 12px; margin-bottom: 18px; }
+.matrix-body code { overflow-wrap: anywhere; }
+.matrix-body li { margin: 5px 0; }
+@media (max-width: 900px) {
+  .matrix-row > summary { grid-template-columns: 1fr; gap: 7px; }
+  .matrix-heading { flex-direction: column; }
+  .access-matrix, .analyst-practice { padding: 16px; }
+}

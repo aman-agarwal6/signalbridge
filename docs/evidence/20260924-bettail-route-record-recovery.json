@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "run_id": "55b91f82-14b5-455f-a112-4d0c322182ef",
+  "operation": "complete_reviewed_private_record_replacement",
+  "old_private_sha256": "55caa3c22004e006be67fe5d90b49ce780ba6196c31c624819c0e792b19385f4",
+  "new_private_sha256": "946ad6f24c61c2a5005aa54763dcea0b53e17910b754cb115d55f21885987e03",
+  "service_state_unchanged": true,
+  "all_restoration_flags_clear": true,
+  "owner_session_preserved": true,
+  "original_failed_execution_unchanged": true,
+  "limit": "Manual local evidence-file recovery; no rerun, membership mutation or success claim."
+}

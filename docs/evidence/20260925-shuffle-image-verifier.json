@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-shuffle-image-verification-preparation",
+  "status": "prepared_not_native_verified",
+  "prior_failure_receipt": "20260925-shuffle-restart-checkpoint.json",
+  "source_sha256": "614574d04741868be227115e61e4b837aaf1c30b86b90785b37ebeb5933fbe1d",
+  "source_file_count": 245,
+  "core_receipt": "20260925T094418474612Z-080e15cc.json",
+  "synthetic_metadata_tests_passed": 20,
+  "mocked_resume_helper_tests_passed": 4,
+  "helper_tests_sha256": "dac21e3ef44de83388a07416f1a86558ea3b76ed2434b3c97569fa58f2721cd5",
+  "prototype_comparison": [
+    {
+      "synthetic_fault": "index_child_size",
+      "old_prototype": "accepted",
+      "new_verifier": "rejected",
+      "new_error_code": "content_descriptor_size"
+    },
+    {
+      "synthetic_fault": "layer_count",
+      "old_prototype": "accepted",
+      "new_verifier": "rejected",
+      "new_error_code": "config_layers"
+    }
+  ],
+  "retained_registry_manifest_checks": [
+    {
+      "component": "http",
+      "retained_manifest_sha256": "4c5b6a0b44890ddc227a3ded9fee09f216dddd268ee0acc33e31dfa95fa724fb",
+      "config_digest": "sha256:b7f4230658dd394486f4b137eee3759d4728d42cfe9cb6a569d20bc84505c303",
+      "config_bytes_available": false,
+      "native_image_identity_verified": false,
+      "layer_descriptors": 14
+    },
+    {
+      "component": "opensearch",
+      "retained_manifest_sha256": "68a688de28fb9bb66601552650b91a52a9fd5e7eac5481dd2b225ecb66fd09b0",
+      "config_digest": "sha256:9c4d3b54042a402a11618658d5309121a349aeb60b375deba29334d033e65fc0",
+      "config_bytes_available": false,
+      "native_image_identity_verified": false,
+      "layer_descriptors": 7
+    }
+  ],
+  "prepared_job": {
+    "status": "prepared_not_executed",
+    "run_uuid": "d7b98441-8fac-42b6-8bc3-a05b73ba2998",
+    "old_guest_sha256": "b6f1a428b97f0ffa424cde576d0f97800dd3872eb437e57250cbe03357913972",
+    "new_guest_sha256": "ae20d5be9f51a53a63c5ed491f6ee7ed88fc88d8a587db24564b9aab167eb785",
+    "image_verifier_sha256": "30c2e0c63c73d7ac968b61d18b84e8a7622a409c3766015cbf9bb5082165b9da",
+    "unchanged_function_bodies": [
+      "run",
+      "remaining",
+      "send_bytes",
+      "verify_firewall",
+      "socket_stopped",
+      "main"
+    ],
+    "schema": 2,
+    "kind": "signalbridge-shuffle-image-acquisition",
+    "pending": [
+      "Fresh seed containing both source files",
+      "Controller schema/kind and source snapshot update",
+      "Strict version-2 host receipt validator",
+      "Guest content-store address/namespace verification",
+      "Deferred Windows restart and bounded native acquisition"
+    ],
+    "execution": false
+  },
+  "limits": [
+    "No VM boot, Docker command, new image download or guest code execution occurred in this preparation.",
+    "Only metadata chain and runtime-reported layer identifiers are compared; layer bytes, signatures, vulnerabilities and compatibility are not verified.",
+    "Twenty synthetic checks are included in core; four private helper mocks are separate.",
+    "Stored registry manifests are historical reference evidence; configuration bytes and native image inspection still need the guest.",
+    "Resume source is not a complete runnable acquisition bundle; remaining controller/seed/receipt work is listed explicitly.",
+    "Windows restart remains deferred; genuine Shuffle workflow and SignalBridge task handoff remain incomplete."
+  ],
+  "sources": {
+    "docker_image_id": "https://github.com/moby/moby/blob/docker-v29.1.3/daemon/containerd/image_inspect.go",
+    "oci_manifest": "https://github.com/opencontainers/image-spec/blob/v1.1.1/manifest.md",
+    "oci_index": "https://github.com/opencontainers/image-spec/blob/v1.1.1/image-index.md"
+  },
+  "prepared_serial_bound": {
+    "synthetic_upper_bound_bytes": 3956,
+    "limit": 4096,
+    "fits": true
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-local-review-package-receipt",
+  "recorded_at": "2026-09-25T08:13:29.803389+00:00",
+  "status": "local_review_candidate_verified",
+  "packaged_revision": "0efcfa4483b69ae6d28f740e3ba66c9fe370ab57",
+  "source_sha256": "4e4eb40cf9a9b3ec923184b1ddb51b0e086d9e99893d2ebb7c175ec237a84e4c",
+  "source_file_count": 235,
+  "tracked_files": 397,
+  "archive": {
+    "name": "SignalBridge_Review.zip",
+    "sha256": "dc15405f50131932a7904ce6952b477de0f54c0f9fd7fef4e3771b41c7fac591",
+    "bytes": 1574320,
+    "manifest_sha256": "bb5b9033a02cd8dcd217bd07e71c69762dab5b7920e0d08ae3ffe14dd2527320",
+    "all_members_compared": true
+  },
+  "document_checks": {
+    "pdf_text_and_action_pages": 45,
+    "local_links": 294,
+    "changed_pdf_pages_visually_reviewed": 11
+  },
+  "source_reproduction": {
+    "scope": "exported source with existing Python/Node tools, not a clean dependency installation",
+    "passed": true,
+    "source_unchanged": true,
+    "checks": [
+      {
+        "name": "django-tests",
+        "passed": true,
+        "exit_code": 0,
+        "duration_seconds": 33.278,
+        "log_sha256": {
+          "stdout": "5ceb03af97cdd161ae27458fba8614bb35f365570afb071fd67c8f04fee22b7f",
+          "stderr": "34841abdadab36957f0b217e22db5210fdc63722eb3895cbb2c9ab013dabb66a"
+        },
+        "tests": {
+          "tests_run": 891,
+          "successful_summary": true,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0
+        }
+      },
+      {
+        "name": "django-check",
+        "passed": true,
+        "exit_code": 0,
+        "duration_seconds": 0.768,
+        "log_sha256": {
+          "stdout": "f87ceb15410bde28ff826ce26228e0576558258fa64d145847921a593a61ee63",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "migration-drift",
+        "passed": true,
+        "exit_code": 0,
+        "duration_seconds": 0.781,
+        "log_sha256": {
+          "stdout": "93e6e2d5be3c054add80c0f19101608803f7ca8a7df1fa41f76bbb9a1f570f4a",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "ruff-check",
+        "passed": true,
+        "exit_code": 0,
+        "duration_seconds": 0.068,
+        "log_sha256": {
+          "stdout": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "ruff-format",
+        "passed": true,
+        "exit_code": 0,
+        "duration_seconds": 0.06,
+        "log_sha256": {
+          "stdout": "35ff24d8a92c0ac97b235b057e7a009fcd264bc97ab856d529326a06c0fee756",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "publication-scan",
+        "passed": true,
+        "exit_code": 0,
+        "duration_seconds": 4.772,
+        "log_sha256": {
+          "stdout": "c5aec7c52cc6cf5b994d6d68d4544d4448c9c878bd821506a1dde2fd3cbd936a",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "node-courier-tests",
+        "passed": true,
+        "exit_code": 0,
+        "duration_seconds": 0.224,
+        "log_sha256": {
+          "stdout": "c152bb4a8b97f17f6fd9cc49cc1ae76c80c9f6ebb225d221150ca59c5e10619f",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "tests": {
+          "tests_run": 13,
+          "successful_summary": true,
+          "passed_tests": 13,
+          "failures": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0,
+          "suites": 0
+        }
+      },
+      {
+        "name": "node-http-harness-mock-tests",
+        "passed": true,
+        "exit_code": 0,
+        "duration_seconds": 0.12,
+        "log_sha256": {
+          "stdout": "55f002acf7073e670968b06ff5e1029bf2ebb564ae27c309bbc8b02cb1aabd6a",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "tests": {
+          "tests_run": 17,
+          "successful_summary": true,
+          "passed_tests": 17,
+          "failures": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0,
+          "suites": 0
+        }
+      },
+      {
+        "name": "node-bettail-route-mock-tests",
+        "passed": true,
+        "exit_code": 0,
+        "duration_seconds": 0.135,
+        "log_sha256": {
+          "stdout": "61d77f42cd24a374165dcf882966a7be93a576c94614bdec7b4a893a9b663032",
+          "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "tests": {
+          "tests_run": 23,
+          "successful_summary": true,
+          "passed_tests": 23,
+          "failures": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0,
+          "suites": 0
+        }
+      }
+    ],
+    "private_report_sha256": "9ee21c19f7874c02661d8c5d88e602413ed382479735053e9770082f24916401",
+    "windows_checkout_path_characters": 66
+  },
+  "retained_failed_attempts": [
+    {
+      "reason": "Canonical recorder could not start Python/Ruff checks because the archive excludes the installed virtual environment.",
+      "status": "failed",
+      "passed_groups": 3,
+      "failed_to_start_groups": 6
+    },
+    {
+      "reason": "A deeply nested 139-character Windows checkout produced long-path fixture errors.",
+      "status": "failed",
+      "python_tests_run": 891,
+      "python_errors": 87,
+      "other_groups_passed": 8
+    }
+  ],
+  "ci": {
+    "local_test_partition_verified": true,
+    "main_selection": 889,
+    "memory_selection": 2,
+    "remote_run_verified": false,
+    "postgresql_run_verified": false
+  },
+  "public_release_approved": false,
+  "published": false,
+  "limits": [
+    "Local review package only. No public hosting, upload, deployment or release approval.",
+    "Contains tracked working-tree bytes; no Git history, private data, copied apps or installed dependencies.",
+    "Known local secret matching and PDF text/actions were checked; unknown secrets, all encodings and Git history are not certified clean.",
+    "Core evidence is builder-operated local verification, not a remote CI run or independent audit.",
+    "Historical receipts and archived procedures keep their original scope; incomplete integrations and coverage remain incomplete.",
+    "Hashes identify bytes, not independent attestation. A trusted local administrator can replace the package and manifest.",
+    "Static link checks do not establish accessibility, browser behavior or production readiness.",
+    "Source reproduction reused installed dependencies; no clean-install, Linux or remote CI proof.",
+    "Short Windows checkout required on this host; arbitrary nested paths were not supported.",
+    "The archive identifies its build checkpoint. Later documentation-only records do not change the verified source manifest."
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-case-generation-provenance",
+  "status": "implemented_offline_verified",
+  "source_base_commit": "ae493c17b47cb621868a9540a3027c32e4bd9393",
+  "source_sha256": "3a549e5cfa40dd9ec1dd257c70feb857b243e2972b2f4dca27fadb84d8689e37",
+  "source_file_count": 247,
+  "core_receipt": "20260925T102004040340Z-39c6cdd2.json",
+  "core_tests": 1027,
+  "python_tests": 974,
+  "mocked_node_tests": 53,
+  "new_regressions": 15,
+  "regression_test_names": [
+    "test_generated_case_binds_source_and_exact_evidence",
+    "test_r2_has_its_own_single_record_snapshot",
+    "test_duplicate_reprocessing_keeps_original_generation_audit",
+    "test_late_evidence_preserves_original_and_adds_new_generation",
+    "test_generation_write_failure_rolls_back_case_and_evidence",
+    "test_disk_drift_is_recorded_without_silencing_detection",
+    "test_unavailable_source_remains_unknown",
+    "test_new_current_engine_does_not_rewrite_recorded_snapshot",
+    "test_changed_key_bound_source_invalidates_evidence_binding",
+    "test_historical_case_is_not_backfilled_from_current_source",
+    "test_invalid_record_never_exposes_untrusted_detail",
+    "test_partial_display_and_changed_evidence_cannot_claim_binding",
+    "test_scoped_latest_evidence_audit_excludes_other_app_and_analyst_actions",
+    "test_missing_latest_snapshot_does_not_fall_back_to_older_success",
+    "test_generation_is_in_scoped_page_and_export_without_notes"
+  ],
+  "regression_source_sha256": "a595c2e5a19695a832f00c510e7b68ff5ce221abdeca0c25b4273c957726a5ba",
+  "focused_tests": 60,
+  "focused_log_sha256": "a5a44821c21a751fccc21d456ea3a451ec91dd643e03290c65c38fe4f68415f2",
+  "intermediate_failure": {
+    "scope": "In-progress implementation, before final verification; not a released-version comparison.",
+    "fault": "Evidence fingerprint omitted the trusted key-bound source class.",
+    "observed": "Changing source alone incorrectly retained recorded status.",
+    "correction": "Bind event identity, payload digest and trusted source class together.",
+    "regression_before_log_sha256": "66b42418b9927a49af4d54832849658f461848df19e0eca4aabf5f08fa129765"
+  },
+  "recorded_for_new_evidence": [
+    "rule and correlation",
+    "case version",
+    "full linked evidence count and hash",
+    "catalog-import engine/contract/worker source snapshot",
+    "disk source hashes before evaluation and when recording new evidence"
+  ],
+  "behavior": [
+    "Source snapshot and evidence links commit in the same worker transaction.",
+    "Audit-write failure rolls back the case update and retains a retryable queue record.",
+    "Duplicates do not generate replacement history; new evidence appends a new snapshot.",
+    "Historical cases are not backfilled; missing, malformed, changed or partial evidence is explicit.",
+    "Disk drift remains visible without silencing a valid detection.",
+    "Only the latest scoped system evidence audit supplies provenance; analyst notes stay out of case export."
+  ],
+  "development_receipt": "20260925-offline-simulation-case-generation.json",
+  "challenge_receipt": "20260925-detection-challenge-case-generation.json",
+  "detection_behavior_changed": false,
+  "challenge_capabilities_met": 0,
+  "challenge_capabilities_total": 3,
+  "ci_selection": {
+    "main": 972,
+    "memory_only": 2,
+    "disjoint_complete": true,
+    "remote_execution": false
+  },
+  "limits": [
+    "Disposable SQLite and in-process HTTP tests; no new native service or PostgreSQL concurrency proof.",
+    "Source snapshot assumes coherent startup files. It is not loaded-bytecode attestation or independent source truth.",
+    "Hashes detect ordinary inconsistency; a trusted database/filesystem administrator can replace records.",
+    "The source hash names engine, contract and worker bytes; the complete 247-file verification manifest is separate.",
+    "Signed-in visual/keyboard review of the new disclosure remains pending; HTTP rendering and export were checked.",
+    "The three declared wider capability probes remain unmet; no detection-window tuning was performed.",
+    "No native VM, Docker service, BetTail repair, Windows restart, paid service or public publishing occurred."
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-scanner-triage",
+  "scan_run_id": "34a8a850-cb11-4fa5-8101-0b7de16d948d",
+  "source_revision": "2332b1d2162b3559029b2dccfeabffa12931edd9",
+  "source_file_count": 68,
+  "source_manifest_sha256": "4f8ba159e332bbe9f4583cfe07808360904a970c627dec7022716377502b9e44",
+  "findings": [
+    {
+      "rule_id": "S603",
+      "path": "bridge/management/commands/scan_dependencies.py",
+      "line": 68,
+      "status": "false_positive",
+      "source_sha256": "1392689354c8a682e21af7374af10accb308622c24fca2116f7e0372ca15fe23",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. The resolved Git executable receives fixed revision arguments, with bounded execution. No report, web request or arbitrary command input reaches this call. Local operator and executable trust remain assumptions."
+    },
+    {
+      "rule_id": "S603",
+      "path": "bridge/management/commands/scan_dependencies.py",
+      "line": 146,
+      "status": "false_positive",
+      "source_sha256": "1392689354c8a682e21af7374af10accb308622c24fca2116f7e0372ca15fe23",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. The installed pip-audit runner receives fixed arguments and validated explicit package pins. Advisory fetching is explicit, resolution and fixes are disabled, and the call has a timeout and no shell. This does not certify dependency safety."
+    },
+    {
+      "rule_id": "S603",
+      "path": "bridge/management/commands/scan_local.py",
+      "line": 89,
+      "status": "false_positive",
+      "source_sha256": "9a2b6c5e8914dac5e4107b70e36b178643a7cecfe6f4aeda2cc05184be9f0d9f",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. The resolved Git executable receives only fixed revision arguments, with a timeout and complete-hash validation. Source revision is compared before and after the scan; no caller-controlled command reaches it."
+    },
+    {
+      "rule_id": "S603",
+      "path": "bridge/management/commands/scan_local.py",
+      "line": 129,
+      "status": "false_positive",
+      "source_sha256": "9a2b6c5e8914dac5e4107b70e36b178643a7cecfe6f4aeda2cc05184be9f0d9f",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. The installed Ruff executable receives fixed security-rule arguments and exact repository-allowlisted paths. Shell and stdin are disabled, execution is bounded, and exit/result/source consistency is checked before import. Mock regressions cover malformed and failed paths."
+    },
+    {
+      "rule_id": "S603",
+      "path": "scripts/check_publication.py",
+      "line": 399,
+      "status": "false_positive",
+      "source_sha256": "81d6bfe80c4be1374e707d982d32fff106fe721b6bafb8a9dfc914f1910431bc",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. The resolved Git executable only enumerates this repository publication candidates with fixed arguments. Candidate paths are independently bounded and checked before opening. Disabling optional Git hooks remains defense-in-depth follow-up under the trusted-local-operator boundary."
+    },
+    {
+      "rule_id": "S104",
+      "path": "scripts/container_web.py",
+      "line": 21,
+      "status": "reviewed",
+      "source_sha256": "5d6ea53e6d913b63b1e2958a6dc94c6fb4abde3f291a494f4c44f63ac747e034",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. Intentional container-internal all-interface listener. The supplied SignalBridge Compose file declares loopback host publication, but this review did not execute that separate Compose deployment. Actual reachability remains unverified; no risk acceptance or claim of public exposure is recorded."
+    },
+    {
+      "rule_id": "S603",
+      "path": "scripts/migrate_supabase_lab.py",
+      "line": 44,
+      "status": "false_positive",
+      "source_sha256": "e8be85021055741c2d6189afed08b752a02debff51f72e38cf63a93aeb6d74bd",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. The current interpreter invokes the fixed original lab-isolation script, with a timeout; no supplied snapshot path becomes an executable argument. Failed isolation prevents the database connection. This finding does not resolve the separate default-password issue."
+    },
+    {
+      "rule_id": "S106",
+      "path": "scripts/migrate_supabase_lab.py",
+      "line": 96,
+      "status": "open",
+      "source_sha256": "e8be85021055741c2d6189afed08b752a02debff51f72e38cf63a93aeb6d74bd",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. Confirmed known default credential for the disposable local database. Fixed loopback addressing, rejected connection overrides and the lab isolation gate constrain scope but do not prevent another local process using a known password. Coordinated generated-credential replacement across dependent services and positive/negative credential checks remain required; not remediated or accepted."
+    },
+    {
+      "rule_id": "S603",
+      "path": "scripts/prepare_supabase.py",
+      "line": 39,
+      "status": "false_positive",
+      "source_sha256": "8904f34683ba5c86505c279dd8dd2947c8c96ca4b17c0ff15862188e6d34371e",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. The fixed pinned local Supabase CLI receives key-generation-only arguments and a checked private working directory, with a timeout and exclusive output creation. No caller-selected command is accepted. Dedicated preparation-command regressions remain a follow-up."
+    },
+    {
+      "rule_id": "S603",
+      "path": "scripts/record_verification.py",
+      "line": 173,
+      "status": "false_positive",
+      "source_sha256": "58187fa581a6c3053483a0bdad9bbf1e66ae3bae92f819f408c25d0641f65f41",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. Callers select only fixed Git/tool-version queries. Arguments are not taken from a report or web request; the helper bounds time/output. Optional Git filesystem-monitor hardening remains a documented local defense-in-depth follow-up."
+    },
+    {
+      "rule_id": "S603",
+      "path": "scripts/record_verification.py",
+      "line": 324,
+      "status": "false_positive",
+      "source_sha256": "58187fa581a6c3053483a0bdad9bbf1e66ae3bae92f819f408c25d0641f65f41",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. Nine internal check definitions determine executable and argument lists. The CLI accepts no arbitrary command; shell use is disabled and timeouts/private logs/source comparisons gate success. Tests cover missing, skipped, inconsistent and failed child results."
+    },
+    {
+      "rule_id": "S603",
+      "path": "scripts/run_bettail_routes.py",
+      "line": 345,
+      "status": "false_positive",
+      "source_sha256": "3810718a6fffd9813170fb81529819b387bfa6b3f1292f2cb693cd9e8606afb4",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. The fixed Docker command targets the explicit local engine pipe, named isolated container and reviewed Node harness only. There is no shell or target option. Lab keys pass through stdin, not arguments. Isolation/source checks, bounded logs, exclusive run lock and recovery preflight surround execution; timeout retains a recovery block."
+    },
+    {
+      "rule_id": "S603",
+      "path": "scripts/run_enterprise_lab.py",
+      "line": 190,
+      "status": "false_positive",
+      "source_sha256": "61c540a44ed85e6dcff26d61c7f88e7cdfaea48bfc729cce2b5ae7006f02d623",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. The current interpreter invokes its own fixed isolated child and an internally generated UUID. A restricted environment, fixed memory database, network/process guards, bounded workload and timeout constrain this trusted harness. These are not an OS sandbox for hostile Python."
+    },
+    {
+      "rule_id": "S603",
+      "path": "scripts/sb.py",
+      "line": 63,
+      "status": "false_positive",
+      "source_sha256": "5c82d103519dc36fc1a906716af58bb6e4618f6c74ca70575c46d883e2049090",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. The locally resolved Node executable receives only --version, without shell or stdin, under a three-second timeout. Node preload settings are removed and output is strictly parsed. This assumes a trusted local executable search path."
+    },
+    {
+      "rule_id": "S603",
+      "path": "scripts/sb.py",
+      "line": 112,
+      "status": "false_positive",
+      "source_sha256": "5c82d103519dc36fc1a906716af58bb6e4618f6c74ca70575c46d883e2049090",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. Callers are fixed developer actions behind constrained parser choices, local SQLite/settings/port checks and the project interpreter requirement. No web/report input selects executable text. Shell execution is disabled."
+    },
+    {
+      "rule_id": "S603",
+      "path": "scripts/snapshot_app.py",
+      "line": 171,
+      "status": "false_positive",
+      "source_sha256": "7614d1d0dfb21621c23d99535381811cb497ed53575d87362cedaebf5e3a0dbf",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. The resolved Git executable receives fixed provenance queries in a checked repository. Optional locks and filesystem-monitor hooks are disabled, execution is bounded and the reported repository root must match. Snapshot source content is never command text."
+    },
+    {
+      "rule_id": "S108",
+      "path": "scripts/verify_bettail_routes.py",
+      "line": 38,
+      "status": "false_positive",
+      "source_sha256": "c078d065d547c8fd4a4db602656c766a41e0ae641b5515be9eb25cbc386270e2",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. The literal /tmp is an exact inspection key in TMPFS_LIMITS, not a predictable temporary-file write. The gate validates a bounded private container tmpfs with nosuid/nodev/noexec flags and non-root execution. Source inspection and gate regressions support this scoped classification; the host administrator remains trusted."
+    },
+    {
+      "rule_id": "S603",
+      "path": "scripts/verify_supabase_isolation.py",
+      "line": 104,
+      "status": "false_positive",
+      "source_sha256": "6dae639c64b2b909bbbbbabb4d60694bbf8e02dbc861c8d31efa3ce9a2658c70",
+      "rationale": "AI-assisted builder review, attributed to the local analyst account; not independent human approval. Internal callers provide fixed Docker operations, exact lab names and the explicit local engine pipe. The CLI permits no arbitrary target. Topology must pass before fixed connection probes; no user input is interpolated into the probe text."
+    }
+  ],
+  "limits": [
+    "AI-assisted builder review, not independent audit.",
+    "Only the 18 observations in this exact run were dispositioned; older history and other tools were preserved.",
+    "False-positive means this static signal did not establish its suspected weakness at the reviewed callsite, not that the project is vulnerability-free."
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "OPERATIONS": ["membership.change", "private_record.read", "session.verify"],
+  "OUTCOMES": ["allowed", "denied", "error", "not_visible"],
+  "REASONS": ["dependency_unavailable", "member", "membership_removed", "membership_required", "mfa_required", "owner", "policy_regression", "resource_unavailable", "session_invalid"]
+}
