@@ -1,5 +1,5 @@
 /** Local/server-side only. No browser or serverless persistence assumptions. */
-import { createHmac,createHash } from "node:crypto";
+import { createHmac,createHash,randomUUID } from "node:crypto";
 import { mkdir,open,readFile,readdir,rename,unlink } from "node:fs/promises";
 import { join } from "node:path";
 export const sign=(secret,app,key,time,body)=>createHmac("sha256",secret).update(`signalbridge.v1\n${app}\n${key}\n${time}\n`).update(body).digest("hex");
@@ -29,6 +29,20 @@ async function receipt(response, eventId) {
   try { await reader.cancel(); } catch {}
   reader.releaseLock();
  }
+}
+async function persistedRecord(file,filename,app){
+ const fd=await open(file,"r");let raw;
+ try{if((await fd.stat()).size>65536)throw Error("Invalid outbox record.");raw=await fd.readFile("utf8");}finally{await fd.close();}
+ const record=JSON.parse(raw);
+ if(!record||Object.keys(record).sort().join()!=="attempts,body,hash,nextAt,state"||
+   typeof record.body!=="string"||Buffer.byteLength(record.body)>16384||
+   typeof record.hash!=="string"||!/^[a-f0-9]{64}$/.test(record.hash)||
+   createHash("sha256").update(record.body).digest("hex")!==record.hash||
+   !Number.isSafeInteger(record.attempts)||record.attempts<0||record.attempts>8||
+   !Number.isSafeInteger(record.nextAt)||record.nextAt<0||!["pending","dead"].includes(record.state))throw Error("Invalid outbox record.");
+ const event=JSON.parse(record.body);assertMetadata(event,app);
+ if(filename!==event.event_id+".json")throw Error("Invalid outbox identity.");
+ return record;
 }
 function assertMetadata(e,app){
  if(!e||Object.keys(e).sort().join()!==fields.join()||e.schema_version!==1||e.app!==app||!["lab","test"].includes(e.environment))throw Error("Invalid metadata contract.");
@@ -71,7 +85,13 @@ export class Outbox {
    let attempted=0;
    for(const filename of (await readdir(this.directory)).filter(n=>/^[a-f0-9-]{36}\.json$/.test(n)).sort()){
     if(attempted>=limit)break;
-    const file=join(this.directory,filename),record=JSON.parse(await readFile(file,"utf8"));
+     const file=join(this.directory,filename);let record;
+     try{record=await persistedRecord(file,filename,this.app);}catch(error){
+      if(error.code==="ENOENT")continue;
+      if(error.code&&!["EISDIR"].includes(error.code))throw error;
+      // Preserve invalid bytes for operator recovery, outside the delivery queue.
+      await rename(file,file+".corrupt-"+randomUUID());result.dead++;attempted++;continue;
+     }
     if(record.state==="dead"){result.dead++;continue;}
     if(record.nextAt>this.clock()){result.deferred++;continue;}
     attempted++;

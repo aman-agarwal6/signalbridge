@@ -1,4 +1,5 @@
 import test from "node:test";
+import "./sender-persistence.test.mjs";
 import assert from "node:assert/strict";
 import { mkdtemp,readFile,rm,readdir,writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
