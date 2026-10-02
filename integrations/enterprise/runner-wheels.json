@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "metadata_checked_on": "2026-10-01",
+  "runtime": "Linux AMD64 CPython 3.14",
+  "maximum_download_bytes": 20971520,
+  "wheels": [
+    {"package":"Django","version":"5.2.17","filename":"django-5.2.17-py3-none-any.whl","size":8315563,"sha256":"f04fb3b36ee119e1af4fa1d397d5fd6cf12700f49321e84d4f4c642c5b1973db","url":"https://files.pythonhosted.org/packages/df/f8/ce120525ca78f12b07daf65786679c5d0b54a75285a8958d3ae55e39da35/django-5.2.17-py3-none-any.whl"},
+    {"package":"psycopg","version":"3.3.6","filename":"psycopg-3.3.6-py3-none-any.whl","size":215490,"sha256":"a1db9f7148b06a28606767efaca51fa6f9398c5c0a3810519be69d7000bdb631","url":"https://files.pythonhosted.org/packages/4e/de/748bd7609c71cae5d737f0ba9192f19329f70180ecda8fff3cac02c5abe3/psycopg-3.3.6-py3-none-any.whl"},
+    {"package":"psycopg-binary","version":"3.3.6","filename":"psycopg_binary-3.3.6-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl","size":5246902,"sha256":"31cd942c23f613276b81a6e6598cefa12960058b0f46e1e874b540c793f6aca5","url":"https://files.pythonhosted.org/packages/49/6d/7692d0d4e656b6cc9868d8acc2e3b42f17a0db4a625400a6d093cb0533a1/psycopg_binary-3.3.6-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"},
+    {"package":"asgiref","version":"3.12.1","filename":"asgiref-3.12.1-py3-none-any.whl","size":25478,"sha256":"fe386d1c2bff7259ea95929266d12a8cf9a8b5a1c2598402967d8792e7a7c094","url":"https://files.pythonhosted.org/packages/c0/1b/54f4ad77cd8a584fa70746c47df988e002cf1ee1eba43364d46f87803647/asgiref-3.12.1-py3-none-any.whl"},
+    {"package":"sqlparse","version":"0.6.0","filename":"sqlparse-0.6.0-py3-none-any.whl","size":50070,"sha256":"b861c0288ce2fa56209a9a6412d2e066ac664b3873b89c26c9d8415e8e32996f","url":"https://files.pythonhosted.org/packages/d9/50/f00935da0ec7cbf325f8dc4f772ae46fbc7b672dd62876e73f0a94adda57/sqlparse-0.6.0-py3-none-any.whl"},
+    {"package":"tzdata","version":"2026.4","filename":"tzdata-2026.4-py2.py3-none-any.whl","size":347494,"sha256":"c2169a8b0a7a5e9674da5a135ccdfb2b3e671b333ed9fed17b41f73c34476e81","url":"https://files.pythonhosted.org/packages/f9/bc/8737e8d54cf51106118039b83f485a4783112fab49ea9d044b234978a46e/tzdata-2026.4-py2.py3-none-any.whl"}
+  ],
+  "limits": "Official PyPI metadata and pinned hashes identify the files, not an independent dependency security audit. Packages have not been downloaded or executed by preparing this manifest."
+}

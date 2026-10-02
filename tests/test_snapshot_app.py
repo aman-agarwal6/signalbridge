@@ -16,10 +16,12 @@ from scripts import snapshot_app as snapshot
 class SnapshotTests(TestCase):
     def setUp(self):
         self.test_root = snapshot.ROOT / "var" / "tests"
-        self.case = self.test_root / ("snapshot-" + uuid.uuid4().hex)
+        # Keep nested content-addressed fixtures below Windows' legacy path limit.
+        # Exclusive mkdir still fails safely on the unlikely random collision.
+        self.case = self.test_root / ("snapshot-" + uuid.uuid4().hex[:16])
         self.case.mkdir(parents=True)
         self.addCleanup(self.cleanup_case)
-        self.workspace = self.case / "workspace"
+        self.workspace = self.case / "w"
         self.source = self.case / "source"
         self.workspace.mkdir()
         self.source.mkdir()

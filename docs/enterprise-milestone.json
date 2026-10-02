@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "updated_on": "2026-10-01",
+  "status": "implementation_in_progress",
+  "scope": "One enterprise, multiple application scopes and analyst teams; isolated reference lab only.",
+  "completion_policy": "Every mandatory engineering acceptance gate must pass. Historical receipts and portable tests do not substitute for native execution.",
+  "safety": {
+    "combined_lab_ram_ceiling_gib": 10,
+    "additional_disk_growth_ceiling_gib": 30,
+    "minimum_free_disk_gib": 25,
+    "public_deployment": "outside_scope",
+    "paid_services": "outside_scope",
+    "production_credentials": "outside_scope",
+    "autonomous_containment": "outside_scope"
+  },
+  "foundation": {
+    "baseline": "Private recoverable baseline retained under var/enterprise/baseline-20261001; original and unrelated changes preserved.",
+    "implemented": [
+      "PostgreSQL app-first SKIP LOCKED queue claims with atomic evidence/completion and SQLite serial fallback.",
+      "Processing timestamps, worker identity, committed attempt count and failed retry visibility.",
+      "Indexed membership subject and bounded latest-assertion loading for allowed reads.",
+      "Source-owned document/expense authorization, effective-access assertions and transactional outbox.",
+      "Fixed synthetic fault pair, maximum ten-minute expiry, reset and restoration regressions.",
+      "Collector-assigned instrumented_lab provenance without modifying historical classes or wire v1/v2.",
+      "Disposable PostgreSQL test profile, immutable official image identity and independent shutdown controller.",
+      "Durable source outbox leases with stale-reply rejection, exact acknowledgement, integrity checks and bounded TLS loopback transport.",
+      "App-scoped assignment, acknowledgement, deadlines, categorized notes and evidence-bound review/remediation tasks.",
+      "Separate machine read/task capabilities with signed method/path/body, nonce replay controls, retained failed-request rate slots and transactional task idempotency.",
+      "Executed two-component isolated PostgreSQL concurrency and killed-process verification: nine methods passed, no skips, source unchanged, both shutdown checks passed.",
+      "Bounded R4 extended denied-resource and R5 multi-account same-resource rules, versions, scoped indexed candidates and paired controls; 48-scenario frozen evaluation executed with retained false alerts and misses.",
+      "Analyst queues for assigned, unassigned, unacknowledged and overdue work; expanded rows show ownership, deadlines and acknowledgement. Five versioned rules are explained in the console.",
+      "Finite native source-proof client, separate database roles/settings, guarded source/console TLS process entries and fault-reset driver prepared. Offline controls pass; native recipe/controller and reconciliation still need completion and launch review."
+    ],
+    "limitations": [
+      "Reference application authentication/HTTP-client regressions run in a disposable in-memory database, not a launched enterprise source service.",
+      "Committed processing attempts cannot count a process that dies before its SQL transaction commits; reliability receipts must report such physical executions separately.",
+      "Retrospective membership-change correlation retains its declared event ceiling; capacity exhaustion is visible and fails processing.",
+      "The passing PostgreSQL verification used two containers on an internal network with no published ports. It is plaintext component testing, not the enterprise TLS deployment profile.",
+      "Host disk monitoring is a two-second detection guard, not a hard storage quota; physical allocation or other host activity can cross a budget between readings. No enterprise resource guarantee is claimed.",
+      "No verified-fix task state is offered until the matching native retest/reviewer gate is implemented.",
+      "Native case/task concurrency is verified; TLS transport and genuine Shuffle execution remain unfinished.",
+      "Prepared native source transport has socket timeouts and a transfer timer. Before native review, verify the complete connection/handshake/response deadline against the declared request bound; the draft source plan is not launch authorization."
+    ]
+  },
+  "mandatory_gates": [
+    {
+      "id": "access_assurance",
+      "status": "partial_portable_checks",
+      "remaining": "Native source HTTP/PostgreSQL execution, copied BetTail adapter and retained reset receipts."
+    },
+    {
+      "id": "identity",
+      "status": "not_implemented",
+      "remaining": "Keycloak SSO/MFA, issuer/subject binding, session/logout/disabled-account and role withdrawal verification."
+    },
+    {
+      "id": "postgresql",
+      "status": "passed_native_component",
+      "remaining": "Nine genuine PostgreSQL 17.11 checks passed: migrations, concurrent ingestion/duplicates/conflicts, two workers, case/task updates and killed-process rollback/recovery. Both independent and main shutdown verified. This is isolated plaintext component testing, not enterprise TLS/source/SSO/security-tool or reliability proof. Retained revision is identified by receipt.",
+      "receipt": "docs/evidence/20261001-postgresql-in-network-1d8fd148036e43b0915fbbe86606d013.json"
+    },
+    {
+      "id": "wazuh",
+      "status": "historical_pilot_only",
+      "remaining": "Long-running native collection, checkpoints/rotation, reconciled imports, core signal export and truthful freshness."
+    },
+    {
+      "id": "zap",
+      "status": "historical_anonymous_pilot_only",
+      "remaining": "Authenticated fixed profile, independent identity/coverage checks, correction and equivalent retest."
+    },
+    {
+      "id": "shuffle",
+      "status": "required_native_execution_unfinished",
+      "remaining": "Offline native VM execution with case evidence resolution, one idempotent review task and validated execution receipt; bounded storage/TLS diagnosis."
+    },
+    {
+      "id": "case_workflow",
+      "status": "partial_portable_workflow",
+      "remaining": "Ownership, notes, task states and two limited APIs implemented and regression checked; native PostgreSQL case/task concurrency passed. Matching native retest/reviewer verification and linked tool observations remain required."
+    },
+    {
+      "id": "detection",
+      "status": "passed_bounded_frozen_round",
+      "remaining": "R4/R5 paired controls and 48 selected scenarios executed under a fresh freeze. Formatting-only migration correction required a fresh identity and repeat using the same 48 scenarios, not additional statistical evidence. Both rounds retained. TP15/FP6/FN8/TN12 with seven inconclusives; 24 initial review cases, one later correction. Not blind or production accuracy. A source change requires a new round.",
+      "receipt": "docs/evidence/20261001-enterprise-detection-evaluation-format2.json"
+    },
+    {
+      "id": "operations",
+      "status": "not_executed",
+      "remaining": "Prometheus/Grafana, working separate restore, declared 24-hour run, reconciled logical and physical counts, measured latency and shutdown."
+    },
+    {
+      "id": "presentation",
+      "status": "pending_final_execution_evidence",
+      "remaining": "Accessible updated console walkthrough and one consolidated enterprise handoff PDF grounded in completed runs."
+    }
+  ],
+  "approvals": [
+    {
+      "id": "postgresql_component_stage",
+      "status": "approved",
+      "limits": "Start Docker Desktop, cached PostgreSQL 17.11 only, 512 MiB RAM, one CPU, two GiB growth, loopback 15432, thirty-minute watchdog; no downloads."
+    },
+    {
+      "id": "postgresql_official_image_download",
+      "status": "approved_and_downloaded",
+      "limits": "Official reviewed Linux/AMD64 digest, about 154 MiB compressed, same stage caps and reserve."
+    },
+    {
+      "id": "postgresql_stage_5gib",
+      "status": "approved_used",
+      "limits": "Five GiB total stage growth including download; stopped before tests, budget exceeded conservatively."
+    },
+    {
+      "id": "postgresql_single_retry_8gib",
+      "status": "approved_single_attempt_used",
+      "limits": "Eight GiB total stage growth including prior consumption; no tests executed due connection timeout; both shutdown paths verified."
+    },
+    {
+      "id": "postgresql_internal_network_stage",
+      "status": "approved_attempt_used_startup_failed_shutdown_verified",
+      "reference": "call_H3KllLzCpps3RLux73ir4LJ6",
+      "limits": "One revised attempt; two cached-image containers 512 MiB/one CPU each, six official pinned wheels <=20 MiB, no runtime egress or published ports, eight GiB whole-stage guard including prior consumption, twenty-five GiB reserve and independent thirty-minute shutdown.",
+      "receipt": "docs/evidence/20261001-postgresql-in-network-861397ae7e3b47deae9a47dbfaddf08d.json"
+    },
+    {
+      "id": "postgresql_internal_cached_retry",
+      "status": "approved_attempt_used_disk_guard_shutdown_verified",
+      "reference": "call_66ztBlErLWqmhLV4AnSFVLoU",
+      "limits": "One corrected retry; all limits unchanged; reverify and reuse six retained wheels, no new downloads.",
+      "receipt": "docs/evidence/20261001-postgresql-in-network-6f99948c35ad46c7a42c658013c25ae7.json"
+    },
+    {
+      "id": "postgresql_internal_cached_retry_12gib",
+      "status": "approved_attempt_used_driver_import_failed_shutdown_verified",
+      "reference": "call_cs46ZyeapBylPsMAB6Bgx2AM",
+      "limits": "One cached-package attempt, twelve GiB total guard including all prior consumption; all other two-container/internal-network/resource/reserve/shutdown limits unchanged. No downloads.",
+      "receipt": "docs/evidence/20261001-postgresql-in-network-60d537d6368647da98033b074795b184.json"
+    },
+    {
+      "id": "postgresql_dependency_mount_retry",
+      "status": "approved_attempt_used_temporary_install_capacity_failed_shutdown_verified",
+      "reference": "call_4ldpfNuPG98xHX7KrgMi33vm",
+      "limits": "One corrected retry with separate 64 MiB noexec scratch and 128 MiB executable dependency storage; cached wheels only; all twelve GiB/resource/isolation/reserve/watchdog limits retained.",
+      "receipt": "docs/evidence/20261001-postgresql-in-network-7c8753e06c3d4fc59565b362557b5aac.json"
+    },
+    {
+      "id": "postgresql_install_staging_retry",
+      "status": "approved_attempt_used_nine_native_checks_passed_shutdown_verified",
+      "reference": "call_DHhwYu87PrkFFmaGPHvpCT9T",
+      "limits": "One retry, unchanged mounts and resource caps; optional bytecode disabled, staging inside existing dependency mount, verified footprint before launch. No downloads.",
+      "receipt": "docs/evidence/20261001-postgresql-in-network-1d8fd148036e43b0915fbbe86606d013.json"
+    }
+  ],
+  "learning_checkpoint": {
+    "topic": "Detection accuracy and analyst workload",
+    "prompt": "Why do 21 alerted scenarios produce 23 active cases, and why should a legitimate stale-link alert remain a false positive even though the rule matched?",
+    "ai_reference_answer": "A scenario may meet more than one rule, so scenario-level accuracy and case-level workload use different denominators. The oracle business activity is benign despite matching telemetry; rule conformance does not establish malicious intent. A late correction still consumed initial analyst review work.",
+    "human_assessment": "Not submitted or independently assessed."
+  },
+  "current_offline_receipt": "docs/evidence/20261001-enterprise-offline-be810fa15e3b4e76a60e0bd73a85d3d9.json",
+  "current_human_handoff": "output/pdf/SignalBridge_Enterprise_Handoff.pdf",
+  "evidence_corrections": [
+    {
+      "receipt": "docs/evidence/20261001-enterprise-offline-cd0601aa7c3846f3b5cb30de63fb1710.json",
+      "note": "Preserved original execution receipt: 70 physical Node executions included eight persistence checks a second time because the courier suite imports them. There were 62 distinct Node tests, not 70. The corrected profile runs persistence once inside the courier group."
+    },
+    {
+      "receipt": "docs/evidence/20261001-enterprise-detection-evaluation-format2.json",
+      "note": "Repeat of the same 48 scenarios after formatting-only migration correction, under a fresh implementation/declaration identity. Prior round retained. Neither run is an independent holdout; repeated counts are not additional statistical evidence."
+    },
+    {
+      "receipt": "docs/evidence/20261001-enterprise-offline-be810fa15e3b4e76a60e0bd73a85d3d9.json",
+      "note": "Publication preparation normalized CRCRLF/CRLF in three console presentation files only. Fresh complete local verification passed; prior source-bound receipts remain historical. Detection implementation and the frozen 48-scenario identity are unchanged."
+    }
+  ],
+  "native_source_stage_plan": "integrations/enterprise/reference-stage-plan.json"
+}

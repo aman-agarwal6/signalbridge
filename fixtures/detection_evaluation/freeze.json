@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-09-29T23:31:40.248244+00:00",
+  "files": {
+    "bridge/engine.py": "ec78307415488ecc11fbd0de08bf6c84c7f8743aff4d770424f3ad39550d7830",
+    "bridge/contract.py": "812a90a8c3b5833d22fcf833465d1d4fa8c8690d17d478959a67988ef0558647",
+    "bridge/worker.py": "d2c95349a50b5c782e5ae6e4a2892fce327b3259ac22d8505822414d4a42032a",
+    "bridge/ingestion.py": "b819e74332660b4c89cb89baa2eba8fb743463b78cf144bd1751952d75158d5c",
+    "bridge/models.py": "cfe859216c55bf1ce356a8a3d7aa854b0924fe694033e08c53d031ca8618007c",
+    "bridge/case_provenance.py": "82f420000a35347464718671154d35228465e2b77e406c7ecf0cbc581a1927f8",
+    "bridge/detection_catalog.py": "c14847d96f0a4e6fb2ece141d91ada17d17187ce0c9201a8fce0f67e76c15095",
+    "config/simulation_settings.py": "cc733e9b23c9834d7a946513551a947e8f74b02faf4434b747d8bb659724d59a",
+    "scripts/evaluate_detection.py": "fc69f2f7d28f8167b28eae85efb1e6fad9e468eedb328d951165dbf29d3cc7e7"
+  },
+  "normalization": "CRLF to LF only",
+  "independent_holdout": false,
+  "scope": "Builder-operated pre-evaluation freeze; no third-party attestation."
+}

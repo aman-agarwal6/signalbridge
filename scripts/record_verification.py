@@ -14,6 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIRS = (
+    "reference_lab",
     "simulations",
     "bridge",
     "config",
@@ -191,9 +192,31 @@ def git_state(root, env):
 def fixed_checks(root):
     python = root / ".venv" / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
     ruff = root / ".venv" / ("Scripts/ruff.exe" if os.name == "nt" else "bin/ruff")
-    targets = ["bridge", "config", "tests", "scripts", "simulations", "integrations", "manage.py"]
+    targets = [
+        "bridge",
+        "reference_lab",
+        "config",
+        "tests",
+        "scripts",
+        "simulations",
+        "integrations",
+        "manage.py",
+    ]
     return [
-        ("django-tests", [str(python), "manage.py", "test", "tests", "--verbosity", "1"], 300),
+        (
+            "django-tests",
+            [
+                str(python),
+                "manage.py",
+                "test",
+                "tests",
+                "--exclude-tag",
+                "native_postgres",
+                "--verbosity",
+                "1",
+            ],
+            300,
+        ),
         ("django-check", [str(python), "manage.py", "check"], 60),
         (
             "migration-drift",

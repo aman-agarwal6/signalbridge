@@ -1,0 +1,93 @@
+name: sb-enterprise-in-network
+services:
+  database:
+    image: ${SB_VERIFY_IMAGE:?A reviewed installed PostgreSQL image is required}
+    pull_policy: never
+    restart: "no"
+    user: postgres
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1
+    pids_limit: 128
+    shm_size: 64m
+    read_only: true
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    labels:
+      org.signalbridge.enterprise.run: ${SB_VERIFY_RUN:?A unique run identity is required}
+      org.signalbridge.enterprise.scope: in-network-postgresql-verification
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/bootstrap_password
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256 --auth-local=peer
+    command: [postgres, -c, shared_buffers=64MB, -c, max_connections=20, -c, log_statement=none]
+    secrets: [bootstrap_password, verifier_password]
+    volumes:
+      - verification_data:/var/lib/postgresql/data
+      - ${SB_VERIFY_RUN_DIR}/source/integrations/enterprise/init-verification.sh:/docker-entrypoint-initdb.d/10-verification.sh:ro
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+      - /var/run/postgresql:rw,noexec,nosuid,size=16m
+    networks: [verification]
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: "2"}
+    healthcheck:
+      test: [CMD, pg_isready, -h, "127.0.0.1", -U, postgres, -d, postgres]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  runner:
+    image: ${SB_VERIFY_PYTHON_IMAGE:?A reviewed installed Python image is required}
+    pull_policy: never
+    restart: "no"
+    user: "10001:10001"
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1
+    pids_limit: 96
+    read_only: true
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    labels:
+      org.signalbridge.enterprise.run: ${SB_VERIFY_RUN}
+      org.signalbridge.enterprise.scope: in-network-postgresql-verification
+    environment:
+      SB_DISPOSABLE_PG: "1"
+      SB_VERIFY_RUN: ${SB_VERIFY_RUN}
+      PYTHONDONTWRITEBYTECODE: "1"
+      PIP_CONFIG_FILE: /dev/null
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    working_dir: /workspace
+    command: [python, -B, /workspace/integrations/enterprise/native_runner.py]
+    depends_on:
+      database: {condition: service_healthy}
+    secrets: [verifier_password]
+    volumes:
+      - ${SB_VERIFY_RUN_DIR:?A verified private run is required}/source:/workspace:ro
+      - ${SB_VERIFY_RUN_DIR}/wheels:/wheels:ro
+      - ${SB_VERIFY_RUN_DIR}/evidence:/evidence:rw
+    # Driver shared libraries require executable mappings. Keep ordinary scratch
+    # storage noexec and allow them only in the bounded offline dependency area.
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m
+      - /opt/verification-deps:rw,exec,nosuid,nodev,size=128m,mode=0700,uid=10001,gid=10001
+    networks: [verification]
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: "2"}
+secrets:
+  bootstrap_password:
+    file: ${SB_VERIFY_RUN_DIR}/secrets/bootstrap-password
+  verifier_password:
+    file: ${SB_VERIFY_RUN_DIR}/secrets/verifier-password
+volumes:
+  verification_data:
+    name: sb-enterprise-in-network-${SB_VERIFY_RUN}
+    labels:
+      org.signalbridge.enterprise.run: ${SB_VERIFY_RUN}
+networks:
+  verification:
+    name: sb-enterprise-internal-${SB_VERIFY_RUN}
+    internal: true

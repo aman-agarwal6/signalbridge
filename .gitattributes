@@ -1,2 +1,6 @@
 # Preserve PDF byte offsets even when Windows text normalization is enabled.
 *.pdf binary
+# Dataset declarations hash exact bytes, including on Windows checkouts.
+fixtures/detection_evaluation/*.json -text
+fixtures/enterprise_detection_evaluation/**/*.json -text
+integrations/enterprise/*.sh text eol=lf

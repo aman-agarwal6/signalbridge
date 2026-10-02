@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "resolved_on": "2026-10-01",
+  "tag": "postgres:17.11",
+  "repository": "docker.io/library/postgres",
+  "platform": "linux/amd64",
+  "index_digest": "sha256:d74eeac9a635390a49bc21bd49fccd973de707e2a53a76ac49b552b8712ec46f",
+  "platform_digest": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+  "compressed_size_bytes": 161322974,
+  "source": "https://hub.docker.com/v2/repositories/library/postgres/tags/17.11",
+  "meaning": "Official registry metadata only; image availability and runtime remain separate execution gates."
+}

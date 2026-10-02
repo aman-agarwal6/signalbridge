@@ -341,6 +341,29 @@ def collect_secrets(root=ROOT):
     django_key = root / "var/django-secret"
     if django_key.exists() or django_key.is_symlink():
         _add(secrets, _text(django_key, root))
+    enterprise_runs = root / "var/enterprise/runs"
+    if enterprise_runs.exists() or enterprise_runs.is_symlink():
+        _safe_path(enterprise_runs, root)
+        runs = list(enterprise_runs.iterdir())
+        if len(runs) > 100:
+            raise PublicationError("Enterprise private run count exceeds the supported bounds.")
+        for run in runs:
+            _safe_path(run, root)
+            if not run.is_dir() or not re.fullmatch(r"[a-f0-9]{32}", run.name):
+                raise PublicationError("An enterprise run has an invalid private path.")
+            directory = run / "secrets"
+            if directory.exists() or directory.is_symlink():
+                _safe_path(directory, root)
+                files = list(directory.iterdir())
+                if {file.name for file in files} != {"bootstrap-password", "verifier-password"}:
+                    raise PublicationError(
+                        "Enterprise private credentials have an unreviewed shape."
+                    )
+                for file in files:
+                    value = _text(file, root)
+                    if not re.fullmatch(r"[A-Za-z0-9_-]{64}", value):
+                        raise PublicationError("Enterprise private credential format is invalid.")
+                    _add(secrets, value)
     labs = root / "var/labs"
     if labs.exists() or labs.is_symlink():
         _safe_path(labs, root)

@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-enterprise-offline-verification",
+  "run_id": "64dfba6ad19a4e1ca13a29107e43d065",
+  "started_at": "2026-10-01T23:12:50.153447+00:00",
+  "finished_at": "2026-10-01T23:15:22.619498+00:00",
+  "duration_seconds": 152.466,
+  "tool_versions": {
+    "python": "Python 3.14.4",
+    "django": "5.2.17",
+    "node": "v24.14.1"
+  },
+  "revision": "c37dff8322ec827023b339925f38125ac950442c",
+  "working_tree_dirty": true,
+  "source_sha256": "14bab6e9998d22ca0e21be05497144523e8c480c5dd3cf5f2ebd2199554141b5",
+  "source_file_count": 307,
+  "source_unchanged": true,
+  "checks": [
+    {
+      "name": "django-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 76.37,
+      "log_sha256": {
+        "stdout": "49fd9bc6092332f23f9cbfd16af036deef89cdc68a69e86e08b34e4ab29fbac9",
+        "stderr": "c18b5b3fd1a5186bad3e9073b0a5a68a1872064a40e2d66a57943ad880d7d73d"
+      },
+      "tests": {
+        "tests_run": 1092,
+        "successful_summary": true,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      }
+    },
+    {
+      "name": "offline-fault-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 5.291,
+      "log_sha256": {
+        "stdout": "2f53cc5824d96b664b3cec1303a431c2d528177cbed8cef08ab1c65f986742dd",
+        "stderr": "abc6df3ab92013a282bd2f3841b089672625afcab0f17d68fc0b45c821167901"
+      },
+      "tests": {
+        "tests_run": 2,
+        "successful_summary": true,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      }
+    },
+    {
+      "name": "reference-app-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 56.525,
+      "log_sha256": {
+        "stdout": "2c6a2ad577799ccd67fb18e2ecf31d9518e78c52cf0d6639a568ae87af07cebb",
+        "stderr": "5d5a2f59e940c4f18a54a71f4cf91e42f40606100ac52b21709e3f7a6abf83ff"
+      },
+      "tests": {
+        "tests_run": 29,
+        "successful_summary": true,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      }
+    },
+    {
+      "name": "django-check",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 1.316,
+      "log_sha256": {
+        "stdout": "f87ceb15410bde28ff826ce26228e0576558258fa64d145847921a593a61ee63",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "migration-drift",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 1.334,
+      "log_sha256": {
+        "stdout": "93e6e2d5be3c054add80c0f19101608803f7ca8a7df1fa41f76bbb9a1f570f4a",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "source-migration-drift",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 1.167,
+      "log_sha256": {
+        "stdout": "93e6e2d5be3c054add80c0f19101608803f7ca8a7df1fa41f76bbb9a1f570f4a",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "ruff-check",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.167,
+      "log_sha256": {
+        "stdout": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "ruff-format",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.161,
+      "log_sha256": {
+        "stdout": "3e6bbe034e40875b9b7286a7f199e7d7d569a665a75f824425516bfba75c530f",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "publication-scan",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 7.288,
+      "log_sha256": {
+        "stdout": "f65570f85e58e78511c07a2c9bd7f17806c84e9038f49fef0438f05b2040af68",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "node-courier-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.429,
+      "log_sha256": {
+        "stdout": "6acfef2127da6b3ee8777d1336c9fa3942635e9305aea7fecece1036a9119f7b",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tests": {
+        "tests_run": 22,
+        "successful_summary": true,
+        "passed_tests": 22,
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "suites": 0
+      }
+    },
+    {
+      "name": "node-http-harness-mock-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.198,
+      "log_sha256": {
+        "stdout": "815a9acf19a9652776ee50faad27808fcfb9d4b80208427dd22dc7193d766e5e",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tests": {
+        "tests_run": 17,
+        "successful_summary": true,
+        "passed_tests": 17,
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "suites": 0
+      }
+    },
+    {
+      "name": "node-bettail-route-mock-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.229,
+      "log_sha256": {
+        "stdout": "f0d27bfb29baa92396814e27ba08a9366fd3c21282149631365683cd23e81b2c",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tests": {
+        "tests_run": 23,
+        "successful_summary": true,
+        "passed_tests": 23,
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "suites": 0
+      }
+    }
+  ],
+  "limits": [
+    "The courier suite imports persistence tests; they run once here rather than again as a separate group.",
+    "Builder-operated disposable SQLite regression checks; not an independent audit or personal competence assessment.",
+    "Reference HTTP-client tests use Django's client and transport doubles; no native source server, TLS or PostgreSQL acceptance proof.",
+    "Node suites simulate upstream services; filesystem persistence checks do not establish sustained native delivery.",
+    "No new detection evaluation, native Wazuh/ZAP/Shuffle, Keycloak, remote CI, dependency advisory certification or 24-hour run.",
+    "Test counts describe executed test methods, not detection accuracy, enterprise coverage or business savings."
+  ],
+  "passed": true
+}

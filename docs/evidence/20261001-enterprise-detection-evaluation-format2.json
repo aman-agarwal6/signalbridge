@@ -1,0 +1,2772 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-enterprise-detection-evaluation-v1",
+  "executed_at": "2026-10-02T01:05:04.772474+00:00",
+  "duration_seconds": 4.624,
+  "implementation": {
+    "schema_version": 1,
+    "round_id": "bd1b1597-e309-4eb3-8460-bdbf26018cd4",
+    "frozen_at": "2026-10-02T01:04:42.308598+00:00",
+    "files": {
+      "bridge/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bridge/access_coverage.py": "52691daa24756a333ca319c9aa86fb092ab2e412912617680b1cf057b4951862",
+      "bridge/assurance.py": "3ea79e508fad864cac6eaea9af9a691d5675e744c6a9386ebd9dff30582b2095",
+      "bridge/case_provenance.py": "82f420000a35347464718671154d35228465e2b77e406c7ecf0cbc581a1927f8",
+      "bridge/case_workflow.py": "6be9ed11075d1e5e3bc55ff49e031a859c1d8e128d1348e8e3c2d8079601816f",
+      "bridge/case_workflow_views.py": "52ca099ab54eac9bc1b798754e742b2be7e9335b58b81722a4ae868e03eb8624",
+      "bridge/challenge_evidence.py": "66ecee2adcc6ceed5c3aa991faad7383d1e285184ce4fd2f9c58ecfbf9b6f9d6",
+      "bridge/context.py": "ac4701733fab36324c7701ec37be2670cc87acf2cc8ef56febb8de6122ad32d1",
+      "bridge/contract.py": "812a90a8c3b5833d22fcf833465d1d4fa8c8690d17d478959a67988ef0558647",
+      "bridge/detection_catalog.py": "2b2ada31d54bb85d4f076f4f6c9214e9216c32898c22a567b5dbef2474b13c3b",
+      "bridge/engine.py": "dd3207dbded9eeb75b88d982872da955ab194d6df07d37f223aaccb3ed5835d2",
+      "bridge/evaluation.py": "cca9f57cde0e452c3c2aa72dda3a678703090b3aa018cd735ce11d1070849224",
+      "bridge/findings.py": "1781357853177eacdbbaecb06631cb5a622c602627451a9e8c248b5c2aa920c4",
+      "bridge/ingestion.py": "48016fa033bbaa4749f684f60ec60fc149f0c25d0fea920bd27496526f74b848",
+      "bridge/lab_presentation.py": "f8cfbd843c088be8f883e13c1feff7df664a6adfc244788ac6c3a694c3c08ecc",
+      "bridge/management/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bridge/management/commands/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bridge/management/commands/bootstrap.py": "1ab7165fac4e140bbb6ab72fb91b2b3daf009e69c8d1bcdae392136d6e854089",
+      "bridge/management/commands/evidence.py": "ec5eda3a2842ddf44e047b779750ba58cf14d7f10890b8dbfd511eec279d20c0",
+      "bridge/management/commands/export_soc.py": "bacfefa58e4bd5c38f9c3c99646638ac1679c9796cb2560f9bfabfbcf18d29df",
+      "bridge/management/commands/import_assurance.py": "f4191105c657f49ea017a59763a9542318c77a0569bf7c172766a14e8454cbe7",
+      "bridge/management/commands/import_checks.py": "9905cc37b2eed2f00f4657c489e5fdded250d77be1400f876a8a68c64d3df955",
+      "bridge/management/commands/import_scan.py": "dbd84002c5b18d71c62226a3cf7f3a66092245c719c9021c866e35acafec4d56",
+      "bridge/management/commands/import_simulation.py": "20e63f56f31a77c19baab6497150ece83e455f60fff421133862cd3b032220c0",
+      "bridge/management/commands/import_soc_pilot.py": "8a91362ad7fe69ae0056abb9ef8dbfc9c33e6ba3e1662add0ea7008df56ec4ef",
+      "bridge/management/commands/import_wazuh_backfill.py": "9feb661cc995c2e24ea1cda8b301068483092e504b66b387240971fb906e4106",
+      "bridge/management/commands/import_zap_repeat.py": "b7c6bb2d3b912e8ff6ec6ad1a2e3548eb7409c047898cc41fd022a2052d01d28",
+      "bridge/management/commands/reconcile.py": "91192fdd4e9018f62b6f1d22902227f18a1da29ac4bb821981cd162bdae9c3f0",
+      "bridge/management/commands/retention.py": "ba01125fba86de2a6ae90e61a5a58b6fb009ee42f241d0d90bbff94b892ff48a",
+      "bridge/management/commands/retry_dead.py": "1925415a8852e11eb0ba5797b8f54d7309c1f4d86d287e0a2b9c3a05b9f9f3bb",
+      "bridge/management/commands/scan_dependencies.py": "1392689354c8a682e21af7374af10accb308622c24fca2116f7e0372ca15fe23",
+      "bridge/management/commands/scan_local.py": "9a2b6c5e8914dac5e4107b70e36b178643a7cecfe6f4aeda2cc05184be9f0d9f",
+      "bridge/management/commands/seed_replays.py": "b1537231a30496af33e8b73cce7e31efedaa300e1d665b0d00ec69f53927b7a6",
+      "bridge/management/commands/setup_scanners.py": "b4f3c5e5d37ed5d80d8f4285ad69065698d75dfc97d8f38ad0511f8daec9d9d1",
+      "bridge/management/commands/soc_delivery.py": "6df6589ed3ac19cfb807ae2a4cd11eca02283a6ebe526db8dda2f3c057cce1a2",
+      "bridge/management/commands/work.py": "1f4234a6d38f410083a8042c3aca6617157ebe2a916eec9518813fc640487aa7",
+      "bridge/middleware.py": "7c70a96234548dd2a21a08c2ecf45b555965761ce54610e62f8288e607d2bbd0",
+      "bridge/migrations/0001_initial.py": "0191ffc4022861baadbc4d9a7fcce90bb30e684e91037397b8003b75944afa70",
+      "bridge/migrations/0002_ingestkey_environment.py": "91512ffd11f6d959a74612f31d2196ff01a41d9b363ed9a07072cbbb104b05a1",
+      "bridge/migrations/0003_event_source_ingestkey_source.py": "c557504bcbe1bc6bf241799c868e74f80761021cf52cb7558017694dce5e368d",
+      "bridge/migrations/0004_scanner_findings.py": "26fac1ea123080ea25795368e9e7f2655e513f854329f548d791edf2f348675b",
+      "bridge/migrations/0005_event_received_index.py": "a89c6390a61c2bfe0d0ca517f5181247497f5745d8b26cb43c1f5ee5c02b3761",
+      "bridge/migrations/0006_analyst_practice.py": "0f2e7d70208147a59ab9d0f83ef4b31fe1780c82ee7e32fe506572e331b3831c",
+      "bridge/migrations/0007_soc_delivery.py": "18816e8d6931d615235bd24feac46ecdf5e53960f2ab09db2d79268e4b6b34ef",
+      "bridge/migrations/0008_membership_assertions.py": "60045e1e3719cb08403533c7d082c01118dd9f69ab3d94f23b3f9be93b84b978",
+      "bridge/migrations/0009_enterprise_processing.py": "57b0005214c41df1b11d25f3da87cc65cb4218e832615a816cc8360ee9991e1c",
+      "bridge/migrations/0010_alter_event_source_alter_ingestkey_source.py": "7874fadaaf0b19476fd73ba98018cf64ce513e00206259d791fcb2192f741a93",
+      "bridge/migrations/0011_integration_asset_criticality_and_more.py": "1f6b95bfda1a8a307422dcc68fcba700e9b5c5a5463d17e0f29c1752ddccc007",
+      "bridge/migrations/0012_extended_correlation_indexes.py": "48fa7792f12259508a9b14631131d09d3fa0c2c746a9561b8c345b4cae375146",
+      "bridge/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bridge/models.py": "3f9e0bf1ef7b03d131a37d9229f40f90289dee6ba3f6982d74f87283fcd6e362",
+      "bridge/operations.py": "d29ae0f019c0e9fa19e34012cb100321040b8fe762a29d49a0fa5e21efa78a29",
+      "bridge/practice.py": "e6ad5c14c1131c827cf5c37b5c2ae3f204366f93ccf0e3a7b47d67878a6befed",
+      "bridge/practice_catalog.py": "6d4ffa674e14d01e4213191e2bef0df9e41375382a669f545e4462158788aa74",
+      "bridge/practice_views.py": "291b09e8e9bf8f3343051d06889a29e5bc7dc34770d42b5fa8b06877703fbf82",
+      "bridge/presentation.py": "cb66b46a35ccba6c956472f01b74e9557621f7f480a1c3bb8c8df50729bea2e1",
+      "bridge/recorded_practice.py": "f26ca9cea49255d8f52b59320151ab7b31d1d23d731c6c965cd456c4f0d4bd6c",
+      "bridge/runner.py": "c295f74ac702e5ffccb66d5244a23f68f89343cebc520509cca20556b815127b",
+      "bridge/runtime_identity.py": "fd1ba260b80473410d30ac42212dced8ec57108ac9052249c6b8834228b817b3",
+      "bridge/scan_views.py": "bfec2700f21f9c3a118f233fb636a2d64dbd9ea99910262f586088597ea72c72",
+      "bridge/scanner_guidance.py": "b879e3e3f9ffa194bfe4899db43d24c035c7480ef58442add33d755795a8f180",
+      "bridge/scanner_reports.py": "f3f005e04532fae590ac7d929e4bd45aebca4750718dcc5b74cf18015e731371",
+      "bridge/service_api.py": "5a1c4e13dae456acb2fc130e8b3b8294b5ba72f34b836037384c48ae61c1ad81",
+      "bridge/services.py": "544d93713565a973695e205b1da136652c79ea8b43527a92bf90e0f4616904c0",
+      "bridge/simulation_evidence.py": "e91186a14e02fc752160756f47d5fb2f0e151186b8c302148af310f55b7ff39e",
+      "bridge/soc_delivery.py": "0c18ec4aa8b516bdbcab4c0a5940fc6eb160ae1c3ad2aa9cea3acff4a70c998b",
+      "bridge/soc_pilot_evidence.py": "ef6c30a183b2cd94f63485c04ee8f4885e4b4986775c534cdba4b9c8f5702e77",
+      "bridge/soc_presentation.py": "2ccd3d11d933a5b7f91879903b6889575bd0d93268a52a944b279922bc62054f",
+      "bridge/templatetags/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bridge/templatetags/console.py": "4556e77ff0c512ed7d88521b5da88934f630abb29cedbaf98fa091a89f1f1b18",
+      "bridge/views.py": "656b013aae08c7f95faa345296cb00c0094529c7f44fcd6660a224d8b7439273",
+      "bridge/wazuh_backfill_evidence.py": "90aac200cc2233953178f0eccd140aa7f43ef13e49acab018c7613f03c8c09cc",
+      "bridge/wazuh_backfill_presentation.py": "82049b9441726f0f4c68a1c3279efe6c91427bbe3e0d689d044fd8f205ac8c6b",
+      "bridge/worker.py": "cfbb35a00e705f99f2833ede97d0ce7304c403f0dac085fe58b1add5776fa7ca",
+      "bridge/zap_repeat_evidence.py": "b581031fd37c6685b767a11ce6465dd89442535c75c90c4790fb59b1ee0c2a9a",
+      "bridge/zap_repeat_presentation.py": "9b375dbe22e15e29784c3710bf7fd0bf4982bdd885fe1705a5c5038b4b88e17e",
+      "bridge/zap_report.py": "c6fec3bcd9e4c835915a11f37ed2c84079a9f5706bddce5567e6d10a47bc80dd",
+      "config/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "config/in_network_postgres_settings.py": "47691e5580facd1a26294f3c006fddb0d9b7bb37785edf07ac990ca6e74a1ede",
+      "config/postgres_verification_settings.py": "846a7e661c76352e2cb42a1eb889a02a7dcede43b8fe0a13e29c7dd04829bc9c",
+      "config/reference_verification_settings.py": "c1727c685ef0f128ddf2ebeb57642b15a8c50cfb8ea76357e14fc9e3b8b34198",
+      "config/settings.py": "50d2914e40f8f07bdbf01181fedb1cc497ae74f27fce6cb43ac0549e8c8a1842",
+      "config/simulation_settings.py": "cc733e9b23c9834d7a946513551a947e8f74b02faf4434b747d8bb659724d59a",
+      "config/urls.py": "b86b8baf1e1ca61741468b1727c1faf7d3f0e49d71297334d3c51a4837c1c14a",
+      "config/verification_settings.py": "cbf11732be76b86af068d602b45f26a748c01db4b97782cfac9c439199a39175",
+      "config/wsgi.py": "3ec180da0813eed5af7efbbf4f0e787e6d3f2e4ef8b9fe55626b9a54d4acf438",
+      "scripts/evaluate_detection.py": "fc69f2f7d28f8167b28eae85efb1e6fad9e468eedb328d951165dbf29d3cc7e7",
+      "scripts/evaluate_enterprise_detection.py": "df42452336b8a78c98b6abf607300b77537c5072d777d045694e51b7e966c0d1",
+      "scripts/run_enterprise_lab.py": "3f8991879f9a451183eb8e0f6a8c722acc55fbf2cf7bebdc2bb519d64fbce8e9"
+    },
+    "normalization": "CRLF to LF only",
+    "independent_holdout": false
+  },
+  "declaration": {
+    "round_id": "bd1b1597-e309-4eb3-8460-bdbf26018cd4",
+    "declared_at": "2026-10-02T01:05:03.714343+00:00",
+    "inputs_sha256": "a246cef144fb2ae4ff50b575f1b7c401949ea8164fe6ae28878aa3be58b94fcc",
+    "labels_sha256": "7cc3519f1b44fe98e058b308e14e37e2755b6b2befeccd8c6184f1030fb5f11c",
+    "authorship": "AI/builder-authored selected scenarios, reused from the first enterprise round after a formatting-only migration correction; not blind, independent or additional statistical evidence.",
+    "prior_round": "fixtures/enterprise_detection_evaluation/round-20261001",
+    "reason": "Migration formatting and evaluator dataset path changed; prior freeze and receipt remain unchanged."
+  },
+  "rule_versions": {
+    "R3": "resource-membership-v1",
+    "R1": "rolling-v2",
+    "R2": "source-revocation-v1",
+    "R4": "bounded-denials-v1",
+    "R5": "bounded-denials-v1"
+  },
+  "unit": "One declared scenario; any final active detection is a positive prediction.",
+  "metrics": {
+    "tp": 15,
+    "fp": 6,
+    "fn": 8,
+    "tn": 12,
+    "scored_scenarios": 41,
+    "suspicious_scenarios": 23,
+    "benign_scenarios": 18,
+    "inconclusive_scenarios": 7,
+    "precision": {
+      "numerator": 15,
+      "denominator": 21,
+      "value": 0.7142857142857143
+    },
+    "recall": {
+      "numerator": 15,
+      "denominator": 23,
+      "value": 0.6521739130434783
+    },
+    "false_positive_rate": {
+      "numerator": 6,
+      "denominator": 18,
+      "value": 0.3333333333333333
+    }
+  },
+  "initial_metrics": {
+    "tp": 15,
+    "fp": 7,
+    "fn": 8,
+    "tn": 11,
+    "scored_scenarios": 41,
+    "suspicious_scenarios": 23,
+    "benign_scenarios": 18,
+    "inconclusive_scenarios": 7,
+    "precision": {
+      "numerator": 15,
+      "denominator": 22,
+      "value": 0.6818181818181818
+    },
+    "recall": {
+      "numerator": 15,
+      "denominator": 23,
+      "value": 0.6521739130434783
+    },
+    "false_positive_rate": {
+      "numerator": 7,
+      "denominator": 18,
+      "value": 0.3888888888888889
+    }
+  },
+  "workload": {
+    "initial_cases_for_review": 24,
+    "final_active_cases": 23,
+    "corrected_cases": 1,
+    "physical_requests": 181,
+    "logical_events": 174,
+    "duplicate_requests": 7
+  },
+  "scenarios": [
+    {
+      "id": "Q01",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R3"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "973e3728-edb4-54b4-a75a-a465ee061c8f",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "ecaf02df-558f-5ed1-ab40-ff023637736b",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R3"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R3",
+          "priority": "high",
+          "version": 1,
+          "evidence_events": 2
+        }
+      ],
+      "title": "Effective permission removed, private read succeeds",
+      "label": "suspicious",
+      "rationale": "Synthetic truth: removal withdraws all effective rights and known private content is returned. No source suspicious-read reason is supplied."
+    },
+    {
+      "id": "Q02",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R3"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "18a96a70-f917-5ddb-a3b5-a0e5584d830c",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "08c6ed4a-f716-531c-bacf-7462e062c624",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R3"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R3",
+          "priority": "high",
+          "version": 1,
+          "evidence_events": 2
+        }
+      ],
+      "title": "Removal telemetry delivered after successful read",
+      "label": "suspicious",
+      "rationale": "Same failed boundary with delayed change delivery. Arrival order differs from occurrence order."
+    },
+    {
+      "id": "Q03",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R3"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 4,
+      "physical_requests": 4,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "d42aebe7-5b99-5abe-b7e3-3dde4a84b0e4",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "53b0af3d-42b0-588b-b85c-36f215b4c9c1",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "b1a4b02d-a091-58db-894e-6b67f6ccf8fc",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "e8812a8b-2024-50f7-bd15-5353fa0518ad",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R3"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R3",
+          "priority": "high",
+          "version": 1,
+          "evidence_events": 2
+        }
+      ],
+      "title": "Re-grant followed by a second removal",
+      "label": "suspicious",
+      "rationale": "The last effective state is removed before the private read."
+    },
+    {
+      "id": "Q04",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R3"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "3d8d3d1c-21a9-5e76-909d-620fabea11b0",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "50ecd25d-cc9c-5abb-bb78-bc8bc9ec63b4",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R3"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R3",
+          "priority": "high",
+          "version": 1,
+          "evidence_events": 2
+        }
+      ],
+      "title": "Exact 24-hour revocation horizon",
+      "label": "suspicious",
+      "rationale": "The account has no rights and reads the known private content exactly 24 hours later."
+    },
+    {
+      "id": "Q05",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "8d698035-9756-5c0e-ac7f-512cc2209acb",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "a1966a3c-5c2e-595f-9773-4d86c15f276e",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Read beyond the 24-hour horizon",
+      "label": "suspicious",
+      "rationale": "Unauthorized read is still real in the oracle scenario, but beyond R3 support. Preserve the miss."
+    },
+    {
+      "id": "Q06",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 1,
+      "physical_requests": 1,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "f4a030b9-173f-5faf-803a-779bc4f51627",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Removal event missing from an unauthorized read",
+      "label": "suspicious",
+      "rationale": "Oracle knows permission was removed; the detector receives only an ordinary allowed read. Missing telemetry prevents inference."
+    },
+    {
+      "id": "Q07",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R2"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 1,
+      "physical_requests": 1,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "b8996550-331f-5559-96ab-f30494f247e7",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R2"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R2",
+          "priority": "critical",
+          "version": 1,
+          "evidence_events": 1
+        }
+      ],
+      "title": "Source-labeled revocation read",
+      "label": "suspicious",
+      "rationale": "Synthetic source correctly reports returned content after removal. This measures R2 reliance on the source reason."
+    },
+    {
+      "id": "Q08",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R2"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 1,
+      "physical_requests": 2,
+      "duplicate_requests": 1,
+      "deliveries": [
+        {
+          "event_id": "ec61486f-3d51-5dfc-a78f-92f49bc41d3b",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R2"
+          ]
+        },
+        {
+          "event_id": "ec61486f-3d51-5dfc-a78f-92f49bc41d3b",
+          "http_status": 200,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R2"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R2",
+          "priority": "critical",
+          "version": 1,
+          "evidence_events": 1
+        }
+      ],
+      "title": "Controlled boundary defect and duplicate delivery",
+      "label": "suspicious",
+      "rationale": "The fixed synthetic defect returns private content. Repeat carries the exact same event identity and must not create a second case."
+    },
+    {
+      "id": "Q09",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "04dccf69-fc91-5ed8-bd37-3290995e4c9a",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "e51a8585-9b7e-5857-a89a-f138a2a29e37",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Owner remains authorized after group removal",
+      "label": "benign",
+      "rationale": "Owner rights preserve effective access. Source correctly asserts granted and records the owner read."
+    },
+    {
+      "id": "Q10",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "e0a61a74-ba12-5484-827c-a9756a3d83ad",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "839dc7f5-7e1b-5beb-a5b4-0e0beb3c3c63",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Alternate direct grant remains valid",
+      "label": "benign",
+      "rationale": "Effective access remains granted despite group removal, so there is no revocation assertion."
+    },
+    {
+      "id": "Q11",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 3,
+      "physical_requests": 3,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "ae1cec31-c0db-5708-9c95-6aad0de429d6",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "cb7c039e-ab2b-5f3a-a8d9-b789fe83b3ba",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "c4103b0f-ca8d-5b04-ae21-4175097f635a",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Re-grant occurs before read",
+      "label": "benign",
+      "rationale": "The last effective membership state grants access before the read."
+    },
+    {
+      "id": "Q12",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "33058fc0-ac07-586a-9fc0-a496deb59126",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "fe2fc58c-2a6d-5bba-b711-76f06697c7c0",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Removal affected a different subject",
+      "label": "benign",
+      "rationale": "Reader retains membership; operator identity is not the removed subject."
+    },
+    {
+      "id": "Q13",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "cd9dc9c5-0081-5fcc-b592-bbc47dbb4c12",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "2b4a1913-3949-5e16-8f21-be0ed204a93e",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Removal concerns a different resource",
+      "label": "benign",
+      "rationale": "The reader remains allowed for this other resource."
+    },
+    {
+      "id": "Q14",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "c62b400c-0f41-56ab-ac7e-969cdd570082",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "7d7f9b08-40a8-5e3b-b415-026f5b90eb28",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "expenses",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Two business apps do not share revocation",
+      "label": "benign",
+      "rationale": "Documents removal cannot revoke the independent expense resource, even with identical test pseudonyms."
+    },
+    {
+      "id": "Q15",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "4ba8cec2-b26d-52ee-b8d5-641f65dd250f",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "55896bb5-93c2-5b72-ba33-dcc6fd36c5b5",
+          "http_status": 202,
+          "source": "synthetic_demo",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Source provenance classes do not combine",
+      "label": "benign",
+      "rationale": "The read belongs to a different collector class and has independent legitimate rights."
+    },
+    {
+      "id": "Q16",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 3,
+      "physical_requests": 3,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "501ab73f-a212-5da9-91a3-5e0fd5918220",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "bb50c30b-464c-5565-9e5d-0cd06a55d740",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "d7cd28bb-641e-5acf-b824-36888d0a947d",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Removed member receives explicit denial",
+      "label": "benign",
+      "rationale": "The observed denial is the intended permission behavior; the owner control is a separate allowed account."
+    },
+    {
+      "id": "Q17",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R3"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "b5123d8e-5b77-5894-a097-58c1802a51ec",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "ed6e2fec-2ed2-5233-b6d9-8f58ec1349e9",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R3"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R3",
+          "priority": "high",
+          "version": 1,
+          "evidence_events": 2
+        }
+      ],
+      "title": "Alternate grant not emitted to monitoring",
+      "label": "benign",
+      "rationale": "Oracle rights are legitimate, but missing re-grant telemetry is indistinguishable from a failed boundary. Keep the false alert."
+    },
+    {
+      "id": "Q18",
+      "alerted": false,
+      "initial_alerted": true,
+      "rules": [],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 0,
+      "corrected_cases": 1,
+      "logical_events": 3,
+      "physical_requests": 3,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "18c6fe5b-1712-50f5-854a-5e82a9e080e4",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "1afc8b65-8dca-51ed-b626-3373d374026a",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R3"
+          ]
+        },
+        {
+          "event_id": "b2d003b9-2468-566a-8e04-324eca3ef20d",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R3",
+          "priority": "medium",
+          "version": 2,
+          "evidence_events": 3
+        }
+      ],
+      "title": "Late re-grant corrects an earlier alert",
+      "label": "benign",
+      "rationale": "Re-grant actually occurred before access but arrives last. Initial analyst workload and correction must both be retained."
+    },
+    {
+      "id": "Q19",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "44a06ec4-a59d-533e-9843-ec7f58d07e17",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "ee8ec8ba-ca90-57c5-b193-c00db56f6fab",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Simultaneous removal and successful read",
+      "label": "inconclusive",
+      "rationale": "Equal timestamps cannot establish which source operation committed first."
+    },
+    {
+      "id": "Q20",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 3,
+      "physical_requests": 3,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "f31b481f-3df6-5625-aee9-727f37209c33",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "f895b9e0-1299-5c75-b8ba-67e6b2aead5e",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "a17ac653-d98d-5f5a-a493-37519cb29b37",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Conflicting membership assertions at same instant",
+      "label": "inconclusive",
+      "rationale": "Tied grant and removal telemetry does not establish effective state."
+    },
+    {
+      "id": "Q21",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "8a2bf56a-d8e8-5c59-865a-95cdf29bc694",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "a20dc6d3-6ef5-5ec0-9380-d6193ca417be",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Service failure after removal",
+      "label": "inconclusive",
+      "rationale": "A dependency failure cannot verify denial or disclosure."
+    },
+    {
+      "id": "Q22",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "9b29f076-25d1-5eb5-ab85-eac251f2195b",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "2255c1a8-1445-571b-86ca-3e0aca511488",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Not-visible result after removal",
+      "label": "inconclusive",
+      "rationale": "An absent result lacks independent record existence and owner controls; it is not proof of denial."
+    },
+    {
+      "id": "Q23",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 2,
+      "physical_requests": 2,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "0b914a13-fe66-5b6a-95a2-207a0d9a77fc",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "1fec3437-df47-5f55-a5e2-155f30e0124b",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Legacy membership lacks subject relationship",
+      "label": "inconclusive",
+      "rationale": "v1 change lacks the affected subject and effective resource relation. No invented correlation is allowed."
+    },
+    {
+      "id": "Q24",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 1,
+      "physical_requests": 1,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "ea4846b9-14f4-5753-b0b4-a030e94b347e",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Permission change with missing read telemetry",
+      "label": "inconclusive",
+      "rationale": "No observed access result exists after removal. An empty queue is not a successful security test."
+    },
+    {
+      "id": "Q25",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R4"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 5,
+      "physical_requests": 5,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "14f654e3-9fbb-5b4c-aedc-5c32e0276e94",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "a4cdba75-f7b1-5476-b439-a828ecd0361e",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "72bc6aef-e150-5415-ad57-95a08f7e73f7",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "c1d707c7-8c7b-5bca-9279-40a550255a91",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "3b34ee70-12b4-5c67-ac50-2d597d188840",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R4"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R4",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 5
+        }
+      ],
+      "title": "Extended probing across five resources",
+      "label": "suspicious",
+      "rationale": "Oracle intent is unauthorized probing. Five denials span more than ten minutes, each separated enough to avoid R1."
+    },
+    {
+      "id": "Q26",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R4"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 5,
+      "physical_requests": 5,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "28862c6c-83fc-5918-9251-f9bcafa074de",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "ebb50143-acde-5b87-8b26-4a4c42fe15d5",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "8ee9f023-4dad-5aea-8b37-e0416db7371a",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "50919da6-3981-5d02-a069-861a89d2420b",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "1c772419-8154-516a-869c-b5d30a566ee9",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R4"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R4",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 5
+        }
+      ],
+      "title": "Slow probing arrives in reverse order",
+      "label": "suspicious",
+      "rationale": "Same scenario truth as extended probing, with inverted delivery order and late predecessors."
+    },
+    {
+      "id": "Q27",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R1",
+        "R4"
+      ],
+      "initial_cases_for_review": 3,
+      "final_active_cases": 3,
+      "corrected_cases": 0,
+      "logical_events": 5,
+      "physical_requests": 5,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "c152127b-d167-52f7-a72c-69d75648a776",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "9a9bf905-d7a9-5d0e-92c9-5dc9f4bb6250",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "3f357f60-3ab8-5e05-b525-eaf5d796444a",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R1"
+          ]
+        },
+        {
+          "event_id": "77653a25-8e59-5db9-be2a-bf560d5a160a",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R1"
+          ]
+        },
+        {
+          "event_id": "231761a6-8c5d-521a-b180-01182421c59b",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 3,
+          "active_rules": [
+            "R1",
+            "R4"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R1",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 3
+        },
+        {
+          "rule": "R1",
+          "priority": "medium",
+          "version": 2,
+          "evidence_events": 4
+        },
+        {
+          "rule": "R4",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 5
+        }
+      ],
+      "title": "Ten-minute minimum span boundary",
+      "label": "suspicious",
+      "rationale": "Extended denied probing meets the inclusive minimum-span condition. R1 overlap must remain visible."
+    },
+    {
+      "id": "Q28",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R4"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 5,
+      "physical_requests": 5,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "95b8a638-4718-57fd-abe7-d9cf6491ec8e",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "2af9f8ea-5a73-5ab5-936c-e273b2f09f2b",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "ade86c6d-34bb-5c9e-8fed-7c28fb7af3a3",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "155d21bc-4990-53b8-b5d0-dfcff45b4211",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "7baef16f-3b6a-503a-9d66-c6e4376e0c80",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R4"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R4",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 5
+        }
+      ],
+      "title": "Thirty-minute inclusive slow horizon",
+      "label": "suspicious",
+      "rationale": "Five resource denials fit exactly the supported thirty-minute horizon."
+    },
+    {
+      "id": "Q29",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 5,
+      "physical_requests": 5,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "56cc8194-5bb1-569b-84ee-4467c122259c",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "e649ba7e-844f-5959-9863-60d21adc214d",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "37aeed8c-9895-5aba-bf5b-aee841e30772",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "c0422551-229a-5842-8673-eed761738106",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "5ab93908-0e27-5c1d-8ae8-dc8ce1c3632d",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Extended probing beyond the slow horizon",
+      "label": "suspicious",
+      "rationale": "Oracle probing continues just beyond the supported window. Preserve any missed detection."
+    },
+    {
+      "id": "Q30",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 4,
+      "physical_requests": 4,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "f895ee6b-7046-5b85-a442-a05cc986da47",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "8297929d-2e57-51cf-b7e3-a029cffc1624",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "c1e03208-f584-53ac-bfbd-ac521f6cc1d2",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "691a09ba-badf-5793-b7b9-a67f45482e9c",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Four-resource slow probing under threshold",
+      "label": "suspicious",
+      "rationale": "Suspicious oracle activity is below the declared five-resource threshold; narrower coverage is reported honestly."
+    },
+    {
+      "id": "Q31",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R4"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 5,
+      "physical_requests": 5,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "becb3ff6-82c9-5a9d-b57c-d1f45c3923e9",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "020562a0-8a2d-5758-af64-eabe3e336f5a",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "9b635e18-41de-526e-8bc4-4fbdc816806a",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "31e6c720-5339-5eba-90bc-d7f119d70762",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "c6644b25-9f85-5518-81da-555e6fc6a34d",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R4"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R4",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 5
+        }
+      ],
+      "title": "Legitimate employee follows five stale links",
+      "label": "benign",
+      "rationale": "The same denials and cadence as Q25 come from a legitimate workflow. These fields cannot distinguish intent; keep the false alert."
+    },
+    {
+      "id": "Q32",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 5,
+      "physical_requests": 5,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "4f6bfab1-ac78-5aa6-abca-d392c8f6bb2f",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "def03a7e-cdbb-57cb-85d2-8dc7b8838510",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "8244a874-1a5d-526c-bbc5-36f8f4f8bade",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "6d45e592-2bde-53d8-9484-b54c15694fe7",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "5b450437-ebf5-5f76-a7c2-f5a96cf3ec8b",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Legitimate repeated denial of one resource",
+      "label": "benign",
+      "rationale": "A stale bookmark is retried by one account; it does not meet distinct-resource or actor thresholds."
+    },
+    {
+      "id": "Q33",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R4"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 5,
+      "physical_requests": 5,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "f257bc90-e7a9-5181-8dad-606f1ae235c3",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "9fcdcc9b-70b2-539d-9e1e-5e8cb69d5c7b",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "6b7ee314-a25c-5c98-b204-0a1487c71930",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "7ac573bc-bdda-5a4c-9ffc-8b9efe5c1e64",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "786a3e26-a010-5849-8c59-33534a479faf",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R4"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R4",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 5
+        }
+      ],
+      "title": "Approved test produces extended denials",
+      "label": "benign",
+      "rationale": "An approved internal test is indistinguishable from slow probing in current telemetry. Keep the resulting false alert."
+    },
+    {
+      "id": "Q34",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 5,
+      "physical_requests": 5,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "a10d9356-d96a-525c-a6c3-f0a2dc76790b",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "b4bfcdd0-92d4-5dfb-b9fc-50310ff72231",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "a6f7146a-d1c9-5274-a968-b5ec68a61405",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "1a511e73-9e40-55ea-adec-ad72fe21fc9b",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "0cc13177-31dc-57c3-97aa-88ab52035f39",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Unavailable responses over extended period",
+      "label": "inconclusive",
+      "rationale": "Records may be absent or inaccessible; there is no verified denial. R4 cannot treat not-visible as a denied read."
+    },
+    {
+      "id": "Q35",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R5"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 6,
+      "physical_requests": 6,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "f43fa2e7-9f3e-5150-9532-63429bc980c4",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "3658fc8b-4976-569e-942f-e60b9f261602",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "63a3115a-8e9b-535f-ba57-61c1c0b4ccd8",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "45113f19-021d-5cc4-8a20-831b2787af87",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "20084d43-aa56-5c10-ab70-345b42d07ca0",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "b7ed2e35-effd-5282-8c4a-1c7a10cf372f",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R5"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R5",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 6
+        }
+      ],
+      "title": "Six denied reads by three accounts",
+      "label": "suspicious",
+      "rationale": "Oracle scenario is shared unauthorized pressure on one private record. Observations alone do not establish coordination."
+    },
+    {
+      "id": "Q36",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R5"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 6,
+      "physical_requests": 6,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "d173ab6c-56eb-548f-8d97-689e0b6b6af3",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "9f1c9c6d-1934-55e7-bd8d-9aa702dbeeef",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "177d526e-2428-5fe3-ab68-bd837dc1fe07",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "7a992602-a804-5823-8506-99a69c001be7",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "a3db9e50-640a-5bb8-944a-f6663a2998d6",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "3060ec03-b00d-5160-a8e7-3ae90e828a7a",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R5"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R5",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 6
+        }
+      ],
+      "title": "Distributed denials delivered in reverse order",
+      "label": "suspicious",
+      "rationale": "Same shared resource pressure with late arrivals; one logical case should collect all evidence."
+    },
+    {
+      "id": "Q37",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R5"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 6,
+      "physical_requests": 6,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "543d25ba-82a0-5382-a6fe-bb1be5641bd2",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "edcfbe98-21bf-5692-9495-d252ce85cea1",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "d1fd2bad-cf76-598b-b51b-c55704764350",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "cfc51083-28fe-513a-8656-ec494db50817",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "bd6065f3-32e6-578d-9aca-7d3db648b875",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "7ecadfa0-50ed-52c6-bd3e-540a5d9e0012",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R5"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R5",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 6
+        }
+      ],
+      "title": "Ten-minute distributed horizon boundary",
+      "label": "suspicious",
+      "rationale": "Six reads involving three accounts fit exactly the inclusive ten-minute window."
+    },
+    {
+      "id": "Q38",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 6,
+      "physical_requests": 6,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "b6a0fa66-895e-5823-b40f-87e0a5aa049a",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "6db247af-241c-556e-b19f-dfa57536b77d",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "7001c361-1499-53ee-ba3c-99626222e92c",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "356c1fe0-876c-54f5-a0d9-fec87374fe7e",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "b036b580-6eb9-5eb8-8703-bb1b04e0430e",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "bdf1d80f-b539-555c-8cc9-34f4215d8ee2",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Distributed activity outside ten minutes",
+      "label": "suspicious",
+      "rationale": "Oracle probing persists outside the supported horizon. Keep the miss."
+    },
+    {
+      "id": "Q39",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 3,
+      "physical_requests": 3,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "114a02f1-8c94-5319-99fb-75c7062a7e8f",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "63de9670-dd9f-5dab-a384-ca6e67aeca55",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "daee3f4e-aca8-5f83-99cd-ce8b16a58af3",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Only one denial per account",
+      "label": "suspicious",
+      "rationale": "Three unauthorized probes share a resource but do not meet the six-request threshold."
+    },
+    {
+      "id": "Q40",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 6,
+      "physical_requests": 6,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "9b2644ee-0eaf-5258-9f39-4cfefe35a987",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "5b3244d0-59f6-5b67-bb78-0507e9110ec8",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "dcd67a72-7e62-5a11-a11e-9e07d55db48f",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "761b43d8-d933-5d20-806d-b76b5fdef937",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "d76a0680-77ac-5edf-8244-b99d307b46e8",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "d5b2dadd-72db-5e79-81ba-69222701712e",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Six denials involve only two accounts",
+      "label": "suspicious",
+      "rationale": "Unauthorized pressure remains below the declared three-account threshold."
+    },
+    {
+      "id": "Q41",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 6,
+      "physical_requests": 6,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "44fc216a-889e-5ddc-87d9-6d9f5aecdf97",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "b8bd1a90-777e-53d4-b4cb-38a867d64d7a",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "de23bb6b-0fe9-5d42-a5f7-a0f66a441f33",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "58aa4e40-9fce-522b-add3-64adc9d72ee8",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "4e7e9dbb-290c-59c7-b513-7b29a9e5c190",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "90557d7a-0915-5882-9e27-762b87721e73",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Distributed probes target different resources",
+      "label": "suspicious",
+      "rationale": "Each account touches two resources, so neither R1 nor the same-resource R5 pattern establishes this activity."
+    },
+    {
+      "id": "Q42",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R5"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 6,
+      "physical_requests": 6,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "92d95e6d-3cea-52c3-998e-6d9e6b624715",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "52530988-28ba-543b-8de9-50878ecab5c7",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "e0dff198-3228-5a94-ba6a-2172132b262a",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "01b7c30a-a856-534e-bafa-53b16168a108",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "64f9600a-e4fc-55a0-b841-d6602da94cd2",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "46c4c320-0aed-55d2-b832-f608107b44f5",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R5"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R5",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 6
+        }
+      ],
+      "title": "Three employees follow a shared stale link",
+      "label": "benign",
+      "rationale": "Legitimate users create exactly the same observations as Q35. Do not relabel this false alert as malicious."
+    },
+    {
+      "id": "Q43",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R5"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 6,
+      "physical_requests": 6,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "0d17c640-b064-56ef-9527-f801c8e5b977",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "320d93b4-64a6-5129-b8a5-cbb997b1f046",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "e4017317-b173-589f-b0d0-5f70e23fcbb5",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "69fb96a8-37d6-5871-98db-4f1d49321507",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "ebf4b8de-b6b7-5654-afb0-3d9bedf789e5",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "cc3845cf-2ea2-580f-b999-b52153a8fe54",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R5"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R5",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 6
+        }
+      ],
+      "title": "Legitimate group permission withdrawal",
+      "label": "benign",
+      "rationale": "All three users were legitimately removed and their repeated requests are correctly denied. R5 may flag review work; it is not disclosure."
+    },
+    {
+      "id": "Q44",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 6,
+      "physical_requests": 6,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "4028deac-a439-50e6-b639-7f10855d7bfe",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "f8e80817-cf40-5cfe-90a5-1ab08b273dc0",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "b6fd305e-2f66-5513-ac24-faaefe8a0109",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "4a76ead7-0e0b-5a8c-9d92-d7f87908b907",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "expenses",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "e40e362c-1088-570c-98a1-2df4f4c1759b",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "expenses",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "51802488-f279-5f56-ac5e-dbc19376e66e",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "expenses",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Distributed threshold splits across apps",
+      "label": "benign",
+      "rationale": "Each of two independent business applications receives only three denials from a benign test. Their counts must not merge."
+    },
+    {
+      "id": "Q45",
+      "alerted": false,
+      "initial_alerted": false,
+      "rules": [],
+      "initial_cases_for_review": 0,
+      "final_active_cases": 0,
+      "corrected_cases": 0,
+      "logical_events": 6,
+      "physical_requests": 6,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "8eacb20d-0474-59a6-a566-af4f1e3f2a91",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "723d821d-7424-562a-baa3-935175b0d817",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "e5a55757-c914-5074-9fed-ca971bb83070",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "00eb1a68-44d8-562e-9f51-f79a39c1ac54",
+          "http_status": 202,
+          "source": "synthetic_demo",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "8b9cdc43-c876-5170-b248-baf749e8325e",
+          "http_status": 202,
+          "source": "synthetic_demo",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "eb10631a-e215-5591-9e44-f9ba0b4848b4",
+          "http_status": 202,
+          "source": "synthetic_demo",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        }
+      ],
+      "cases": [],
+      "title": "Distributed threshold splits across source classes",
+      "label": "benign",
+      "rationale": "Two distinct source classes each contain three benign test requests; no combined threshold is authorized."
+    },
+    {
+      "id": "Q46",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R5"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 6,
+      "physical_requests": 12,
+      "duplicate_requests": 6,
+      "deliveries": [
+        {
+          "event_id": "1eda7835-834b-5b0d-8465-982f0019c071",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "8456f075-81fd-5352-827c-211d3caddb6f",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "8e88fddf-4087-52d3-9ef0-f561daee62fb",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "0f735453-78aa-5c7f-86f4-116687fef96e",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "9941de49-3c91-50ea-9e38-7ff27fe8b8ea",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "7a81aa79-3c0f-50f7-8ef2-6ef41d4fc3ab",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R5"
+          ]
+        },
+        {
+          "event_id": "1eda7835-834b-5b0d-8465-982f0019c071",
+          "http_status": 200,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R5"
+          ]
+        },
+        {
+          "event_id": "8456f075-81fd-5352-827c-211d3caddb6f",
+          "http_status": 200,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R5"
+          ]
+        },
+        {
+          "event_id": "8e88fddf-4087-52d3-9ef0-f561daee62fb",
+          "http_status": 200,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R5"
+          ]
+        },
+        {
+          "event_id": "0f735453-78aa-5c7f-86f4-116687fef96e",
+          "http_status": 200,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R5"
+          ]
+        },
+        {
+          "event_id": "9941de49-3c91-50ea-9e38-7ff27fe8b8ea",
+          "http_status": 200,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R5"
+          ]
+        },
+        {
+          "event_id": "7a81aa79-3c0f-50f7-8ef2-6ef41d4fc3ab",
+          "http_status": 200,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R5"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R5",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 6
+        }
+      ],
+      "title": "Lost replies retry distributed observations",
+      "label": "suspicious",
+      "rationale": "Six logical denied reads are retried individually. Twelve physical requests must remain six events and one R5 case."
+    },
+    {
+      "id": "Q47",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R1"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 3,
+      "physical_requests": 3,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "35839528-0f94-564a-a7d4-e67cb7e1a25c",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "d5a04f06-0da4-5ddc-84df-608796d576fc",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "700a1d9b-8819-5fee-bcc1-ec3675efaeb7",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R1"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R1",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 3
+        }
+      ],
+      "title": "Fast unauthorized private-resource probing",
+      "label": "suspicious",
+      "rationale": "Three denied private resources by one actor satisfy the preserved R1 rule."
+    },
+    {
+      "id": "Q48",
+      "alerted": true,
+      "initial_alerted": true,
+      "rules": [
+        "R1"
+      ],
+      "initial_cases_for_review": 1,
+      "final_active_cases": 1,
+      "corrected_cases": 0,
+      "logical_events": 3,
+      "physical_requests": 3,
+      "duplicate_requests": 0,
+      "deliveries": [
+        {
+          "event_id": "6419859a-001b-543a-a4fa-4ebb6ccd7dbf",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "3992e553-73b6-51e4-a371-ddca4f78aa44",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 0,
+          "active_rules": []
+        },
+        {
+          "event_id": "e34a2543-01f9-556c-a589-8c397e0d87ca",
+          "http_status": 202,
+          "source": "instrumented_lab",
+          "app_scope": "documents",
+          "active_case_count": 1,
+          "active_rules": [
+            "R1"
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R1",
+          "priority": "medium",
+          "version": 1,
+          "evidence_events": 3
+        }
+      ],
+      "title": "Three legitimate stale private links",
+      "label": "benign",
+      "rationale": "A legitimate actor produces the same R1 observations as unauthorized probing. Preserve the false alert and analyst workload."
+    }
+  ],
+  "limits": [
+    "Builder-authored selected synthetic scenarios, not an independent holdout or production benchmark.",
+    "Oracle labels are joined after predictions; authors knew the rules, so this is not blindness.",
+    "Inconclusive cases are excluded from binary metrics but retained in workload and results.",
+    "Initial review workload includes alerts later corrected; no false alert is relabeled to improve accuracy.",
+    "Django signed in-process requests and memory-only SQLite; no native source, tool, enterprise identity, latency SLA or soak proof."
+  ]
+}

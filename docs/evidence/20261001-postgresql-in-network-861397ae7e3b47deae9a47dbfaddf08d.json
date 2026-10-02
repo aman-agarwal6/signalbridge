@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-native-in-network-postgresql",
+  "run_id": "861397ae7e3b47deae9a47dbfaddf08d",
+  "approval_reference": "call_H3KllLzCpps3RLux73ir4LJ6",
+  "status": "incomplete",
+  "started_at": "2026-10-01T23:39:54.328636+00:00",
+  "images": {
+    "database": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "runner": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+  },
+  "source_sha256": "fdd7c93c39eef3d0dbe213d6365466fc3f49540a3d74f804d322465b25f0d9b0",
+  "source_snapshot": {
+    "source_sha256": "fdd7c93c39eef3d0dbe213d6365466fc3f49540a3d74f804d322465b25f0d9b0",
+    "file_count": 316,
+    "bytes": 2652687
+  },
+  "initial_free_disk_bytes": 80498424546,
+  "free_disk_before_bytes": 74904903680,
+  "free_memory_before_bytes": 5530271744,
+  "stage_growth_ceiling_bytes": 8589934592,
+  "limits": [
+    "Component concurrency and killed-process transaction checks only; no source HTTP, enterprise TLS, identity, security-tool or 24-hour proof.",
+    "Two internal containers, one GiB combined memory, no published ports or external runtime network.",
+    "Wheel files are installed into disposable bounded container tmpfs; no host installation or new built image.",
+    "Host storage monitoring detects limits; it is not a hard quota or an allocation guarantee."
+  ],
+  "download": {
+    "wheel_count": 6,
+    "downloaded_bytes": 14200997
+  },
+  "error_class": "LabControlError",
+  "error_code": "Internal native startup failed.",
+  "stopped_component_count": 1,
+  "shutdown_verified": true,
+  "independent_shutdown_verified": true,
+  "finished_at": "2026-10-01T23:39:59.438544+00:00",
+  "duration_seconds": 5.11,
+  "free_disk_after_bytes": 74885922816,
+  "source_unchanged": true,
+  "acceptance_passed": false
+}

@@ -422,7 +422,10 @@ class VerificationEvidenceTests(TestCase):
                 "node-bettail-route-mock-tests": "integrations/bettail-routes.test.mjs",
             },
         )
-        self.assertEqual(checks[0][1][1:], ["manage.py", "test", "tests", "--verbosity", "1"])
+        self.assertEqual(
+            checks[0][1][1:],
+            ["manage.py", "test", "tests", "--exclude-tag", "native_postgres", "--verbosity", "1"],
+        )
         for name, command, timeout in checks:
             if name in evidence.NODE_TEST_TARGETS:
                 self.assertEqual(

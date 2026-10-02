@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-native-in-network-postgresql",
+  "run_id": "60d537d6368647da98033b074795b184",
+  "approval_reference": "call_cs46ZyeapBylPsMAB6Bgx2AM",
+  "status": "failed",
+  "started_at": "2026-10-02T00:22:37.555571+00:00",
+  "images": {
+    "database": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "runner": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+  },
+  "source_sha256": "5f01358c058d1c9ddffc8e0a526df859b03468421cc9f2c811a67a039aa60920",
+  "source_snapshot": {
+    "source_sha256": "5f01358c058d1c9ddffc8e0a526df859b03468421cc9f2c811a67a039aa60920",
+    "file_count": 315,
+    "bytes": 2661401
+  },
+  "initial_free_disk_bytes": 80498424546,
+  "free_disk_before_bytes": 75533312000,
+  "free_memory_before_bytes": 8638078976,
+  "stage_growth_ceiling_bytes": 12884901888,
+  "limits": [
+    "Component concurrency and killed-process transaction checks only; no source HTTP, enterprise TLS, identity, security-tool or 24-hour proof.",
+    "Two internal containers, one GiB combined memory, no published ports or external runtime network.",
+    "Wheel files are installed into disposable bounded container tmpfs; no host installation or new built image.",
+    "Host storage monitoring detects limits; it is not a hard quota or an allocation guarantee."
+  ],
+  "download": {
+    "wheel_count": 6,
+    "downloaded_bytes": 0,
+    "reused_bytes": 14200997,
+    "cache_run": "861397ae7e3b47deae9a47dbfaddf08d"
+  },
+  "parsed_configuration_verified": true,
+  "startup_log_sha256": "2e8cae475163a931cdaacabcdaa51c963dda3c8b1d8b2d4398e48469eef90544",
+  "runtime_isolation_verified": true,
+  "tests": null,
+  "test_log_sha256": "afc0d7d0d72debabbe3502b833e1ba27ce790437b5a9a4ef36096008ce51b459",
+  "python_version": "3.14.7",
+  "diagnostic_log_sha256": "7037c21c3886c8c57a2d5937c92d8ca9365338bf05e04504173d4c0818029d46",
+  "stopped_component_count": 2,
+  "shutdown_verified": true,
+  "independent_shutdown_verified": true,
+  "finished_at": "2026-10-02T00:22:54.085472+00:00",
+  "duration_seconds": 16.53,
+  "free_disk_after_bytes": 75477966848,
+  "source_unchanged": true,
+  "acceptance_passed": false
+}

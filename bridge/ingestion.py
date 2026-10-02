@@ -66,6 +66,10 @@ def ingest(request, app):
             raise ContractError("Credential environment mismatch.")
     except (ContractError, TypeError):
         return reject("Invalid event contract.", 400)
+    if data["schema_version"] == 2 and not key.can_assert_membership:
+        return reject("Credential cannot assert membership state.", 403)
+    if key.source not in {value for value, _ in IngestKey._meta.get_field("source").choices}:
+        return reject("Invalid authentication.", 401)
     with transaction.atomic():
         # Serializes this app's acceptance/rate check on PostgreSQL.
         integration = Integration.objects.select_for_update().get(pk=integration.pk)
@@ -80,7 +84,13 @@ def ingest(request, app):
             current_key is None
             or any(
                 getattr(current_key, field) != getattr(key, field)
-                for field in ("key_id", "secret_env", "environment", "source")
+                for field in (
+                    "key_id",
+                    "secret_env",
+                    "environment",
+                    "source",
+                    "can_assert_membership",
+                )
             )
             or not hmac.compare_digest(
                 os.environ.get(current_key.secret_env, "").encode(), secret.encode()
@@ -109,6 +119,9 @@ def ingest(request, app):
             event_id=data["event_id"],
             occurred_at=timestamp(data["occurred_at"]),
             actor=data["actor"],
+            membership_subject=(
+                data["membership"]["subject"] if data["schema_version"] == 2 else ""
+            ),
             resource=data["resource"],
             episode=data["episode"],
             operation=data["operation"],

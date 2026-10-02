@@ -1,0 +1,805 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-membership-evaluation-v1",
+  "executed_at": "2026-09-29T23:32:39.486562+00:00",
+  "duration_seconds": 1.679,
+  "implementation": {
+    "schema_version": 1,
+    "frozen_at": "2026-09-29T23:31:40.248244+00:00",
+    "files": {
+      "bridge/engine.py": "ec78307415488ecc11fbd0de08bf6c84c7f8743aff4d770424f3ad39550d7830",
+      "bridge/contract.py": "812a90a8c3b5833d22fcf833465d1d4fa8c8690d17d478959a67988ef0558647",
+      "bridge/worker.py": "d2c95349a50b5c782e5ae6e4a2892fce327b3259ac22d8505822414d4a42032a",
+      "bridge/ingestion.py": "b819e74332660b4c89cb89baa2eba8fb743463b78cf144bd1751952d75158d5c",
+      "bridge/models.py": "cfe859216c55bf1ce356a8a3d7aa854b0924fe694033e08c53d031ca8618007c",
+      "bridge/case_provenance.py": "82f420000a35347464718671154d35228465e2b77e406c7ecf0cbc581a1927f8",
+      "bridge/detection_catalog.py": "c14847d96f0a4e6fb2ece141d91ada17d17187ce0c9201a8fce0f67e76c15095",
+      "config/simulation_settings.py": "cc733e9b23c9834d7a946513551a947e8f74b02faf4434b747d8bb659724d59a",
+      "scripts/evaluate_detection.py": "fc69f2f7d28f8167b28eae85efb1e6fad9e468eedb328d951165dbf29d3cc7e7"
+    },
+    "normalization": "CRLF to LF only",
+    "independent_holdout": false,
+    "scope": "Builder-operated pre-evaluation freeze; no third-party attestation."
+  },
+  "declaration": {
+    "declared_at": "2026-09-29T23:32:39.034786+00:00",
+    "inputs_sha256": "0938a366767028269150af290c1a8b61f7823ea9a7d3f240470bb531f89f95bd",
+    "labels_sha256": "a30b7fe8c36c4db1d72e001e54b3282c762b05f6ccc1618e57dda5fb2cd2cb92",
+    "authorship": "AI/builder-authored after implementation freeze; not independent or blind."
+  },
+  "inputs_sha256": "0938a366767028269150af290c1a8b61f7823ea9a7d3f240470bb531f89f95bd",
+  "labels_sha256": "a30b7fe8c36c4db1d72e001e54b3282c762b05f6ccc1618e57dda5fb2cd2cb92",
+  "unit": "one scenario; any active detection is a positive prediction",
+  "metrics": {
+    "tp": 6,
+    "fp": 2,
+    "fn": 2,
+    "tn": 8,
+    "scored_scenarios": 18,
+    "suspicious_scenarios": 8,
+    "benign_scenarios": 10,
+    "inconclusive_scenarios": 4,
+    "precision": {
+      "numerator": 6,
+      "denominator": 8,
+      "value": 0.75
+    },
+    "recall": {
+      "numerator": 6,
+      "denominator": 8,
+      "value": 0.75
+    },
+    "false_positive_rate": {
+      "numerator": 2,
+      "denominator": 10,
+      "value": 0.2
+    }
+  },
+  "scenarios": [
+    {
+      "id": "E01",
+      "alerted": true,
+      "rules": [
+        "R3"
+      ],
+      "case_count": 1,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "5d51cb89-f382-542a-9d79-0eb9674069f7",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "809ac5bb-d5f6-5c3c-a5b9-2cec40d431ed",
+          "offset_seconds": 7,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R3",
+          "priority": "high",
+          "title": "Allowed read after correlated membership removal",
+          "evidence_events": 2,
+          "version": 1
+        }
+      ],
+      "title": "Private read after recorded removal",
+      "label": "suspicious",
+      "rationale": "Scenario truth: the affected member has no alternate permission and private content is returned after removal."
+    },
+    {
+      "id": "E02",
+      "alerted": true,
+      "rules": [
+        "R3"
+      ],
+      "case_count": 1,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "4dbaaec2-7133-5737-956c-9784b0ce9281",
+          "offset_seconds": 7,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "90ccf919-a695-52fd-9e66-d07afea59d78",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R3",
+          "priority": "high",
+          "title": "Allowed read after correlated membership removal",
+          "evidence_events": 2,
+          "version": 1
+        }
+      ],
+      "title": "Removal arrives after the read",
+      "label": "suspicious",
+      "rationale": "Same unauthorized read as E01, but telemetry arrives out of order."
+    },
+    {
+      "id": "E03",
+      "alerted": true,
+      "rules": [
+        "R3"
+      ],
+      "case_count": 1,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "a5f71b85-3f9c-5520-8218-fd0ed3bbb3db",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "6279c60c-5289-5f11-b2cb-50084fe67e62",
+          "offset_seconds": 3,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "4f2e95ee-3b7f-570c-b425-91736243c176",
+          "offset_seconds": 8,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "b6f39c23-0755-59d1-aec8-64d25b851bc2",
+          "offset_seconds": 11,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R3",
+          "priority": "high",
+          "title": "Allowed read after correlated membership removal",
+          "evidence_events": 2,
+          "version": 1
+        }
+      ],
+      "title": "Re-grant then second removal",
+      "label": "suspicious",
+      "rationale": "Permission is granted, then removed again before content is returned."
+    },
+    {
+      "id": "E04",
+      "alerted": true,
+      "rules": [
+        "R3"
+      ],
+      "case_count": 1,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "2315c249-8228-5c41-b7ac-c5e6fb55062c",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "615046a3-f22e-555b-a60a-6526289e9a24",
+          "offset_seconds": 86400,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R3",
+          "priority": "high",
+          "title": "Allowed read after correlated membership removal",
+          "evidence_events": 2,
+          "version": 1
+        }
+      ],
+      "title": "Read at the 24-hour horizon",
+      "label": "suspicious",
+      "rationale": "The permission remains withdrawn when private content is returned 24 hours later."
+    },
+    {
+      "id": "E05",
+      "alerted": true,
+      "rules": [
+        "R1"
+      ],
+      "case_count": 1,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "be7662c5-ab9d-53da-bf99-19305b761405",
+          "offset_seconds": 0,
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "http_status": 202
+        },
+        {
+          "event_id": "8354df74-890a-547e-9b72-464f0ba6a99f",
+          "offset_seconds": 45,
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "http_status": 202
+        },
+        {
+          "event_id": "3e1e1b82-0e3e-52cf-b123-86c38f5f62f9",
+          "offset_seconds": 90,
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "http_status": 202
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R1",
+          "priority": "medium",
+          "title": "Repeated private-resource access failures",
+          "evidence_events": 3,
+          "version": 1
+        }
+      ],
+      "title": "Fast probing by one account",
+      "label": "suspicious",
+      "rationale": "A synthetic unauthorized actor probes three distinct private records."
+    },
+    {
+      "id": "E06",
+      "alerted": true,
+      "rules": [
+        "R2"
+      ],
+      "case_count": 1,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "fd7d1b95-9ff5-5964-a163-f823a86c607b",
+          "offset_seconds": 1,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R2",
+          "priority": "critical",
+          "title": "Access after a recorded revocation",
+          "evidence_events": 1,
+          "version": 1
+        }
+      ],
+      "title": "Reported controlled policy regression",
+      "label": "suspicious",
+      "rationale": "Synthetic source reports a known injected permission failure."
+    },
+    {
+      "id": "E07",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "3aa26e8a-f078-5cec-aac0-dbdfadab6ba5",
+          "offset_seconds": 0,
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "http_status": 202
+        },
+        {
+          "event_id": "e5a82bd8-d5c2-5910-b6e4-535c0eb4367c",
+          "offset_seconds": 180,
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "http_status": 202
+        },
+        {
+          "event_id": "75b6158d-61b9-5f49-a464-b3a54b80d5b3",
+          "offset_seconds": 360,
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Slow probing over six minutes",
+      "label": "suspicious",
+      "rationale": "Same unauthorized enumeration intent spread beyond the R1 window."
+    },
+    {
+      "id": "E08",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "a988bb33-9461-5124-b503-96af771f00fd",
+          "offset_seconds": 0,
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "http_status": 202
+        },
+        {
+          "event_id": "4b1a823d-6f3a-5a28-9425-5a85f9f7dfc4",
+          "offset_seconds": 20,
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "http_status": 202
+        },
+        {
+          "event_id": "e4f8328d-12d8-594e-aa0d-91c856646ab7",
+          "offset_seconds": 40,
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Coordinated probing across accounts",
+      "label": "suspicious",
+      "rationale": "Scenario truth: coordinated accounts each probe one record; events do not contain this oracle label."
+    },
+    {
+      "id": "E09",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "343b19bc-aab3-5e11-905d-5b53b02afe5f",
+          "offset_seconds": 1,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Ordinary member read",
+      "label": "benign",
+      "rationale": "The account has legitimate permission."
+    },
+    {
+      "id": "E10",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "7e70d87e-abbb-58da-a638-cc0bf9b288dc",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "c4523848-6466-599e-b3da-34321d9b0f3c",
+          "offset_seconds": 1,
+          "operation": "private_record.read",
+          "outcome": "denied",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Removed member is denied",
+      "label": "benign",
+      "rationale": "The source correctly rejects the removed member."
+    },
+    {
+      "id": "E11",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "c6068d3a-fa91-57a8-8374-f34f1a7de29c",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "d689c2db-2fec-58bb-b553-f56a36120231",
+          "offset_seconds": 2,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "93e246a6-ec4d-53ab-9a6a-a8f2c9bf5022",
+          "offset_seconds": 7,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Membership restored before read",
+      "label": "benign",
+      "rationale": "An authorized re-grant restores access before the read."
+    },
+    {
+      "id": "E12",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "a04cb019-535f-5f9b-8ed9-983e4e6c8f9f",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "2d5ad86b-b984-5690-8338-91e58a2ee938",
+          "offset_seconds": 7,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Removal affected another account",
+      "label": "benign",
+      "rationale": "The reader retains their own independent membership."
+    },
+    {
+      "id": "E13",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "e17675f1-36ac-5dea-b3ba-cf91517aa12f",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "23ca4361-df60-53d2-b6b1-cca4f729a9fe",
+          "offset_seconds": 7,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Removal for another resource",
+      "label": "benign",
+      "rationale": "The account retains membership for the resource it reads."
+    },
+    {
+      "id": "E14",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "5ffc586e-4b24-529f-8ea3-6b9ef2f7b3c2",
+          "offset_seconds": -2,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "8ddc4ebf-b1d2-5d9a-8145-4ce1711363c8",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Read occurred before removal",
+      "label": "benign",
+      "rationale": "The successful read preceded the permission change."
+    },
+    {
+      "id": "E15",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "8df1f8ea-56b5-52d1-9eef-e703db7c74ad",
+          "offset_seconds": 0,
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "http_status": 202
+        },
+        {
+          "event_id": "1100d942-f489-5717-b451-cd5803b1de68",
+          "offset_seconds": 20,
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "http_status": 202
+        },
+        {
+          "event_id": "22aca336-67a0-5484-9c3b-442aa766c195",
+          "offset_seconds": 40,
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Repeated stale link to one record",
+      "label": "benign",
+      "rationale": "A legitimate user retries the same unavailable bookmark."
+    },
+    {
+      "id": "E16",
+      "alerted": true,
+      "rules": [
+        "R1"
+      ],
+      "case_count": 1,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "22cd62e7-832f-52a7-8ed2-73649ecc4234",
+          "offset_seconds": 0,
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "http_status": 202
+        },
+        {
+          "event_id": "ab07c99a-ba1c-5c29-8641-af1c8f684345",
+          "offset_seconds": 20,
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "http_status": 202
+        },
+        {
+          "event_id": "a4521577-6dc3-5a6c-b194-094cac0f9f4c",
+          "offset_seconds": 40,
+          "operation": "private_record.read",
+          "outcome": "not_visible",
+          "http_status": 202
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R1",
+          "priority": "medium",
+          "title": "Repeated private-resource access failures",
+          "evidence_events": 3,
+          "version": 1
+        }
+      ],
+      "title": "Three legitimate stale bookmarks",
+      "label": "benign",
+      "rationale": "A legitimate user follows three expired bookmarks; no malicious probing."
+    },
+    {
+      "id": "E17",
+      "alerted": true,
+      "rules": [
+        "R3"
+      ],
+      "case_count": 1,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "e78dea13-f43c-512f-97fc-c29bb4cb61f8",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "2b44d28d-faea-5064-b02d-18a5c21c1777",
+          "offset_seconds": 7,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R3",
+          "priority": "high",
+          "title": "Allowed read after correlated membership removal",
+          "evidence_events": 2,
+          "version": 1
+        }
+      ],
+      "title": "Re-grant missing from telemetry",
+      "label": "benign",
+      "rationale": "Scenario truth includes a legitimate re-grant at t=3, but its event is lost. Tests false-alert sensitivity to missing context."
+    },
+    {
+      "id": "E18",
+      "alerted": false,
+      "rules": [],
+      "case_count": 1,
+      "reassessment_cases": 1,
+      "deliveries": [
+        {
+          "event_id": "671f8d51-7385-54f2-bfb1-3af6f0ac92ac",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "8e359246-3604-58c0-aab5-dae23a487eea",
+          "offset_seconds": 7,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "6ae08cdb-dcf6-5aec-aae4-74199a04b964",
+          "offset_seconds": 3,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [
+        {
+          "rule": "R3",
+          "priority": "medium",
+          "title": "Membership correlation needs reassessment",
+          "evidence_events": 3,
+          "version": 2
+        }
+      ],
+      "title": "Re-grant delivered late",
+      "label": "benign",
+      "rationale": "The grant occurred before the read but its event arrives last. Historical alert must remain auditable."
+    },
+    {
+      "id": "E19",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "e7cac396-7126-5af6-be86-cf3d733a64e6",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "d754999e-e7ac-539e-8ddc-2ddce0a26c6b",
+          "offset_seconds": 1,
+          "operation": "private_record.read",
+          "outcome": "error",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Dependency failure after removal",
+      "label": "inconclusive",
+      "rationale": "Service failure gives no evidence that private content was allowed or denied."
+    },
+    {
+      "id": "E20",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "6c28f715-75e0-5300-8afe-69f9c8226097",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "c1e88ef5-b6bb-565f-ab16-3d2c5e6ab37c",
+          "offset_seconds": 0,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Read and removal share a timestamp",
+      "label": "inconclusive",
+      "rationale": "Timestamp precision does not establish which happened first."
+    },
+    {
+      "id": "E21",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "3559b70f-77a2-50c1-a1e9-5fc2b7ff9409",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "ddb2876b-c995-5faa-aa0b-2f7e1f31d0c4",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "3f4d4106-ce5a-50a0-bbfc-9740416cad2d",
+          "offset_seconds": 7,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Conflicting membership assertions",
+      "label": "inconclusive",
+      "rationale": "Grant and removal have equal effective timestamps; ordering cannot be inferred."
+    },
+    {
+      "id": "E22",
+      "alerted": false,
+      "rules": [],
+      "case_count": 0,
+      "reassessment_cases": 0,
+      "deliveries": [
+        {
+          "event_id": "f5f0a5d8-4512-52d3-8532-dd841662d281",
+          "offset_seconds": 0,
+          "operation": "membership.change",
+          "outcome": "allowed",
+          "http_status": 202
+        },
+        {
+          "event_id": "f968d633-6539-5e8d-9884-9cf2f0a9566f",
+          "offset_seconds": 7,
+          "operation": "private_record.read",
+          "outcome": "allowed",
+          "http_status": 202
+        }
+      ],
+      "cases": [],
+      "title": "Legacy change lacks affected member",
+      "label": "inconclusive",
+      "rationale": "The event lacks an authoritative subject-to-resource relationship; no unauthorized access conclusion is justified."
+    }
+  ],
+  "limits": [
+    "AI/builder-authored, not blind or independent; small selected dataset.",
+    "Inconclusive scenarios are displayed but excluded from binary accuracy metrics.",
+    "Historical alerts corrected by late evidence are reported separately, not counted as current alerts.",
+    "Django in-process signed requests and memory-only SQLite; no native tools or real source app.",
+    "No wall-clock soak, production accuracy, HTTP latency or enterprise parity claim."
+  ]
+}

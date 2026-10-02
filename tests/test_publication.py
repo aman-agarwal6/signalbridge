@@ -59,6 +59,26 @@ class PublicationTests(TestCase):
             self.root, files, publication.collect_secrets(self.root)
         )
 
+    def test_enterprise_generated_password_copy_is_detected_without_value_output(self):
+        value = "synthetic-only-" + uuid.uuid4().hex + "x" * 17
+        self.assertEqual(len(value), 64)
+        directory = "var/enterprise/runs/" + "a" * 32 + "/secrets/"
+        self.write(directory + "bootstrap-password", value)
+        self.write(directory + "verifier-password", "synthetic-only-" + uuid.uuid4().hex + "y" * 17)
+        self.write("docs/accidental-copy.json", json.dumps({"copied": value}))
+        self.assertEqual(self.scan(["docs/accidental-copy.json"]), ["docs/accidental-copy.json"])
+
+    def test_enterprise_unknown_credential_shape_fails_closed(self):
+        directory = "var/enterprise/runs/" + "a" * 32 + "/secrets/"
+        self.write(directory + "unreviewed-secret", "synthetic-only")
+        with self.assertRaises(publication.PublicationError):
+            publication.collect_secrets(self.root)
+
+    def test_enterprise_invalid_run_path_fails_closed(self):
+        self.write("var/enterprise/runs/not-a-run/file", "synthetic-only")
+        with self.assertRaises(publication.PublicationError):
+            publication.collect_secrets(self.root)
+
     def test_known_lab_env_and_private_jwk_values_are_detected_in_renamed_public_files(self):
         self.write("docs/env-copy.md", "Example: " + self.secret)
         self.write("docs/jwk-copy.json", json.dumps({"moved": self.private}))

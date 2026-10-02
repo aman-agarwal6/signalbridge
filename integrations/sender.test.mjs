@@ -10,6 +10,21 @@ const secret="x".repeat(64);
 const event=()=>({schema_version:1,event_id:randomUUID(),app:"bettail",environment:"test",occurred_at:new Date().toISOString(),actor:"a".repeat(64),resource:"b".repeat(64),episode:randomUUID(),operation:"private_record.read",outcome:"denied",reason:"membership_required",context:null});
 async function cleanup(path){const absolute=resolve(path);if(dirname(absolute)!==resolve(tmpdir())||!basename(absolute).startsWith("signalbridge-test-"))throw Error("Unsafe cleanup path.");await rm(absolute,{recursive:true,force:true});}
 const setup=async(options={})=>new Outbox({directory:await mkdtemp(join(tmpdir(),"signalbridge-test-")),app:"bettail",keyId:"lab-key",secret,endpoint:"http://127.0.0.1:8741/api/v1/events/bettail/",...options});
+
+test("v2 membership assertions preserve subject and reject invented authority before enqueue",async()=>{
+ const out=await setup();
+ const e={...event(),schema_version:2,operation:"membership.change",outcome:"allowed",reason:"membership_removed",membership:{subject:"c".repeat(64),state:"removed"}};
+ try{
+  for(const membership of [{...e.membership,authority:true},{...e.membership,subject:"raw-name"},{...e.membership,state:"owner"}]){
+   await assert.rejects(out.enqueue({...e,membership}),/membership assertion/);
+  }
+  await assert.rejects(out.enqueue({...e,outcome:"error"}),/membership assertion/);
+  assert.deepEqual(await readdir(out.directory),[]);
+  await out.enqueue(e);
+  const stored=JSON.parse(await readFile(join(out.directory,e.event_id+".json"),"utf8"));
+  assert.deepEqual(JSON.parse(stored.body).membership,e.membership);
+ }finally{await cleanup(out.directory);}
+});
 test("outage survives process recreation and duplicate delivery acknowledgement",async()=>{
  let time=Date.now();const out=await setup({clock:()=>time,transport:async()=>{throw Error("offline");}});const e=event();
  try{await out.enqueue(e);assert.equal((await out.flush()).deferred,1);

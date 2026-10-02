@@ -9,8 +9,27 @@ from .case_provenance import case_generation
 from .engine import detections
 
 RULES = {
+    "R3": {
+        "id": "R3",
+        "version": "resource-membership-v1",
+        "name": "Membership removal correlated with allowed access",
+        "severity": "high",
+        "intent": "Find a successful read following a separate resource-scoped membership removal.",
+        "logic": "Match the affected subject to the read actor, and the exact app, environment, key-bound source and resource. The latest assertion at or before the read must be unambiguously removed and strictly earlier, within 24 hours. Re-grants suppress the match; simultaneous or conflicting observations are inconclusive. Late contradictory evidence reopens an existing case for reassessment.",
+        "inputs": "v2 membership.subject/state, resource, occurred_at; v1 allowed-read actor/resource; server-controlled can_assert_membership on the signing credential",
+        "false_positives": "Missing re-grants, clock skew, another valid permission such as ownership, or incorrect source assertions can explain a match.",
+        "blind_spots": "Requires new instrumented resource-scoped membership events and an explicitly authorized key. Existing v1 membership events lack the relationship. No group-to-resource expansion, global revocation, policy-revision inference or detection after the 24-hour horizon. No native source adapter has been enabled for v2 yet.",
+        "priority_reason": "High review priority: two correlated observations suggest a boundary failure, but successful HTTP or allowed telemetry alone does not prove private content disclosure.",
+        "validation": [
+            "Check the affected account, exact resource and source credential scope; the actor on a membership event is the operator, not the removed member.",
+            "Read the event timestamps and the newest membership state. Check for re-grants and ordering ambiguity.",
+            "Confirm the session identity, returned private content, alternate permissions and an authorized owner control in the isolated source lab.",
+            "Record uncertainty, scope remediation to the source permission check, then verify denial, owner access and restoration.",
+        ],
+    },
     "R1": {
         "id": "R1",
+        "version": "rolling-v2",
         "name": "Repeated private-resource access failures",
         "severity": "medium",
         "intent": "Find repeated attempts across distinct private resources for investigation.",
@@ -28,6 +47,7 @@ RULES = {
     },
     "R2": {
         "id": "R2",
+        "version": "source-revocation-v1",
         "name": "Allowed access after a reported boundary change",
         "severity": "critical",
         "intent": "Prioritize a source report that access succeeded after removal or during a controlled policy regression.",
@@ -41,6 +61,42 @@ RULES = {
             "Verify the same identity still has a valid session and its membership was actually removed before the read.",
             "Check that a real private resource was returned, rather than an empty result, error or administrative bypass.",
             "Contain only within an authorized environment; correct the source permission boundary and run positive, negative and restoration tests.",
+        ],
+    },
+    "R4": {
+        "id": "R4",
+        "version": "bounded-denials-v1",
+        "name": "Extended private-resource probing",
+        "severity": "medium",
+        "intent": "Review repeated denials spanning longer than the R1 horizon.",
+        "logic": "For one app, environment, key-bound source and actor: at least five distinct private resources denied in an inclusive 30-minute rolling window whose supporting evidence spans at least ten minutes. Qualifying endpoints share a fixed UTC 30-minute case bucket; case evidence can span longer than 30 minutes.",
+        "inputs": "app, environment, key-bound source, actor, resource, private_record.read, denied, occurred_at, unique event_id",
+        "false_positives": "A legitimate user with several stale links or an approved test can produce identical observations. Fast failures followed by a delayed failure can also qualify.",
+        "blind_spots": "Fewer than five resources, activity outside 30 minutes, changing identities, unavailable/not-visible responses and missing telemetry remain outside this rule. It is not a general low-and-slow attacker detector.",
+        "priority_reason": "Medium review priority for a persistent denial pattern; intent, exploitation and disclosure remain unestablished.",
+        "validation": [
+            "Identify the source and confirm five distinct resources in a qualifying 30-minute window, spanning at least ten minutes.",
+            "Check expected permissions, resource existence, stale links, shared workflows and approved testing.",
+            "Keep denied attempts separate from unavailable responses and actual returned content.",
+            "Document uncertainty and scope a source retest; an alert alone does not justify containment.",
+        ],
+    },
+    "R5": {
+        "id": "R5",
+        "version": "bounded-denials-v1",
+        "name": "Private-resource denials across accounts",
+        "severity": "medium",
+        "intent": "Review multiple accounts receiving denials for the same private resource.",
+        "logic": "For one app, environment, key-bound source and resource: six unique denied private reads involving at least three actor pseudonyms within an inclusive ten-minute rolling window. Qualifying endpoints share a fixed UTC ten-minute case bucket; combined evidence can span longer than ten minutes.",
+        "inputs": "app, environment, key-bound source, resource, actor, private_record.read, denied, occurred_at, unique event_id",
+        "false_positives": "A shared stale link, legitimate permission withdrawal, or approved testing can generate the same pattern.",
+        "blind_spots": "Distributed attempts against different resources, fewer actors/requests, activity outside ten minutes, actor-pseudonym changes and missing telemetry remain unsupported. Shared intent cannot be inferred from these fields.",
+        "priority_reason": "Medium priority for shared resource pressure; this does not establish coordinated attackers or successful access.",
+        "validation": [
+            "Confirm six unique denied reads, at least three distinct accounts and the exact same private resource within one ten-minute window.",
+            "Check shared links, effective permissions, legitimate access changes and authorized testing.",
+            "Do not merge actor pseudonyms across apps or source classes, or infer coordination without independent evidence.",
+            "Record the business owner and uncertainty; reproduce scoped denial/owner controls before escalation.",
         ],
     },
 }
@@ -92,7 +148,10 @@ def explain_case(case, events, *, evidence_complete=True):
     """Use linked, app-scoped records only; current comparison is not historical attestation."""
     events = sorted(events, key=lambda e: (e.occurred_at, str(e.event_id)))
     rule = RULES.get(case.rule)
-    cohorts = {(e.environment, e.source, e.actor) for e in events}
+    cohorts = {
+        (e.environment, e.source, e.resource if case.rule in ("R3", "R5") else e.actor)
+        for e in events
+    }
     generation = case_generation(case, events, engine_fingerprint(), complete=evidence_complete)
     integrity_errors = generation["integrity_errors"]
     matches = False

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-postgresql-stage-diagnosis",
+  "recorded_on": "2026-10-01",
+  "retained_stages": [
+    "20261001-postgresql-in-network-861397ae7e3b47deae9a47dbfaddf08d.json",
+    "20261001-postgresql-in-network-6f99948c35ad46c7a42c658013c25ae7.json",
+    "20261001-postgresql-in-network-60d537d6368647da98033b074795b184.json",
+    "20261001-postgresql-in-network-7c8753e06c3d4fc59565b362557b5aac.json",
+    "20261001-postgresql-in-network-1d8fd148036e43b0915fbbe86606d013.json"
+  ],
+  "observations": [
+    "First internal configuration interpreted the temporary mount as three entries; database only created, neither component started. The original detailed startup stderr was not retained.",
+    "The corrected cached-wheel stage passed parsed configuration and initialized PostgreSQL 17.11. Independent watchdog reason was disk_growth; shutdown preceded runner execution. Main and independent checks verified both components stopped.",
+    "After that attempt, host paging allocation was 8485 MiB with 2319 MiB in use and 2345 MiB peak. These are point-in-time host measurements, not a package or application disk footprint. No immediately preceding paging snapshot exists.",
+    "Docker Desktop stopped after confirming no running containers. No unrelated cleanup or settings change performed.",
+    "The twelve GiB cached attempt passed native runtime isolation and used Linux CPython 3.14.7, but psycopg shared-library mapping failed before any tests were discovered. Docker/Moby applies noexec to tmpfs unless explicitly overridden; this is the diagnosed configuration cause, not a concurrency result.",
+    "The corrected mount retry retained native kernel evidence: scratch noexec and dependencies executable. Offline pip installation failed with no space left on device in temporary staging, before Django discovery. Main and independent shutdown passed; no native test result is claimed.",
+    "Same-profile installation correction completed on Linux CPython 3.14.7. Nine PostgreSQL methods passed in 4.297 seconds, with zero skips/failures/errors. Native configuration, runtime isolation, unchanged source and both shutdown checks passed; no new downloads."
+  ],
+  "pending": "PostgreSQL component verified. Source HTTP, enterprise identity/TLS, expanded security integrations, restore and full reliability test remain separate mandatory gates.",
+  "raw_receipt_sha256": {
+    "20261001-postgresql-in-network-861397ae7e3b47deae9a47dbfaddf08d.json": "2ce113205cbcb9bbbc31f35a5bd422c008d0549b2bf072e3269c380b3ce3edd6",
+    "20261001-postgresql-in-network-6f99948c35ad46c7a42c658013c25ae7.json": "e2036f8261aeec6818dc5a817d36ae152a931f8380fa677cf1c72c174572ebe2",
+    "20261001-postgresql-in-network-60d537d6368647da98033b074795b184.json": "e1bffd5a718ee3372cf662eac04c09989b615f22b151b774a5dcb937873ce5f6",
+    "20261001-postgresql-in-network-7c8753e06c3d4fc59565b362557b5aac.json": "48d63f6c34fa8bd8554bcd38e98fe39b5026676dc49ae99d00cdf5c3858f8ca6",
+    "20261001-postgresql-in-network-1d8fd148036e43b0915fbbe86606d013.json": "7a86301f6e9c083cbc722c5792d17893ddd7e64541dde26879fc9cbade091f0e"
+  }
+}

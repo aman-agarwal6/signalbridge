@@ -320,7 +320,8 @@ class RollingWorkerTests(TestCase):
             self.assertEqual(len(set(case.events.values_list("source", flat=True))), 1)
 
     def test_worker_query_is_inclusive_bounded_lookaround_and_excludes_unrelated_operations(self):
-        target = self.persist(event(1, 300))
+        # Not-visible input participates only in R1's five-minute endpoint horizon.
+        target = self.persist(event(1, 300, outcome="not_visible"))
         included = [target, self.persist(event(2, 0)), self.persist(event(3, 600))]
         for value in (
             event(4, -0.000001),
