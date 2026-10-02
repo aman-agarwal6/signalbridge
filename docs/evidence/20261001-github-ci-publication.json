@@ -1,0 +1,695 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-github-ci-publication",
+  "recorded_at": "2026-10-02T02:43:24.4469533Z",
+  "repository": "aman-agarwal6/signalbridge",
+  "successful_revision": "c958c590e7924cbf587887af20ff98afb33cdd9c",
+  "successful_run_id": 36956650682,
+  "native_postgresql_log_review": {
+    "summary": "OK",
+    "duration_seconds": 3.082,
+    "tests_run": 9,
+    "job_id": 110680973540,
+    "source": "Authenticated GitHub job log inspected through the browser; API supplies job/step status, not test counts."
+  },
+  "failure_diagnosis": [
+    {
+      "correction": "Match hosted UID 1001 and verify it; retain dropped capabilities, bounded secret tmpfs and unprivileged dependencies. Project only original R1/R2 contracts in the historical harness; newer rules remain in the separate frozen round.",
+      "observation": "PostgreSQL checkout failed on runner-owned file permissions; no native CI tests ran. Core challenge failed on cross-scenario R5 evidence.",
+      "run_id": 36954576523
+    },
+    {
+      "correction": "Explicit checked-out PYTHONPATH supplied to the fixed child helper through the same venv. No detector, frozen evaluation or database permission change.",
+      "observation": "Core job passed; native PostgreSQL ran nine tests, with one failure before the crash helper reached its handshake.",
+      "run_id": 36955979195
+    }
+  ],
+  "runs": [
+    {
+      "run_id": 36954576523,
+      "head_sha": "548651308fe95696eeb84fa356487a91b3a80418",
+      "conclusion": "failure",
+      "html_url": "https://github.com/aman-agarwal6/signalbridge/actions/runs/36954576523",
+      "started_at": "2026-10-02T02:12:52Z",
+      "updated_at": "2026-10-02T02:14:03Z",
+      "jobs": [
+        {
+          "id": 110674601479,
+          "name": "postgres",
+          "conclusion": "failure",
+          "html_url": "https://github.com/aman-agarwal6/signalbridge/actions/runs/36954576523/job/110674601479",
+          "started_at": "2026-10-02T02:12:56Z",
+          "completed_at": "2026-10-02T02:13:24Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "number": 1,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Initialize containers",
+              "number": 2,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+              "number": 3,
+              "status": "completed",
+              "conclusion": "failure"
+            },
+            {
+              "name": "Install the six hash-pinned verification dependencies",
+              "number": 4,
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Prepare the fresh non-superuser database",
+              "number": 5,
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Verify native concurrency and actual process-kill recovery",
+              "number": 6,
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+              "number": 11,
+              "status": "completed",
+              "conclusion": "failure"
+            },
+            {
+              "name": "Stop containers",
+              "number": 12,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "number": 13,
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 110674601580,
+          "name": "core",
+          "conclusion": "failure",
+          "html_url": "https://github.com/aman-agarwal6/signalbridge/actions/runs/36954576523/job/110674601580",
+          "started_at": "2026-10-02T02:12:56Z",
+          "completed_at": "2026-10-02T02:14:03Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "number": 1,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+              "number": 2,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "number": 3,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "number": 4,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install pinned Python runtime and verification tools",
+              "number": 5,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Lint Python source",
+              "number": 6,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check Python formatting",
+              "number": 7,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check Django configuration",
+              "number": 8,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check migration drift",
+              "number": 9,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test Django against disposable SQLite (the supported local database)",
+              "number": 10,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test simulation fault handling against memory-only SQLite",
+              "number": 11,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test reference application authorization and transactional telemetry in memory",
+              "number": 12,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Measure the fixed offline detection challenge",
+              "number": 13,
+              "status": "completed",
+              "conclusion": "failure"
+            },
+            {
+              "name": "Execute the separately frozen enterprise detection round",
+              "number": 14,
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Test offline event courier",
+              "number": 15,
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Test offline HTTP-harness behavior",
+              "number": 16,
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Test offline application-route and recovery behavior",
+              "number": 17,
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Check publishable paths and known job-local credential copies",
+              "number": 18,
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "number": 34,
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "number": 35,
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+              "number": 36,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "number": 37,
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": 36955979195,
+      "head_sha": "3a87ad57c3e795d25d72543219141c8156c0bdd7",
+      "conclusion": "failure",
+      "html_url": "https://github.com/aman-agarwal6/signalbridge/actions/runs/36955979195",
+      "started_at": "2026-10-02T02:30:52Z",
+      "updated_at": "2026-10-02T02:31:57Z",
+      "jobs": [
+        {
+          "id": 110678900335,
+          "name": "postgres",
+          "conclusion": "failure",
+          "html_url": "https://github.com/aman-agarwal6/signalbridge/actions/runs/36955979195/job/110678900335",
+          "started_at": "2026-10-02T02:30:55Z",
+          "completed_at": "2026-10-02T02:31:27Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "number": 1,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Initialize containers",
+              "number": 2,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify the hosted runner ownership contract before checkout",
+              "number": 3,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+              "number": 4,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install the six hash-pinned verification dependencies",
+              "number": 5,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Prepare the fresh non-superuser database",
+              "number": 6,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify native concurrency and actual process-kill recovery",
+              "number": 7,
+              "status": "completed",
+              "conclusion": "failure"
+            },
+            {
+              "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+              "number": 13,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Stop containers",
+              "number": 14,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "number": 15,
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 110678900606,
+          "name": "core",
+          "conclusion": "success",
+          "html_url": "https://github.com/aman-agarwal6/signalbridge/actions/runs/36955979195/job/110678900606",
+          "started_at": "2026-10-02T02:30:56Z",
+          "completed_at": "2026-10-02T02:31:56Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "number": 1,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+              "number": 2,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "number": 3,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "number": 4,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install pinned Python runtime and verification tools",
+              "number": 5,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Lint Python source",
+              "number": 6,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check Python formatting",
+              "number": 7,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check Django configuration",
+              "number": 8,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check migration drift",
+              "number": 9,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test Django against disposable SQLite (the supported local database)",
+              "number": 10,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test simulation fault handling against memory-only SQLite",
+              "number": 11,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test reference application authorization and transactional telemetry in memory",
+              "number": 12,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Measure historical R1/R2 challenge contracts (new rules evaluated separately)",
+              "number": 13,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Execute the separately frozen enterprise detection round",
+              "number": 14,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test offline event courier",
+              "number": 15,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test offline HTTP-harness behavior",
+              "number": 16,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test offline application-route and recovery behavior",
+              "number": 17,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check publishable paths and known job-local credential copies",
+              "number": 18,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "number": 34,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "number": 35,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+              "number": 36,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "number": 37,
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": 36956650682,
+      "head_sha": "c958c590e7924cbf587887af20ff98afb33cdd9c",
+      "conclusion": "success",
+      "html_url": "https://github.com/aman-agarwal6/signalbridge/actions/runs/36956650682",
+      "started_at": "2026-10-02T02:39:41Z",
+      "updated_at": "2026-10-02T02:41:07Z",
+      "jobs": [
+        {
+          "id": 110680973292,
+          "name": "core",
+          "conclusion": "success",
+          "html_url": "https://github.com/aman-agarwal6/signalbridge/actions/runs/36956650682/job/110680973292",
+          "started_at": "2026-10-02T02:39:44Z",
+          "completed_at": "2026-10-02T02:41:06Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "number": 1,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+              "number": 2,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "number": 3,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "number": 4,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install pinned Python runtime and verification tools",
+              "number": 5,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Lint Python source",
+              "number": 6,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check Python formatting",
+              "number": 7,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check Django configuration",
+              "number": 8,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check migration drift",
+              "number": 9,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test Django against disposable SQLite (the supported local database)",
+              "number": 10,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test simulation fault handling against memory-only SQLite",
+              "number": 11,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test reference application authorization and transactional telemetry in memory",
+              "number": 12,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Measure historical R1/R2 challenge contracts (new rules evaluated separately)",
+              "number": 13,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Execute the separately frozen enterprise detection round",
+              "number": 14,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test offline event courier",
+              "number": 15,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test offline HTTP-harness behavior",
+              "number": 16,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test offline application-route and recovery behavior",
+              "number": 17,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check publishable paths and known job-local credential copies",
+              "number": 18,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "number": 34,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "number": 35,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+              "number": 36,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "number": 37,
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 110680973540,
+          "name": "postgres",
+          "conclusion": "success",
+          "html_url": "https://github.com/aman-agarwal6/signalbridge/actions/runs/36956650682/job/110680973540",
+          "started_at": "2026-10-02T02:39:45Z",
+          "completed_at": "2026-10-02T02:40:22Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "number": 1,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Initialize containers",
+              "number": 2,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify the hosted runner ownership contract before checkout",
+              "number": 3,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+              "number": 4,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install the six hash-pinned verification dependencies",
+              "number": 5,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Prepare the fresh non-superuser database",
+              "number": 6,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify native concurrency and actual process-kill recovery",
+              "number": 7,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+              "number": 13,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Stop containers",
+              "number": 14,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "number": 15,
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Public API status snapshot and reviewed log summary, not a signed third-party audit or downloaded complete job-log archive.",
+    "GitHub-hosted CI is a disposable component environment with package download access; it is separate from the no-egress workstation lab.",
+    "Nine native methods repeat the selected concurrency and process-kill recovery checks; they do not establish 24-hour operation, TLS source execution, SSO or enterprise integration completeness.",
+    "Historical failed runs are retained; core test counts, native test counts and detection scenario metrics use separate denominators."
+  ]
+}

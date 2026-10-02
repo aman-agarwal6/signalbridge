@@ -181,11 +181,15 @@ def pages(receipt, receipt_path, milestone, native=None, evaluation=None):
                 ),
                 (
                     "p",
-                    f"This round retained separate raw logs, their hashes, a source manifest and before/after source checks. Source unchanged: {receipt['source_unchanged']}. Source files: {receipt['source_file_count']}. The recorded run used an uncommitted working tree; the source digest identifies that selected local content. Publication adds a Git commit without rewriting the execution receipt.",
+                    f"This round retained separate raw logs, their hashes, a source manifest and before/after checks. Source unchanged: {receipt['source_unchanged']}. Source files: {receipt['source_file_count']}. Recorded revision: {receipt['revision'][:12]}; working tree dirty: {receipt['working_tree_dirty']}. The digest identifies selected source; later documentation publication does not rewrite the execution receipt.",
                 ),
                 (
                     "p",
                     "The courier imports its persistence tests, which run once in this profile. An earlier receipt executed those eight methods again; it remains preserved and is not evidence of 70 distinct Node methods. The September 1,102-test verification remains historical. New results do not overwrite earlier source identities.",
+                ),
+                (
+                    "p",
+                    "GitHub run 36956650682 at c958c59 passed the core job and all nine native PostgreSQL methods. Two preceding failures remain recorded. Hosted CI is separate from this local round and the isolated workstation lab; repeating methods does not increase distinct coverage.",
                 ),
             ],
         ),
@@ -566,6 +570,10 @@ def pages(receipt, receipt_path, milestone, native=None, evaluation=None):
                             (
                                 "docs/evidence/ (current offline receipt)",
                                 "Current offline execution summary, source digest and per-group log hashes; exact receipt named in docs/enterprise-milestone.json.",
+                            ),
+                            (
+                                "docs/evidence/ (public CI receipt)",
+                                "Hosted core and nine-method PostgreSQL pass at c958c59; both preceding failures and corrections retained. Exact receipt named in milestone status.",
                             ),
                             (
                                 "docs/evidence/ (PostgreSQL stage receipts)",
