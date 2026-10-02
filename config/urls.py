@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
 
-from bridge import practice_views, scan_views, views
+from bridge import case_workflow_views, practice_views, scan_views, service_api, views
 from bridge.ingestion import ingest
 
 urlpatterns = [
@@ -20,6 +20,7 @@ urlpatterns = [
     path("investigations/", views.investigations, name="investigations"),
     path("investigations/<uuid:case_id>/", views.investigation, name="case"),
     path("investigations/<uuid:case_id>/export/", views.case_export, name="case_export"),
+    path("investigations/<uuid:case_id>/work/", case_workflow_views.update, name="case_work"),
     path("checks/", views.checks, name="checks"),
     path("replay/", views.replay_lab, name="replay"),
     path("practice/", practice_views.index, name="practice"),
@@ -28,5 +29,15 @@ urlpatterns = [
     path("requirements/", views.requirements, name="requirements"),
     path("export/", views.export_evidence, name="export"),
     path("api/v1/events/<slug:app>/", ingest, name="ingest"),
+    path(
+        "api/v1/cases/<uuid:case_id>/evidence/",
+        service_api.read_evidence,
+        name="service_case_evidence",
+    ),
+    path(
+        "api/v1/cases/<uuid:case_id>/review-task/",
+        service_api.create_review_task,
+        name="service_review_task",
+    ),
     path("health/", views.health, name="health"),
 ]

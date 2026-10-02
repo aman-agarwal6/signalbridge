@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-native-in-network-postgresql",
+  "run_id": "6f99948c35ad46c7a42c658013c25ae7",
+  "approval_reference": "call_66ztBlErLWqmhLV4AnSFVLoU",
+  "status": "incomplete",
+  "started_at": "2026-10-01T23:54:09.017275+00:00",
+  "images": {
+    "database": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "runner": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+  },
+  "source_sha256": "5e5347947a1e7e6fa4622d8de0868c2eac3d42e0f72d573fc66701eb502cdb42",
+  "source_snapshot": {
+    "source_sha256": "5e5347947a1e7e6fa4622d8de0868c2eac3d42e0f72d573fc66701eb502cdb42",
+    "file_count": 315,
+    "bytes": 2659632
+  },
+  "initial_free_disk_bytes": 80498424546,
+  "free_disk_before_bytes": 74812383232,
+  "free_memory_before_bytes": 6096842752,
+  "stage_growth_ceiling_bytes": 8589934592,
+  "limits": [
+    "Component concurrency and killed-process transaction checks only; no source HTTP, enterprise TLS, identity, security-tool or 24-hour proof.",
+    "Two internal containers, one GiB combined memory, no published ports or external runtime network.",
+    "Wheel files are installed into disposable bounded container tmpfs; no host installation or new built image.",
+    "Host storage monitoring detects limits; it is not a hard quota or an allocation guarantee."
+  ],
+  "download": {
+    "wheel_count": 6,
+    "downloaded_bytes": 0,
+    "reused_bytes": 14200997,
+    "cache_run": "861397ae7e3b47deae9a47dbfaddf08d"
+  },
+  "parsed_configuration_verified": true,
+  "startup_log_sha256": "693f1cbbacd82bdcf9e24899a52095eefbdbc8beaa17ac61c93f466eb490e2cf",
+  "error_class": "LabControlError",
+  "error_code": "Internal native startup failed.",
+  "diagnostic_log_sha256": "836c02cd64b65fee175b16d25b8581ef9258890a12a767f3ae8e3bbbef0a87a2",
+  "stopped_component_count": 2,
+  "shutdown_verified": true,
+  "independent_shutdown_verified": true,
+  "finished_at": "2026-10-01T23:54:21.174653+00:00",
+  "duration_seconds": 12.157,
+  "free_disk_after_bytes": 71441420288,
+  "source_unchanged": true,
+  "acceptance_passed": false
+}

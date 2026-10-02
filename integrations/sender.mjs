@@ -45,7 +45,12 @@ async function persistedRecord(file,filename,app){
  return record;
 }
 function assertMetadata(e,app){
- if(!e||Object.keys(e).sort().join()!==fields.join()||e.schema_version!==1||e.app!==app||!["lab","test"].includes(e.environment))throw Error("Invalid metadata contract.");
+ const expected=e?.schema_version===2?[...fields,"membership"].sort():fields;
+ if(!e||Object.keys(e).sort().join()!==expected.join()||![1,2].includes(e.schema_version)||e.app!==app||!["lab","test"].includes(e.environment))throw Error("Invalid metadata contract.");
+ if(e.schema_version===2){const m=e.membership;
+  if(!m||Object.keys(m).sort().join()!=="state,subject"||typeof m.subject!=="string"||!/^[a-f0-9]{64}$/.test(m.subject)||
+   !["removed","granted"].includes(m.state)||e.operation!=="membership.change"||e.outcome!=="allowed"||
+   e.reason!==(m.state==="removed"?"membership_removed":"member"))throw Error("Invalid membership assertion.");}
  for(const k of ["event_id","episode"])if(!/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(e[k]))throw Error("Invalid identifier.");
  for(const k of ["actor","resource"])if(!/^[a-f0-9]{64}$/.test(e[k]))throw Error("Pseudonymous identifiers required.");
  if(!["private_record.read","membership.change","session.verify"].includes(e.operation)||!["allowed","denied","not_visible","error"].includes(e.outcome)||

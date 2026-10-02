@@ -1,0 +1,54 @@
+name: sb-enterprise-verification
+services:
+  database:
+    image: ${SB_VERIFY_IMAGE:?An inspected immutable local PostgreSQL image is required}
+    pull_policy: never
+    restart: "no"
+    user: postgres
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1
+    pids_limit: 128
+    shm_size: 64m
+    read_only: true
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    labels:
+      org.signalbridge.enterprise.run: ${SB_VERIFY_RUN:?A unique run identity is required}
+      org.signalbridge.enterprise.scope: disposable-postgresql-verification
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/bootstrap_password
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256 --auth-local=peer
+    command: [postgres, -c, shared_buffers=64MB, -c, max_connections=20, -c, log_statement=none]
+    secrets: [bootstrap_password, verifier_password]
+    ports: ["127.0.0.1:15432:5432"]
+    volumes:
+      - verification_data:/var/lib/postgresql/data
+      - ./init-verification.sh:/docker-entrypoint-initdb.d/10-verification.sh:ro
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+      - /var/run/postgresql:rw,noexec,nosuid,size=16m
+    networks: [verification]
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: "2"}
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U postgres -d postgres"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+secrets:
+  bootstrap_password:
+    file: ${SB_VERIFY_SECRET_DIR:?A private run directory is required}/bootstrap-password
+  verifier_password:
+    file: ${SB_VERIFY_SECRET_DIR:?A private run directory is required}/verifier-password
+volumes:
+  verification_data:
+    name: sb-enterprise-verification-${SB_VERIFY_RUN}
+    labels:
+      org.signalbridge.enterprise.run: ${SB_VERIFY_RUN}
+networks:
+  verification:
+    internal: true

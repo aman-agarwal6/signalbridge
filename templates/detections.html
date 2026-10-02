@@ -28,7 +28,7 @@
       {% for rule in rules %}
       <article class="det-rule-card det-rule-{{ rule.severity }}" id="{{ rule.id }}" aria-labelledby="{{ rule.id }}-heading">
         <div class="det-rule-top"><span class="det-rule-id">{{ rule.id }}</span><span class="badge {{ rule.severity }}">{{ rule.severity|human }} priority</span></div>
-        <h3 id="{{ rule.id }}-heading">{{ rule.name }}</h3><p class="det-rule-intent">{{ rule.intent }}</p>
+        <h3 id="{{ rule.id }}-heading">{{ rule.name }}</h3><p class="det-rule-intent">{{ rule.intent }}</p><small class="det-label">Version {{ rule.version }}</small>
         <div class="det-trigger"><span class="det-label">Exact trigger</span><p>{{ rule.logic }}</p></div>
         <div class="det-rule-details">
           <details class="det-disclosure"><summary><span>Inputs &amp; priority rationale</span><span class="det-expand" aria-hidden="true"></span></summary><div class="det-disclosure-body"><h4>Required inputs</h4><p class="det-inputs">{{ rule.inputs }}</p><h4>Why this priority</h4><p>{{ rule.priority_reason }}</p></div></details>
@@ -55,7 +55,7 @@
   <section class="det-section" id="boundaries" aria-labelledby="boundaries-heading">
     <div class="det-section-heading"><div><span class="det-eyebrow">03 / CAPABILITY BOUNDARIES</span><h2 id="boundaries-heading">A clear scope. Visible limitations.</h2><p>What an engineer can evaluate here, and what requires a larger validation program.</p></div></div>
     <div class="det-boundary-grid">
-      <article><h3>Detection</h3><span class="det-label">Implemented scope</span><p>Two explained authorization patterns; signed app/source separation</p><span class="det-label det-limit-label">Remaining boundary</span><p>Endpoint, network, cloud inventory and broad attack-technique coverage</p></article>
+      <article><h3>Detection</h3><span class="det-label">Implemented scope</span><p>{{ rules|length }} explained authorization patterns; signed app/source separation</p><span class="det-label det-limit-label">Remaining boundary</span><p>Endpoint, network, cloud inventory and broad attack-technique coverage</p></article>
       <article><h3>Investigation</h3><span class="det-label">Implemented scope</span><p>Evidence timelines, source hashes, review notes, scoped export</p><span class="det-label det-limit-label">Remaining boundary</span><p>Verified identity/asset enrichment and cross-system incident correlation</p></article>
       <article><h3>Response</h3><span class="det-label">Implemented scope</span><p>Audited human disposition and advisory rule review</p><span class="det-label det-limit-label">Remaining boundary</span><p>Source-owned delivery, approved response execution and recovery testing</p></article>
       <article><h3>Assurance</h3><span class="det-label">Implemented scope</span><p>Source migration tests, isolated service evidence and detection replay</p><span class="det-label det-limit-label">Remaining boundary</span><p>Independent holdout evaluation, production scale, availability and independent assessment</p></article>

@@ -55,6 +55,7 @@ def rows(app, values, source="migration_lab"):
             event_id=value["event_id"],
             occurred_at=timestamp(value["occurred_at"]),
             actor=value["actor"],
+            membership_subject=value.get("membership", {}).get("subject", ""),
             resource=value["resource"],
             episode=value["episode"],
             operation=value["operation"],

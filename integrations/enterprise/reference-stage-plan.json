@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "status": "software_preparation_in_progress_not_authorized_for_launch",
+  "purpose": "Native source-owned authorization and telemetry proof for the two synthetic reference applications, separate from identity/tool/24-hour gates.",
+  "software_prepared": [
+    "Closed finite HTTPS client and known-content/explicit-denial predicates.",
+    "Allowed, removed, denied, owner, restored and alternate-grant sequences, with one fixed two-minute defect and mandatory reset.",
+    "Separate PostgreSQL source/console databases and non-superuser roles with cross-database connection denial.",
+    "TLS source and console process entry points, fixed loopback ports inside the runner, secure cookies and CSRF retained."
+  ],
+  "remaining_before_review": [
+    "Complete the exact container recipe, offline certificate preparation, runner and host controller.",
+    "Validate parsed and effective isolation, independent watchdog and source/outbox/console reconciliation.",
+    "Exercise hostile profiles and shutdown controls without launching services."
+  ],
+  "proposed_components": {
+    "database": {"image": "postgres@sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0", "memory_mib": 512, "cpus": 1, "pids": 128, "role": "Fresh disposable PostgreSQL volume; never the prior stage volume."},
+    "runner": {"image": "python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d", "memory_mib": 512, "cpus": 1, "pids": 96, "role": "Finite native source/console processes and their operator driver; not an independent OS security boundary between those processes."}
+  },
+  "proposed_limits": {
+    "host_free_memory_headroom_gib": 4,
+    "host_free_disk_reserve_gib": 25,
+    "whole_stage_growth_guard_gib": 12,
+    "prior_consumption_included": true,
+    "initial_free_disk_bytes": 80498424546,
+    "watchdog_minutes": 30,
+    "source_http_requests": 80,
+    "source_request_phase_seconds": 180,
+    "one_request_seconds": 5,
+    "response_bytes": 8192,
+    "outbox_events": 80,
+    "fixed_fault_seconds": 120,
+    "note": "Proposed guard preserves the earlier conservative baseline. Review current disk/memory before launch; monitoring is not a hard quota."
+  },
+  "proposed_isolation": [
+    "Internal network, no published ports or runtime egress.",
+    "Non-root, read-only roots, all capabilities removed, no-new-privileges, finite pids and logs, restart disabled.",
+    "Snapshot of selected public source read-only; cached six hash-pinned wheels read-only. No live checkout, host socket or other-project mounts.",
+    "Separate finite noexec scratch and executable dependency tmpfs; private bounded output and per-run secrets only.",
+    "Explicit per-process trust in a disposable lab CA. No host trust-store change, public certificates, downloads or paid service.",
+    "PostgreSQL transport remains plaintext inside this isolated component network; full enterprise TLS and production deployment remain separate."
+  ],
+  "intended_evidence": [
+    "Actual login identity, unchanged session after removal, exact known record predicates, owner/cross-app controls, defect reset and restoration.",
+    "Permission-change/outbox transaction evidence, native HMAC/TLS delivery, event ID/digest reconciliation, instrumented provenance and detected R3 regression.",
+    "Incomplete failures preserved with safe error classes; neither HTTP 200 alone nor a service failure becomes a security pass.",
+    "Main and independent shutdown receipts; no cleanup of other projects."
+  ]
+}

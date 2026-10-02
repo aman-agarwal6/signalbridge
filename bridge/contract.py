@@ -64,10 +64,13 @@ def timestamp(value):
 
 def validate_event(data, expected_app, now=None):
     now = now or datetime.now(timezone.utc)
-    if not isinstance(data, dict) or set(data) != FIELDS:
-        raise ContractError("Unknown or missing event fields.")
-    if type(data["schema_version"]) is not int or data["schema_version"] != 1:
+    if not isinstance(data, dict):
+        raise ContractError("Invalid event.")
+    version = data.get("schema_version")
+    if type(version) is not int or version not in (1, 2):
         raise ContractError("Unsupported schema.")
+    if set(data) != (FIELDS if version == 1 else FIELDS | {"membership"}):
+        raise ContractError("Unknown or missing event fields.")
     if data["app"] != expected_app or data["environment"] not in ("lab", "test"):
         raise ContractError("App or environment mismatch.")
     for key in ("event_id", "episode"):
@@ -86,6 +89,20 @@ def validate_event(data, expected_app, now=None):
         or data["reason"] not in REASONS
     ):
         raise ContractError("Unknown observation.")
+    if version == 2:
+        membership = data["membership"]
+        if (
+            not isinstance(membership, dict)
+            or set(membership) != {"subject", "state"}
+            or not isinstance(membership["subject"], str)
+            or not re.fullmatch("[a-f0-9]{64}", membership["subject"])
+            or membership["state"] not in ("removed", "granted")
+            or data["operation"] != "membership.change"
+            or data["outcome"] != "allowed"
+            or data["reason"]
+            != ("membership_removed" if membership["state"] == "removed" else "member")
+        ):
+            raise ContractError("Invalid resource-scoped membership assertion.")
     occurred = timestamp(data["occurred_at"])
     age = now - occurred
     if age < -timedelta(seconds=60) or age > timedelta(days=7):

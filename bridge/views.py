@@ -153,7 +153,8 @@ def overview(request):
         .annotate(
             priority=Case(
                 When(severity="critical", then=Value(0)),
-                default=Value(1),
+                When(severity="high", then=Value(1)),
+                default=Value(2),
                 output_field=IntegerField(),
             ),
             evidence_count=Count("events", filter=Q(events__integration=app)),
@@ -312,15 +313,28 @@ def simulation_export(request, run_id):
 @login_required
 def investigations(request):
     ctx = scope(request)
-    cases = Investigation.objects.filter(integration=ctx["app"])
+    cases = Investigation.objects.filter(integration=ctx["app"]).select_related(
+        "assignee__user", "acknowledged_by"
+    )
     counts = dict(cases.values_list("status").annotate(total=Count("id")))
     status = request.GET.get("status", "")
     status = status if status in ("open", "resolved", "false_positive") else ""
     severity = request.GET.get("severity", "")
-    severity = severity if severity in ("critical", "medium") else ""
+    severity = severity if severity in ("critical", "high", "medium") else ""
     rule = request.GET.get("rule", "")
-    rule = rule if rule in ("R1", "R2") else ""
+    rule = rule if rule in RULES else ""
     query = request.GET.get("q", "").strip()[:120]
+    queue = request.GET.get("queue", "")
+    queue = queue if queue in ("mine", "unassigned", "unacknowledged", "overdue") else ""
+    now = timezone.now()
+    if queue == "mine":
+        cases = cases.filter(assignee__user=request.user, assignee__integration=ctx["app"])
+    elif queue == "unassigned":
+        cases = cases.filter(status="open", assignee__isnull=True)
+    elif queue == "unacknowledged":
+        cases = cases.filter(status="open", acknowledged_at__isnull=True)
+    elif queue == "overdue":
+        cases = cases.filter(status="open", due_at__lt=now)
     if status:
         cases = cases.filter(status=status)
     if severity:
@@ -336,7 +350,10 @@ def investigations(request):
     cases = cases.annotate(
         evidence_count=Count("events", filter=Q(events__integration=ctx["app"])),
         priority=Case(
-            When(severity="critical", then=Value(0)), default=Value(1), output_field=IntegerField()
+            When(severity="critical", then=Value(0)),
+            When(severity="high", then=Value(1)),
+            default=Value(2),
+            output_field=IntegerField(),
         ),
     ).prefetch_related(
         Prefetch("events", queryset=case_preview_events(ctx["app"]), to_attr="preview_events")
@@ -354,6 +371,8 @@ def investigations(request):
         selected_status=status,
         selected_severity=severity,
         selected_rule=rule,
+        selected_queue=queue,
+        queue_now=now,
         selected_sort=sort,
         query=query,
         status_counts=counts,
@@ -390,7 +409,7 @@ def events(request):
 @login_required
 def investigation(request, case_id):
     case = get_object_or_404(
-        Investigation.objects.select_related("integration"),
+        Investigation.objects.select_related("integration", "assignee__user", "acknowledged_by"),
         id=case_id,
         integration__membership__user=request.user,
     )
@@ -414,9 +433,14 @@ def investigation(request, case_id):
                     raise WorkflowError("Case changed. Reload before saving.")
                 if action == "note":
                     note = request.POST.get("note", "").strip()
+                    kind = request.POST.get("kind", "general")
                     if not 1 <= len(note) <= 2000:
                         raise WorkflowError("Write a note between 1 and 2,000 characters.")
-                    Note.objects.create(investigation=locked, author=request.user, text=note)
+                    if kind not in dict(Note._meta.get_field("kind").choices):
+                        raise WorkflowError("Choose a valid note category.")
+                    Note.objects.create(
+                        investigation=locked, author=request.user, text=note, kind=kind
+                    )
                     detail = {"note_added": True}
                 elif action == "disposition":
                     status = request.POST.get("status", "")
@@ -478,6 +502,14 @@ def investigation(request, case_id):
         audits=Audit.objects.filter(integration=case.integration, object_id=str(case.pk))
         .select_related("actor")
         .order_by("-created_at")[:20],
+        eligible_assignees=Membership.objects.select_related("user")
+        .filter(
+            integration=case.integration,
+            user__is_active=True,
+            role__in=("analyst", "reviewer"),
+        )
+        .order_by("user__username", "pk")[:100],
+        case_tasks=case.tasks.select_related("assignee__user").order_by("-created_at", "pk")[:50],
     )
     return render(request, "case.html", ctx)
 

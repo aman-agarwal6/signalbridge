@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "approved_attempt_completed_nine_checks_passed",
+  "reason": "Retained Windows-to-container PostgreSQL connection timeout. Keep network isolation and move the test client onto the same internal network.",
+  "existing_images": {
+    "database": "postgres@sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "python_base": "python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+  },
+  "prebuild_gate": "No image build. Verify installed Linux/AMD64 identities; runner refuses anything other than Linux CPython 3.14 before installation. Stop without replacement downloads if incompatible.",
+  "proposed_download": {
+    "kind": "six pinned binary wheels from official PyPI file URLs",
+    "packages": [
+      "Django==5.2.17",
+      "psycopg==3.3.6",
+      "psycopg-binary==3.3.6",
+      "asgiref==3.12.1",
+      "sqlparse==0.6.0",
+      "tzdata==2026.4"
+    ],
+    "reported_total_bytes": 14200997,
+    "download_ceiling_bytes": 20971520,
+    "lock": "runner-requirements.lock",
+    "execution": "Install only the six verified wheels offline into 192 MiB container tmpfs, not Windows, sibling environments or a new permanent image. No dependency resolution, sources or install hooks."
+  },
+  "proposed_runtime": {
+    "containers": [
+      "disposable PostgreSQL",
+      "non-root test runner"
+    ],
+    "memory_mib_each": 512,
+    "combined_container_memory_mib": 1024,
+    "cpus_each": 1,
+    "maximum_minutes": 30,
+    "network": "Dedicated internal network, no published ports, no host network and no external access during execution.",
+    "mounts": "Sanitized selected source snapshot read-only; dedicated credentials; separate writable evidence directory; no other projects or Docker socket.",
+    "shutdown": "Independent ownership-checked watchdog for both components; retain databases and failed receipts; no global prune or unrelated shutdown.",
+    "temporary_storage": "Runner: 64 MiB noexec scratch storage plus 128 MiB executable dependency tmpfs, nosuid/nodev, owner 10001, mode 0700, same 192 MiB aggregate temporary storage and 512 MiB container RAM cap. Install only cached hash-verified wheels. Database temporary mounts remain noexec.",
+    "disk_growth": "Twelve GiB whole-stage guard, same conservative initial baseline including prior consumption, twenty-five GiB reserve; detection guard rather than hard quota.",
+    "pretest_gate": "Inspect effective image, memory/swap/CPU/process limits, user, privileges, capabilities, restart policy, exact private mounts, internal network and no published ports before releasing the test gate."
+  },
+  "remaining_before_review": [
+    "This single approved attempt is completed. No new launch is implied.",
+    "Repeat affected native checks under a newly reviewed launch if relevant code changes."
+  ],
+  "claim": "A recipe and planning file are not executed native integration evidence.",
+  "prepared_checks": {
+    "offline_controls": "32 offline controls passed, including wheel hash/path/footprint guards and kernel mounts.",
+    "native_pending": "Nine fixed tests: five ingestion/worker checks, three concurrent case/task checks, one killed-process rollback/recovery check."
+  },
+  "host_reading": {
+    "free_disk_bytes": 79936905216,
+    "free_memory_bytes": 9788571648,
+    "Docker_and_WSL_stopped": true,
+    "claim": "A point-in-time reading, not a reserved allocation; recheck after Docker starts and before launching."
+  },
+  "recovery": "Stop only containers with the exact run/project/scope/component identity. Retain new and previous stopped containers, volumes, credentials and failed receipts. Stop Docker Desktop afterward if no other workloads appeared. No global prune or unrelated cleanup.",
+  "retained_failure": "docs/evidence/20261001-postgresql-in-network-861397ae7e3b47deae9a47dbfaddf08d.json",
+  "diagnosis": "Unquoted flow-list mount split into /tmp:rw, nosuid and size=192m. Database was created but never started; runner creation failed. Both shutdown receipts passed. Quoted value and precreation parsed-configuration gate now verified.",
+  "retry_proposal": "One cached-wheel retry with unchanged mount and resource profile. Disable optional bytecode generation and place pip staging under the existing 128 MiB dependency mount; 58,294,272-byte allocation estimate passes 96 MiB preflight bound. No new downloads or host changes.",
+  "retry_approval_reference": "call_DHhwYu87PrkFFmaGPHvpCT9T",
+  "latest_native_receipt": "docs/evidence/20261001-postgresql-in-network-1d8fd148036e43b0915fbbe86606d013.json"
+}

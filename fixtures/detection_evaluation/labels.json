@@ -1,0 +1,112 @@
+{
+  "E01": {
+    "title": "Private read after recorded removal",
+    "label": "suspicious",
+    "rationale": "Scenario truth: the affected member has no alternate permission and private content is returned after removal."
+  },
+  "E02": {
+    "title": "Removal arrives after the read",
+    "label": "suspicious",
+    "rationale": "Same unauthorized read as E01, but telemetry arrives out of order."
+  },
+  "E03": {
+    "title": "Re-grant then second removal",
+    "label": "suspicious",
+    "rationale": "Permission is granted, then removed again before content is returned."
+  },
+  "E04": {
+    "title": "Read at the 24-hour horizon",
+    "label": "suspicious",
+    "rationale": "The permission remains withdrawn when private content is returned 24 hours later."
+  },
+  "E05": {
+    "title": "Fast probing by one account",
+    "label": "suspicious",
+    "rationale": "A synthetic unauthorized actor probes three distinct private records."
+  },
+  "E06": {
+    "title": "Reported controlled policy regression",
+    "label": "suspicious",
+    "rationale": "Synthetic source reports a known injected permission failure."
+  },
+  "E07": {
+    "title": "Slow probing over six minutes",
+    "label": "suspicious",
+    "rationale": "Same unauthorized enumeration intent spread beyond the R1 window."
+  },
+  "E08": {
+    "title": "Coordinated probing across accounts",
+    "label": "suspicious",
+    "rationale": "Scenario truth: coordinated accounts each probe one record; events do not contain this oracle label."
+  },
+  "E09": {
+    "title": "Ordinary member read",
+    "label": "benign",
+    "rationale": "The account has legitimate permission."
+  },
+  "E10": {
+    "title": "Removed member is denied",
+    "label": "benign",
+    "rationale": "The source correctly rejects the removed member."
+  },
+  "E11": {
+    "title": "Membership restored before read",
+    "label": "benign",
+    "rationale": "An authorized re-grant restores access before the read."
+  },
+  "E12": {
+    "title": "Removal affected another account",
+    "label": "benign",
+    "rationale": "The reader retains their own independent membership."
+  },
+  "E13": {
+    "title": "Removal for another resource",
+    "label": "benign",
+    "rationale": "The account retains membership for the resource it reads."
+  },
+  "E14": {
+    "title": "Read occurred before removal",
+    "label": "benign",
+    "rationale": "The successful read preceded the permission change."
+  },
+  "E15": {
+    "title": "Repeated stale link to one record",
+    "label": "benign",
+    "rationale": "A legitimate user retries the same unavailable bookmark."
+  },
+  "E16": {
+    "title": "Three legitimate stale bookmarks",
+    "label": "benign",
+    "rationale": "A legitimate user follows three expired bookmarks; no malicious probing."
+  },
+  "E17": {
+    "title": "Re-grant missing from telemetry",
+    "label": "benign",
+    "rationale": "Scenario truth includes a legitimate re-grant at t=3, but its event is lost. Tests false-alert sensitivity to missing context."
+  },
+  "E18": {
+    "title": "Re-grant delivered late",
+    "label": "benign",
+    "rationale": "The grant occurred before the read but its event arrives last. Historical alert must remain auditable."
+  },
+  "E19": {
+    "title": "Dependency failure after removal",
+    "label": "inconclusive",
+    "rationale": "Service failure gives no evidence that private content was allowed or denied."
+  },
+  "E20": {
+    "title": "Read and removal share a timestamp",
+    "label": "inconclusive",
+    "rationale": "Timestamp precision does not establish which happened first."
+  },
+  "E21": {
+    "title": "Conflicting membership assertions",
+    "label": "inconclusive",
+    "rationale": "Grant and removal have equal effective timestamps; ordering cannot be inferred."
+  },
+  "E22": {
+    "title": "Legacy change lacks affected member",
+    "label": "inconclusive",
+    "rationale": "The event lacks an authoritative subject-to-resource relationship; no unauthorized access conclusion is justified."
+  }
+}

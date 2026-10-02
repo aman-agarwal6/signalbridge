@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-native-in-network-postgresql",
+  "run_id": "7c8753e06c3d4fc59565b362557b5aac",
+  "approval_reference": "call_4ldpfNuPG98xHX7KrgMi33vm",
+  "status": "incomplete",
+  "started_at": "2026-10-02T00:33:00.717708+00:00",
+  "images": {
+    "database": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "runner": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+  },
+  "source_sha256": "b6d80f24b502ddfaa83ab67e21cd125ba68c2622983f90a95fb0c92aa9416a3a",
+  "source_snapshot": {
+    "source_sha256": "b6d80f24b502ddfaa83ab67e21cd125ba68c2622983f90a95fb0c92aa9416a3a",
+    "file_count": 317,
+    "bytes": 2683651
+  },
+  "initial_free_disk_bytes": 80498424546,
+  "free_disk_before_bytes": 75381198848,
+  "free_memory_before_bytes": 7778697216,
+  "stage_growth_ceiling_bytes": 12884901888,
+  "limits": [
+    "Component concurrency and killed-process transaction checks only; no source HTTP, enterprise TLS, identity, security-tool or 24-hour proof.",
+    "Two internal containers, one GiB combined memory, no published ports or external runtime network.",
+    "Wheel files are installed into disposable bounded container tmpfs; no host installation or new built image.",
+    "Host storage monitoring detects limits; it is not a hard quota or an allocation guarantee."
+  ],
+  "download": {
+    "wheel_count": 6,
+    "downloaded_bytes": 0,
+    "reused_bytes": 14200997,
+    "cache_run": "861397ae7e3b47deae9a47dbfaddf08d"
+  },
+  "parsed_configuration_verified": true,
+  "startup_log_sha256": "004d71873d006d8d1e143abbd66daad28fba70ca44aa20569285aae94a87b2e6",
+  "runtime_isolation_verified": true,
+  "error_class": "LabControlError",
+  "error_code": "Native runner did not retain its complete bounded proof.",
+  "diagnostic_log_sha256": "7e0c90109eea81594757fc684b55554d3174ac95e5cbcaa9e5717ffbaf9554e5",
+  "stopped_component_count": 2,
+  "shutdown_verified": true,
+  "independent_shutdown_verified": true,
+  "finished_at": "2026-10-02T00:33:14.119771+00:00",
+  "duration_seconds": 13.402,
+  "free_disk_after_bytes": 75327795200,
+  "source_unchanged": true,
+  "acceptance_passed": false
+}

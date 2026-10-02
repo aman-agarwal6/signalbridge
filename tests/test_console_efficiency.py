@@ -145,7 +145,12 @@ class ConsoleEfficiencyTests(TestCase):
         )
         self.assertEqual(
             report["telemetry_sources"],
-            {"migration_lab": 49, "synthetic_demo": 1, "legacy_unclassified": 0},
+            {
+                "migration_lab": 49,
+                "synthetic_demo": 1,
+                "legacy_unclassified": 0,
+                "instrumented_lab": 0,
+            },
         )
 
     def test_case_preview_sources_and_totals_cover_all_scoped_evidence(self):

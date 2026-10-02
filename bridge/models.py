@@ -12,6 +12,18 @@ class Integration(models.Model):
     coverage = models.CharField(max_length=240, default="Not connected")
     last_seen = models.DateTimeField(null=True, blank=True)
     rejected = models.PositiveIntegerField(default=0)
+    business_owner = models.CharField(max_length=100, blank=True, default="")
+    asset_criticality = models.CharField(
+        max_length=16,
+        default="unassessed",
+        choices=[
+            ("unassessed", "Not assessed"),
+            ("low", "Low"),
+            ("moderate", "Moderate"),
+            ("high", "High"),
+            ("critical", "Critical"),
+        ],
+    )
 
     def __str__(self):
         return self.name
@@ -44,10 +56,15 @@ class IngestKey(models.Model):
     key_id = models.CharField(max_length=64, unique=True)
     secret_env = models.CharField(max_length=100)
     active = models.BooleanField(default=True)
+    can_assert_membership = models.BooleanField(default=False)
     source = models.CharField(
         max_length=24,
         default="migration_lab",
-        choices=[("migration_lab", "Migration lab"), ("synthetic_demo", "Synthetic demo")],
+        choices=[
+            ("migration_lab", "Migration lab"),
+            ("synthetic_demo", "Synthetic demo"),
+            ("instrumented_lab", "Instrumented source lab"),
+        ],
     )
     environment = models.CharField(
         max_length=12, default="lab", choices=[("lab", "Lab"), ("test", "Test")]
@@ -61,6 +78,7 @@ class Event(models.Model):
     occurred_at = models.DateTimeField()
     received_at = models.DateTimeField(auto_now_add=True)
     actor = models.CharField(max_length=64)
+    membership_subject = models.CharField(max_length=64, blank=True, default="")
     resource = models.CharField(max_length=64)
     episode = models.UUIDField()
     operation = models.CharField(max_length=32)
@@ -73,6 +91,7 @@ class Event(models.Model):
         choices=[
             ("migration_lab", "Observed SQL lab"),
             ("synthetic_demo", "Synthetic fixture"),
+            ("instrumented_lab", "Instrumented source lab"),
             ("legacy_unclassified", "Earlier development record"),
         ],
     )
@@ -80,6 +99,10 @@ class Event(models.Model):
     digest = models.CharField(max_length=64)
     state = models.CharField(max_length=12, default="pending")
     attempts = models.PositiveIntegerField(default=0)
+    processing_attempts = models.PositiveIntegerField(default=0)
+    processing_started_at = models.DateTimeField(null=True, blank=True)
+    processed_at = models.DateTimeField(null=True, blank=True)
+    processed_by = models.CharField(max_length=40, blank=True, default="")
     available_at = models.DateTimeField()
     error_code = models.CharField(max_length=40, blank=True)
 
@@ -90,7 +113,26 @@ class Event(models.Model):
         indexes = [
             models.Index(fields=["state", "available_at"]),
             models.Index(fields=["integration", "actor", "occurred_at"]),
+            models.Index(
+                fields=["integration", "resource", "occurred_at"], name="sb_event_resource_time"
+            ),
             models.Index(fields=["integration", "received_at"], name="sb_event_app_received"),
+            models.Index(
+                fields=["integration", "state", "available_at", "received_at"],
+                name="sb_event_app_queue",
+            ),
+            models.Index(
+                fields=["integration", "resource", "membership_subject", "occurred_at"],
+                name="sb_event_subject_time",
+            ),
+            models.Index(
+                fields=["integration", "environment", "source", "actor", "occurred_at"],
+                name="sb_event_actor_scope_time",
+            ),
+            models.Index(
+                fields=["integration", "environment", "source", "resource", "occurred_at"],
+                name="sb_event_resource_scope_time",
+            ),
         ]
 
 
@@ -146,6 +188,16 @@ class Investigation(models.Model):
     version = models.PositiveIntegerField(default=1)
     events = models.ManyToManyField(Event)
     created_at = models.DateTimeField(auto_now_add=True)
+    assignee = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True, blank=True)
+    acknowledged_at = models.DateTimeField(null=True, blank=True)
+    acknowledged_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name="acknowledged_cases",
+    )
+    due_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         constraints = [
@@ -160,6 +212,108 @@ class Note(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     text = models.CharField(max_length=2000)
     created_at = models.DateTimeField(auto_now_add=True)
+    kind = models.CharField(
+        max_length=20,
+        default="general",
+        choices=[
+            ("general", "General / earlier note"),
+            ("observed_fact", "Observed fact"),
+            ("interpretation", "Analyst interpretation"),
+            ("uncertainty", "Uncertainty"),
+            ("remediation", "Remediation plan"),
+            ("verification", "Verification note"),
+        ],
+    )
+
+
+class CaseTask(models.Model):
+    """A review/remediation task; completion alone is not a verified security fix."""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    investigation = models.ForeignKey(Investigation, on_delete=models.PROTECT, related_name="tasks")
+    kind = models.CharField(
+        max_length=12, choices=[("review", "Review"), ("remediation", "Remediation")]
+    )
+    title = models.CharField(max_length=160)
+    status = models.CharField(
+        max_length=16,
+        default="open",
+        choices=[
+            ("open", "Open"),
+            ("in_progress", "In progress"),
+            ("awaiting_retest", "Awaiting retest"),
+        ],
+    )
+    assignee = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True, blank=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, null=True)
+    case_version = models.PositiveIntegerField()
+    evidence_sha256 = models.CharField(max_length=64)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                condition=Q(kind__in=["review", "remediation"]), name="valid_case_task_kind"
+            ),
+            models.CheckConstraint(
+                condition=Q(status__in=["open", "in_progress", "awaiting_retest"]),
+                name="valid_case_task_state",
+            ),
+        ]
+
+
+class ServiceCredential(models.Model):
+    """One app and one machine capability. The secret exists only at runtime."""
+
+    integration = models.ForeignKey(Integration, on_delete=models.PROTECT)
+    key_id = models.CharField(max_length=64, unique=True)
+    secret_env = models.CharField(max_length=100, unique=True)
+    active = models.BooleanField(default=True)
+    capability = models.CharField(
+        max_length=24,
+        choices=[
+            ("read_case_evidence", "Read case evidence"),
+            ("create_review_task", "Create review task"),
+        ],
+    )
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                condition=Q(capability__in=["read_case_evidence", "create_review_task"]),
+                name="valid_service_capability",
+            )
+        ]
+
+
+class ServiceNonce(models.Model):
+    credential = models.ForeignKey(ServiceCredential, on_delete=models.CASCADE)
+    nonce = models.UUIDField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["credential", "nonce"], name="unique_service_nonce")
+        ]
+        indexes = [models.Index(fields=["credential", "created_at"], name="sb_service_nonce_time")]
+
+
+class ServiceRequest(models.Model):
+    credential = models.ForeignKey(ServiceCredential, on_delete=models.PROTECT)
+    idempotency_key = models.UUIDField()
+    request_sha256 = models.CharField(max_length=64)
+    task = models.OneToOneField(CaseTask, on_delete=models.PROTECT)
+    response = models.JSONField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["credential", "idempotency_key"],
+                name="unique_service_request",
+            )
+        ]
 
 
 class Audit(models.Model):

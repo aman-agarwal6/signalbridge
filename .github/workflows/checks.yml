@@ -1,29 +1,21 @@
 name: SignalBridge core checks
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+concurrency:
+  group: core-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
   core:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    services:
-      postgres:
-        image: postgres:17.11
-        env:
-          POSTGRES_DB: signalbridge
-          POSTGRES_USER: signalbridge
-          POSTGRES_PASSWORD: ephemeral-ci-only
-        ports: ["5432:5432"]
-        options: >-
-          --health-cmd "pg_isready -U signalbridge"
-          --health-interval 5s --health-timeout 5s --health-retries 10
     env:
       SB_MODE: local
       SB_SECRET_KEY: ephemeral-ci-only-do-not-use-outside-this-disposable-job-123456789
-      SB_DB_HOST: 127.0.0.1
-      SB_DB_USER: signalbridge
-      SB_DB_PASSWORD: ephemeral-ci-only
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
@@ -41,19 +33,23 @@ jobs:
       - name: Install pinned Python runtime and verification tools
         run: python -m pip install -r requirements-dev.txt
       - name: Lint Python source
-        run: python -m ruff check bridge config tests scripts simulations manage.py
+        run: python -m ruff check bridge reference_lab config tests scripts simulations manage.py
       - name: Check Python formatting
-        run: python -m ruff format --check bridge config tests scripts simulations manage.py
+        run: python -m ruff format --check bridge reference_lab config tests scripts simulations manage.py
       - name: Check Django configuration
         run: python manage.py check
       - name: Check migration drift
         run: python manage.py makemigrations --check --dry-run
-      - name: Test Django against disposable PostgreSQL
-        run: python manage.py test tests --exclude-tag offline_simulation --verbosity 1
+      - name: Test Django against disposable SQLite (the supported local database)
+        run: python manage.py test tests --exclude-tag offline_simulation --exclude-tag native_postgres --verbosity 1
       - name: Test simulation fault handling against memory-only SQLite
         run: python manage.py test tests --tag offline_simulation --settings config.simulation_settings --verbosity 1
+      - name: Test reference application authorization and transactional telemetry in memory
+        run: python manage.py test reference_lab --settings config.reference_verification_settings --verbosity 1
       - name: Measure the fixed offline detection challenge
         run: python scripts/run_enterprise_lab.py --challenge
+      - name: Execute the separately frozen enterprise detection round
+        run: python scripts/evaluate_enterprise_detection.py
       - name: Test offline event courier
         run: node --test --test-isolation=none --test-reporter=tap integrations/sender.test.mjs
       - name: Test offline HTTP-harness behavior
@@ -62,7 +58,45 @@ jobs:
         run: node --test --test-isolation=none --test-reporter=tap integrations/bettail-routes.test.mjs
       - name: Check publishable paths and known job-local credential copies
         run: python scripts/check_publication.py
+  postgres:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    container:
+      image: python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d
+      options: --memory=1g --cpus=2 --pids-limit=256 --cap-drop=ALL --security-opt=no-new-privileges
+    services:
+      database:
+        image: postgres@sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0
+        env:
+          # Public, job-only bootstrap fixture. It is never a workstation secret.
+          POSTGRES_PASSWORD: disposable-ci-bootstrap-only-never-use-on-a-workstation-123456789
+        options: >-
+          --memory=512m --cpus=1 --pids-limit=128
+          --user=postgres --cap-drop=ALL --security-opt=no-new-privileges
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=5s --health-timeout=3s --health-retries=12
+    env:
+      SB_CI_POSTGRES_PROFILE: signalbridge-enterprise-ci-v1
+      SB_CI_BOOTSTRAP_PASSWORD: disposable-ci-bootstrap-only-never-use-on-a-workstation-123456789
+      SB_DISPOSABLE_PG: '1'
+      SB_SECRET_KEY: ephemeral-ci-only-do-not-use-outside-this-disposable-job-123456789
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - name: Install the six hash-pinned verification dependencies
+        run: python -m pip install --no-deps --no-compile --require-hashes -r integrations/enterprise/runner-requirements.lock
+      - name: Prepare the fresh non-superuser database
+        run: python -B scripts/ci_postgresql.py
+      - name: Verify native concurrency and actual process-kill recovery
+        run: python -B manage.py test tests.test_postgres_processing tests.test_postgres_cases --settings config.in_network_postgres_settings --noinput --verbosity 1
 # The sibling app repositories are not bundled or cloned. Their integration checks
 # require an explicitly approved source checkout. This is not full M1 coverage.
 # The Node suites use built-ins and mocked services, so no npm/PGlite install is needed.
 # The publication check cannot match private workstation credentials absent from CI.
+# No repository secrets, deployment writes, pull_request_target or native SOC labs.
+# Native PostgreSQL checks are a separate required gate; this SQLite job excludes them.
+# Retained September evaluation integrity is checked by the Python suite. Re-running
+# its engine on changed source is rejected. A new frozen enterprise evaluation and
+# disposable PostgreSQL job are now declared. Remote execution is still unverified.
