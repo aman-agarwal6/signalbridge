@@ -10,6 +10,7 @@ from unittest.mock import patch
 from django.test import Client, TransactionTestCase, override_settings, tag
 
 from bridge.challenge_evidence import validate_result
+from bridge.models import Investigation
 from simulations import challenge_suite
 
 
@@ -65,3 +66,16 @@ class ChallengeExecutionTests(TransactionTestCase):
         self.assertGreater(report["requests_executed"], 0)
         with self.assertRaises(ValueError):
             validate_result(report)
+
+    def test_historical_projection_completes_without_suppressing_real_new_rule_findings(self):
+        self.run_matrix()
+        report = json.loads((self.output / "result.json").read_text())
+        status, _ = validate_result(report)
+        self.assertEqual(status, "partial")
+        self.assertEqual(len(report["rows"]), 19)
+        self.assertEqual(report["summary"]["rule_contract"]["met"], 16)
+        self.assertEqual(report["summary"]["capability_probes"]["alert_observed"], 0)
+        # The live detector still records the wider correlation; this test only
+        # projects the original contracts and makes no R3-R5 coverage claim.
+        self.assertTrue(Investigation.objects.filter(rule="R5").exists())
+        self.assertTrue(all(set(row["observed_rules"]) <= {"R1", "R2"} for row in report["rows"]))

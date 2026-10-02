@@ -1,4 +1,9 @@
-"""Measure every declared challenge through signed ingestion and the real worker."""
+"""Measure the historical R1/R2 contracts through ingestion and the real worker.
+
+This unchanged v1 catalog shares resource pseudonyms between scenarios. New
+multi-account rules can legitimately correlate across those scenarios, so they
+are measured in the separate enterprise round, not this historical projection.
+"""
 
 import json
 import os
@@ -80,7 +85,11 @@ class DetectionChallenge(TransactionTestCase):
                 self.assertEqual(processed, len(ids))
                 report["records_processed"] += processed
                 self.assertLessEqual(report["records_processed"], MAX_WORKER_RECORDS)
-                findings = list(Investigation.objects.filter(events__event_id__in=ids).distinct())
+                findings = list(
+                    Investigation.objects.filter(
+                        events__event_id__in=ids, rule__in=("R1", "R2")
+                    ).distinct()
+                )
                 self.assertTrue(
                     all(
                         set(str(i) for i in finding.events.values_list("event_id", flat=True))
