@@ -102,7 +102,9 @@ jobs:
       - name: Prepare the fresh non-superuser database
         run: '"$RUNNER_TEMP/sb-verifier/bin/python" -B scripts/ci_postgresql.py'
       - name: Verify native concurrency and actual process-kill recovery
-        run: '"$RUNNER_TEMP/sb-verifier/bin/python" -B manage.py test tests.test_postgres_processing tests.test_postgres_cases --settings config.in_network_postgres_settings --noinput --verbosity 1'
+        # The fixed child probe runs from integrations/enterprise. Give it only
+        # this checked-out source path; dependencies stay in the same venv.
+        run: 'PYTHONPATH="$GITHUB_WORKSPACE" "$RUNNER_TEMP/sb-verifier/bin/python" -B manage.py test tests.test_postgres_processing tests.test_postgres_cases --settings config.in_network_postgres_settings --noinput --verbosity 1'
 # The sibling app repositories are not bundled or cloned. Their integration checks
 # require an explicitly approved source checkout. This is not full M1 coverage.
 # The Node suites use built-ins and mocked services, so no npm/PGlite install is needed.
