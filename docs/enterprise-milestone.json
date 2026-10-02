@@ -159,7 +159,7 @@
     "ai_reference_answer": "A scenario may meet more than one rule, so scenario-level accuracy and case-level workload use different denominators. The oracle business activity is benign despite matching telemetry; rule conformance does not establish malicious intent. A late correction still consumed initial analyst review work.",
     "human_assessment": "Not submitted or independently assessed."
   },
-  "current_offline_receipt": "docs/evidence/20261001-enterprise-offline-be810fa15e3b4e76a60e0bd73a85d3d9.json",
+  "current_offline_receipt": "docs/evidence/20261001-enterprise-offline-a58a9bc71e21497596375687033d5faa.json",
   "current_human_handoff": "output/pdf/SignalBridge_Enterprise_Handoff.pdf",
   "evidence_corrections": [
     {
@@ -173,6 +173,10 @@
     {
       "receipt": "docs/evidence/20261001-enterprise-offline-be810fa15e3b4e76a60e0bd73a85d3d9.json",
       "note": "Publication preparation normalized CRCRLF/CRLF in three console presentation files only. Fresh complete local verification passed; prior source-bound receipts remain historical. Detection implementation and the frozen 48-scenario identity are unchanged."
+    },
+    {
+      "receipt": "docs/evidence/20261001-enterprise-offline-a58a9bc71e21497596375687033d5faa.json",
+      "note": "Publication CI repair changes only the historical R1/R2 challenge harness, its regression and hosted CI container ownership. Full local checks passed with 1,177 Python and 62 distinct Node methods. The actual detector and frozen 48-scenario implementation are unchanged. R3-R5 are not scored in the historical v1 projection; the detector still records them."
     }
   ],
   "native_source_stage_plan": "integrations/enterprise/reference-stage-plan.json"

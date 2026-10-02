@@ -46,7 +46,7 @@ jobs:
         run: python manage.py test tests --tag offline_simulation --settings config.simulation_settings --verbosity 1
       - name: Test reference application authorization and transactional telemetry in memory
         run: python manage.py test reference_lab --settings config.reference_verification_settings --verbosity 1
-      - name: Measure the fixed offline detection challenge
+      - name: Measure historical R1/R2 challenge contracts (new rules evaluated separately)
         run: python scripts/run_enterprise_lab.py --challenge
       - name: Execute the separately frozen enterprise detection round
         run: python scripts/evaluate_enterprise_detection.py
@@ -59,11 +59,16 @@ jobs:
       - name: Check publishable paths and known job-local credential copies
         run: python scripts/check_publication.py
   postgres:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     container:
       image: python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d
-      options: --memory=1g --cpus=2 --pids-limit=256 --cap-drop=ALL --security-opt=no-new-privileges
+      # Match the hosted runner UID for its owner-only command files. Keep
+      # capabilities dropped; do not grant root a file-permission bypass.
+      options: >-
+        --user=1001:1001 --memory=1g --cpus=2 --pids-limit=256
+        --cap-drop=ALL --security-opt=no-new-privileges
+        --tmpfs=/run/secrets:rw,noexec,nosuid,nodev,size=1m,uid=1001,gid=1001,mode=0700
     services:
       database:
         image: postgres@sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0
@@ -82,15 +87,22 @@ jobs:
       SB_SECRET_KEY: ephemeral-ci-only-do-not-use-outside-this-disposable-job-123456789
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
+      - name: Verify the hosted runner ownership contract before checkout
+        run: >-
+          python -c 'import os, pathlib; assert os.getuid() == 1001;
+          assert pathlib.Path(os.environ["GITHUB_STATE"]).stat().st_uid == os.getuid(),
+          "Hosted runner UID changed; review the non-root CI profile"'
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           persist-credentials: false
       - name: Install the six hash-pinned verification dependencies
-        run: python -m pip install --no-deps --no-compile --require-hashes -r integrations/enterprise/runner-requirements.lock
+        run: |
+          python -m venv "$RUNNER_TEMP/sb-verifier"
+          "$RUNNER_TEMP/sb-verifier/bin/python" -m pip install --no-cache-dir --no-deps --no-compile --require-hashes -r integrations/enterprise/runner-requirements.lock
       - name: Prepare the fresh non-superuser database
-        run: python -B scripts/ci_postgresql.py
+        run: '"$RUNNER_TEMP/sb-verifier/bin/python" -B scripts/ci_postgresql.py'
       - name: Verify native concurrency and actual process-kill recovery
-        run: python -B manage.py test tests.test_postgres_processing tests.test_postgres_cases --settings config.in_network_postgres_settings --noinput --verbosity 1
+        run: '"$RUNNER_TEMP/sb-verifier/bin/python" -B manage.py test tests.test_postgres_processing tests.test_postgres_cases --settings config.in_network_postgres_settings --noinput --verbosity 1'
 # The sibling app repositories are not bundled or cloned. Their integration checks
 # require an explicitly approved source checkout. This is not full M1 coverage.
 # The Node suites use built-ins and mocked services, so no npm/PGlite install is needed.
@@ -99,4 +111,5 @@ jobs:
 # Native PostgreSQL checks are a separate required gate; this SQLite job excludes them.
 # Retained September evaluation integrity is checked by the Python suite. Re-running
 # its engine on changed source is rejected. A new frozen enterprise evaluation and
-# disposable PostgreSQL job are now declared. Remote execution is still unverified.
+# disposable PostgreSQL job are now declared. Its hosted UID guard fails closed
+# if runner ownership changes. Local native receipts are separate from CI results.

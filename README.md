@@ -18,7 +18,7 @@ SignalBridge is a security workbench for access-control monitoring. It collects 
 - **Enterprise workflow in development.** App-scoped assignment, acknowledgement, deadlines, categorized notes and evidence-bound tasks. Queues expose assigned, unassigned, unacknowledged and overdue work. Separate machine credentials can read evidence or create one review task; signed requests, replay limits, version checks and transactional idempotency constrain these interfaces. A task or resolved case is not a verified fix.
 - **Wazuh integration.** A recorded backfill delivered 64 of 64 events with the 31 expected alerts and no loss or duplicates. A separate run restarted the collector twice without losing input.
 - **ZAP integration.** Passive scan imports. A scan against an unavailable target is recorded as failed, not clean.
-- **Current local checks.** The retained October round passed 1,176 Python and 62 distinct Node methods, plus configuration, migration, lint/format and publication checks. Nine native PostgreSQL methods passed separately. These counts are regression evidence, not detection accuracy or enterprise coverage. September's 1,102-test verification remains historical.
+- **Current local checks.** The retained October round passed 1,177 Python and 62 distinct Node methods, plus configuration, migration, lint/format and publication checks. Nine native PostgreSQL methods passed separately. These counts are regression evidence, not detection accuracy or enterprise coverage. September's 1,102-test verification remains historical.
 
 The historical challenge remains attached to its original source and inputs. New R4/R5 provide bounded slow and same-resource distributed coverage; missing affected-member context and activity outside their thresholds remain gaps. R3 requires authoritative v2 telemetry and does not invent missing context. Native enterprise source execution remains unfinished. See the [design notes](docs/DESIGN.md#detection-rules).
 
@@ -82,7 +82,9 @@ enterprise checkout, its old command fails closed. Use the separate current roun
 .venv\Scripts\python.exe -B scripts/evaluate_enterprise_detection.py
 ```
 
-Open `portfolio/evaluation.html` for September's retained results, five AI-authored teaching reviews and a 30-minute personal exercise. Current reruns write receipts under `artifacts/local/enterprise-detection-evaluation/`. Do not replace existing freezes or declarations; source changes require a new identity. CI declares push/PR checks and a separate disposable PostgreSQL job, but remote execution and publication remain unrun. The courier already imports its eight persistence tests; avoid counting them twice.
+Open `portfolio/evaluation.html` for September's retained results, five AI-authored teaching reviews and a 30-minute personal exercise. Current reruns write receipts under `artifacts/local/enterprise-detection-evaluation/`. Do not replace existing freezes or declarations; changes to frozen implementation require a new identity. CI runs push/PR checks and a separate disposable PostgreSQL job. The first published run exposed historical challenge scoping and checkout ownership failures; both are retained while the corrected profile is verified. The courier already imports its eight persistence tests; avoid counting them twice.
+
+The historical v1 challenge scores only its original R1/R2 contracts. Its shared resource pseudonyms allow newer multi-account correlation across scenarios; those findings remain in the database but are excluded from the old score. R3–R5 coverage is measured separately in the frozen 48-scenario round, with its false alerts and misses preserved.
 
 ## Layout
 
