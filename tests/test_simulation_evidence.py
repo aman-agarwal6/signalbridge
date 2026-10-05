@@ -370,3 +370,13 @@ class SimulationCommandTests(TestCase):
         with self.settings(LOCAL=False), self.assertRaisesRegex(CommandError, "local-only"):
             self.invoke()
         self.assertFalse(CheckRun.objects.exists())
+
+
+class SourceAllowlistTests(SimpleTestCase):
+    def test_evidence_validator_accepts_every_path_the_recorder_hashes(self):
+        # The recorder added reference_lab; the validator did not, which broke the evidence refresh.
+        from bridge import simulation_evidence
+        from scripts import record_verification
+
+        self.assertEqual(set(record_verification.SOURCE_DIRS), simulation_evidence.SOURCE_DIRS)
+        self.assertEqual(set(record_verification.SOURCE_FILES), simulation_evidence.SOURCE_FILES)

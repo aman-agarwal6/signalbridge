@@ -44,6 +44,7 @@ CODE_FILES = {
     "ingestion_sha256": "bridge/ingestion.py",
 }
 SOURCE_DIRS = {
+    "reference_lab",
     "simulations",
     "bridge",
     "config",

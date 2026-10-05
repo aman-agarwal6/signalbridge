@@ -1922,6 +1922,7 @@ code {
   }
 
 }
+
 </style>
 </head>
 <body>
@@ -1931,9 +1932,7 @@ code {
 <div class="brand">
 <span class="mark" aria-hidden="true">sb</span>SignalBridge</div>
 <nav class="top-links" aria-label="Page sections">
-<a href="#investigate">Integrations</a>
-<a href="#authorization-proof">Access checks</a>
-<a href="#measured-evidence">Test results</a>
+<a href="#investigate">Integrations</a><a href="#authorization-proof">Access checks</a><a href="#measured-evidence">Test results</a>
 <a href="#engineering">Design</a>
 </nav>
 </header>
@@ -2050,28 +2049,23 @@ code {
 <span>Reconciled counts and analyst visibility</span>
 </li>
 </ol>
-        <div class="rule-strip">
-<div>
+        <div class="rule-strip"><div>
 <strong>1</strong>
 <span>Observed boundary signal</span>
 <small>Rule 100201</small>
-</div>
-<div>
+</div><div>
 <strong>2</strong>
 <span>Synthetic boundary signal</span>
 <small>Rule 100202</small>
-</div>
-<div>
+</div><div>
 <strong>8</strong>
 <span>Denied request</span>
 <small>Rule 100203</small>
-</div>
-<div>
+</div><div>
 <strong>20</strong>
 <span>Record not visible</span>
 <small>Rule 100204</small>
-</div>
-</div>
+</div></div>
         <section class="predicate-inspector" aria-labelledby="predicate-title">
 <h4 id="predicate-title">Why did these records alert?</h4>
 <p>The same outcome can mean different things depending on its source. Compare six actual records with the rule conditions that apply to them. The explanation was checked against all 64 recorded results.</p>
@@ -2093,8 +2087,7 @@ code {
 <th scope="col">Match</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <th scope="row">export_version</th>
 <td>
 <code>1</code>
@@ -2103,8 +2096,7 @@ code {
 <code>^1$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">app</th>
 <td>
 <code>bettail</code>
@@ -2113,8 +2105,7 @@ code {
 <code>^(bettail|netted)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">environment</th>
 <td>
 <code>lab</code>
@@ -2123,8 +2114,7 @@ code {
 <code>^(lab|test)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">source</th>
 <td>
 <code>migration_lab</code>
@@ -2133,8 +2123,7 @@ code {
 <code>^(migration_lab|synthetic_demo)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">event_id</th>
 <td>
 <code>9f1f1ea2-2780-4d22-af7c-9875bce0d102</code>
@@ -2143,8 +2132,7 @@ code {
 <code>^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">occurred_at</th>
 <td>
 <code>2026-09-24T02:05:58.150000+00:00</code>
@@ -2153,8 +2141,7 @@ code {
 <code>^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">operation</th>
 <td>
 <code>private_record.read</code>
@@ -2163,8 +2150,7 @@ code {
 <code>^(private_record\.read|membership\.change|session\.verify)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">outcome</th>
 <td>
 <code>allowed</code>
@@ -2173,8 +2159,7 @@ code {
 <code>^(allowed|denied|not_visible|error)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">reason</th>
 <td>
 <code>policy_regression</code>
@@ -2183,8 +2168,7 @@ code {
 <code>^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">source</th>
 <td>
 <code>migration_lab</code>
@@ -2193,8 +2177,7 @@ code {
 <code>^migration_lab$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">operation</th>
 <td>
 <code>private_record.read</code>
@@ -2203,8 +2186,7 @@ code {
 <code>^private_record\.read$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">outcome</th>
 <td>
 <code>allowed</code>
@@ -2213,8 +2195,7 @@ code {
 <code>^allowed$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">reason</th>
 <td>
 <code>policy_regression</code>
@@ -2223,14 +2204,12 @@ code {
 <code>^(membership_removed|policy_regression)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
 <a href="#record-9f1f1ea2-2780-4d22-af7c-9875bce0d102">Jump to record 9f1f1ea2 and expand its input/result</a>
 </div>
-</details>
-<details class="predicate-example">
+</details><details class="predicate-example">
 <summary>Synthetic comparison · rule 100202, level 5</summary>
 <div class="details-body">
 <p>Allowed read from a declared synthetic scenario. A detector exercise, not a breach.</p>
@@ -2248,8 +2227,7 @@ code {
 <th scope="col">Match</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <th scope="row">export_version</th>
 <td>
 <code>1</code>
@@ -2258,8 +2236,7 @@ code {
 <code>^1$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">app</th>
 <td>
 <code>bettail</code>
@@ -2268,8 +2245,7 @@ code {
 <code>^(bettail|netted)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">environment</th>
 <td>
 <code>lab</code>
@@ -2278,8 +2254,7 @@ code {
 <code>^(lab|test)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">source</th>
 <td>
 <code>synthetic_demo</code>
@@ -2288,8 +2263,7 @@ code {
 <code>^(migration_lab|synthetic_demo)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">event_id</th>
 <td>
 <code>be113c63-0a02-4308-986a-dcde4030ff4c</code>
@@ -2298,8 +2272,7 @@ code {
 <code>^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">occurred_at</th>
 <td>
 <code>2026-09-24T05:14:57.315000+00:00</code>
@@ -2308,8 +2281,7 @@ code {
 <code>^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">operation</th>
 <td>
 <code>private_record.read</code>
@@ -2318,8 +2290,7 @@ code {
 <code>^(private_record\.read|membership\.change|session\.verify)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">outcome</th>
 <td>
 <code>allowed</code>
@@ -2328,8 +2299,7 @@ code {
 <code>^(allowed|denied|not_visible|error)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">reason</th>
 <td>
 <code>membership_removed</code>
@@ -2338,8 +2308,7 @@ code {
 <code>^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">source</th>
 <td>
 <code>synthetic_demo</code>
@@ -2348,8 +2317,7 @@ code {
 <code>^synthetic_demo$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">operation</th>
 <td>
 <code>private_record.read</code>
@@ -2358,8 +2326,7 @@ code {
 <code>^private_record\.read$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">outcome</th>
 <td>
 <code>allowed</code>
@@ -2368,8 +2335,7 @@ code {
 <code>^allowed$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">reason</th>
 <td>
 <code>membership_removed</code>
@@ -2378,14 +2344,12 @@ code {
 <code>^(membership_removed|policy_regression)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
 <a href="#record-be113c63-0a02-4308-986a-dcde4030ff4c">Jump to record be113c63 and expand its input/result</a>
 </div>
-</details>
-<details class="predicate-example">
+</details><details class="predicate-example">
 <summary>Denied request · rule 100203, level 3</summary>
 <div class="details-body">
 <p>The request was denied. This may show a working permission boundary.</p>
@@ -2403,8 +2367,7 @@ code {
 <th scope="col">Match</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <th scope="row">export_version</th>
 <td>
 <code>1</code>
@@ -2413,8 +2376,7 @@ code {
 <code>^1$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">app</th>
 <td>
 <code>bettail</code>
@@ -2423,8 +2385,7 @@ code {
 <code>^(bettail|netted)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">environment</th>
 <td>
 <code>lab</code>
@@ -2433,8 +2394,7 @@ code {
 <code>^(lab|test)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">source</th>
 <td>
 <code>synthetic_demo</code>
@@ -2443,8 +2403,7 @@ code {
 <code>^(migration_lab|synthetic_demo)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">event_id</th>
 <td>
 <code>1c92ffff-b00d-4fdf-ac49-c621f1a7752f</code>
@@ -2453,8 +2412,7 @@ code {
 <code>^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">occurred_at</th>
 <td>
 <code>2026-09-24T02:10:19.763000+00:00</code>
@@ -2463,8 +2421,7 @@ code {
 <code>^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">operation</th>
 <td>
 <code>private_record.read</code>
@@ -2473,8 +2430,7 @@ code {
 <code>^(private_record\.read|membership\.change|session\.verify)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">outcome</th>
 <td>
 <code>denied</code>
@@ -2483,8 +2439,7 @@ code {
 <code>^(allowed|denied|not_visible|error)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">reason</th>
 <td>
 <code>membership_required</code>
@@ -2493,8 +2448,7 @@ code {
 <code>^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">operation</th>
 <td>
 <code>private_record.read</code>
@@ -2503,8 +2457,7 @@ code {
 <code>^private_record\.read$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">outcome</th>
 <td>
 <code>denied</code>
@@ -2513,14 +2466,12 @@ code {
 <code>^denied$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
 <a href="#record-1c92ffff-b00d-4fdf-ac49-c621f1a7752f">Jump to record 1c92ffff and expand its input/result</a>
 </div>
-</details>
-<details class="predicate-example">
+</details><details class="predicate-example">
 <summary>Hidden record · rule 100204, level 3</summary>
 <div class="details-body">
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
@@ -2538,8 +2489,7 @@ code {
 <th scope="col">Match</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <th scope="row">export_version</th>
 <td>
 <code>1</code>
@@ -2548,8 +2498,7 @@ code {
 <code>^1$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">app</th>
 <td>
 <code>bettail</code>
@@ -2558,8 +2507,7 @@ code {
 <code>^(bettail|netted)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">environment</th>
 <td>
 <code>lab</code>
@@ -2568,8 +2516,7 @@ code {
 <code>^(lab|test)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">source</th>
 <td>
 <code>migration_lab</code>
@@ -2578,8 +2525,7 @@ code {
 <code>^(migration_lab|synthetic_demo)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">event_id</th>
 <td>
 <code>0a0037f7-cd5c-475b-b2eb-f2b629c08c15</code>
@@ -2588,8 +2534,7 @@ code {
 <code>^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">occurred_at</th>
 <td>
 <code>2026-09-24T02:05:58.145000+00:00</code>
@@ -2598,8 +2543,7 @@ code {
 <code>^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">operation</th>
 <td>
 <code>private_record.read</code>
@@ -2608,8 +2552,7 @@ code {
 <code>^(private_record\.read|membership\.change|session\.verify)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">outcome</th>
 <td>
 <code>not_visible</code>
@@ -2618,8 +2561,7 @@ code {
 <code>^(allowed|denied|not_visible|error)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">reason</th>
 <td>
 <code>resource_unavailable</code>
@@ -2628,8 +2570,7 @@ code {
 <code>^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">operation</th>
 <td>
 <code>private_record.read</code>
@@ -2638,8 +2579,7 @@ code {
 <code>^private_record\.read$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">outcome</th>
 <td>
 <code>not_visible</code>
@@ -2648,14 +2588,12 @@ code {
 <code>^not_visible$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
 <a href="#record-0a0037f7-cd5c-475b-b2eb-f2b629c08c15">Jump to record 0a0037f7 and expand its input/result</a>
 </div>
-</details>
-<details class="predicate-example">
+</details><details class="predicate-example">
 <summary>Unclassified source · no custom alert</summary>
 <div class="details-body">
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
@@ -2673,8 +2611,7 @@ code {
 <th scope="col">Match</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <th scope="row">export_version</th>
 <td>
 <code>1</code>
@@ -2683,8 +2620,7 @@ code {
 <code>^1$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">app</th>
 <td>
 <code>bettail</code>
@@ -2693,8 +2629,7 @@ code {
 <code>^(bettail|netted)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">environment</th>
 <td>
 <code>lab</code>
@@ -2703,8 +2638,7 @@ code {
 <code>^(lab|test)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">source</th>
 <td>
 <code>legacy_unclassified</code>
@@ -2713,8 +2647,7 @@ code {
 <code>^(migration_lab|synthetic_demo)$</code>
 </td>
 <td class="unmatched">No</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">event_id</th>
 <td>
 <code>0007dd48-5c1f-4292-bd17-aac0471da23d</code>
@@ -2723,8 +2656,7 @@ code {
 <code>^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">occurred_at</th>
 <td>
 <code>2026-09-24T01:42:45.280000+00:00</code>
@@ -2733,8 +2665,7 @@ code {
 <code>^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">operation</th>
 <td>
 <code>private_record.read</code>
@@ -2743,8 +2674,7 @@ code {
 <code>^(private_record\.read|membership\.change|session\.verify)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">outcome</th>
 <td>
 <code>not_visible</code>
@@ -2753,8 +2683,7 @@ code {
 <code>^(allowed|denied|not_visible|error)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">reason</th>
 <td>
 <code>resource_unavailable</code>
@@ -2763,14 +2692,12 @@ code {
 <code>^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
 <a href="#record-0007dd48-5c1f-4292-bd17-aac0471da23d">Jump to record 0007dd48 and expand its input/result</a>
 </div>
-</details>
-<details class="predicate-example">
+</details><details class="predicate-example">
 <summary>Known source, no custom alert · no custom alert</summary>
 <div class="details-body">
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
@@ -2788,8 +2715,7 @@ code {
 <th scope="col">Match</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <th scope="row">export_version</th>
 <td>
 <code>1</code>
@@ -2798,8 +2724,7 @@ code {
 <code>^1$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">app</th>
 <td>
 <code>bettail</code>
@@ -2808,8 +2733,7 @@ code {
 <code>^(bettail|netted)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">environment</th>
 <td>
 <code>lab</code>
@@ -2818,8 +2742,7 @@ code {
 <code>^(lab|test)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">source</th>
 <td>
 <code>synthetic_demo</code>
@@ -2828,8 +2751,7 @@ code {
 <code>^(migration_lab|synthetic_demo)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">event_id</th>
 <td>
 <code>14a7af01-3efb-44e9-ae91-99247f01ef41</code>
@@ -2838,8 +2760,7 @@ code {
 <code>^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">occurred_at</th>
 <td>
 <code>2026-09-24T02:10:19.763000+00:00</code>
@@ -2848,8 +2769,7 @@ code {
 <code>^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.+-]{8,25}(Z)?$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">operation</th>
 <td>
 <code>private_record.read</code>
@@ -2858,8 +2778,7 @@ code {
 <code>^(private_record\.read|membership\.change|session\.verify)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">outcome</th>
 <td>
 <code>allowed</code>
@@ -2868,8 +2787,7 @@ code {
 <code>^(allowed|denied|not_visible|error)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-<tr>
+</tr><tr>
 <th scope="row">reason</th>
 <td>
 <code>member</code>
@@ -2878,8 +2796,7 @@ code {
 <code>^(member|owner|membership_required|membership_removed|resource_unavailable|session_invalid|mfa_required|dependency_unavailable|policy_regression)$</code>
 </td>
 <td class="matched">Yes</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
 <a href="#record-14a7af01-3efb-44e9-ae91-99247f01ef41">Jump to record 14a7af01 and expand its input/result</a>
@@ -2897,8 +2814,7 @@ code {
         <p class="record-intro">
 <strong>Inspect all 64 delivered records.</strong> Open a row to compare the exported metadata with Wazuh's recorded result. The same record ID connects both sides.</p>
         <p class="small light-muted">Sources: 14 observed SQL-lab records · 24 synthetic fixtures · 26 earlier records with unknown classification. No identities or private record contents are shown.</p>
-        <div class="record-list" role="region" aria-label="Wazuh received records" tabindex="0">
-<details class="record-row" id="record-9f1f1ea2-2780-4d22-af7c-9875bce0d102" open>
+        <div class="record-list" role="region" aria-label="Wazuh received records" tabindex="0"><details class="record-row" id="record-9f1f1ea2-2780-4d22-af7c-9875bce0d102" open>
 <summary>
 <span class="record-key">9f1f1ea2</span>
 <span class="record-result">Observed boundary signal<small>migration_lab · allowed</small>
@@ -2926,15 +2842,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100201 · level 12</strong>
-</p>
+<p><strong>Rule 100201 · level 12</strong></p>
 <p>Allowed read with a lab-observed boundary-change reason. Verify the permission context.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-be113c63-0a02-4308-986a-dcde4030ff4c">
+</details><details class="record-row" id="record-be113c63-0a02-4308-986a-dcde4030ff4c">
 <summary>
 <span class="record-key">be113c63</span>
 <span class="record-result">Synthetic boundary signal<small>synthetic_demo · allowed</small>
@@ -2962,15 +2875,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100202 · level 5</strong>
-</p>
+<p><strong>Rule 100202 · level 5</strong></p>
 <p>Allowed read from a declared synthetic scenario. A detector exercise, not a breach.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-e9ec6fca-405e-442e-9ca7-20dc72a26675">
+</details><details class="record-row" id="record-e9ec6fca-405e-442e-9ca7-20dc72a26675">
 <summary>
 <span class="record-key">e9ec6fca</span>
 <span class="record-result">Synthetic boundary signal<small>synthetic_demo · allowed</small>
@@ -2998,15 +2908,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100202 · level 5</strong>
-</p>
+<p><strong>Rule 100202 · level 5</strong></p>
 <p>Allowed read from a declared synthetic scenario. A detector exercise, not a breach.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-1c92ffff-b00d-4fdf-ac49-c621f1a7752f">
+</details><details class="record-row" id="record-1c92ffff-b00d-4fdf-ac49-c621f1a7752f">
 <summary>
 <span class="record-key">1c92ffff</span>
 <span class="record-result">Denied request<small>synthetic_demo · denied</small>
@@ -3034,15 +2941,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100203 · level 3</strong>
-</p>
+<p><strong>Rule 100203 · level 3</strong></p>
 <p>The request was denied. This may show a working permission boundary.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-5682a54d-4c0f-4c42-9716-154878e1a23e">
+</details><details class="record-row" id="record-5682a54d-4c0f-4c42-9716-154878e1a23e">
 <summary>
 <span class="record-key">5682a54d</span>
 <span class="record-result">Denied request<small>migration_lab · denied</small>
@@ -3070,15 +2974,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100203 · level 3</strong>
-</p>
+<p><strong>Rule 100203 · level 3</strong></p>
 <p>The request was denied. This may show a working permission boundary.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-5bf24e40-0e64-4510-bb99-bac32e280b6c">
+</details><details class="record-row" id="record-5bf24e40-0e64-4510-bb99-bac32e280b6c">
 <summary>
 <span class="record-key">5bf24e40</span>
 <span class="record-result">Denied request<small>synthetic_demo · denied</small>
@@ -3106,15 +3007,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100203 · level 3</strong>
-</p>
+<p><strong>Rule 100203 · level 3</strong></p>
 <p>The request was denied. This may show a working permission boundary.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-6d2238b3-f468-4b90-939f-9b4d4e8fa2b5">
+</details><details class="record-row" id="record-6d2238b3-f468-4b90-939f-9b4d4e8fa2b5">
 <summary>
 <span class="record-key">6d2238b3</span>
 <span class="record-result">Denied request<small>synthetic_demo · denied</small>
@@ -3142,15 +3040,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100203 · level 3</strong>
-</p>
+<p><strong>Rule 100203 · level 3</strong></p>
 <p>The request was denied. This may show a working permission boundary.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-8c1b3d1e-c1a8-41c3-80f6-58d8e53e5498">
+</details><details class="record-row" id="record-8c1b3d1e-c1a8-41c3-80f6-58d8e53e5498">
 <summary>
 <span class="record-key">8c1b3d1e</span>
 <span class="record-result">Denied request<small>synthetic_demo · denied</small>
@@ -3178,15 +3073,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100203 · level 3</strong>
-</p>
+<p><strong>Rule 100203 · level 3</strong></p>
 <p>The request was denied. This may show a working permission boundary.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-a7cbe333-c7ed-4681-89c9-1d95ee62517b">
+</details><details class="record-row" id="record-a7cbe333-c7ed-4681-89c9-1d95ee62517b">
 <summary>
 <span class="record-key">a7cbe333</span>
 <span class="record-result">Denied request<small>synthetic_demo · denied</small>
@@ -3214,15 +3106,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100203 · level 3</strong>
-</p>
+<p><strong>Rule 100203 · level 3</strong></p>
 <p>The request was denied. This may show a working permission boundary.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-bc831255-279c-4ed8-b1b7-81302827e118">
+</details><details class="record-row" id="record-bc831255-279c-4ed8-b1b7-81302827e118">
 <summary>
 <span class="record-key">bc831255</span>
 <span class="record-result">Denied request<small>migration_lab · denied</small>
@@ -3250,15 +3139,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100203 · level 3</strong>
-</p>
+<p><strong>Rule 100203 · level 3</strong></p>
 <p>The request was denied. This may show a working permission boundary.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-d3c3ba3c-bbf6-457a-919c-dab7b66e1f41">
+</details><details class="record-row" id="record-d3c3ba3c-bbf6-457a-919c-dab7b66e1f41">
 <summary>
 <span class="record-key">d3c3ba3c</span>
 <span class="record-result">Denied request<small>synthetic_demo · denied</small>
@@ -3286,15 +3172,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100203 · level 3</strong>
-</p>
+<p><strong>Rule 100203 · level 3</strong></p>
 <p>The request was denied. This may show a working permission boundary.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-0a0037f7-cd5c-475b-b2eb-f2b629c08c15">
+</details><details class="record-row" id="record-0a0037f7-cd5c-475b-b2eb-f2b629c08c15">
 <summary>
 <span class="record-key">0a0037f7</span>
 <span class="record-result">Record not visible<small>migration_lab · not_visible</small>
@@ -3322,15 +3205,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-0d8975a0-2978-42dc-811e-6c4708318c93">
+</details><details class="record-row" id="record-0d8975a0-2978-42dc-811e-6c4708318c93">
 <summary>
 <span class="record-key">0d8975a0</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3358,15 +3238,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-10147ef0-b895-4e35-a338-199f23f55a0a">
+</details><details class="record-row" id="record-10147ef0-b895-4e35-a338-199f23f55a0a">
 <summary>
 <span class="record-key">10147ef0</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3394,15 +3271,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-2a356653-bc58-416a-a7c0-e566b3f45fde">
+</details><details class="record-row" id="record-2a356653-bc58-416a-a7c0-e566b3f45fde">
 <summary>
 <span class="record-key">2a356653</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3430,15 +3304,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-2f714712-4850-4a3b-a809-364f99777804">
+</details><details class="record-row" id="record-2f714712-4850-4a3b-a809-364f99777804">
 <summary>
 <span class="record-key">2f714712</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3466,15 +3337,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-2f7ae5d6-f0d9-4208-a548-195cc391c496">
+</details><details class="record-row" id="record-2f7ae5d6-f0d9-4208-a548-195cc391c496">
 <summary>
 <span class="record-key">2f7ae5d6</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3502,15 +3370,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-3d3a26fa-3175-446e-8003-9c506a167a2b">
+</details><details class="record-row" id="record-3d3a26fa-3175-446e-8003-9c506a167a2b">
 <summary>
 <span class="record-key">3d3a26fa</span>
 <span class="record-result">Record not visible<small>migration_lab · not_visible</small>
@@ -3538,15 +3403,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-407fe5ed-1497-406d-b1a1-158f8ed50222">
+</details><details class="record-row" id="record-407fe5ed-1497-406d-b1a1-158f8ed50222">
 <summary>
 <span class="record-key">407fe5ed</span>
 <span class="record-result">Record not visible<small>migration_lab · not_visible</small>
@@ -3574,15 +3436,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-41e870d3-b3b3-41d8-86cb-525f6226f7eb">
+</details><details class="record-row" id="record-41e870d3-b3b3-41d8-86cb-525f6226f7eb">
 <summary>
 <span class="record-key">41e870d3</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3610,15 +3469,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-49a5b15e-9ad3-4036-84c7-98036a3dbc6b">
+</details><details class="record-row" id="record-49a5b15e-9ad3-4036-84c7-98036a3dbc6b">
 <summary>
 <span class="record-key">49a5b15e</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3646,15 +3502,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-4aa3ccc2-70ba-4cdc-8d48-2afe10e55906">
+</details><details class="record-row" id="record-4aa3ccc2-70ba-4cdc-8d48-2afe10e55906">
 <summary>
 <span class="record-key">4aa3ccc2</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3682,15 +3535,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-5176d4ee-8575-44b6-8d05-0a551d5290eb">
+</details><details class="record-row" id="record-5176d4ee-8575-44b6-8d05-0a551d5290eb">
 <summary>
 <span class="record-key">5176d4ee</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3718,15 +3568,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-53d9bef4-9cd4-4942-a00e-d2c5c18d1374">
+</details><details class="record-row" id="record-53d9bef4-9cd4-4942-a00e-d2c5c18d1374">
 <summary>
 <span class="record-key">53d9bef4</span>
 <span class="record-result">Record not visible<small>migration_lab · not_visible</small>
@@ -3754,15 +3601,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-732652ff-e625-40ff-9e98-d57ac3385308">
+</details><details class="record-row" id="record-732652ff-e625-40ff-9e98-d57ac3385308">
 <summary>
 <span class="record-key">732652ff</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3790,15 +3634,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-7ad01e84-68ab-4bcf-9293-77022f815a0a">
+</details><details class="record-row" id="record-7ad01e84-68ab-4bcf-9293-77022f815a0a">
 <summary>
 <span class="record-key">7ad01e84</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3826,15 +3667,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-8769669b-e312-4b65-a4cf-2d7a7e9d3917">
+</details><details class="record-row" id="record-8769669b-e312-4b65-a4cf-2d7a7e9d3917">
 <summary>
 <span class="record-key">8769669b</span>
 <span class="record-result">Record not visible<small>migration_lab · not_visible</small>
@@ -3862,15 +3700,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-b6b8d23d-ba83-4272-bdf9-801a70f72806">
+</details><details class="record-row" id="record-b6b8d23d-ba83-4272-bdf9-801a70f72806">
 <summary>
 <span class="record-key">b6b8d23d</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3898,15 +3733,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-d5e027d2-0e9d-481c-8b00-022c7aa1441d">
+</details><details class="record-row" id="record-d5e027d2-0e9d-481c-8b00-022c7aa1441d">
 <summary>
 <span class="record-key">d5e027d2</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3934,15 +3766,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-da635a75-046a-4b34-858e-4b02a13a29eb">
+</details><details class="record-row" id="record-da635a75-046a-4b34-858e-4b02a13a29eb">
 <summary>
 <span class="record-key">da635a75</span>
 <span class="record-result">Record not visible<small>synthetic_demo · not_visible</small>
@@ -3970,15 +3799,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-efb73408-e131-46e4-93a9-d5f28c06a933">
+</details><details class="record-row" id="record-efb73408-e131-46e4-93a9-d5f28c06a933">
 <summary>
 <span class="record-key">efb73408</span>
 <span class="record-result">Record not visible<small>migration_lab · not_visible</small>
@@ -4006,15 +3832,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>Rule 100204 · level 3</strong>
-</p>
+<p><strong>Rule 100204 · level 3</strong></p>
 <p>The record was not visible. Absence alone does not establish an authorization denial.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-0007dd48-5c1f-4292-bd17-aac0471da23d">
+</details><details class="record-row" id="record-0007dd48-5c1f-4292-bd17-aac0471da23d">
 <summary>
 <span class="record-key">0007dd48</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -4042,15 +3865,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-083599dd-5718-409c-ae05-c85c5d82e6b8">
+</details><details class="record-row" id="record-083599dd-5718-409c-ae05-c85c5d82e6b8">
 <summary>
 <span class="record-key">083599dd</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -4078,15 +3898,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-09e156b9-b1d6-49da-b207-43e5709e79b5">
+</details><details class="record-row" id="record-09e156b9-b1d6-49da-b207-43e5709e79b5">
 <summary>
 <span class="record-key">09e156b9</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -4114,15 +3931,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-14a7af01-3efb-44e9-ae91-99247f01ef41">
+</details><details class="record-row" id="record-14a7af01-3efb-44e9-ae91-99247f01ef41">
 <summary>
 <span class="record-key">14a7af01</span>
 <span class="record-result">Archived without custom alert<small>synthetic_demo · allowed</small>
@@ -4150,15 +3964,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-181ba3e8-6203-4391-9897-9ac4f2b4c5ef">
+</details><details class="record-row" id="record-181ba3e8-6203-4391-9897-9ac4f2b4c5ef">
 <summary>
 <span class="record-key">181ba3e8</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · denied</small>
@@ -4186,15 +3997,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-1842110a-ab02-4a6f-8dc7-6f2c15897b17">
+</details><details class="record-row" id="record-1842110a-ab02-4a6f-8dc7-6f2c15897b17">
 <summary>
 <span class="record-key">1842110a</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -4222,15 +4030,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-19e54285-90ab-447f-a699-3e6613b2cbc0">
+</details><details class="record-row" id="record-19e54285-90ab-447f-a699-3e6613b2cbc0">
 <summary>
 <span class="record-key">19e54285</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -4258,15 +4063,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-1cf3355e-31db-4688-869f-2b73290a6093">
+</details><details class="record-row" id="record-1cf3355e-31db-4688-869f-2b73290a6093">
 <summary>
 <span class="record-key">1cf3355e</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · allowed</small>
@@ -4294,15 +4096,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-221cbec0-1b8b-4725-9610-8137b10a90fa">
+</details><details class="record-row" id="record-221cbec0-1b8b-4725-9610-8137b10a90fa">
 <summary>
 <span class="record-key">221cbec0</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · denied</small>
@@ -4330,15 +4129,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-3c2a5e5a-b0fa-4bce-a338-bd8fcdb31b57">
+</details><details class="record-row" id="record-3c2a5e5a-b0fa-4bce-a338-bd8fcdb31b57">
 <summary>
 <span class="record-key">3c2a5e5a</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · denied</small>
@@ -4366,15 +4162,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-466ee734-fd65-4863-a186-b1c0bc5a6645">
+</details><details class="record-row" id="record-466ee734-fd65-4863-a186-b1c0bc5a6645">
 <summary>
 <span class="record-key">466ee734</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · allowed</small>
@@ -4402,15 +4195,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-5aa7a4fd-e113-44c6-ace1-3ddb1d4d5dce">
+</details><details class="record-row" id="record-5aa7a4fd-e113-44c6-ace1-3ddb1d4d5dce">
 <summary>
 <span class="record-key">5aa7a4fd</span>
 <span class="record-result">Archived without custom alert<small>synthetic_demo · allowed</small>
@@ -4438,15 +4228,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-64dac00e-552f-4b15-ae15-f6f336df47a9">
+</details><details class="record-row" id="record-64dac00e-552f-4b15-ae15-f6f336df47a9">
 <summary>
 <span class="record-key">64dac00e</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -4474,15 +4261,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-6950c558-19cf-45c3-9d95-c1d0c1c3552e">
+</details><details class="record-row" id="record-6950c558-19cf-45c3-9d95-c1d0c1c3552e">
 <summary>
 <span class="record-key">6950c558</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · allowed</small>
@@ -4510,15 +4294,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-6b3a48f9-e323-4a9f-a70d-e78aef467210">
+</details><details class="record-row" id="record-6b3a48f9-e323-4a9f-a70d-e78aef467210">
 <summary>
 <span class="record-key">6b3a48f9</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · allowed</small>
@@ -4546,15 +4327,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-6e4948cd-a7d4-41e1-b6e5-3fac134cd859">
+</details><details class="record-row" id="record-6e4948cd-a7d4-41e1-b6e5-3fac134cd859">
 <summary>
 <span class="record-key">6e4948cd</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -4582,15 +4360,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-6fc57b92-8c3f-4a37-9e6a-60ac93a97aff">
+</details><details class="record-row" id="record-6fc57b92-8c3f-4a37-9e6a-60ac93a97aff">
 <summary>
 <span class="record-key">6fc57b92</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -4618,15 +4393,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-70d41830-086e-4c0e-b841-2e3f10dce81b">
+</details><details class="record-row" id="record-70d41830-086e-4c0e-b841-2e3f10dce81b">
 <summary>
 <span class="record-key">70d41830</span>
 <span class="record-result">Archived without custom alert<small>migration_lab · allowed</small>
@@ -4654,15 +4426,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-7101a38c-0a37-4007-9a1c-5dc5011d0308">
+</details><details class="record-row" id="record-7101a38c-0a37-4007-9a1c-5dc5011d0308">
 <summary>
 <span class="record-key">7101a38c</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -4690,15 +4459,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-85c5650d-469d-413f-85b1-722b482e3e0e">
+</details><details class="record-row" id="record-85c5650d-469d-413f-85b1-722b482e3e0e">
 <summary>
 <span class="record-key">85c5650d</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · allowed</small>
@@ -4726,15 +4492,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-92bfd6c7-573c-40b8-af52-7810c2022324">
+</details><details class="record-row" id="record-92bfd6c7-573c-40b8-af52-7810c2022324">
 <summary>
 <span class="record-key">92bfd6c7</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -4762,15 +4525,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-972b42bf-8776-4972-80fe-df9f6653e8a0">
+</details><details class="record-row" id="record-972b42bf-8776-4972-80fe-df9f6653e8a0">
 <summary>
 <span class="record-key">972b42bf</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -4798,15 +4558,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-980ca376-59e5-43f3-9e55-0563474f0685">
+</details><details class="record-row" id="record-980ca376-59e5-43f3-9e55-0563474f0685">
 <summary>
 <span class="record-key">980ca376</span>
 <span class="record-result">Archived without custom alert<small>migration_lab · allowed</small>
@@ -4834,15 +4591,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-a08797ec-978c-4e75-9f38-edbe22d8aee0">
+</details><details class="record-row" id="record-a08797ec-978c-4e75-9f38-edbe22d8aee0">
 <summary>
 <span class="record-key">a08797ec</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · denied</small>
@@ -4870,15 +4624,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-a2d78da3-7b7a-4a52-b4a8-21f722528111">
+</details><details class="record-row" id="record-a2d78da3-7b7a-4a52-b4a8-21f722528111">
 <summary>
 <span class="record-key">a2d78da3</span>
 <span class="record-result">Archived without custom alert<small>migration_lab · allowed</small>
@@ -4906,15 +4657,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-a6151d91-fbdc-474f-b67e-0cee3a6b066e">
+</details><details class="record-row" id="record-a6151d91-fbdc-474f-b67e-0cee3a6b066e">
 <summary>
 <span class="record-key">a6151d91</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · allowed</small>
@@ -4942,15 +4690,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-b35a765b-1283-4230-9338-c5812afdac1e">
+</details><details class="record-row" id="record-b35a765b-1283-4230-9338-c5812afdac1e">
 <summary>
 <span class="record-key">b35a765b</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · allowed</small>
@@ -4978,15 +4723,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-ba37a9fb-0122-4b64-960b-9cbbe895ea74">
+</details><details class="record-row" id="record-ba37a9fb-0122-4b64-960b-9cbbe895ea74">
 <summary>
 <span class="record-key">ba37a9fb</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · denied</small>
@@ -5014,15 +4756,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-ca963698-8261-4c0b-9a6c-ccf13d970207">
+</details><details class="record-row" id="record-ca963698-8261-4c0b-9a6c-ccf13d970207">
 <summary>
 <span class="record-key">ca963698</span>
 <span class="record-result">Archived without custom alert<small>migration_lab · allowed</small>
@@ -5050,15 +4789,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-d8817646-7265-496b-b476-e89ff5c06485">
+</details><details class="record-row" id="record-d8817646-7265-496b-b476-e89ff5c06485">
 <summary>
 <span class="record-key">d8817646</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · allowed</small>
@@ -5086,15 +4822,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-db58fa8f-229e-485b-8877-4bc03682da6a">
+</details><details class="record-row" id="record-db58fa8f-229e-485b-8877-4bc03682da6a">
 <summary>
 <span class="record-key">db58fa8f</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -5122,15 +4855,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-df67ef80-d9e1-47e6-9110-8a2df06f7304">
+</details><details class="record-row" id="record-df67ef80-d9e1-47e6-9110-8a2df06f7304">
 <summary>
 <span class="record-key">df67ef80</span>
 <span class="record-result">Archived without custom alert<small>legacy_unclassified · not_visible</small>
@@ -5158,15 +4888,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-<details class="record-row" id="record-f447bdc7-d379-41a2-85d9-c00bdcca98b0">
+</details><details class="record-row" id="record-f447bdc7-d379-41a2-85d9-c00bdcca98b0">
 <summary>
 <span class="record-key">f447bdc7</span>
 <span class="record-result">Archived without custom alert<small>migration_lab · allowed</small>
@@ -5194,15 +4921,12 @@ code {
 <div>
 <h4>Wazuh observation</h4>
 <p class="received-stamp">Archived · exact record reconciled</p>
-<p>
-<strong>No custom rule alert</strong>
-</p>
+<p><strong>No custom rule alert</strong></p>
 <p>Wazuh received this record without one of the custom rule alerts. This is not a benign verdict.</p>
 <p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
 </div>
 </div>
-</details>
-</div>
+</details></div>
         <details class="resolution">
 <summary>Inspect the run identity, isolation and source receipts</summary>
 <div class="details-body">
@@ -5243,8 +4967,7 @@ code {
 <p>Incomplete coverage stays incomplete. Reimporting the same receipts creates no duplicates and does not close findings.</p>
 </aside>
 </div>
-        <div class="evidence-grid">
-<section class="evidence-box">
+        <div class="evidence-grid"><section class="evidence-box">
 <div class="eyebrow">01 / Target unavailable</div>
 <h3>Failed. Coverage incomplete.</h3>
 <div class="run-number">0<span> requests accepted</span>
@@ -5271,8 +4994,7 @@ code {
 </p>
 </div>
 </details>
-</section>
-<section class="evidence-box">
+</section><section class="evidence-box">
 <div class="eyebrow">02 / Separate retry</div>
 <h3>Completed. Passive checks only.</h3>
 <div class="run-number">3<span> requests accepted</span>
@@ -5299,8 +5021,7 @@ code {
 </p>
 </div>
 </details>
-</section>
-</div>
+</section></div>
         <div class="import-proof">
 <strong>2 receipts · 2 audit entries · no duplicates on repeat import</strong>
 <p>The importer checks execution provenance and records the outcome without silently upgrading coverage or declaring remediation.</p>
@@ -5325,8 +5046,7 @@ code {
 </aside>
 </div>
         <p class="light-muted">Inspect a failure condition, the control built for it, and the adverse test. These are offline regressions in the core suite; native tool executions have their separate receipts.</p>
-<div class="build-grid">
-<section class="evidence-box">
+<div class="build-grid"><section class="evidence-box">
 <h4>Interrupted delivery</h4>
 <p>
 <span class="control-label">Failure condition</span>A write stops after only part of an event batch reaches the file.</p>
@@ -5336,7 +5056,7 @@ code {
 <summary>Inspect the adverse test and implementation</summary>
 <p>Seed a half-written batch, retry twice, and verify one exact complete copy plus an unchanged second retry.</p>
 <p class="engineering-ref">
-<a href="../bridge/soc_delivery.py">Implementation · line 177</a>
+<a href="../bridge/soc_delivery.py">Implementation · line 241</a>
 <br>
 <code>_append</code>
 </p>
@@ -5347,8 +5067,7 @@ code {
 </p>
 <p class="small light-muted">Local file recovery; this does not prove Wazuh receipt or exactly-once delivery across replay runs.</p>
 </details>
-</section>
-<section class="evidence-box">
+</section><section class="evidence-box">
 <h4>Lost acknowledgement</h4>
 <p>
 <span class="control-label">Failure condition</span>File bytes are complete, but the database still says the batch is pending.</p>
@@ -5358,7 +5077,7 @@ code {
 <summary>Inspect the adverse test and implementation</summary>
 <p>Place the complete batch before its checkpoint and verify the retry performs a flush without changing file bytes.</p>
 <p class="engineering-ref">
-<a href="../bridge/soc_delivery.py">Implementation · line 206</a>
+<a href="../bridge/soc_delivery.py">Implementation · line 270</a>
 <br>
 <code>publish</code>
 </p>
@@ -5369,8 +5088,7 @@ code {
 </p>
 <p class="small light-muted">An injected acknowledgement gap, not a physical power-loss or PostgreSQL crash experiment.</p>
 </details>
-</section>
-<section class="evidence-box">
+</section><section class="evidence-box">
 <h4>Damaged evidence</h4>
 <p>
 <span class="control-label">Failure condition</span>An imported receipt is changed to claim extra records, a different application or a continuous connection.</p>
@@ -5391,8 +5109,7 @@ code {
 </p>
 <p class="small light-muted">Consistency checking under a trusted local administrator; hashes are not independent attestation.</p>
 </details>
-</section>
-<section class="evidence-box">
+</section><section class="evidence-box">
 <h4>Failed scan presented as clean</h4>
 <p>
 <span class="control-label">Failure condition</span>A target outage is relabelled as a successful scan or given successful finding counts.</p>
@@ -5413,8 +5130,7 @@ code {
 </p>
 <p class="small light-muted">Offline validation tests supplement the separate historical ZAP outage and retry shown above.</p>
 </details>
-</section>
-</div>
+</section></div>
         <div class="ownership">
 <h4>What this says about the work</h4>
 <p>
@@ -5431,86 +5147,6 @@ code {
 </section>
 
 
-<section class="section" id="enterprise-progress" aria-labelledby="enterprise-heading">
-<div class="eyebrow">October 1 local / October 2 UTC · New retained engineering evidence</div>
-<h2 id="enterprise-heading">Concurrency, recovery and detection coverage.</h2>
-<p>SignalBridge now has five versioned rules and app-scoped queues for assignment, acknowledgement, deadlines and evidence-bound review tasks. The enterprise milestone is still in progress. These results are separate from the September integration runs below.</p>
-<div class="metrics">
-<article class="metric">
-<span>Genuine PostgreSQL checks</span>
-<strong>9/9</strong>
-<small>Two workers, ingestion conflicts, concurrent edits, task idempotency and an actual process kill.</small>
-</article>
-<article class="metric">
-<span>Frozen evaluation scenarios</span>
-<strong>48</strong>
-<small>41 scored + 7 inconclusive. Builder-selected with knowledge of the rules; not a blind benchmark.</small>
-</article>
-<article class="metric">
-<span>Current local regression methods</span>
-<strong>1,176</strong>
-<small>Python, plus 62 distinct Node methods. The nine native PostgreSQL methods are separate.</small>
-</article>
-</div>
-<div class="grid">
-<article class="panel">
-<h3>Actual crash recovery</h3>
-<p>A process was killed during an uncommitted three-event transaction. All three events remained pending; no partial case survived. A fresh worker processed them into one case. Two workers separately processed 48 events across two application scopes; four identical task requests created one task.</p>
-<p>
-<a href="../docs/evidence/20261001-postgresql-in-network-1d8fd148036e43b0915fbbe86606d013.json">Inspect the native receipt</a> · <a href="../tests/test_postgres_processing.py">Read the concurrency and crash tests</a>
-</p>
-</article>
-<article class="panel">
-<h3>Retained false alerts and misses</h3>
-<div class="table-wrap" tabindex="0" role="region" aria-label="Evaluation counts">
-<table>
-<caption>41 scored scenarios; 7 additional inconclusives</caption>
-<thead>
-<tr>
-<th scope="col">Measure</th>
-<th scope="col">Observed</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">True positives / false positives</th>
-<td>15 / 6</td>
-</tr>
-<tr>
-<th scope="row">Misses / true negatives</th>
-<td>8 / 12</td>
-</tr>
-<tr>
-<th scope="row">Precision</th>
-<td>15/21 · 71.4%</td>
-</tr>
-<tr>
-<th scope="row">Recall</th>
-<td>15/23 · 65.2%</td>
-</tr>
-<tr>
-<th scope="row">False-positive rate</th>
-<td>6/18 · 33.3%</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Twenty-four cases initially required review; one late correction left 23 active cases. Case workload and alerted scenarios have different denominators.</p>
-<p>
-<a href="../docs/evidence/20261001-enterprise-detection-evaluation-format2.json">Inspect the complete frozen evaluation</a>
-</p>
-</article>
-</div>
-<details>
-<summary>What is still unfinished, and what can I explain in an interview?</summary>
-<p>Native reference-service execution, Keycloak SSO/MFA, continuous Wazuh collection, authenticated ZAP, genuine offline Shuffle execution, operational dashboards, working enterprise restore and the 24-hour reliability test remain required. The limited APIs cannot perform containment; a task or resolved case is not a verified fix.</p>
-<p>Trace an accepted event through queue processing and evidence creation; explain why a valid session can outlast permission, why a worker kill must roll back partial work, and why delivery counts are distinct from detection accuracy. AI reference exercises are not personal analyst performance.</p>
-<div class="links">
-<a href="../docs/evidence/20261001-enterprise-offline-be810fa15e3b4e76a60e0bd73a85d3d9.json">Current local verification receipt</a>
-<a href="../docs/enterprise-milestone.json">All mandatory gates and their status</a>
-</div>
-</details>
-</section>
 <section class="auth-story" id="authorization-proof" aria-labelledby="authorization-title">
 <div class="eyebrow">Separate execution / Genuine local application checks</div>
 <h2 id="authorization-title">Access checks after membership removal.</h2>
@@ -5523,88 +5159,64 @@ code {
 <span>
 <strong>3</strong> restoration checks</span>
 </div>
-<ol class="auth-stages">
-<li class="auth-stage">
+<ol class="auth-stages"><li class="auth-stage">
 <h3>Before removal</h3>
 <p>The member can retrieve the known state and image.</p>
-<ul class="auth-checks">
-<li>
+<ul class="auth-checks"><li>
 <strong>Member · state · HTTP 200</strong>
 <span>allowed · assertion</span>
-</li>
-<li>
+</li><li>
 <strong>Member · image · HTTP 200</strong>
 <span>allowed · assertion</span>
-</li>
-</ul>
-</li>
-<li class="auth-stage">
+</li></ul>
+</li><li class="auth-stage">
 <h3>Remove membership</h3>
 <p>An owner removes membership; the existing session is retained.</p>
-<ul class="auth-checks">
-<li>
+<ul class="auth-checks"><li>
 <strong>Membership change</strong>
 <span>membership_removed · setup</span>
-</li>
-</ul>
-</li>
-<li class="auth-stage">
+</li></ul>
+</li><li class="auth-stage">
 <h3>Check the same session</h3>
 <p>Authentication still succeeds. Identity alone does not grant permission.</p>
-<ul class="auth-checks">
-<li>
+<ul class="auth-checks"><li>
 <strong>Retained session · HTTP 200</strong>
 <span>same_session_authenticated · assertion</span>
-</li>
-</ul>
-</li>
-<li class="auth-stage">
+</li></ul>
+</li><li class="auth-stage">
 <h3>Recheck access and owner control</h3>
 <p>The former member&#x27;s state request is denied. The image is not visible; the owner can still retrieve both.</p>
-<ul class="auth-checks">
-<li>
+<ul class="auth-checks"><li>
 <strong>Former member · state · HTTP 403</strong>
 <span>denied · assertion</span>
-</li>
-<li>
+</li><li>
 <strong>Former member · image · HTTP 404</strong>
 <span>not_visible · assertion</span>
-</li>
-<li>
+</li><li>
 <strong>Owner control · state · HTTP 200</strong>
 <span>allowed · assertion</span>
-</li>
-<li>
+</li><li>
 <strong>Owner control · image · HTTP 200</strong>
 <span>allowed · assertion</span>
-</li>
-</ul>
-</li>
-<li class="auth-stage">
+</li></ul>
+</li><li class="auth-stage">
 <h3>Restore membership</h3>
 <p>The lab restores membership before its final positive checks.</p>
-<ul class="auth-checks">
-<li>
+<ul class="auth-checks"><li>
 <strong>Membership recovery</strong>
 <span>membership_restored · restoration</span>
-</li>
-</ul>
-</li>
-<li class="auth-stage">
+</li></ul>
+</li><li class="auth-stage">
 <h3>Verify restored access</h3>
 <p>The member sees the state and the same known image again.</p>
-<ul class="auth-checks">
-<li>
+<ul class="auth-checks"><li>
 <strong>Restored member · state · HTTP 200</strong>
 <span>allowed · restoration</span>
-</li>
-<li>
+</li><li>
 <strong>Restored member · image · HTTP 200</strong>
 <span>allowed · restoration</span>
-</li>
-</ul>
-</li>
-</ol>
+</li></ul>
+</li></ol>
 <p>
 <strong>What this establishes:</strong> the tested state route denied the former member despite valid authentication, while owner access and restored-member access worked. The image returned 404 for the former member and the known content for the owner and restored member; interpret those controls together.</p>
 <p>Historical local checks of /api/state and /api/chat-image on a copied development app with synthetic identities. Separate from the Wazuh ledger replay; these are not the same events. A 404 alone does not prove authorization denial.</p>
@@ -5630,7 +5242,7 @@ code {
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>5af01366d4f4ee9845469b282ff51361359492cd9a2120cf86a5a665e107d5e6</code>
+<code>84d9e151cd93d3039c2a1b14c57b6c983df11b9fc2ca7976272fc44419d9df7e</code>
 </dd>
 </dl>
 <p>
@@ -5644,85 +5256,73 @@ code {
 <th scope="col">Result</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>
 <code>member_next_exact_state_visible</code>
 </td>
 <td>assertion</td>
 <td>passed</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <code>member_next_exact_image_visible</code>
 </td>
 <td>assertion</td>
 <td>passed</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <code>route_member_removed</code>
 </td>
 <td>setup</td>
 <td>passed</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <code>removed_member_same_session_still_auth_valid</code>
 </td>
 <td>assertion</td>
 <td>passed</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <code>removed_member_same_cookie_next_state_denied</code>
 </td>
 <td>assertion</td>
 <td>passed</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <code>removed_member_same_cookie_next_image_hidden</code>
 </td>
 <td>assertion</td>
 <td>passed</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <code>owner_next_state_survives_removal</code>
 </td>
 <td>assertion</td>
 <td>passed</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <code>owner_next_image_survives_removal</code>
 </td>
 <td>assertion</td>
 <td>passed</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <code>route_membership_restored</code>
 </td>
 <td>restoration</td>
 <td>passed</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <code>restored_member_next_state_visible</code>
 </td>
 <td>restoration</td>
 <td>passed</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <code>restored_member_next_image_visible</code>
 </td>
 <td>restoration</td>
 <td>passed</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
 </details>
@@ -5740,7 +5340,7 @@ code {
 <div class="metrics">
 <div class="metric">
 <div class="eyebrow">Offline verification</div>
-<strong>1083</strong>
+<strong>2055</strong>
 <small>Executed Python and Node tests · zero failures or skips</small>
 </div>
 <div class="metric">
@@ -5749,10 +5349,8 @@ code {
 <small>Tests, framework checks, migrations, lint, formatting and publication scan</small>
 </div>
 <div class="metric">
-<div class="eyebrow">Declared detection scenarios</div>
-<strong>15 / 15</strong>
-<small>Current recorded source · synthetic in-process scenarios</small>
-</div>
+<div class="eyebrow">Declared detection scenarios</div><strong>15 / 15</strong>
+<small>Current recorded source · synthetic in-process scenarios</small></div>
 </div>
 
 <section class="section panel" aria-labelledby="challenge-title">
@@ -5788,8 +5386,7 @@ code {
 <th>Outcome</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>
 <strong>C01 · Exactly five minutes</strong>
 <br>
@@ -5800,8 +5397,7 @@ code {
 <span class="small">3 accepted · 0 duplicates · 3 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C02 · One second outside</strong>
 <br>
@@ -5812,8 +5408,7 @@ code {
 <span class="small">3 accepted · 0 duplicates · 3 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C03 · Mixed failure outcomes</strong>
 <br>
@@ -5824,8 +5419,7 @@ code {
 <span class="small">3 accepted · 0 duplicates · 3 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C04 · Simultaneous observations</strong>
 <br>
@@ -5836,8 +5430,7 @@ code {
 <span class="small">3 accepted · 0 duplicates · 3 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C05 · Repeated delivery below threshold</strong>
 <br>
@@ -5848,8 +5441,7 @@ code {
 <span class="small">2 accepted · 2 duplicates · 2 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C06 · Two actor boundary</strong>
 <br>
@@ -5860,8 +5452,7 @@ code {
 <span class="small">3 accepted · 0 duplicates · 3 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C07 · Episode changes</strong>
 <br>
@@ -5872,8 +5463,7 @@ code {
 <span class="small">3 accepted · 0 duplicates · 3 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C08 · Managed-device context</strong>
 <br>
@@ -5884,8 +5474,7 @@ code {
 <span class="small">3 accepted · 0 duplicates · 3 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C09 · Revoked read denied</strong>
 <br>
@@ -5896,8 +5485,7 @@ code {
 <span class="small">1 accepted · 0 duplicates · 1 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C10 · Policy regression allowed</strong>
 <br>
@@ -5908,8 +5496,7 @@ code {
 <span class="small">1 accepted · 0 duplicates · 1 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C11 · Revoked read service error</strong>
 <br>
@@ -5920,8 +5507,7 @@ code {
 <span class="small">1 accepted · 0 duplicates · 1 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C12 · Late middle event</strong>
 <br>
@@ -5932,8 +5518,7 @@ code {
 <span class="small">3 accepted · 0 duplicates · 3 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C13 · R2 replay after processing</strong>
 <br>
@@ -5944,8 +5529,7 @@ code {
 <span class="small">1 accepted · 1 duplicates · 1 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C14 · Sustained activity across buckets</strong>
 <br>
@@ -5956,8 +5540,7 @@ code {
 <span class="small">4 accepted · 0 duplicates · 4 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C15 · Allowed read is not a failure</strong>
 <br>
@@ -5968,8 +5551,7 @@ code {
 <span class="small">3 accepted · 0 duplicates · 3 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>C16 · Distinct R2 events</strong>
 <br>
@@ -5980,8 +5562,7 @@ code {
 <span class="small">2 accepted · 0 duplicates · 2 processed</span>
 </td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>P01 · Slow enumeration</strong>
 <br>
@@ -5992,8 +5573,7 @@ code {
 <span class="small">3 accepted · 0 duplicates · 3 processed</span>
 </td>
 <td class="miss">Unmet</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>P02 · Distributed probing</strong>
 <br>
@@ -6004,8 +5584,7 @@ code {
 <span class="small">3 accepted · 0 duplicates · 3 processed</span>
 </td>
 <td class="miss">Unmet</td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <strong>P03 · Missing revocation context</strong>
 <br>
@@ -6016,41 +5595,33 @@ code {
 <span class="small">2 accepted · 0 duplicates · 2 processed</span>
 </td>
 <td class="miss">Unmet</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
     <dl class="identity">
 <dt>Execution</dt>
-<dd>2026-09-26T01:29:03.575798+00:00 → 2026-09-26T01:29:03.988973+00:00</dd>
+<dd>2026-10-05T16:07:43.167550+00:00 → 2026-10-05T16:07:43.625315+00:00</dd>
 <dt>Run ID</dt>
 <dd>
-<code>6ddeb3098b4845cbb29fc072d59056f6</code>
+<code>03d797940aea494c8b10eea43e0676cf</code>
 </dd>
 <dt>Source content</dt>
 <dd>
-<code>ed8714517b4999e7e8862b0f5596138417b60395049827a2e8916f1c6f670c87</code> · 255 files · matched at generation</dd>
+<code>790fcdbceb6b56620c8484c8b5dd2bbf78f8a65b7019dd77bb89877e3dd5d53c</code> · 689 files · matched at generation</dd>
 <dt>Predeclared catalog</dt>
 <dd>
 <code>6709461d435e6dad7f89cf9e447f3629423caf9728e11118858ddcdae0cf8345</code>
 </dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20260926-challenge-6ddeb3098b4845cbb29fc072d59056f6.json</code>
+<code>20261005-challenge-03d797940aea494c8b10eea43e0676cf.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>f173a5503b1f78122f7a47f3c8fd9abbfb4da8e4758dacf2e7b5a8949dad8247</code>
+<code>0126b3a873fe00244dc2942b5ce8fd31c660049ec446948d3ff1b8713cb05a05</code>
 </dd>
 </dl>
-    <ul class="limits">
-<li>Predeclared builder-authored cases; authors knew the rules. Not an independent blind holdout.</li>
-<li>Rule-contract checks and desired capability probes have separate denominators.</li>
-<li>A completed execution can contain contract failures and unsupported capabilities.</li>
-<li>Synthetic source labels are fixture metadata; no real access or attacker activity was observed.</li>
-<li>Membership changes lack an authoritative affected-member relationship in this event contract.</li>
-<li>In-process SQLite with accidental network/process guards; not production capacity or an OS sandbox.</li>
-</ul>
+    <ul class="limits"><li>Predeclared builder-authored cases; authors knew the rules. Not an independent blind holdout.</li><li>Rule-contract checks and desired capability probes have separate denominators.</li><li>A completed execution can contain contract failures and unsupported capabilities.</li><li>Synthetic source labels are fixture metadata; no real access or attacker activity was observed.</li><li>Membership changes lack an authoritative affected-member relationship in this event contract.</li><li>In-process SQLite with accidental network/process guards; not production capacity or an OS sandbox.</li></ul>
   </div>
 </details>
 </section>
@@ -6074,62 +5645,52 @@ code {
 <th>Seconds</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>django-tests</td>
 <td class="check">Passed</td>
-<td>1030</td>
-<td>49.381</td>
-</tr>
-<tr>
+<td>1993</td>
+<td>87.234</td>
+</tr><tr>
 <td>django-check</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>0.971</td>
-</tr>
-<tr>
+<td>1.357</td>
+</tr><tr>
 <td>migration-drift</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>0.973</td>
-</tr>
-<tr>
+<td>1.429</td>
+</tr><tr>
 <td>ruff-check</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>0.048</td>
-</tr>
-<tr>
+<td>0.04</td>
+</tr><tr>
 <td>ruff-format</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>0.046</td>
-</tr>
-<tr>
+<td>0.033</td>
+</tr><tr>
 <td>publication-scan</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>6.481</td>
-</tr>
-<tr>
+<td>16.487</td>
+</tr><tr>
 <td>node-courier-tests</td>
 <td class="check">Passed</td>
-<td>13</td>
-<td>0.222</td>
-</tr>
-<tr>
+<td>22</td>
+<td>0.333</td>
+</tr><tr>
 <td>node-http-harness-mock-tests</td>
 <td class="check">Passed</td>
 <td>17</td>
-<td>0.177</td>
-</tr>
-<tr>
+<td>0.116</td>
+</tr><tr>
 <td>node-bettail-route-mock-tests</td>
 <td class="check">Passed</td>
 <td>23</td>
-<td>0.191</td>
-</tr>
-</tbody>
+<td>0.134</td>
+</tr></tbody>
 </table>
 </div>
 <details>
@@ -6137,36 +5698,29 @@ code {
 <div class="details-body">
 <dl class="identity">
 <dt>Execution started</dt>
-<dd>2026-09-26T01:27:55.141484+00:00</dd>
+<dd>2026-10-05T16:05:41.456891+00:00</dd>
 <dt>Execution finished</dt>
-<dd>2026-09-26T01:28:55.030603+00:00</dd>
+<dd>2026-10-05T16:07:30.681671+00:00</dd>
 <dt>Run ID</dt>
 <dd>
-<code>20260926T012755140657Z-59e297b9</code>
+<code>20261005T160541456302Z-20aa4f17</code>
 </dd>
 <dt>Git revision</dt>
 <dd>
-<code>601b75d892c1d15c4bfd78610a04e06171b1f146</code> · working tree had changes</dd>
+<code>78165d513ce55a2172c438d4988530087dcd0ed9</code> · working tree had changes</dd>
 <dt>Source content</dt>
 <dd>
-<code>ed8714517b4999e7e8862b0f5596138417b60395049827a2e8916f1c6f670c87</code> · 255 files</dd>
+<code>790fcdbceb6b56620c8484c8b5dd2bbf78f8a65b7019dd77bb89877e3dd5d53c</code> · 689 files</dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20260926T012755140657Z-59e297b9.json</code>
+<code>20261005T160541456302Z-20aa4f17.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>42a1510e2faa6a90ced36bae7fb3b6af366e0c65bb2021ed619a5026d32c1c9a</code>
+<code>2e8176c3c2c4f3b3a916911c0b3b95ba257e38358a47e7b39a7ff7c5e7720fd4</code>
 </dd>
 </dl>
-<ul class="limits">
-<li>Builder-operated local core verification; not an independent audit.</li>
-<li>Node courier, HTTP-harness and BetTail route suites use mocks; they do not contact real services.</li>
-<li>No real Supabase auth, source-app HTTP/storage, PostgreSQL concurrency or container tests.</li>
-<li>No dependency advisory lookup, remote CI, deployment or production validation.</li>
-<li>Hashes identify content; a filesystem administrator can replace logs and receipts.</li>
-<li>Documentation and generated evidence are excluded from the source digest.</li>
-</ul>
+<ul class="limits"><li>Builder-operated local core verification; not an independent audit.</li><li>Node courier, HTTP-harness and BetTail route suites use mocks; they do not contact real services.</li><li>No real Supabase auth, source-app HTTP/storage, PostgreSQL concurrency or container tests.</li><li>No dependency advisory lookup, remote CI, deployment or production validation.</li><li>Hashes identify content; a filesystem administrator can replace logs and receipts.</li><li>Documentation and generated evidence are excluded from the source digest.</li></ul>
 </div>
 </details>
 </div>
@@ -6217,7 +5771,7 @@ code {
 <span style="width:100%">
 </span>
 </div>
-<p class="small">2026-09-26T01:29:00.642478+00:00 · Source matched at page generation.</p>
+<p class="small">2026-10-05T16:07:37.487150+00:00 · Source matched at page generation.</p>
 </article>
 </div>
 <p class="coverage">The comparison uses five expected-alert and ten expected-no-alert scenarios. These development cases are not an independent holdout or a measurement of production detection accuracy. A code change and its retest are separate recorded executions.</p>
@@ -6226,7 +5780,7 @@ code {
 <h3>Current simulation · 15 / 15 scenarios met</h3>
 <span class="badge ">passed</span>
 </div>
-<p class="small">Executed 2026-09-26T01:28:57.262119+00:00 → 2026-09-26T01:29:00.642478+00:00 · disposable in-memory SQLite · Django in-process test client</p>
+<p class="small">Executed 2026-10-05T16:07:34.054372+00:00 → 2026-10-05T16:07:37.487150+00:00 · disposable in-memory SQLite · Django in-process test client</p>
 <div class="table-wrap">
 <table>
 <thead>
@@ -6263,139 +5817,112 @@ code {
 <th>Coverage</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>authorized_read</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>distinct_private_failures</td>
 <td>R1</td>
 <td>R1</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>same_resource_retries</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>below_threshold</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>bucket_boundary_gap</td>
 <td>R1</td>
 <td>R1</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>revoked_read_allowed</td>
 <td>R2</td>
 <td>R2</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>controlled_policy_fault</td>
 <td>R2</td>
 <td>R2</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>successful_membership_change</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>session_errors_not_private_reads</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>dependency_errors</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>mixed_sources</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>cross_application</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>mixed_environments</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>out_of_order</td>
 <td>R1</td>
 <td>R1</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>duplicate_delivery</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
 <dl class="identity">
 <dt>Run ID</dt>
 <dd>
-<code>cbf23a2222b6459cafd84af7d29aa4a5</code>
+<code>96b92f85fa2b45c894166839b87ec871</code>
 </dd>
 <dt>Git revision</dt>
 <dd>
-<code>601b75d892c1d15c4bfd78610a04e06171b1f146</code> · working tree had changes</dd>
+<code>78165d513ce55a2172c438d4988530087dcd0ed9</code> · working tree had changes</dd>
 <dt>Source content</dt>
 <dd>
-<code>ed8714517b4999e7e8862b0f5596138417b60395049827a2e8916f1c6f670c87</code> · 255 files</dd>
+<code>790fcdbceb6b56620c8484c8b5dd2bbf78f8a65b7019dd77bb89877e3dd5d53c</code> · 689 files</dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20260926-simulation-cbf23a2222b6459cafd84af7d29aa4a5.json</code>
+<code>20261005-simulation-96b92f85fa2b45c894166839b87ec871.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>5193d9c7e172d59d7eaa82c49ecf5af4b3c7b333898781adf5f7369612a77217</code>
+<code>8065186a4d99f932e5bb06b17cf136a8d9f7e6adfb17f5223b3b70f1c3a6d2bf</code>
 </dd>
 <dt>Recorded result hash</dt>
 <dd>
-<code>bf6729cd78e6fd93802b2236622870e37e6ea0c261dd3f2efdbafad98d2e9754</code> · private original bytes not reread by this page builder</dd>
+<code>1baa97fcd88dfee061840ac6a71b9d617e95af7671ebd28b18215436cc13639e</code> · private original bytes not reread by this page builder</dd>
 </dl>
 <p class="small">Not tested in this simulation:</p>
-<ul class="limits">
-<li>Endpoint or cloud inventory</li>
-<li>Live adversary exploitation</li>
-<li>Production traffic</li>
-<li>Multi-node availability</li>
-<li>PostgreSQL concurrency or crash durability</li>
-<li>Network HTTP latency</li>
-<li>Competitor products</li>
-<li>Independent blind holdout</li>
-<li>Automated external response</li>
-</ul>
+<ul class="limits"><li>Endpoint or cloud inventory</li><li>Live adversary exploitation</li><li>Production traffic</li><li>Multi-node availability</li><li>PostgreSQL concurrency or crash durability</li><li>Network HTTP latency</li><li>Competitor products</li><li>Independent blind holdout</li><li>Automated external response</li></ul>
 </div>
 </details>
-</article>
-<article class="panel section">
+</article><article class="panel section">
 <div class="section-head">
 <h3>Historical baseline · 14 / 15 scenarios met</h3>
 <span class="badge warning">partial</span>
@@ -6437,98 +5964,82 @@ code {
 <th>Coverage</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>authorized_read</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>distinct_private_failures</td>
 <td>R1</td>
 <td>R1</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>same_resource_retries</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>below_threshold</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>bucket_boundary_gap</td>
 <td>R1</td>
 <td>None</td>
 <td class="miss">Missed</td>
-</tr>
-<tr>
+</tr><tr>
 <td>revoked_read_allowed</td>
 <td>R2</td>
 <td>R2</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>controlled_policy_fault</td>
 <td>R2</td>
 <td>R2</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>successful_membership_change</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>session_errors_not_private_reads</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>dependency_errors</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>mixed_sources</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>cross_application</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>mixed_environments</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>out_of_order</td>
 <td>R1</td>
 <td>R1</td>
 <td class="check">Met</td>
-</tr>
-<tr>
+</tr><tr>
 <td>duplicate_delivery</td>
 <td>None</td>
 <td>None</td>
 <td class="check">Met</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
 <dl class="identity">
@@ -6548,24 +6059,14 @@ code {
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>d58ad57975b8d62a4cfa5850a4f4915495e634e334ddf0912254108b6f1d2ac8</code>
+<code>fd42303052d1b63b6866f5f69ce1a39390b37df838cfe3cb9ce0f11019c1e7d6</code>
 </dd>
 <dt>Recorded result hash</dt>
 <dd>
 <code>5ee88efc509d50f5e393cbc3e0b0b7680f99bdb9689f3e33c0e0b27cf14ea673</code> · private original bytes not reread by this page builder</dd>
 </dl>
 <p class="small">Not tested in this simulation:</p>
-<ul class="limits">
-<li>Endpoint or cloud inventory</li>
-<li>Live adversary exploitation</li>
-<li>Production traffic</li>
-<li>Multi-node availability</li>
-<li>PostgreSQL concurrency or crash durability</li>
-<li>Network HTTP latency</li>
-<li>Competitor products</li>
-<li>Independent blind holdout</li>
-<li>Automated external response</li>
-</ul>
+<ul class="limits"><li>Endpoint or cloud inventory</li><li>Live adversary exploitation</li><li>Production traffic</li><li>Multi-node availability</li><li>PostgreSQL concurrency or crash durability</li><li>Network HTTP latency</li><li>Competitor products</li><li>Independent blind holdout</li><li>Automated external response</li></ul>
 </div>
 </details>
 </article>
@@ -6585,22 +6086,14 @@ code {
 <article class="panel">
 <div class="eyebrow">Interpretation</div>
 <h2>What these results show.</h2>
-<ul class="limits">
-<li>Builder-operated evidence, not an independent audit or an enterprise benchmark.</li>
-<li>Core verification and synthetic simulation are different executions with separate dates.</li>
-<li>The current source is compared with the core and current simulation receipts at generation only.</li>
-<li>Public receipts are reviewed summaries, not signatures or independently attested executions.</li>
-<li>Receipt bytes are hashed here; original private logs, raw results and provenance are not reread.</li>
-<li>A matching source digest does not verify runtime configuration, dependencies or deployment.</li>
-<li>No runtime AI, live attacker exercise, production capacity or competitor superiority is measured.</li>
-</ul>
+<ul class="limits"><li>Builder-operated evidence, not an independent audit or an enterprise benchmark.</li><li>Core verification and synthetic simulation are different executions with separate dates.</li><li>The current source is compared with the core and current simulation receipts at generation only.</li><li>Public receipts are reviewed summaries, not signatures or independently attested executions.</li><li>Receipt bytes are hashed here; original private logs, raw results and provenance are not reread.</li><li>A matching source digest does not verify runtime configuration, dependencies or deployment.</li><li>No runtime AI, live attacker exercise, production capacity or competitor superiority is measured.</li></ul>
 <div class="links">
 <a href="metrics.json">Open machine-readable metrics</a>
 <a href="https://github.com/aman-agarwal6/signalbridge#readme">Project README</a>
 </div>
 </article>
 </section>
-<footer class="footer">October evidence added 2026-10-02 UTC. Historical integration page generated 2026-09-26T01:29:05.033572+00:00; its September metrics and receipt identities remain historical. Execution times are shown separately above. All dates are UTC. SignalBridge · Public, read-only portfolio artifact. The evidence viewer works as one HTML file. Source, receipt and metrics links point to files in the same repository.</footer>
+<footer class="footer">Page generated 2026-10-05T16:07:46.327240+00:00. Execution times are shown separately above. All dates are UTC. SignalBridge · Public, read-only portfolio artifact. The evidence viewer works as one HTML file. Source, receipt and metrics links point to files in the same repository.</footer>
 </main>
 </body>
 </html>
