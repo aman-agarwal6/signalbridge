@@ -1,0 +1,7 @@
+``` SignalBridge R4 (bounded-denials-v1), hand-written: a rolling 30-minute window and the ten-minute span check that Sigma cannot express. ```
+``` One account is denied five or more distinct private records; each event counts once by event_id. ```
+sourcetype="signalbridge:access" operation="private_record.read" outcome="denied"
+| dedup event_id
+| sort 0 _time
+| streamstats time_window=30m dc(resource) as resources min(_time) as earliest by app environment source actor
+| where resources >= 5 AND _time - earliest >= 600

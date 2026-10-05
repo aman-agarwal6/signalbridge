@@ -1,0 +1,18 @@
+// SignalBridge R3 (resource-membership-v1), hand-written: Sigma's Kusto backend cannot compile
+// correlations, and Sigma cannot express the re-grant check. An allowed read matches when the
+// latest membership assertion for that account and record, at or before the read and within
+// 24 hours, is a removal only (no grant at the same instant) and is strictly earlier than the read.
+let changes = SignalBridgeAccess_CL
+    | where operation == "membership.change"
+    | project app, environment, source, resource, account = tostring(membership.subject),
+        state = tostring(membership.state), change_time = TimeGenerated;
+SignalBridgeAccess_CL
+| where operation == "private_record.read" and outcome == "allowed"
+| project app, environment, source, resource, account = actor, read_time = TimeGenerated, event_id
+| join kind=inner changes on app, environment, source, resource, account
+| where change_time <= read_time and read_time - change_time <= 24h
+| summarize latest_change = max(change_time) by app, environment, source, resource, account, read_time, event_id
+| join kind=inner changes on app, environment, source, resource, account
+| where change_time == latest_change
+| summarize states = make_set(state) by app, environment, source, resource, account, read_time, event_id, latest_change
+| where latest_change < read_time and array_length(states) == 1 and tostring(states[0]) == "removed"

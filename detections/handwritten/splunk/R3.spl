@@ -1,0 +1,15 @@
+``` SignalBridge R3 (resource-membership-v1), hand-written: Sigma's Splunk backend has no temporal_ordered. ```
+``` An allowed read matches when the latest membership assertion for that account and record, at or before the read and within 24 hours, is a removal only and is strictly earlier than the read. ```
+``` SignalBridge's source class is carried in Splunk's own source field. ```
+sourcetype="signalbridge:access" operation="private_record.read" outcome="allowed"
+| eval account=actor, read_time=_time
+| fields app environment source resource account read_time event_id
+| join type=inner max=0 app environment source resource account
+    [ search sourcetype="signalbridge:access" operation="membership.change"
+      | eval account='membership.subject', change_time=_time, state='membership.state'
+      | fields app environment source resource account change_time state ]
+| where change_time <= read_time AND read_time - change_time <= 86400
+| eventstats max(change_time) as latest by app environment source resource account event_id
+| where change_time == latest
+| stats values(state) as states dc(state) as state_count by app environment source resource account event_id read_time latest
+| where latest < read_time AND state_count == 1 AND states == "removed"
