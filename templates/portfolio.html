@@ -10,13 +10,13 @@
 </style>
 </head>
 <body>
-<a class="skip" href="#investigate">Skip to the integration evidence</a>
+<a class="skip" href="{% if native %}#october{% else %}#investigate{% endif %}">Skip to the tool runs</a>
 <main>
 <header>
 <div class="brand">
 <span class="mark" aria-hidden="true">sb</span>SignalBridge</div>
 <nav class="top-links" aria-label="Page sections">
-<a href="#investigate">Integrations</a>{% if story.authorization %}<a href="#authorization-proof">Access checks</a>{% endif %}<a href="#measured-evidence">Test results</a>
+{% if native %}<a href="#october">October runs</a>{% endif %}<a href="#investigate">Integrations</a>{% if story.authorization %}<a href="#authorization-proof">Access checks</a>{% endif %}<a href="#measured-evidence">Test results</a>
 <a href="#engineering">Design</a>
 </nav>
 </header>
@@ -28,13 +28,25 @@
 </h1>
     <p>SignalBridge connects application access to security investigations. Explore real tool runs, compare source events with alerts, and inspect the evidence behind a finding.</p>
     <div class="hero-actions">
-<a class="primary-link" href="#investigate">View the integration runs <span aria-hidden="true">↗</span>
+<a class="primary-link" href="{% if native %}#october{% else %}#investigate{% endif %}">View the tool runs <span aria-hidden="true">↗</span>
 </a>
 <a class="secondary-link" href="#engineering">What was built</a>
 </div>
     <p class="hero-note">Aman Agarwal · AI-assisted engineering · Recorded, isolated lab executions</p>
   </div>
-  <aside class="boundary-card" aria-label="Recorded Wazuh run">
+  {% if native %}<aside class="boundary-card" aria-label="October native runs">
+<div class="eyebrow">Native lab runs / {{ native.first_day }} to {{ native.last_day }}</div>
+<div class="hero-number">{{ native.passed }}<span> / {{ native.runs|length }}</span>
+</div>
+<p class="boundary-title">Runs passed in full.</p>
+    <p class="hero-sub">Keycloak, Wazuh, ZAP, Shuffle, Prometheus and AccessOps, each connected to SignalBridge.</p>
+    {% for run in native.partial %}<div class="reconcile-line">
+<span>Partial <strong>{{ run.short }}</strong>
+</span>
+</div>{% endfor %}
+    <p class="boundary-end">{{ native.scope }}<br>Each result below links its receipt.</p>
+  </aside>
+  {% else %}<aside class="boundary-card" aria-label="Recorded Wazuh run">
 <div class="eyebrow">Wazuh / Historical collection result</div>
   {% if integrations %}<div class="hero-number">{{ integrations.wazuh.counts.received }}<span> / {{ integrations.wazuh.counts.inputs }}</span>
 </div>
@@ -48,8 +60,32 @@
 </div>
     <p class="boundary-end">Wazuh {{ integrations.wazuh.version }} · {{ integrations.wazuh.duration_seconds }} seconds<br>Historical replay. Services stopped afterward.</p>
   {% else %}<h3>No integration snapshot selected.</h3>
-<p class="hero-sub">The software verification below remains a separate scope.</p>{% endif %}</aside>
+<p class="hero-sub">The software verification below remains a separate scope.</p>{% endif %}</aside>{% endif %}
 </section>
+{% if native %}<section class="demo native-runs" id="october" aria-labelledby="october-title">
+  <div class="demo-head">
+<div class="section-head">
+<div>
+<div class="eyebrow">Native tool runs · {{ native.first_day }} to {{ native.last_day }}</div>
+<h2 id="october-title">Real tools, real failures, recorded results.</h2>
+</div>
+<span class="badge">{{ native.passed }} passed · {{ native.partial|length }} partial</span>
+</div>
+<p>Each run used a real tool in an isolated lab. Figures are read from the run's receipt and checked when this page is built.</p>
+</div>
+  <ul class="native-grid">{% for run in native.runs %}<li class="evidence-box" id="run-{{ run.key }}">
+<div class="run-meta">
+<span>{{ run.tool }} · {{ run.date }}</span>
+<span class="run-status{% if run.status != 'passed' %} partial{% endif %}">{% if run.status == 'passed' %}Passed{% else %}Partial{% endif %}</span>
+</div>
+<h3>{{ run.title }}</h3>
+<p class="run-figure">{{ run.figure }} <small>{{ run.figure_label }}</small>
+</p>
+<ul class="run-facts">{% for fact in run.facts %}<li>{{ fact }}</li>{% endfor %}</ul>
+<p class="run-limit">{{ run.limit }}</p>
+<p class="run-receipts">{% for receipt in run.receipts %}<a href="../{{ receipt.path }}">{{ receipt.label }} receipt</a>{% endfor %}</p>
+</li>{% endfor %}</ul>
+</section>{% endif %}
 <section class="current-evidence" aria-labelledby="current-evidence-title">
 <div>
 <p class="eyebrow">Latest recorded application proof · October 2</p>
@@ -70,7 +106,7 @@
   <div class="demo-head">
 <div class="section-head">
 <div>
-<div class="eyebrow">Integration runs</div>
+<div class="eyebrow">September integration runs</div>
 <h2 id="demo-title">Inspect the tools. Follow the records.</h2>
 </div>
 <span class="badge">Recorded lab execution</span>
@@ -103,7 +139,7 @@
         <div class="case-lead">
 <div>
 <div class="eyebrow">
-<span class="toolmark wazuh-mark" aria-hidden="true">W</span> Wazuh {{ integrations.wazuh.version }} / BetTail lab replay</div>
+<span class="toolmark wazuh-mark" aria-hidden="true">W</span> Wazuh {{ integrations.wazuh.version }} / September replay of a lab ledger</div>
 <h3>Delivery and alert results.</h3>
 <p>A committed SignalBridge ledger was replayed through a real isolated Wazuh manager. Input IDs and payloads were reconciled against its archive and custom alerts.</p>
 </div>

@@ -43,6 +43,7 @@ The [evidence guide](docs/EVIDENCE.md) explains each run in plain language, and 
 
 | If you want to | Open |
 | --- | --- |
+| See each tool run with its receipt | [Evidence viewer](https://aman-agarwal6.github.io/signalbridge/portfolio/) |
 | Watch the finding unfold | [Recorded access walkthrough](portfolio/access-assurance.html) |
 | Review the implementation | [Engineering reference](docs/DESIGN.md): code map, security boundaries, rules and verification |
 | Check the security design | [Threat model](docs/THREAT_MODEL.md): trust boundaries, threats, controls and the test or run that checks each |

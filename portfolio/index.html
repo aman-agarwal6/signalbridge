@@ -1923,16 +1923,148 @@ code {
 
 }
 
+.native-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  list-style:none;
+  margin:0;
+  padding:26px 32px 32px
+}
+
+.native-grid .evidence-box {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:22px;
+  color:#17342a
+}
+
+.native-grid h3 {
+  font-size:19px;
+  line-height:1.35;
+  margin:0
+}
+
+.native-grid p {
+  margin:0
+}
+
+.run-meta {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  font-size:13px;
+  line-height:1.5;
+  font-weight:650;
+  color:#44574d
+}
+
+.run-status {
+  flex:none;
+  padding:2px 8px;
+  border-radius:4px;
+  font-size:12px;
+  font-weight:700;
+  background:#dff1e8;
+  color:#1d5a40
+}
+
+.run-status.partial {
+  background:#fff1d6;
+  color:#704300
+}
+
+.native-grid .run-figure {
+  font-size:30px;
+  font-weight:750;
+  line-height:1.15;
+  letter-spacing:-.03em;
+  color:#17342a
+}
+
+.run-figure small {
+  display:block;
+  margin-top:4px;
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:0;
+  color:#44574d
+}
+
+.run-facts {
+  margin:0;
+  padding-left:18px;
+  font-size:15px;
+  line-height:1.55;
+  color:#30483e
+}
+
+.run-facts li+li {
+  margin-top:6px
+}
+
+.native-grid .run-limit {
+  margin-top:auto;
+  padding-top:12px;
+  border-top:1px solid #dce3dc;
+  font-size:14px;
+  line-height:1.5;
+  color:#4f6359
+}
+
+.run-receipts {
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px 16px;
+  font-size:14px
+}
+
+.native-grid a {
+  color:#216741
+}
+
+.native-grid a:hover {
+  color:#123d27
+}
+
+@media(max-width:1000px) {
+  .native-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+
+}
+
+@media(max-width:760px) {
+  .native-grid {
+    grid-template-columns:minmax(0,1fr);
+    padding:20px 16px 24px
+  }
+
+}
+
+@media print {
+  .native-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+
+  .native-grid .evidence-box {
+    break-inside:avoid
+  }
+
+}
+
 </style>
 </head>
 <body>
-<a class="skip" href="#investigate">Skip to the integration evidence</a>
+<a class="skip" href="#october">Skip to the tool runs</a>
 <main>
 <header>
 <div class="brand">
 <span class="mark" aria-hidden="true">sb</span>SignalBridge</div>
 <nav class="top-links" aria-label="Page sections">
-<a href="#investigate">Integrations</a><a href="#authorization-proof">Access checks</a><a href="#measured-evidence">Test results</a>
+<a href="#october">October runs</a><a href="#investigate">Integrations</a><a href="#authorization-proof">Access checks</a><a href="#measured-evidence">Test results</a>
 <a href="#engineering">Design</a>
 </nav>
 </header>
@@ -1944,26 +2076,137 @@ code {
 </h1>
     <p>SignalBridge connects application access to security investigations. Explore real tool runs, compare source events with alerts, and inspect the evidence behind a finding.</p>
     <div class="hero-actions">
-<a class="primary-link" href="#investigate">View the integration runs <span aria-hidden="true">↗</span>
+<a class="primary-link" href="#october">View the tool runs <span aria-hidden="true">↗</span>
 </a>
 <a class="secondary-link" href="#engineering">What was built</a>
 </div>
     <p class="hero-note">Aman Agarwal · AI-assisted engineering · Recorded, isolated lab executions</p>
   </div>
-  <aside class="boundary-card" aria-label="Recorded Wazuh run">
-<div class="eyebrow">Wazuh / Historical collection result</div>
-  <div class="hero-number">64<span> / 64</span>
+  <aside class="boundary-card" aria-label="October native runs">
+<div class="eyebrow">Native lab runs / October 3 to October 5</div>
+<div class="hero-number">8<span> / 9</span>
 </div>
-<p class="boundary-title">Records delivered.</p>
-    <p class="hero-sub">31 custom alerts · 33 records without custom alerts.</p>
+<p class="boundary-title">Runs passed in full.</p>
+    <p class="hero-sub">Keycloak, Wazuh, ZAP, Shuffle, Prometheus and AccessOps, each connected to SignalBridge.</p>
     <div class="reconcile-line">
-<span>Missing <strong>0</strong>
-</span>
-<span>Duplicates <strong>0</strong>
+<span>Partial <strong>Endurance, 13.5 of 24 hours</strong>
 </span>
 </div>
-    <p class="boundary-end">Wazuh 4.14.8 · 26.785 seconds<br>Historical replay. Services stopped afterward.</p>
+    <p class="boundary-end">Real tools in an isolated lab with synthetic accounts and data.<br>Each result below links its receipt.</p>
   </aside>
+  
+</section>
+<section class="demo native-runs" id="october" aria-labelledby="october-title">
+  <div class="demo-head">
+<div class="section-head">
+<div>
+<div class="eyebrow">Native tool runs · October 3 to October 5</div>
+<h2 id="october-title">Real tools, real failures, recorded results.</h2>
+</div>
+<span class="badge">8 passed · 1 partial</span>
+</div>
+<p>Each run used a real tool in an isolated lab. Figures are read from the run's receipt and checked when this page is built.</p>
+</div>
+  <ul class="native-grid"><li class="evidence-box" id="run-shuffle">
+<div class="run-meta">
+<span>Shuffle SOAR · October 5</span>
+<span class="run-status">Passed</span>
+</div>
+<h3>A real workflow through nine failure cases</h3>
+<p class="run-figure">9 / 9 <small>scenarios answered as designed</small>
+</p>
+<ul class="run-facts"><li>2 review tasks created; each retry returned its original task</li><li>Replayed, changed, wrong-app and stale requests were refused</li><li>A lost reply was recovered by retrying</li></ul>
+<p class="run-limit">Nine synthetic scenarios in a dedicated offline VM.</p>
+<p class="run-receipts"><a href="../docs/evidence/20261005-shuffle-native-workflow-315cfb85-9c28-4e4e-9cac-8ce455e92448.json">Workflow run receipt</a></p>
+</li><li class="evidence-box" id="run-leaver">
+<div class="run-meta">
+<span>AccessOps · Shared Signals · October 5</span>
+<span class="run-status">Passed</span>
+</div>
+<h3>Leaver events from another system, verified before use</h3>
+<p class="run-figure">38 / 38 <small>signed tokens verified, stored once and acknowledged</small>
+</p>
+<ul class="run-facts"><li>Dry run first: 32 tokens checked, nothing stored or acknowledged</li><li>Round 2 opened 1 access-after-departure case from real lab activity</li><li>Round 1&#x27;s 3 cases came from the sender&#x27;s test backdating departures</li></ul>
+<p class="run-limit">Two lab systems on one PC, with synthetic accounts.</p>
+<p class="run-receipts"><a href="../docs/evidence/20261005-accessops-leaver-dry-run-f567427abbbc4929ad50e25be2c84724.json">Dry run receipt</a><a href="../docs/evidence/20261005-accessops-leaver-poll-eefe76ecded04ffe9892bd174c973232.json">Round 1 receipt</a><a href="../docs/evidence/20261005-accessops-leaver-poll-931402fb1ee44209b58c60063f63150f.json">Round 2 receipt</a></p>
+</li><li class="evidence-box" id="run-identity">
+<div class="run-meta">
+<span>Keycloak · Chromium · October 4</span>
+<span class="run-status">Passed</span>
+</div>
+<h3>Password and TOTP sign-in, attacked and walked through</h3>
+<p class="run-figure">28 / 28 <small>protocol controls passed</small>
+</p>
+<ul class="run-facts"><li>Covered callback replay, a missing CSRF token, cross-app writes, signing-key rotation, back-channel logout and real session expiry</li><li>5 / 5 real-browser controls: keyboard sign-in, cookie attributes, CSP, framing and sign-out</li></ul>
+<p class="run-limit">A real Keycloak server and browser in an isolated lab, with synthetic accounts.</p>
+<p class="run-receipts"><a href="../docs/evidence/20261004-identity-native-73632025aeee400bb7ee49b69fba7c99.json">Identity run receipt</a></p>
+</li><li class="evidence-box" id="run-endurance">
+<div class="run-meta">
+<span>Reliability lab · Wazuh · October 4</span>
+<span class="run-status partial">Partial</span>
+</div>
+<h3>13.5 hours of continuous reads, with planned interruptions</h3>
+<p class="run-figure">27,118 / 27,118 <small>reads delivered</small>
+</p>
+<ul class="run-facts"><li>40-minute rehearsal: all 5 interruptions recovered with 0 events late or missing</li><li>Wazuh captured the first 10.6 hours, then hit a log-folder limit, since fixed</li></ul>
+<p class="run-limit">Not a 24-hour result; the run was stopped after the Wazuh capture ended.</p>
+<p class="run-receipts"><a href="../docs/evidence/20261004-reliability-rehearsal-8a1889fec8ef49f5acde3c01bfa88e63-remeasured.json">Rehearsal receipt</a><a href="../docs/evidence/20261004-reliability-continuous-894fb388a2004b43b6b1643e93342df4-summary.json">Continuous run receipt</a></p>
+</li><li class="evidence-box" id="run-wazuh-collection">
+<div class="run-meta">
+<span>Wazuh · October 3</span>
+<span class="run-status">Passed</span>
+</div>
+<h3>Every record archived, every alert raised once</h3>
+<p class="run-figure">24 / 24 <small>records archived</small>
+</p>
+<ul class="run-facts"><li>8 / 8 expected alerts, each raised once</li><li>0 missing records and 0 extra copies</li><li>Input: the October 2 access run&#x27;s 23 observations and 1 forwarded detection</li></ul>
+<p class="run-limit">One forwarded SignalBridge detection; not independent Wazuh rediscovery.</p>
+<p class="run-receipts"><a href="../docs/evidence/20261003-wazuh-native-collection-0d137b4720ad476faa68d36754b7357f.json">Collection run receipt</a></p>
+</li><li class="evidence-box" id="run-wazuh-recovery">
+<div class="run-meta">
+<span>Wazuh · October 3</span>
+<span class="run-status">Passed</span>
+</div>
+<h3>Collector stopped mid-run, log rotated, nothing lost</h3>
+<p class="run-figure">24 / 24 <small>records archived after recovery</small>
+</p>
+<ul class="run-facts"><li>13 records waited while the collector was stopped</li><li>The source log rotated during the run</li><li>0 extra copies; 8 / 8 alerts</li></ul>
+<p class="run-limit">A planned stop and rotation in the lab, not an unplanned outage.</p>
+<p class="run-receipts"><a href="../docs/evidence/20261003-wazuh-native-recovery-4a5748dcc7a74525a7469dc8d802438a.json">Recovery run receipt</a></p>
+</li><li class="evidence-box" id="run-zap">
+<div class="run-meta">
+<span>OWASP ZAP · October 3</span>
+<span class="run-status">Passed</span>
+</div>
+<h3>A finding on the faulty build, gone after the fix</h3>
+<p class="run-figure">1 → 0 <small>findings before and after the fix</small>
+</p>
+<ul class="run-facts"><li>Low-risk finding from ZAP rule 10021 on the faulty build</li><li>The corrected build, scanned the same way, had none</li></ul>
+<p class="run-limit">Authenticated passive scan of the lab reference app; not a full assessment.</p>
+<p class="run-receipts"><a href="../docs/evidence/20261003-authenticated-zap-offline-d975b97fad814c9b8e4304e114c776e5.json">Scan run receipt</a></p>
+</li><li class="evidence-box" id="run-restoration">
+<div class="run-meta">
+<span>SignalBridge console · PostgreSQL · October 3</span>
+<span class="run-status">Passed</span>
+</div>
+<h3>From finding to verified fix, on a restored console</h3>
+<p class="run-figure">23 / 23 <small>events restored into a separate database</small>
+</p>
+<ul class="run-facts"><li>Assigned, remediation task, retest imported, independent reviewer approved</li><li>Self-review refused; a repeated retest import created no duplicate</li><li>The Wazuh run matched 13 events to the case</li></ul>
+<p class="run-limit">Synthetic lab data; one case through the full workflow.</p>
+<p class="run-receipts"><a href="../docs/evidence/20261003-console-restoration-de4f6409fdf444a9bc22cf60463cdb05.json">Restoration run receipt</a></p>
+</li><li class="evidence-box" id="run-monitoring">
+<div class="run-meta">
+<span>Prometheus · Grafana · October 3</span>
+<span class="run-status">Passed</span>
+</div>
+<h3>Alerts that fire on a backlog and then clear</h3>
+<p class="run-figure">24 / 24 <small>monitoring controls passed</small>
+</p>
+<ul class="run-facts"><li>Queue-delay and missing-worker alerts fired, then cleared after recovery</li><li>Requests without credentials were denied by the exporter, Prometheus and Grafana</li><li>Every dashboard query matched the database</li></ul>
+<p class="run-limit">Lab thresholds and synthetic load, not production capacity.</p>
+<p class="run-receipts"><a href="../docs/evidence/20261003-monitoring-native-0cd4256f4a1c4f2692f67eae4704bd53.json">Monitoring run receipt</a></p>
+</li></ul>
 </section>
 <section class="current-evidence" aria-labelledby="current-evidence-title">
 <div>
@@ -1985,7 +2228,7 @@ code {
   <div class="demo-head">
 <div class="section-head">
 <div>
-<div class="eyebrow">Integration runs</div>
+<div class="eyebrow">September integration runs</div>
 <h2 id="demo-title">Inspect the tools. Follow the records.</h2>
 </div>
 <span class="badge">Recorded lab execution</span>
@@ -2018,7 +2261,7 @@ code {
         <div class="case-lead">
 <div>
 <div class="eyebrow">
-<span class="toolmark wazuh-mark" aria-hidden="true">W</span> Wazuh 4.14.8 / BetTail lab replay</div>
+<span class="toolmark wazuh-mark" aria-hidden="true">W</span> Wazuh 4.14.8 / September replay of a lab ledger</div>
 <h3>Delivery and alert results.</h3>
 <p>A committed SignalBridge ledger was replayed through a real isolated Wazuh manager. Input IDs and payloads were reconciled against its archive and custom alerts.</p>
 </div>
@@ -5340,7 +5583,7 @@ code {
 <div class="metrics">
 <div class="metric">
 <div class="eyebrow">Offline verification</div>
-<strong>2055</strong>
+<strong>2059</strong>
 <small>Executed Python and Node tests · zero failures or skips</small>
 </div>
 <div class="metric">
@@ -5600,25 +5843,25 @@ code {
 </div>
     <dl class="identity">
 <dt>Execution</dt>
-<dd>2026-10-05T16:07:43.167550+00:00 → 2026-10-05T16:07:43.625315+00:00</dd>
+<dd>2026-10-05T17:30:16.004585+00:00 → 2026-10-05T17:30:16.424502+00:00</dd>
 <dt>Run ID</dt>
 <dd>
-<code>03d797940aea494c8b10eea43e0676cf</code>
+<code>8b86fb3dec004b42a35d650257aaea24</code>
 </dd>
 <dt>Source content</dt>
 <dd>
-<code>790fcdbceb6b56620c8484c8b5dd2bbf78f8a65b7019dd77bb89877e3dd5d53c</code> · 689 files · matched at generation</dd>
+<code>74f652fd84c22a6cc29fd22b7bc37ff2791901ea3529152e3845dce6e3988f35</code> · 690 files · matched at generation</dd>
 <dt>Predeclared catalog</dt>
 <dd>
 <code>6709461d435e6dad7f89cf9e447f3629423caf9728e11118858ddcdae0cf8345</code>
 </dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20261005-challenge-03d797940aea494c8b10eea43e0676cf.json</code>
+<code>20261005-challenge-8b86fb3dec004b42a35d650257aaea24.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>0126b3a873fe00244dc2942b5ce8fd31c660049ec446948d3ff1b8713cb05a05</code>
+<code>ace8a0ca3915aad934335c1b56f39d7bee616cf8ff1b30e816e46edf80107eb9</code>
 </dd>
 </dl>
     <ul class="limits"><li>Predeclared builder-authored cases; authors knew the rules. Not an independent blind holdout.</li><li>Rule-contract checks and desired capability probes have separate denominators.</li><li>A completed execution can contain contract failures and unsupported capabilities.</li><li>Synthetic source labels are fixture metadata; no real access or attacker activity was observed.</li><li>Membership changes lack an authoritative affected-member relationship in this event contract.</li><li>In-process SQLite with accidental network/process guards; not production capacity or an OS sandbox.</li></ul>
@@ -5648,48 +5891,48 @@ code {
 <tbody><tr>
 <td>django-tests</td>
 <td class="check">Passed</td>
-<td>1993</td>
-<td>87.234</td>
+<td>1997</td>
+<td>95.313</td>
 </tr><tr>
 <td>django-check</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>1.357</td>
+<td>1.392</td>
 </tr><tr>
 <td>migration-drift</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>1.429</td>
+<td>1.419</td>
 </tr><tr>
 <td>ruff-check</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>0.04</td>
+<td>0.042</td>
 </tr><tr>
 <td>ruff-format</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>0.033</td>
+<td>0.041</td>
 </tr><tr>
 <td>publication-scan</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>16.487</td>
+<td>17.29</td>
 </tr><tr>
 <td>node-courier-tests</td>
 <td class="check">Passed</td>
 <td>22</td>
-<td>0.333</td>
+<td>0.253</td>
 </tr><tr>
 <td>node-http-harness-mock-tests</td>
 <td class="check">Passed</td>
 <td>17</td>
-<td>0.116</td>
+<td>0.125</td>
 </tr><tr>
 <td>node-bettail-route-mock-tests</td>
 <td class="check">Passed</td>
 <td>23</td>
-<td>0.134</td>
+<td>0.136</td>
 </tr></tbody>
 </table>
 </div>
@@ -5698,26 +5941,26 @@ code {
 <div class="details-body">
 <dl class="identity">
 <dt>Execution started</dt>
-<dd>2026-10-05T16:05:41.456891+00:00</dd>
+<dd>2026-10-05T17:28:04.562929+00:00</dd>
 <dt>Execution finished</dt>
-<dd>2026-10-05T16:07:30.681671+00:00</dd>
+<dd>2026-10-05T17:30:02.792896+00:00</dd>
 <dt>Run ID</dt>
 <dd>
-<code>20261005T160541456302Z-20aa4f17</code>
+<code>20261005T172804562269Z-73bbd2b8</code>
 </dd>
 <dt>Git revision</dt>
 <dd>
-<code>78165d513ce55a2172c438d4988530087dcd0ed9</code> · working tree had changes</dd>
+<code>e404062a53fb04a0010ed49029c2d21998277c00</code> · working tree had changes</dd>
 <dt>Source content</dt>
 <dd>
-<code>790fcdbceb6b56620c8484c8b5dd2bbf78f8a65b7019dd77bb89877e3dd5d53c</code> · 689 files</dd>
+<code>74f652fd84c22a6cc29fd22b7bc37ff2791901ea3529152e3845dce6e3988f35</code> · 690 files</dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20261005T160541456302Z-20aa4f17.json</code>
+<code>20261005T172804562269Z-73bbd2b8.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>2e8176c3c2c4f3b3a916911c0b3b95ba257e38358a47e7b39a7ff7c5e7720fd4</code>
+<code>af918701901708e1f38002c2396609436d4045f88d2f7098aeb15f0b0d1ffb04</code>
 </dd>
 </dl>
 <ul class="limits"><li>Builder-operated local core verification; not an independent audit.</li><li>Node courier, HTTP-harness and BetTail route suites use mocks; they do not contact real services.</li><li>No real Supabase auth, source-app HTTP/storage, PostgreSQL concurrency or container tests.</li><li>No dependency advisory lookup, remote CI, deployment or production validation.</li><li>Hashes identify content; a filesystem administrator can replace logs and receipts.</li><li>Documentation and generated evidence are excluded from the source digest.</li></ul>
@@ -5771,7 +6014,7 @@ code {
 <span style="width:100%">
 </span>
 </div>
-<p class="small">2026-10-05T16:07:37.487150+00:00 · Source matched at page generation.</p>
+<p class="small">2026-10-05T17:30:10.126627+00:00 · Source matched at page generation.</p>
 </article>
 </div>
 <p class="coverage">The comparison uses five expected-alert and ten expected-no-alert scenarios. These development cases are not an independent holdout or a measurement of production detection accuracy. A code change and its retest are separate recorded executions.</p>
@@ -5780,7 +6023,7 @@ code {
 <h3>Current simulation · 15 / 15 scenarios met</h3>
 <span class="badge ">passed</span>
 </div>
-<p class="small">Executed 2026-10-05T16:07:34.054372+00:00 → 2026-10-05T16:07:37.487150+00:00 · disposable in-memory SQLite · Django in-process test client</p>
+<p class="small">Executed 2026-10-05T17:30:06.420945+00:00 → 2026-10-05T17:30:10.126627+00:00 · disposable in-memory SQLite · Django in-process test client</p>
 <div class="table-wrap">
 <table>
 <thead>
@@ -5898,25 +6141,25 @@ code {
 <dl class="identity">
 <dt>Run ID</dt>
 <dd>
-<code>96b92f85fa2b45c894166839b87ec871</code>
+<code>e69afefc6019460cbbbac918f04f637d</code>
 </dd>
 <dt>Git revision</dt>
 <dd>
-<code>78165d513ce55a2172c438d4988530087dcd0ed9</code> · working tree had changes</dd>
+<code>e404062a53fb04a0010ed49029c2d21998277c00</code> · working tree had changes</dd>
 <dt>Source content</dt>
 <dd>
-<code>790fcdbceb6b56620c8484c8b5dd2bbf78f8a65b7019dd77bb89877e3dd5d53c</code> · 689 files</dd>
+<code>74f652fd84c22a6cc29fd22b7bc37ff2791901ea3529152e3845dce6e3988f35</code> · 690 files</dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20261005-simulation-96b92f85fa2b45c894166839b87ec871.json</code>
+<code>20261005-simulation-e69afefc6019460cbbbac918f04f637d.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>8065186a4d99f932e5bb06b17cf136a8d9f7e6adfb17f5223b3b70f1c3a6d2bf</code>
+<code>5724ccf83f6c21b3d02bd60111aadd4c4f5fd06677e444f766930fb1651321de</code>
 </dd>
 <dt>Recorded result hash</dt>
 <dd>
-<code>1baa97fcd88dfee061840ac6a71b9d617e95af7671ebd28b18215436cc13639e</code> · private original bytes not reread by this page builder</dd>
+<code>084157f3a123e80e8d26d0e6531931e7be9157e62e122d2953c07c8c1b975026</code> · private original bytes not reread by this page builder</dd>
 </dl>
 <p class="small">Not tested in this simulation:</p>
 <ul class="limits"><li>Endpoint or cloud inventory</li><li>Live adversary exploitation</li><li>Production traffic</li><li>Multi-node availability</li><li>PostgreSQL concurrency or crash durability</li><li>Network HTTP latency</li><li>Competitor products</li><li>Independent blind holdout</li><li>Automated external response</li></ul>
@@ -6093,7 +6336,7 @@ code {
 </div>
 </article>
 </section>
-<footer class="footer">Page generated 2026-10-05T16:07:46.327240+00:00. Execution times are shown separately above. All dates are UTC. SignalBridge · Public, read-only portfolio artifact. The evidence viewer works as one HTML file. Source, receipt and metrics links point to files in the same repository.</footer>
+<footer class="footer">Page generated 2026-10-05T17:30:19.238123+00:00. Execution times are shown separately above. All dates are UTC. SignalBridge · Public, read-only portfolio artifact. The evidence viewer works as one HTML file. Source, receipt and metrics links point to files in the same repository.</footer>
 </main>
 </body>
 </html>

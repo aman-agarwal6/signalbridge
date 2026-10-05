@@ -11,7 +11,8 @@ from unittest import TestCase
 from unittest.mock import patch
 
 from scripts import portfolio as p
-from scripts.portfolio_integrations import RECEIPTS
+from scripts import portfolio_native as native
+from scripts.portfolio_integrations import RECEIPTS, canonical_sha
 
 
 class PortfolioTests(TestCase):
@@ -73,6 +74,117 @@ class PortfolioTests(TestCase):
         for identity in evidence["receipts"]:
             raw = (self.root / "docs/evidence" / identity["receipt"]).read_bytes()
             self.assertEqual(identity["receipt_sha256"], hashlib.sha256(raw).hexdigest())
+
+    def copy_native_receipts(self):
+        for name in native.RECEIPTS:
+            shutil.copyfile(p.ROOT / "docs/evidence" / name, self.root / "docs/evidence" / name)
+
+    def test_october_runs_lead_the_viewer_with_receipt_figures_and_one_partial(self):
+        self.copy_integration_receipts()
+        self.copy_native_receipts()
+        evidence = self.build()["native"]
+        figures = {run["key"]: (run["status"], run["figure"]) for run in evidence["runs"]}
+        self.assertEqual(
+            figures,
+            {
+                "shuffle": ("passed", "9 / 9"),
+                "leaver": ("passed", "38 / 38"),
+                "identity": ("passed", "28 / 28"),
+                "endurance": ("partial", "27,118 / 27,118"),
+                "wazuh-collection": ("passed", "24 / 24"),
+                "wazuh-recovery": ("passed", "24 / 24"),
+                "zap": ("passed", "1 → 0"),
+                "restoration": ("passed", "23 / 23"),
+                "monitoring": ("passed", "24 / 24"),
+            },
+        )
+        self.assertEqual((evidence["passed"], evidence["first_day"]), (8, "October 3"))
+        html = (self.root / "portfolio/index.html").read_text(encoding="utf8")
+        self.assertLess(html.index('id="october"'), html.index('id="investigate"'))
+        self.assertIn("Runs passed in full.", html)
+        self.assertIn("Endurance, 13.5 of 24 hours", html)
+        for name in native.RECEIPTS:
+            self.assertIn(f'href="../docs/evidence/{name}"', html)
+        self.assertNotIn("BetTail lab replay", html)
+        self.assertNotIn("<script", html)
+
+    def test_absent_october_receipts_leave_no_october_claims(self):
+        self.copy_integration_receipts()
+        self.assertIsNone(self.build()["native"])
+        html = (self.root / "portfolio/index.html").read_text(encoding="utf8")
+        self.assertNotIn('id="october"', html)
+        self.assertIn("Historical collection result", html)
+
+    def test_partial_or_modified_october_snapshot_cannot_be_exported(self):
+        self.copy_native_receipts()
+        path = self.root / "docs/evidence" / native.SHUFFLE
+        original = json.loads(path.read_text())
+        modified = copy.deepcopy(original)
+        modified["guest"]["receiver"]["review_tasks"] = 3
+        self.write(native.SHUFFLE, modified)
+        self.assert_rejected()
+        path.unlink()
+        self.assert_rejected()
+
+    def test_repinned_contradictory_october_receipts_are_still_refused(self):
+        def nested(*keys):
+            def change(value):
+                for key in keys[:-2]:
+                    value = value[key]
+                value[keys[-2]] = keys[-1]
+
+            return change
+
+        changes = {
+            "replay_accepted": (
+                native.SHUFFLE,
+                nested("dispatcher", "scenarios", "replayed_request", "http_status", 201),
+            ),
+            "duplicate_token": (native.LEAVER_ROUND_2, nested("duplicates", 1)),
+            "dry_run_stored": (native.LEAVER_DRY_RUN, nested("stored", 1)),
+            "finding_not_fixed": (
+                native.ZAP,
+                lambda value: value["scanner_proof"]["phases"]["corrected"].update(
+                    findings=value["scanner_proof"]["phases"]["fault"]["findings"]
+                ),
+            ),
+            "claimed_full_day": (native.CONTINUOUS, nested("elapsed_hours", 24.0)),
+            "browser_control_failed": (
+                native.IDENTITY,
+                lambda value: value["native_receipt"]["browser_result"]["controls"][0].update(
+                    passed=False
+                ),
+            ),
+            "extra_wazuh_copy": (
+                native.COLLECTION,
+                nested("receipt", "native_proof", "coverage", "extra_archive_copies", 1),
+            ),
+            "monitoring_control_failed": (
+                native.MONITORING,
+                nested("receipt", "proof", "controls", "local_alert_cleared", False),
+            ),
+            "self_review_allowed": (
+                native.RESTORATION,
+                nested("runner", "workflow", "self_review_denied", False),
+            ),
+            "late_interruption": (
+                native.REHEARSAL,
+                lambda value: value["measurement"]["recovery"][0].update(late_or_missing=1),
+            ),
+        }
+        self.copy_native_receipts()
+        for label, (name, change) in changes.items():
+            original = json.loads((self.root / "docs/evidence" / name).read_text())
+            modified = copy.deepcopy(original)
+            change(modified)
+            self.write(name, modified)
+            with (
+                self.subTest(change=label),
+                patch.dict(native.RECEIPTS, {name: canonical_sha(modified)}),
+            ):
+                self.assert_rejected()
+            self.write(name, original)
+        self.assertIsNotNone(self.build()["native"])
 
     def challenge(self):
         from tests.test_detection_challenge import synthetic_result
