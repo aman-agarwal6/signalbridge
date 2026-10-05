@@ -48,7 +48,7 @@ count. Every query groups by app, environment and source, as SignalBridge does.
 ## Results on the 48 frozen scenarios
 
 Each result compares the set of rules fired in every scenario with the Python rules. It compares
-rule logic only. The scenarios were written by the builder, so none of these is an accuracy
+rule logic only. I wrote the scenarios, so none of these is an accuracy
 measurement.
 
 | Where it ran | Queries | Same result as Python | Differences |
