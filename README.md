@@ -48,6 +48,7 @@ The [evidence guide](docs/EVIDENCE.md) explains each run in plain language, and 
 | Watch the finding unfold | [Recorded access walkthrough](portfolio/access-assurance.html) |
 | Review the implementation | [Engineering reference](docs/DESIGN.md): code map, security boundaries, rules and verification |
 | Check the security design | [Threat model](docs/THREAT_MODEL.md): trust boundaries, threats, controls and the test or run that checks each |
+| Download a fixed version | [Releases](https://github.com/aman-agarwal6/signalbridge/releases): source archive, SBOM and Sigstore provenance, built only after CI passes on that commit |
 
 ## Run the lightweight console
 
