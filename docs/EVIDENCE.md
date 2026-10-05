@@ -116,7 +116,7 @@ Some receipts are **promotions** (`kind: signalbridge-native-receipt-promotion`)
 
 **Limits.** Automated rules catch only part of WCAG. There was no manual screen-reader, zoom or full keyboard audit, and 40 items axe marks for manual review were not reviewed. One desktop viewport only.
 
-### Detection ([evaluation](evidence/20261005-enterprise-detection-evaluation-shuffle-native.json))
+### Detection ([evaluation](evidence/20261005-enterprise-detection-evaluation-public-release.json))
 
 **What happened.** 48 builder-written scenarios ran through the five rules with the final implementation frozen and hashed before the labels were joined: precision 15/21, recall 15/23, false-positive rate 6/18, with 7 scenarios inconclusive.
 

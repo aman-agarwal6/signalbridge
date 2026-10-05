@@ -18,7 +18,9 @@ def build_scenarios(now):
             "environment": "test",
             "occurred_at": (base + timedelta(seconds=10 + index)).isoformat(),
             "actor": hashlib.sha256(case.encode()).hexdigest(),
-            "resource": hashlib.sha256(f"resource/{index}".encode()).hexdigest(),
+            # Scoped to the case: shared resource IDs let unrelated cases form a
+            # cross-case pattern (rule R5) that no single scenario declared.
+            "resource": hashlib.sha256(f"{case}/resource/{index}".encode()).hexdigest(),
             "episode": str(uuid.uuid5(uuid.NAMESPACE_URL, f"signalbridge-simulation/{case}")),
             "operation": "private_record.read",
             "outcome": "denied",

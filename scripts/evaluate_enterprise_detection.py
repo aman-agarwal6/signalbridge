@@ -26,7 +26,7 @@ from scripts.run_enterprise_lab import offline_guards, require_memory_database, 
 # Source-observation changes require a fresh implementation identity. Earlier
 # rounds remain intact; these are the same selected scenarios, not a new
 # independent dataset or stronger statistical evidence.
-DATA = ROOT / "fixtures/enterprise_detection_evaluation/round-20261005-shuffle-native"
+DATA = ROOT / "fixtures/enterprise_detection_evaluation/round-20261005-public-release"
 FILES = (
     *FROZEN_FILES,
     "scripts/evaluate_enterprise_detection.py",
