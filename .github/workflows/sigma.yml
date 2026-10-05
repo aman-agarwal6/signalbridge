@@ -37,7 +37,7 @@ jobs:
         with:
           python-version: '3.14'
       - name: Install pinned Sigma tooling
-        run: python -m pip install --require-hashes --only-binary :all: -r detections/requirements.txt
+        run: python -m pip install --require-hashes --only-binary ":all:" -r detections/requirements.txt
       - name: Lint and format
         run: |
           python -m ruff check detections
