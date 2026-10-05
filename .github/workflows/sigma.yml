@@ -10,6 +10,8 @@ on:
       - fixtures/enterprise_detection_evaluation/round-20261005-public-release/**
       - docs/evidence/20261005-enterprise-detection-evaluation-public-release.json
       - scripts/evaluate_enterprise_detection.py
+      - scripts/evaluate_detection.py
+      - scripts/run_enterprise_lab.py
       - .github/workflows/sigma.yml
   pull_request:
     paths:
@@ -19,6 +21,8 @@ on:
       - fixtures/enterprise_detection_evaluation/round-20261005-public-release/**
       - docs/evidence/20261005-enterprise-detection-evaluation-public-release.json
       - scripts/evaluate_enterprise_detection.py
+      - scripts/evaluate_detection.py
+      - scripts/run_enterprise_lab.py
       - .github/workflows/sigma.yml
 concurrency:
   group: sigma-${{ github.workflow }}-${{ github.ref }}
