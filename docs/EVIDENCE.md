@@ -124,6 +124,16 @@ Some receipts are **promotions** (`kind: signalbridge-native-receipt-promotion`)
 
 **Limits.** The rule authors wrote the scenarios, so this is regression evidence, not independent accuracy.
 
+### Detection as code ([replay](../detections/sigma/replay-report.json))
+
+**What happened.** The five rules were rewritten as Sigma rules (four base rules plus five correlation or single-event rules) and compiled with pySigma. The SQLite build ran on an in-memory table for each of the 48 frozen scenarios, rebuilt exactly as the evaluator delivers them, and the rules it fired were compared with `bridge.engine.detections()` on the same events.
+
+**Result.** The Python rules reproduce the published receipt in 48 of 48 scenarios, and the Sigma rules fire the same set in 45. The three differences (Q11, Q18, Q20) are R3 firing after a re-grant or a same-instant conflict, which Sigma correlations cannot cancel.
+
+**Read.** `summary`, `scenarios[].python_rules`, `scenarios[].sigma_rules`; [`detections/README.md`](../detections/README.md) explains each gap.
+
+**Limits.** Rule logic only, on builder-written scenarios. The Splunk SPL (R1, R2, R4, R5) and Sentinel KQL (R2 only) were generated, not run in Splunk or Sentinel.
+
 ## Older files
 
 The September files in `docs/evidence/` are earlier development checkpoints, kept on purpose, including failed and incomplete runs. Each file states its own status and limits. [Lessons learned](LESSONS.md) explains the failures that came before the passing runs.

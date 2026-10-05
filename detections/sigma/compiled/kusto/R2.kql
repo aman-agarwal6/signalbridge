@@ -1,0 +1,2 @@
+SignalBridgeAccess_CL
+| where operation =~ "private_record.read" and outcome =~ "allowed" and (reason in~ ("membership_removed", "policy_regression"))

@@ -1,0 +1,6 @@
+sourcetype="signalbridge:access" operation="private_record.read" outcome="denied"
+
+| bin _time span=30m
+| stats dc(resource) as value_count by _time app environment source actor
+
+| search value_count >= 5

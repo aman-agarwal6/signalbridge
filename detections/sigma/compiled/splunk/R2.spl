@@ -1,0 +1,1 @@
+sourcetype="signalbridge:access" operation="private_record.read" outcome="allowed" reason IN ("membership_removed", "policy_regression")

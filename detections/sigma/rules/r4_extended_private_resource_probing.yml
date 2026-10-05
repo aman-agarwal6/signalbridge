@@ -1,0 +1,32 @@
+title: Extended Private-Resource Probing
+id: 2c65fdfc-88d2-4d28-97af-afdaa080e137
+name: signalbridge_r4
+status: test
+description: >
+  One account is denied at least five distinct private records within 30 minutes, in one app,
+  environment and source. Sigma version of SignalBridge rule R4 (bounded-denials-v1). Sigma cannot
+  express R4's extra condition that the evidence spans at least ten minutes, so this version also
+  fires on a fast burst.
+references:
+  - https://github.com/aman-agarwal6/signalbridge/blob/main/bridge/engine.py
+author: Aman Agarwal
+date: 2026-10-05
+tags:
+  - attack.collection
+  - attack.t1213
+correlation:
+  type: value_count
+  rules:
+    - signalbridge_private_read_denied
+  group-by:
+    - app
+    - environment
+    - source
+    - actor
+  timespan: 30m
+  condition:
+    field: resource
+    gte: 5
+falsepositives:
+  - A legitimate user with several stale links, or approved testing.
+level: medium
