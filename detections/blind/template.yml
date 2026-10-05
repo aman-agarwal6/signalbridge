@@ -1,0 +1,47 @@
+# SignalBridge blind evaluation: scenario file.
+# Read AUTHOR-GUIDE.md first. Replace the two EX examples with your own scenarios,
+# numbered B01, B02, B03 and so on (20 to 60 of them).
+
+# How you want to be credited publicly, or "anonymous".
+author: anonymous
+
+# Keep this statement exactly as written. It confirms you worked blind.
+attestation: >-
+  I wrote these scenarios without reading SignalBridge's detection rules, code or
+  documentation beyond the author guide, and without discussing the rules with its builder.
+
+scenarios:
+  - id: EX1
+    title: A member opens a record they are allowed to see
+    label: benign
+    rationale: Normal daily use. Alice is a member of doc-1 and reads it once.
+    events:
+      - at: "0:00"
+        actor: alice
+        resource: doc-1
+        operation: private_record.read
+        outcome: allowed
+        reason: member
+
+  - id: EX2
+    title: An admin removes a member, whose next attempt is denied
+    label: benign
+    rationale: >-
+      Carol, an admin, removes Bob from doc-2 on purpose. Bob tries once more out of habit
+      and is correctly refused.
+    events:
+      - at: "0:00"
+        actor: carol
+        resource: doc-2
+        operation: membership.change
+        outcome: allowed
+        reason: membership_removed
+        membership:
+          subject: bob
+          state: removed
+      - at: "2:30"
+        actor: bob
+        resource: doc-2
+        operation: private_record.read
+        outcome: denied
+        reason: membership_required

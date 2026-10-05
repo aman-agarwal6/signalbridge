@@ -119,6 +119,13 @@ python -m detections.engines.run kusto --image <reference@digest>
 
 Splunk needs `SPLUNK_HEC_TOKEN` and `SPLUNK_CA_FILE` in the environment.
 
+## Blind evaluation
+
+All the scenarios above were written by the rules' own author. [`blind/`](blind/) sets up a
+round written by an external author who works only from an [author guide](blind/AUTHOR-GUIDE.md)
+that never describes the rules. The rules are frozen publicly before the author starts, and the
+author's file is sealed on receipt, then scored once. No blind round has been run yet.
+
 ## Run the checks
 
 Python 3.14, from the repository root. No engine is needed:
