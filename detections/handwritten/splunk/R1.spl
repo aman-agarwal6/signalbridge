@@ -1,0 +1,6 @@
+``` SignalBridge R1 (rolling-v2), hand-written: a rolling five-minute window instead of the fixed bins the Sigma backend generates. ```
+``` One account fails to read three or more distinct private records (denied or not visible) per app, environment and source. ```
+sourcetype="signalbridge:access" operation="private_record.read" (outcome="denied" OR outcome="not_visible")
+| sort 0 _time
+| streamstats time_window=5m dc(resource) as resources by app environment source actor
+| where resources >= 3

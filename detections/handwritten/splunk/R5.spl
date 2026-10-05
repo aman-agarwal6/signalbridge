@@ -1,0 +1,7 @@
+``` SignalBridge R5 (bounded-denials-v1), hand-written: the Sigma backend's chained version uses stats inside multisearch, which Splunk rejects. ```
+``` Six or more denied reads by three or more accounts on one private record within a rolling ten-minute window; each event counts once by event_id. ```
+sourcetype="signalbridge:access" operation="private_record.read" outcome="denied"
+| dedup event_id
+| sort 0 _time
+| streamstats time_window=10m count as denials dc(actor) as accounts by app environment source resource
+| where denials >= 6 AND accounts >= 3

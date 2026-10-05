@@ -1,0 +1,14 @@
+// SignalBridge R5 (bounded-denials-v1), hand-written: Sigma's Kusto backend cannot compile
+// correlations. Six or more denied reads by three or more accounts target the same private
+// record within an inclusive ten-minute window. Each event counts once by event_id.
+let denied = SignalBridgeAccess_CL
+    | where operation == "private_record.read" and outcome == "denied"
+    | summarize arg_min(TimeGenerated, *) by event_id;
+denied
+| project app, environment, source, resource, window_end = TimeGenerated
+| join kind=inner (denied | project app, environment, source, resource, TimeGenerated, actor, event_id)
+    on app, environment, source, resource
+| where TimeGenerated between ((window_end - 10m) .. window_end)
+| summarize denials = make_set(event_id), actors = make_set(actor)
+    by app, environment, source, resource, window_end
+| where array_length(denials) >= 6 and array_length(actors) >= 3

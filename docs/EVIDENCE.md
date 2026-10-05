@@ -124,15 +124,15 @@ Some receipts are **promotions** (`kind: signalbridge-native-receipt-promotion`)
 
 **Limits.** The rule authors wrote the scenarios, so this is regression evidence, not independent accuracy.
 
-### Detection as code ([replay](../detections/sigma/replay-report.json))
+### Detection as code ([Sigma replay](../detections/sigma/replay-report.json), [Splunk](../detections/engines/splunk-run.json), [Kusto](../detections/engines/kusto-run.json))
 
-**What happened.** The five rules were rewritten as Sigma rules (four base rules plus five correlation or single-event rules) and compiled with pySigma. The SQLite build ran on an in-memory table for each of the 48 frozen scenarios, rebuilt exactly as the evaluator delivers them, and the rules it fired were compared with `bridge.engine.detections()` on the same events.
+**What happened.** The five rules were rewritten as Sigma rules (four base rules plus five correlation or single-event rules) and compiled with pySigma; where a backend could not compile a rule, the SPL or KQL was written by hand and labeled. The 48 frozen scenarios were rebuilt exactly as the evaluator delivers them and run three ways: the Sigma rules compiled to SQLite on an in-memory table, the SPL in Splunk Free 10.6.0.5, and the KQL in Microsoft's Kusto emulator. Each engine ran in a local container on 5 October 2026, and the rules it fired in every scenario were compared with `bridge.engine.detections()` on the same events.
 
-**Result.** The Python rules reproduce the published receipt in 48 of 48 scenarios, and the Sigma rules fire the same set in 45. The three differences (Q11, Q18, Q20) are R3 firing after a re-grant or a same-instant conflict, which Sigma correlations cannot cancel.
+**Result.** The Python rules reproduce the published receipt in 48 of 48 scenarios. KQL matched them in 48. Hand-written SPL matched in 45: Splunk's `time_window` leaves out an event exactly on the window edge, which the three inclusive-boundary scenarios (Q27, Q28, Q37) test. The compiled Sigma rules matched in 45: R3 fires after a re-grant or a same-instant conflict (Q11, Q18, Q20), which Sigma correlations cannot cancel. pySigma's generated SPL matched in 40, because Splunk rejects its chained R5 query (`multisearch` with `stats` inside) and its fixed time bins miss two boundary scenarios.
 
-**Read.** `summary`, `scenarios[].python_rules`, `scenarios[].sigma_rules`; [`detections/README.md`](../detections/README.md) explains each gap.
+**Read.** In each engine receipt: `variants.*.summary`, `variants.*.queries` (file, origin, SHA-256 and any engine error) and `variants.*.scenarios`; [`detections/README.md`](../detections/README.md) explains each difference.
 
-**Limits.** Rule logic only, on builder-written scenarios. The Splunk SPL (R1, R2, R4, R5) and Sentinel KQL (R2 only) were generated, not run in Splunk or Sentinel.
+**Limits.** Rule logic only, on builder-written scenarios. Local single-node engines with synthetic events; the KQL ran in the Kusto emulator, not in Microsoft Sentinel. Hand-written queries are labeled as such.
 
 ## Older files
 

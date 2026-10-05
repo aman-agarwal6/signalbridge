@@ -1,0 +1,875 @@
+{
+  "kind": "signalbridge-engine-run",
+  "engine": "splunk",
+  "engine_version": "10.6.0.5",
+  "image": "splunk/splunk:10.6.0@sha256:9280f9ce267b212e5596aa1832cdfd3f9be886c378da35ebc87499323ee447a4",
+  "started_at": "2026-10-05T19:47:53.706446+00:00",
+  "finished_at": "2026-10-05T19:48:01.317652+00:00",
+  "round_id": "f8f7aa48-c0aa-486d-9c83-ea01f5dffc43",
+  "inputs_sha256": "a246cef144fb2ae4ff50b575f1b7c401949ea8164fe6ae28878aa3be58b94fcc",
+  "events_loaded": 174,
+  "variants": {
+    "sigma-generated": {
+      "queries": {
+        "R1": {
+          "file": "detections/sigma/compiled/splunk/R1.spl",
+          "origin": "sigma-generated",
+          "sha256": "da6387b4102bf041b7f8a8759ecf80d458d255ade568b807c718492ded6b74f4"
+        },
+        "R2": {
+          "file": "detections/sigma/compiled/splunk/R2.spl",
+          "origin": "sigma-generated",
+          "sha256": "f5e5c1224a4afeec359e4cbf295f6bc64f5b48ce2600de15bab65ba354d4fb7c"
+        },
+        "R3": {
+          "file": "detections/handwritten/splunk/R3.spl",
+          "origin": "hand-written",
+          "sha256": "e87df48b1a19273b0f69e67d7f76c117526faca500dd80e5ff86c54f7597af64"
+        },
+        "R4": {
+          "file": "detections/sigma/compiled/splunk/R4.spl",
+          "origin": "sigma-generated",
+          "sha256": "3b8e9f89eb5e0b84609a02d3719c7fe366c162207300a1914a24ff1ae5e6a573"
+        },
+        "R5": {
+          "file": "detections/sigma/compiled/splunk/R5.spl",
+          "origin": "sigma-generated",
+          "sha256": "6b3abcafd674fe082d612c4baaeebdf35791561413e2140ba6198a816e4a948c",
+          "error": "Error in 'multisearch' command: 'multisearch' subsearches can contain only streaming commands and processes (subsearch 1 contains a non-streaming command)."
+        }
+      },
+      "summary": {
+        "scenarios": 48,
+        "matches_python": 40,
+        "failed_queries": [
+          "R5"
+        ],
+        "per_rule": {
+          "R1": {
+            "both": 2,
+            "python_only": 1,
+            "engine_only": 0
+          },
+          "R2": {
+            "both": 2,
+            "python_only": 0,
+            "engine_only": 0
+          },
+          "R3": {
+            "both": 5,
+            "python_only": 0,
+            "engine_only": 0
+          },
+          "R4": {
+            "both": 5,
+            "python_only": 1,
+            "engine_only": 0
+          },
+          "R5": {
+            "both": 0,
+            "python_only": 6,
+            "engine_only": 0
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "id": "Q01",
+          "python_rules": [
+            "R3"
+          ],
+          "engine_rules": [
+            "R3"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q02",
+          "python_rules": [
+            "R3"
+          ],
+          "engine_rules": [
+            "R3"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q03",
+          "python_rules": [
+            "R3"
+          ],
+          "engine_rules": [
+            "R3"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q04",
+          "python_rules": [
+            "R3"
+          ],
+          "engine_rules": [
+            "R3"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q05",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q06",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q07",
+          "python_rules": [
+            "R2"
+          ],
+          "engine_rules": [
+            "R2"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q08",
+          "python_rules": [
+            "R2"
+          ],
+          "engine_rules": [
+            "R2"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q09",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q10",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q11",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q12",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q13",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q14",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q15",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q16",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q17",
+          "python_rules": [
+            "R3"
+          ],
+          "engine_rules": [
+            "R3"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q18",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q19",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q20",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q21",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q22",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q23",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q24",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q25",
+          "python_rules": [
+            "R4"
+          ],
+          "engine_rules": [
+            "R4"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q26",
+          "python_rules": [
+            "R4"
+          ],
+          "engine_rules": [
+            "R4"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q27",
+          "python_rules": [
+            "R1",
+            "R4"
+          ],
+          "engine_rules": [
+            "R4"
+          ],
+          "agrees": false
+        },
+        {
+          "id": "Q28",
+          "python_rules": [
+            "R4"
+          ],
+          "engine_rules": [],
+          "agrees": false
+        },
+        {
+          "id": "Q29",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q30",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q31",
+          "python_rules": [
+            "R4"
+          ],
+          "engine_rules": [
+            "R4"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q32",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q33",
+          "python_rules": [
+            "R4"
+          ],
+          "engine_rules": [
+            "R4"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q34",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q35",
+          "python_rules": [
+            "R5"
+          ],
+          "engine_rules": [],
+          "agrees": false
+        },
+        {
+          "id": "Q36",
+          "python_rules": [
+            "R5"
+          ],
+          "engine_rules": [],
+          "agrees": false
+        },
+        {
+          "id": "Q37",
+          "python_rules": [
+            "R5"
+          ],
+          "engine_rules": [],
+          "agrees": false
+        },
+        {
+          "id": "Q38",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q39",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q40",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q41",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q42",
+          "python_rules": [
+            "R5"
+          ],
+          "engine_rules": [],
+          "agrees": false
+        },
+        {
+          "id": "Q43",
+          "python_rules": [
+            "R5"
+          ],
+          "engine_rules": [],
+          "agrees": false
+        },
+        {
+          "id": "Q44",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q45",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q46",
+          "python_rules": [
+            "R5"
+          ],
+          "engine_rules": [],
+          "agrees": false
+        },
+        {
+          "id": "Q47",
+          "python_rules": [
+            "R1"
+          ],
+          "engine_rules": [
+            "R1"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q48",
+          "python_rules": [
+            "R1"
+          ],
+          "engine_rules": [
+            "R1"
+          ],
+          "agrees": true
+        }
+      ]
+    },
+    "hand-written": {
+      "queries": {
+        "R1": {
+          "file": "detections/handwritten/splunk/R1.spl",
+          "origin": "hand-written",
+          "sha256": "28be098b26d1a07b30b13d8daedade41f0db0e5aab57c0bd729ea318860ec7a8"
+        },
+        "R2": {
+          "file": "detections/sigma/compiled/splunk/R2.spl",
+          "origin": "sigma-generated",
+          "sha256": "f5e5c1224a4afeec359e4cbf295f6bc64f5b48ce2600de15bab65ba354d4fb7c"
+        },
+        "R3": {
+          "file": "detections/handwritten/splunk/R3.spl",
+          "origin": "hand-written",
+          "sha256": "e87df48b1a19273b0f69e67d7f76c117526faca500dd80e5ff86c54f7597af64"
+        },
+        "R4": {
+          "file": "detections/handwritten/splunk/R4.spl",
+          "origin": "hand-written",
+          "sha256": "84937a8c9fbe138fc52660187cbe31c66a4dc6fff0e6d38717f9333309129426"
+        },
+        "R5": {
+          "file": "detections/handwritten/splunk/R5.spl",
+          "origin": "hand-written",
+          "sha256": "f124f94e443abbb68508a586ef83c695994b4924f5ab7b0ddad5523d2a0a7b32"
+        }
+      },
+      "summary": {
+        "scenarios": 48,
+        "matches_python": 45,
+        "failed_queries": [],
+        "per_rule": {
+          "R1": {
+            "both": 2,
+            "python_only": 1,
+            "engine_only": 0
+          },
+          "R2": {
+            "both": 2,
+            "python_only": 0,
+            "engine_only": 0
+          },
+          "R3": {
+            "both": 5,
+            "python_only": 0,
+            "engine_only": 0
+          },
+          "R4": {
+            "both": 5,
+            "python_only": 1,
+            "engine_only": 0
+          },
+          "R5": {
+            "both": 5,
+            "python_only": 1,
+            "engine_only": 0
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "id": "Q01",
+          "python_rules": [
+            "R3"
+          ],
+          "engine_rules": [
+            "R3"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q02",
+          "python_rules": [
+            "R3"
+          ],
+          "engine_rules": [
+            "R3"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q03",
+          "python_rules": [
+            "R3"
+          ],
+          "engine_rules": [
+            "R3"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q04",
+          "python_rules": [
+            "R3"
+          ],
+          "engine_rules": [
+            "R3"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q05",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q06",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q07",
+          "python_rules": [
+            "R2"
+          ],
+          "engine_rules": [
+            "R2"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q08",
+          "python_rules": [
+            "R2"
+          ],
+          "engine_rules": [
+            "R2"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q09",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q10",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q11",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q12",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q13",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q14",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q15",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q16",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q17",
+          "python_rules": [
+            "R3"
+          ],
+          "engine_rules": [
+            "R3"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q18",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q19",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q20",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q21",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q22",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q23",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q24",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q25",
+          "python_rules": [
+            "R4"
+          ],
+          "engine_rules": [
+            "R4"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q26",
+          "python_rules": [
+            "R4"
+          ],
+          "engine_rules": [
+            "R4"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q27",
+          "python_rules": [
+            "R1",
+            "R4"
+          ],
+          "engine_rules": [
+            "R4"
+          ],
+          "agrees": false
+        },
+        {
+          "id": "Q28",
+          "python_rules": [
+            "R4"
+          ],
+          "engine_rules": [],
+          "agrees": false
+        },
+        {
+          "id": "Q29",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q30",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q31",
+          "python_rules": [
+            "R4"
+          ],
+          "engine_rules": [
+            "R4"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q32",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q33",
+          "python_rules": [
+            "R4"
+          ],
+          "engine_rules": [
+            "R4"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q34",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q35",
+          "python_rules": [
+            "R5"
+          ],
+          "engine_rules": [
+            "R5"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q36",
+          "python_rules": [
+            "R5"
+          ],
+          "engine_rules": [
+            "R5"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q37",
+          "python_rules": [
+            "R5"
+          ],
+          "engine_rules": [],
+          "agrees": false
+        },
+        {
+          "id": "Q38",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q39",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q40",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q41",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q42",
+          "python_rules": [
+            "R5"
+          ],
+          "engine_rules": [
+            "R5"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q43",
+          "python_rules": [
+            "R5"
+          ],
+          "engine_rules": [
+            "R5"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q44",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q45",
+          "python_rules": [],
+          "engine_rules": [],
+          "agrees": true
+        },
+        {
+          "id": "Q46",
+          "python_rules": [
+            "R5"
+          ],
+          "engine_rules": [
+            "R5"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q47",
+          "python_rules": [
+            "R1"
+          ],
+          "engine_rules": [
+            "R1"
+          ],
+          "agrees": true
+        },
+        {
+          "id": "Q48",
+          "python_rules": [
+            "R1"
+          ],
+          "engine_rules": [
+            "R1"
+          ],
+          "agrees": true
+        }
+      ]
+    }
+  },
+  "limits": [
+    "A local, single-node engine in a container on one PC, with synthetic events.",
+    "Compares which rules fired per scenario with the Python engine; it is not an accuracy measurement.",
+    "Each query records its origin: generated by pySigma from the Sigma rules, or hand-written."
+  ]
+}
