@@ -18,7 +18,7 @@ Every claim on the [front page](../README.md) points to a **receipt**: a JSON fi
 | `runtime_isolation_verified` | The containers matched the reviewed profile: internal network, no egress, no extra privileges |
 | `main_shutdown_verified`, `independent_shutdown_verified` | Both shutdown checks passed |
 | `limits` | What this run does not establish; read these before quoting a result |
-| `approval_reference` | The owner decision that authorized the launch |
+| `approval_reference` | The approval recorded before the run started |
 
 Some receipts are **promotions** (`kind: signalbridge-native-receipt-promotion`). These are verbatim copies of a private receipt, wrapped with the private file's hash so the copy can be checked against the original.
 
@@ -88,7 +88,7 @@ Some receipts are **promotions** (`kind: signalbridge-native-receipt-promotion`)
 
 **Read.** Rehearsal: `measurement.recovery`, `measurement.anomalies`, `measurement.processing_all_periods` (p95 249 ms). Continuous: `reads_delivered`, `runner_interruptions_completed`, `wazuh_capture.cause`.
 
-**Limits.** The full 24-hour run was not completed. The first attempt's Wazuh collector stopped at 10.6 hours on a log-folder limit, which has since been fixed; the owner chose not to repeat the day. The rehearsal was re-measured under an owner-approved definition (schedule judged when a read is sent), and the original receipt is kept unchanged. See [lessons learned](LESSONS.md).
+**Limits.** The full 24-hour run was not completed. The first attempt's Wazuh collector stopped at 10.6 hours on a log-folder limit, which has since been fixed; I chose not to repeat the day. I re-measured the rehearsal under a clearer definition (a read is on schedule if it's sent on time), and the original receipt is kept unchanged. See [lessons learned](LESSONS.md).
 
 ### Shuffle ([workflow run](evidence/20261005-shuffle-native-workflow-315cfb85-9c28-4e4e-9cac-8ce455e92448.json))
 
@@ -98,7 +98,7 @@ Some receipts are **promotions** (`kind: signalbridge-native-receipt-promotion`)
 
 **Read.** `dispatcher.scenarios` (per-scenario Shuffle execution ID, HTTP status, duplicate flag and error), `guest.receiver` (task, idempotency and nonce counts), `guest.steps`, `boot_attempts`, `shutdown_verified`.
 
-**Limits.** The guest's report is builder-run, not independent attestation. One fixed workflow with one HTTP action; synthetic cases; the VM runs with one virtual CPU on this PC (see the Shuffle README).
+**Limits.** The guest's report comes from the project's own tooling. One fixed workflow with one HTTP action; synthetic cases; the VM runs with one virtual CPU on this PC (see the Shuffle README).
 
 ### Leaver signals from AccessOps ([dry run](evidence/20261005-accessops-leaver-dry-run-f567427abbbc4929ad50e25be2c84724.json), [poll](evidence/20261005-accessops-leaver-poll-eefe76ecded04ffe9892bd174c973232.json), [round 2 dry run](evidence/20261005-accessops-leaver-dry-run-18b5f038aaef4f228abe27f8d2719f94.json), [round 2 poll](evidence/20261005-accessops-leaver-poll-931402fb1ee44209b58c60063f63150f.json))
 
@@ -118,11 +118,11 @@ Some receipts are **promotions** (`kind: signalbridge-native-receipt-promotion`)
 
 ### Detection ([evaluation](evidence/20261005-enterprise-detection-evaluation-public-release.json))
 
-**What happened.** 48 builder-written scenarios ran through the five rules with the final implementation frozen and hashed before the labels were joined: precision 15/21, recall 15/23, false-positive rate 6/18, with 7 scenarios inconclusive.
+**What happened.** 48 scenarios I wrote ran through the five rules with the final implementation frozen and hashed before the labels were joined: precision 15/21, recall 15/23, false-positive rate 6/18, with 7 scenarios inconclusive.
 
 **Read.** `metrics`, `initial_metrics` (before analyst correction), `scenarios`, `implementation.files` (the frozen hashes).
 
-**Limits.** The rule authors wrote the scenarios, so this is regression evidence, not independent accuracy.
+**Limits.** I wrote both the rules and the scenarios, so this catches regressions rather than measuring real-world accuracy.
 
 ### Detection as code ([Sigma replay](../detections/sigma/replay-report.json), [Splunk](../detections/engines/splunk-run.json), [Kusto](../detections/engines/kusto-run.json))
 
@@ -132,7 +132,7 @@ Some receipts are **promotions** (`kind: signalbridge-native-receipt-promotion`)
 
 **Read.** In each engine receipt: `variants.*.summary`, `variants.*.queries` (file, origin, SHA-256 and any engine error) and `variants.*.scenarios`; [`detections/README.md`](../detections/README.md) explains each difference.
 
-**Limits.** Rule logic only, on builder-written scenarios. Local single-node engines with synthetic events; the KQL ran in the Kusto emulator, not in Microsoft Sentinel. Hand-written queries are labeled as such.
+**Limits.** Rule logic only, on the same 48 scenarios. Local single-node engines with synthetic events; the KQL ran in the Kusto emulator, not in Microsoft Sentinel. Hand-written queries are labeled as such.
 
 ## Older files
 

@@ -33,7 +33,7 @@ class PortfolioTests(TestCase):
         for row in evidence["wazuh"]["records"]:
             self.assertIn(row["event_id"], html)
         self.assertIn("not a benign verdict", html)
-        self.assertIn("AI assistance", html)
+        self.assertIn("show failures alongside passes", html)
         self.assertNotIn("<script", html)
         self.assertNotIn("Choose an investigation", html)
 

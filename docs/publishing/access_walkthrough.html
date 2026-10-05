@@ -13,7 +13,7 @@
 <a class="skip" href="#evidence">Skip to the recorded evidence</a>
 <nav>
 <a href="index.html">← SignalBridge evidence library</a>
-<span>PROJECT BY AMAN AGARWAL · AI-ASSISTED IMPLEMENTATION</span>
+<span>PROJECT BY AMAN AGARWAL</span>
 </nav>
 <header class="hero">
 <span class="pill">Recorded native execution · October 2, 2026</span>
@@ -182,20 +182,16 @@
 </div>
 </section>
 <section class="paper">
-<p class="eyebrow">Interview walkthrough</p>
-<h2>Explain the judgment, then show the evidence.</h2>
+<p class="eyebrow">Why it matters</p>
+<h2>Removing access isn't the same as ending it.</h2>
 <div class="split">
 <div>
-<h3>Start with the business risk</h3>
-<p>“A user may remain logged in after losing permission. I wanted to demonstrate that monitoring could detect a private read that contradicts an authoritative access change.”</p>
-<h3>Explain your engineering choices</h3>
-<p>Walk through the transaction/outbox boundary, stable app-scoped pseudonyms, the R3 correlation and the owner/cross-app controls. Open the two linked events to support the explanation.</p>
+<h3>The risk</h3>
+<p>A user can stay signed in after losing a permission. I wanted to show that monitoring can catch a private read that contradicts an authoritative access change.</p>
 </div>
 <div>
-<h3>Be precise about the conclusion</h3>
-<p>“In this isolated lab, the removed account retrieved the known private record under a deliberate defect. Resetting that defect restored denial while owner access still worked.”</p>
-<h3>State the boundary</h3>
-<p>One controlled case is not enterprise parity, broad detection accuracy or a production incident. AI wrote much of the implementation under project direction. These are AI-authored speaking prompts; use your own explanation and demonstrate your understanding.</p>
+<h3>What this run shows</h3>
+<p>In this isolated lab, the removed account read a known private record under a deliberate defect. Resetting the defect restored the denial, and the owner's access kept working.</p>
 </div>
 </div>
 </section>

@@ -100,4 +100,4 @@ flowchart LR
 - **A source with a valid key can lie.** A signature proves possession of the key, not the truth of the observation. Rules R2 and R3 depend on what the source asserts.
 - **Pseudonyms are linkable.** A malicious source could encode personal data in fields meant to be pseudonymous.
 - **Single machine.** No high availability, and no hardening for network exposure. The console must stay on loopback ([SECURITY.md](../SECURITY.md)).
-- **Builder-run evidence.** Receipts are produced by the project's own tooling. They can be checked for consistency, not attested against a hostile operator.
+- **Self-produced evidence.** Receipts are produced by the project's own tooling. They can be checked for consistency, not attested against a hostile operator.

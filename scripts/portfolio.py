@@ -357,7 +357,7 @@ def reconstruct_metrics(
             "integrations": load_integrations(root, read_public, require),
             "native": load_native(root, read_public, require),
             "limits": [
-                "Builder-operated evidence, not an independent audit or an enterprise benchmark.",
+                "Self-run evidence, not an outside audit or an enterprise benchmark.",
                 "Core verification and synthetic simulation are different executions with separate dates.",
                 "The current source is compared with the core and current simulation receipts at generation only.",
                 "Public receipts are reviewed summaries, not signatures or independently attested executions.",
