@@ -1,0 +1,127 @@
+name: Release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Release version, such as v0.1.0. Needs docs/releases/<version>.md on main.
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: release
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      checks: read
+    env:
+      VERSION: ${{ inputs.version }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check the version, and that CI passed on this exact commit
+        run: |
+          set -euo pipefail
+          [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Version must look like v0.1.0."; exit 1; }
+          if gh release view "$VERSION" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            echo "$VERSION already exists."; exit 1
+          fi
+          runs=$(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/check-runs?per_page=100")
+          for job in core postgres sigma; do
+            result=$(jq -r --arg job "$job" \
+              '[.check_runs[] | select(.name == $job)] | sort_by(.completed_at) | last | .conclusion // "missing"' \
+              <<< "$runs")
+            echo "$job: $result"
+            if [ "$result" != success ]; then
+              echo "CI job '$job' has not passed on $GITHUB_SHA. If the Sigma workflow did not run for this commit, start it on main first."
+              exit 1
+            fi
+          done
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - name: Build the source archive, SBOM and checksums
+        run: |
+          set -euo pipefail
+          test -f "docs/releases/$VERSION.md" || { echo "Write docs/releases/$VERSION.md first."; exit 1; }
+          mkdir release
+          git archive --format=tar.gz --prefix="signalbridge-$VERSION/" \
+            -o "release/signalbridge-$VERSION.tar.gz" "$GITHUB_SHA"
+          # GitHub's dependency graph for main, which is this commit at release time.
+          gh api "repos/$GITHUB_REPOSITORY/dependency-graph/sbom" --jq .sbom > release/sbom.spdx.json
+          cp "docs/releases/$VERSION.md" release/notes.md
+          (cd release && sha256sum "signalbridge-$VERSION.tar.gz" sbom.spdx.json > SHA256SUMS)
+          cat release/SHA256SUMS
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release
+          path: release/
+          retention-days: 14
+  sign:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      # No checkout or project code runs here: this job only signs the built files.
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release
+          path: release
+      - name: Attest the archive's build provenance
+        id: provenance
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
+        with:
+          subject-path: release/signalbridge-*.tar.gz
+          push-to-registry: false
+          create-storage-record: false
+      - name: Attest the SBOM for the same archive
+        id: sbom
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
+        with:
+          subject-path: release/signalbridge-*.tar.gz
+          sbom-path: release/sbom.spdx.json
+          push-to-registry: false
+          create-storage-record: false
+      - name: Keep the signature bundles beside the signed files
+        env:
+          PROVENANCE_BUNDLE: ${{ steps.provenance.outputs.bundle-path }}
+          SBOM_BUNDLE: ${{ steps.sbom.outputs.bundle-path }}
+        run: |
+          cp -- "$PROVENANCE_BUNDLE" release/provenance.sigstore.json
+          cp -- "$SBOM_BUNDLE" release/sbom.sigstore.json
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: signed-release
+          path: release/
+          retention-days: 14
+  publish:
+    needs: sign
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    env:
+      VERSION: ${{ inputs.version }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: signed-release
+          path: release
+      - name: Tag this commit and publish the release
+        run: |
+          set -euo pipefail
+          cd release
+          sha256sum -c SHA256SUMS
+          gh release create "$VERSION" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "SignalBridge $VERSION" --notes-file notes.md \
+            "signalbridge-$VERSION.tar.gz" sbom.spdx.json SHA256SUMS \
+            provenance.sigstore.json sbom.sigstore.json
