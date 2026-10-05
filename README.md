@@ -1,43 +1,55 @@
 # SignalBridge
 
-SignalBridge is a security workbench for access-control monitoring. It collects signed telemetry from web applications, runs detection rules over it, and gives an analyst a console to investigate cases, review scanner findings and record decisions. I built it to monitor my own apps (BetTail and Netted) and connected it to Wazuh and OWASP ZAP in isolated Docker labs.
+**Connect a permission change to what an account can actually read.** SignalBridge is an application access-assurance lab: it watches real authorization paths in two synthetic business apps, detects when someone keeps access they should have lost, and drives an analyst from finding to an independently verified fix.
 
-[Evidence viewer](https://aman-agarwal6.github.io/signalbridge/portfolio/) · [Design notes](docs/DESIGN.md) · [Case study](https://aman-agarwal6.github.io/projects/signalbridge.html)
+```mermaid
+flowchart LR
+    A[Reference apps<br/>documents + expenses] -- signed telemetry<br/>transactional outbox --> B[SignalBridge ingestion]
+    B --> C[Workers + 5 detection rules]
+    C --> D[Investigation + tasks]
+    D -- retest + independent reviewer --> E[Verified fix]
+    C -- SOC export --> W[Wazuh]
+    Z[ZAP scan] --> D
+    K[Keycloak SSO + MFA] --> D
+    S[Shuffle workflow] -- signed review-task API --> D
+    AO[AccessOps leaver events] -- SSF poll, ES256 tokens --> D
+```
 
-[Current enterprise handoff (PDF)](output/pdf/SignalBridge_Enterprise_Handoff.pdf) groups the architecture, current checks, native results and failures, detection limits, unfinished gates and interview learning steps. The enterprise milestone is in progress. The September [personal handoff](output/pdf/SignalBridge_Recruiter_Handoff.pdf) remains historical; its results were not silently reassigned to new source.
+## What was proven
 
-**Current enterprise evidence:** nine genuine PostgreSQL concurrency/recovery checks passed. A [new frozen 48-scenario evaluation](docs/evidence/20261001-enterprise-detection-evaluation-format2.json) retained 15 true positives, 6 false positives, 8 misses, 12 true negatives and 7 inconclusives. Precision is 15/21, recall 15/23 and false-positive rate 6/18. This builder-selected set is not an independent or production benchmark. A formatting-only source correction required a fresh identity and repeat of the same scenarios; both receipts remain, without counting the repeat as more accuracy evidence. The [September evaluation and five AI reference reviews](portfolio/evaluation.html) remain historical.
+Each result links the receipt its run recorded. The runs used real components (PostgreSQL, Keycloak, Wazuh, ZAP, Prometheus/Grafana, Chromium) in an isolated lab; the detection evaluation runs in memory.
 
-![Evidence viewer showing 64 of 64 records delivered to Wazuh](docs/images/evidence-viewer.webp)
+| Area | Result | Receipt |
+| --- | --- | --- |
+| Access assurance | 23/23 source events processed; a deliberately injected authorization defect let a removed member read a private document, and rule R3 opened one investigation | [b8667b81](docs/evidence/20261002-reference-access-b8667b816ce8419da7f3d5d9ac9d6ad6.json) |
+| Login and MFA | Keycloak password + TOTP: 28 protocol controls (replay, CSRF, app scoping, key rotation, back-channel logout, session expiry) and 5 real-Chromium keyboard-walkthrough controls; the browser found a real CSP bug, since fixed | [73632025](docs/evidence/20261004-identity-native-73632025aeee400bb7ee49b69fba7c99.json) |
+| Wazuh | 24/24 records archived and 8/8 alerts raised exactly once; recovery run survived a collector stop and log rotation with zero extra copies | [0d137b47](docs/evidence/20261003-wazuh-native-collection-0d137b4720ad476faa68d36754b7357f.json), [4a5748dc](docs/evidence/20261003-wazuh-native-recovery-4a5748dcc7a74525a7469dc8d802438a.json) |
+| ZAP | Exactly one finding on the faulty build, none after the fix; the console imported it on the right app only | [d975b97f](docs/evidence/20261003-authenticated-zap-offline-d975b97fad814c9b8e4304e114c776e5.json), [6bce0948](docs/evidence/20261003-console-restoration-6bce09482a3b430aadb98b589d40f04e.json) |
+| Investigation to fix | On a restored console: assign, remediation task, retest import, self-review refused, independent reviewer approved | [de4f6409](docs/evidence/20261003-console-restoration-de4f6409fdf444a9bc22cf60463cdb05.json) |
+| PostgreSQL | 14/14 concurrency and crash-recovery checks, including identity and reviewer races | [ed3829e7](docs/evidence/20261001-postgresql-in-network-ed3829e7b3dd45379d0c0290e324df85.json) |
+| Monitoring | Prometheus/Grafana 24/24 controls | [0cd4256f](docs/evidence/20261003-monitoring-native-0cd4256f4a1c4f2692f67eae4704bd53.json) |
+| Restoration | Backup, restore into a separate database, migrate and run real operator workflows | [de4f6409](docs/evidence/20261003-console-restoration-de4f6409fdf444a9bc22cf60463cdb05.json), [6bce0948](docs/evidence/20261003-console-restoration-6bce09482a3b430aadb98b589d40f04e.json) |
+| Endurance | All five interruptions in a compressed 40-minute run: every event delivered and seen by Wazuh, zero anomalies. A continuous run delivered all 27,118 reads over 13.5 hours, with Wazuh capturing the first 10.6 | [rehearsal](docs/evidence/20261004-reliability-rehearsal-8a1889fec8ef49f5acde3c01bfa88e63-remeasured.json), [continuous](docs/evidence/20261004-reliability-continuous-894fb388a2004b43b6b1643e93342df4-summary.json) |
+| Shuffle | A real Shuffle workflow ran nine scenarios in an isolated, network-less VM against SignalBridge's signed review-task API: one task created, retries returned the original receipt, replay, changed content, another app's case and stale evidence were refused, and a lost reply was recovered | [315cfb85](docs/evidence/20261005-shuffle-native-workflow-315cfb85-9c28-4e4e-9cac-8ce455e92448.json) |
+| Leaver signals | Polled AccessOps' signed Shared Signals leaver events from its running lab: 38 tokens across two live rounds verified (ES256), stored once, then acknowledged. The genuine detection: an account re-enabled after containment and signed in to opened a critical "access after departure" case. Three first-round cases were test-induced (AccessOps' test backdated departures by 5 seconds) | [dry run](docs/evidence/20261005-accessops-leaver-dry-run-f567427abbbc4929ad50e25be2c84724.json), [poll](docs/evidence/20261005-accessops-leaver-poll-eefe76ecded04ffe9892bd174c973232.json), [round 2](docs/evidence/20261005-accessops-leaver-poll-931402fb1ee44209b58c60063f63150f.json) |
+| Accessibility | axe-core 4.13 (WCAG 2.0-2.2 A/AA plus best practice) on 19 console and portfolio pages in light and dark mode: 0 violations after fixing six issue types, including an almost invisible link and a chart that hid its links from screen readers | [axe scan](docs/evidence/20261005-accessibility-axe-scan.json) |
+| Detection | 48 builder-selected scenarios: precision 15/21, recall 15/23, false-positive rate 6/18, 7 inconclusive | [evaluation](docs/evidence/20261005-enterprise-detection-evaluation-shuffle-native.json) |
 
-## What's in it
+The [evidence guide](docs/EVIDENCE.md) explains each run in plain language, and [lessons learned](docs/LESSONS.md) covers the real failures these runs uncovered and how each was fixed.
 
-- **Signed ingestion.** HMAC-SHA-256 request signing, a closed JSON schema capped at 16 KiB, replay and duplicate handling, and per-app rate limits. The schema has no fields for personal data.
-- **Five versioned rules.** R1 flags one account failing to read three or more distinct private records within five minutes. R2 uses source-labeled revocation/regression reads. R3 correlates effective resource-scoped permission removal with later allowed access. R4 covers five distinct denied resources within 30 minutes spanning at least ten minutes. R5 covers six denied reads of one resource by at least three accounts within ten minutes. None establishes attacker intent.
-- **Analyst console.** Cases scoped per app, viewer/analyst/reviewer roles, CSRF protection, a no-script CSP, strict session cookies and login throttling. Reviewers can't approve their own rule changes.
-- **Enterprise workflow in development.** App-scoped assignment, acknowledgement, deadlines, categorized notes and evidence-bound tasks. Queues expose assigned, unassigned, unacknowledged and overdue work. Separate machine credentials can read evidence or create one review task; signed requests, replay limits, version checks and transactional idempotency constrain these interfaces. A task or resolved case is not a verified fix.
-- **Wazuh integration.** A recorded backfill delivered 64 of 64 events with the 31 expected alerts and no loss or duplicates. A separate run restarted the collector twice without losing input.
-- **ZAP integration.** Passive scan imports. A scan against an unavailable target is recorded as failed, not clean.
-- **Current local checks.** The retained October round passed 1,177 Python and 62 distinct Node methods, plus configuration, migration, lint/format and publication checks. Nine native PostgreSQL methods passed separately. These counts are regression evidence, not detection accuracy or enterprise coverage. September's 1,102-test verification remains historical.
+![Continuous run: reads per ten minutes and worst delivery delay per minute over 13.5 hours, with the planned interruptions shaded](docs/endurance.svg)
 
-The historical challenge remains attached to its original source and inputs. New R4/R5 provide bounded slow and same-resource distributed coverage; missing affected-member context and activity outside their thresholds remain gaps. R3 requires authoritative v2 telemetry and does not invent missing context. Native enterprise source execution remains unfinished. See the [design notes](docs/DESIGN.md#detection-rules).
+## See it
 
-## Why a record alerted
+| If you want to | Open |
+| --- | --- |
+| Watch the finding unfold | [Recorded access walkthrough](portfolio/access-assurance.html) |
+| Review the implementation | [Engineering reference](docs/DESIGN.md): code map, security boundaries, rules and verification |
+| Check the security design | [Threat model](docs/THREAT_MODEL.md): trust boundaries, threats, controls and the test or run that checks each |
 
-The evidence viewer shows each alert field by field against the Wazuh rule that fired.
+## Run the lightweight console
 
-![Rule explanation table comparing recorded values with the rule's patterns](docs/images/rule-explanation.webp)
-
-## Running it
-
-The **Enterprise Assurance Milestone is in progress** in this checkout. Its
-PostgreSQL queue and isolated reference applications have portable regression
-coverage; enterprise SSO, native source telemetry, expanded integrations and the
-24-hour run are still acceptance gates. Historical September receipts describe
-their recorded revision. A new frozen enterprise evaluation has executed; the
-September evaluator deliberately rejects the changed source.
-
-Requires Python 3.11+. Node 24+ is needed for the courier and its tests. On Windows:
+Requires Python 3.11+ and Node 24+. This local SQLite demo needs no Docker. From the repository root:
 
 ```powershell
 python -m venv .venv
@@ -46,60 +58,14 @@ python -m venv .venv
 .venv\Scripts\python.exe -B scripts/sb.py demo-core
 ```
 
-Then open http://127.0.0.1:8741/. `demo-core` creates local accounts with random passwords in `var/local-access.txt`, which git ignores. On Linux or macOS, use `.venv/bin/python`.
+`demo-core` starts the console at http://127.0.0.1:8741/ with clearly labeled synthetic fixtures; random local credentials are written to the ignored `var/local-access.txt` (keep it private). `scripts/sb.py up` reopens it and `scripts/sb.py down` stops it without losing data. On Linux/macOS use `.venv/bin/python`. The native lab stages need Docker and their own reviewed launchers; see the [engineering reference](docs/DESIGN.md#verification-and-operation).
 
-Tests:
+## Honest limits
 
-```powershell
-.venv\Scripts\python.exe manage.py test tests --exclude-tag offline_simulation --exclude-tag native_postgres
-$env:SB_SECRET_KEY = "any-long-random-test-value"
-.venv\Scripts\python.exe manage.py test tests --tag offline_simulation --settings config.simulation_settings
-.venv\Scripts\python.exe manage.py test reference_lab --settings config.reference_verification_settings
-node --test integrations/sender.test.mjs integrations/supabase-http.test.mjs integrations/bettail-routes.test.mjs
-```
+- Synthetic data in an isolated lab on one PC; not a production deployment, high-availability system or enterprise-tool replacement.
+- The full 24-hour run was not completed: the first attempt's Wazuh collector stopped at 10.6 hours on a log-folder limit (fixed), and the owner chose not to repeat the day.
+- The copied BetTail adapter is implemented and offline-checked; its native run was deliberately not pursued.
+- Detection numbers come from builder-selected scenarios: regression evidence, not independent accuracy.
+- The console trusts local administrators and must not be exposed publicly. See [SECURITY.md](SECURITY.md).
 
-On Windows, prefer a short checkout path such as `C:\src\signalbridge`. Snapshot test fixtures now use shorter paths; actual application snapshots can still be deeply nested.
-
-Lightweight SQLite use does not require Docker. Native PostgreSQL and selected
-security-tool executions are mandatory for the unfinished enterprise milestone.
-The [native PostgreSQL receipt](docs/evidence/20261001-postgresql-in-network-1d8fd148036e43b0915fbbe86606d013.json)
-records nine passed methods: concurrent ingestion, duplicate/conflict handling,
-two workers, case/task concurrency and actual killed-process recovery. Two
-512 MiB containers used an internal network with no exposed ports. Cached wheels
-installed only in container temporary storage. Main and independent shutdown
-passed; Docker Desktop was stopped. Earlier failures remain in separate receipts.
-This component proof is plaintext, not enterprise TLS/source/identity/soak proof.
-No new launch approval is implied by `integrations/enterprise/in-network-stage-plan.json`.
-The reference collector has durable leases, acknowledgement checks and a fixed
-TLS loopback destination; its current tests use transport doubles, not a native
-TLS service. New lab launches and dependencies need their prepared operator review.
-
-The retained September evaluation is readable in `portfolio/evaluation.html`.
-Reproduction requires its matching historical source revision. On the changed
-enterprise checkout, its old command fails closed. Use the separate current round:
-
-```powershell
-.venv\Scripts\python.exe -B scripts/evaluate_enterprise_detection.py
-```
-
-Open `portfolio/evaluation.html` for September's retained results, five AI-authored teaching reviews and a 30-minute personal exercise. Current reruns write receipts under `artifacts/local/enterprise-detection-evaluation/`. Do not replace existing freezes or declarations; changes to frozen implementation require a new identity. CI runs push/PR checks and a separate disposable PostgreSQL job. The [corrected public run](https://github.com/aman-agarwal6/signalbridge/actions/runs/36956650682) passed both jobs, including all nine native methods. [Two preceding failures and their corrections](docs/evidence/20261001-github-ci-publication.json) remain recorded. The courier already imports its eight persistence tests; avoid counting them twice.
-
-The historical v1 challenge scores only its original R1/R2 contracts. Its shared resource pseudonyms allow newer multi-account correlation across scenarios; those findings remain in the database but are excluded from the old score. R3–R5 coverage is measured separately in the frozen 48-scenario round, with its false alerts and misses preserved.
-
-## Layout
-
-| Path | Contents |
-| --- | --- |
-| `bridge/` | Django app: ingestion, detection engine, worker, rule replay, scanner imports, console |
-| `reference_lab/` | Isolated synthetic document/expense authorization and transactional telemetry |
-| `integrations/` | Delivery courier, Wazuh rules and backfill, ZAP import, BetTail route harness |
-| `tests/` | Python and Node tests |
-| `docs/evidence/` | JSON receipts for every recorded run |
-| `portfolio/` | The evidence viewer (static HTML, no scripts) |
-| `scripts/` | Setup, verification and lab runners |
-
-## Notes
-
-This is a local proof of concept, not a hosted service. The console trusts local administrators and shouldn't be exposed to a network. See [SECURITY.md](SECURITY.md).
-
-Built by [Aman Agarwal](https://aman-agarwal6.github.io/) in September 2026, with AI coding agents writing much of the code under my direction. I developed it in a private repository; this is a cleaned public snapshot, so its history starts here. MIT licensed.
+Built under [Aman Agarwal's](https://aman-agarwal6.github.io/) project direction, with AI coding agents writing much of the implementation. Personal analyst judgments and independent review are separate deliverables. MIT licensed.

@@ -8,7 +8,9 @@ VAR_DIR = BASE_DIR / "var"
 VAR_DIR.mkdir(exist_ok=True)
 LOCAL = os.environ.get("SB_MODE", "local") == "local"
 key_file = VAR_DIR / "django-secret"
-if LOCAL and not key_file.exists():
+# An explicitly supplied key wins; the local key file is created only when none is given,
+# so a read-only checkout (for example the isolated Shuffle receiver) can still start.
+if LOCAL and not os.environ.get("SB_SECRET_KEY") and not key_file.exists():
     import secrets
 
     try:
@@ -39,6 +41,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "bridge.federation_middleware.FederatedSessionPolicy",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "bridge.middleware.SecurityHeaders",
@@ -117,6 +120,9 @@ CSRF_COOKIE_SAMESITE = "Strict"
 SESSION_COOKIE_SECURE = not LOCAL
 CSRF_COOKIE_SECURE = not LOCAL
 SESSION_COOKIE_AGE = 3600
+FEDERATED_AUTH_ENABLED = os.environ.get("SB_OIDC_ENABLED", "0") == "1"
+MONITORED_WORKERS = os.environ.get("SB_MONITORED_WORKERS", "default").split(",")
+SOC_SEGMENTED_EXPORT = os.environ.get("SB_SOC_SEGMENTED_EXPORT", "0") == "1"
 SECURE_SSL_REDIRECT = not LOCAL
 SECURE_HSTS_SECONDS = 31536000 if not LOCAL else 0
 SECURE_HSTS_INCLUDE_SUBDOMAINS = not LOCAL

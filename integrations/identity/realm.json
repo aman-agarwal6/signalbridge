@@ -1,0 +1,170 @@
+{
+  "realm": "signalbridge",
+  "displayName": "SignalBridge isolated enterprise lab",
+  "enabled": true,
+  "sslRequired": "all",
+  "registrationAllowed": false,
+  "registrationEmailAsUsername": false,
+  "loginWithEmailAllowed": false,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": false,
+  "editUsernameAllowed": false,
+  "rememberMe": false,
+  "bruteForceProtected": true,
+  "permanentLockout": false,
+  "failureFactor": 5,
+  "waitIncrementSeconds": 60,
+  "maxFailureWaitSeconds": 900,
+  "quickLoginCheckMilliSeconds": 1000,
+  "minimumQuickLoginWaitSeconds": 60,
+  "maxDeltaTimeSeconds": 900,
+  "accessTokenLifespan": 300,
+  "accessCodeLifespan": 60,
+  "accessCodeLifespanLogin": 300,
+  "accessCodeLifespanUserAction": 300,
+  "ssoSessionIdleTimeout": 900,
+  "ssoSessionMaxLifespan": 900,
+  "clientSessionIdleTimeout": 900,
+  "clientSessionMaxLifespan": 900,
+  "revokeRefreshToken": true,
+  "refreshTokenMaxReuse": 0,
+  "defaultSignatureAlgorithm": "RS256",
+  "passwordPolicy": "length(16) and notUsername(undefined)",
+  "otpPolicyType": "totp",
+  "otpPolicyAlgorithm": "HmacSHA256",
+  "otpPolicyDigits": 6,
+  "otpPolicyPeriod": 30,
+  "otpPolicyLookAheadWindow": 1,
+  "otpPolicyCodeReusable": false,
+  "browserFlow": "sb-browser-mfa",
+  "attributes": {
+    "acr.loa.map": "{\"1\":1,\"2\":2}"
+  },
+  "eventsEnabled": true,
+  "eventsExpiration": 86400,
+  "eventsListeners": [],
+  "enabledEventTypes": [
+    "LOGIN", "LOGIN_ERROR", "LOGOUT", "LOGOUT_ERROR",
+    "CODE_TO_TOKEN", "CODE_TO_TOKEN_ERROR", "UPDATE_TOTP", "REMOVE_TOTP"
+  ],
+  "adminEventsEnabled": true,
+  "adminEventsDetailsEnabled": false,
+  "smtpServer": {},
+  "identityProviders": [],
+  "identityProviderMappers": [],
+  "userFederationProviders": [],
+  "users": [],
+  "clients": [
+    {
+      "clientId": "signalbridge-console",
+      "name": "SignalBridge lab console",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "fullScopeAllowed": false,
+      "consentRequired": false,
+      "frontchannelLogout": false,
+      "redirectUris": ["https://127.0.0.1:18842/sso/callback/"],
+      "webOrigins": [],
+      "defaultClientScopes": [],
+      "optionalClientScopes": [],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "minimum.acr.value": "2",
+        "default.acr.values": "2",
+        "id.token.signed.response.alg": "RS256",
+        "access.token.signed.response.alg": "RS256",
+        "access.token.lifespan": "300",
+        "client.session.idle.timeout": "900",
+        "client.session.max.lifespan": "900",
+        "backchannel.logout.url": "https://127.0.0.1:18842/sso/backchannel/",
+        "backchannel.logout.session.required": "true",
+        "backchannel.logout.revoke.offline.tokens": "true"
+      },
+      "protocolMappers": [
+        {
+          "name": "Time of completed authentication",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "AUTH_TIME",
+            "claim.name": "auth_time",
+            "jsonType.label": "long",
+            "id.token.claim": "true",
+            "access.token.claim": "false",
+            "userinfo.token.claim": "false",
+            "introspection.token.claim": "false"
+          }
+        },
+        {
+          "name": "Achieved authentication level",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-acr-mapper",
+          "consentRequired": false,
+          "config": {"id.token.claim": "true", "access.token.claim": "true"}
+        },
+        {
+          "name": "Completed authentication methods",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-amr-mapper",
+          "consentRequired": false,
+          "config": {"id.token.claim": "true", "access.token.claim": "true"}
+        }
+      ]
+    }
+  ],
+  "authenticationFlows": [
+    {
+      "alias": "sb-browser-mfa",
+      "description": "Explicit two-factor lab flow; no external identity providers.",
+      "providerId": "basic-flow",
+      "topLevel": true,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {"authenticator": "auth-cookie", "authenticatorFlow": false, "requirement": "ALTERNATIVE", "priority": 10, "userSetupAllowed": false},
+        {"flowAlias": "sb-factor-steps", "authenticatorFlow": true, "requirement": "ALTERNATIVE", "priority": 20, "userSetupAllowed": false}
+      ]
+    },
+    {
+      "alias": "sb-factor-steps",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {"flowAlias": "sb-password-level", "authenticatorFlow": true, "requirement": "CONDITIONAL", "priority": 10, "userSetupAllowed": false},
+        {"flowAlias": "sb-otp-level", "authenticatorFlow": true, "requirement": "CONDITIONAL", "priority": 20, "userSetupAllowed": false}
+      ]
+    },
+    {
+      "alias": "sb-password-level",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {"authenticator": "conditional-level-of-authentication", "authenticatorConfig": "sb-level-one", "authenticatorFlow": false, "requirement": "REQUIRED", "priority": 10, "userSetupAllowed": false},
+        {"authenticator": "auth-username-password-form", "authenticatorConfig": "sb-password-reference", "authenticatorFlow": false, "requirement": "REQUIRED", "priority": 20, "userSetupAllowed": false}
+      ]
+    },
+    {
+      "alias": "sb-otp-level",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {"authenticator": "conditional-level-of-authentication", "authenticatorConfig": "sb-level-two", "authenticatorFlow": false, "requirement": "REQUIRED", "priority": 10, "userSetupAllowed": false},
+        {"authenticator": "auth-otp-form", "authenticatorConfig": "sb-otp-reference", "authenticatorFlow": false, "requirement": "REQUIRED", "priority": 20, "userSetupAllowed": false}
+      ]
+    }
+  ],
+  "authenticatorConfig": [
+    {"alias": "sb-level-one", "config": {"loa-condition-level": "1", "loa-max-age": "300"}},
+    {"alias": "sb-level-two", "config": {"loa-condition-level": "2", "loa-max-age": "0"}},
+    {"alias": "sb-password-reference", "config": {"default.reference.value": "pwd", "default.reference.maxAge": "300"}},
+    {"alias": "sb-otp-reference", "config": {"default.reference.value": "otp", "default.reference.maxAge": "300"}}
+  ]
+}

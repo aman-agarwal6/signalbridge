@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-docker-late-return-recovery",
+  "run_id": "163a2eae1dab4669ba38665ffd1423bf",
+  "recorded_at": "2026-10-03T03:57:25.252760+00:00",
+  "scope": "Inspect running containers and stop Desktop only if empty.",
+  "desktop_stop_requested": false,
+  "shutdown_verified": false,
+  "restart_origin_established": false,
+  "downloads": 0,
+  "containers_created": 0,
+  "host_settings_changed": false,
+  "capacity_before": {
+    "at": "2026-10-03T03:57:25.255318+00:00",
+    "free_disk_bytes": 63362662400,
+    "available_memory_bytes": 7898329088,
+    "stage_free_space_decrease_bytes": 0,
+    "milestone_free_space_decrease_bytes": 17135762146,
+    "within_limits": true
+  },
+  "initial_inventory": "foreign",
+  "error_class": "LabControlError",
+  "finished_at": "2026-10-03T03:57:25.340365+00:00",
+  "permanent_absence_verified": false,
+  "status": "incomplete"
+}

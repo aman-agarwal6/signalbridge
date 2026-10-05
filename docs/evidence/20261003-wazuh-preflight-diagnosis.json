@@ -1,0 +1,14 @@
+{
+  "kind": "signalbridge-wazuh-preflight-diagnosis",
+  "run_id": "bdd940033d094724bb052e25512b36f9",
+  "failure_stage": "cached_image_inspection",
+  "native_container_created": false,
+  "native_execution": false,
+  "cause": "Docker composite template direct access to absent image Config.Volumes failed; cache identity and individual read-only fields were available.",
+  "correction": "Use Go template index to represent absent optional Volumes as null; nonempty declared volumes remain rejected.",
+  "corrected_cached_image_inspection_passed": true,
+  "focused_control_methods_passed": 15,
+  "docker_stop_exit_code": 0,
+  "retry_approval": "call_awW6vzwMsNXO04vJSNNn46nO",
+  "retry_executed": false
+}

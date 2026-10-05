@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-enterprise-offline-verification",
+  "run_id": "4c8d9047c7ca490183abc04e0acc7a14",
+  "started_at": "2026-10-04T04:51:44.600879+00:00",
+  "finished_at": "2026-10-04T04:54:54.932969+00:00",
+  "duration_seconds": 190.332,
+  "tool_versions": {
+    "python": "Python 3.14.4",
+    "django": "5.2.17",
+    "node": "v24.14.1",
+    "certificate_runtime": "3.12.14/50.0.1"
+  },
+  "revision": "48caf02407b18baf1e08f4c029f82beae806cb0e",
+  "working_tree_dirty": true,
+  "source_sha256": "f07337b21cca9647e19519cf1f5368d4e9ec2549eb9d609f9fa01a38024a3d6b",
+  "source_file_count": 648,
+  "source_unchanged": true,
+  "checks": [
+    {
+      "name": "django-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 98.024,
+      "log_sha256": {
+        "stdout": "7047da24b835ebfc531e8cdb2bb74143c6f2e3123c8ed4c1703369f83f3a5ed0",
+        "stderr": "5d797399183e2c4dc0edc9e52f5d051fffbe43366c503fd1ccf8bee1f55f2449"
+      },
+      "tests": {
+        "tests_run": 1941,
+        "successful_summary": true,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      }
+    },
+    {
+      "name": "offline-fault-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 5.335,
+      "log_sha256": {
+        "stdout": "478ea4421f61e6526e906f47fca66b98806fc46ab7a1d432bcc3ac1cb594eb10",
+        "stderr": "a951d91e0672a58226aadc747656b92fd4322bdc3200e51eb78a675c0ed9ca3f"
+      },
+      "tests": {
+        "tests_run": 3,
+        "successful_summary": true,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      }
+    },
+    {
+      "name": "reference-app-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 65.446,
+      "log_sha256": {
+        "stdout": "67396412bd782316be8d9786e7e0e309abc5ca354fc5ed54c08b087a13161a07",
+        "stderr": "e1fced352031d2dc48bfe000c9a361b9daa3424b148a72c1c24085cfd2d35af6"
+      },
+      "tests": {
+        "tests_run": 78,
+        "successful_summary": true,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      }
+    },
+    {
+      "name": "identity-profile-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.369,
+      "log_sha256": {
+        "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "30f2504713302b6cd25259699b77822dde23e738fe6c60005c2ea66d804f3c54"
+      },
+      "tests": {
+        "tests_run": 16,
+        "successful_summary": true,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      }
+    },
+    {
+      "name": "django-check",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.844,
+      "log_sha256": {
+        "stdout": "f87ceb15410bde28ff826ce26228e0576558258fa64d145847921a593a61ee63",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "migration-drift",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.873,
+      "log_sha256": {
+        "stdout": "93e6e2d5be3c054add80c0f19101608803f7ca8a7df1fa41f76bbb9a1f570f4a",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "source-migration-drift",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.785,
+      "log_sha256": {
+        "stdout": "93e6e2d5be3c054add80c0f19101608803f7ca8a7df1fa41f76bbb9a1f570f4a",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "ruff-check",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.106,
+      "log_sha256": {
+        "stdout": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "ruff-format",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.105,
+      "log_sha256": {
+        "stdout": "a6f33285f9f57538cd20d8ed1809ba86a344ed954656dd1e87f2648626b06080",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "publication-scan",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 15.592,
+      "log_sha256": {
+        "stdout": "5c7d51f429afcf872f2f1d6603cc4022479acd989c4218e94927292ed3aa4390",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "node-courier-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.25,
+      "log_sha256": {
+        "stdout": "4f9eca29fc86d4c55832738c0dbec3f72dbd50dde283e6f4dbd0301a41d1a3c3",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tests": {
+        "tests_run": 22,
+        "successful_summary": true,
+        "passed_tests": 22,
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "suites": 0
+      }
+    },
+    {
+      "name": "node-http-harness-mock-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.125,
+      "log_sha256": {
+        "stdout": "cdb86ea4ad5baa9d927e19043965c86d24cb77765c20fcdf463f3f923baf9806",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tests": {
+        "tests_run": 17,
+        "successful_summary": true,
+        "passed_tests": 17,
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "suites": 0
+      }
+    },
+    {
+      "name": "node-bettail-route-mock-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.151,
+      "log_sha256": {
+        "stdout": "6b18ffaf54f3ff443df5ae4b8f6c4239812785ac84688a65110ba86361cc642d",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tests": {
+        "tests_run": 23,
+        "successful_summary": true,
+        "passed_tests": 23,
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "suites": 0
+      }
+    },
+    {
+      "name": "node-bettail-access-observer-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.088,
+      "log_sha256": {
+        "stdout": "6c5f577f3392494bb01f40d36fbd075317cc8038f150d591ff3b2fd71ad982fa",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tests": {
+        "tests_run": 5,
+        "successful_summary": true,
+        "passed_tests": 5,
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "suites": 0
+      }
+    },
+    {
+      "name": "memory-tls-certificate-tests",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.551,
+      "log_sha256": {
+        "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "5be5037dc0a9a0d500bbedcd2827472f1185a77ff3541b472f4ca5494d3b0adc"
+      },
+      "tests": {
+        "tests_run": 7,
+        "successful_summary": true,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      }
+    },
+    {
+      "name": "private-acl-syntax",
+      "passed": true,
+      "exit_code": 0,
+      "duration_seconds": 0.263,
+      "log_sha256": {
+        "stdout": "592f9545a44c2021fc9e326a1bb78d2f621135286f0112de50c22410ebabb59a",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "limits": [
+    "The courier suite imports persistence tests; they run once here rather than again as a separate group.",
+    "Builder-operated disposable SQLite regression checks; not an independent audit or personal competence assessment.",
+    "Reference HTTP-client tests use Django's client and transport doubles; no native source server, TLS or PostgreSQL acceptance proof.",
+    "Node suites simulate upstream services; filesystem persistence checks do not establish sustained native delivery.",
+    "No new detection evaluation, native Wazuh/ZAP/Shuffle, Keycloak, remote CI, dependency advisory certification or 24-hour run.",
+    "Optional certificate checks use real signatures and the TLS engine over memory BIOs without sockets. Identity profile checks use modeled transport; no provider is started. Private ACL parsing is syntax-only, with no permissions changed.",
+    "Test counts describe executed test methods, not detection accuracy, enterprise coverage or business savings."
+  ],
+  "passed": true
+}

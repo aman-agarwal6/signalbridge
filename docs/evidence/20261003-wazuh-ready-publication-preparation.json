@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-wazuh-ready-publication-preparation",
+  "recorded_at": "2026-10-03T03:50:33.751167+00:00",
+  "status": "finite_replay_and_console_import_implemented_native_unrun",
+  "native_execution": false,
+  "focused_agent_review_checks_passed": 42,
+  "source_sha256": {
+    "scripts/enterprise_wazuh_live_verify.py": "33512568402befd3f0c6a55a76efdbabc4cc1c73c7a361147f9455e33e752104",
+    "integrations/wazuh_enterprise/native_live_collector.py": "fc7724fd59d1a75dfa0e367e3df935694494f7d4e7c4a315dfcda5094f4617d2",
+    "integrations/wazuh_enterprise/ready_contract.py": "4d7cc5c256ae2281387bdd5ce7a5797a2f52d6f17d6979b71a72ddbb47341c44",
+    "integrations/wazuh_enterprise/ready_publisher.py": "a020f1f72532b864cb12c9fca2d9b51ae60286d3d47b07cda3ee6697c298958f",
+    "bridge/wazuh_native_review.py": "af6f276c7159be9128cecc8401891c9110737fe0ee4b88e90c19cb51043c8731",
+    "templates/parts/native_wazuh_review.html": "5816463d8b1bfe23cbe0b6f076deda7a20649d2420bfef925856197a73a29c37",
+    "tests/test_wazuh_native_review.py": "629d6e5573e2c369d1100f92681a1d2dfda804d3ebe3aac55e033f0391c8cd64",
+    "tests/test_wazuh_live_controller.py": "f86763997aef7e16284cc4b82646dabc9ec3d0d7efa0ab738f4a401929fa891e",
+    "tests/test_wazuh_ready_publisher.py": "4fbee6e088d8ec9ecb51b8cdcfe0aa6095ecb144fccd2e8a74e35749af0bcd8c"
+  },
+  "behavior": [
+    "Require exact empty files and retained per-file native zero counters before publication.",
+    "Publish bounded complete records with source-bound checkpoints; do not republish completed prefixes.",
+    "Validate original source, plan, readiness, journal, archives, native alerts and both scoped shutdown receipts before console admission.",
+    "Render the finite historical replay separately from current connection status and continuous collection."
+  ],
+  "remaining": [
+    "Separate native launch review and execution.",
+    "Native interruption, continuous collection, freshness and rotation/recovery."
+  ],
+  "limits": [
+    "Focused control tests use modeled native observations; no new native receipt exists.",
+    "Consistent operator-supplied files cannot independently attest a trusted local administrator.",
+    "R3 forwarded signals remain SignalBridge detections, not independent Wazuh rediscovery."
+  ]
+}

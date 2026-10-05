@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-identity-resource-isolation-preparation",
+  "recorded_at": "2026-10-03T05:04:58.654833+00:00",
+  "status": "implemented_scoped_checked_native_unrun",
+  "native_execution": false,
+  "launch_authorized": false,
+  "focused_host_methods": 26,
+  "root_host_and_driver_methods_passed": 31,
+  "source_unchanged": true,
+  "source_sha256": {
+    "integrations/identity/native_host.py": "9bb14c85f8f0c6f78582a45a2b30bfb3bec77e1b54370ce82ac73eb35192a00e",
+    "scripts/enterprise_identity_verify.py": "39ad5c99675ccbf84645679c98bb13aa08059a198a203baa46db064b55209026",
+    "tests/test_identity_host_controller.py": "df89875b1c35c45a8d3f06520696758e2783c270e6c3a96c5690d2b88d7fdf9c"
+  },
+  "log_sha256": "9f7f443a03e48622639ebc2ccd282b7cb1219a6c0da67f560b75776b9acf1454",
+  "behavior": [
+    "Commit a private resource binding only after both fresh network and volume validate; no container proceeds after interrupted creation.",
+    "Require stable network identity/creation, local-volume creation/mountpoint and actual component resource references during execution.",
+    "Independent watchdog permits only an empty precommit window bounded to90seconds, latches the committed binding and rejects loss/change/foreign network membership.",
+    "Abort preserves foreign resources and uses existing run/component/name-checked shutdown; no network, volume or Desktop deletion/stop."
+  ],
+  "limits": [
+    "Daemon metadata, namespace behavior, volume replacement and host/guest time assumptions are modeled and require a separately reviewed native run.",
+    "Local volumes have no immutable Docker Id; metadata binding is not attestation against a daemon administrator.",
+    "Native SSO/MFA/rotation/browser behavior and remaining mandatory gates are not complete."
+  ]
+}

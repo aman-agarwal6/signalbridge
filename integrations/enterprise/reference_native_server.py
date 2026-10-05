@@ -12,6 +12,17 @@ from wsgiref.simple_server import WSGIRequestHandler, make_server
 
 from integrations.enterprise.reference_native_support import configure
 
+# The finite proofs keep their six-minute bound. Only the separately reviewed
+# reliability runtime may serve its fixed day plus drain, inside the watchdog.
+LIFETIME_SECONDS = 360
+RELIABILITY_LIFETIME_SECONDS = 25 * 3600 + 1800
+
+
+def lifetime():
+    if os.environ.get("SB_RELIABILITY_RUNTIME") == "1":
+        return RELIABILITY_LIFETIME_SECONDS
+    return LIFETIME_SECONDS
+
 
 class PrivateHandler(WSGIRequestHandler):
     def get_environ(self):
@@ -34,6 +45,11 @@ def main():
     from django.core.wsgi import get_wsgi_application
 
     django.setup()
+    if os.environ.get("SB_RELIABILITY_RUNTIME") == "1":
+        # The day-long run shares one step-free timeline (lab_clock.py).
+        from integrations.enterprise.lab_clock import install
+
+        install()
     component = os.environ["SB_SOURCE_COMPONENT"]
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.minimum_version = ssl.TLSVersion.TLSv1_2
@@ -48,7 +64,7 @@ def main():
         server.timeout = 1
         server.socket = context.wrap_socket(server.socket, server_side=True)
         server.socket.settimeout(5)
-        deadline = time.monotonic() + 240
+        deadline = time.monotonic() + lifetime()
         # Independent host/container watchdogs remain mandatory. This deadline
         # only bounds this process and does not prove container shutdown.
         while time.monotonic() < deadline:

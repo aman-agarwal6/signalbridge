@@ -1,0 +1,47 @@
+{
+  "delivery_results": {
+    "accepted": 27118,
+    "retry": 517
+  },
+  "elapsed_hours": 13.48,
+  "kind": "signalbridge-reliability-continuous-partial-summary",
+  "limits": [
+    "Stopped through the guard after the Wazuh collector hit a ten-minute-run directory bound; both shutdown paths verified. Stopped before the database export, so processing latency is not measured here.",
+    "Counts are from retained journals; this is not a 24-hour result."
+  ],
+  "reads_delivered": 27118,
+  "receipt": "docs/evidence/20261004-reliability-24h-894fb388a2004b43b6b1643e93342df4.json",
+  "recorded_at": "2026-10-04T23:49:26.540845+00:00",
+  "run_id": "894fb388a2004b43b6b1643e93342df4",
+  "runner_interruptions_completed": [
+    {
+      "component": "workers",
+      "delivered_later": 60,
+      "events_created_during_window": 60
+    },
+    {
+      "component": "collector",
+      "delivered_later": 45,
+      "events_created_during_window": 45
+    },
+    {
+      "component": "source_delivery",
+      "delivered_later": 90,
+      "events_created_during_window": 90
+    }
+  ],
+  "schema_version": 1,
+  "sent_outside_250_ms_slot": 68,
+  "service_errors": 0,
+  "source_reads": 27118,
+  "wazuh_capture": {
+    "bytes": 18143759,
+    "cause": "The continuous collector reused the reviewed ten-minute finder, which refuses a Wazuh month log folder with more than 64 entries; Wazuh rotates archives every ten minutes, so after about 63 rotations the folder passed the bound and the collector stopped itself cleanly. The captured data stayed sealed and intact.",
+    "failure_code": "native_collector_log_directory_limit",
+    "fix": "The continuous collector now has its own 4,096-entry bound (tested with 300 rotated files); the pinned bootstrap is unchanged.",
+    "generations": 63,
+    "stopped_after_hours": 10.58,
+    "stopped_after_seconds": 38081
+  },
+  "wazuh_windows_applied": []
+}

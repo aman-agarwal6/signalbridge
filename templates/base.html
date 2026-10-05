@@ -1,14 +1,77 @@
 {% load static %}<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08111e"><title>{% block title %}{{ app.name }} · SignalBridge{% endblock %}</title><link rel="stylesheet" href="{% static 'console.css' %}"><link rel="stylesheet" href="{% static 'workspace.css' %}"><link rel="stylesheet" href="{% static 'tools.css' %}">{% if page == 'detections' %}<link rel="stylesheet" href="{% static 'detections.css' %}">{% endif %}{% if page == 'checks' %}<link rel="stylesheet" href="{% static 'checks.css' %}">{% endif %}{% if page == 'practice' %}<link rel="stylesheet" href="{% static 'practice.css' %}">{% endif %}</head>
-<body><a class="skip" href="#main">Skip to content</a><div class="shell">
-<aside class="sidebar"><a class="brand" href="/?app={{ app.slug }}">{% include "parts/icon.html" with name="brand" %}<span>SignalBridge<small>SECURITY ASSURANCE</small></span></a>
-<div class="workspace-card"><span class="workspace-avatar">{{ app.name|first }}</span><div><strong>{{ app.name }}</strong><small>Application workspace</small></div></div>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08111e">
+<title>{% block title %}{{ app.name }} · SignalBridge{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'console.css' %}">
+<link rel="stylesheet" href="{% static 'workspace.css' %}">
+<link rel="stylesheet" href="{% static 'tools.css' %}">{% if page == 'detections' %}<link rel="stylesheet" href="{% static 'detections.css' %}">{% endif %}{% if page == 'checks' %}<link rel="stylesheet" href="{% static 'checks.css' %}">{% endif %}{% if page == 'practice' %}<link rel="stylesheet" href="{% static 'practice.css' %}">{% endif %}</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+<a class="brand" href="/?app={{ app.slug }}">{% include "parts/icon.html" with name="brand" %}<span>SignalBridge<small>SECURITY ASSURANCE</small>
+</span>
+</a>
+<div class="workspace-card">
+<span class="workspace-avatar">{{ app.name|first }}</span>
+<div>
+<strong>{{ app.name }}</strong>
+<small>Application workspace</small>
+</div>
+</div>
 <div class="desktop-navigation">{% include "parts/navigation.html" %}</div>
-<details class="mobile-menu"><summary><span>{% include "parts/icon.html" with name=page %} {% if page == 'overview' %}Overview{% elif page == 'investigations' %}Investigations{% elif page == 'practice' %}Analyst practice{% elif page == 'lab' %}Capability lab{% elif page == 'detections' %}Detections & coverage{% elif page == 'events' %}Event explorer{% elif page == 'findings' %}Security findings{% elif page == 'checks' %}Authorization checks{% elif page == 'replay' %}Replay lab{% elif page == 'integrations' %}Integrations{% else %}Requirements & reports{% endif %}</span><span>Menu <span class="chevron" aria-hidden="true"></span></span></summary>{% include "parts/navigation.html" %}</details>
-<div class="sidebar-bottom"><div class="lab-card">{% include "parts/icon.html" with name="shield" %}<div><strong>Local security lab</strong><small>Bounded, recorded evidence</small></div><span class="lab-dot"></span></div>
-<div class="profile"><span class="avatar">{{ user.username|first|upper }}</span><span><strong>{{ user.username }}</strong><small>{{ role|title }} access</small></span><form action="/logout/" method="post">{% csrf_token %}<button class="icon-button" aria-label="Sign out">{% include "parts/icon.html" with name="logout" %}</button></form></div></div></aside>
-<div class="main-shell"><header class="topbar"><div class="breadcrumb"><span>Workspace</span><span class="crumb-divider">/</span><strong>{{ app.name }}</strong><span class="badge lab">Local lab</span></div>
-<form method="get" action="{% if page == 'investigations' %}/investigations/{% elif page == 'lab' %}/{% elif page == 'detections' %}/detections/{% elif page == 'events' %}/events/{% elif page == 'findings' %}/findings/{% elif page == 'checks' %}/checks/{% elif page == 'practice' %}/practice/{% elif page == 'replay' %}/replay/{% elif page == 'integrations' %}/integrations/{% elif page == 'requirements' %}/requirements/{% else %}/{% endif %}" class="app-picker"><label class="sr-only" for="app">Application</label><select name="app" id="app">{% for item in apps %}<option value="{{ item.slug }}" {% if item == app %}selected{% endif %}>{{ item.name }}</option>{% endfor %}</select><button class="button small">Switch</button></form>
-<form class="mobile-logout" action="/logout/" method="post">{% csrf_token %}<button class="icon-button" aria-label="Sign out">{% include "parts/icon.html" with name="logout" %}</button></form></header>
-<main id="main">{% for message in messages %}<div class="message {{ message.tags }}" role="status">{{ message }}</div>{% endfor %}{% block content %}{% endblock %}
-<footer><span>SignalBridge <span class="footer-dot">/</span> {{ app.name }} workspace <span class="footer-dot">/</span> All times UTC</span><span>Evidence before confidence.</span></footer></main></div></div></body></html>
+<details class="mobile-menu">
+<summary>
+<span>{% include "parts/icon.html" with name=page %} {% if page == 'overview' %}Overview{% elif page == 'investigations' %}Investigations{% elif page == 'practice' %}Analyst practice{% elif page == 'lab' %}Capability lab{% elif page == 'detections' %}Detections & coverage{% elif page == 'events' %}Event explorer{% elif page == 'findings' %}Security findings{% elif page == 'checks' %}Authorization checks{% elif page == 'replay' %}Replay lab{% elif page == 'integrations' %}Integrations{% else %}Requirements & reports{% endif %}</span>
+<span>Menu <span class="chevron" aria-hidden="true">
+</span>
+</span>
+</summary>{% include "parts/navigation.html" %}</details>
+<div class="sidebar-bottom">
+<div class="lab-card">{% include "parts/icon.html" with name="shield" %}<div>
+<strong>Local security lab</strong>
+<small>Bounded, recorded evidence</small>
+</div>
+<span class="lab-dot">
+</span>
+</div>
+<div class="profile">
+<span class="avatar">{{ user.username|first|upper }}</span>
+<span>
+<strong>{{ user.username }}</strong>
+<small>{{ role|title }} access</small>
+</span>
+<form action="/logout/" method="post">{% csrf_token %}<button class="icon-button" aria-label="Sign out">{% include "parts/icon.html" with name="logout" %}</button>
+</form>
+</div>
+</div>
+</aside>
+<div class="main-shell">
+<header class="topbar">
+<div class="breadcrumb">
+<span>Workspace</span>
+<span class="crumb-divider">/</span>
+<strong>{{ app.name }}</strong>
+<span class="badge lab">Local lab</span>
+</div>
+<form method="get" action="{% if page == 'investigations' %}/investigations/{% elif page == 'lab' %}/{% elif page == 'detections' %}/detections/{% elif page == 'events' %}/events/{% elif page == 'findings' %}/findings/{% elif page == 'checks' %}/checks/{% elif page == 'practice' %}/practice/{% elif page == 'replay' %}/replay/{% elif page == 'integrations' %}/integrations/{% elif page == 'requirements' %}/requirements/{% else %}/{% endif %}" class="app-picker">
+<label class="sr-only" for="app">Application</label>
+<select name="app" id="app">{% for item in apps %}<option value="{{ item.slug }}" {% if item == app %}selected{% endif %}>{{ item.name }}</option>{% endfor %}</select>
+<button class="button small">Switch</button>
+</form>
+<form class="mobile-logout" action="/logout/" method="post">{% csrf_token %}<button class="icon-button" aria-label="Sign out">{% include "parts/icon.html" with name="logout" %}</button>
+</form>
+</header>
+<main id="main" tabindex="-1">{% for message in messages %}<div class="message {{ message.tags }}" role="status">{{ message }}</div>{% endfor %}{% block content %}{% endblock %}
+<footer>
+<span>SignalBridge <span class="footer-dot">/</span> {{ app.name }} workspace <span class="footer-dot">/</span> All times UTC</span>
+<span>Evidence before confidence.</span>
+</footer>
+</main>
+</div>
+</div>
+</body>
+</html>

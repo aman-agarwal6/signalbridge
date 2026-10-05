@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "status": "passed_local_capture_preparation_native_unfinished",
+  "test_report": {
+    "executed_at": "2026-10-02T23:45:11.632875+00:00",
+    "runner": "Django DiscoverRunner",
+    "database": "django.db.backends.sqlite3",
+    "tests": 63,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 3.727,
+    "passed": true
+  },
+  "scope": "Durable capture and collector/host wiring. Actual disposable files, hardlinks and SQLite; modeled native data and runtime facts.",
+  "file_hashes_after_execution": {
+    "integrations/wazuh_enterprise/capture_journal.py": "7f8f091304e7af828b6831a872d1bf08ef2117b484173e8127cc7ccb2f3ef9ed",
+    "integrations/wazuh_enterprise/native_collector.py": "cd26184193422d60fd8a7fabedd370f3a15474db0153fccc1e01f6c737fa64aa",
+    "integrations/wazuh_enterprise/collector_profile.py": "551606468c28e458e26e7c76105e645ad1b8ffca6bbfd7ddd2f74f30b5891ec5",
+    "integrations/wazuh_enterprise/collector-stage-plan.json": "b55f858b930dd514fa9466b4f6b9bf8decbb9be8f029386f294bd3867f6ab607",
+    "scripts/enterprise_wazuh_verify.py": "ad1a76620579941f460ce9cb7cec132fad598ef6f5a1c37963a42cb8b97e92ec",
+    "tests/test_wazuh_capture_journal.py": "b7f0bf23ae630dbb31e0d9a1d7f32884084e740c47aae10ae56c0ce44a40d9b9",
+    "tests/test_wazuh_native_bootstrap.py": "17590dadbc85a320d83851dc0e5d169ccefc792269a576a531050211d23157ec",
+    "tests/test_wazuh_host_controller.py": "c1503ec089c3aa02a198326cd89e44d7c8ad31df3ac2c8bf65dbd5227e428f53",
+    "tests/test_wazuh_collector_preparation.py": "aa671e2b557f1984ecf7cc3016a4414e9eaa26f6199d0c36e689f1b632a9eb9d"
+  },
+  "hash_limit": "Scoped after-execution file identities, not a whole-tree attestation.",
+  "improvements": [
+    "Captured bytes and offsets commit atomically; a retry cannot rewrite an earlier chunk.",
+    "An old descriptor is drained before a replacement generation is admitted, including unread final bytes.",
+    "Restart checks durable prefixes; partial lines, missing old generations, changed bytes and full storage retain failure.",
+    "Incremental hashes update only after commit and are reconstructed at restart.",
+    "The host checks sealed captures read-only against final archive/alert files."
+  ],
+  "limitations": [
+    "No manager, container, VM, network listener or service was started.",
+    "The Windows file-handoff test changes the supplied fixed root; actual Linux rename/unlink and Wazuh rotation are unrun.",
+    "Input remains a fixed snapshot. Continuous publishing, native recovery, compressed old-generation discovery and the 24-hour run remain unfinished.",
+    "No native execution, delivery health or enterprise acceptance is inferred from these checks."
+  ],
+  "sources": [
+    "https://documentation.wazuh.com/current/user-manual/manager/event-logging.html"
+  ]
+}

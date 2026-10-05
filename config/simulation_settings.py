@@ -22,6 +22,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "bridge.federation_middleware.FederatedSessionPolicy",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "bridge.middleware.SecurityHeaders",
@@ -44,3 +45,4 @@ CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.PBKDF2PasswordHasher"]
 DATA_UPLOAD_MAX_MEMORY_SIZE = 16384
 FILE_UPLOAD_MAX_MEMORY_SIZE = 16384
+FEDERATED_AUTH_ENABLED = False

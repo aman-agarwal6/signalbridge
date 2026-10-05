@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-native-receipt-promotion",
+  "run_id": "0d137b4720ad476faa68d36754b7357f",
+  "promoted_file": "receipt.json",
+  "private_receipt_sha256": "62d2777680977369ec8685ba058db794c725b2c196395cca9b6930ac3f4afec8",
+  "promoted_on": "2026-10-03",
+  "note": "Verbatim copy of the retained private run receipt; raw logs, credentials and databases stay private.",
+  "receipt": {
+    "acceptance_passed": true,
+    "approval_reference": "20261003-owner-claude-acl-review-4",
+    "capacity_before": {
+      "available_host_memory_bytes": 12279566336,
+      "free_disk_bytes": 66900963328
+    },
+    "continuous_delivery_verified": false,
+    "execution_policy": "wazuh-preserve-baseline-v1",
+    "finished_at": "2026-10-03T07:06:13.015479+00:00",
+    "image_id": "sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0",
+    "image_reference": "wazuh/wazuh-manager@sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0",
+    "independent_shutdown": {
+      "late_operation_drain_elapsed_ms": 60509,
+      "late_operation_drain_seconds": 60,
+      "late_operation_drain_verified": true,
+      "preservation_final": {
+        "engine_digest": "24fb7dd0c8c00a1ac2aa7fd5700b6c9c07cb53179eb806665833ee565fdcc0e1",
+        "owned_count": 1,
+        "owned_running_count": 0,
+        "preservation_digest": "9216498cd389b5505478c448697520d6c3d152e4e6611feee58761d304f7dbc0",
+        "preserved_count": 0,
+        "preserved_digest": "833567d692e5bbebfd3dee8e440bb600de495f3601ced01f4f20cd16c9fa2832",
+        "running_count": 0,
+        "running_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "preservation_verified": true,
+      "reason": "launcher_finished",
+      "run_id": "0d137b4720ad476faa68d36754b7357f",
+      "shutdown_verified": true,
+      "stopped_at": "2026-10-03T07:06:12.509196+00:00",
+      "stopped_component_count": 1
+    },
+    "independent_shutdown_verified": true,
+    "kind": "signalbridge-native-wazuh-ready-publication",
+    "limits": [
+      "Finite replay of fixed source-bound packets; not continuous delivery or recovery proof.",
+      "The R3 signal is forwarded from SignalBridge, not rediscovered independently by Wazuh.",
+      "Trusted local-operator evidence; not attestation against a local administrator.",
+      "Preservation verifies sampled nonsecret envelopes, not uninterrupted application health."
+    ],
+    "main_shutdown": {
+      "run_id": "0d137b4720ad476faa68d36754b7357f",
+      "shutdown_verified": true,
+      "stopped_component_count": 1
+    },
+    "main_shutdown_verified": true,
+    "native_proof": {
+      "continuous_delivery_verified": false,
+      "coverage": {
+        "alerted_logical_inputs": 8,
+        "archived_logical_inputs": 24,
+        "bootstrap_counts_match": true,
+        "continuous_delivery_verified": false,
+        "distinct_alert_tool_ids": 8,
+        "distinct_archive_tool_ids": 24,
+        "expected_alert_inputs": 8,
+        "expected_logical_inputs": 24,
+        "extra_alert_copies": 0,
+        "extra_archive_copies": 0,
+        "forwarded_detections_are_independent_wazuh_rediscovery": false,
+        "genuine_source_execution_verified": false,
+        "missing_alert_inputs": 0,
+        "missing_archive_inputs": 0,
+        "native_record_format_verified": true,
+        "native_runtime_execution_verified": false,
+        "partial_native_files": {
+          "alert": false,
+          "archive": false
+        },
+        "physical_alert_copies": 8,
+        "physical_archive_copies": 24,
+        "repeated_alert_tool_ids": 0,
+        "repeated_archive_tool_ids": 0,
+        "unexpected_noncustom_alerts": 0
+      },
+      "durable_capture_revalidated": true,
+      "kernel_controls": {
+        "capabilities": [
+          "SETGID",
+          "SETUID",
+          "SYS_CHROOT"
+        ],
+        "cgroup_version": 2,
+        "cpu_quota_equals_period": true,
+        "disposable_root_and_evidence_writable": true,
+        "gid": 0,
+        "memory_bytes": 1610612736,
+        "network_interfaces": [
+          "lo"
+        ],
+        "no_new_privileges": true,
+        "pids": 256,
+        "seccomp_filter": true,
+        "source_and_four_inputs_readonly": true,
+        "swap_bytes": 0,
+        "uid": 0
+      },
+      "native_raw_receipts_revalidated": true,
+      "native_runtime_execution_verified": false,
+      "owned_daemons_stopped": true,
+      "raw_receipt_sha256": {
+        "analysisd-config.log": "176f529ff7e652b116dedefcce86d8113ed36d54245d2e8fe4209434ee598032",
+        "capture.sqlite3": "e4f0c1625a237f7f3ee7342fc1e6d9b5f4cb47689fcba20d2530de385ddd5a27",
+        "collector-ready-state.json": "310e3de36b00cdda216d30e1073abc084f9ae228b03cedeb2b2531525bbe091c",
+        "collector-ready.json": "136286435502046cf1b257faabf7fd9330f0607383ba9ffa2262b60ee369059a",
+        "effective-config.xml": "020f46a81b08a837734c109b593f3de361f99b97c382ab526264cb596921595b",
+        "effective-internal-options.conf": "4a329a7b96663d5742b069c58a040c5cfa481b206cda6a533dbefa4e9f4bbfbe",
+        "heartbeat.json": "f5747af3996a65cc368e8227cbd8892e97c3f2d2d5875c33f9ec172e0c825818",
+        "kernel-observed.json": "7fd5f0998c1cd0429b2ec70ec3f7758f4888adaed47c0fefc81ab62b33da6092",
+        "manifest.json": "8681ce30de751d9b33ce1bd46e724a9e70320f2d965d701b2b0a45fe294105bf",
+        "native-alerts.jsonl": "ce2a0e0195756777a8ddbe9814582dfa457efc5d195e5ad8686b89b5e6c7dc53",
+        "native-archives.jsonl": "da737bce93ad644cd84a658e979b5c102701f7b5864f598f20dc0a16e32e83e3",
+        "native-report.json": "1ce0a9fdcf5ad8b1c0ec1d5522c5e006ef3da1e8699715bba7521696fc2ff75f",
+        "publication-complete.json": "d2b7f15fc65a311faeb2fbea1b79d098d31a825a256529d0ff3b74b4baf2a1bc",
+        "run-context.json": "488c03b595aad58d1bc59f804b85d66082219f7f6ed7f3c4ed009bf43b71a7e5",
+        "source-manifest.json": "d00108dcc8e4ee1c0ef78376363aea915bde56aede3fc6e3ec9a9bbdfd4276af",
+        "wazuh-analysisd.log": "30c2da34cac725863c8596d1b33ee67c37baa960e0953e19782edff0a308a6ac",
+        "wazuh-db.log": "282e84c3d97084d8092d2b75aeab5ad133f9d3f10ec673994b5b32ab4611fd82",
+        "wazuh-logcollector.log": "5504bdb90678834b6f2baae0ae2feb956b2ad236ef2609596760797d89b1df4c"
+      }
+    },
+    "native_runtime_execution_verified": true,
+    "owned_container_id": "5773a75381ca5b50ad1509f030625be1b1bc738e4d73fa1b9568a70f5d6b800e",
+    "plan_sha256": "47ce6363cd18b31b47f2be587aa6cb1a95550a5340faa2ac7125ddc15d6da64f",
+    "preservation_digest": "9216498cd389b5505478c448697520d6c3d152e4e6611feee58761d304f7dbc0",
+    "preservation_final": {
+      "engine_digest": "24fb7dd0c8c00a1ac2aa7fd5700b6c9c07cb53179eb806665833ee565fdcc0e1",
+      "owned_count": 1,
+      "owned_running_count": 0,
+      "preservation_digest": "9216498cd389b5505478c448697520d6c3d152e4e6611feee58761d304f7dbc0",
+      "preserved_count": 0,
+      "preserved_digest": "833567d692e5bbebfd3dee8e440bb600de495f3601ced01f4f20cd16c9fa2832",
+      "running_count": 0,
+      "running_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "preservation_verified": true,
+    "preserved_count": 0,
+    "publication": {
+      "appended_bytes_this_call": 7107,
+      "existing_prefix_bytes": 0,
+      "files": [
+        {
+          "bytes": 3629,
+          "location": "/signalbridge/input/documents/observation/observations-000.jsonl",
+          "records": 13,
+          "relative": "documents/observation/observations-000.jsonl",
+          "sha256": "9c6ab10b42d3e156aeb79d6466deee2cab90681e50797af15a71715deb95dc65"
+        },
+        {
+          "bytes": 695,
+          "location": "/signalbridge/input/documents/detection/detections-000.jsonl",
+          "records": 1,
+          "relative": "documents/detection/detections-000.jsonl",
+          "sha256": "58028356113289c4930e20f22c65d2264e285b19f69006c2a5055806fbea756d"
+        },
+        {
+          "bytes": 2783,
+          "location": "/signalbridge/input/expenses/observation/observations-000.jsonl",
+          "records": 10,
+          "relative": "expenses/observation/observations-000.jsonl",
+          "sha256": "41f306c05ba30188016d3e02cd9d55570ffdd4fa9319f8962c8a0cd30781dd28"
+        }
+      ],
+      "kind": "signalbridge-wazuh-frozen-publication-v1",
+      "native_execution_verified": false,
+      "plan_sha256": "47ce6363cd18b31b47f2be587aa6cb1a95550a5340faa2ac7125ddc15d6da64f",
+      "published_bytes": 7107,
+      "published_records": 24,
+      "readiness_sha256": "9f7bcebbf19d6407bdf8e4604812890ad183f7fcff1d140a747346075167f533",
+      "run_id": "0d137b4720ad476faa68d36754b7357f",
+      "tool_receipt_verified": false
+    },
+    "reviewed_plan_sha256": "6a66914559851502ca7ca99df39b11bc29a89acbc3e564c2ce38103c5589e4b2",
+    "run_id": "0d137b4720ad476faa68d36754b7357f",
+    "runner_exit_code": 0,
+    "runtime_isolation_verified": true,
+    "schema_version": 1,
+    "source_binding": {
+      "engine_source_sha256": "658418f050b9d2877202211e99409cdc58d923490a1baefadb7d614f9e1e4cd0",
+      "expected_packets_sha256": "06e57444b697d067cd9da21b1f2cd8580dce40917e0ef541d4dc506ee037f5d5",
+      "forwarded_core_signals": 1,
+      "independent_wazuh_r3_rediscovery": false,
+      "logical_observations": 23,
+      "manifest_sha256": "8681ce30de751d9b33ce1bd46e724a9e70320f2d965d701b2b0a45fe294105bf",
+      "native_case_id": "1576faa9-6deb-4511-804c-81dafa8bb648",
+      "native_source_receipt_sha256": "c254c2099077fdcb129902748a1f302476751605ea4c1b485fbfad1d7c608cc0",
+      "native_source_run_id": "b8667b816ce8419da7f3d5d9ac9d6ad6",
+      "native_source_selected_sha256": "6a0b6fb937544bb51fa673b34cb99a0cd5f522f3ac84871c609c379a89ff1471",
+      "snapshot_run_id": "88ce9f77-2d7f-4b1d-9d36-26f698c2c01a",
+      "source_inputs_match_revalidated_reference_run": true
+    },
+    "stage_growth_ceiling_bytes": 32212254720,
+    "stage_plan": "integrations/wazuh_enterprise/ready-publication-acl-review-stage-plan.json",
+    "started_at": "2026-10-03T07:04:49.192624+00:00",
+    "status": "passed"
+  }
+}

@@ -9,6 +9,8 @@ local administrators and power-loss behavior of the filesystem remain boundaries
 import hashlib
 import os
 import stat
+import sys
+from pathlib import Path
 
 from django.conf import settings
 from django.db import transaction
@@ -42,7 +44,7 @@ def sha256(data):
 
 def _app(app):
     require(settings.LOCAL, "local_only")
-    require(app.slug in {"bettail", "netted"}, "unsupported_app")
+    require(app.slug in {"bettail", "netted", "documents", "expenses"}, "unsupported_app")
     require(Integration.objects.filter(pk=app.pk, enabled=True).exists(), "app_disabled")
 
 
@@ -60,6 +62,10 @@ def event_row(event, app):
             "source": event.source,
         }
     }
+    if app.slug in {"documents", "expenses"} or event.source == "instrumented_lab":
+        from .wazuh_enterprise import observation_packet
+
+        return observation_packet(event, app)
     try:
         validate_export(row, VALUES)
     except PreparationError as error:
@@ -68,7 +74,7 @@ def event_row(event, app):
     return row
 
 
-def _locked_stream(app, *, create):
+def _locked_stream(app, *, create, channel="observation"):
     # Hold the application row too, so a concurrent disable cannot slip between
     # eligibility validation and publication. This is also an SQLite write lock.
     require(
@@ -76,12 +82,14 @@ def _locked_stream(app, *, create):
         "app_disabled",
     )
     if create:
-        SocStream.objects.get_or_create(integration=app)
+        SocStream.objects.get_or_create(integration=app, channel=channel)
     # First acquire a database write lock, including on SQLite where SELECT FOR
     # UPDATE is a no-op. Contention may fail with database-locked; retry is safe.
-    changed = SocStream.objects.filter(integration=app).update(revision=F("revision") + 1)
+    changed = SocStream.objects.filter(integration=app, channel=channel).update(
+        revision=F("revision") + 1
+    )
     require(changed == 1, "stream_not_staged")
-    return SocStream.objects.select_for_update().get(integration=app)
+    return SocStream.objects.select_for_update().get(integration=app, channel=channel)
 
 
 def stage(app):
@@ -102,8 +110,12 @@ def stage(app):
         body = b"".join(canonical(event_row(event, app)) + b"\n" for event in events)
         require(len(body) <= MAX_BATCH_BYTES, "batch_capacity_reached")
         require(stream.offset + len(body) <= MAX_STREAM_BYTES, "stream_capacity_reached")
+        from .soc_rotation import reserve_segment
+
+        segment = reserve_segment(stream, body)
         batch = SocBatch.objects.create(
             stream=stream,
+            segment=segment,
             body=body.decode("ascii"),
             body_sha256=sha256(body),
             start_offset=stream.offset,
@@ -128,6 +140,7 @@ def collector_path(stream):
 
 def _collector_path(stream):
     """Fixed new path, separate from export_soc and all frozen pilot input paths."""
+    require(not stream.segmented_export, "segmented_stream_has_multiple_paths")
     root = settings.BASE_DIR.resolve(strict=True)
     directories = [root / "var", root / "var" / "soc-delivery"]
     for directory in directories:
@@ -142,7 +155,49 @@ def _collector_path(stream):
     return path
 
 
+def delivery_location():
+    """Return the fixed delivery root and its trusted containment boundary.
+
+    The ordinary profile remains inside BASE_DIR. Only the closed native
+    console component may use its exact, separately mounted evidence path.
+    """
+    workspace = Path(settings.BASE_DIR).resolve(strict=True)
+    default = workspace / "var" / "soc-delivery"
+    configured = Path(getattr(settings, "SOC_DELIVERY_ROOT", default))
+    if configured == default:
+        return configured, workspace
+    native = Path("/evidence/soc-delivery")
+    require(
+        configured == native
+        and sys.platform == "linux"
+        and os.environ.get("SB_SOURCE_PROOF") == "1"
+        and os.environ.get("SB_SOURCE_COMPONENT") == "console",
+        "unsafe_delivery_root",
+    )
+    boundary = Path("/evidence")
+    _plain_path(boundary, directory=True)
+    require(boundary.resolve(strict=True) == boundary, "unsafe_delivery_boundary")
+    return native, boundary
+
+
+def ensure_delivery_root():
+    root, boundary = delivery_location()
+    relative = root.relative_to(boundary)
+    current = boundary
+    for name in relative.parts:
+        current = current / name
+        _plain_path(current, directory=True)
+        current.mkdir(exist_ok=True)
+        _plain_path(current, directory=True)
+        require(current.resolve(strict=True).is_relative_to(boundary), "unsafe_delivery_directory")
+    return root, boundary
+
+
 def _body(batch, app):
+    require(
+        batch.stream.integration_id == app.pk and batch.stream.channel == "observation",
+        "staged_stream_scope_mismatch",
+    )
     try:
         body = batch.body.encode("ascii")
     except UnicodeError as error:
@@ -156,7 +211,16 @@ def _body(batch, app):
         for line in lines:
             require(line.endswith(b"\n"), "incomplete_staged_record")
             row = parse_json(line)
-            event = validate_export(row, VALUES)
+            require(isinstance(row, dict), "invalid_staged_record")
+            if (
+                isinstance(row.get("signalbridge"), dict)
+                and row["signalbridge"].get("export_version") == 2
+            ):
+                from integrations.wazuh_enterprise.contract import validate_observation
+
+                event = validate_observation(row)
+            else:
+                event = validate_export(row, VALUES)
             require(event["app"] == app.slug, "staged_scope_mismatch")
             require(canonical(row) + b"\n" == line, "staged_encoding_mismatch")
             require(event["event_id"] not in ids, "duplicate_staged_event")
@@ -213,8 +277,13 @@ def publish(app):
             return None
         require(batch.start_offset == stream.offset, "staged_offset_mismatch")
         body = _body(batch, app)
-        path = collector_path(stream)
-        offset, prefix, resumed = _append(path, stream, body)
+        if stream.segmented_export:
+            from .soc_rotation import append_segment
+
+            offset, prefix, resumed = append_segment(stream, batch, body)
+        else:
+            require(batch.segment_id is None, "unexpected_batch_segment")
+            offset, prefix, resumed = _append(collector_path(stream), stream, body)
         stream.offset, stream.prefix_sha256 = offset, prefix
         stream.save(update_fields=["offset", "prefix_sha256"])
         batch.state, batch.appended_at = "file_appended", timezone.now()
@@ -240,11 +309,25 @@ def status(app):
         file_appended=Count("pk", filter=Q(socdelivery__batch__state="file_appended")),
         eligible=Count("pk", filter=Q(state="processed", socdelivery__isnull=True)),
     )
-    stream = SocStream.objects.filter(integration=app).first()
+    stream = SocStream.objects.filter(integration=app, channel="observation").first()
+    rotation = {"segmented_export": False}
+    if stream and stream.segmented_export:
+        from .soc_rotation import export_inventory
+
+        try:
+            rotation = export_inventory(stream)
+        except DeliveryError as error:
+            rotation = {
+                "segmented_export": True,
+                "error": str(error),
+                "files_inspected": False,
+                "native_observed": False,
+            }
     return {
         **counts,
         "stream_id": str(stream.pk) if stream else None,
         "bytes": stream.offset if stream else 0,
         "capacity_bytes": MAX_STREAM_BYTES,
         "manager_observed": None,
+        "rotation": rotation,
     }

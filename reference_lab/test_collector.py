@@ -194,21 +194,16 @@ class NativeTransportControlTests(SimpleTestCase):
         client.getresponse.return_value.read.return_value = b"{}"
         with (
             patch.dict(os.environ, {"SB_REF_DELIVERY_CA": str(Path(__file__))}),
-            patch(
-                "reference_lab.collector.ssl.create_default_context", return_value=context
-            ) as trust,
-            patch(
-                "reference_lab.collector.http.client.HTTPSConnection", return_value=client
-            ) as connect,
-            patch("reference_lab.collector.threading.Timer") as timer,
+            patch("reference_lab.collector.lab_context", return_value=context) as trust,
+            patch("reference_lab.collector.BoundedHTTPSConnection", return_value=client) as connect,
         ):
             transport = NativeTransport()
             self.assertTrue(context.check_hostname)
             self.assertEqual(context.verify_mode, ssl.CERT_REQUIRED)
             self.assertEqual(transport("documents", b"{}", {}), (202, b"{}"))
-        trust.assert_called_once_with(cafile=str(Path(__file__)))
-        connect.assert_called_once_with("127.0.0.1", 18841, timeout=5, context=context)
+        trust.assert_called_once_with(str(Path(__file__)))
+        connect.assert_called_once_with(18841, seconds=5, context=context)
         client.getresponse.return_value.read.assert_called_once_with(1025)
-        timer.return_value.start.assert_called_once()
-        timer.return_value.cancel.assert_called_once()
-        client.close.assert_called_once()
+        client.start.assert_called_once()
+        client.remaining.assert_called_once()
+        client.finish.assert_called_once()

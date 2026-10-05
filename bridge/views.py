@@ -15,6 +15,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
 from .access_coverage import coverage_for_run
+from .case_verification import console_context as verification_context
 from .contract import digest
 from .detection_catalog import RULES, engine_fingerprint, engine_source_state, explain_case
 from .evaluation import evaluate
@@ -28,7 +29,7 @@ from .models import (
     Membership,
     Note,
     Replay,
-    WorkerHeartbeat,
+    WazuhRecord,
 )
 from .operations import event_summary, workspace_health
 from .presentation import case_preview_events, decorate_cases, event_filters, page_context
@@ -37,6 +38,11 @@ from .services import WorkflowError, create_replay, decide_replay, write_members
 from .soc_delivery import status as delivery_status
 from .soc_presentation import pilot_cards
 from .wazuh_backfill_presentation import backfill_card
+from .wazuh_import import status as enterprise_wazuh_status
+from .wazuh_native_review import case_receipt_card
+from .wazuh_native_review import receipt_card as native_wazuh_card
+from .wazuh_native_review import with_admission as native_wazuh_admission
+from .worker_health import worker_health
 from .zap_repeat_presentation import repeat_cards
 
 
@@ -138,12 +144,16 @@ def overview(request):
         critical=Count("pk", filter=Q(status="open", severity="critical")),
         resolved=Count("pk", filter=Q(status="resolved")),
     )
-    heartbeat = WorkerHeartbeat.objects.filter(name="default").first()
+    workers = worker_health(now)
     latest_run = (
         CheckRun.objects.filter(integration=app)
         .exclude(
             result__evidence_kind__isnull=False,
-            result__evidence_kind__in=("wazuh_backfill", "zap_repeat"),
+            result__evidence_kind__in=(
+                "wazuh_backfill",
+                "zap_repeat",
+                "native_wazuh_reference_bootstrap",
+            ),
         )
         .order_by("-created_at")
         .first()
@@ -178,11 +188,8 @@ def overview(request):
         passed_checks=sum(c.get("status") == "passed" for c in latest_run.result.get("checks", []))
         if latest_run
         else 0,
-        heartbeat=heartbeat,
-        worker_recent=bool(
-            heartbeat
-            and now - timedelta(seconds=30) <= heartbeat.last_seen <= now + timedelta(seconds=5)
-        ),
+        worker_health=workers,
+        worker_recent=workers["all_recent"],
         activity=activity,
         activity_total=sum(daily.values()),
         source_counts=[
@@ -204,14 +211,30 @@ def overview(request):
 def integrations(request):
     ctx = scope(request)
     app = ctx["app"]
-    queue = Event.objects.filter(integration=app).aggregate(
-        pending=Count("pk", filter=Q(state="pending")),
-        dead=Count("pk", filter=Q(state="dead")),
+    enterprise_wazuh = (
+        enterprise_wazuh_status(app)
+        if app.slug in {"bettail", "netted", "documents", "expenses"}
+        else None
+    )
+    queue = (
+        enterprise_wazuh
+        if enterprise_wazuh is not None
+        else Event.objects.filter(integration=app).aggregate(
+            pending=Count("pk", filter=Q(state="pending")),
+            dead=Count("pk", filter=Q(state="dead")),
+        )
     )
     latest_receipts = {
         run.result["evidence_kind"]: run
-        for run in CheckRun.objects.filter(
-            integration=app, result__evidence_kind__in=("supabase_http", "wazuh_backfill")
+        for run in native_wazuh_admission(
+            CheckRun.objects.filter(
+                integration=app,
+                result__evidence_kind__in=(
+                    "supabase_http",
+                    "wazuh_backfill",
+                    "native_wazuh_reference_bootstrap",
+                ),
+            )
         )
         .annotate(
             evidence_rank=Window(
@@ -224,13 +247,30 @@ def integrations(request):
     }
     ctx.update(pilot_cards(app))
     ctx["wazuh_backfill"] = backfill_card(app, latest_receipts.get("wazuh_backfill"))
+    ctx["native_wazuh"] = (
+        native_wazuh_card(
+            app,
+            latest_receipts.get("native_wazuh_reference_bootstrap"),
+            lookup=False,
+            summary_only=True,
+        )
+        if app.slug in {"documents", "expenses"}
+        else None
+    )
+    if enterprise_wazuh is not None and ctx["native_wazuh"] and ctx["native_wazuh"]["verified"]:
+        enterprise_wazuh["connection_state"] = (
+            "Historical native run verified; current connection unverified"
+        )
     ctx["zap_repeats"] = repeat_cards(app)
     ctx.update(
         page="integrations",
         pending_count=queue["pending"],
         dead_count=queue["dead"],
         health={"latest_http": latest_receipts.get("supabase_http")},
-        delivery=delivery_status(app) if app.slug in {"bettail", "netted"} else None,
+        delivery=delivery_status(app)
+        if app.slug in {"bettail", "netted", "documents", "expenses"}
+        else None,
+        enterprise_wazuh=enterprise_wazuh,
     )
     return render(request, "integrations.html", ctx)
 
@@ -509,7 +549,14 @@ def investigation(request, case_id):
             role__in=("analyst", "reviewer"),
         )
         .order_by("user__username", "pk")[:100],
-        case_tasks=case.tasks.select_related("assignee__user").order_by("-created_at", "pk")[:50],
+        **verification_context(case),
+        case_wazuh_records=WazuhRecord.objects.filter(integration=case.integration)
+        .filter(Q(event__investigation=case) | Q(signal__investigation=case))
+        .select_related("signal", "event")
+        .distinct()
+        .order_by("-occurred_at", "pk")[:20],
+        case_native_wazuh=case_receipt_card(case),
+        leaver_signals=case.leaver_signals.order_by("event_at", "jti")[:50],
     )
     return render(request, "case.html", ctx)
 
@@ -576,7 +623,11 @@ def checks(request):
         CheckRun.objects.filter(integration=ctx["app"])
         .exclude(
             result__evidence_kind__isnull=False,
-            result__evidence_kind__in=("wazuh_backfill", "zap_repeat"),
+            result__evidence_kind__in=(
+                "wazuh_backfill",
+                "zap_repeat",
+                "native_wazuh_reference_bootstrap",
+            ),
         )
         .order_by("-created_at", "id")
     )

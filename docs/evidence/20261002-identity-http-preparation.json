@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-02T22:50:12.036935+00:00",
+  "scope": "Optional identity HTTP/client preparation; provider and socket responses modeled, not native SSO.",
+  "combined_policy_run": {
+    "test_modules": [
+      "tests.test_oidc_configuration",
+      "tests.test_oidc_http",
+      "tests.test_oidc_transport",
+      "tests.test_oidc_state",
+      "tests.test_federation_policy",
+      "tests.test_federation_operator",
+      "tests.test_reference_deadline"
+    ],
+    "tests": 108,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 7.663,
+    "passed": true,
+    "evidence_source": "Django command output retained in this task; earlier aggregate JSON was replaced by the later focused runner output."
+  },
+  "after_cookie_boundary_changes": {
+    "test_modules": [
+      "tests.test_oidc_configuration",
+      "tests.test_oidc_transport",
+      "tests.test_reference_deadline"
+    ],
+    "runner_result": {
+      "executed_at": "2026-10-02T22:46:47.526338+00:00",
+      "runner": "Django DiscoverRunner",
+      "database": "django.db.backends.sqlite3",
+      "tests": 21,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 0.068,
+      "passed": true
+    },
+    "runner_result_sha256": "bc1fbf1a668ecd3f578c35190b0165bfa58f0db2b79a5b62ea4bb41096d03f82"
+  },
+  "distinct_scoped_methods": 108,
+  "do_not_sum_repeated_methods": true,
+  "prior_fixture_failure": {
+    "runner_result": {
+      "executed_at": "2026-10-02T22:40:29.098788+00:00",
+      "runner": "Django DiscoverRunner",
+      "database": "django.db.backends.sqlite3",
+      "tests": 5,
+      "failed": 0,
+      "errors": 10,
+      "skipped": 0,
+      "duration_seconds": 0.047,
+      "passed": false
+    },
+    "cause": "Python private temporary-folder ACL excluded managed Windows process before configuration checks; switched only synthetic test data to existing inherited-permissions fixture helper.",
+    "cleanup": "Five exact verified empty generated folders removed; no permission changes or recursive removal. Initial cleanup stopped before deletion due local/UTC timestamp comparison; corrected UTC bounds passed."
+  },
+  "checks": {
+    "ruff_check": "passed",
+    "ruff_format": "passed",
+    "migration_consistency": "passed",
+    "publication_scan_files_before_this_receipt": 758,
+    "git_diff_check_before_this_receipt": "passed"
+  },
+  "source_sha256_after_execution": {
+    "bridge/oidc_views.py": "6aa26e12dde6f36de4459b5cb52a1484dbada0a14dffbe0cd510f31ebc61aad3",
+    "bridge/oidc_state.py": "ab66422d6b67c68df42bde484f0ffde6d43d78a4291c79374d4ce3769fb1beee",
+    "bridge/context.py": "cbc60f8a8ece5ca3ea5c2ee20c6ffe2fef75c094efc3bd5273f3d0290fa4ab34",
+    "bridge/models.py": "4a860656fbcac0ccfe37fe1b85d0bcb8292cabfce7e0bfc454d1bc6d4ee25d3b",
+    "config/identity_settings.py": "7d0357bf691a8037e293ac90a2b83c64ddca5b6b1f38d5f8da83bcbf17d50dfa",
+    "config/urls.py": "2c774512ae769a0a916291bb1e759e1b491c06f83369920cdc34302960d71c8d",
+    "templates/login.html": "6c524d2293c1beed6c4814a56f7e3c0b5cfbd83661889299db8bd6d6624b3909",
+    "integrations/enterprise/https_deadline.py": "28c6d9939aa5151d919e69b5898348ef89c51698ed819e12b651582b03697dde",
+    "integrations/identity/configuration.py": "7737dc685f3e5c984f58030f115b97775bd3ba7d2de913493734d2520e00b9b1",
+    "integrations/identity/transport.py": "3b9a859645a11e735f7afa55037ac9f36b9eedc26f791f0311470ae8e2d91e6f",
+    "integrations/identity/client.py": "2ff82b95421f4baa51c835e9d8ecda0ce311bbb115c292d529316df5e4a6797a",
+    "integrations/identity/protocol.py": "367f6262e8e44bc574a9032cb77f1d59080dd1d6a3e48a2ddaaa41500d1d8f33",
+    "integrations/identity/client_tests.py": "c508f67a3368bd63084edbccbd6037ba76b253847e8c9a4dcd393cda8c0fd99a",
+    "tests/test_oidc_configuration.py": "8cf231d38a2f10a90ba4f166f1c20293bee50c48341d35ac607e12239da95c23",
+    "tests/test_oidc_http.py": "7dea87174a5315851f397f5e06fac4ac28e6ddaa738c5b42bab58fb6c02749a3",
+    "tests/test_oidc_transport.py": "ed5ee3b0815d33dba424a0cb4a0d69d87664ffb7c6fffe59c5f7a5998b91cbc8",
+    "bridge/migrations/0021_remove_federatedflowwindow_sb_federated_window_scope_and_more.py": "a8a993eb5e571364baff413760777507bf6ff58269e83891e2197f9b3bc9f179"
+  },
+  "source_binding_limit": "Scoped hashes captured after execution; no full-suite or entire-source before/after claim.",
+  "optional_library_test_methods_prepared": {
+    "protocol_tests.py": 13,
+    "client_tests.py": 6
+  },
+  "optional_library_methods_executed": 0,
+  "native_keycloak": "not_run",
+  "postgresql_identity_races": "three_prepared_none_run",
+  "browser_interaction": "not_run",
+  "machine_changes": "No dependency installation, service/listener launch, host trust, live database migration or network change. Only owned synthetic test folders created/removed."
+}

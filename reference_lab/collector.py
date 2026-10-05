@@ -7,9 +7,6 @@ An acknowledgement means accepted ingestion, not completed detection or Wazuh de
 import http.client
 import json
 import os
-import socket
-import ssl
-import threading
 import uuid
 from datetime import timedelta
 from pathlib import Path
@@ -20,6 +17,7 @@ from django.db.models import Q
 from django.utils import timezone
 
 from bridge.contract import canonical, digest, signature, validate_event
+from integrations.enterprise.https_deadline import BoundedHTTPSConnection, lab_context
 
 from .models import Outbox
 from .seed import require_isolated_database
@@ -42,40 +40,24 @@ class NativeTransport:
         certificate = os.environ.get("SB_REF_DELIVERY_CA", "")
         if not certificate or not Path(certificate).is_file():
             raise ImproperlyConfigured("Explicit reference collector CA trust is required.")
-        self.context = ssl.create_default_context(cafile=certificate)
+        self.context = lab_context(certificate)
 
     def __call__(self, app, body, headers):
         if app not in APP_KEYS or len(body) > MAX_EVENT_BYTES:
             raise DeliveryError("invalid_scope")
-        client = http.client.HTTPSConnection(
-            "127.0.0.1", 18841, timeout=TIMEOUT_SECONDS, context=self.context
-        )
-        timer = None
+        client = BoundedHTTPSConnection(18841, seconds=TIMEOUT_SECONDS, context=self.context)
         try:
+            client.start()
             client.connect()
-            channel = client.sock
-
-            def interrupt():
-                # A peer sending occasional bytes must not extend a delivery
-                # indefinitely. Retain this socket even if HTTP detaches it.
-                try:
-                    channel.shutdown(socket.SHUT_RDWR)
-                except OSError:
-                    pass
-
-            timer = threading.Timer(TIMEOUT_SECONDS, interrupt)
-            timer.daemon = True
-            timer.start()
             client.request("POST", f"/api/v1/events/{app}/", body=body, headers=headers)
             response = client.getresponse()
             raw = response.read(MAX_RESPONSE_BYTES + 1)
+            client.remaining()
             if len(raw) > MAX_RESPONSE_BYTES:
                 raise DeliveryError("response_too_large")
             return response.status, raw
         finally:
-            if timer is not None:
-                timer.cancel()
-            client.close()
+            client.finish()
 
 
 def claim(now):

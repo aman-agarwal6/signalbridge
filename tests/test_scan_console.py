@@ -262,7 +262,7 @@ class ScanConsoleTests(TestCase):
         for text in (
             "BetTail collector",
             "Recorded BetTail lab coverage",
-            "Collector enabled",
+            "Ingestion configured",
             "Database authorization",
             "Actual repository migrations",
             "Ruff + SARIF",

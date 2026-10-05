@@ -97,6 +97,9 @@ def main():
         "test",
         "tests.test_postgres_processing",
         "tests.test_postgres_cases",
+        # Identity callback/logout races and retest submission/reviewer races.
+        "tests.test_postgres_identity",
+        "tests.test_postgres_verification",
         "--settings",
         "config.in_network_postgres_settings",
         "--noinput",

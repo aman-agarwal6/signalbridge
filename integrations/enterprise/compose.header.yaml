@@ -1,0 +1,106 @@
+# Preparation only. A new reviewed host controller/approval is required to launch.
+name: sb-enterprise-reference
+services:
+  database:
+    image: ${SB_SOURCE_DB_IMAGE:?An already installed reviewed PostgreSQL image is required}
+    pull_policy: never
+    restart: "no"
+    user: postgres
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1
+    pids_limit: 128
+    shm_size: 64m
+    read_only: true
+    cgroup: private
+    ipc: private
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    labels:
+      org.signalbridge.enterprise.run: ${SB_SOURCE_RUN:?A unique source run identity is required}
+      org.signalbridge.enterprise.scope: reference-access-verification
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/bootstrap_password
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256 --auth-local=peer
+    command: [postgres, -c, shared_buffers=64MB, -c, max_connections=20, -c, log_statement=none]
+    secrets: [bootstrap_password, source_password, console_password]
+    volumes:
+      - reference_data:/var/lib/postgresql/data
+      - ${SB_SOURCE_RUN_DIR:?A verified private source run is required}/source/integrations/enterprise/init-reference.sh:/docker-entrypoint-initdb.d/10-reference.sh:ro
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m
+      - /var/run/postgresql:rw,noexec,nosuid,nodev,size=16m
+    networks: [reference]
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: "2"}
+    healthcheck:
+      test: [CMD, pg_isready, -h, "127.0.0.1", -U, postgres, -d, postgres]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  runner:
+    image: ${SB_SOURCE_PYTHON_IMAGE:?An already installed reviewed Python image is required}
+    pull_policy: never
+    restart: "no"
+    user: "10001:10001"
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1
+    pids_limit: 96
+    read_only: true
+    cgroup: private
+    ipc: private
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    labels:
+      org.signalbridge.enterprise.run: ${SB_SOURCE_RUN}
+      org.signalbridge.enterprise.scope: reference-access-verification
+    environment:
+      SB_SOURCE_PROOF: "1"
+      SB_HEADER_PROOF: "1"
+      SB_SOURCE_RUN: ${SB_SOURCE_RUN}
+      PYTHONDONTWRITEBYTECODE: "1"
+      PIP_CONFIG_FILE: /dev/null
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    working_dir: /workspace
+    command: [python, -B, -m, integrations.zap_enterprise.source_runner]
+    depends_on:
+      database: {condition: service_healthy}
+    secrets: [source_password, console_password, source_profile, lab_ca, source_certificate, source_private_key, console_certificate, console_private_key]
+    volumes:
+      - ${SB_SOURCE_RUN_DIR}/source:/workspace:ro
+      - ${SB_SOURCE_RUN_DIR}/wheels:/wheels:ro
+      - ${SB_SOURCE_RUN_DIR}/evidence:/evidence:rw
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m
+      - /opt/verification-deps:rw,exec,nosuid,nodev,size=128m,mode=0700,uid=10001,gid=10001
+    networks: [reference]
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: "2"}
+secrets:
+  bootstrap_password: {file: "${SB_SOURCE_RUN_DIR}/secrets/bootstrap-password"}
+  source_password: {file: "${SB_SOURCE_RUN_DIR}/secrets/source-password"}
+  console_password: {file: "${SB_SOURCE_RUN_DIR}/secrets/console-password"}
+  source_profile: {file: "${SB_SOURCE_RUN_DIR}/secrets/source-profile"}
+  lab_ca: {file: "${SB_SOURCE_RUN_DIR}/secrets/lab-ca.pem"}
+  source_certificate: {file: "${SB_SOURCE_RUN_DIR}/secrets/source-certificate.pem"}
+  source_private_key: {file: "${SB_SOURCE_RUN_DIR}/secrets/source-private-key.pem"}
+  console_certificate: {file: "${SB_SOURCE_RUN_DIR}/secrets/console-certificate.pem"}
+  console_private_key: {file: "${SB_SOURCE_RUN_DIR}/secrets/console-private-key.pem"}
+volumes:
+  reference_data:
+    name: sb-enterprise-reference-${SB_SOURCE_RUN}
+    labels:
+      org.signalbridge.enterprise.run: ${SB_SOURCE_RUN}
+      org.signalbridge.enterprise.scope: reference-access-verification
+networks:
+  reference:
+    name: sb-enterprise-reference-internal-${SB_SOURCE_RUN}
+    internal: true
+    labels:
+      org.signalbridge.enterprise.run: ${SB_SOURCE_RUN}
+      org.signalbridge.enterprise.scope: reference-access-verification

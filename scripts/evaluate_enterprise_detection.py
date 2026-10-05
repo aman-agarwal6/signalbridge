@@ -23,11 +23,27 @@ sys.path.insert(0, str(ROOT))
 from scripts.evaluate_detection import FROZEN_FILES, metrics, safe_directory
 from scripts.run_enterprise_lab import offline_guards, require_memory_database, verify_guards
 
-# A formatting correction after the first execution needs a fresh source identity.
-# The earlier round remains intact; this is a repeat of its selected scenarios,
-# not a new independent dataset or stronger statistical evidence.
-DATA = ROOT / "fixtures/enterprise_detection_evaluation/round-20261001-format2"
-FILES = (*FROZEN_FILES, "scripts/evaluate_enterprise_detection.py", "scripts/run_enterprise_lab.py")
+# Source-observation changes require a fresh implementation identity. Earlier
+# rounds remain intact; these are the same selected scenarios, not a new
+# independent dataset or stronger statistical evidence.
+DATA = ROOT / "fixtures/enterprise_detection_evaluation/round-20261005-shuffle-native"
+FILES = (
+    *FROZEN_FILES,
+    "scripts/evaluate_enterprise_detection.py",
+    "scripts/run_enterprise_lab.py",
+    "integrations/wazuh_enterprise/signalbridge_rules.xml",
+    "integrations/wazuh_enterprise/manager-lab.conf",
+    "integrations/wazuh_enterprise/local_internal_options.conf",
+    "integrations/wazuh_enterprise/collector-stage-plan.json",
+    "integrations/enterprise/compose.header.yaml",
+    "integrations/zap_enterprise/compose.scanner.yaml",
+    "scripts/enterprise_reference_verify.py",
+    "scripts/enterprise_zap_verify.py",
+    "scripts/enterprise_wazuh_verify.py",
+    "scripts/enterprise_wazuh_live_verify.py",
+    "scripts/enterprise_desktop_startup_verify.py",
+    "integrations/enterprise/desktop-startup-stage-plan.json",
+)
 MAX_REQUESTS = 600
 MAX_SECONDS = 180
 
@@ -36,9 +52,23 @@ def checksums():
     # Include all Django implementation and migration files, including newly
     # added ones; generated datasets and receipts are outside this source set.
     files = set(FILES)
-    for directory in ("bridge", "config"):
+    for directory in (
+        "bridge",
+        "config",
+        "reference_lab",
+        "integrations/enterprise",
+        "integrations/wazuh_enterprise",
+        "integrations/zap_enterprise",
+    ):
         for path in (ROOT / directory).rglob("*.py"):
             if path.is_symlink() or any(part == "__pycache__" for part in path.parts):
+                raise ValueError("Frozen implementation contains a redirected source file.")
+            files.add(path.relative_to(ROOT).as_posix())
+    # The copied-app adapter affects the source-observation boundary. Freeze its
+    # implementation too; this synthetic evaluation does not execute the copy.
+    for path in (ROOT / "integrations/bettail_enterprise").rglob("*"):
+        if path.is_file() and path.suffix in (".py", ".sql", ".mjs", ".ts"):
+            if path.is_symlink():
                 raise ValueError("Frozen implementation contains a redirected source file.")
             files.add(path.relative_to(ROOT).as_posix())
     return {
@@ -57,7 +87,7 @@ def freeze():
         "normalization": "CRLF to LF only",
         "independent_holdout": False,
     }
-    with (DATA / "freeze.json").open("x", encoding="utf8") as handle:
+    with (DATA / "freeze.json").open("x", encoding="utf8", newline="\n") as handle:
         handle.write(json.dumps(value, indent=2) + "\n")
 
 
@@ -136,7 +166,7 @@ def seal():
         "labels_sha256": hashlib.sha256(labels).hexdigest(),
         "authorship": "AI/builder-authored after source freeze, not blind or independent.",
     }
-    with (DATA / "declaration.json").open("x", encoding="utf8") as handle:
+    with (DATA / "declaration.json").open("x", encoding="utf8", newline="\n") as handle:
         handle.write(json.dumps(value, indent=2) + "\n")
 
 
@@ -359,7 +389,7 @@ def main():
         output = ROOT / "artifacts/local/enterprise-detection-evaluation"
         safe_directory(output)
         target = output / (uuid.uuid4().hex + ".json")
-        with target.open("x", encoding="utf8") as handle:
+        with target.open("x", encoding="utf8", newline="\n") as handle:
             handle.write(json.dumps(result, indent=2) + "\n")
         print(json.dumps({"metrics": result["metrics"], "workload": result["workload"]}, indent=2))
         print("Retained local execution: " + str(target))

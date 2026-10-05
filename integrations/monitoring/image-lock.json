@@ -1,0 +1,38 @@
+{
+  "status": "public_registry_metadata_verified_images_not_acquired_or_inspected_locally",
+  "verified_at": "2026-10-03",
+  "platform": "linux/amd64",
+  "compressed_layer_bytes": 632483374,
+  "images": {
+    "runner": {
+      "repository": "library/python",
+      "config_python_version": "3.14.7",
+      "reference": "python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d",
+      "config_digest": "sha256:ea130d51594b38acddd30f9f2542a38c37736000f1710fb8c1058b6c3e613f8c",
+      "compressed_layer_bytes": 43488674
+    },
+    "prometheus": {
+      "repository": "prom/prometheus",
+      "tag": "v3.13.4",
+      "reference": "prom/prometheus@sha256:2b23972d85f7f1350cde18fb61239d6fc8669a5b8fe162ab569373d3ad3463d2",
+      "config_digest": "sha256:18c7f43a2e30f36002a693de304c7407a30edd4c41d5311c8fb4093d5da25cc8",
+      "compressed_layer_bytes": 106733760
+    },
+    "grafana": {
+      "repository": "grafana/grafana",
+      "tag": "13.2.3",
+      "reference": "grafana/grafana@sha256:d84563330dc9d2fd2bc096d0fb96021b5319c75bf6ed555566709998e823dec4",
+      "config_digest": "sha256:fe28f8795cacedcab7a315750dc2ad6bb6f7b63ac720525cb76b15b6647a28c4",
+      "compressed_layer_bytes": 482260940
+    }
+  },
+  "primary_sources": [
+    "https://prometheus.io/download/",
+    "https://prometheus.io/docs/prometheus/latest/installation/",
+    "https://hub.docker.com/v2/repositories/prom/prometheus/tags/v3.13.4",
+    "https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/",
+    "https://hub.docker.com/v2/repositories/grafana/grafana/tags/13.2.3",
+    "https://registry-1.docker.io/v2/library/python/manifests/sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+  ],
+  "verification": "Manifest and config JSON bodies were SHA-256 checked through read-only official registry metadata requests. No image layers were acquired; no local Docker command was run. Expanded footprint and cache presence remain unverified."
+}

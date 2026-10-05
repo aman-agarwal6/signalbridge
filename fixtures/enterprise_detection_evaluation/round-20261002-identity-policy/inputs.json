@@ -1,0 +1,2625 @@
+[
+  {
+    "id": "Q01",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q02",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      },
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q03",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "granted"
+        }
+      },
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 4,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q04",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 86400,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q05",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 86401,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q06",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q07",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q08",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "policy_regression",
+        "context": null
+      },
+      {
+        "repeat_of": 0
+      }
+    ]
+  },
+  {
+    "id": "Q09",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "granted"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "owner",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q10",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "granted"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q11",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "granted"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q12",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q13",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q14",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "expenses",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q15",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "synthetic_demo",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q16",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "owner",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q17",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q18",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      },
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "granted"
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q19",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q20",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "granted"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q21",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "error",
+        "reason": "dependency_unavailable",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q22",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "not_visible",
+        "reason": "resource_unavailable",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q23",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 7,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "allowed",
+        "reason": "member",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q24",
+    "events": [
+      {
+        "schema_version": 2,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "membership.change",
+        "outcome": "allowed",
+        "reason": "membership_removed",
+        "context": null,
+        "membership": {
+          "subject": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "state": "removed"
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q25",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 400,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000001",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 800,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000002",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1200,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000003",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1600,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000004",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q26",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1600,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000004",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1200,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000003",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 800,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000002",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 400,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000001",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q27",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 150,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000001",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 300,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000002",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 450,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000003",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 600,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000004",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q28",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 450,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000001",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 900,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000002",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1350,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000003",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1800,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000004",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q29",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 450,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000001",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 900,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000002",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1350,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000003",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1801,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000004",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q30",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 400,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000001",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 800,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000002",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1200,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000003",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q31",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 400,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000001",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 800,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000002",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1200,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000003",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1600,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000004",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q32",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 400,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 800,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1200,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1600,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q33",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 10,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 410,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000001",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 810,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000002",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1210,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000003",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1610,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000004",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q34",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "private_record.read",
+        "outcome": "not_visible",
+        "reason": "resource_unavailable",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 400,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000001",
+        "operation": "private_record.read",
+        "outcome": "not_visible",
+        "reason": "resource_unavailable",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 800,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000002",
+        "operation": "private_record.read",
+        "outcome": "not_visible",
+        "reason": "resource_unavailable",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1200,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000003",
+        "operation": "private_record.read",
+        "outcome": "not_visible",
+        "reason": "resource_unavailable",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1600,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000004",
+        "operation": "private_record.read",
+        "outcome": "not_visible",
+        "reason": "resource_unavailable",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q35",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 3,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 4,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 5,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q36",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 5,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 4,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 3,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q37",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 600,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q38",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 601,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q39",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q40",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 3,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 4,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 5,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q41",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000001",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000002",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 3,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000003",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 4,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000004",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 5,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000005",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q42",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 3,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 4,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 5,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q43",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 10,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 11,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 12,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 13,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 14,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 15,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q44",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "expenses",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 3,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "expenses",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 4,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "expenses",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 5,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q45",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "synthetic_demo",
+        "environment": "test",
+        "offset_seconds": 3,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "synthetic_demo",
+        "environment": "test",
+        "offset_seconds": 4,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "synthetic_demo",
+        "environment": "test",
+        "offset_seconds": 5,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q46",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 3,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000000",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 4,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000001",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 5,
+        "actor": "0000000000000000000000000000000000000000000000000000000000000002",
+        "resource": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "repeat_of": 0
+      },
+      {
+        "repeat_of": 1
+      },
+      {
+        "repeat_of": 2
+      },
+      {
+        "repeat_of": 3
+      },
+      {
+        "repeat_of": 4
+      },
+      {
+        "repeat_of": 5
+      }
+    ]
+  },
+  {
+    "id": "Q47",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000001",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000002",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  },
+  {
+    "id": "Q48",
+    "events": [
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 0,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 1,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000001",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      },
+      {
+        "schema_version": 1,
+        "app_scope": "documents",
+        "source_scope": "instrumented_lab",
+        "environment": "test",
+        "offset_seconds": 2,
+        "actor": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resource": "0000000000000000000000000000000000000000000000000000000000000002",
+        "operation": "private_record.read",
+        "outcome": "denied",
+        "reason": "membership_required",
+        "context": null
+      }
+    ]
+  }
+]

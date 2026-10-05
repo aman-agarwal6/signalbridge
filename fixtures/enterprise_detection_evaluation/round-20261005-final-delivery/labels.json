@@ -1,0 +1,242 @@
+{
+  "Q01": {
+    "title": "Effective permission removed, private read succeeds",
+    "label": "suspicious",
+    "rationale": "Synthetic truth: removal withdraws all effective rights and known private content is returned. No source suspicious-read reason is supplied."
+  },
+  "Q02": {
+    "title": "Removal telemetry delivered after successful read",
+    "label": "suspicious",
+    "rationale": "Same failed boundary with delayed change delivery. Arrival order differs from occurrence order."
+  },
+  "Q03": {
+    "title": "Re-grant followed by a second removal",
+    "label": "suspicious",
+    "rationale": "The last effective state is removed before the private read."
+  },
+  "Q04": {
+    "title": "Exact 24-hour revocation horizon",
+    "label": "suspicious",
+    "rationale": "The account has no rights and reads the known private content exactly 24 hours later."
+  },
+  "Q05": {
+    "title": "Read beyond the 24-hour horizon",
+    "label": "suspicious",
+    "rationale": "Unauthorized read is still real in the oracle scenario, but beyond R3 support. Preserve the miss."
+  },
+  "Q06": {
+    "title": "Removal event missing from an unauthorized read",
+    "label": "suspicious",
+    "rationale": "Oracle knows permission was removed; the detector receives only an ordinary allowed read. Missing telemetry prevents inference."
+  },
+  "Q07": {
+    "title": "Source-labeled revocation read",
+    "label": "suspicious",
+    "rationale": "Synthetic source correctly reports returned content after removal. This measures R2 reliance on the source reason."
+  },
+  "Q08": {
+    "title": "Controlled boundary defect and duplicate delivery",
+    "label": "suspicious",
+    "rationale": "The fixed synthetic defect returns private content. Repeat carries the exact same event identity and must not create a second case."
+  },
+  "Q09": {
+    "title": "Owner remains authorized after group removal",
+    "label": "benign",
+    "rationale": "Owner rights preserve effective access. Source correctly asserts granted and records the owner read."
+  },
+  "Q10": {
+    "title": "Alternate direct grant remains valid",
+    "label": "benign",
+    "rationale": "Effective access remains granted despite group removal, so there is no revocation assertion."
+  },
+  "Q11": {
+    "title": "Re-grant occurs before read",
+    "label": "benign",
+    "rationale": "The last effective membership state grants access before the read."
+  },
+  "Q12": {
+    "title": "Removal affected a different subject",
+    "label": "benign",
+    "rationale": "Reader retains membership; operator identity is not the removed subject."
+  },
+  "Q13": {
+    "title": "Removal concerns a different resource",
+    "label": "benign",
+    "rationale": "The reader remains allowed for this other resource."
+  },
+  "Q14": {
+    "title": "Two business apps do not share revocation",
+    "label": "benign",
+    "rationale": "Documents removal cannot revoke the independent expense resource, even with identical test pseudonyms."
+  },
+  "Q15": {
+    "title": "Source provenance classes do not combine",
+    "label": "benign",
+    "rationale": "The read belongs to a different collector class and has independent legitimate rights."
+  },
+  "Q16": {
+    "title": "Removed member receives explicit denial",
+    "label": "benign",
+    "rationale": "The observed denial is the intended permission behavior; the owner control is a separate allowed account."
+  },
+  "Q17": {
+    "title": "Alternate grant not emitted to monitoring",
+    "label": "benign",
+    "rationale": "Oracle rights are legitimate, but missing re-grant telemetry is indistinguishable from a failed boundary. Keep the false alert."
+  },
+  "Q18": {
+    "title": "Late re-grant corrects an earlier alert",
+    "label": "benign",
+    "rationale": "Re-grant actually occurred before access but arrives last. Initial analyst workload and correction must both be retained."
+  },
+  "Q19": {
+    "title": "Simultaneous removal and successful read",
+    "label": "inconclusive",
+    "rationale": "Equal timestamps cannot establish which source operation committed first."
+  },
+  "Q20": {
+    "title": "Conflicting membership assertions at same instant",
+    "label": "inconclusive",
+    "rationale": "Tied grant and removal telemetry does not establish effective state."
+  },
+  "Q21": {
+    "title": "Service failure after removal",
+    "label": "inconclusive",
+    "rationale": "A dependency failure cannot verify denial or disclosure."
+  },
+  "Q22": {
+    "title": "Not-visible result after removal",
+    "label": "inconclusive",
+    "rationale": "An absent result lacks independent record existence and owner controls; it is not proof of denial."
+  },
+  "Q23": {
+    "title": "Legacy membership lacks subject relationship",
+    "label": "inconclusive",
+    "rationale": "v1 change lacks the affected subject and effective resource relation. No invented correlation is allowed."
+  },
+  "Q24": {
+    "title": "Permission change with missing read telemetry",
+    "label": "inconclusive",
+    "rationale": "No observed access result exists after removal. An empty queue is not a successful security test."
+  },
+  "Q25": {
+    "title": "Extended probing across five resources",
+    "label": "suspicious",
+    "rationale": "Oracle intent is unauthorized probing. Five denials span more than ten minutes, each separated enough to avoid R1."
+  },
+  "Q26": {
+    "title": "Slow probing arrives in reverse order",
+    "label": "suspicious",
+    "rationale": "Same scenario truth as extended probing, with inverted delivery order and late predecessors."
+  },
+  "Q27": {
+    "title": "Ten-minute minimum span boundary",
+    "label": "suspicious",
+    "rationale": "Extended denied probing meets the inclusive minimum-span condition. R1 overlap must remain visible."
+  },
+  "Q28": {
+    "title": "Thirty-minute inclusive slow horizon",
+    "label": "suspicious",
+    "rationale": "Five resource denials fit exactly the supported thirty-minute horizon."
+  },
+  "Q29": {
+    "title": "Extended probing beyond the slow horizon",
+    "label": "suspicious",
+    "rationale": "Oracle probing continues just beyond the supported window. Preserve any missed detection."
+  },
+  "Q30": {
+    "title": "Four-resource slow probing under threshold",
+    "label": "suspicious",
+    "rationale": "Suspicious oracle activity is below the declared five-resource threshold; narrower coverage is reported honestly."
+  },
+  "Q31": {
+    "title": "Legitimate employee follows five stale links",
+    "label": "benign",
+    "rationale": "The same denials and cadence as Q25 come from a legitimate workflow. These fields cannot distinguish intent; keep the false alert."
+  },
+  "Q32": {
+    "title": "Legitimate repeated denial of one resource",
+    "label": "benign",
+    "rationale": "A stale bookmark is retried by one account; it does not meet distinct-resource or actor thresholds."
+  },
+  "Q33": {
+    "title": "Approved test produces extended denials",
+    "label": "benign",
+    "rationale": "An approved internal test is indistinguishable from slow probing in current telemetry. Keep the resulting false alert."
+  },
+  "Q34": {
+    "title": "Unavailable responses over extended period",
+    "label": "inconclusive",
+    "rationale": "Records may be absent or inaccessible; there is no verified denial. R4 cannot treat not-visible as a denied read."
+  },
+  "Q35": {
+    "title": "Six denied reads by three accounts",
+    "label": "suspicious",
+    "rationale": "Oracle scenario is shared unauthorized pressure on one private record. Observations alone do not establish coordination."
+  },
+  "Q36": {
+    "title": "Distributed denials delivered in reverse order",
+    "label": "suspicious",
+    "rationale": "Same shared resource pressure with late arrivals; one logical case should collect all evidence."
+  },
+  "Q37": {
+    "title": "Ten-minute distributed horizon boundary",
+    "label": "suspicious",
+    "rationale": "Six reads involving three accounts fit exactly the inclusive ten-minute window."
+  },
+  "Q38": {
+    "title": "Distributed activity outside ten minutes",
+    "label": "suspicious",
+    "rationale": "Oracle probing persists outside the supported horizon. Keep the miss."
+  },
+  "Q39": {
+    "title": "Only one denial per account",
+    "label": "suspicious",
+    "rationale": "Three unauthorized probes share a resource but do not meet the six-request threshold."
+  },
+  "Q40": {
+    "title": "Six denials involve only two accounts",
+    "label": "suspicious",
+    "rationale": "Unauthorized pressure remains below the declared three-account threshold."
+  },
+  "Q41": {
+    "title": "Distributed probes target different resources",
+    "label": "suspicious",
+    "rationale": "Each account touches two resources, so neither R1 nor the same-resource R5 pattern establishes this activity."
+  },
+  "Q42": {
+    "title": "Three employees follow a shared stale link",
+    "label": "benign",
+    "rationale": "Legitimate users create exactly the same observations as Q35. Do not relabel this false alert as malicious."
+  },
+  "Q43": {
+    "title": "Legitimate group permission withdrawal",
+    "label": "benign",
+    "rationale": "All three users were legitimately removed and their repeated requests are correctly denied. R5 may flag review work; it is not disclosure."
+  },
+  "Q44": {
+    "title": "Distributed threshold splits across apps",
+    "label": "benign",
+    "rationale": "Each of two independent business applications receives only three denials from a benign test. Their counts must not merge."
+  },
+  "Q45": {
+    "title": "Distributed threshold splits across source classes",
+    "label": "benign",
+    "rationale": "Two distinct source classes each contain three benign test requests; no combined threshold is authorized."
+  },
+  "Q46": {
+    "title": "Lost replies retry distributed observations",
+    "label": "suspicious",
+    "rationale": "Six logical denied reads are retried individually. Twelve physical requests must remain six events and one R5 case."
+  },
+  "Q47": {
+    "title": "Fast unauthorized private-resource probing",
+    "label": "suspicious",
+    "rationale": "Three denied private resources by one actor satisfy the preserved R1 rule."
+  },
+  "Q48": {
+    "title": "Three legitimate stale private links",
+    "label": "benign",
+    "rationale": "A legitimate actor produces the same R1 observations as unauthorized probing. Preserve the false alert and analyst workload."
+  }
+}

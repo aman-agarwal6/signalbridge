@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "status": "passed_scoped_synthetic_measurement_checks_native_unfinished",
+  "executed_at": "2026-10-02T23:15:22.294857+00:00",
+  "scope": "Fixed workload declaration and closed event-ledger measurement only; no native run.",
+  "test_report": {
+    "executed_at": "2026-10-02T23:15:22.294857+00:00",
+    "runner": "Django DiscoverRunner",
+    "database": "django.db.backends.sqlite3",
+    "tests": 19,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 12.046,
+    "passed": true
+  },
+  "command": "python -B manage.py test tests.test_enterprise_reliability --settings config.verification_settings --verbosity 1",
+  "configuration": "Process-local nonfunctional SB_SECRET_KEY; existing Python environment reused without installation. No database setup was used by these SimpleTestCase methods.",
+  "profile_sha256": "f03078968e733a401b4e687aa34dfb7bcc5b238fede6b1080651962a96f6cd41",
+  "declaration": {
+    "profile": "enterprise-reliability-v1",
+    "status": "proposed_native_launch_unimplemented_and_unapproved",
+    "duration_ms": 86400000,
+    "maximum_final_drain_ms": 600000,
+    "applications": [
+      "documents",
+      "expenses"
+    ],
+    "normal_interval_per_app_ms": 4000,
+    "normal_app_stagger_ms": 2000,
+    "burst_starts_ms": [
+      3600000,
+      14400000,
+      25200000,
+      36000000,
+      46800000,
+      57600000,
+      68400000,
+      79200000
+    ],
+    "burst_duration_ms": 60000,
+    "burst_total_events_per_second": 10,
+    "burst_semantics": "replace_normal_cadence",
+    "expected_events": 47760,
+    "expected_events_per_app": 23880,
+    "maximum_generation_lateness_ms": 250,
+    "ingestion_p95_strictly_below_ms": 500,
+    "ingestion_population": "first_successful_acknowledgement_per_logical_event",
+    "processing_p95_strictly_below_ms": 5000,
+    "percentile": "nearest_rank",
+    "latency_exclusion_basis": "sample_start_in_fixed_interruption_or_recovery_window",
+    "interruptions": [
+      {
+        "component": "workers",
+        "start_ms": 7200000,
+        "end_ms": 7320000,
+        "recover_by_ms": 7620000
+      },
+      {
+        "component": "collector",
+        "start_ms": 18000000,
+        "end_ms": 18090000,
+        "recover_by_ms": 18390000
+      },
+      {
+        "component": "source_delivery",
+        "start_ms": 28800000,
+        "end_ms": 28980000,
+        "recover_by_ms": 29280000
+      },
+      {
+        "component": "collector_rotation",
+        "start_ms": 43200000,
+        "end_ms": 43260000,
+        "recover_by_ms": 43560000
+      },
+      {
+        "component": "wazuh_connector",
+        "start_ms": 61200000,
+        "end_ms": 61500000,
+        "recover_by_ms": 61800000
+      }
+    ],
+    "recovery_requirement": "every_source_event_created_before_end_reaches_processing_and_tool_by_recover_by",
+    "required_additional_evidence": [
+      "Reviewed launch profile, capacity/headroom checks and independent runtime watchdog.",
+      "Native source HTTP observations, exact outbox/database/tool snapshots and artifact hashes.",
+      "Measured monotonic 24-hour span, clock alignment, actual interruptions and recoveries.",
+      "Two active worker identities and physical executions, including rolled-back attempts.",
+      "Exact case/task identity reconciliation, idempotency and lost-reply evidence.",
+      "Separate PostgreSQL/delivery-state restoration and a working restored application.",
+      "Main and independent shutdown evidence, fault reset and final capacity readings."
+    ],
+    "limits": "Event-ledger measurements alone cannot pass the enterprise reliability gate."
+  },
+  "file_hashes_after_execution": {
+    "integrations/enterprise/reliability.py": "ba74a9042bd102ea283a22695af13c380479bc1ff5a4bb46c12feb94429f9158",
+    "scripts/enterprise_reliability.py": "a2f3a12f79bbdb6900c0b796ebc11686c2e250deef610125b2106b1765bb4d1b",
+    "tests/test_enterprise_reliability.py": "e63b3b87f03b8a3be75035fce5a4d6d14175627b15062984fb7d98b8ace49e8e"
+  },
+  "hash_limit": "Scoped after-execution identities, not a whole-tree before/after execution attestation.",
+  "other_checks": [
+    "Focused Ruff lint and formatting passed.",
+    "Declaration CLI executed without starting services.",
+    "Publication scan passed for 762 candidate files before this receipt/documentation update."
+  ],
+  "initial_failure": {
+    "phase": "test_runner_configuration",
+    "result": "No tests started because the required nonfunctional SB_SECRET_KEY was not provided. The corrected process-local invocation passed."
+  },
+  "learning_checkpoint": "Explain why repeated fast duplicate replies must not improve the measured latency of slow original logical events, and why matching event totals cannot prove that a test ran for 24 hours.",
+  "limitations": [
+    "All execution ledgers in these tests are synthetic and accelerated. No wall-clock reliability, source HTTP, PostgreSQL, Wazuh or other native tool was exercised.",
+    "No services, listeners, VM, Docker, dependencies, account permissions or machine settings were changed.",
+    "Native pacing, source instrumentation, clocks, interruption execution, worker physical-attempt evidence, case/task reconciliation, database/delivery restoration and both shutdown paths are unfinished.",
+    "No new launch approval is implied. The pending source retry and SSO dependency questions remain unanswered.",
+    "The maintained PDF and full offline receipt retain their older revision; neither was regenerated or reassigned to this code."
+  ]
+}

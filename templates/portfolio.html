@@ -1,114 +1,748 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
 <title>SignalBridge · Security monitoring, with evidence</title>
 <style>
-:root{color-scheme:dark;--ink:#f1f5f4;--muted:#b7c6c5;--line:#334449;--green:#9ce5ca;--soft:#193a34;--amber:#ffce83}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:#0e191e;color:var(--ink);font:17px/1.7 "Segoe UI",system-ui,sans-serif}main{max-width:1240px;margin:auto;padding:0 44px 42px}p{color:var(--muted);margin:0 0 18px;max-width:76ch}a{color:var(--green);text-underline-offset:5px}a:hover{color:#d5ffef}a:focus-visible,summary:focus-visible{outline:3px solid #ffce83;outline-offset:5px}h1,h2,h3,h4{line-height:1.2;letter-spacing:-.035em;margin:0 0 16px;color:inherit}h1{font-size:clamp(36px,4.7vw,62px);font-weight:650;max-width:790px}h2{font-size:30px}h3{font-size:22px}h4{font-size:18px;letter-spacing:-.02em}strong{font-weight:650}.eyebrow{font-size:12px;letter-spacing:.13em;line-height:1.5;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:12px}.small,small{font-size:14px;color:var(--muted);line-height:1.6}.badge{display:inline-block;font-size:12px;font-weight:650;letter-spacing:.01em;padding:6px 11px;border:1px solid #416057;background:#17352e;color:#b6edda;border-radius:5px;white-space:normal}.warning{color:#ffda9f;background:#352b1d;border-color:#725b35}.muted-badge{color:#d0dcdf;background:#27383f;border-color:#465961}
-header{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:25px 0;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;font-size:23px;font-weight:750;letter-spacing:-.8px}.mark{display:grid;place-items:center;width:38px;height:38px;border:1px solid #85d7bb;border-radius:10px;color:#b6f8df;font-size:16px}.top-links{display:flex;flex-wrap:wrap;gap:26px;font-size:14px}.top-links a{color:#c6d8d9;text-decoration:none}.top-links a:hover{text-decoration:underline}.skip{position:absolute;left:20px;top:-100px;padding:12px;background:#b4f7dc;color:#10281f;z-index:4}.skip:focus{top:12px}
-.hero{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(250px,.8fr);align-items:center;gap:60px;padding:64px 0 48px}.hero h1 em{font-style:normal;color:#a5e4cb}.hero p{font-size:19px;line-height:1.65;max-width:57ch}.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin:28px 0 0}.primary-link{background:#afe9ce;color:#142b24;border:1px solid #afe9ce;border-radius:6px;padding:12px 19px;text-decoration:none;font-size:15px;font-weight:700}.primary-link:hover{background:#d2f9e6;color:#142b24}.secondary-link{font-size:15px;padding:10px 0}.hero-note{font-size:13px!important;margin:16px 0 0!important;color:#9badb1!important}.boundary-card{border:1px solid #3b5057;border-radius:14px;padding:25px;background:linear-gradient(150deg,#243a40,#14262d);box-shadow:0 20px 60px #0002}.boundary-card .eyebrow{font-size:11px;color:#bccfcd}.boundary-steps{list-style:none;padding:0;margin:22px 0 0}.boundary-steps li{display:grid;grid-template-columns:34px 1fr;gap:12px;position:relative;padding-bottom:23px}.boundary-steps li:last-child{padding-bottom:0}.boundary-steps li:not(:last-child):before{content:"";position:absolute;left:15px;top:34px;bottom:2px;border-left:1px solid #4f706b}.boundary-steps b{border:1px solid #6c9185;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;font-size:12px;color:#bdf4d9}.boundary-steps strong{font-size:15px;display:block}.boundary-steps small{display:block;font-size:13px;line-height:1.5;color:#aec4c4}.boundary-card .boundary-end{padding-top:20px;border-top:1px solid #426058;font-size:13px;color:#bfe4d7;margin:22px 0 0}
-.demo{border:1px solid #4b6162;border-radius:16px;overflow:hidden;background:#19292f;margin:0 0 64px;scroll-margin-top:20px}.demo-head{padding:29px 32px 22px;border-bottom:1px solid #40545a}.section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:18px}.section-head h2{margin:0}.demo-head p{font-size:16px;margin:0;max-width:85ch}.demo fieldset{border:0;margin:0;padding:0;min-width:0}.demo legend{font-size:13px;color:#c9dadb;padding:21px 30px 17px}.case-switcher{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}.case-choice{position:absolute;width:1px;height:1px;opacity:0}.case-label{display:block;cursor:pointer;padding:19px 23px 21px;background:#203239;border-right:1px solid #40545a;border-top:1px solid #40545a;border-bottom:4px solid transparent;min-width:0}.case-label:last-of-type{border-right:0}.case-label strong{display:block;font-size:18px;line-height:1.35;color:#f2f5f3;letter-spacing:-.02em}.case-label span{display:block;margin:6px 0 0;font-size:14px;line-height:1.5;color:#b6cbce}.case-label .case-number{display:block;margin:0 0 10px;font-size:11px;letter-spacing:.1em;color:#98c6b8;font-weight:700}.case-label:hover{background:#29434a}.case-choice:checked+.case-label{background:#dcefe5;border-bottom-color:#398667}.case-choice:checked+.case-label strong{color:#17372a}.case-choice:checked+.case-label span{color:#386553}.case-choice:focus-visible+.case-label{outline:3px solid #ffb841;outline-offset:-6px}.case-panels{grid-column:1/-1;min-width:0;background:#f4f6f2;color:#1e3434;padding:34px}.case-panel{display:none}#case-access:checked~.case-panels #wazuh-run,#case-service:checked~.case-panels #zap-runs,#case-delivery:checked~.case-panels #engineering-run{display:block}.case-panels p{color:#495e5d}.case-panels .eyebrow{color:#326c55}.case-lead{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(230px,1fr);gap:34px;padding:0 0 27px}.case-lead h3{font-size:30px;max-width:30ch}.case-lead p{font-size:16px;margin:0}.case-question{background:#e8ece2;border-left:3px solid #78937f;padding:17px 20px;align-self:start}.case-question strong{display:block;text-transform:uppercase;font-size:11px;letter-spacing:.13em;color:#355c48;margin-bottom:9px}.case-question p{font-size:15px;color:#30483e}.evidence-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:26px}.evidence-box{min-width:0;border:1px solid #c9d5cd;background:#fff;padding:25px;border-radius:10px}.evidence-box h4{font-size:17px;border-bottom:1px solid #dce3dc;padding-bottom:16px;margin-bottom:7px}.evidence-list{list-style:none;padding:0;margin:0}.evidence-list li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;border-bottom:1px solid #e0e7e0;padding:16px 0;font-size:15px;color:#52635c;line-height:1.65}.evidence-list li:last-child{border:0;padding-bottom:0}.evidence-list b{font:600 12px/1.7 Consolas,monospace;color:#337454;padding-top:3px}.evidence-list strong{display:block;color:#243e32;font-size:16px;margin-bottom:3px}.evidence-box p{font-size:16px;color:#44574d}.evidence-box details{border-color:#d7e0d8;padding:0;margin:0}.evidence-box summary{padding:18px 0;color:#264c38;font-size:16px;line-height:1.5}.case-panels a:focus-visible,.case-panels summary:focus-visible{outline-color:#236f51}.details-body{padding:13px 0 2px}.details-body p:last-child{margin-bottom:9px}.evidence-box .details-body{padding:0 0 15px}.resolution{background:#e3eee5;border:1px solid #b8cdbe;border-radius:8px;padding:0 21px;margin-top:24px}.resolution summary{color:#244e38;padding:18px 0;font-size:16px}.resolution p,.resolution ul{font-size:16px;color:#3d5547}.resolution li{margin:9px 0}.case-limit{font-size:14px!important;border-top:1px solid #ced9cf;padding-top:20px;margin:25px 0 0!important;max-width:none}.demo-footer{font-size:13px;line-height:1.65;padding:18px 30px;color:#b7cbce;border-top:1px solid #40545a}
-.proof-intro{padding-top:9px;scroll-margin-top:20px}.proof-intro h2{font-size:38px}.proof-intro p{font-size:18px}.notice{border-left:3px solid #83c8ab;background:#1b302e;padding:18px 23px;border-radius:0 7px 7px 0;margin:24px 0}.notice p{font-size:15px;margin:5px 0 0}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:28px 0 36px}.metric,.panel{min-width:0;border:1px solid var(--line);background:#17272d;padding:27px;border-radius:12px}.metric strong{display:block;font-size:47px;letter-spacing:-.05em;font-weight:650;margin:10px 0}.metric small{display:block;max-width:30ch}.section{margin:38px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.dark{background:#1b342f;border:1px solid #385c4d;padding:29px;border-radius:12px}.dark p{color:#c5d9d0}.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;list-style:none;padding:0;margin:26px 0 0}.flow span{color:#a4dac1;font-weight:700;font-size:13px}.flow h3{font-size:18px;margin:8px 0}.flow p{font-size:15px}.numbers{display:flex;flex-wrap:wrap;gap:32px;margin:25px 0}.numbers strong{display:block;font-size:36px;line-height:1.3;letter-spacing:-.04em}.numbers small{display:block;font-size:12px;max-width:26ch;margin-top:5px}.bar{height:7px;background:#35474a;border-radius:9px;overflow:hidden;margin:18px 0}.bar span{display:block;height:100%;background:#96d9b9}.bar.baseline span{background:#dabb7e}.table-wrap{overflow:auto;max-width:100%;min-width:0}table{border-collapse:collapse;width:100%;text-align:left;font-size:15px}th,td{padding:15px 13px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;letter-spacing:.045em;color:#bed3d3}tr:last-child td{border:0}.check{color:#aceacc;font-weight:650}.miss{color:#ffce83;font-weight:650}details{border-top:1px solid var(--line);margin-top:19px;padding-top:17px}summary{cursor:pointer;font-weight:650;font-size:16px;line-height:1.6}summary::marker{color:#72a18f}code{font:13px/1.65 Consolas,monospace;overflow-wrap:anywhere}.identity{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px 20px;font-size:14px;margin:24px 0}.identity dt{color:#a8bfbe}.identity dd{margin:0;min-width:0;overflow-wrap:anywhere}.limits{padding-left:20px;font-size:15px;color:#b7cbc9;margin:0}.limits li{margin:12px 0}.coverage{padding:17px 20px;background:#203631;border-radius:7px;font-size:15px;color:#cadbd2;margin-top:20px}.role-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:23px;margin-top:23px}.role-grid h3{font-size:19px}.role-grid p{font-size:15px;margin-bottom:0}.report-section{padding:23px 28px;background:#16272d;border:1px solid var(--line);border-radius:12px;margin:22px 0}.report-section>summary{font-size:21px;font-weight:600}.report-section .section{margin:26px 0}.links{display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:24px;font-size:15px}.footer{border-top:1px solid var(--line);padding-top:26px;margin-top:40px;font-size:13px;line-height:1.7;color:#99aeae}.scope-strip{display:flex;flex-wrap:wrap;gap:14px 30px;margin:0 0 29px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:#bed2cb}.scope-strip strong{color:#d9ebe3}
-@media(max-width:1000px){.hero{gap:30px;grid-template-columns:minmax(0,1.4fr) minmax(240px,1fr)}.hero h1{font-size:44px}.top-links{gap:18px}.case-lead{grid-template-columns:1fr}.case-question{max-width:none}.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){body{font-size:16px}main{padding:0 18px 30px}header{padding:22px 0;align-items:flex-start;flex-direction:column;gap:18px}.top-links{gap:12px 23px;font-size:13px}.hero{grid-template-columns:1fr;gap:28px;padding:35px 0}.hero h1{font-size:40px}.hero p{font-size:17px}.boundary-card{padding:22px}.boundary-steps{margin-top:18px}.hero-actions{gap:10px 20px;margin-top:23px}.demo{margin-bottom:42px;border-radius:12px}.demo-head{padding:24px 21px}.demo-head h2{font-size:26px}.section-head{flex-direction:column;gap:12px}.demo legend{padding:16px 20px}.case-switcher{grid-template-columns:1fr}.case-label{border-right:0;padding:16px 21px;border-bottom-width:3px}.case-label .case-number{font-size:10px;margin-bottom:6px}.case-label strong{font-size:17px}.case-label span{font-size:14px}.case-panels{padding:23px 17px}.case-lead h3{font-size:26px}.case-lead{gap:20px;padding-bottom:23px}.case-question{padding:15px 17px}.evidence-grid,.metrics,.grid,.role-grid{grid-template-columns:1fr}.evidence-grid{gap:17px}.evidence-box{padding:19px 17px}.evidence-list li{grid-template-columns:37px minmax(0,1fr);gap:8px}.demo-footer{padding:17px 20px}.proof-intro h2{font-size:31px}.metric,.panel{padding:23px}.metric strong{font-size:42px}.metric small{max-width:none}.identity{grid-template-columns:1fr;gap:4px}.identity dd{margin-bottom:12px}.report-section{padding:20px}.report-section>summary{font-size:19px}.scope-strip{gap:10px 24px}.flow{grid-template-columns:1fr}.numbers{gap:22px}.resolution{padding:0 17px}td,th{padding:13px 11px}.footer{font-size:12px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media print{:root{color-scheme:light;--ink:#17342a;--muted:#435a50;--line:#c8d7cf;--green:#255c42;--soft:#e3eee7}body{background:white;color:#17342a}main{max-width:none;padding:0}.skip,.top-links,.hero-actions,.case-choice,.case-label,.boundary-card{display:none}.hero{display:block;padding:22px 0}h1{font-size:34px}.hero h1 em,.eyebrow,a{color:#255c42}.hero p,p,.small,small,.limits,.footer{color:#435a50}.demo,.demo-head,.demo-footer,.panel,.metric,.dark,.coverage,.notice,.case-panels,.evidence-box,.resolution,.report-section{background:white;color:#17342a;box-shadow:none}.case-switcher,.case-lead,.evidence-grid,.grid,.role-grid{display:block}.case-panel{display:block!important;break-before:page}.case-lead{padding-top:20px}.case-question,.evidence-box{margin:15px 0}.metric,.panel{break-inside:avoid}.metrics{gap:10px}.metric strong{font-size:30px}.case-limit{color:#435a50!important}.badge,.warning{color:#17342a;background:#eef4ee}.scope-strip,.scope-strip strong,.identity dt{color:#435a50}.demo legend{color:#435a50}}
-
-.hero-number{font-size:76px;line-height:1.05;font-weight:600;letter-spacing:-.06em;color:#c1efd6;margin:18px 0}.hero-number span{font-size:35px;color:#90b9ae;letter-spacing:-.03em}.hero-sub{font-size:16px!important;color:#c7dcda!important}.reconcile-line{display:flex;gap:25px;font-size:13px;color:#abcac0}.reconcile-line strong{font-size:20px;margin-left:8px;color:#d0f5e3}.pipeline{padding:0;margin:6px 0 26px;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#bfd1c5;border:1px solid #bfd1c5;border-radius:9px;overflow:hidden}.pipeline li{padding:18px;background:#e7eee6}.pipeline b{font:600 11px Consolas,monospace;color:#3e7558;display:block;margin-bottom:9px}.pipeline strong{font-size:15px;display:block}.pipeline span{font-size:13px;line-height:1.5;display:block;color:#526558;margin-top:7px}.rule-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin:27px 0}.rule-strip>div{border-bottom:2px solid #bdd3c4;padding:0 0 15px}.rule-strip strong{font-size:29px;font-weight:600;display:block;color:#254d37}.rule-strip span,.rule-strip small{display:block;font-size:13px;line-height:1.5;color:#3e5548}.rule-strip small{font-size:12px;color:#65796c;margin-top:5px}.record-intro{margin-top:33px!important}.light-muted{color:#5b7063!important}.case-panels .links a,.case-panels .evidence-box a{color:#216741}.case-panels .links{margin:20px 0}.case-panels .identity dt{color:#576d60}.toolmark{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:7px;font-size:17px;margin-right:7px;border:1px solid}.wazuh-mark{color:#175b90;background:#e1edf9;border-color:#a4c4e0}.zap-mark{color:#766112;background:#f8efcc;border-color:#d2c491}.record-list:focus-visible{outline:3px solid #397451;outline-offset:4px}.record-list{max-height:580px;overflow-y:auto!important;scrollbar-gutter:stable;margin-top:20px;border:1px solid #becdc2;border-radius:9px;overflow:hidden;background:white}.record-row{margin:0;padding:0;border-top:1px solid #d4dfd6}.record-row:first-child{border-top:0}.record-row summary{padding:17px 18px;display:grid;grid-template-columns:77px minmax(0,1fr) 120px;align-items:center;gap:15px;position:relative;font-size:15px;list-style:none}.record-row summary:after{content:"+";font-size:20px;color:#397451;position:absolute;right:17px;top:20px}.record-row[open]>summary:after{content:"−"}.record-row summary:hover{background:#edf4ed}.record-row[open]>summary{background:#e5f0e7}.record-key{font:600 12px Consolas,monospace;color:#416551}.record-result{color:#254532}.record-result small{display:block;font-size:12px;color:#617268;margin-top:3px;font-weight:400}.record-rule{font-size:12px;color:#405a49;padding-right:25px;text-align:right}.record-body{padding:23px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;border-top:1px solid #d4dfd6}.record-body p{font-size:15px;color:#45604d}.record-body h4{font-size:15px}.received-stamp{color:#25613c!important;font-weight:650}.packet{font-size:14px;margin:16px 0}.packet dt{font-size:11px;color:#687c6d;text-transform:uppercase;letter-spacing:.05em;margin:14px 0 3px}.packet dd{margin:0;color:#284735;overflow-wrap:anywhere}.packet code{font-size:12px}.run-number{font-size:42px;line-height:1.2;color:#2e593e;margin:25px 0;letter-spacing:-.03em}.run-number span{font-size:14px;letter-spacing:0;color:#5d6d61}.import-proof,.ownership{padding:23px;background:#e3ede4;border:1px solid #bfd2c3;border-radius:9px;margin-top:26px;color:#284a35}.import-proof p,.ownership p{margin-top:10px;margin-bottom:0;font-size:16px;color:#425e4b}.build-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.build-grid .evidence-box h4{font-size:19px;line-height:1.35}.build-grid a{font-size:14px}
-@media(max-width:760px){.hero-number{font-size:64px}.pipeline,.rule-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.pipeline li{padding:15px}.record-row summary{grid-template-columns:1fr;gap:4px;padding:15px 38px 15px 16px}.record-rule{text-align:left;padding:0}.record-body,.build-grid{grid-template-columns:1fr;gap:20px}.record-body{padding:18px}.rule-strip{gap:18px}.rule-strip strong{font-size:25px}.case-panels{padding:24px 17px}.ownership,.import-proof{padding:20px}.record-intro{font-size:16px}.packet dd{font-size:14px}.pipeline strong{font-size:14px}.pipeline span{font-size:12px}}
-@media print{.record-list{max-height:none;overflow:visible!important}.record-body{display:block}.record-row{break-inside:avoid}.hero-number,.run-number{color:#274d36}.record-list{border-color:#cad4cb}.record-row summary{display:block}.record-row summary:after{display:none}.pipeline,.rule-strip{break-inside:avoid}.record-rule{text-align:left}}
-.predicate-inspector{margin:30px 0;border:1px solid #bdd0c1;border-radius:9px;padding:22px;background:#eef4ed}.predicate-inspector h4{font-size:21px}.predicate-inspector p{color:#435f4b;font-size:15px}.predicate-example{padding:15px 0 0;margin:14px 0;border-color:#c8d9cd}.predicate-example summary{font-size:15px}.predicate-example .packet{margin:12px 0}.predicate-table{font-size:13px;margin:16px 0}.predicate-table th{color:#476451}.predicate-table td,.predicate-table th{padding:10px 8px;border-color:#cfddd2}.predicate-table code{font-size:11px}.predicate-table .matched{color:#226039;font-weight:650}.predicate-table .unmatched{color:#84430e;font-weight:650}.record-row:target{outline:3px solid #397451;outline-offset:-3px}.engineering-ref{font-size:13px!important;overflow-wrap:anywhere}.engineering-ref code{font-size:12px}.control-label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;color:#496d55}.auth-story{background:#edf4ed;color:#254532;padding:30px;border:1px solid #b9cec0;border-radius:12px;margin:40px 0}.auth-story p{color:#49614f}.auth-story a{color:#226642}.auth-story .eyebrow{color:#427455}.auth-story .identity dt{color:#526f5b}.auth-story h2{font-size:31px}.auth-stages{counter-reset:auth;list-style:none;margin:25px 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.auth-stage{counter-increment:auth;min-width:0;padding:21px;background:white;border:1px solid #c7d7ca;border-radius:9px}.auth-stage:before{content:counter(auth,decimal-leading-zero);display:block;color:#69927a;font-size:25px;font-weight:650;margin-bottom:12px}.auth-stage h3{font-size:18px}.auth-stage p{font-size:14px}.auth-checks{padding:0;list-style:none}.auth-checks li{padding:9px 0;border-top:1px solid #dce5dd;font-size:13px}.auth-checks strong{display:block}.auth-checks span{display:block;font-size:12px;color:#53705c}.auth-counts{display:flex;flex-wrap:wrap;gap:12px 26px;margin:18px 0;font-size:14px}.auth-counts strong{font-size:23px}.auth-story details{border-color:#c4d5c8}.auth-story small{color:#526e5b}
-@media(max-width:900px){.auth-stages{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){.auth-stages{grid-template-columns:1fr}.auth-story{padding:24px 18px}.auth-story h2{font-size:26px}.predicate-inspector{padding:18px 14px}.predicate-table{min-width:470px}.auth-stage{padding:18px}}
-@media print{.auth-stage{break-inside:avoid}.auth-story{background:white}.predicate-inspector{background:white}.auth-stages{display:block}.auth-stage{margin:15px 0}.predicate-example{break-inside:avoid}}
+{{ portfolio_css|safe }}
 </style>
 </head>
-<body><a class="skip" href="#investigate">Skip to the integration evidence</a><main>
-<header><div class="brand"><span class="mark" aria-hidden="true">sb</span>SignalBridge</div><nav class="top-links" aria-label="Page sections"><a href="#investigate">Integrations</a>{% if story.authorization %}<a href="#authorization-proof">Access checks</a>{% endif %}<a href="#measured-evidence">Test results</a><a href="#engineering">Design</a></nav></header>
+<body>
+<a class="skip" href="#investigate">Skip to the integration evidence</a>
+<main>
+<header>
+<div class="brand">
+<span class="mark" aria-hidden="true">sb</span>SignalBridge</div>
+<nav class="top-links" aria-label="Page sections">
+<a href="#investigate">Integrations</a>{% if story.authorization %}<a href="#authorization-proof">Access checks</a>{% endif %}<a href="#measured-evidence">Test results</a>
+<a href="#engineering">Design</a>
+</nav>
+</header>
 <section class="hero" aria-labelledby="page-title">
-  <div><div class="eyebrow">SignalBridge / Evidence viewer</div>
-    <h1 id="page-title">Integration results<br><em>from the SignalBridge lab</em></h1>
-    <p>Recorded runs of SignalBridge with Wazuh and OWASP ZAP. Open any record to see what was sent, which rule matched and what the tool recorded.</p>
-    <div class="hero-actions"><a class="primary-link" href="#investigate">View the integration runs <span aria-hidden="true">↗</span></a><a class="secondary-link" href="#engineering">What was built</a></div>
-    <p class="hero-note">Built with AI assistance · Recorded lab runs with local data</p>
+  <div>
+<div class="eyebrow">SignalBridge / Evidence viewer</div>
+    <h1 id="page-title">Security decisions.<br>
+<em>Evidence you can trace.</em>
+</h1>
+    <p>SignalBridge connects application access to security investigations. Explore real tool runs, compare source events with alerts, and inspect the evidence behind a finding.</p>
+    <div class="hero-actions">
+<a class="primary-link" href="#investigate">View the integration runs <span aria-hidden="true">↗</span>
+</a>
+<a class="secondary-link" href="#engineering">What was built</a>
+</div>
+    <p class="hero-note">Aman Agarwal · AI-assisted engineering · Recorded, isolated lab executions</p>
   </div>
-  <aside class="boundary-card" aria-label="Recorded Wazuh run"><div class="eyebrow">Wazuh / Recorded collection result</div>
-  {% if integrations %}<div class="hero-number">{{ integrations.wazuh.counts.received }}<span> / {{ integrations.wazuh.counts.inputs }}</span></div><h3>Records delivered.</h3>
+  <aside class="boundary-card" aria-label="Recorded Wazuh run">
+<div class="eyebrow">Wazuh / Historical collection result</div>
+  {% if integrations %}<div class="hero-number">{{ integrations.wazuh.counts.received }}<span> / {{ integrations.wazuh.counts.inputs }}</span>
+</div>
+<p class="boundary-title">Records delivered.</p>
     <p class="hero-sub">{{ integrations.wazuh.counts.alerts }} custom alerts · {{ integrations.wazuh.counts.nonalerts }} records without custom alerts.</p>
-    <div class="reconcile-line"><span>Missing <strong>{{ integrations.wazuh.counts.missing }}</strong></span><span>Duplicates <strong>{{ integrations.wazuh.counts.duplicates }}</strong></span></div>
+    <div class="reconcile-line">
+<span>Missing <strong>{{ integrations.wazuh.counts.missing }}</strong>
+</span>
+<span>Duplicates <strong>{{ integrations.wazuh.counts.duplicates }}</strong>
+</span>
+</div>
     <p class="boundary-end">Wazuh {{ integrations.wazuh.version }} · {{ integrations.wazuh.duration_seconds }} seconds<br>Historical replay. Services stopped afterward.</p>
-  {% else %}<h3>No integration snapshot selected.</h3><p class="hero-sub">The software verification below remains a separate scope.</p>{% endif %}</aside>
+  {% else %}<h3>No integration snapshot selected.</h3>
+<p class="hero-sub">The software verification below remains a separate scope.</p>{% endif %}</aside>
 </section>
-<div class="scope-strip"><span><strong>Application metadata → delivery ledger → Wazuh → reviewed receipt</strong></span><span>No production telemetry or live service connection</span></div>
+<section class="current-evidence" aria-labelledby="current-evidence-title">
+<div>
+<p class="eyebrow">Latest recorded application proof · October 2</p>
+<h2 id="current-evidence-title">Permission removed. Private access observed. One investigation.</h2>
+<p>Follow the genuine reference-app run: 23 processed events, a detected document-access defect and verified restoration controls. The later Wazuh collection failure is retained alongside it.</p>
+</div>
+<a href="access-assurance.html">Follow the access evidence &#8594;</a>
+</section>
+<div class="scope-strip">
+<span>
+<strong>Application metadata → delivery ledger → Wazuh → reviewed receipt</strong>
+</span>
+<span>No production telemetry or live service connection</span>
+</div>
 
 {% if integrations %}
 <section class="demo" id="investigate" aria-labelledby="demo-title">
-  <div class="demo-head"><div class="section-head"><div><div class="eyebrow">Integration runs</div><h2 id="demo-title">Recorded runs from Wazuh and ZAP.</h2></div><span class="badge">Recorded lab execution</span></div><p>These are retained outputs from real tools. Expand records and receipts to inspect what ran, what arrived, and what failed.</p></div>
-  <fieldset><legend>Choose a system to inspect</legend><div class="case-switcher">
-    <input class="case-choice" type="radio" name="integration" id="case-access" aria-controls="wazuh-run" checked><label class="case-label" id="label-access" for="case-access"><span class="case-number">01 / MONITORING</span><strong>Wazuh collection</strong><span>64 inputs → archive and rule alerts</span></label>
-    <input class="case-choice" type="radio" name="integration" id="case-service" aria-controls="zap-runs"><label class="case-label" id="label-service" for="case-service"><span class="case-number">02 / FAILURE HANDLING</span><strong>ZAP scan evidence</strong><span>Failed scan → separate verified retry</span></label>
-    <input class="case-choice" type="radio" name="integration" id="case-delivery" aria-controls="engineering-run"><label class="case-label" id="label-delivery" for="case-delivery"><span class="case-number">03 / IMPLEMENTATION</span><strong>Inside SignalBridge</strong><span>Controls, source and project ownership</span></label>
+  <div class="demo-head">
+<div class="section-head">
+<div>
+<div class="eyebrow">Integration runs</div>
+<h2 id="demo-title">Inspect the tools. Follow the records.</h2>
+</div>
+<span class="badge">Recorded lab execution</span>
+</div>
+<p>These are retained outputs from real tools. Expand records and receipts to inspect what ran, what arrived, and what failed.</p>
+</div>
+  <fieldset>
+<legend>Choose a system to inspect</legend>
+<div class="case-switcher">
+    <input class="case-choice" type="radio" name="integration" id="case-access" aria-controls="wazuh-run" checked>
+<label class="case-label" id="label-access" for="case-access">
+<span class="case-number">01 / MONITORING</span>
+<strong>Wazuh collection</strong>
+<span>64 inputs → archive and rule alerts</span>
+</label>
+    <input class="case-choice" type="radio" name="integration" id="case-service" aria-controls="zap-runs">
+<label class="case-label" id="label-service" for="case-service">
+<span class="case-number">02 / FAILURE HANDLING</span>
+<strong>ZAP scan evidence</strong>
+<span>Failed scan → separate verified retry</span>
+</label>
+    <input class="case-choice" type="radio" name="integration" id="case-delivery" aria-controls="engineering-run">
+<label class="case-label" id="label-delivery" for="case-delivery">
+<span class="case-number">03 / IMPLEMENTATION</span>
+<strong>Inside SignalBridge</strong>
+<span>Controls, source and project ownership</span>
+</label>
     <div class="case-panels">
       <article class="case-panel" id="wazuh-run" aria-labelledby="label-access">
-        <div class="case-lead"><div><div class="eyebrow"><span class="toolmark wazuh-mark" aria-hidden="true">W</span> Wazuh {{ integrations.wazuh.version }} / BetTail lab replay</div><h3>Delivery and alert results.</h3><p>A committed SignalBridge ledger was replayed through a real isolated Wazuh manager. Input IDs and payloads were reconciled against its archive and custom alerts.</p></div><aside class="case-question"><strong>Engineering result</strong><p>{{ integrations.wazuh.counts.received }} of {{ integrations.wazuh.counts.inputs }} records received. {{ integrations.wazuh.counts.missing }} missing. {{ integrations.wazuh.counts.duplicates }} duplicate copies.<br>Alert totals are not a vulnerability count.</p></aside></div>
-        <ol class="pipeline" aria-label="Executed monitoring path"><li><b>01</b><strong>Application lab</strong><span>Scoped operation and outcome metadata</span></li><li><b>02</b><strong>SignalBridge ledger</strong><span>Committed, retryable file handoff</span></li><li><b>03</b><strong>Wazuh manager</strong><span>JSON decoding, archive and custom rules</span></li><li><b>04</b><strong>Receipt import</strong><span>Reconciled counts and analyst visibility</span></li></ol>
-        <div class="rule-strip">{% for rule in integrations.wazuh.rules %}<div><strong>{{ rule.count }}</strong><span>{{ rule.title }}</span><small>Rule {{ rule.id }}</small></div>{% endfor %}</div>
-        {% if story.rules %}<section class="predicate-inspector" aria-labelledby="predicate-title"><h4 id="predicate-title">Why did these records alert?</h4><p>The same outcome can mean different things depending on its source. Compare six actual records with the rule conditions that apply to them. The explanation was checked against all {{ story.rules.reconciled_records }} recorded results.</p>
-          {% for example in story.rules.examples %}<details class="predicate-example"{% if forloop.first %} open{% endif %}><summary>{{ example.example_title }} · {% if example.rule_id %}rule {{ example.rule_id }}, level {{ example.level }}{% else %}no custom alert{% endif %}</summary><div class="details-body"><p>{{ example.interpretation }}</p><p><strong>{{ example.source }}</strong> · {{ example.operation }} · {{ example.outcome }} · {{ example.reason }}</p><p>{{ example.reasoning }}</p><div class="table-wrap"><table class="predicate-table"><caption>Parent gate followed by the matching child rule, when present</caption><thead><tr><th scope="col">Field</th><th scope="col">Recorded value</th><th scope="col">Required pattern</th><th scope="col">Match</th></tr></thead><tbody>{% for check in example.checks %}<tr><th scope="row">{{ check.field }}</th><td><code>{{ check.actual }}</code></td><td><code>{{ check.expected }}</code></td><td class="{% if check.matches %}matched{% else %}unmatched{% endif %}">{% if check.matches %}Yes{% else %}No{% endif %}</td></tr>{% endfor %}</tbody></table></div><a href="#{{ example.anchor }}">Jump to record {{ example.short_id }} and expand its input/result</a></div></details>{% endfor %}
-          <details><summary>How the explanation is bound to the executed rules</summary><p>{{ story.rules.scope }}</p><p><a href="../{{ story.rules.path }}">Inspect the rule XML</a> · SHA-256 <code>{{ story.rules.executed_sha256 }}</code></p><p>Pattern comparisons explain source-reported metadata. They do not independently prove the request was unauthorized or reproduce every Wazuh engine behavior.</p></details>
+        <div class="case-lead">
+<div>
+<div class="eyebrow">
+<span class="toolmark wazuh-mark" aria-hidden="true">W</span> Wazuh {{ integrations.wazuh.version }} / BetTail lab replay</div>
+<h3>Delivery and alert results.</h3>
+<p>A committed SignalBridge ledger was replayed through a real isolated Wazuh manager. Input IDs and payloads were reconciled against its archive and custom alerts.</p>
+</div>
+<aside class="case-question">
+<strong>Engineering result</strong>
+<p>{{ integrations.wazuh.counts.received }} of {{ integrations.wazuh.counts.inputs }} records received. {{ integrations.wazuh.counts.missing }} missing. {{ integrations.wazuh.counts.duplicates }} duplicate copies.<br>Alert totals are not a vulnerability count.</p>
+</aside>
+</div>
+        <ol class="pipeline" aria-label="Executed monitoring path">
+<li>
+<b>01</b>
+<strong>Application lab</strong>
+<span>Scoped operation and outcome metadata</span>
+</li>
+<li>
+<b>02</b>
+<strong>SignalBridge ledger</strong>
+<span>Committed, retryable file handoff</span>
+</li>
+<li>
+<b>03</b>
+<strong>Wazuh manager</strong>
+<span>JSON decoding, archive and custom rules</span>
+</li>
+<li>
+<b>04</b>
+<strong>Receipt import</strong>
+<span>Reconciled counts and analyst visibility</span>
+</li>
+</ol>
+        <div class="rule-strip">{% for rule in integrations.wazuh.rules %}<div>
+<strong>{{ rule.count }}</strong>
+<span>{{ rule.title }}</span>
+<small>Rule {{ rule.id }}</small>
+</div>{% endfor %}</div>
+        {% if story.rules %}<section class="predicate-inspector" aria-labelledby="predicate-title">
+<h4 id="predicate-title">Why did these records alert?</h4>
+<p>The same outcome can mean different things depending on its source. Compare six actual records with the rule conditions that apply to them. The explanation was checked against all {{ story.rules.reconciled_records }} recorded results.</p>
+          {% for example in story.rules.examples %}<details class="predicate-example"{% if forloop.first %} open{% endif %}>
+<summary>{{ example.example_title }} · {% if example.rule_id %}rule {{ example.rule_id }}, level {{ example.level }}{% else %}no custom alert{% endif %}</summary>
+<div class="details-body">
+<p>{{ example.interpretation }}</p>
+<p>
+<strong>{{ example.source }}</strong> · {{ example.operation }} · {{ example.outcome }} · {{ example.reason }}</p>
+<p>{{ example.reasoning }}</p>
+<div class="table-wrap">
+<table class="predicate-table">
+<caption>Parent gate followed by the matching child rule, when present</caption>
+<thead>
+<tr>
+<th scope="col">Field</th>
+<th scope="col">Recorded value</th>
+<th scope="col">Required pattern</th>
+<th scope="col">Match</th>
+</tr>
+</thead>
+<tbody>{% for check in example.checks %}<tr>
+<th scope="row">{{ check.field }}</th>
+<td>
+<code>{{ check.actual }}</code>
+</td>
+<td>
+<code>{{ check.expected }}</code>
+</td>
+<td class="{% if check.matches %}matched{% else %}unmatched{% endif %}">{% if check.matches %}Yes{% else %}No{% endif %}</td>
+</tr>{% endfor %}</tbody>
+</table>
+</div>
+<a href="#{{ example.anchor }}">Jump to record {{ example.short_id }} and expand its input/result</a>
+</div>
+</details>{% endfor %}
+          <details>
+<summary>How the explanation is bound to the executed rules</summary>
+<p>{{ story.rules.scope }}</p>
+<p>
+<a href="../{{ story.rules.path }}">Inspect the rule XML</a> · SHA-256 <code>{{ story.rules.executed_sha256 }}</code>
+</p>
+<p>Pattern comparisons explain source-reported metadata. They do not independently prove the request was unauthorized or reproduce every Wazuh engine behavior.</p>
+</details>
         </section>{% endif %}
-        <p class="record-intro"><strong>Inspect all {{ integrations.wazuh.counts.received }} delivered records.</strong> Open a row to compare the exported metadata with Wazuh's recorded result. The same record ID connects both sides.</p>
+        <p class="record-intro">
+<strong>Inspect all {{ integrations.wazuh.counts.received }} delivered records.</strong> Open a row to compare the exported metadata with Wazuh's recorded result. The same record ID connects both sides.</p>
         <p class="small light-muted">Sources: {{ integrations.wazuh.source_counts.migration_lab }} observed SQL-lab records · {{ integrations.wazuh.source_counts.synthetic_demo }} synthetic fixtures · {{ integrations.wazuh.source_counts.legacy_unclassified }} earlier records with unknown classification. No identities or private record contents are shown.</p>
-        <div class="record-list" role="region" aria-label="Wazuh received records" tabindex="0">{% for row in integrations.wazuh.records %}<details class="record-row" id="record-{{ row.event_id }}"{% if forloop.first %} open{% endif %}><summary><span class="record-key">{{ row.short_id }}</span><span class="record-result">{{ row.meaning }}<small>{{ row.source }} · {{ row.outcome }}</small></span><span class="record-rule">{% if row.rule_id %}{{ row.rule_id }}{% else %}No custom alert{% endif %}</span></summary><div class="record-body"><div><h4>SignalBridge input</h4><dl class="packet"><dt>Event ID</dt><dd><code>{{ row.event_id }}</code></dd><dt>Occurred · UTC</dt><dd>{{ row.occurred_at }}</dd><dt>Operation</dt><dd>{{ row.operation }}</dd><dt>Outcome / reason</dt><dd>{{ row.outcome }} / {{ row.reason }}</dd><dt>Source</dt><dd>{{ row.source }}</dd></dl></div><div><h4>Wazuh observation</h4><p class="received-stamp">Archived · exact record reconciled</p><p>{% if row.rule_id %}<strong>Rule {{ row.rule_id }} · level {{ row.level }}</strong>{% else %}<strong>No custom rule alert</strong>{% endif %}</p><p>{{ row.interpretation }}</p><p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p></div></div></details>{% endfor %}</div>
-        <details class="resolution"><summary>Inspect the run identity, isolation and source receipts</summary><div class="details-body"><dl class="identity"><dt>Run ID</dt><dd><code>{{ integrations.wazuh.run_id }}</code></dd><dt>Finished · UTC</dt><dd>{{ integrations.wazuh.finished_at }}</dd><dt>Input SHA-256</dt><dd><code>{{ integrations.wazuh.input_sha256 }}</code></dd><dt>Execution bounds</dt><dd>No network or published ports · 1 CPU · 1.5 GiB RAM · read-only input snapshot · stopped after execution</dd></dl><div class="links"><a href="../docs/evidence/20260925-wazuh-product-backfill.json">Original execution receipt</a><a href="../docs/evidence/20260925-wazuh-reviewed-records.json">Reviewed record dataset</a><a href="../integrations/wazuh/signalbridge_rules.xml">Custom Wazuh rules</a><a href="../scripts/run_wazuh_backfill.py">Backfill controller source</a></div><p class="light-muted">This proves one bounded replay. It does not establish continuous monitoring, production coverage, cross-run exactly-once delivery or an independently audited platform.</p></div></details>
+        <div class="record-list" role="region" aria-label="Wazuh received records" tabindex="0">{% for row in integrations.wazuh.records %}<details class="record-row" id="record-{{ row.event_id }}"{% if forloop.first %} open{% endif %}>
+<summary>
+<span class="record-key">{{ row.short_id }}</span>
+<span class="record-result">{{ row.meaning }}<small>{{ row.source }} · {{ row.outcome }}</small>
+</span>
+<span class="record-rule">{% if row.rule_id %}{{ row.rule_id }}{% else %}No custom alert{% endif %}</span>
+</summary>
+<div class="record-body">
+<div>
+<h4>SignalBridge input</h4>
+<dl class="packet">
+<dt>Event ID</dt>
+<dd>
+<code>{{ row.event_id }}</code>
+</dd>
+<dt>Occurred · UTC</dt>
+<dd>{{ row.occurred_at }}</dd>
+<dt>Operation</dt>
+<dd>{{ row.operation }}</dd>
+<dt>Outcome / reason</dt>
+<dd>{{ row.outcome }} / {{ row.reason }}</dd>
+<dt>Source</dt>
+<dd>{{ row.source }}</dd>
+</dl>
+</div>
+<div>
+<h4>Wazuh observation</h4>
+<p class="received-stamp">Archived · exact record reconciled</p>
+<p>{% if row.rule_id %}<strong>Rule {{ row.rule_id }} · level {{ row.level }}</strong>{% else %}<strong>No custom rule alert</strong>{% endif %}</p>
+<p>{{ row.interpretation }}</p>
+<p class="small light-muted">Historical data from the completed replay, not a request to the running tool.</p>
+</div>
+</div>
+</details>{% endfor %}</div>
+        <details class="resolution">
+<summary>Inspect the run identity, isolation and source receipts</summary>
+<div class="details-body">
+<dl class="identity">
+<dt>Run ID</dt>
+<dd>
+<code>{{ integrations.wazuh.run_id }}</code>
+</dd>
+<dt>Finished · UTC</dt>
+<dd>{{ integrations.wazuh.finished_at }}</dd>
+<dt>Input SHA-256</dt>
+<dd>
+<code>{{ integrations.wazuh.input_sha256 }}</code>
+</dd>
+<dt>Execution bounds</dt>
+<dd>No network or published ports · 1 CPU · 1.5 GiB RAM · read-only input snapshot · stopped after execution</dd>
+</dl>
+<div class="links">
+<a href="../docs/evidence/20260925-wazuh-product-backfill.json">Original execution receipt</a>
+<a href="../docs/evidence/20260925-wazuh-reviewed-records.json">Reviewed record dataset</a>
+<a href="../integrations/wazuh/signalbridge_rules.xml">Custom Wazuh rules</a>
+<a href="../scripts/run_wazuh_backfill.py">Backfill controller source</a>
+</div>
+<p class="light-muted">This proves one bounded replay. It does not establish continuous monitoring, production coverage, cross-run exactly-once delivery or an independently audited platform.</p>
+</div>
+</details>
       </article>
       <article class="case-panel" id="zap-runs" aria-labelledby="label-service">
-        <div class="case-lead"><div><div class="eyebrow"><span class="toolmark zap-mark" aria-hidden="true">Z</span> ZAP {{ integrations.zap.version }} / Fixed synthetic web target</div><h3>Failed scan and retry.</h3><p>The isolated target was deliberately stopped for the first run. A separate retry then used three fixed GET requests. SignalBridge preserved both execution outcomes.</p></div><aside class="case-question"><strong>Engineering result</strong><p>Incomplete coverage stays incomplete. Reimporting the same receipts creates no duplicates and does not close findings.</p></aside></div>
-        <div class="evidence-grid">{% for run in integrations.zap.runs %}<section class="evidence-box"><div class="eyebrow">{% if run.failed %}01 / Target unavailable{% else %}02 / Separate retry{% endif %}</div><h3>{% if run.failed %}Failed. Coverage incomplete.{% else %}Completed. Passive checks only.{% endif %}</h3><div class="run-number">{{ run.accepted }}<span> requests accepted</span></div><p>{% if run.failed %}ZAP exited with code {{ run.scanner_exit_code }}. No successful report was accepted. The failure exercise was verified; the scan did not pass.{% else %}{{ run.counts.reported_findings }} normalized findings. The missing-header rule matched {{ run.counts.header_positive_paths }} intended paths and did not match the clean control path.{% endif %}</p><dl class="packet"><dt>Duration</dt><dd>{{ run.duration_seconds }} seconds</dd><dt>Coverage</dt><dd>{{ run.coverage }}</dd><dt>Cleanup</dt><dd>Scanner and target stopped after testing</dd></dl><details><summary>Inspect the exact run</summary><div class="details-body"><p><code>{{ run.run_id }}</code></p><p class="small light-muted">Finished {{ run.finished_at }}</p><p class="small light-muted">Imported receipt SHA-256</p><p><code>{{ run.imported_receipt_sha256 }}</code></p></div></details></section>{% endfor %}</div>
-        <div class="import-proof"><strong>{{ integrations.zap.import_receipts }} receipts · {{ integrations.zap.audit_records }} audit entries · no duplicates on repeat import</strong><p>The importer checks execution provenance and records the outcome without silently upgrading coverage or declaring remediation.</p></div>
-        <div class="links"><a href="../docs/evidence/20260925-zap-repeat-failure.json">Execution and failure receipt</a><a href="../docs/evidence/20260925-zap-console-import.json">Console import proof</a><a href="../bridge/zap_repeat_evidence.py">Evidence validation source</a></div><p class="case-limit">Real ZAP execution against a disposable fixture. Passive checks only; no crawler, authenticated app scan, production assessment or general scanner-accuracy claim.</p>
+        <div class="case-lead">
+<div>
+<div class="eyebrow">
+<span class="toolmark zap-mark" aria-hidden="true">Z</span> ZAP {{ integrations.zap.version }} / Fixed synthetic web target</div>
+<h3>Failed scan and retry.</h3>
+<p>The isolated target was deliberately stopped for the first run. A separate retry then used three fixed GET requests. SignalBridge preserved both execution outcomes.</p>
+</div>
+<aside class="case-question">
+<strong>Engineering result</strong>
+<p>Incomplete coverage stays incomplete. Reimporting the same receipts creates no duplicates and does not close findings.</p>
+</aside>
+</div>
+        <div class="evidence-grid">{% for run in integrations.zap.runs %}<section class="evidence-box">
+<div class="eyebrow">{% if run.failed %}01 / Target unavailable{% else %}02 / Separate retry{% endif %}</div>
+<h3>{% if run.failed %}Failed. Coverage incomplete.{% else %}Completed. Passive checks only.{% endif %}</h3>
+<div class="run-number">{{ run.accepted }}<span> requests accepted</span>
+</div>
+<p>{% if run.failed %}ZAP exited with code {{ run.scanner_exit_code }}. No successful report was accepted. The failure exercise was verified; the scan did not pass.{% else %}{{ run.counts.reported_findings }} normalized findings. The missing-header rule matched {{ run.counts.header_positive_paths }} intended paths and did not match the clean control path.{% endif %}</p>
+<dl class="packet">
+<dt>Duration</dt>
+<dd>{{ run.duration_seconds }} seconds</dd>
+<dt>Coverage</dt>
+<dd>{{ run.coverage }}</dd>
+<dt>Cleanup</dt>
+<dd>Scanner and target stopped after testing</dd>
+</dl>
+<details>
+<summary>Inspect the exact run</summary>
+<div class="details-body">
+<p>
+<code>{{ run.run_id }}</code>
+</p>
+<p class="small light-muted">Finished {{ run.finished_at }}</p>
+<p class="small light-muted">Imported receipt SHA-256</p>
+<p>
+<code>{{ run.imported_receipt_sha256 }}</code>
+</p>
+</div>
+</details>
+</section>{% endfor %}</div>
+        <div class="import-proof">
+<strong>{{ integrations.zap.import_receipts }} receipts · {{ integrations.zap.audit_records }} audit entries · no duplicates on repeat import</strong>
+<p>The importer checks execution provenance and records the outcome without silently upgrading coverage or declaring remediation.</p>
+</div>
+        <div class="links">
+<a href="../docs/evidence/20260925-zap-repeat-failure.json">Execution and failure receipt</a>
+<a href="../docs/evidence/20260925-zap-console-import.json">Console import proof</a>
+<a href="../bridge/zap_repeat_evidence.py">Evidence validation source</a>
+</div>
+<p class="case-limit">Real ZAP execution against a disposable fixture. Passive checks only; no crawler, authenticated app scan, production assessment or general scanner-accuracy claim.</p>
       </article>
       <article class="case-panel" id="engineering-run" aria-labelledby="label-delivery">
-        <div class="case-lead"><div><div class="eyebrow">SignalBridge / Implementation</div><h3>How the integration works.</h3><p>The project includes source-aware ingestion, recoverable delivery, verified receipt import and an analyst console. Each layer has a different responsibility.</p></div><aside class="case-question"><strong>Project ownership</strong><p>Aman Agarwal · Management Information Systems student with a cybersecurity minor.<br>Focus: security automation and evidence-based investigation.</p></aside></div>
-        {% if story.engineering %}<p class="light-muted">Inspect a failure condition, the control built for it, and the adverse test. These are offline regressions in the core suite; native tool executions have their separate receipts.</p><div class="build-grid">{% for control in story.engineering %}<section class="evidence-box"><h4>{{ control.title }}</h4><p><span class="control-label">Failure condition</span>{{ control.problem }}</p><p><span class="control-label">Implemented control</span>{{ control.control }}</p><details><summary>Inspect the adverse test and implementation</summary><p>{{ control.adverse_test }}</p><p class="engineering-ref"><a href="../{{ control.implementation.path }}">Implementation · line {{ control.implementation.line }}</a><br><code>{{ control.implementation.symbol }}</code></p><p class="engineering-ref"><a href="../{{ control.regression.path }}">Regression test · line {{ control.regression.line }}</a><br><code>{{ control.regression.symbol }}</code></p><p class="small light-muted">{{ control.limit }}</p></details></section>{% endfor %}</div>{% else %}<p class="light-muted">Implementation references are not included in this export.</p>{% endif %}
-        <div class="ownership"><h4>What this says about the work</h4><p><strong>Project direction:</strong> integrate real tools, protect the host and sibling applications, keep an audit trail, and show failures alongside passes. The work and documentation were created with AI assistance under Aman's direction.</p><p><strong>What you can inspect:</strong> implementation, tests, source-linked receipts, safe lab constraints and the decisions behind the boundaries.</p></div>
+        <div class="case-lead">
+<div>
+<div class="eyebrow">SignalBridge / Implementation</div>
+<h3>How the integration works.</h3>
+<p>The project includes source-aware ingestion, recoverable delivery, verified receipt import and an analyst console. Each layer has a different responsibility.</p>
+</div>
+<aside class="case-question">
+<strong>Project ownership</strong>
+<p>Aman Agarwal · Management Information Systems student with a cybersecurity minor.<br>Focus: security automation and evidence-based investigation.</p>
+</aside>
+</div>
+        {% if story.engineering %}<p class="light-muted">Inspect a failure condition, the control built for it, and the adverse test. These are offline regressions in the core suite; native tool executions have their separate receipts.</p>
+<div class="build-grid">{% for control in story.engineering %}<section class="evidence-box">
+<h4>{{ control.title }}</h4>
+<p>
+<span class="control-label">Failure condition</span>{{ control.problem }}</p>
+<p>
+<span class="control-label">Implemented control</span>{{ control.control }}</p>
+<details>
+<summary>Inspect the adverse test and implementation</summary>
+<p>{{ control.adverse_test }}</p>
+<p class="engineering-ref">
+<a href="../{{ control.implementation.path }}">Implementation · line {{ control.implementation.line }}</a>
+<br>
+<code>{{ control.implementation.symbol }}</code>
+</p>
+<p class="engineering-ref">
+<a href="../{{ control.regression.path }}">Regression test · line {{ control.regression.line }}</a>
+<br>
+<code>{{ control.regression.symbol }}</code>
+</p>
+<p class="small light-muted">{{ control.limit }}</p>
+</details>
+</section>{% endfor %}</div>{% else %}<p class="light-muted">Implementation references are not included in this export.</p>{% endif %}
+        <div class="ownership">
+<h4>What this says about the work</h4>
+<p>
+<strong>Project direction:</strong> integrate real tools, protect the host and sibling applications, keep an audit trail, and show failures alongside passes. The work and documentation were created with AI assistance under Aman's direction.</p>
+<p>
+<strong>What you can inspect:</strong> implementation, tests, source-linked receipts, safe lab constraints and the decisions behind the boundaries.</p>
+</div>
         <p class="case-limit">Shuffle is deferred and has no verified workflow. Wazuh/ZAP results are historical pilots. No overall Cortex XSIAM, Wiz or Splunk parity is claimed.</p>
       </article>
     </div>
-  </div></fieldset>
+  </div>
+</fieldset>
   <div class="demo-footer">Evidence viewer, not a running SOC · No accounts, external assets, trackers or service calls. Use Tab to reach the tool selector, arrows to switch, and Enter/Space to expand records. Training scenarios remain in the separate Analyst practice console.</div>
 </section>
-{% else %}<section class="notice" id="investigate"><strong>Integration evidence is not included in this export.</strong><p>No monitoring or scanner execution is inferred from the software tests below.</p></section>{% endif %}
+{% else %}<section class="notice" id="investigate">
+<strong>Integration evidence is not included in this export.</strong>
+<p>No monitoring or scanner execution is inferred from the software tests below.</p>
+</section>{% endif %}
 
-{% if story.authorization %}<section class="auth-story" id="authorization-proof" aria-labelledby="authorization-title"><div class="eyebrow">Separate execution / Genuine local application checks</div><h2 id="authorization-title">Access checks after membership removal.</h2><p>A member could read a private state and image. The lab removed their membership, reused the same session, checked access again, then restored membership and retested. The owner served as a positive control while the former member was blocked.</p><div class="auth-counts"><span><strong>{{ story.authorization.counts.stages.assertion }}</strong> route assertions</span><span><strong>{{ story.authorization.counts.stages.setup }}</strong> setup checks</span><span><strong>{{ story.authorization.counts.stages.restoration }}</strong> restoration checks</span></div><ol class="auth-stages">{% for stage in story.authorization.stages %}<li class="auth-stage"><h3>{{ stage.title }}</h3><p>{{ stage.explanation }}</p><ul class="auth-checks">{% for check in stage.checks %}<li><strong>{{ check.label }}{% if check.http_status %} · HTTP {{ check.http_status }}{% endif %}</strong><span>{{ check.outcome }} · {{ check.stage }}</span></li>{% endfor %}</ul></li>{% endfor %}</ol><p><strong>What this establishes:</strong> the tested state route denied the former member despite valid authentication, while owner access and restored-member access worked. The image returned 404 for the former member and the known content for the owner and restored member; interpret those controls together.</p><p>{{ story.authorization.limits }}</p><details><summary>Inspect the exact checks and source identity</summary><dl class="identity"><dt>Historical run</dt><dd><code>{{ story.authorization.run_id }}</code></dd><dt>Finished · UTC</dt><dd>{{ story.authorization.finished_at }}</dd><dt>Copied app revision</dt><dd><code>{{ story.authorization.source.source_revision }}</code>{% if story.authorization.source_dirty %} · modified copied snapshot{% endif %}</dd><dt>Copied snapshot digest</dt><dd><code>{{ story.authorization.source.snapshot_digest }}</code></dd><dt>Migration content</dt><dd><code>{{ story.authorization.source.migration_digest }}</code></dd><dt>Receipt SHA-256</dt><dd><code>{{ story.authorization.receipt_sha256 }}</code></dd></dl><p><a href="../docs/evidence/{{ story.authorization.receipt }}">Open the complete authorization receipt</a> · includes {{ story.authorization.counts.executed }} route checks and separate service checks.</p><div class="table-wrap"><table><thead><tr><th scope="col">Selected recorded check</th><th scope="col">Stage</th><th scope="col">Result</th></tr></thead><tbody>{% for stage in story.authorization.stages %}{% for check in stage.checks %}<tr><td><code>{{ check.id }}</code></td><td>{{ check.stage }}</td><td>{{ check.status }}</td></tr>{% endfor %}{% endfor %}</tbody></table></div></details></section>{% endif %}
+{% if story.authorization %}<section class="auth-story" id="authorization-proof" aria-labelledby="authorization-title">
+<div class="eyebrow">Separate execution / Genuine local application checks</div>
+<h2 id="authorization-title">Access checks after membership removal.</h2>
+<p>A member could read a private state and image. The lab removed their membership, reused the same session, checked access again, then restored membership and retested. The owner served as a positive control while the former member was blocked.</p>
+<div class="auth-counts">
+<span>
+<strong>{{ story.authorization.counts.stages.assertion }}</strong> route assertions</span>
+<span>
+<strong>{{ story.authorization.counts.stages.setup }}</strong> setup checks</span>
+<span>
+<strong>{{ story.authorization.counts.stages.restoration }}</strong> restoration checks</span>
+</div>
+<ol class="auth-stages">{% for stage in story.authorization.stages %}<li class="auth-stage">
+<h3>{{ stage.title }}</h3>
+<p>{{ stage.explanation }}</p>
+<ul class="auth-checks">{% for check in stage.checks %}<li>
+<strong>{{ check.label }}{% if check.http_status %} · HTTP {{ check.http_status }}{% endif %}</strong>
+<span>{{ check.outcome }} · {{ check.stage }}</span>
+</li>{% endfor %}</ul>
+</li>{% endfor %}</ol>
+<p>
+<strong>What this establishes:</strong> the tested state route denied the former member despite valid authentication, while owner access and restored-member access worked. The image returned 404 for the former member and the known content for the owner and restored member; interpret those controls together.</p>
+<p>{{ story.authorization.limits }}</p>
+<details>
+<summary>Inspect the exact checks and source identity</summary>
+<dl class="identity">
+<dt>Historical run</dt>
+<dd>
+<code>{{ story.authorization.run_id }}</code>
+</dd>
+<dt>Finished · UTC</dt>
+<dd>{{ story.authorization.finished_at }}</dd>
+<dt>Copied app revision</dt>
+<dd>
+<code>{{ story.authorization.source.source_revision }}</code>{% if story.authorization.source_dirty %} · modified copied snapshot{% endif %}</dd>
+<dt>Copied snapshot digest</dt>
+<dd>
+<code>{{ story.authorization.source.snapshot_digest }}</code>
+</dd>
+<dt>Migration content</dt>
+<dd>
+<code>{{ story.authorization.source.migration_digest }}</code>
+</dd>
+<dt>Receipt SHA-256</dt>
+<dd>
+<code>{{ story.authorization.receipt_sha256 }}</code>
+</dd>
+</dl>
+<p>
+<a href="../docs/evidence/{{ story.authorization.receipt }}">Open the complete authorization receipt</a> · includes {{ story.authorization.counts.executed }} route checks and separate service checks.</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th scope="col">Selected recorded check</th>
+<th scope="col">Stage</th>
+<th scope="col">Result</th>
+</tr>
+</thead>
+<tbody>{% for stage in story.authorization.stages %}{% for check in stage.checks %}<tr>
+<td>
+<code>{{ check.id }}</code>
+</td>
+<td>{{ check.stage }}</td>
+<td>{{ check.status }}</td>
+</tr>{% endfor %}{% endfor %}</tbody>
+</table>
+</div>
+</details>
+</section>{% endif %}
 
-<section class="proof-intro" id="measured-evidence" aria-labelledby="proof-title"><div class="eyebrow">Software and detection verification</div><h2 id="proof-title">Test and detection results.</h2><p>These checks support the implementation behind the integrations. Inspect their execution scope and source version, including the detection capabilities that remain unmet.</p></section>
-<div class="notice"><strong>Executed checks, with a defined scope</strong><p>This single-file demo makes no service connections, reads no application database and contains no live customer records. Source content matched the core receipt when this page was generated. The links at the end open optional files from the repository.</p></div>
+<section class="proof-intro" id="measured-evidence" aria-labelledby="proof-title">
+<div class="eyebrow">Software and detection verification</div>
+<h2 id="proof-title">Test and detection results.</h2>
+<p>These checks support the implementation behind the integrations. Inspect their execution scope and source version, including the detection capabilities that remain unmet.</p>
+</section>
+<div class="notice">
+<strong>Executed checks, with a defined scope</strong>
+<p>This single-file demo makes no service connections, reads no application database and contains no live customer records. Source content matched the core receipt when this page was generated. The links at the end open optional files from the repository.</p>
+</div>
 <div class="metrics">
-<div class="metric"><div class="eyebrow">Offline verification</div><strong>{{ test_count }}</strong><small>Executed Python and Node tests · zero failures or skips</small></div>
-<div class="metric"><div class="eyebrow">Verification groups</div><strong>{{ check_count }} / {{ check_count }}</strong><small>Tests, framework checks, migrations, lint, formatting and publication scan</small></div>
-<div class="metric"><div class="eyebrow">Declared detection scenarios</div>{% if current_simulation %}<strong>{{ current_simulation.results.coverage.met }} / {{ current_simulation.results.coverage.total }}</strong><small>Current recorded source · synthetic in-process scenarios</small>{% else %}<strong>Not recorded</strong><small>No current-source simulation receipt selected</small>{% endif %}</div>
+<div class="metric">
+<div class="eyebrow">Offline verification</div>
+<strong>{{ test_count }}</strong>
+<small>Executed Python and Node tests · zero failures or skips</small>
+</div>
+<div class="metric">
+<div class="eyebrow">Verification groups</div>
+<strong>{{ check_count }} / {{ check_count }}</strong>
+<small>Tests, framework checks, migrations, lint, formatting and publication scan</small>
+</div>
+<div class="metric">
+<div class="eyebrow">Declared detection scenarios</div>{% if current_simulation %}<strong>{{ current_simulation.results.coverage.met }} / {{ current_simulation.results.coverage.total }}</strong>
+<small>Current recorded source · synthetic in-process scenarios</small>{% else %}<strong>Not recorded</strong>
+<small>No current-source simulation receipt selected</small>{% endif %}</div>
 </div>
 {% if detection_challenge %}
 <section class="section panel" aria-labelledby="challenge-title">
-  <div class="section-head"><div><div class="eyebrow">Predeclared challenge matrix</div><h2 id="challenge-title">Challenge results, including misses.</h2></div><span class="badge {% if detection_challenge.status != 'passed' %}warning{% endif %}">{{ detection_challenge.status }}</span></div>
+  <div class="section-head">
+<div>
+<div class="eyebrow">Predeclared challenge matrix</div>
+<h2 id="challenge-title">Challenge results, including misses.</h2>
+</div>
+<span class="badge {% if detection_challenge.status != 'passed' %}warning{% endif %}">{{ detection_challenge.status }}</span>
+</div>
   <p>All existing rule checks passed, but three broader capability probes did not alert. That distinction matters: correct implementation is not complete threat coverage. This challenge was written by the builder with knowledge of the rules.</p>
-  <div class="numbers"><div><strong>{{ detection_challenge.results.summary.rule_contract.met }} / {{ detection_challenge.results.summary.rule_contract.total }}</strong><small>RULE CONTRACT CHECKS MET</small></div><div><strong>{{ detection_challenge.results.summary.capability_probes.alert_observed }} / {{ detection_challenge.results.summary.capability_probes.total }}</strong><small>DESIRED CAPABILITY PROBES ALERTED</small></div></div>
+  <div class="numbers">
+<div>
+<strong>{{ detection_challenge.results.summary.rule_contract.met }} / {{ detection_challenge.results.summary.rule_contract.total }}</strong>
+<small>RULE CONTRACT CHECKS MET</small>
+</div>
+<div>
+<strong>{{ detection_challenge.results.summary.capability_probes.alert_observed }} / {{ detection_challenge.results.summary.capability_probes.total }}</strong>
+<small>DESIRED CAPABILITY PROBES ALERTED</small>
+</div>
+</div>
   <p class="coverage">These are separate denominators. An unmet capability remains visible even when every existing rule behaves as specified. Event metadata alone cannot prove unauthorized access or coordinated intent.</p>
-  <details><summary>Explore all 19 challenges, unmet needs and evidence</summary><div class="details-body">
-    <div class="table-wrap"><table><thead><tr><th>Challenge and purpose</th><th>Expectation</th><th>Observed</th><th>Outcome</th></tr></thead><tbody>{% for row in challenge_rows %}<tr><td><strong>{{ row.id }} · {{ row.title }}</strong><br><span class="small">{{ row.category }} · {{ row.purpose }}</span></td><td>{{ row.expected }}</td><td>{{ row.observed_rules|join:', '|default:'No alert' }}; {{ row.case_count }} case(s)<br><span class="small">{{ row.accepted }} accepted · {{ row.duplicates }} duplicates · {{ row.processed }} processed</span></td><td class="{% if row.met %}check{% else %}miss{% endif %}">{% if row.met %}Met{% else %}Unmet{% endif %}</td></tr>{% endfor %}</tbody></table></div>
-    <dl class="identity"><dt>Execution</dt><dd>{{ detection_challenge.results.started_at }} → {{ detection_challenge.results.finished_at }}</dd><dt>Run ID</dt><dd><code>{{ detection_challenge.run_id }}</code></dd><dt>Source content</dt><dd><code>{{ detection_challenge.source_sha256 }}</code> · {{ detection_challenge.source_file_count }} files · matched at generation</dd><dt>Predeclared catalog</dt><dd><code>{{ detection_challenge.results.declaration_sha256 }}</code></dd><dt>Public receipt</dt><dd><code>{{ detection_challenge.receipt }}</code></dd><dt>Receipt SHA-256</dt><dd><code>{{ detection_challenge.receipt_sha256 }}</code></dd></dl>
+  <details>
+<summary>Explore all 19 challenges, unmet needs and evidence</summary>
+<div class="details-body">
+    <div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Challenge and purpose</th>
+<th>Expectation</th>
+<th>Observed</th>
+<th>Outcome</th>
+</tr>
+</thead>
+<tbody>{% for row in challenge_rows %}<tr>
+<td>
+<strong>{{ row.id }} · {{ row.title }}</strong>
+<br>
+<span class="small">{{ row.category }} · {{ row.purpose }}</span>
+</td>
+<td>{{ row.expected }}</td>
+<td>{{ row.observed_rules|join:', '|default:'No alert' }}; {{ row.case_count }} case(s)<br>
+<span class="small">{{ row.accepted }} accepted · {{ row.duplicates }} duplicates · {{ row.processed }} processed</span>
+</td>
+<td class="{% if row.met %}check{% else %}miss{% endif %}">{% if row.met %}Met{% else %}Unmet{% endif %}</td>
+</tr>{% endfor %}</tbody>
+</table>
+</div>
+    <dl class="identity">
+<dt>Execution</dt>
+<dd>{{ detection_challenge.results.started_at }} → {{ detection_challenge.results.finished_at }}</dd>
+<dt>Run ID</dt>
+<dd>
+<code>{{ detection_challenge.run_id }}</code>
+</dd>
+<dt>Source content</dt>
+<dd>
+<code>{{ detection_challenge.source_sha256 }}</code> · {{ detection_challenge.source_file_count }} files · matched at generation</dd>
+<dt>Predeclared catalog</dt>
+<dd>
+<code>{{ detection_challenge.results.declaration_sha256 }}</code>
+</dd>
+<dt>Public receipt</dt>
+<dd>
+<code>{{ detection_challenge.receipt }}</code>
+</dd>
+<dt>Receipt SHA-256</dt>
+<dd>
+<code>{{ detection_challenge.receipt_sha256 }}</code>
+</dd>
+</dl>
     <ul class="limits">{% for limit in challenge_limits %}<li>{{ limit }}</li>{% endfor %}</ul>
-  </div></details>
+  </div>
+</details>
 </section>
 {% endif %}
-<details class="report-section"><summary>Inspect the executed checks and source identity</summary><section class="section"><div class="section-head"><h2>Core verification</h2><span class="badge">Passed · source matched at generation</span></div><div class="panel"><p>{{ check_count }} fixed offline check groups cover the workbench implementation. Node suites test courier and HTTP-harness behavior using mocks; their counts do not represent requests to real Supabase services.</p><div class="table-wrap"><table><thead><tr><th>Executed check</th><th>Result</th><th>Tests</th><th>Seconds</th></tr></thead><tbody>{% for check in core.checks %}<tr><td>{{ check.name }}</td><td class="check">Passed</td><td>{% if check.tests %}{{ check.tests.tests_run }}{% else %}—{% endif %}</td><td>{{ check.duration_seconds }}</td></tr>{% endfor %}</tbody></table></div><details><summary>Inspect core provenance and coverage limits</summary><div class="details-body"><dl class="identity"><dt>Execution started</dt><dd>{{ core.started_at }}</dd><dt>Execution finished</dt><dd>{{ core.finished_at }}</dd><dt>Run ID</dt><dd><code>{{ core.run_id }}</code></dd><dt>Git revision</dt><dd><code>{{ core.revision }}</code>{% if core.working_tree_dirty %} · working tree had changes{% endif %}</dd><dt>Source content</dt><dd><code>{{ core.source_sha256 }}</code> · {{ core.source_file_count }} files</dd><dt>Public receipt</dt><dd><code>{{ core.receipt }}</code></dd><dt>Receipt SHA-256</dt><dd><code>{{ core.receipt_sha256 }}</code></dd></dl><ul class="limits">{% for limit in core.coverage_limits %}<li>{{ limit }}</li>{% endfor %}</ul></div></details></div></section>
-</details><details class="report-section"><summary>Explore the detection gap, correction and regression results</summary><section class="section"><div class="section-head"><h2>Fixing a missed scenario</h2><span class="badge muted-badge">Builder-authored synthetic lab</span></div><p>The original simulation exposed a time-window boundary gap. Compare recorded outcomes on the same declared scenarios, and inspect the individual results below.</p>
-{% if same_declared_scenarios %}<div class="grid"><article class="panel"><div class="eyebrow">Historical baseline</div><h3>A boundary case was missed.</h3><div class="numbers"><div><strong>{{ historical_baseline.results.detection_quality.true_positive_scenarios }} / 5</strong><small>EXPECTED ALERT SCENARIOS DETECTED</small></div><div><strong>{{ historical_baseline.results.detection_quality.false_negative_scenarios }}</strong><small>MISSED</small></div></div><div class="bar baseline"><span style="width:{% widthratio historical_baseline.results.detection_quality.true_positive_scenarios 5 100 %}%"></span></div><p class="small">{{ historical_baseline.results.finished_at }} · Historical source content; retained unchanged.</p></article><article class="panel"><div class="eyebrow">Current recorded implementation</div><h3>Rechecked against the same 15 scenarios.</h3><div class="numbers"><div><strong>{{ current_simulation.results.detection_quality.true_positive_scenarios }} / 5</strong><small>EXPECTED ALERT SCENARIOS DETECTED</small></div><div><strong>{{ current_simulation.results.detection_quality.false_negative_scenarios }}</strong><small>MISSED</small></div></div><div class="bar"><span style="width:{% widthratio current_simulation.results.detection_quality.true_positive_scenarios 5 100 %}%"></span></div><p class="small">{{ current_simulation.results.finished_at }} · Source matched at page generation.</p></article></div><p class="coverage">The comparison uses five expected-alert and ten expected-no-alert scenarios. These development cases are not an independent holdout or a measurement of production detection accuracy. A code change and its retest are separate recorded executions.</p>{% elif historical_baseline %}<div class="notice"><strong>Historical baseline only</strong><p>The recorded baseline includes a known coverage gap. A current-source retest is not present, so no before/after improvement is claimed.</p></div>{% else %}<div class="notice"><strong>Simulation evidence is optional</strong><p>No baseline comparison is available. The core test result above remains a separate verification scope.</p></div>{% endif %}
-{% for run in runs %}<article class="panel section"><div class="section-head"><h3>{% if run.matches_current_source %}Current simulation{% else %}Historical baseline{% endif %} · {{ run.results.coverage.met }} / {{ run.results.coverage.total }} scenarios met</h3><span class="badge {% if run.status != 'passed' %}warning{% endif %}">{{ run.status }}</span></div><p class="small">Executed {{ run.results.started_at }} → {{ run.results.finished_at }} · {{ run.results.database }} · {{ run.results.transport }}</p><div class="table-wrap"><table><thead><tr><th>True positive</th><th>False negative</th><th>False positive</th><th>True negative</th><th>Accepted / processed</th></tr></thead><tbody><tr><td>{{ run.results.detection_quality.true_positive_scenarios }}</td><td>{{ run.results.detection_quality.false_negative_scenarios }}</td><td>{{ run.results.detection_quality.false_positive_scenarios }}</td><td>{{ run.results.detection_quality.true_negative_scenarios }}</td><td>{{ run.results.bounded_load.accepted_events }} / {{ run.results.bounded_load.processed_events }}</td></tr></tbody></table></div><p class="coverage">{{ run.results.bounded_load.limits }} The bounded benign load generated {{ run.results.bounded_load.alerts_from_benign_load }} alerts. Timings are retained in metrics.json; they are not a capacity promise.</p><details><summary>Expand all scenarios and execution identity</summary><div class="details-body"><div class="table-wrap"><table><thead><tr><th>Scenario</th><th>Expected rule</th><th>Observed rule</th><th>Coverage</th></tr></thead><tbody>{% for row in run.results.scenarios %}<tr><td>{{ row.id }}</td><td>{{ row.expected_rule|default:'None' }}</td><td>{% for rule in row.observed_rules %}{{ rule }}{% empty %}None{% endfor %}</td><td class="{% if row.coverage_met %}check{% else %}miss{% endif %}">{% if row.coverage_met %}Met{% else %}Missed{% endif %}</td></tr>{% endfor %}</tbody></table></div><dl class="identity"><dt>Run ID</dt><dd><code>{{ run.run_id }}</code></dd><dt>Git revision</dt><dd><code>{{ run.revision }}</code>{% if run.working_tree_dirty %} · working tree had changes{% endif %}</dd><dt>Source content</dt><dd><code>{{ run.source_sha256 }}</code> · {{ run.source_file_count }} files</dd><dt>Public receipt</dt><dd><code>{{ run.receipt }}</code></dd><dt>Receipt SHA-256</dt><dd><code>{{ run.receipt_sha256 }}</code></dd><dt>Recorded result hash</dt><dd><code>{{ run.result_sha256 }}</code> · private original bytes not reread by this page builder</dd></dl><p class="small">Not tested in this simulation:</p><ul class="limits">{% for limit in run.results.not_tested %}<li>{{ limit }}</li>{% endfor %}</ul></div></details></article>{% endfor %}
+<details class="report-section">
+<summary>Inspect the executed checks and source identity</summary>
+<section class="section">
+<div class="section-head">
+<h2>Core verification</h2>
+<span class="badge">Passed · source matched at generation</span>
+</div>
+<div class="panel">
+<p>{{ check_count }} fixed offline check groups cover the workbench implementation. Node suites test courier and HTTP-harness behavior using mocks; their counts do not represent requests to real Supabase services.</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Executed check</th>
+<th>Result</th>
+<th>Tests</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>{% for check in core.checks %}<tr>
+<td>{{ check.name }}</td>
+<td class="check">Passed</td>
+<td>{% if check.tests %}{{ check.tests.tests_run }}{% else %}—{% endif %}</td>
+<td>{{ check.duration_seconds }}</td>
+</tr>{% endfor %}</tbody>
+</table>
+</div>
+<details>
+<summary>Inspect core provenance and coverage limits</summary>
+<div class="details-body">
+<dl class="identity">
+<dt>Execution started</dt>
+<dd>{{ core.started_at }}</dd>
+<dt>Execution finished</dt>
+<dd>{{ core.finished_at }}</dd>
+<dt>Run ID</dt>
+<dd>
+<code>{{ core.run_id }}</code>
+</dd>
+<dt>Git revision</dt>
+<dd>
+<code>{{ core.revision }}</code>{% if core.working_tree_dirty %} · working tree had changes{% endif %}</dd>
+<dt>Source content</dt>
+<dd>
+<code>{{ core.source_sha256 }}</code> · {{ core.source_file_count }} files</dd>
+<dt>Public receipt</dt>
+<dd>
+<code>{{ core.receipt }}</code>
+</dd>
+<dt>Receipt SHA-256</dt>
+<dd>
+<code>{{ core.receipt_sha256 }}</code>
+</dd>
+</dl>
+<ul class="limits">{% for limit in core.coverage_limits %}<li>{{ limit }}</li>{% endfor %}</ul>
+</div>
+</details>
+</div>
 </section>
-</details><section class="grid section" id="engineering"><article class="panel"><div class="eyebrow">Technical work represented</div><h2>What was built.</h2><p>Python and Django authorization, signed ingestion, durable queue processing, scope-aware detections, scanner-report normalization, provenance-aware review and adverse testing.</p><p>Separate receipts record genuine local Supabase Auth/REST/Storage checks, two copied BetTail application routes, and bounded synthetic Wazuh and ZAP pilots. Those executions are separate from the offline counts above. They do not establish continuous monitoring, complete application coverage or production readiness.</p><div class="links"><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/docs/DESIGN.md">Design notes</a><a href="https://github.com/aman-agarwal6/signalbridge">Source on GitHub</a></div></article><article class="panel"><div class="eyebrow">Interpretation</div><h2>What these results show.</h2><ul class="limits">{% for limit in limits %}<li>{{ limit }}</li>{% endfor %}</ul><div class="links"><a href="metrics.json">Open machine-readable metrics</a><a href="https://github.com/aman-agarwal6/signalbridge#readme">Project README</a></div></article></section>
+</details>
+<details class="report-section">
+<summary>Explore the detection gap, correction and regression results</summary>
+<section class="section">
+<div class="section-head">
+<h2>Fixing a missed scenario</h2>
+<span class="badge muted-badge">Builder-authored synthetic lab</span>
+</div>
+<p>The original simulation exposed a time-window boundary gap. Compare recorded outcomes on the same declared scenarios, and inspect the individual results below.</p>
+{% if same_declared_scenarios %}<div class="grid">
+<article class="panel">
+<div class="eyebrow">Historical baseline</div>
+<h3>A boundary case was missed.</h3>
+<div class="numbers">
+<div>
+<strong>{{ historical_baseline.results.detection_quality.true_positive_scenarios }} / 5</strong>
+<small>EXPECTED ALERT SCENARIOS DETECTED</small>
+</div>
+<div>
+<strong>{{ historical_baseline.results.detection_quality.false_negative_scenarios }}</strong>
+<small>MISSED</small>
+</div>
+</div>
+<div class="bar baseline">
+<span style="width:{% widthratio historical_baseline.results.detection_quality.true_positive_scenarios 5 100 %}%">
+</span>
+</div>
+<p class="small">{{ historical_baseline.results.finished_at }} · Historical source content; retained unchanged.</p>
+</article>
+<article class="panel">
+<div class="eyebrow">Current recorded implementation</div>
+<h3>Rechecked against the same 15 scenarios.</h3>
+<div class="numbers">
+<div>
+<strong>{{ current_simulation.results.detection_quality.true_positive_scenarios }} / 5</strong>
+<small>EXPECTED ALERT SCENARIOS DETECTED</small>
+</div>
+<div>
+<strong>{{ current_simulation.results.detection_quality.false_negative_scenarios }}</strong>
+<small>MISSED</small>
+</div>
+</div>
+<div class="bar">
+<span style="width:{% widthratio current_simulation.results.detection_quality.true_positive_scenarios 5 100 %}%">
+</span>
+</div>
+<p class="small">{{ current_simulation.results.finished_at }} · Source matched at page generation.</p>
+</article>
+</div>
+<p class="coverage">The comparison uses five expected-alert and ten expected-no-alert scenarios. These development cases are not an independent holdout or a measurement of production detection accuracy. A code change and its retest are separate recorded executions.</p>{% elif historical_baseline %}<div class="notice">
+<strong>Historical baseline only</strong>
+<p>The recorded baseline includes a known coverage gap. A current-source retest is not present, so no before/after improvement is claimed.</p>
+</div>{% else %}<div class="notice">
+<strong>Simulation evidence is optional</strong>
+<p>No baseline comparison is available. The core test result above remains a separate verification scope.</p>
+</div>{% endif %}
+{% for run in runs %}<article class="panel section">
+<div class="section-head">
+<h3>{% if run.matches_current_source %}Current simulation{% else %}Historical baseline{% endif %} · {{ run.results.coverage.met }} / {{ run.results.coverage.total }} scenarios met</h3>
+<span class="badge {% if run.status != 'passed' %}warning{% endif %}">{{ run.status }}</span>
+</div>
+<p class="small">Executed {{ run.results.started_at }} → {{ run.results.finished_at }} · {{ run.results.database }} · {{ run.results.transport }}</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>True positive</th>
+<th>False negative</th>
+<th>False positive</th>
+<th>True negative</th>
+<th>Accepted / processed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{ run.results.detection_quality.true_positive_scenarios }}</td>
+<td>{{ run.results.detection_quality.false_negative_scenarios }}</td>
+<td>{{ run.results.detection_quality.false_positive_scenarios }}</td>
+<td>{{ run.results.detection_quality.true_negative_scenarios }}</td>
+<td>{{ run.results.bounded_load.accepted_events }} / {{ run.results.bounded_load.processed_events }}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="coverage">{{ run.results.bounded_load.limits }} The bounded benign load generated {{ run.results.bounded_load.alerts_from_benign_load }} alerts. Timings are retained in metrics.json; they are not a capacity promise.</p>
+<details>
+<summary>Expand all scenarios and execution identity</summary>
+<div class="details-body">
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Expected rule</th>
+<th>Observed rule</th>
+<th>Coverage</th>
+</tr>
+</thead>
+<tbody>{% for row in run.results.scenarios %}<tr>
+<td>{{ row.id }}</td>
+<td>{{ row.expected_rule|default:'None' }}</td>
+<td>{% for rule in row.observed_rules %}{{ rule }}{% empty %}None{% endfor %}</td>
+<td class="{% if row.coverage_met %}check{% else %}miss{% endif %}">{% if row.coverage_met %}Met{% else %}Missed{% endif %}</td>
+</tr>{% endfor %}</tbody>
+</table>
+</div>
+<dl class="identity">
+<dt>Run ID</dt>
+<dd>
+<code>{{ run.run_id }}</code>
+</dd>
+<dt>Git revision</dt>
+<dd>
+<code>{{ run.revision }}</code>{% if run.working_tree_dirty %} · working tree had changes{% endif %}</dd>
+<dt>Source content</dt>
+<dd>
+<code>{{ run.source_sha256 }}</code> · {{ run.source_file_count }} files</dd>
+<dt>Public receipt</dt>
+<dd>
+<code>{{ run.receipt }}</code>
+</dd>
+<dt>Receipt SHA-256</dt>
+<dd>
+<code>{{ run.receipt_sha256 }}</code>
+</dd>
+<dt>Recorded result hash</dt>
+<dd>
+<code>{{ run.result_sha256 }}</code> · private original bytes not reread by this page builder</dd>
+</dl>
+<p class="small">Not tested in this simulation:</p>
+<ul class="limits">{% for limit in run.results.not_tested %}<li>{{ limit }}</li>{% endfor %}</ul>
+</div>
+</details>
+</article>{% endfor %}
+</section>
+</details>
+<section class="grid section" id="engineering">
+<article class="panel">
+<div class="eyebrow">Technical work represented</div>
+<h2>What was built.</h2>
+<p>Python and Django authorization, signed ingestion, durable queue processing, scope-aware detections, scanner-report normalization, provenance-aware review and adverse testing.</p>
+<p>Separate receipts record genuine local Supabase Auth/REST/Storage checks, two copied BetTail application routes, and bounded synthetic Wazuh and ZAP pilots. Those executions are separate from the offline counts above. They do not establish continuous monitoring, complete application coverage or production readiness.</p>
+<div class="links">
+<a href="https://github.com/aman-agarwal6/signalbridge/blob/main/docs/DESIGN.md">Design notes</a>
+<a href="https://github.com/aman-agarwal6/signalbridge">Source on GitHub</a>
+</div>
+</article>
+<article class="panel">
+<div class="eyebrow">Interpretation</div>
+<h2>What these results show.</h2>
+<ul class="limits">{% for limit in limits %}<li>{{ limit }}</li>{% endfor %}</ul>
+<div class="links">
+<a href="metrics.json">Open machine-readable metrics</a>
+<a href="https://github.com/aman-agarwal6/signalbridge#readme">Project README</a>
+</div>
+</article>
+</section>
 <footer class="footer">Page generated {{ generated_at }}. Execution times are shown separately above. All dates are UTC. SignalBridge · Public, read-only portfolio artifact. The evidence viewer works as one HTML file. Source, receipt and metrics links point to files in the same repository.</footer>
-</main></body></html>
+</main>
+</body>
+</html>

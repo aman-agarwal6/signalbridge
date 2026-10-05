@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-reference-runtime-preparation",
+  "run_id": "1230c08230874a96b1474dea02fed23d",
+  "recorded_at": "2026-10-02T05:55:16.539060+00:00",
+  "source_sha256": "6fdb939ba59210d3d056f41f4c5590712fae499ae63b22ed79563bbf188cc85f",
+  "source_file_count": 360,
+  "source_unchanged": true,
+  "passed": true,
+  "checks": [
+    {
+      "name": "source-host-denial-controls",
+      "passed": true,
+      "tests": {
+        "tests_run": 63,
+        "successful_summary": true,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      },
+      "exit_code": 0,
+      "duration_seconds": 4.343,
+      "log_sha256": {
+        "stdout": "eedcbc9eb6de8f8ecc13114577f5175f95d64d81d09dc891d16b524c477e989a",
+        "stderr": "4bdb262924d81001ce0840e4211abf86428aea6129b0e3b444ea73a72fd80427"
+      }
+    },
+    {
+      "name": "real-memory-tls-controls",
+      "passed": true,
+      "tests": {
+        "tests_run": 5,
+        "successful_summary": true,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      },
+      "exit_code": 0,
+      "duration_seconds": 0.871,
+      "log_sha256": {
+        "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "78b3b0b7c686a6da402fc1942b6085763c8ea0fcd1a62f210b980d5763770dcf"
+      }
+    }
+  ],
+  "executed_python_methods": 68,
+  "native_services_launched": false,
+  "certificate_runtime": {
+    "python": "3.12.14",
+    "cryptography": "50.0.1",
+    "existing_bundled_runtime": true
+  },
+  "parsed_recipe": "Actual installed Compose CLI output retained privately; sanitized closed fixture in tests/fixtures/reference-compose.json. No daemon launch.",
+  "limits": [
+    "Scoped preparation checks, not a full application regression or current frozen detection evaluation.",
+    "Real OpenSSL handshakes use memory BIOs only; they open no network socket and do not prove native service TLS or PostgreSQL.",
+    "Container ownership/runtime/shutdown and kernel checks use hostile models or mocked daemon/clock inputs; effective native execution remains unverified.",
+    "The host launch orchestration, raw native receipt validation and reviewed launch are still unfinished.",
+    "Current implementation differs from the previous full offline receipt and detection freeze; those remain historical until the next full round."
+  ]
+}

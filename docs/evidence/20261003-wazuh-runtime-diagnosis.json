@@ -1,0 +1,29 @@
+{
+  "kind": "signalbridge-wazuh-runtime-diagnosis",
+  "run_id": "4e538a364db04a0dbcd03aceafdca8af",
+  "native_container_created": true,
+  "native_container_ever_started": false,
+  "observed_started_at": "0001-01-01T00:00:00Z",
+  "native_execution": false,
+  "causes": [
+    "Docker omitted optional HostConfig.Tmpfs; direct map lookup failed.",
+    "Docker reports the exact allowed capabilities with CAP_ prefixes; validation now recognizes the same names."
+  ],
+  "complete_corrected_actual_runtime_inspection_passed": true,
+  "effective_controls": {
+    "network": "none",
+    "capabilities": [
+      "SETGID",
+      "SETUID",
+      "SYS_CHROOT"
+    ],
+    "memory_bytes": 1610612736,
+    "cpus": 1,
+    "ports": 0
+  },
+  "focused_control_methods_passed": 15,
+  "resource_or_privilege_expansion": false,
+  "main_shutdown_reported": true,
+  "independent_shutdown_reported": true,
+  "acceptance_passed": false
+}

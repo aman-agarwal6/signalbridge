@@ -5,7 +5,8 @@ from datetime import timedelta
 from django.db.models import Count, Max, Min, Q
 from django.utils import timezone
 
-from .models import CheckRun, Event, WorkerHeartbeat
+from .models import CheckRun, Event
+from .worker_health import worker_health
 
 
 def event_summary(events):
@@ -34,17 +35,17 @@ def workspace_health(app):
         dead=Count("pk", filter=Q(state="dead")),
         oldest_pending=Min("received_at", filter=Q(state="pending")),
     )
-    heartbeat = WorkerHeartbeat.objects.filter(name="default").first()
+    workers = worker_health(now)
     queue["oldest_pending_seconds"] = (
         max(0, int((now - queue["oldest_pending"]).total_seconds()))
         if queue["oldest_pending"]
         else None
     )
-    queue["worker_recent"] = bool(
-        heartbeat
-        and now - timedelta(seconds=30) <= heartbeat.last_seen <= now + timedelta(seconds=5)
+    queue["worker_recent"] = workers["all_recent"]
+    queue["worker_seen_at"] = max(
+        (item["seen_at"] for item in workers["workers"] if item["state"] in ("recent", "stale")),
+        default=None,
     )
-    queue["worker_seen_at"] = heartbeat.last_seen if heartbeat else None
     streams = list(
         events.values("source", "environment")
         .annotate(
@@ -70,6 +71,7 @@ def workspace_health(app):
         "as_of": now,
         "collector_enabled": app.enabled,
         "queue": queue,
+        "workers": workers,
         "streams": streams,
         "latest_http": latest_http,
         "attention": bool(queue["dead"] or (queue["eligible"] and not queue["worker_recent"])),

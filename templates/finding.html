@@ -1,11 +1,11 @@
 {% extends "base.html" %}{% load console %}{% block content %}
-<a class="back-link" href="/findings/?app={{ app.slug }}">← Security findings</a>
+<a class="back-link" href="/findings/?app={{ app.slug }}">&larr; Security findings</a>
 <div class="page-heading case-heading"><div><div class="eyebrow tool-kicker">{% include "parts/tool_identity.html" with tool=finding.tool compact=True %}<span>{{ finding.tool|upper }} / {{ finding.rule_id }}</span></div><h1>{{ finding.guidance.title }}</h1><p>{% if finding.path %}{{ finding.path }}{% if finding.line %}:{{ finding.line }}{% endif %}{% elif finding.package %}{{ finding.package }} {{ finding.package_version }}{% else %}Location not supplied by this report{% endif %}</p></div><span class="badge {{ finding.status }}">{{ finding.get_status_display }}</span></div>
 <div class="notice"><div><strong>{{ finding.review.label }}</strong><p>{{ finding.review.detail }}</p>{% if newer_report %}<p>A newer report from this tool exists without this observation. Its absence does not establish a correction; inspect scan history and compare scope.</p>{% endif %}</div></div>
 <div class="case-layout"><div>
 <section class="panel prose">
 <span class="badge neutral">{{ finding.guidance.kind }}</span><h2>Why this was flagged</h2><p>{{ finding.guidance.why }}</p><p>{{ finding.guidance.explanation }}</p>
-{% if finding.guidance.url %}<p><a href="{{ finding.guidance.url }}" rel="noreferrer noopener" target="_blank">{{ finding.guidance.url_title }} →</a></p>{% endif %}
+{% if finding.guidance.url %}<p><a href="{{ finding.guidance.url }}" rel="noreferrer noopener" target="_blank">{{ finding.guidance.url_title }} &rarr;</a></p>{% endif %}
 <h2 class="spaced">What the evidence establishes</h2>
 <dl class="field-grid">
 <div><dt>{{ finding.guidance.level_label|upper }}</dt><dd>{{ finding.severity }} · tool-reported</dd></div>

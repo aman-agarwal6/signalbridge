@@ -1,0 +1,503 @@
+{
+  "uid": "signalbridge-pipeline",
+  "title": "SignalBridge | Detection pipeline health",
+  "description": "Prepared operational dashboard. Native scrape, alerts and rendering must be verified in the approved isolated lab; no production or reliability acceptance is implied.",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": false,
+  "timezone": "utc",
+  "refresh": "15s",
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "tags": [
+    "signalbridge",
+    "lab-operations",
+    "native-verification-pending"
+  ],
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "links": [],
+  "panels": [
+    {
+      "id": 1,
+      "type": "text",
+      "title": "What this dashboard establishes",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 4
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "Operational observations from SignalBridge's protected exporter. **This dashboard is prepared; native Prometheus/Grafana execution remains unverified.**\n\n`app1`\u2013`app8` map to the operator's fixed application order. Worker slots describe a shared pool. Database counts are retained gauges, not monotonic counters. Missing samples mean unavailable evidence. Local SOC export does not establish native Wazuh delivery. No external notifications or autonomous response."
+      }
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "Exporter scrape success",
+      "description": "Prometheus's own actual scrape result; no synthetic fallback for absent data.",
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "signalbridge-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "up{job=\"signalbridge\"}",
+          "range": false,
+          "instant": true,
+          "format": "time_series",
+          "legendFormat": "{{scope}} {{slot}} {{state}} {{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "noValue": "No evidence",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 3,
+      "type": "table",
+      "title": "Configured worker pulse states",
+      "description": "Recent, stale, missing or clock_error by primary/secondary slot. A pulse does not establish completed detection.",
+      "gridPos": {
+        "x": 12,
+        "y": 4,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "signalbridge-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "signalbridge_worker_state{job=\"signalbridge\"} == 1",
+          "range": false,
+          "instant": true,
+          "format": "table",
+          "legendFormat": "{{scope}} {{slot}} {{state}} {{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "noValue": "No evidence",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "Pending records",
+      "description": "Accepted logical records still pending, including scheduled retries.",
+      "gridPos": {
+        "x": 0,
+        "y": 11,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "signalbridge-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "signalbridge_retained_events{job=\"signalbridge\",state=\"pending\"}",
+          "range": true,
+          "instant": false,
+          "format": "time_series",
+          "legendFormat": "{{scope}} {{slot}} {{state}} {{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No evidence",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Oldest pending record age",
+      "description": "Absent for an empty queue; do not interpret no data as zero delay.",
+      "gridPos": {
+        "x": 12,
+        "y": 11,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "signalbridge-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "time() - signalbridge_queue_oldest_received_timestamp_seconds{job=\"signalbridge\"}",
+          "range": true,
+          "instant": false,
+          "format": "time_series",
+          "legendFormat": "{{scope}} {{slot}} {{state}} {{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "noValue": "No evidence",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "Dead-letter records",
+      "description": "Accepted records with exhausted retries. Preserve and inspect processing errors.",
+      "gridPos": {
+        "x": 0,
+        "y": 18,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "signalbridge-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "signalbridge_retained_events{job=\"signalbridge\",state=\"dead\"}",
+          "range": false,
+          "instant": true,
+          "format": "time_series",
+          "legendFormat": "{{scope}} {{slot}} {{state}} {{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No evidence",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "title": "Committed failed processing attempts",
+      "description": "Retained gauge; excludes attempts killed before transaction commit. Do not apply rate() as to a counter.",
+      "gridPos": {
+        "x": 12,
+        "y": 18,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "signalbridge-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "signalbridge_committed_processing_failures{job=\"signalbridge\"}",
+          "range": true,
+          "instant": false,
+          "format": "time_series",
+          "legendFormat": "{{scope}} {{slot}} {{state}} {{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No evidence",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "Bounded processing delay sample p95",
+      "description": "Nearest-rank p95 of latest at most 1000 valid completions in one hour, including outages/retries. Not the 24-hour acceptance calculation.",
+      "gridPos": {
+        "x": 0,
+        "y": 25,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "signalbridge-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "signalbridge_processing_sample_p95_seconds{job=\"signalbridge\"}",
+          "range": true,
+          "instant": false,
+          "format": "time_series",
+          "legendFormat": "{{scope}} {{slot}} {{state}} {{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "noValue": "No evidence",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "type": "timeseries",
+      "title": "Processing sample denominator",
+      "description": "Valid loaded completions. Zero has no latency sample; the p95 metric is then absent.",
+      "gridPos": {
+        "x": 12,
+        "y": 25,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "signalbridge-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "signalbridge_processing_sample_count{job=\"signalbridge\"}",
+          "range": true,
+          "instant": false,
+          "format": "time_series",
+          "legendFormat": "{{scope}} {{slot}} {{state}} {{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No evidence",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "type": "timeseries",
+      "title": "Local SOC export stages",
+      "description": "Staged and file_appended only. Native tool-observed and reconciled counts remain separate unfinished integration work.",
+      "gridPos": {
+        "x": 0,
+        "y": 32,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "signalbridge-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "signalbridge_soc_local_delivery_records{job=\"signalbridge\"}",
+          "range": true,
+          "instant": false,
+          "format": "time_series",
+          "legendFormat": "{{scope}} {{slot}} {{state}} {{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No evidence",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "type": "timeseries",
+      "title": "Workspace filesystem free space",
+      "description": "Configured workspace volume only, not Docker/VM allocation or attributed lab growth. Independent runtime guard remains required.",
+      "gridPos": {
+        "x": 12,
+        "y": 32,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "signalbridge-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "signalbridge_workspace_filesystem_free_bytes{job=\"signalbridge\"}",
+          "range": true,
+          "instant": false,
+          "format": "time_series",
+          "legendFormat": "{{scope}} {{slot}} {{state}} {{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "noValue": "No evidence",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "type": "timeseries",
+      "title": "Retained ingestion rejections",
+      "description": "Rejected requests for each monitored scope; no actor, reason, credentials or contents are exported.",
+      "gridPos": {
+        "x": 0,
+        "y": 39,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "signalbridge-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "signalbridge_ingestion_rejections{job=\"signalbridge\"}",
+          "range": true,
+          "instant": false,
+          "format": "time_series",
+          "legendFormat": "{{scope}} {{slot}} {{state}} {{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No evidence",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 13,
+      "type": "stat",
+      "title": "Invalid completion timestamps",
+      "description": "Missing, reversed or future completion timestamps cannot support processing-latency claims.",
+      "gridPos": {
+        "x": 12,
+        "y": 39,
+        "w": 12,
+        "h": 7
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "signalbridge-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "signalbridge_invalid_processing_timestamps{job=\"signalbridge\"}",
+          "range": false,
+          "instant": true,
+          "format": "time_series",
+          "legendFormat": "{{scope}} {{slot}} {{state}} {{stage}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No evidence",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {}
+    }
+  ]
+}

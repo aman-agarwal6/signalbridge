@@ -215,7 +215,7 @@ def launch(docker, approval_reference, initial_free_disk, wheel_cache_run=None, 
             proof.get("test_exit_code") == 0
             and proof.get("log_sha256") == hashlib.sha256(raw).hexdigest()
             and summary
-            and summary["tests_run"] == 9
+            and summary["tests_run"] == 14
             and summary["successful_summary"]
             and not any(
                 summary[key]

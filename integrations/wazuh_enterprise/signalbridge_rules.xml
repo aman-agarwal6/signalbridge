@@ -1,0 +1,62 @@
+<!-- Enterprise profile only. Forwarded detections are not Wazuh rediscovery. -->
+<group name="signalbridge_enterprise,application_security,">
+  <rule id="100210" level="0">
+    <decoded_as>json</decoded_as>
+    <field name="signalbridge.export_version" type="pcre2">^2$</field>
+    <field name="signalbridge.app" type="pcre2">^(bettail|netted|documents|expenses)$</field>
+    <field name="signalbridge.environment" type="pcre2">^(lab|test)$</field>
+    <field name="signalbridge.source" type="pcre2">^(migration_lab|synthetic_demo|instrumented_lab)$</field>
+    <description>SignalBridge enterprise lab observation, without actor/resource context.</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100211" level="3">
+    <if_sid>100210</if_sid>
+    <field name="signalbridge.operation" type="pcre2">^private_record\.read$</field>
+    <field name="signalbridge.outcome" type="pcre2">^denied$</field>
+    <description>Wazuh observation: individual denied read, not proof of attack.</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100212" level="3">
+    <if_sid>100210</if_sid>
+    <field name="signalbridge.operation" type="pcre2">^private_record\.read$</field>
+    <field name="signalbridge.outcome" type="pcre2">^not_visible$</field>
+    <description>Wazuh observation: row not visible, authorization denial unestablished.</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100213" level="4">
+    <if_sid>100210</if_sid>
+    <field name="signalbridge.outcome" type="pcre2">^error$</field>
+    <field name="signalbridge.reason" type="pcre2">^dependency_unavailable$</field>
+    <description>Wazuh observation: dependency failure leaves incomplete security coverage.</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100220" level="0">
+    <decoded_as>json</decoded_as>
+    <field name="signalbridge_detection.signal_version" type="pcre2">^1$</field>
+    <field name="signalbridge_detection.origin" type="pcre2">^signalbridge$</field>
+    <field name="signalbridge_detection.app" type="pcre2">^(bettail|netted|documents|expenses)$</field>
+    <field name="signalbridge_detection.environment" type="pcre2">^(lab|test)$</field>
+    <field name="signalbridge_detection.evidence_sha256" type="pcre2">^[a-f0-9]{64}$</field>
+    <description>SignalBridge core-generated detection forwarded to Wazuh.</description>
+    <group>signalbridge_forwarded_detection,</group>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100221" level="12">
+    <if_sid>100220</if_sid>
+    <field name="signalbridge_detection.rule_id" type="pcre2">^R2$</field>
+    <description>SignalBridge R2 forwarded signal: source-labeled allowed read; verify source context.</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100222" level="10">
+    <if_sid>100220</if_sid>
+    <field name="signalbridge_detection.rule_id" type="pcre2">^R3$</field>
+    <description>SignalBridge R3 forwarded correlation; not independent Wazuh revocation detection.</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100223" level="5">
+    <if_sid>100220</if_sid>
+    <field name="signalbridge_detection.rule_id" type="pcre2">^(R1|R4|R5)$</field>
+    <description>SignalBridge denied-read pattern forwarded for review; attacker intent unestablished.</description>
+    <options>no_full_log</options>
+  </rule>
+</group>

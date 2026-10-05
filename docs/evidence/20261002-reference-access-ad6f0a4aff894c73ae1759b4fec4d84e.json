@@ -1,0 +1,35 @@
+{
+  "acceptance_passed": false,
+  "approval_reference": "user-approved-source-stage-20261002",
+  "capacity_before": {
+    "free_disk_bytes": 77311418368,
+    "free_memory_bytes": 12774580224
+  },
+  "error_class": "LabControlError",
+  "error_code": "A fixed source preparation or runtime phase failed.",
+  "finished_at": "2026-10-02T21:22:52.857615+00:00",
+  "free_disk_after_bytes": 77311377408,
+  "images": {
+    "database": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "runner": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+  },
+  "kind": "signalbridge-native-reference-access",
+  "limits": [
+    "Fixed two-application synthetic source proof; not SSO, security-tool, restoration or 24-hour acceptance.",
+    "Source/console processes share one uid; database roles are not independent OS security boundaries.",
+    "Hashes identify recorded bytes; local administrator tampering is outside this evidence boundary.",
+    "Capacity readings are detection guards, not hard quotas. No images, volumes or other projects are removed."
+  ],
+  "main_shutdown": {
+    "run_id": "ad6f0a4aff894c73ae1759b4fec4d84e",
+    "shutdown_verified": true,
+    "stopped_component_count": 0
+  },
+  "run_id": "ad6f0a4aff894c73ae1759b4fec4d84e",
+  "schema_version": 1,
+  "source_unchanged": false,
+  "stage_growth_ceiling_bytes": 12884901888,
+  "stage_initial_free_disk_bytes": 80498424546,
+  "started_at": "2026-10-02T21:22:52.451332+00:00",
+  "status": "incomplete"
+}

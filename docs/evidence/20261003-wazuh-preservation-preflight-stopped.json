@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-wazuh-preservation-preflight-stop",
+  "recorded_at": "2026-10-03T04:49:33.081308+00:00",
+  "status": "stopped_before_run_creation_capacity_guard",
+  "approval_reference": "20261003-preservation-wazuh-one",
+  "reviewed_plan": "integrations/wazuh_enterprise/ready-publication-stage-plan.json",
+  "reviewed_plan_sha256": "0fd59e30e34cf1c3ee7080a34e2e45daa1b5566ef94346e4a61430955622bd01",
+  "error_code": "collector_disk_budget",
+  "native_execution": false,
+  "containers_created": 0,
+  "docker_requests_issued": 0,
+  "desktop_start_requested": false,
+  "desktop_stop_requested": false,
+  "retry_authorized": false,
+  "initial_free_disk_bytes": 80498424546,
+  "free_disk_after_bytes": 50378219520,
+  "conservative_cumulative_free_space_loss_bytes": 30120205026,
+  "cumulative_stage_guard_bytes": 12884901888,
+  "source_binding_revalidated": true,
+  "limitations": [
+    "Whole-host free-space loss includes other work and cannot be attributed solely to SignalBridge.",
+    "The preflight stopped before the run directory or Docker request; no collector shutdown was necessary. Existing running workloads were not touched.",
+    "This one-attempt authorization is used. No revised disk baseline or native retry has been authorized."
+  ],
+  "later_read_only_storage_diagnostic": {
+    "engine_mutations": 0,
+    "method": "Aggregate Docker system df plus Windows paging allocation; no resource names, environments, logs, credentials or file contents.",
+    "docker_reported_logical_storage": {
+      "images": "13.17GB",
+      "container_writable": "360MB",
+      "local_volumes": "689.4MB",
+      "build_cache": "1.981GB"
+    },
+    "active_containers": 8,
+    "paging_allocated_megabytes": 17625,
+    "limit": "Shared logical Docker sizes and paging allocation do not explain physical disk change without comparable starting evidence; no cleanup or revised guard authorized."
+  }
+}

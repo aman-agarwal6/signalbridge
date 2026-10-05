@@ -5,17 +5,16 @@ follow redirects, inherit proxies, disable certificate checks or send telemetry
 to an arbitrary target. Receipts contain predicates, never cookie values.
 """
 
-import http.client
 import json
 import re
-import socket
-import ssl
-import threading
 import time
 import uuid
+from datetime import datetime, timezone
 from http.cookies import SimpleCookie
 from pathlib import Path
 from urllib.parse import urlencode
+
+from .https_deadline import BoundedHTTPSConnection, lab_context
 
 ORIGIN = "https://127.0.0.1:18842"
 ACCOUNTS = frozenset(("operator", "document_member", "expense_member", "outsider"))
@@ -76,9 +75,12 @@ class RequestBudget:
         self.deadline, self.used = time.monotonic() + TOTAL_SECONDS, 0
 
     def consume(self):
-        if self.used >= MAX_REQUESTS or time.monotonic() >= self.deadline:
+        now = time.monotonic()
+        remaining = self.deadline - now
+        if self.used >= MAX_REQUESTS or remaining <= 0:
             raise ProfileError("Native reference request or duration ceiling reached.")
         self.used += 1
+        return min(now + REQUEST_SECONDS, self.deadline)
 
 
 class ClosedHTTPSClient:
@@ -86,11 +88,14 @@ class ClosedHTTPSClient:
         ca_file = Path(ca_file)
         if not ca_file.is_file() or ca_file.is_symlink() or ca_file.stat().st_size > 16384:
             raise ProfileError("An explicit bounded lab CA file is required.")
-        self.context = ssl.create_default_context(cafile=str(ca_file))
-        self.context.minimum_version = ssl.TLSVersion.TLSv1_2
+        self.context = lab_context(ca_file)
         self.budget, self.cookies = budget, {}
+        self.last_event_id = None
+        self.last_response = None
 
     def request(self, method, path, body=b"", content_type="application/json", csrf=True):
+        self.last_event_id = None
+        self.last_response = None
         allowed_path(method, path)
         if not isinstance(body, bytes) or len(body) > MAX_REQUEST_BYTES:
             raise ProfileError("Reference request body exceeds the profile.")
@@ -98,7 +103,8 @@ class ClosedHTTPSClient:
             raise ProfileError("Reference reads cannot carry a body.")
         if content_type not in ("application/json", "application/x-www-form-urlencoded"):
             raise ProfileError("Reference content type escaped the profile.")
-        self.budget.consume()
+        deadline = self.budget.consume()
+        request_started_at = datetime.now(timezone.utc).isoformat()
         headers = {"Content-Type": content_type, "Origin": ORIGIN, "Referer": ORIGIN + "/login/"}
         if self.cookies:
             headers["Cookie"] = "; ".join(
@@ -106,29 +112,28 @@ class ClosedHTTPSClient:
             )
         if csrf and "csrftoken" in self.cookies:
             headers["X-CSRFToken"] = self.cookies["csrftoken"]
-        connection = http.client.HTTPSConnection(
-            "127.0.0.1", 18842, timeout=REQUEST_SECONDS, context=self.context
+        connection = BoundedHTTPSConnection(
+            18842, seconds=REQUEST_SECONDS, deadline=deadline, context=self.context
         )
-        timer = None
         try:
+            connection.start()
             connection.connect()
-            channel = connection.sock
-
-            def interrupt():
-                try:
-                    channel.shutdown(socket.SHUT_RDWR)
-                except OSError:
-                    pass
-
-            # Socket inactivity alone does not bound a peer that trickles bytes.
-            timer = threading.Timer(REQUEST_SECONDS, interrupt)
-            timer.daemon = True
-            timer.start()
             connection.request(method, path, body=body, headers=headers)
             response = connection.getresponse()
             raw = response.read(MAX_RESPONSE_BYTES + 1)
+            connection.remaining()
             if len(raw) > MAX_RESPONSE_BYTES or 300 <= response.status < 400:
                 raise ProfileError("Oversized or redirected reference response rejected.")
+            identifiers = response.headers.get_all("X-SB-Lab-Event-ID", [])
+            if identifiers:
+                if len(identifiers) != 1 or not path.startswith("/apps/"):
+                    raise ProfileError("Unexpected source observation binding.")
+                try:
+                    if str(uuid.UUID(identifiers[0])) != identifiers[0]:
+                        raise ValueError()
+                except (ValueError, TypeError, AttributeError):
+                    raise ProfileError("Invalid source observation binding.") from None
+                self.last_event_id = identifiers[0]
             for header in response.headers.get_all("Set-Cookie", []):
                 parsed = SimpleCookie()
                 parsed.load(header)
@@ -145,6 +150,38 @@ class ClosedHTTPSClient:
                             self.cookies[name] = cookie.value
                         else:
                             self.cookies.pop(name, None)
+            # Optional authenticated-header profile input. Password POSTs and
+            # login pages are never captured, and cookie/authorization values are
+            # absent. This is ephemeral response material, not an execution receipt.
+            if method == "GET" and path != "/login/":
+                if type(response.version) is not int or response.version not in (10, 11):
+                    raise ProfileError(
+                        "The captured source response has an unsupported HTTP version."
+                    )
+                retained = {
+                    "content-type",
+                    "x-content-type-options",
+                    "x-sb-lab-event-id",
+                    "content-security-policy",
+                    "x-frame-options",
+                    "cache-control",
+                    "pragma",
+                    "strict-transport-security",
+                    "referrer-policy",
+                }
+                self.last_response = {
+                    "method": method,
+                    "path": path,
+                    "status": response.status,
+                    "http_version": "HTTP/1.0" if response.version == 10 else "HTTP/1.1",
+                    "headers": [
+                        (name, value)
+                        for name, value in response.headers.items()
+                        if name.lower() in retained
+                    ],
+                    "body": raw,
+                    "started_at": request_started_at,
+                }
             if path == "/login/" and method == "GET":
                 return response.status, {"csrf_cookie_received": "csrftoken" in self.cookies}
             try:
@@ -153,9 +190,7 @@ class ClosedHTTPSClient:
                 value = None
             return response.status, value
         finally:
-            if timer is not None:
-                timer.cancel()
-            connection.close()
+            connection.finish()
 
     def sign_in(self, account, password):
         if (
@@ -212,13 +247,15 @@ def exercise(factory, passwords, set_fault):
     clients, trace = {}, []
     restored = False
 
-    def record(name, facts, expected):
-        trace.append({"step": name, **facts, "passed": facts == expected})
+    def record(name, facts, expected, event_id=None):
+        trace.append({"step": name, **facts, "event_id": event_id, "passed": facts == expected})
         if facts != expected:
             raise ProfileError("Native reference control failed: " + name)
 
     def read(client, app, step, allowed):
         facts = client.read(app)
+        if client.last_event_id is None:
+            raise ProfileError("The source read has no exact observation binding.")
         record(
             step,
             facts,
@@ -227,6 +264,7 @@ def exercise(factory, passwords, set_fault):
                 "observation": "known_content_returned" if allowed else "explicit_denial",
                 "known_content": allowed,
             },
+            client.last_event_id,
         )
 
     try:
@@ -246,10 +284,13 @@ def exercise(factory, passwords, set_fault):
             read(outsider, app, app + "_outsider_denied", False)
             read(clients[other_account], app, app + "_cross_app_denied", False)
             status, value = owner.permission(app, account, "group", False)
+            if owner.last_event_id is None:
+                raise ProfileError("Effective removal has no source assertion binding.")
             record(
                 app + "_permission_removed",
                 {"http_status": status, "effective_access": (value or {}).get("effective_access")},
                 {"http_status": 200, "effective_access": False},
+                owner.last_event_id,
             )
             status, value = member.request("GET", "/identity/")
             record(
@@ -270,17 +311,23 @@ def exercise(factory, passwords, set_fault):
                 finally:
                     set_fault(False, 120)
                 read(member, app, "regression_reset_denied", False)
+                read(owner, app, "documents_reset_owner_control", True)
             status, value = owner.permission(app, account, "group", True)
+            if owner.last_event_id is None:
+                raise ProfileError("Effective restoration has no source assertion binding.")
             record(
                 app + "_permission_restored",
                 {"http_status": status, "effective_access": (value or {}).get("effective_access")},
                 {"http_status": 200, "effective_access": True},
+                owner.last_event_id,
             )
             read(member, app, app + "_restored_known_content", True)
             # Removing one grant must not claim effective removal when a direct
             # grant or ownership still permits the real authorization path.
             owner.permission(app, account, "direct", True)
             status, value = owner.permission(app, account, "group", False)
+            if owner.last_event_id is not None:
+                raise ProfileError("Alternate access incorrectly emitted an effective change.")
             record(
                 app + "_alternate_grant_preserved",
                 {"http_status": status, "effective_access": (value or {}).get("effective_access")},
@@ -313,13 +360,12 @@ def exercise(factory, passwords, set_fault):
                     status, _value = owner.permission(app, account, "direct", False)
                     if status != 200:
                         raise ProfileError("Native reference direct-grant reset failed.")
-                restored = all(
-                    clients[account].read(app)["observation"] == "known_content_returned"
-                    for app, account in (
-                        ("documents", "document_member"),
-                        ("expenses", "expense_member"),
-                    )
-                )
+                for app, account in (
+                    ("documents", "document_member"),
+                    ("expenses", "expense_member"),
+                ):
+                    read(clients[account], app, app + "_final_restore_known_content", True)
+                restored = True
             else:
                 restored = False
         except Exception as error:

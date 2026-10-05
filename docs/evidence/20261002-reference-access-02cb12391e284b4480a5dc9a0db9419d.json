@@ -1,0 +1,79 @@
+{
+  "acceptance_passed": false,
+  "approval_reference": "user-approved-corrected-source-stage-20261002",
+  "capacity_before": {
+    "free_disk_bytes": 77243703296,
+    "free_memory_bytes": 14721024000
+  },
+  "error_class": "LabControlError",
+  "error_code": "Native source runner failed or stopped incompletely.",
+  "finished_at": "2026-10-02T21:30:14.497153+00:00",
+  "free_disk_after_bytes": 77176365056,
+  "images": {
+    "database": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "runner": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+  },
+  "independent_shutdown": {
+    "reason": "launcher_finished",
+    "run_id": "02cb12391e284b4480a5dc9a0db9419d",
+    "shutdown_verified": true,
+    "stopped_at": "2026-10-02T21:30:14.469199+00:00",
+    "stopped_component_count": 2
+  },
+  "independent_shutdown_verified": true,
+  "kind": "signalbridge-native-reference-access",
+  "limits": [
+    "Fixed two-application synthetic source proof; not SSO, security-tool, restoration or 24-hour acceptance.",
+    "Source/console processes share one uid; database roles are not independent OS security boundaries.",
+    "Hashes identify recorded bytes; local administrator tampering is outside this evidence boundary.",
+    "Capacity readings are detection guards, not hard quotas. No images, volumes or other projects are removed."
+  ],
+  "main_shutdown": {
+    "run_id": "02cb12391e284b4480a5dc9a0db9419d",
+    "shutdown_verified": true,
+    "stopped_component_count": 2
+  },
+  "main_shutdown_verified": true,
+  "preparation": {
+    "cached_wheels": {
+      "cache_run": "1d8fd148036e43b0915fbbe86606d013",
+      "downloaded_bytes": 0,
+      "reused_bytes": 14200997,
+      "wheel_count": 6
+    },
+    "certificates": {
+      "authority_sha256": "df05a364485651e1f0b00359c177fb740e793f0d23c4e6b201bae67c01ba82e3",
+      "created_at": "2026-10-02T21:29:40+00:00",
+      "cryptography_version": "50.0.1",
+      "expires_at": "2026-10-02T23:29:40+00:00",
+      "host_trust_changed": false,
+      "loopback_only": true,
+      "python_version": "3.12.14",
+      "run_id": "02cb12391e284b4480a5dc9a0db9419d",
+      "server_certificate_sha256": {
+        "console": "ba648e62408fb731d20f2ac41009f0dbd53dfbf612aaffbcbf2c8008e7c763b1",
+        "source": "6e186eda720abcda7cb709812a90e5ce0b8031e0ae73929a2b5942ae43bcc06f"
+      },
+      "signing_key_persisted": false
+    },
+    "wheel_footprint": {
+      "archive_entries": 4472,
+      "claim": "Metadata estimate with 4 KiB rounding and inode allowance; not a native peak-memory measurement. Optional bytecode generation is disabled.",
+      "estimated_allocation_bytes": 58294272,
+      "uncompressed_bytes": 44906600
+    }
+  },
+  "run_id": "02cb12391e284b4480a5dc9a0db9419d",
+  "schema_version": 1,
+  "source_sha256": "83317fb79d68eb1fbd9b5cb5f2e4a243d4fa1468731990f9a2a0ac1ece5a3477",
+  "source_snapshot": {
+    "bytes": 6293103,
+    "file_count": 516,
+    "source_sha256": "83317fb79d68eb1fbd9b5cb5f2e4a243d4fa1468731990f9a2a0ac1ece5a3477"
+  },
+  "source_unchanged": true,
+  "stage_growth_ceiling_bytes": 12884901888,
+  "stage_initial_free_disk_bytes": 80498424546,
+  "started_at": "2026-10-02T21:29:39.796327+00:00",
+  "status": "incomplete"
+}

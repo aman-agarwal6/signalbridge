@@ -50,6 +50,11 @@ class ContractError(ValueError):
 def timestamp(value):
     if not isinstance(value, str) or len(value) > 40:
         raise ContractError("Invalid timestamp.")
+    # Wazuh writes "+0000" offsets; Python 3.10 (bundled in the Wazuh image)
+    # only parses the "+00:00" form. Python 3.11+ already accepts both.
+    compact = re.fullmatch(r"(.+T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?)([+-]\d{2})(\d{2})", value)
+    if compact:
+        value = compact[1] + compact[2] + ":" + compact[3]
     try:
         result = datetime.fromisoformat(value.replace("Z", "+00:00"))
     except ValueError:

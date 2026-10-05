@@ -6,9 +6,9 @@
   </div>
   {% if backfill.verified %}
   <dl class="tool-collector-metrics">
-    <div><dt>RECEIVED / INPUTS</dt><dd>{{ backfill.counts.received }} / {{ backfill.counts.inputs }}</dd><span>{{ backfill.counts.missing }} missing · {{ backfill.counts.duplicates }} duplicate copies</span></div>
-    <div><dt>CUSTOM ALERTS</dt><dd>{{ backfill.counts.alerts }}</dd><span>Matched the declared rules; not a vulnerability count</span></div>
-    <div><dt>WITHOUT CUSTOM ALERTS</dt><dd>{{ backfill.counts.nonalerts }}</dd><span>A non-alert is not a benign verdict</span></div>
+    <div><dt>RECEIVED / INPUTS</dt><dd>{{ backfill.counts.received }} / {{ backfill.counts.inputs }}</dd><dd class="tool-metric-note">{{ backfill.counts.missing }} missing · {{ backfill.counts.duplicates }} duplicate copies</dd></div>
+    <div><dt>CUSTOM ALERTS</dt><dd>{{ backfill.counts.alerts }}</dd><dd class="tool-metric-note">Matched the declared rules; not a vulnerability count</dd></div>
+    <div><dt>WITHOUT CUSTOM ALERTS</dt><dd>{{ backfill.counts.nonalerts }}</dd><dd class="tool-metric-note">A non-alert is not a benign verdict</dd></div>
   </dl>
   <div class="detail-callout"><strong>Completed {{ backfill.tested_at|date:"M d, Y · H:i:s" }} UTC · {{ backfill.duration }} seconds</strong><p>The container stopped after testing. This historical receipt covers the recorded snapshot; later ledger additions need another reconciliation. Opening this page does not contact Docker or Wazuh.</p></div>
   <details class="tool-details"><summary>Understand the result and its limits <span class="tool-disclosure-mark" aria-hidden="true">+</span></summary><div>

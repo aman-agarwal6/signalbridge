@@ -2,6 +2,7 @@ from django.db import transaction
 from django.utils import timezone
 
 from .evaluation import evaluate
+from .federation import check_write_admission
 from .models import Audit, Membership, Replay
 
 
@@ -39,6 +40,7 @@ def write_membership(user, integration, roles=("analyst", "reviewer")):
     )
     if membership is None:
         raise PermissionError("Your current role does not allow this action.")
+    check_write_admission(user)
     return membership
 
 

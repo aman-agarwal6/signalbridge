@@ -1,0 +1,127 @@
+{
+  "boot_attempts": 1,
+  "diagnostics": [],
+  "dispatcher": {
+    "first_task_id": "e2cf0f07-2f1b-4aee-9b94-f1b9ce3b53ca",
+    "scenarios": {
+      "changed_content": {
+        "duplicate": null,
+        "error": "idempotency_conflict",
+        "execution_id": "01349ca3-4228-4f55-859a-fae13952b5e6",
+        "execution_status": "FINISHED",
+        "http_status": 409,
+        "task_id": null
+      },
+      "first": {
+        "duplicate": false,
+        "error": null,
+        "execution_id": "50ef4b94-5093-4d65-9af4-c2d745e92dda",
+        "execution_status": "FINISHED",
+        "http_status": 201,
+        "task_id": "e2cf0f07-2f1b-4aee-9b94-f1b9ce3b53ca"
+      },
+      "lost_reply": {
+        "duplicate": null,
+        "error": null,
+        "execution_id": "58d92c76-a764-40a5-b0e5-b9386547d828",
+        "execution_status": "FINISHED",
+        "http_status": null,
+        "task_id": null
+      },
+      "receiver_timeout": {
+        "duplicate": null,
+        "error": null,
+        "execution_id": "c80d36bf-1f97-46d7-b6db-6ad324f2ded2",
+        "execution_status": "FINISHED",
+        "http_status": null,
+        "task_id": null
+      },
+      "replayed_request": {
+        "duplicate": null,
+        "error": "request_replayed",
+        "execution_id": "5acdbf72-31d9-4266-9576-54a2bcf31d5b",
+        "execution_status": "FINISHED",
+        "http_status": 409,
+        "task_id": null
+      },
+      "retry_after_lost_reply": {
+        "duplicate": true,
+        "error": null,
+        "execution_id": "8c491de3-af67-4ca6-9c17-7ed16040b04e",
+        "execution_status": "FINISHED",
+        "http_status": 200,
+        "task_id": "cff23c18-3265-4a50-9836-10fdce0ea493"
+      },
+      "retry_new_nonce": {
+        "duplicate": true,
+        "error": null,
+        "execution_id": "48994fb4-23f5-4b3f-9a7c-6426b7e4585b",
+        "execution_status": "FINISHED",
+        "http_status": 200,
+        "task_id": "e2cf0f07-2f1b-4aee-9b94-f1b9ce3b53ca"
+      },
+      "stale_evidence": {
+        "duplicate": null,
+        "error": "case_evidence_changed",
+        "execution_id": "93eb8e6d-e60c-4258-a5f8-2d7a603fab74",
+        "execution_status": "FINISHED",
+        "http_status": 409,
+        "task_id": null
+      },
+      "wrong_scope": {
+        "duplicate": null,
+        "error": "case_unavailable",
+        "execution_id": "b95e04d6-53f6-4fe9-b82b-90655165adcc",
+        "execution_status": "FINISHED",
+        "http_status": 404,
+        "task_id": null
+      }
+    },
+    "workflow_id": "1882274e-fd68-45d0-aa52-a237b8ef5843"
+  },
+  "end_record_received": true,
+  "finished_at": "2026-10-05T05:58:51.108409+00:00",
+  "guest": {
+    "containers_started_by_orborus": 9,
+    "images": {
+      "backend": "sha256:0cc1775e48b7d94b7f16d0be713aa274ced52be24ad521beaaf58c67023fd2e5",
+      "http": "sha256:4c5b6a0b44890ddc227a3ded9fee09f216dddd268ee0acc33e31dfa95fa724fb",
+      "opensearch": "sha256:68a688de28fb9bb66601552650b91a52a9fd5e7eac5481dd2b225ecb66fd09b0",
+      "orborus": "sha256:3519810b3ca4fe568acefdf15ce6f2deba0ae6f0ff6b84412354d59d663dff31",
+      "python": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d",
+      "worker": "sha256:9541c1fef2bc8511727610b565adbd0f7c817c53afee2dd9fef6aad8a971ffb1"
+    },
+    "kind": "summary",
+    "receiver": {
+      "idempotent_requests": 2,
+      "nonces": 8,
+      "review_tasks": 2
+    },
+    "run": "315cfb85-9c28-4e4e-9cac-8ce455e92448",
+    "status": "completed",
+    "steps": {
+      "backend": "initialized",
+      "dispatcher": "completed",
+      "images": "verified",
+      "opensearch": "green",
+      "orborus": "started",
+      "payload": "verified",
+      "receiver": "seeded"
+    }
+  },
+  "guest_script_sha256": "f914cfb718c3f019fbd485c6c642b60e1a939fb945126b6748153ce6ddaaea4f",
+  "guest_started": true,
+  "kind": "signalbridge-shuffle-native-workflow",
+  "limits": [
+    "Synthetic data in a dedicated network-less guest whose disk persists; this workflow's own leftovers from earlier runs are removed first. One fixed workflow and one HTTP action.",
+    "Guest-reported results are builder-controlled observations, not independent attestation.",
+    "The Docker socket is available only to Shuffle components inside this guest."
+  ],
+  "payload_sha256": "fd7336f194da42adb1624c7ca8393d477ec61427d819907cd986028613ee6da3",
+  "run_id": "315cfb85-9c28-4e4e-9cac-8ce455e92448",
+  "schema_version": 1,
+  "seed_iso_bytes": 83738624,
+  "shutdown_verified": true,
+  "started_at": "2026-10-05T05:55:07.001691+00:00",
+  "status": "guest_completed_pending_review"
+}

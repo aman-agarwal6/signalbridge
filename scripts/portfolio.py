@@ -416,6 +416,20 @@ def verify_metrics(root, current, now, metrics):
         raise PortfolioError("Portfolio metrics are incomplete or inconsistent.") from error
 
 
+def load_stylesheet(root, name):
+    """Inline a fixed local asset so the portable viewer needs no network access."""
+    require(name in {"portfolio.css", "access-walkthrough.css"}, "Unknown portfolio stylesheet.")
+    path = root / "static" / name
+    unlinked(root, path)
+    require(path.stat().st_size <= 65536, "Portfolio stylesheet exceeds its size limit.")
+    with path.open("rb") as handle:
+        raw = handle.read(65537)
+    require(len(raw) <= 65536, "Portfolio stylesheet exceeds its size limit.")
+    value = raw.decode("utf8")
+    require("</style" not in value.lower(), "Portfolio stylesheet contains an HTML boundary.")
+    return value
+
+
 def render_portfolio(root, metrics):
     """Render validated metrics using the tracked template; no settings, database or writes."""
     from django.template import Context, Engine
@@ -431,6 +445,7 @@ def render_portfolio(root, metrics):
         challenge_limits = CHALLENGE_LIMITS
     context = {
         **metrics,
+        "portfolio_css": load_stylesheet(root, "portfolio.css"),
         "check_count": len(core["checks"]),
         "test_count": sum(item["tests"]["tests_run"] for item in test_checks),
         "test_checks": test_checks,

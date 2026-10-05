@@ -1,0 +1,24 @@
+{
+    "schema_version":  1,
+    "kind":  "signalbridge-native-windows-private-acl-regression",
+    "started_at":  "2026-10-03T06:36:24.6435313Z",
+    "finished_at":  "2026-10-03T06:36:34.5581355Z",
+    "passed":  true,
+    "checks":  [
+                   "Inherited permissions rejected before protection",
+                   "Fresh folder secured through raw DirectoryInfo ancestors",
+                   "DACL-only protection retained the original current-user owner",
+                   "Nested folder and file inherited only approved access",
+                   "Nonempty folder cannot be reinitialized",
+                   "Nonempty denial retained the original owner",
+                   "Unexpected public read permission rejected",
+                   "Restored private permissions verified"
+               ],
+    "checks_passed":  8,
+    "acl_script_sha256":  "96493a025c98e149a37d815f539cfa26d1f7c2e9ad8727024f33e19c2fbf5966",
+    "verifier_sha256":  "f6707e31d7cb330241fb8a6b94bd7c206243a5524b3a2094bdb0cd4709dc6cd8",
+    "temporary_workspace_removed":  true,
+    "cleanup_verified":  true,
+    "failure":  null,
+    "limits":  "Actual Windows fixture permissions only; no source HTTP, database, Docker or native application acceptance."
+}

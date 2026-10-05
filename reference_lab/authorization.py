@@ -16,7 +16,8 @@ def effective_access(resource, user):
 
 
 @transaction.atomic
-def read_resource(app, resource_id, user_id):
+def observe_resource(app, resource_id, user_id):
+    """Return content and the exact committed observation, never a latest-row guess."""
     resource = Resource.objects.select_for_update().get(app=app, pk=resource_id)
     user = get_user_model().objects.get(pk=user_id)
     if not user.is_active:
@@ -38,12 +39,16 @@ def read_resource(app, resource_id, user_id):
     )
     # The result has been determined by the actual policy path. Failure to retain
     # its observation aborts this transaction before any content is returned.
-    emit(resource, user, "allowed" if allowed else "denied", reason)
-    return resource.synthetic_content if allowed else None
+    event = emit(resource, user, "allowed" if allowed else "denied", reason)
+    return resource.synthetic_content if allowed else None, str(event.pk)
+
+
+def read_resource(app, resource_id, user_id):
+    return observe_resource(app, resource_id, user_id)[0]
 
 
 @transaction.atomic
-def change_permission(app, resource_id, operator_id, subject_id, kind, granted):
+def observe_permission_change(app, resource_id, operator_id, subject_id, kind, granted):
     if kind not in ("group", "direct") or type(granted) is not bool:
         raise ValueError("Invalid permission change.")
     resource = Resource.objects.select_for_update().get(app=app, pk=resource_id)
@@ -57,12 +62,20 @@ def change_permission(app, resource_id, operator_id, subject_id, kind, granted):
     else:
         Grant.objects.filter(resource=resource, user=subject, kind=kind).delete()
     after = effective_access(resource, subject)
+    event = None
     if before != after:
-        emit(
+        event = emit(
             resource,
             operator,
             "allowed",
             "member" if after else "membership_removed",
             (subject, "granted" if after else "removed"),
         )
-    return {"effective_access": after, "effective_access_changed": before != after}
+    return (
+        {"effective_access": after, "effective_access_changed": before != after},
+        str(event.pk) if event else None,
+    )
+
+
+def change_permission(app, resource_id, operator_id, subject_id, kind, granted):
+    return observe_permission_change(app, resource_id, operator_id, subject_id, kind, granted)[0]

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "status": "host_controller_prepared_requires_genuine_source_run_and_review_not_authorized",
+  "purpose": "Two fresh native offline ZAP analyses of a revalidated authenticated synthetic source capture: missing-nosniff finding, then an equivalent corrected retest.",
+  "image": "zaproxy/zap-stable@sha256:71db37cd5b75663b35758d10aaec05bf6fbac23f5020e3046c70e628a5f84efa",
+  "image_policy": "Inspect the cached immutable image and loaded add-ons before acceptance. No pull, add-on installation or update belongs in this profile.",
+  "recipe": "integrations/zap_enterprise/compose.scanner.yaml",
+  "runner": "integrations/zap_enterprise/scanner_runner.py",
+  "controller": "scripts/enterprise_zap_verify.py",
+  "source_transfer": "integrations/zap_enterprise/source_transfer.py",
+  "runtime_and_shutdown_controls": "integrations/zap_enterprise/scanner_host_controls.py",
+  "input_boundary": "The host must first revalidate an actual completed header-source run, its input snapshot, exact source receipts and both shutdowns. The one bounded input file carries known synthetic captures and content hashes; it carries no passwords, sessions, database credentials or source private keys. File consistency alone never establishes native execution.",
+  "software_prepared": [
+    "Closed input and runtime-gate bindings; complete ten-capture/two-restoration/eight-event inventory checks without promoting provenance.",
+    "Standalone Linux-only non-root process driver with explicit 1536 MiB Java heap, clean child environment, private ephemeral API key, silent daemon and loopback-only API.",
+    "Fresh process and home for each phase; installed exim/network/pscanrules versions must match, safe mode and only rule 10021, offline HAR import without resend, complete unfiltered history and exact finding bindings.",
+    "Bounded API transcript and redacted stdout, partial-phase retention, separate process shutdown evidence, forced cleanup invalidates success and failed first phase skips the retest.",
+    "Actual kernel predicates require loopback as the sole interface, uid/gid 1000, zero capabilities, seccomp, no-new-privileges, cgroup v2 quotas, read-only source/input and noexec scratch.",
+    "The installed Compose CLI parsed the exact one-container recipe offline using a placeholder image ID, not a daemon or cached-image query. The retained sanitized fixture has no runtime-proof meaning.",
+    "Read-only host receipt revalidation recomputes both phases from bounded native-format API transcripts, reuses the closed capture/history/finding parser without sockets, checks exact exchange order/import-body digests, stable loaded versions, process completion, timing, source snapshot and eleven output files. Thirteen new synthetic tampering methods pass; internally consistent files remain explicitly unattested.",
+    "Host-only source transfer revalidates the completed header-source host receipt, exact raw proof/snapshot/cached-wheel footprint, both shutdowns and credential-free captures. Stale, changed, incomplete or wrong-profile evidence is rejected before daemon access. No source credentials or private keys are read.",
+    "A separately invoked Windows controller checks a current full offline source receipt, private ACLs, no foreign running workloads, pinned cached image identity and exact effective runtime. It creates without startup, checks isolation, writes a once-only input-bound gate, then starts one owned scanner. It revalidates source evidence at completion and keeps failures incomplete.",
+    "A separate 15-minute watchdog monitors the 12 GiB whole-stage disk guard, 25 GiB reserve and 4 GiB available host headroom. It stops only verified owned targets, retains aborts, keeps checking while startup can continue and never deletes resources. Successful acceptance requires both normal host shutdown receipts. Twenty-seven new methods use synthetic archives, daemon/process doubles and a modeled clock; no daemon, ACL change or native source/scanner process ran."
+  ],
+  "proposed_limits": {
+    "scanner_memory_bytes": 2684354560,
+    "scanner_cpus": 1.5,
+    "scanner_pids": 256,
+    "java_heap_mib": 1536,
+    "scratch_tmpfs_mib": 512,
+    "network_mode": "none",
+    "maximum_runtime_seconds": 540,
+    "one_phase_seconds": 240,
+    "startup_seconds": 60,
+    "api_calls_per_phase": 160,
+    "api_response_bytes": 2097152,
+    "api_transcript_bytes_per_phase": 4194304,
+    "private_stdout_bytes_per_phase": 2097152,
+    "input_bytes": 131072,
+    "whole_stage_disk_growth_guard_gib": 12,
+    "prior_consumption_included": true,
+    "initial_free_disk_bytes": 80498424546,
+    "minimum_free_disk_gib": 25,
+    "host_memory_headroom_gib": 4,
+    "proposed_independent_shutdown_watchdog_minutes": 15
+  },
+  "proposed_isolation": [
+    "No published ports, runtime external network, source connection, Docker socket, devices or other-project mounts.",
+    "Read-only root, isolated IPC/cgroup namespaces, all capabilities dropped, no-new-privileges, finite memory/CPU/processes/logs and no automatic restarts.",
+    "One read-only selected source snapshot and one read-only bounded synthetic input directory; only private evidence output is writable on the host. Missing mount directories cannot be created automatically.",
+    "Image health checks are disabled so they cannot add unexpected proxy/API traffic. No active scanning, crawling, resend or automated source changes."
+  ],
+  "remaining_before_machine_review": [
+    "Pass current full offline checks and freeze the exact source; retain genuine source capture/reset/both-shutdown evidence for that same source. The source launch is separately awaiting operator approval, and no native source capture exists for this profile.",
+    "Verify current capacity, exact private ACL behavior and cached image/add-on availability during reviewed stages. Placeholder recipe parsing and modeled runtime checks do not establish native isolation or execution.",
+    "After the genuine source run exists, prepare its exact run/input identities and one bounded scanner attempt for user review. This file and a CLI approval-reference string grant no authorization."
+  ],
+  "remaining_after_native_execution": [
+    "Verify the observed native finding, corrected equivalent retest, interrupted-run behavior, actual container/kernel isolation and both shutdowns.",
+    "Run the prepared fixed local console importer against a genuinely completed run and existing matching eight source events. Its local permission/idempotency/atomicity/scope checks use synthetic archives. Actual operator import and native PostgreSQL concurrency remain unrun; no event, case closure or current connectivity is fabricated."
+  ],
+  "references": [
+    "https://www.zaproxy.org/docs/desktop/cmdline/",
+    "https://github.com/zaproxy/zaproxy/blob/v2.17.0/zap/src/main/dist/zap.sh",
+    "https://github.com/zaproxy/zaproxy/blob/v2.17.0/zap/src/main/java/org/zaproxy/zap/extension/autoupdate/AutoUpdateAPI.java",
+    "https://www.zaproxy.org/docs/desktop/addons/import-export/"
+  ],
+  "assurance_limit": "Offline parser, kernel models and process doubles do not establish source authenticity, native ZAP execution, effective runtime isolation, current health, complete security coverage or enterprise certification."
+}

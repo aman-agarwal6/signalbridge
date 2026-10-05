@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<title>SignalBridge · From permission change to investigation</title>
+<style>
+{{ portfolio_css|safe }}
+</style>
+</head>
+<body>
+<a class="skip" href="#evidence">Skip to the recorded evidence</a>
+<nav>
+<a href="index.html">← SignalBridge evidence library</a>
+<span>PROJECT BY AMAN AGARWAL · AI-ASSISTED IMPLEMENTATION</span>
+</nav>
+<header class="hero">
+<span class="pill">Recorded native execution · October 2, 2026</span>
+<p class="eyebrow">Application access assurance</p>
+<h1>A valid login.<br>A revoked permission.<br>
+<span>A finding you can trace.</span>
+</h1>
+<p class="intro">SignalBridge detected a deliberately introduced flaw that let a removed member read a private document. Follow the actual request, source event and investigation from the isolated reference lab.</p>
+<div class="cta">
+<a class="button primary" href="#evidence">Follow the evidence ↓</a>
+<a class="button" href="access-assurance.json">Inspect the published data</a>
+</div>
+<div class="metrics">
+<div>
+<strong>2</strong>
+<span>isolated business applications</span>
+</div>
+<div>
+<strong>23 / 23</strong>
+<span>source events processed</span>
+</div>
+<div>
+<strong>1</strong>
+<span>R3 investigation opened</span>
+</div>
+<div>
+<strong>31</strong>
+<span>HTTP control observations</span>
+</div>
+</div>
+<p class="footnote" style="color:#aec6cf">A finite synthetic lab run. These counts describe this execution; they do not measure detection accuracy or production scale.</p>
+</header>
+<main>
+<div class="pipeline" aria-label="Executed telemetry pipeline">
+<div>
+<small>Source apps</small>
+<strong>Documents + expenses</strong>
+</div>
+<div>
+<small>Atomic write</small>
+<strong>Permission + outbox</strong>
+</div>
+<div>
+<small>Transport</small>
+<strong>Signed HTTPS events</strong>
+</div>
+<div>
+<small>Correlation</small>
+<strong>Removal + allowed read</strong>
+</div>
+<div>
+<small>Analyst console</small>
+<strong>Evidence-linked case</strong>
+</div>
+</div>
+<section class="paper" id="evidence">
+<p class="eyebrow">The document investigation</p>
+<h2>One account, one private resource, five decisive steps.</h2>
+<p class="section-intro">Each step below comes from the retained execution. Expand a record to see the event identity and source fields. This page reads saved evidence; it does not simulate new requests or claim the lab is running.</p>{% for card in cards %}<article class="card {{ card.tone }}">
+<div class="number">{{ card.number }}</div>
+<div>
+<h3>{{ card.title }}</h3>
+<p>{{ card.meaning }}</p>
+<div class="status">
+<span>HTTP {{ card.step.http_status }}</span>
+<span>{{ card.event.operation }}</span>
+<span>{{ card.event.outcome }}</span>{% if card.step.known_content %}<span>Known private content confirmed</span>{% endif %}{% if card.step.effective_access == False %}<span>Effective access removed</span>{% endif %}</div>
+<details>
+<summary>Inspect the recorded event · {{ card.event.event_id|slice:":8" }}</summary>
+<pre>{{ card.json }}</pre>
+</details>
+</div>
+</article>{% endfor %}<p class="footnote">HTTP 200 alone would be insufficient. The source control separately confirmed that the response contained the known synthetic private record. The unchanged session was also checked independently.</p>
+</section>
+<section class="paper">
+<p class="eyebrow">Why this became an investigation</p>
+<h2>Correlate evidence. Don’t trust a “suspicious” label.</h2>
+<div class="split">
+<div class="inset">
+<h3>The finding</h3>
+<p>R3 links the authoritative effective-removal event to an allowed read by the affected account, within the same application, resource and declared time window.</p>
+<p>The source labeled the later read <strong>allowed / member</strong>. SignalBridge found the conflict by joining the observations.</p>
+<p class="identifier">Case {{ case.case_id }}<br>Rule {{ case.rule }} · Priority {{ case.severity }}<br>Recorded disposition: {{ case.status }}</p>
+</div>
+<div class="inset">
+<h3>The controls that make it credible</h3>
+<ul>
+<li>The removed member’s session still worked; login failure did not explain the denial.</li>
+<li>The owner could still read the document; a broken service did not explain the denial.</li>
+<li>Cross-app accounts and outsiders were denied in both apps.</li>
+<li>Re-grants and alternate grants preserved legitimate access.</li>
+<li>The bounded defect was reset, followed by denial and owner checks.</li>
+</ul>
+</div>
+</div>
+<p class="footnote">Restoration was observed. The case remained open in this run: no human analyst decision or independent remediation approval is claimed.</p>
+<details>
+<summary>Browse all 23 processed source events</summary>{% for event in events %}<div class="event">
+<strong>{{ event.app }} · {{ event.operation }} · {{ event.outcome }}</strong>
+<span>{{ event.occurred_at }} · {{ event.reason }}</span>
+<code>{{ event.event_id }}</code>
+</div>{% endfor %}</details>
+</section>
+{% if report.wazuh %}<section class="paper" id="native-wazuh">
+<p class="eyebrow" style="color:#176694">WAZUH · RECORDED NATIVE COLLECTION</p>
+<h2>The same evidence reached a real security tool.</h2>
+<p class="section-intro">A separate isolated Wazuh manager consumed the exact source snapshot shown above. Its archive and alert records were reconciled back to each exported event. The manager was stopped at the end of that run; this page contains retained execution evidence.</p>
+<div class="split">
+<div class="inset">
+<h3>{{ report.wazuh.counts.archived_logical_inputs }} / 24 inputs archived</h3>
+<p>{{ report.wazuh.counts.source_observations }} source observations plus {{ report.wazuh.counts.forwarded_signals }} forwarded SignalBridge finding.</p>
+<p>{{ report.wazuh.counts.physical_archive_copies }} physical archive records. Physical copies and logical inputs are counted separately.</p>
+</div>
+<div class="inset">
+<h3>{{ report.wazuh.counts.alerted_logical_inputs }} inputs produced alerts</h3>
+<p>{{ report.wazuh.counts.observation_alerts }} observation alerts plus {{ report.wazuh.counts.forwarded_alerts }} forwarded finding alert.</p>
+<p>R3 was detected by SignalBridge. Wazuh recorded the forwarded finding; it did not independently rediscover the permission mismatch.</p>
+</div>
+</div>{% for scope in report.wazuh.scopes %}<details>
+<summary>{{ scope.app|title }} · {{ scope.counts.archived_logical_inputs }} archived inputs · inspect native record bindings</summary>{% for record in scope.records %}<div class="event">
+<strong>{{ record.kind|title }} · {{ record.channel }}{% if record.rule_id %} · Wazuh rule {{ record.rule_id }}{% endif %}</strong>
+<span>Native ID {{ record.native_id }} · {{ record.occurred_at }}</span>
+<code>Source event / signal {{ record.target_id }}</code>
+</div>{% endfor %}</details>{% endfor %}<p class="footnote">Executed {{ report.wazuh.executed_at }}. Finite snapshot collection does not establish live monitoring, native rotation recovery or 24-hour reliability.</p>
+<a href="../docs/evidence/{{ report.wazuh.receipt }}">Read the native Wazuh execution receipt →</a>
+</section>{% endif %}
+{% if report.wazuh_attempt %}<section class="paper" id="collector-boundary">
+<p class="eyebrow">WAZUH · RETAINED INCOMPLETE EXECUTION</p>
+<h2>A running tool is not proof of delivered evidence.</h2>
+<div class="split">
+<div class="inset">
+<h3>0 / 24 inputs collected</h3>
+<p>The later enterprise collector started its native processes, but none of the frozen source inputs reached the archive. The integration failed its acceptance check.</p>
+<p>This result is separate from the earlier successful 64-event Wazuh pilot in the evidence library.</p>
+</div>
+<div class="inset">
+<h3>The finding changed the design</h3>
+<p>On its first start, the collector began at the end of the preloaded file. The launcher was retired. A different approach starts with empty monitored files, verifies readiness, then publishes the fixed events.</p>
+<p>That replacement has no successful native execution yet.</p>
+</div>
+</div>
+<details>
+<summary>Read the failure and shutdown record</summary>
+<p>Run <code>{{ report.wazuh_attempt.run_id }}</code> ended {{ report.wazuh_attempt.finished_at }}.</p>
+<p>Both shutdown receipts reported the container stopped. The independent shutdown recorded a control error; the overall acceptance gate failed. These are historical records, not current machine-health claims.</p>
+<p>
+<a href="../docs/evidence/{{ report.wazuh_attempt.receipt }}">Original incomplete execution receipt</a> · <a href="../docs/evidence/{{ report.wazuh_attempt.diagnosis_receipt }}">Retained diagnosis and source reference</a>
+</p>
+</details>
+</section>{% endif %}
+<section class="dark-section">
+<p class="eyebrow">Engineering you can inspect</p>
+<h2>More than a detection screenshot.</h2>
+<div class="split">
+<div>
+<h3>What ran</h3>
+<p>Real login and HTTP requests against two database-backed reference applications, a transactional telemetry outbox, signed ingestion, a processing worker and an R3 case. The isolated run used PostgreSQL and explicitly trusted temporary TLS certificates.</p>
+<p>Both application scopes reconciled: 13 document events and 10 expense events. Both shutdown checks passed; the containers were stopped.</p>
+<a href="../docs/evidence/{{ receipt_name }}">Read the native execution receipt →</a>
+</div>
+<div>{% if report.wazuh %}<h3>What still needs proving</h3>
+<p>Native Wazuh collection of this source snapshot is recorded above. Continuous source-to-tool operation, interruption recovery and native rotation still require their own execution evidence.</p>{% else %}<h3>What connects next</h3>
+<p>23 minimal observations and one SignalBridge-generated finding were staged for Wazuh. The source run staged those packets; the later collector attempt and its failure are recorded above. A forwarded finding is not independent Wazuh rediscovery.</p>{% endif %}<p>The existing evidence library contains the earlier genuine Wazuh and ZAP pilots. Continuous enterprise collection, authenticated ZAP, native Keycloak/MFA and Shuffle remain unfinished.</p>
+<a href="index.html">Inspect the earlier tool executions →</a>
+</div>
+</div>
+</section>
+<section class="paper">
+<p class="eyebrow">Interview walkthrough</p>
+<h2>Explain the judgment, then show the evidence.</h2>
+<div class="split">
+<div>
+<h3>Start with the business risk</h3>
+<p>“A user may remain logged in after losing permission. I wanted to demonstrate that monitoring could detect a private read that contradicts an authoritative access change.”</p>
+<h3>Explain your engineering choices</h3>
+<p>Walk through the transaction/outbox boundary, stable app-scoped pseudonyms, the R3 correlation and the owner/cross-app controls. Open the two linked events to support the explanation.</p>
+</div>
+<div>
+<h3>Be precise about the conclusion</h3>
+<p>“In this isolated lab, the removed account retrieved the known private record under a deliberate defect. Resetting that defect restored denial while owner access still worked.”</p>
+<h3>State the boundary</h3>
+<p>One controlled case is not enterprise parity, broad detection accuracy or a production incident. AI wrote much of the implementation under project direction. These are AI-authored speaking prompts; use your own explanation and demonstrate your understanding.</p>
+</div>
+</div>
+</section>
+<section class="limits">
+<h2>Evidence boundary</h2>
+<ul>{% for limit in report.limits %}<li>{{ limit }}</li>{% endfor %}</ul>
+<p class="identifier">Native run: {{ report.run_id }}<br>Executed source SHA-256: {{ report.source_sha256 }}</p>
+</section>
+</main>
+<footer>
+<p>SignalBridge · Application access-assurance portfolio · Local recorded evidence</p>
+<p>
+<a href="../README.md">Project README</a> · <a href="access-assurance.json">Published observation data</a> · <a href="../docs/evidence/{{ receipt_name }}">Original execution receipt</a>
+</p>
+</footer>
+</body>
+</html>

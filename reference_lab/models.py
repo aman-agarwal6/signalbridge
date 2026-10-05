@@ -96,3 +96,23 @@ class LoginAttempt(models.Model):
     """Global bounded lab login window, with no password or supplied username."""
 
     occurred_at = models.DateTimeField(auto_now_add=True)
+
+
+class BoundedHeaderFault(models.Model):
+    """Separate fixed header-only fault; it never grants application access."""
+
+    resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    enabled = models.BooleanField(default=False)
+    started_at = models.DateTimeField()
+    expires_at = models.DateTimeField()
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["resource", "user"], name="ref_unique_header_fault"),
+            models.CheckConstraint(
+                condition=Q(expires_at__gt=F("started_at"))
+                & Q(expires_at__lte=F("started_at") + timedelta(minutes=10)),
+                name="ref_bounded_header_fault",
+            ),
+        ]

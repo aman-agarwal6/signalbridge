@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-native-receipt-promotion",
+  "run_id": "0cd4256f4a1c4f2692f67eae4704bd53",
+  "promoted_file": "monitoring-execution.json",
+  "private_receipt_sha256": "21be1472583b5dd9cc96364279b4152612883c933ffeaaccf771d2ee2ff18e6f",
+  "promoted_on": "2026-10-03",
+  "note": "Verbatim copy of the retained private run receipt; raw logs, credentials and databases stay private.",
+  "receipt": {
+    "launcher_shutdown_verified": true,
+    "proof": {
+      "actions": {
+        "accepted": 6,
+        "duplicates": 1,
+        "processed": 6,
+        "rejections": 1,
+        "source": "synthetic_demo"
+      },
+      "backlog_phase": {
+        "oldest_age_seconds": 30.163676023483276,
+        "pending_count": 6,
+        "queue_alert_firing": true,
+        "worker_alert_firing": true,
+        "worker_state": "missing"
+      },
+      "controls": {
+        "actual_worker_processed": true,
+        "all_dashboard_queries_match": true,
+        "all_recovery_queries_match": true,
+        "backlog_oldest_age_observed": true,
+        "backlog_pending_and_eligible_observed": true,
+        "bad_signature_rejected": true,
+        "dashboard_provisioned": true,
+        "duplicate_did_not_inflate": true,
+        "exporter_database_reconciled": true,
+        "exporter_missing_bearer_denied": true,
+        "exporter_wrong_bearer_denied": true,
+        "grafana_anonymous_query_denied": true,
+        "local_alert_cleared": true,
+        "local_alert_fired": true,
+        "prometheus_missing_client_certificate_denied": true,
+        "queue_delay_alert_fired": true,
+        "resumed_queue_empty_and_worker_recent": true,
+        "scrape_interruption_observed": true,
+        "scrape_recovered": true,
+        "signed_intake_committed": true,
+        "worker_and_queue_alerts_cleared": true,
+        "worker_missing_alert_fired": true,
+        "worker_missing_observed": true,
+        "wrong_ca_denied": true
+      },
+      "dashboard": [
+        {
+          "empty_evidence": false,
+          "panel_id": 2,
+          "samples": 1,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 3,
+          "samples": 1,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 4,
+          "samples": 9,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 5,
+          "samples": 8,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 6,
+          "samples": 1,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 7,
+          "samples": 9,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 8,
+          "samples": 1,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 9,
+          "samples": 9,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 10,
+          "samples": 18,
+          "series": 2
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 11,
+          "samples": 9,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 12,
+          "samples": 9,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 13,
+          "samples": 1,
+          "series": 1
+        }
+      ],
+      "filesystem_metric_scope": "disposable_application_tmpfs_host_guard_separate",
+      "recovery_dashboard": [
+        {
+          "empty_evidence": false,
+          "panel_id": 2,
+          "samples": 1,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 3,
+          "samples": 1,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 4,
+          "samples": 11,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 5,
+          "samples": 8,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 6,
+          "samples": 1,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 7,
+          "samples": 11,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 8,
+          "samples": 3,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 9,
+          "samples": 11,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 10,
+          "samples": 22,
+          "series": 2
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 11,
+          "samples": 11,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 12,
+          "samples": 11,
+          "series": 1
+        },
+        {
+          "empty_evidence": false,
+          "panel_id": 13,
+          "samples": 1,
+          "series": 1
+        }
+      ],
+      "requests": 136,
+      "scope": "standalone_synthetic_sqlite",
+      "status": "passed"
+    },
+    "run_id": "0cd4256f4a1c4f2692f67eae4704bd53",
+    "shutdown_verified": true,
+    "status": "passed"
+  }
+}

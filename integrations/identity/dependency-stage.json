@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-isolated-oidc-dependency-plan",
+  "status": "prepared_not_authorized_not_executed",
+  "purpose": "Established Django OAuth/OIDC client implementation and memory-only signed-token tests; no native Keycloak or SSO/MFA completion claim.",
+  "runtime": "Existing ordinary Windows AMD64 CPython 3.14.4; a new private venv under var/enterprise/identity, without system site packages.",
+  "limits": {
+    "new_download_bytes": 4895036,
+    "download_ceiling_bytes": 8388608,
+    "workspace_growth_ceiling_bytes": 1073741824,
+    "minimum_free_disk_bytes": 26843545600,
+    "venv_and_cache_planning_bytes": 262144000,
+    "per_request_seconds": 20,
+    "stage_seconds": 600,
+    "maximum_total_unpacked_wheel_bytes": 104857600
+  },
+  "actions": [
+    "Recheck Windows disk reserve; verify existing interpreter identity and all cached wheels.",
+    "Download only the ten exact official wheel URLs; refuse redirects, mismatched length/hash or unreviewed dependencies.",
+    "Inspect zip paths/footprints; reject traversal, symlinks, executable startup .pth files and unsafe archive members before installation.",
+    "Create one isolated venv, then install from reviewed local wheels with no index, no deps, require-hashes, no cache and no bytecode compilation.",
+    "Verify exact package versions and dependency closure; run memory-only protocol/signature and disposable SQLite checks. Retain execution receipt and failures."
+  ],
+  "recovery": "Stop the owned installation/test process on limits or failure; leave original venvs, host settings, images, volumes and other projects untouched. Retain the new owned folder for review; do not invoke global cleanup.",
+  "excluded": [
+    "Docker/VM/Keycloak launch or download",
+    "Database migrations outside test memory",
+    "Host trust-store/service/ACL/network changes",
+    "Public endpoints or paid services",
+    "System/global/previous Python environment installation"
+  ],
+  "advisory_review": {
+    "date": "2026-10-02",
+    "pypi_known_vulnerabilities_empty_for_pins": true,
+    "boundary": "PyPI metadata and focused upstream advisory review are not a complete security certification.",
+    "joserfc_claim_type_advisory": "https://github.com/authlib/joserfc/security/advisories/GHSA-r74j-q665-7rpj",
+    "joserfc_patched": "1.7.3; selected 1.7.5",
+    "authlib_security": "https://github.com/authlib/authlib/security",
+    "authlib_version": "1.8.0"
+  },
+  "wheels": [
+    {
+      "name": "Authlib",
+      "version": "1.8.0",
+      "requires_dist": [
+        "cryptography>=45.0.1",
+        "joserfc>=1.6.1"
+      ],
+      "filename": "authlib-1.8.0-py2.py3-none-any.whl",
+      "size": 260804,
+      "sha256": "88aebbd9af6757e14e912d5dc007ae1dc1f3e27e3b2152ce7c552ee2c3b3c121",
+      "url": "https://files.pythonhosted.org/packages/b8/c6/6f124bcfbbfb20fba22c939b4e43a06dccfc0e1ca20e5634ca573cb1e271/authlib-1.8.0-py2.py3-none-any.whl",
+      "vulnerabilities": [],
+      "source": "reviewed_download"
+    },
+    {
+      "name": "joserfc",
+      "version": "1.7.5",
+      "requires_dist": [
+        "cryptography>=45.0.1",
+        "pycryptodome; extra == \"drafts\""
+      ],
+      "filename": "joserfc-1.7.5-py3-none-any.whl",
+      "size": 71269,
+      "sha256": "add2c2c84e8373b084d526a8b53daba5d7a513a118cd2dcd9fc9f979d0922159",
+      "url": "https://files.pythonhosted.org/packages/67/c5/82addfd375e5ee6520644e0553e4aadde92d668c4fc99cc716d337fe7bb3/joserfc-1.7.5-py3-none-any.whl",
+      "vulnerabilities": [],
+      "source": "reviewed_download"
+    },
+    {
+      "name": "cryptography",
+      "version": "50.0.1",
+      "requires_dist": [
+        "cffi>=2.0.0; platform_python_implementation != \"PyPy\"",
+        "typing-extensions>=4.13.2; python_full_version < \"3.11\"",
+        "bcrypt>=3.1.5; extra == \"ssh\""
+      ],
+      "filename": "cryptography-50.0.1-cp311-abi3-win_amd64.whl",
+      "size": 3842826,
+      "sha256": "aed8db4f6d71c51efb89530e12d9464e7bf2923d46c3205dc794a2a93f8c0648",
+      "url": "https://files.pythonhosted.org/packages/42/8b/cb12b1b60c91b074ca6bf0fdd59aa8f10d8bc5f73af8faece86ef0421b37/cryptography-50.0.1-cp311-abi3-win_amd64.whl",
+      "vulnerabilities": [],
+      "source": "reviewed_download"
+    },
+    {
+      "name": "cffi",
+      "version": "2.1.1",
+      "requires_dist": [
+        "pycparser; implementation_name != \"PyPy\""
+      ],
+      "filename": "cffi-2.1.1-cp314-cp314-win_amd64.whl",
+      "size": 187949,
+      "sha256": "3222ba5d678f80a030e6afbcc33dc1ae5cb45facabb61cee2c7016b8432fde48",
+      "url": "https://files.pythonhosted.org/packages/a7/06/1c3e01e3ba14c39f6d10bfbac52753b7e22259e38088e5cfe1d704918690/cffi-2.1.1-cp314-cp314-win_amd64.whl",
+      "vulnerabilities": [],
+      "source": "reviewed_download"
+    },
+    {
+      "name": "pycparser",
+      "version": "3.0",
+      "requires_dist": null,
+      "filename": "pycparser-3.0-py3-none-any.whl",
+      "size": 48172,
+      "sha256": "b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992",
+      "url": "https://files.pythonhosted.org/packages/0c/c3/44f3fbbfa403ea2a7c779186dc20772604442dde72947e7d01069cbe98e3/pycparser-3.0-py3-none-any.whl",
+      "vulnerabilities": [],
+      "source": "reviewed_download"
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2",
+      "requires_dist": [
+        "charset_normalizer<4,>=2",
+        "idna<4,>=2.5",
+        "urllib3<3,>=1.26",
+        "certifi>=2023.5.7",
+        "PySocks!=1.5.7,>=1.5.6; extra == \"socks\"",
+        "chardet<8,>=3.0.2; extra == \"use-chardet-on-py3\""
+      ],
+      "filename": "requests-2.34.2-py3-none-any.whl",
+      "size": 73075,
+      "sha256": "2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0",
+      "url": "https://files.pythonhosted.org/packages/a0/f4/c67b0b3f1b9245e8d266f0f112c500d50e5b4e83cb6f3b71b6528104182a/requests-2.34.2-py3-none-any.whl",
+      "vulnerabilities": [],
+      "source": "reviewed_download"
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.1",
+      "requires_dist": null,
+      "filename": "charset_normalizer-3.5.1-py3-none-any.whl",
+      "size": 68658,
+      "sha256": "6df0ec430f9a831772c23ca5a224cba36517a58a84bb32c32bb59a9fa67c47f6",
+      "url": "https://files.pythonhosted.org/packages/cc/61/d01fc49b8dea277640b55a9e15960dbca9fdc8c9fde18e572d39c59f4019/charset_normalizer-3.5.1-py3-none-any.whl",
+      "vulnerabilities": [],
+      "source": "reviewed_download"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0",
+      "requires_dist": [
+        "brotli>=1.2.0; platform_python_implementation == \"CPython\" and extra == \"brotli\"",
+        "brotlicffi>=1.2.0.0; platform_python_implementation != \"CPython\" and extra == \"brotli\"",
+        "h2<5,>=4; extra == \"h2\"",
+        "pysocks!=1.5.7,<2.0,>=1.5.6; extra == \"socks\"",
+        "backports-zstd>=1.0.0; python_version < \"3.14\" and extra == \"zstd\""
+      ],
+      "filename": "urllib3-2.8.0-py3-none-any.whl",
+      "size": 135717,
+      "sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3",
+      "url": "https://files.pythonhosted.org/packages/92/9d/c4e665119135114480843e7ab388fa94d8480650450e6f8e26b70d323a4c/urllib3-2.8.0-py3-none-any.whl",
+      "vulnerabilities": [],
+      "source": "reviewed_download"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.7.22",
+      "requires_dist": null,
+      "filename": "certifi-2026.7.22-py3-none-any.whl",
+      "size": 136983,
+      "sha256": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775",
+      "url": "https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl",
+      "vulnerabilities": [],
+      "source": "reviewed_download"
+    },
+    {
+      "name": "idna",
+      "version": "3.20",
+      "requires_dist": [
+        "ruff>=0.16.0; extra == \"all\"",
+        "mypy>=1.11.2; extra == \"all\"",
+        "ty>=0.0.37; extra == \"all\"",
+        "pytest>=8.3.2; extra == \"all\"",
+        "hypothesis>=6.141.1; extra == \"all\"",
+        "coverage>=7.10.0; extra == \"all\""
+      ],
+      "filename": "idna-3.20-py3-none-any.whl",
+      "size": 69583,
+      "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c",
+      "url": "https://files.pythonhosted.org/packages/58/a2/bb081bab032533a855d44de1d56f8e8426114ff1ba5d1f07a438a0a654f8/idna-3.20-py3-none-any.whl",
+      "vulnerabilities": [],
+      "source": "reviewed_download"
+    },
+    {
+      "name": "Django",
+      "version": "5.2.17",
+      "requires_dist": [
+        "asgiref>=3.8.1",
+        "sqlparse>=0.3.1",
+        "tzdata; sys_platform == \"win32\"",
+        "argon2-cffi>=19.1.0; extra == \"argon2\"",
+        "bcrypt; extra == \"bcrypt\""
+      ],
+      "filename": "django-5.2.17-py3-none-any.whl",
+      "size": 8315563,
+      "sha256": "f04fb3b36ee119e1af4fa1d397d5fd6cf12700f49321e84d4f4c642c5b1973db",
+      "url": "https://files.pythonhosted.org/packages/df/f8/ce120525ca78f12b07daf65786679c5d0b54a75285a8958d3ae55e39da35/django-5.2.17-py3-none-any.whl",
+      "vulnerabilities": [],
+      "source": "retained_cache",
+      "cache_relative_path": "var/enterprise/runs/1d8fd148036e43b0915fbbe86606d013/wheels/django-5.2.17-py3-none-any.whl"
+    },
+    {
+      "name": "asgiref",
+      "version": "3.12.1",
+      "requires_dist": [
+        "typing_extensions>=4; python_version < \"3.11\"",
+        "pytest; extra == \"tests\"",
+        "pytest-asyncio; extra == \"tests\"",
+        "mypy>=1.14.0; extra == \"mypy\""
+      ],
+      "filename": "asgiref-3.12.1-py3-none-any.whl",
+      "size": 25478,
+      "sha256": "fe386d1c2bff7259ea95929266d12a8cf9a8b5a1c2598402967d8792e7a7c094",
+      "url": "https://files.pythonhosted.org/packages/c0/1b/54f4ad77cd8a584fa70746c47df988e002cf1ee1eba43364d46f87803647/asgiref-3.12.1-py3-none-any.whl",
+      "vulnerabilities": [],
+      "source": "retained_cache",
+      "cache_relative_path": "var/enterprise/runs/1d8fd148036e43b0915fbbe86606d013/wheels/asgiref-3.12.1-py3-none-any.whl"
+    },
+    {
+      "name": "sqlparse",
+      "version": "0.6.0",
+      "requires_dist": [
+        "build; extra == \"dev\"",
+        "furo; extra == \"doc\"",
+        "sphinx; extra == \"doc\""
+      ],
+      "filename": "sqlparse-0.6.0-py3-none-any.whl",
+      "size": 50070,
+      "sha256": "b861c0288ce2fa56209a9a6412d2e066ac664b3873b89c26c9d8415e8e32996f",
+      "url": "https://files.pythonhosted.org/packages/d9/50/f00935da0ec7cbf325f8dc4f772ae46fbc7b672dd62876e73f0a94adda57/sqlparse-0.6.0-py3-none-any.whl",
+      "vulnerabilities": [],
+      "source": "retained_cache",
+      "cache_relative_path": "var/enterprise/runs/1d8fd148036e43b0915fbbe86606d013/wheels/sqlparse-0.6.0-py3-none-any.whl"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.4",
+      "requires_dist": null,
+      "filename": "tzdata-2026.4-py2.py3-none-any.whl",
+      "size": 347494,
+      "sha256": "c2169a8b0a7a5e9674da5a135ccdfb2b3e671b333ed9fed17b41f73c34476e81",
+      "url": "https://files.pythonhosted.org/packages/f9/bc/8737e8d54cf51106118039b83f485a4783112fab49ea9d044b234978a46e/tzdata-2026.4-py2.py3-none-any.whl",
+      "vulnerabilities": [],
+      "source": "retained_cache",
+      "cache_relative_path": "var/enterprise/runs/1d8fd148036e43b0915fbbe86606d013/wheels/tzdata-2026.4-py2.py3-none-any.whl"
+    }
+  ]
+}

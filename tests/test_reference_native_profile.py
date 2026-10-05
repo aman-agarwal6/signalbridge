@@ -1,6 +1,7 @@
 """Offline native-transport control checks, never a launched source execution."""
 
 import json
+import uuid
 from unittest.mock import patch
 
 from django.test import SimpleTestCase
@@ -82,7 +83,7 @@ class ReferenceNativeProfileTests(SimpleTestCase):
     def test_invalid_request_is_rejected_before_a_socket_is_created(self):
         client = object.__new__(ClosedHTTPSClient)
         client.budget, client.cookies = RequestBudget(), {}
-        with patch("integrations.enterprise.reference_http.http.client.HTTPSConnection") as socket:
+        with patch("integrations.enterprise.reference_http.BoundedHTTPSConnection") as socket:
             for method, path, body in (
                 ("GET", "/login/", b"unexpected"),
                 ("GET", "/admin/", b""),
@@ -102,14 +103,13 @@ class ReferenceNativeProfileTests(SimpleTestCase):
     def test_transport_failure_consumes_shared_request_budget(self):
         client = object.__new__(ClosedHTTPSClient)
         client.budget, client.cookies, client.context = RequestBudget(), {}, None
-        with patch(
-            "integrations.enterprise.reference_http.http.client.HTTPSConnection"
-        ) as connection:
+        with patch("integrations.enterprise.reference_http.BoundedHTTPSConnection") as connection:
             connection.return_value.connect.side_effect = OSError("test-only unavailable")
             with self.assertRaises(OSError):
                 client.request("GET", "/login/")
             self.assertEqual(client.budget.used, 1)
-            connection.return_value.close.assert_called_once()
+            connection.return_value.start.assert_called_once()
+            connection.return_value.finish.assert_called_once()
 
     def test_receipt_predicates_do_not_include_private_body(self):
         value = {
@@ -252,6 +252,7 @@ class OfflineReferenceDouble:
 class OfflineClientDouble:
     def __init__(self, lab):
         self.lab, self.cookies, self.account = lab, {}, None
+        self.last_event_id = None
 
     def sign_in(self, account, password):
         self.account = account
@@ -261,10 +262,14 @@ class OfflineClientDouble:
         return 200, {"account": self.account, "authenticated": True}
 
     def permission(self, app, subject, kind, granted):
+        before = self.lab.group[app] or self.lab.direct[app]
         (self.lab.group if kind == "group" else self.lab.direct)[app] = granted
-        return 200, {"effective_access": self.lab.group[app] or self.lab.direct[app]}
+        after = self.lab.group[app] or self.lab.direct[app]
+        self.last_event_id = str(uuid.uuid4()) if before != after else None
+        return 200, {"effective_access": after}
 
     def read(self, app):
+        self.last_event_id = str(uuid.uuid4())
         intended = "document_member" if app == "documents" else "expense_member"
         member = self.account == intended
         allowed = (

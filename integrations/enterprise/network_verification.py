@@ -267,7 +267,7 @@ def inspect_python_image(docker):
 
 
 def check_capacity(disk, memory, initial, max_growth=8 * base.GIB):
-    if max_growth not in (8 * base.GIB, 12 * base.GIB):
+    if max_growth not in (8 * base.GIB, 12 * base.GIB, 30 * base.GIB):
         raise base.LabControlError("Unreviewed internal-stage growth ceiling.")
     growth = max(0, initial - disk)
     if growth >= max_growth:

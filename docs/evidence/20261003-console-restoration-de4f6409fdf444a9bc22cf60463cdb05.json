@@ -1,0 +1,143 @@
+{
+  "acceptance_passed": true,
+  "approval_reference": "20261003-owner-claude-restoration-access-2",
+  "backup": {
+    "bytes": 172642,
+    "format": "pg_dump_custom",
+    "sha256": "a42bdce76600f6f9f2f2ac55e6945e7de4ea81547a58a628c7d67078141dc5fc",
+    "source_rows": {
+      "cases": 1,
+      "events": 23
+    }
+  },
+  "capacity_before": {
+    "available_host_memory_bytes": 16723279872,
+    "free_disk_bytes": 65274871808
+  },
+  "console_events_sha256": "73d2f095e0a5faed240e3a148eb3573cbdef5195c1820cd07af2921011ac99d8",
+  "copy_verified": true,
+  "download": {
+    "cache_run": "b8667b816ce8419da7f3d5d9ac9d6ad6",
+    "downloaded_bytes": 0,
+    "reused_bytes": 14200997,
+    "wheel_count": 6
+  },
+  "finished_at": "2026-10-03T23:19:26.923947+00:00",
+  "free_disk_after_bytes": 65062625280,
+  "images": {
+    "database": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "runner": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+  },
+  "independent_shutdown": {
+    "reason": "launcher_finished",
+    "run_id": "de4f6409fdf444a9bc22cf60463cdb05",
+    "shutdown_verified": true,
+    "stopped_at": "2026-10-03T23:19:26.898277+00:00",
+    "stopped_component_count": 4
+  },
+  "independent_shutdown_verified": true,
+  "kind": "signalbridge-native-console-restoration",
+  "limits": [
+    "Restores one retained native console into a separate local PostgreSQL instance; not production backup tooling or point-in-time recovery.",
+    "Synthetic operator accounts exist only in the restored database; the original volume is copied read-only and never written.",
+    "Imports and workflows reuse retained native tool receipts; no tool, source app or provider runs here.",
+    "The Wazuh review is revalidated on the Windows host (its file-identity checks need the original files); the restored console imports that exact hash-pinned scope.",
+    "Capacity readings are detection guards, not physical quotas. Containers, volumes and the backup are retained, not deleted."
+  ],
+  "main_shutdown": {
+    "run_id": "de4f6409fdf444a9bc22cf60463cdb05",
+    "shutdown_verified": true,
+    "stopped_component_count": 4
+  },
+  "main_shutdown_verified": true,
+  "parsed_configuration_verified": true,
+  "profile": "access",
+  "restored_into_separate_database": true,
+  "retained_copies": {
+    "0d137b4720ad476faa68d36754b7357f": {
+      "bytes": 318722,
+      "excluded": [
+        "docker-config",
+        "secrets"
+      ],
+      "files": 59,
+      "tree_sha256": "0535165d644e69598c8cd64c6adbe51c0dffee0457100bd97be7f5805d612bb6"
+    },
+    "b8667b816ce8419da7f3d5d9ac9d6ad6": {
+      "bytes": 20775161,
+      "excluded": [
+        "docker-config",
+        "secrets"
+      ],
+      "files": 570,
+      "tree_sha256": "8d9201d75b967f2d48377a85f744f2670e84a4d278f82fb81a1f2d13986ce8f7"
+    }
+  },
+  "run_id": "de4f6409fdf444a9bc22cf60463cdb05",
+  "runner": {
+    "passed": true,
+    "pending_migrations": [],
+    "phase": "complete",
+    "profile": "access",
+    "restored": {
+      "archive_sha256": "73d2f095e0a5faed240e3a148eb3573cbdef5195c1820cd07af2921011ac99d8",
+      "cases": 1,
+      "events": 23
+    },
+    "run_id": "de4f6409fdf444a9bc22cf60463cdb05",
+    "schema_version": 1,
+    "workflow": {
+      "case_id": "1576faa9-6deb-4511-804c-81dafa8bb648",
+      "case_operations": [
+        "acknowledge",
+        "assign",
+        "task",
+        "task_state",
+        "task_state",
+        "submit_retest",
+        "review_retest"
+      ],
+      "case_page_status": 200,
+      "independent_review": "approved",
+      "retest_check_runs": 1,
+      "retest_import_lines": [
+        "Native retest imported."
+      ],
+      "retest_repeat_lines": [
+        "Already imported; no duplicate."
+      ],
+      "self_review_denied": true,
+      "task_status": "verified",
+      "wazuh_case_linked": true,
+      "wazuh_import": {
+        "linked_cases": 1,
+        "matched_events": 13,
+        "repeat_created": false,
+        "unmatched_events": 0
+      }
+    }
+  },
+  "runner_exit_code": 0,
+  "runtime_isolation_verified": true,
+  "schema_version": 1,
+  "source_archive_unchanged": true,
+  "source_run_id": "b8667b816ce8419da7f3d5d9ac9d6ad6",
+  "source_sha256": "35ca81ddb52d63389c505e981606a44d38b19937d83233a982f300a0c5501156",
+  "source_snapshot": {
+    "bytes": 7665420,
+    "file_count": 634,
+    "source_sha256": "35ca81ddb52d63389c505e981606a44d38b19937d83233a982f300a0c5501156"
+  },
+  "source_unchanged": true,
+  "source_volume": {
+    "in_use": false,
+    "labels_verified": true,
+    "name": "sb-enterprise-reference-b8667b816ce8419da7f3d5d9ac9d6ad6"
+  },
+  "stage_growth_ceiling_bytes": 8589934592,
+  "stage_initial_free_disk_bytes": 65276977152,
+  "started_at": "2026-10-03T23:17:06.478756+00:00",
+  "status": "passed",
+  "tool_run_id": "0d137b4720ad476faa68d36754b7357f",
+  "tool_scope_sha256": "8ed399697c2d23b49cc02d6b3bff97f4ac22eeedc606c8eda7fddb7e14c0cf00"
+}

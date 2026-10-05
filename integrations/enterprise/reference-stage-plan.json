@@ -1,21 +1,47 @@
 {
   "schema_version": 1,
-  "status": "software_preparation_in_progress_not_authorized_for_launch",
+  "status": "launcher_prepared_native_launch_pending_user_review",
   "purpose": "Native source-owned authorization and telemetry proof for the two synthetic reference applications, separate from identity/tool/24-hour gates.",
   "software_prepared": [
     "Closed finite HTTPS client and known-content/explicit-denial predicates.",
     "Allowed, removed, denied, owner, restored and alternate-grant sequences, with one fixed two-minute defect and mandatory reset.",
     "Separate PostgreSQL source/console databases and non-superuser roles with cross-database connection denial.",
-    "TLS source and console process entry points, fixed loopback ports inside the runner, secure cookies and CSRF retained."
+    "TLS source and console process entry points, fixed loopback ports inside the runner, secure cookies and CSRF retained.",
+    "One total HTTPS deadline includes TCP, TLS, response and body consumption; expired responses cannot update session or observation receipts.",
+    "Exact committed event IDs accompany actual source reads and effective permission changes; no latest-row lookup or observation guessing.",
+    "Closed reconciliation binds all 31 fixed HTTP controls to 23 logical source/console events and one R3 case with exact removal/read evidence and a post-reset legitimate-owner control. Memory-only execution passed; native proof remains required.",
+    "Finite native runner, actual database/user identity and privilege checks, explicit cross-database denial predicate, fault reset and exact child-process shutdown prepared.",
+    "Two-component native recipe parsed using the installed Compose CLI without starting Docker. Closed parsed-profile validation rejects changed mounts, ports, privileges, networks, credentials and resource limits.",
+    "Offline short-lived P-256/SHA-256 CA and distinct server keys for 127.0.0.1 only, with strict chain/address/expiry checks. No signing-key serialization, host trust change or installation. Existing bundled cryptography 50.0.1/Python 3.12.14 used for certificate preparation only.",
+    "Exact ownership/naming checks, effective resource/namespace/mount/network/volume validators, finite independent watchdog and abort signaling. Hostile modeled controls pass; native enforcement has not been observed.",
+    "Runner kernel proof now verifies uid/gid, absence of privileged supplementary groups, zero capability sets, no-new-privileges, seccomp, cgroup v2 quotas and effective read-only source/secrets binds. Kernel checks use offline models pending native execution.",
+    "Publication leakage checks include source-profile passwords, distinct database credentials and full/encoded server keys, including recognized interrupted preparation. Unknown files, duplicate JSON fields and malformed credentials fail closed.",
+    "Host launcher creates stopped containers first, verifies effective entrypoint/environment/isolation and exact network/volume ownership, then starts only verified IDs. It releases the source execution gate only after revalidation.",
+    "Private per-run Windows ACL script limits access to the current operator and SYSTEM, refusing redirected or nonempty initial targets. Syntax and modeled calls are checked; native ACL enforcement remains unobserved.",
+    "Host evidence verifier recomputes the selected source snapshot and closed raw receipt hashes, access/event/case reconciliation, kernel facts, database boundaries, fault reset and finite process shutdown. Both scoped shutdown receipts are required.",
+    "Direct Windows physical-memory query replaces repeated WMI subprocesses in this source profile. It reads the System32 API only and makes no machine changes.",
+    "Private Docker configuration names the existing installed Compose plugin without importing host credentials. Its actual offline CLI parse passed after an initial missing-plugin failure; no Docker service or native component was started."
   ],
   "remaining_before_review": [
-    "Complete the exact container recipe, offline certificate preparation, runner and host controller.",
-    "Validate parsed and effective isolation, independent watchdog and source/outbox/console reconciliation.",
-    "Exercise hostile profiles and shutdown controls without launching services."
+    "The complete offline regression and frozen evaluation repeat passed. The current source-bound receipt and rebuilt handoff are named in docs/enterprise-milestone.json; earlier failures and source identities remain retained.",
+    "Review this fixed source-access profile and fresh disk/memory readings with the user before one native launch. This plan itself does not authorize that machine change.",
+    "Native execution must still establish actual private ACLs, container/kernel/TLS/PostgreSQL behavior, reconciled telemetry and both shutdown receipts. Prepared code and hostile models do not establish native acceptance."
   ],
   "proposed_components": {
-    "database": {"image": "postgres@sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0", "memory_mib": 512, "cpus": 1, "pids": 128, "role": "Fresh disposable PostgreSQL volume; never the prior stage volume."},
-    "runner": {"image": "python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d", "memory_mib": 512, "cpus": 1, "pids": 96, "role": "Finite native source/console processes and their operator driver; not an independent OS security boundary between those processes."}
+    "database": {
+      "image": "postgres@sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+      "memory_mib": 512,
+      "cpus": 1,
+      "pids": 128,
+      "role": "Fresh disposable PostgreSQL volume; never the prior stage volume."
+    },
+    "runner": {
+      "image": "python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d",
+      "memory_mib": 512,
+      "cpus": 1,
+      "pids": 96,
+      "role": "Finite native source/console processes and their operator driver; not an independent OS security boundary between those processes."
+    }
   },
   "proposed_limits": {
     "host_free_memory_headroom_gib": 4,
@@ -25,12 +51,19 @@
     "initial_free_disk_bytes": 80498424546,
     "watchdog_minutes": 30,
     "source_http_requests": 80,
+    "console_readiness_requests": 10,
+    "readiness_phase_seconds": 20,
     "source_request_phase_seconds": 180,
+    "collector_phase_seconds": 60,
+    "collector_operator_timeout_seconds": 90,
+    "one_server_process_seconds": 360,
     "one_request_seconds": 5,
     "response_bytes": 8192,
     "outbox_events": 80,
     "fixed_fault_seconds": 120,
-    "note": "Proposed guard preserves the earlier conservative baseline. Review current disk/memory before launch; monitoring is not a hard quota."
+    "note": "Proposed guard preserves the earlier conservative baseline. Review current disk/memory before launch; monitoring is not a hard quota.",
+    "runner_wait_seconds": 900,
+    "watchdog_limit_semantics": "Thirty-minute deadline initiates scoped shutdown; individual Docker control operations are bounded. Capacity monitoring and daemon-dependent stopping are not hard quotas or a guarantee against host administrator/daemon failure."
   },
   "proposed_isolation": [
     "Internal network, no published ports or runtime egress.",
@@ -38,12 +71,23 @@
     "Snapshot of selected public source read-only; cached six hash-pinned wheels read-only. No live checkout, host socket or other-project mounts.",
     "Separate finite noexec scratch and executable dependency tmpfs; private bounded output and per-run secrets only.",
     "Explicit per-process trust in a disposable lab CA. No host trust-store change, public certificates, downloads or paid service.",
-    "PostgreSQL transport remains plaintext inside this isolated component network; full enterprise TLS and production deployment remain separate."
+    "PostgreSQL transport remains plaintext inside this isolated component network; full enterprise TLS and production deployment remain separate.",
+    "Private IPC/cgroup namespaces; kernel uid/gid/capability/seccomp/quota and source/secrets mount proofs must match the reviewed profile."
   ],
   "intended_evidence": [
     "Actual login identity, unchanged session after removal, exact known record predicates, owner/cross-app controls, defect reset and restoration.",
     "Permission-change/outbox transaction evidence, native HMAC/TLS delivery, event ID/digest reconciliation, instrumented provenance and detected R3 regression.",
+    "Separate committed outbox claims, initiated transport invocations, unique logical events and logical cases. A committed lease claim does not prove a physical transmission.",
     "Incomplete failures preserved with safe error classes; neither HTTP 200 alone nor a service failure becomes a security pass.",
     "Main and independent shutdown receipts; no cleanup of other projects."
-  ]
+  ],
+  "capacity_snapshot": {
+    "free_disk_gib": 71.8,
+    "available_physical_memory_bytes": 16198467584,
+    "measured_on": "2026-10-02",
+    "limits": "Read-only observation, not reserved capacity. The ordinary Windows CIM query was denied in the sandbox; the separately reviewed read-only query succeeded. Recheck within the approved launch context before startup."
+  },
+  "host_launcher": "scripts/enterprise_reference_verify.py",
+  "historical_scoped_preparation_receipt": "docs/evidence/20261002-reference-runtime-preparation-85c0c273ad7d457399a7cc87c665cbed.json",
+  "full_preparation_evidence": "Inspect docs/enterprise-milestone.json current_offline_receipt; it must pass and match the selected source before reviewed launch."
 }

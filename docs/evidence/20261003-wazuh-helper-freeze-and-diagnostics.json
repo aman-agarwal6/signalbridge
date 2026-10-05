@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-wazuh-helper-freeze-and-diagnostics",
+  "started_at": "2026-10-03T05:46:47.961424+00:00",
+  "finished_at": "2026-10-03T05:46:54.431771+00:00",
+  "status": "implemented_scoped_checked_native_unrun",
+  "native_execution": false,
+  "retry_authorized": false,
+  "source_unchanged_during_checks": true,
+  "source_sha256": {
+    "integrations/wazuh_enterprise/execution_policy.py": "11789e40c6984ee01e7da610af0f78eb217a74e4fc3f73ec041d95e6d15fe1ee",
+    "scripts/enterprise_wazuh_live_verify.py": "b57c3413d72b7a5d47ab209ae17c1d50bd394ef111d606ee81c21f95b9f0ec94",
+    "tests/test_wazuh_execution_policy.py": "459271fd34fe1e45bf55026401ec0977276cb8eea5a046655ee0d266c3415698",
+    "tests/test_wazuh_live_controller.py": "42e711c5cbf027ebb6c76cae7d5d8cf3465c8c3055fda3058a133f753f662301",
+    "integrations/enterprise/reference-private-acl.ps1": "74f8e849f5f3018790a326696b03cbcd7a643c5cfa6c360ec757b2afc11eb5de",
+    "scripts/enterprise_reference_verify.py": "a864780b6af528c8e6d081a9b02140887a717307ba2d8fcf61a0fe8911d61916",
+    "tests/test_wazuh_native_review.py": "f64289341c8efa64f5100bb6b44ce62ab2f584305c28f32e5d3efea4b3d69171"
+  },
+  "checks": {
+    "passed": true,
+    "methods": 54,
+    "framework_summary": {
+      "tests_run": 54,
+      "successful_summary": true,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0
+    },
+    "log_sha256": "da9dbd7a01e4947e412fd84b55ef931db15028122785b604ba73991dfc4cd23c"
+  },
+  "behavior": [
+    "The executed PowerShell ACL helper must appear in the current frozen implementation inventory and match its SHA256 before any native request.",
+    "Missing/changed helper rejects launch admission. Historical plans are preserved byte-for-byte; neither can authorize the changed code.",
+    "Failure receipts retain only closed phase/code/ACL-mode values and fixed exception categories; arbitrary message, stderr, class-name and path input remains absent.",
+    "First SecureEmpty failure remains before child folders, baseline, image/guard/create/start. Cleanup failure is recorded separately."
+  ],
+  "original_manifests_unchanged": {
+    "integrations/wazuh_enterprise/ready-publication-stage-plan.json": "0fd59e30e34cf1c3ee7080a34e2e45daa1b5566ef94346e4a61430955622bd01",
+    "integrations/wazuh_enterprise/ready-publication-capacity-stage-plan.json": "9d33c56922fe5d34eae223544a987ff95f11089dd8bba0b2de1f3dc37cbc4f3c"
+  },
+  "limits": [
+    "ACL semantics were not changed and the actual Windows failure is unconfirmed.",
+    "Provider/daemon replies and failures are modeled; no native ACL/Docker calls or retry.",
+    "A fresh reviewed manifest and separate exact authorization are required before another native stage."
+  ],
+  "preparation_failures_retained": [
+    "Agent reported one test harness initialization TypeError before discovery; corrected native barrier timing before passing checks."
+  ]
+}

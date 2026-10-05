@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "scope": "Focused local identity lifecycle policy; no native SSO, signed-token or PostgreSQL claim.",
+  "recorded_at": "2026-10-02T22:15:30.419158+00:00",
+  "command": [
+    "manage.py",
+    "test",
+    "tests.test_oidc_state",
+    "tests.test_federation_policy",
+    "--settings",
+    "config.verification_settings",
+    "--noinput"
+  ],
+  "actual_runner_result": {
+    "executed_at": "2026-10-02T22:09:53.031478+00:00",
+    "runner": "Django DiscoverRunner",
+    "database": "django.db.backends.sqlite3",
+    "tests": 57,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 0.973,
+    "passed": true
+  },
+  "runner_result_sha256": "d294a6b7ae7e4a1df197d60451b25577838683358c16523fd6a236b0e8af5250",
+  "method_groups": {
+    "existing_account_policy": 38,
+    "state_and_logout_policy": 19
+  },
+  "checks": {
+    "migration_consistency": "passed",
+    "ruff_check": "passed",
+    "ruff_format": "passed",
+    "publication_scan_files": 743,
+    "git_diff_check": "passed"
+  },
+  "source_sha256_after_execution": {
+    "bridge/models.py": "4c6659f5ae9c18d60e93727a3210867fb7a2f910ab043238a7cbead1ee50c9b2",
+    "bridge/federation.py": "585d13f35ddf8c3c367d8ac3f79e4091a0960b4f36306321998aa7dd654fc072",
+    "bridge/oidc_state.py": "a87677a7365410867f3f0b4594413fc93eebde193d8dcb69dd6d9c1c955a616f",
+    "bridge/migrations/0019_federatedexchange_federatedflowwindow_and_more.py": "8933847e444d9c17a6218f31c2bbe59ac1d56cc4593defffae2a64836abcf565",
+    "integrations/identity/protocol.py": "367f6262e8e44bc574a9032cb77f1d59080dd1d6a3e48a2ddaaa41500d1d8f33",
+    "tests/test_federation_policy.py": "b914226750451586dce384b087b41611794c847dd81431b955b5dac65174d458",
+    "tests/test_oidc_state.py": "fe9c8261ea958428a495eca2295b8772f41fa4e44e59eb21d80d195dd25b16b8",
+    "tests/test_postgres_identity.py": "6e9552697c9b4e5dde7900c86858b13f7ba158fd64fff80cc077b9b2273c17db",
+    "config/verification_settings.py": "cbf11732be76b86af068d602b45f26a748c01db4b97782cfac9c439199a39175",
+    "config/simulation_settings.py": "fd6bd39b008a37f2f96e9f3d31f7e7364bb34b03d6bb29f5182b5944a7aefb7a"
+  },
+  "source_binding_limit": "Hashes captured after execution. Migration import formatting was corrected afterward; PostgreSQL race methods were added but not run. This is not a full-suite or source-unchanged receipt.",
+  "native_postgresql_races": {
+    "prepared": 3,
+    "executed": 0
+  },
+  "not_executed": [
+    "Optional dependency installation",
+    "Real signed-token tests",
+    "Keycloak login/MFA",
+    "OIDC HTTP callback",
+    "Provider HTTP logout",
+    "Live migrations",
+    "PostgreSQL identity races"
+  ],
+  "machine_changes": "None. Disposable SQLite tests only; no service or listener started."
+}

@@ -1,0 +1,62 @@
+{
+  "acceptance_passed": false,
+  "approval_reference": "20261003-owner-claude-zap-3",
+  "capacity_before": {
+    "available_host_memory_bytes": 17056321536,
+    "free_disk_bytes": 66110726144
+  },
+  "error_class": "LabControlError",
+  "finished_at": "2026-10-03T18:19:42.611092+00:00",
+  "free_disk_after_bytes": 66100781056,
+  "image_id": "sha256:71db37cd5b75663b35758d10aaec05bf6fbac23f5020e3046c70e628a5f84efa",
+  "image_reference": "zaproxy/zap-stable@sha256:71db37cd5b75663b35758d10aaec05bf6fbac23f5020e3046c70e628a5f84efa",
+  "independent_shutdown": {
+    "reason": "launcher_finished",
+    "run_id": "e5ace13e48404cfe8a87b7c58a2becac",
+    "shutdown_verified": true,
+    "stopped_at": "2026-10-03T18:19:42.587204+00:00",
+    "stopped_component_count": 1
+  },
+  "independent_shutdown_verified": true,
+  "input_sha256": "e3294a1885947ed71d15665fbd79f33fc5434c62db225c9dede452b3bda0c2f8",
+  "kind": "signalbridge-native-authenticated-zap-offline",
+  "limits": [
+    "Two fresh native passive analyses of credential-free captures; only header rule 10021.",
+    "Genuine source authentication is verified separately; no ZAP login, crawling, active requests or source changes.",
+    "Hashes and trusted operator receipts are not independent attestation against an administrator.",
+    "Capacity readings are detection guards, not physical quotas. Retained containers/images are not removed."
+  ],
+  "main_shutdown": {
+    "run_id": "e5ace13e48404cfe8a87b7c58a2becac",
+    "shutdown_verified": true,
+    "stopped_component_count": 1
+  },
+  "main_shutdown_verified": true,
+  "native_zap_executed": false,
+  "run_id": "e5ace13e48404cfe8a87b7c58a2becac",
+  "schema_version": 1,
+  "source_binding": {
+    "assurance_limit": "Retained trusted-operator execution records; not independent attestation against an administrator.",
+    "independent_shutdown_verified": true,
+    "input_sha256": "e3294a1885947ed71d15665fbd79f33fc5434c62db225c9dede452b3bda0c2f8",
+    "main_shutdown_verified": true,
+    "native_zap_executed": false,
+    "source_finished_at": "2026-10-03T18:19:02.313800+00:00",
+    "source_host_receipt_revalidated": true,
+    "source_receipt_sha256": "140cc7676542a5c03eabe26e83609fa431647e2a0e096046a596aa78809064f5",
+    "source_run_id": "9f1268003af7495bb08b245e62cb5593",
+    "source_sha256": "dbc03e20b746ea58910fd09e1deea18d8627402a260e26713d4eeed339c1c8e5"
+  },
+  "source_run_id": "9f1268003af7495bb08b245e62cb5593",
+  "source_sha256": "dbc03e20b746ea58910fd09e1deea18d8627402a260e26713d4eeed339c1c8e5",
+  "source_snapshot": {
+    "bytes": 7567286,
+    "file_count": 627,
+    "source_sha256": "dbc03e20b746ea58910fd09e1deea18d8627402a260e26713d4eeed339c1c8e5"
+  },
+  "source_unchanged": true,
+  "stage_growth_ceiling_bytes": 32212254720,
+  "stage_initial_free_disk_bytes": 80498424546,
+  "started_at": "2026-10-03T18:19:21.694880+00:00",
+  "status": "incomplete"
+}

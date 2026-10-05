@@ -1,0 +1,9 @@
+{
+  "status": "retained_cache_only_no_acquisition_fallback",
+  "cache_directory": "var/enterprise/identity/2d151d900f1745688c762d215237fb92/wheels",
+  "wheels": [
+    {"name": "Django", "version": "5.2.17", "filename": "django-5.2.17-py3-none-any.whl", "size": 8315563, "sha256": "f04fb3b36ee119e1af4fa1d397d5fd6cf12700f49321e84d4f4c642c5b1973db"},
+    {"name": "asgiref", "version": "3.12.1", "filename": "asgiref-3.12.1-py3-none-any.whl", "size": 25478, "sha256": "fe386d1c2bff7259ea95929266d12a8cf9a8b5a1c2598402967d8792e7a7c094"},
+    {"name": "sqlparse", "version": "0.6.0", "filename": "sqlparse-0.6.0-py3-none-any.whl", "size": 50070, "sha256": "b861c0288ce2fa56209a9a6412d2e066ac664b3873b89c26c9d8415e8e32996f"}
+  ]
+}

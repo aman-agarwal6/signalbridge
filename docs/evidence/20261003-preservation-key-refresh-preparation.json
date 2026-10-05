@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-preservation-and-key-refresh-preparation",
+  "recorded_at": "2026-10-03T04:45:33.286478+00:00",
+  "status": "implemented_scoped_checked_native_unrun",
+  "native_execution": false,
+  "launch_authorized": false,
+  "reviewed_plan": "integrations/wazuh_enterprise/ready-publication-stage-plan.json",
+  "reviewed_plan_sha256": "0fd59e30e34cf1c3ee7080a34e2e45daa1b5566ef94346e4a61430955622bd01",
+  "checks": [
+    {
+      "name": "scoped-policy-and-http",
+      "passed": true,
+      "methods": 147,
+      "expected_methods": 147,
+      "log_sha256": "4b0cb1900bd458e6a1191180ae51aa64392a3e53b433533e3677026e2cc83107",
+      "source_unchanged": true
+    },
+    {
+      "name": "actual-signature-refresh",
+      "passed": true,
+      "methods": 8,
+      "expected_methods": 8,
+      "log_sha256": "ff522c00077e5273e2f2913f140408643e9d4e4d1ba2138360769e6d48097233",
+      "source_unchanged": true
+    },
+    {
+      "name": "actual-signature-client-regression",
+      "passed": true,
+      "methods": 19,
+      "expected_methods": 19,
+      "log_sha256": "02c1f1e276db899479ea6794da939e00ae333d0a9d3805f3172afeb02e0e8632",
+      "source_unchanged": true,
+      "source_sha256": {
+        "integrations/identity/protocol.py": "367f6262e8e44bc574a9032cb77f1d59080dd1d6a3e48a2ddaaa41500d1d8f33",
+        "integrations/identity/client.py": "a0cc415b45be885f3f04bcd4de56bb69509ff656ff5af7f1bbd019287141ac19",
+        "integrations/identity/configuration.py": "5638dca9fb1366d1214534c6d58aba32cc1bcb74c3bfd456bfeaf10c291b5cb6",
+        "integrations/identity/transport.py": "a849e8b641a744e97aedbb11c21c5f10fcac2f2f885756fa20ebddd6fc608452",
+        "integrations/identity/key_refresh.py": "2c3fccafc3dcdd2c0774651178e40883fd810bb9eaf4767784ee9c65df0100c1",
+        "integrations/identity/protocol_tests.py": "cfa7ea45b55bffcfcb9819774f495c6e5662f1ecea7e3a91b8b14e83423b95fa",
+        "integrations/identity/client_tests.py": "c508f67a3368bd63084edbccbd6037ba76b253847e8c9a4dcd393cda8c0fd99a",
+        "bridge/oidc_views.py": "4906335c195c81fb4ad71621e50fb54a1730f8db7c7bf0dd244b8f5a3d43319e"
+      }
+    }
+  ],
+  "source_sha256": {
+    "scripts/enterprise_wazuh_live_verify.py": "434596079ce48dba613c0c40275dbacecc397442083fabeec40c6e7836ba9e38",
+    "scripts/enterprise_wazuh_verify.py": "3670a5520dd7747c6ac3cef5c710ed59096acc52592f150a8afa8c4c4ffb5e6c",
+    "scripts/enterprise_reference_verify.py": "a864780b6af528c8e6d081a9b02140887a717307ba2d8fcf61a0fe8911d61916",
+    "scripts/enterprise_zap_verify.py": "df68dfde135ce2a1f91211b7f24f35b48870fc7f109384bb85fbe0da8eb17e5c",
+    "integrations/enterprise/verification.py": "c9e938cf2abc4aa92093a0bb8618fc94c95a0a203e70cf82e3babb4114bd66d8",
+    "integrations/enterprise/network_verification.py": "094377a1313bb87766b47292ebd6a9b3e073cc5ed9d694d753e3df888004f526",
+    "integrations/enterprise/reference_host_controls.py": "1b84b2ab9286ab78e9d814750a5d523d339564e7a698888e5e262fbc52da4174",
+    "integrations/enterprise/windows_capacity.py": "dee835d548c43f5e87823ac6e4a5712fad77c77de61e4c731eb08a551732e49e",
+    "integrations/enterprise/preserved_workloads.py": "1828c5e866028348f9d33e74f452a36b0e589b89541e0e98f994047eef596996",
+    "integrations/wazuh_enterprise/execution_policy.py": "172ad9635b8a4608096fe2110a7abb5d25997ba044a6535276fb733d73717403",
+    "integrations/wazuh_enterprise/preservation_profile.py": "9f17e871850388b055aa5dfc40d0df15d6fae3aadec101367fc728563f0703f5",
+    "integrations/wazuh_enterprise/collector_host_controls.py": "458bf4cc8713b1e91618f68eeb7bcf238ec689e214b4131492eb5b86f38c7508",
+    "integrations/wazuh_enterprise/collector_profile.py": "551606468c28e458e26e7c76105e645ad1b8ffca6bbfd7ddd2f74f30b5891ec5",
+    "integrations/wazuh_enterprise/collector_kernel.py": "6767935f80867513eefeb6e22d09baa21559c04c84612b5e65a0a32b168cf137",
+    "integrations/wazuh_enterprise/collector_source_binding.py": "be83051b600d3853e9f02b39ee4a2329123849108ee57ed080ea90392849cf51",
+    "integrations/wazuh_enterprise/native_collector.py": "e2ab4a7a9ffcc491863bad4902d7f7f983070865e2e15d48949faf24c32588cd",
+    "integrations/wazuh_enterprise/native_live_collector.py": "fc7724fd59d1a75dfa0e367e3df935694494f7d4e7c4a315dfcda5094f4617d2",
+    "integrations/wazuh_enterprise/native_reconciliation.py": "89832f67ce37fc609276ff7f64f86e68c2b686351406e3bffe9ced54450b60b0",
+    "integrations/wazuh_enterprise/ready_contract.py": "4d7cc5c256ae2281387bdd5ce7a5797a2f52d6f17d6979b71a72ddbb47341c44",
+    "integrations/wazuh_enterprise/ready_publisher.py": "a020f1f72532b864cb12c9fca2d9b51ae60286d3d47b07cda3ee6697c298958f",
+    "integrations/wazuh_enterprise/capture_journal.py": "7f8f091304e7af828b6831a872d1bf08ef2117b484173e8127cc7ccb2f3ef9ed",
+    "integrations/wazuh_enterprise/contract.py": "ca34422238e94dd09cc50218471336033f43bf686d4e17bc60c322bf6b757007",
+    "integrations/wazuh_enterprise/export_snapshot.py": "2b36d36b372addda60e5c138f3d860e2506cbeaf082f3c121fee78ca900aa7e8",
+    "integrations/wazuh_enterprise/collector-stage-plan.json": "b55f858b930dd514fa9466b4f6b9bf8decbb9be8f029386f294bd3867f6ab607",
+    "integrations/wazuh_enterprise/manager-lab.conf": "1656f0124d3d18b750e7ada2ab86a0d1d2962f1f6c647ea394506f510d3f42c6",
+    "integrations/wazuh_enterprise/local_internal_options.conf": "4a329a7b96663d5742b069c58a040c5cfa481b206cda6a533dbefa4e9f4bbfbe",
+    "integrations/wazuh_enterprise/signalbridge_rules.xml": "20b7803863709bb21ff3847dba0f1cef89f31bf7e03fd7310fff6e9121d0f0aa",
+    "integrations/wazuh/run_pilot.py": "e5ab9c3ea13ee33cbdcc47459c64a851b092e9f78c5fc0564e359f9445e65ead",
+    "integrations/wazuh/run_context.py": "6759e3480648406d1aa8aa8c26b741fc7e00aa515b2cf4463b1a1ee7470650c8",
+    "integrations/wazuh/verify_static.py": "a59f7232db9bc2a207da70f87b5f38d838902edb0869384a5c3a68d3f04ff0b4",
+    "integrations/zap_enterprise/scanner_host_controls.py": "ea652922aba05cfd023bf3ee70982a8d2cceb8458d8465b93149b202998b1bb3",
+    "bridge/contract.py": "812a90a8c3b5833d22fcf833465d1d4fa8c8690d17d478959a67988ef0558647",
+    "bridge/runtime_identity.py": "fd1ba260b80473410d30ac42212dced8ec57108ac9052249c6b8834228b817b3",
+    "integrations/identity/client.py": "a0cc415b45be885f3f04bcd4de56bb69509ff656ff5af7f1bbd019287141ac19",
+    "integrations/identity/client_tests.py": "c508f67a3368bd63084edbccbd6037ba76b253847e8c9a4dcd393cda8c0fd99a",
+    "integrations/identity/configuration.py": "5638dca9fb1366d1214534c6d58aba32cc1bcb74c3bfd456bfeaf10c291b5cb6",
+    "integrations/identity/constants.py": "0d34e595bd90da73b69b1529af68a8542f9114e948df4246092cc2091471f2cb",
+    "integrations/identity/key_refresh.py": "2c3fccafc3dcdd2c0774651178e40883fd810bb9eaf4767784ee9c65df0100c1",
+    "integrations/identity/key_refresh_tests.py": "a9170efed51aa11f5616172a422ee3a8989b9d1ab3ae2a71fc08c50e4c382203",
+    "integrations/identity/native_certificates.py": "c4c0f965e2072d88672480f7f8994e43cd2d46108d9713b9e38b2f15cef66623",
+    "integrations/identity/native_certificate_tests.py": "7923bf94a57e912005896480d088c92e0b43bf58cf55856f1fa50e0306ac5558",
+    "integrations/identity/native_driver.py": "04d4b266e3f37a4e9bd25de77f34f6656913be57743e0fb7eebf58448054b8dd",
+    "integrations/identity/native_host.py": "3c049d2b2068886ff44a5e540c9942421f7ac6d221b81626dc638aea3034ac41",
+    "integrations/identity/native_http.py": "0279a6d104801827629afb9842885b587472b627ad6e1621e9abe928525fc7bf",
+    "integrations/identity/native_profile.py": "725dcf2f72e001897d13febd97477028927b57ef035f7cbff50489a148a7a964",
+    "integrations/identity/native_runner.py": "93ced913d2a68988003f3c4ace15c73367295822bcfa6d43b9c8a51eb64672f6",
+    "integrations/identity/native_server.py": "aa42d0c9fa4fdf322c10469e3422785e9102ed2216965c3cd7a8478c630e6070",
+    "integrations/identity/native_settings.py": "ef0c88bd208450d6b5649700d77c38399afc210108b6de09c3e35f6d556b2ba6",
+    "integrations/identity/native_tests.py": "422eed1e7d50f825f377e19ebbaedbfbd8811d8488e21115153981410ec0287b",
+    "integrations/identity/native_urls.py": "442b61f744babfe059a586cd6082c9805dd2edf5f83b52b1fa29f23ac6343ff3",
+    "integrations/identity/protocol.py": "367f6262e8e44bc574a9032cb77f1d59080dd1d6a3e48a2ddaaa41500d1d8f33",
+    "integrations/identity/protocol_tests.py": "cfa7ea45b55bffcfcb9819774f495c6e5662f1ecea7e3a91b8b14e83423b95fa",
+    "integrations/identity/transport.py": "a849e8b641a744e97aedbb11c21c5f10fcac2f2f885756fa20ebddd6fc608452",
+    "bridge/oidc_views.py": "4906335c195c81fb4ad71621e50fb54a1730f8db7c7bf0dd244b8f5a3d43319e"
+  },
+  "retained_preparation_failures": [
+    {
+      "stage": "first_scoped_invocation",
+      "tests_run": 0,
+      "reason": "Required synthetic SB_SECRET_KEY was not supplied."
+    },
+    {
+      "stage": "first_combined_scoped_run",
+      "methods_run": 109,
+      "errors": 9,
+      "reason": "Modeled envelope used cgroup_mode instead of the closed cgroupns_mode field."
+    }
+  ],
+  "review": "Independent read-only review identified and root fixed sticky drift, engine binding, shutdown-extension schema, separate cleanup reporting and bounded guard completion.",
+  "identity_limits": [
+    "Opt-in only; static default unchanged. Per-process cache: eight verified profiles, 300-second lifetime, 15-second cooldown, at most five-second singleflight wait.",
+    "Eight checks use real in-memory cryptographic signatures; provider/HTTP replies are modeled. Native Keycloak rotation, MFA and browser behavior are unrun."
+  ],
+  "preservation_limits": [
+    "An independent 14-minute active watchdog is followed by a fixed 60-second delayed-operation observation window. Its native calls have bounded timeouts; main waits at most four minutes for completion and retains actual elapsed drain time. These are sampled safeguards, not hard quotas or indefinite settlement.",
+    "Retain the 12-GiB cumulative disk guard including prior use, 25-GiB disk reserve, 4-GiB host-memory reserve and 10-GiB/30-GiB milestone ceilings. Whole-host changes are not solely attributable to this stage.",
+    "Main and independent shutdown, exact source/native record/alert reconciliation and unchanged sampled preserved envelopes are all required. Preserve private baseline, output receipts and stopped collector; never stop Desktop or existing workloads.",
+    "Snapshot compatibility, native collection, application health and uninterrupted service remain unverified. No claim of protection from a hostile engine administrator or resource competitor."
+  ],
+  "current_actual_signature_and_client_methods_passed": 27
+}

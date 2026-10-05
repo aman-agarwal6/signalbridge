@@ -1,0 +1,121 @@
+# Prepared isolated native profile. A reviewed host controller must launch it.
+services:
+  database:
+    image: postgres@sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0
+    pull_policy: never
+    restart: "no"
+    user: postgres
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1
+    pids_limit: 128
+    read_only: true
+    cgroup: private
+    ipc: private
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/bootstrap-password
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256 --auth-local=peer
+    command: [postgres, -c, shared_buffers=64MB, -c, max_connections=30, -c, log_statement=none]
+    volumes:
+      - identity_data:/var/lib/postgresql/data
+      - "${SB_IDENTITY_RUN_DIR:?A private reviewed identity run is required}/source/integrations/identity/init-databases.sh:/docker-entrypoint-initdb.d/10-identity.sh:ro"
+      - "${SB_IDENTITY_RUN_DIR}/secrets/bootstrap-password:/run/secrets/bootstrap-password:ro"
+      - "${SB_IDENTITY_RUN_DIR}/secrets/console-password:/run/secrets/console-password:ro"
+      - "${SB_IDENTITY_RUN_DIR}/secrets/keycloak-password:/run/secrets/keycloak-password:ro"
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m
+      - /var/run/postgresql:rw,noexec,nosuid,nodev,size=16m
+    networks: [identity]
+    labels: &labels
+      org.signalbridge.enterprise.run: ${SB_IDENTITY_RUN}
+      org.signalbridge.enterprise.scope: native-keycloak-identity
+    logging: &logging
+      driver: json-file
+      options: {max-size: 2m, max-file: "2"}
+    healthcheck:
+      test: [CMD, pg_isready, -h, "127.0.0.1", -U, postgres, -d, postgres]
+      interval: 2s
+      timeout: 2s
+      retries: 60
+  keycloak:
+    image: quay.io/keycloak/keycloak@sha256:d79bc4bf1c54e802735ef91926b5c003de1fbb50b1a93382611972277219c9ad
+    pull_policy: never
+    restart: "no"
+    user: "1000:1000"
+    mem_limit: 2g
+    memswap_limit: 2g
+    cpus: 1
+    pids_limit: 256
+    # Standard image augmentation writes within its own disposable filesystem.
+    read_only: false
+    cgroup: private
+    ipc: private
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    command: ["--config-file=/run/secrets/keycloak.conf", start, "--import-realm"]
+    environment:
+      JAVA_OPTS_KC_HEAP: -XX:InitialRAMPercentage=25 -XX:MaxRAMPercentage=60
+    volumes:
+      - "${SB_IDENTITY_RUN_DIR}/secrets/keycloak.conf:/run/secrets/keycloak.conf:ro"
+      - "${SB_IDENTITY_RUN_DIR}/secrets/signalbridge-realm.json:/opt/keycloak/data/import/signalbridge-realm.json:ro"
+      - "${SB_IDENTITY_RUN_DIR}/secrets/lab-ca.pem:/run/secrets/lab-ca.pem:ro"
+      - "${SB_IDENTITY_RUN_DIR}/secrets/provider-certificate.pem:/run/secrets/provider-certificate.pem:ro"
+      - "${SB_IDENTITY_RUN_DIR}/secrets/provider-private-key.pem:/run/secrets/provider-private-key.pem:ro"
+    networks: [identity]
+    depends_on:
+      database: {condition: service_healthy}
+    labels: *labels
+    logging: *logging
+  runner:
+    image: python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d
+    pull_policy: never
+    restart: "no"
+    user: "10001:10001"
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1
+    pids_limit: 96
+    read_only: true
+    cgroup: private
+    ipc: private
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    # Both fixed OIDC loopback origins must be in the same lab namespace.
+    network_mode: service:keycloak
+    environment:
+      SB_IDENTITY_NATIVE: "1"
+      SB_IDENTITY_RUN: ${SB_IDENTITY_RUN}
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUTF8: "1"
+      PIP_CONFIG_FILE: /dev/null
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    working_dir: /workspace
+    command: [python, -B, -m, integrations.identity.native_runner]
+    volumes:
+      - "${SB_IDENTITY_RUN_DIR}/source:/workspace:ro"
+      - "${SB_IDENTITY_RUN_DIR}/state:/workspace/var:rw"
+      - "${SB_IDENTITY_RUN_DIR}/wheels:/wheels:ro"
+      - "${SB_IDENTITY_RUN_DIR}/evidence:/evidence:rw"
+      - "${SB_IDENTITY_RUN_DIR}/secrets/identity-profile.json:/run/secrets/identity-profile.json:ro"
+      - "${SB_IDENTITY_RUN_DIR}/secrets/lab-ca.pem:/run/secrets/lab-ca.pem:ro"
+      - "${SB_IDENTITY_RUN_DIR}/secrets/console-certificate.pem:/run/secrets/console-certificate.pem:ro"
+      - "${SB_IDENTITY_RUN_DIR}/secrets/console-private-key.pem:/run/secrets/console-private-key.pem:ro"
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m
+      - /opt/identity-deps:rw,exec,nosuid,nodev,size=256m,mode=0700,uid=10001,gid=10001
+    depends_on: [keycloak]
+    labels: *labels
+    logging: *logging
+volumes:
+  identity_data:
+    name: sb-enterprise-identity-${SB_IDENTITY_RUN}
+    labels: *labels
+networks:
+  identity:
+    name: sb-enterprise-identity-internal-${SB_IDENTITY_RUN}
+    internal: true
+    labels: *labels

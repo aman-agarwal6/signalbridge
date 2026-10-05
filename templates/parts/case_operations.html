@@ -1,27 +1,152 @@
 <section class="panel" aria-labelledby="case-responsibility">
-  <div class="panel-heading"><div><h2 id="case-responsibility">Ownership &amp; next steps</h2><p>Give the investigation a responsible person and a clear follow-up.</p></div></div>
+  <div class="panel-heading">
+<div>
+<h2 id="case-responsibility">Ownership &amp; next steps</h2>
+<p>Give the investigation a responsible person and a clear follow-up.</p>
+</div>
+</div>
   <div class="record-body">
     <dl class="field-grid">
-      <div><dt>Business application</dt><dd>{{ app.name }}</dd></div>
-      <div><dt>Business owner</dt><dd>{{ app.business_owner|default:"Not recorded" }}</dd></div>
-      <div><dt>Asset criticality</dt><dd>{{ app.get_asset_criticality_display }}</dd></div>
-      <div><dt>Assigned analyst</dt><dd>{{ case.assignee.user.username|default:"Unassigned" }}</dd></div>
-      <div><dt>Acknowledgement · UTC</dt><dd>{% if case.acknowledged_at %}{{ case.acknowledged_at|date:"M d, Y · H:i" }} · {{ case.acknowledged_by.username }}{% else %}Not acknowledged{% endif %}</dd></div>
-      <div><dt>Due · UTC</dt><dd>{{ case.due_at|date:"M d, Y · H:i"|default:"Not set" }}</dd></div>
+      <div>
+<dt>Business application</dt>
+<dd>{{ app.name }}</dd>
+</div>
+      <div>
+<dt>Business owner</dt>
+<dd>{{ app.business_owner|default:"Not recorded" }}</dd>
+</div>
+      <div>
+<dt>Asset criticality</dt>
+<dd>{{ app.get_asset_criticality_display }}</dd>
+</div>
+      <div>
+<dt>Assigned analyst</dt>
+<dd>{{ case.assignee.user.username|default:"Unassigned" }}</dd>
+</div>
+      <div>
+<dt>Acknowledgement · UTC</dt>
+<dd>{% if case.acknowledged_at %}{{ case.acknowledged_at|date:"M d, Y · H:i" }} · {{ case.acknowledged_by.username }}{% else %}Not acknowledged{% endif %}</dd>
+</div>
+      <div>
+<dt>Due · UTC</dt>
+<dd>{{ case.due_at|date:"M d, Y · H:i"|default:"Not set" }}</dd>
+</div>
     </dl>
-    <div class="detail-callout"><strong>Review complete does not verify a fix</strong><p>A task awaiting retest and a resolved disposition are work records. Verified remediation requires a matching retest and a reviewer decision.</p></div>
+    <div class="detail-callout">
+<strong>Review complete does not verify a fix</strong>
+<p>Verification needs a matching native retest and an independent reviewer. The current adapter covers the document lab's R3 regression: denied access after reset, with legitimate owner access preserved. Verification describes that recorded scope, not current production health.</p>
+</div>
     {% if can_write %}
-    <details class="nested-details"><summary>Assign, acknowledge or set a deadline</summary><div class="two-column prose">
-      {% if not case.acknowledged_at %}<form method="post" action="{% url 'case_work' case.id %}">{% csrf_token %}<input type="hidden" name="version" value="{{ case.version }}"><input type="hidden" name="operation" value="acknowledge"><p>Record that you have taken an initial look at this investigation.</p><button class="button primary">Acknowledge case</button></form>{% endif %}
-      <form method="post" action="{% url 'case_work' case.id %}">{% csrf_token %}<input type="hidden" name="version" value="{{ case.version }}"><input type="hidden" name="operation" value="assign"><label for="case-assignee">Assigned analyst</label><select id="case-assignee" name="assignee"><option value="">Unassigned</option>{% for member in eligible_assignees %}<option value="{{ member.id }}" {% if member.id == case.assignee_id %}selected{% endif %}>{{ member.user.username }} · {{ member.get_role_display }}</option>{% endfor %}</select><button class="button">Save assignment</button></form>
-      <form method="post" action="{% url 'case_work' case.id %}">{% csrf_token %}<input type="hidden" name="version" value="{{ case.version }}"><input type="hidden" name="operation" value="due"><label for="case-due">Follow up within</label><select id="case-due" name="due_days"><option value="1">1 day</option><option value="3">3 days</option><option value="7">7 days</option><option value="30">30 days</option></select><button class="button">Set deadline</button></form>
-    </div></details>
+    <details class="nested-details">
+<summary>Assign, acknowledge or set a deadline</summary>
+<div class="two-column prose">
+      {% if not case.acknowledged_at %}<form method="post" action="{% url 'case_work' case.id %}">{% csrf_token %}<input type="hidden" name="version" value="{{ case.version }}">
+<input type="hidden" name="operation" value="acknowledge">
+<p>Record that you have taken an initial look at this investigation.</p>
+<button class="button primary">Acknowledge case</button>
+</form>{% endif %}
+      <form method="post" action="{% url 'case_work' case.id %}">{% csrf_token %}<input type="hidden" name="version" value="{{ case.version }}">
+<input type="hidden" name="operation" value="assign">
+<label for="case-assignee">Assigned analyst</label>
+<select id="case-assignee" name="assignee">
+<option value="">Unassigned</option>{% for member in eligible_assignees %}<option value="{{ member.id }}" {% if member.id == case.assignee_id %}selected{% endif %}>{{ member.user.username }} · {{ member.get_role_display }}</option>{% endfor %}</select>
+<button class="button">Save assignment</button>
+</form>
+      <form method="post" action="{% url 'case_work' case.id %}">{% csrf_token %}<input type="hidden" name="version" value="{{ case.version }}">
+<input type="hidden" name="operation" value="due">
+<label for="case-due">Follow up within</label>
+<select id="case-due" name="due_days">
+<option value="1">1 day</option>
+<option value="3">3 days</option>
+<option value="7">7 days</option>
+<option value="30">30 days</option>
+</select>
+<button class="button">Set deadline</button>
+</form>
+    </div>
+</details>
     {% endif %}
     <h3>Review &amp; remediation tasks</h3>
-    {% for task in case_tasks %}<article class="note"><strong>{{ task.title }}</strong><p>{{ task.get_kind_display }} · {{ task.get_status_display }} · {{ task.assignee.user.username|default:"Unassigned" }}</p><small>Evidence snapshot at case version {{ task.case_version }} · {{ task.created_at|date:"M d, H:i" }} UTC</small>
-      <details class="nested-details"><summary>Inspect task evidence binding{% if can_write %} &amp; update progress{% endif %}</summary><div class="prose"><code class="break">{{ task.evidence_sha256 }}</code>
-      {% if can_write %}<form method="post" action="{% url 'case_work' case.id %}">{% csrf_token %}<input type="hidden" name="version" value="{{ case.version }}"><input type="hidden" name="operation" value="task_state"><input type="hidden" name="task_id" value="{{ task.id }}"><label for="task-state-{{ task.id }}">Work state</label><select id="task-state-{{ task.id }}" name="status"><option value="open" {% if task.status == 'open' %}selected{% endif %}>Open</option><option value="in_progress" {% if task.status == 'in_progress' %}selected{% endif %}>In progress</option><option value="awaiting_retest" {% if task.status == 'awaiting_retest' %}selected{% endif %}>Awaiting retest</option></select><button class="button">Update task</button></form>{% endif %}</div></details>
+    {% for task in case_tasks %}<article class="note">
+<strong>{{ task.title }}</strong>
+<p>{{ task.get_kind_display }} · {{ task.work_label }} · {{ task.assignee.user.username|default:"Unassigned" }}</p>
+<small>Evidence snapshot at case version {{ task.case_version }} · {{ task.created_at|date:"M d, H:i" }} UTC</small>
+      {% if task.verification %}<div class="detail-callout">
+<strong>{{ task.verification_label }}</strong>
+<p>Submitted by {{ task.verification.submitted_by.username }} · case version {{ task.verification.case_version }}{% if task.verification.reviewer %}<br>Reviewed by {{ task.verification.reviewer.username }} · {{ task.verification.decided_at|date:"M d, Y · H:i" }} UTC{% endif %}</p>{% if task.verification.rationale %}<p>{{ task.verification.rationale }}</p>{% endif %}<details class="nested-details">
+<summary>Retest receipt &amp; access observations</summary>
+<dl class="field-grid">
+<div>
+<dt>Recorded native run</dt>
+<dd class="break">{{ task.verification.check_run.result.run_id }}</dd>
+</div>
+<div>
+<dt>Finished · UTC</dt>
+<dd>{{ task.verification.check_run.result.finished_at }}</dd>
+</div>
+<div>
+<dt>Evidence digest</dt>
+<dd class="break">{{ task.verification.evidence_sha256 }}</dd>
+</div>{% for kind, binding in task.verification.check_run.result.bindings.items %}<div>
+<dt>{{ kind }}</dt>
+<dd class="break">{{ binding.event_id }}</dd>
+</div>{% endfor %}</dl>
+<p>The original removal/read, corrected denial and post-reset owner control must match the retained application, account, resource and episode. Local administrator tampering remains outside this evidence boundary.</p>
+</details>
+      {% if role == 'reviewer' and task.verification_reviewable and task.verification.submitted_by_id != request.user.id and task.created_by_id != request.user.id %}<form method="post" action="{% url 'case_work' case.id %}">{% csrf_token %}<input type="hidden" name="version" value="{{ case.version }}">
+<input type="hidden" name="operation" value="review_retest">
+<input type="hidden" name="verification_id" value="{{ task.verification.id }}">
+<label for="retest-decision-{{ task.id }}">Independent reviewer decision</label>
+<select id="retest-decision-{{ task.id }}" name="decision">
+<option value="rejected">Reject verification</option>
+<option value="approved">Approve within recorded lab scope</option>
+</select>
+<label for="retest-reason-{{ task.id }}">Evidence and limits supporting your decision</label>
+<textarea id="retest-reason-{{ task.id }}" name="rationale" minlength="10" maxlength="1000" required>
+</textarea>
+<button class="button">Record review</button>
+</form>{% endif %}</div>{% endif %}
+      {% if can_write and task.can_submit_retest %}<details class="nested-details">
+<summary>Submit matching native retest for independent review</summary>
+<form class="prose" method="post" action="{% url 'case_work' case.id %}">{% csrf_token %}<input type="hidden" name="version" value="{{ case.version }}">
+<input type="hidden" name="operation" value="submit_retest">
+<input type="hidden" name="task_id" value="{{ task.id }}">
+<label for="matching-retest-{{ task.id }}">Revalidated native receipt</label>
+<select id="matching-retest-{{ task.id }}" name="check_run_id">{% for run in matching_retests %}<option value="{{ run.id }}">{{ run.result.run_id }} · {{ run.result.finished_at }}</option>{% endfor %}</select>
+<button class="button">Submit retest</button>
+</form>
+</details>{% endif %}
+      <details class="nested-details">
+<summary>Inspect task evidence binding{% if can_write %} &amp; update progress{% endif %}</summary>
+<div class="prose">
+<code class="break">{{ task.evidence_sha256 }}</code>
+      {% if can_write %}<form method="post" action="{% url 'case_work' case.id %}">{% csrf_token %}<input type="hidden" name="version" value="{{ case.version }}">
+<input type="hidden" name="operation" value="task_state">
+<input type="hidden" name="task_id" value="{{ task.id }}">
+<label for="task-state-{{ task.id }}">Work state</label>
+<select id="task-state-{{ task.id }}" name="status">
+<option value="open" {% if task.status == 'open' %}selected{% endif %}>Open</option>
+<option value="in_progress" {% if task.status == 'in_progress' %}selected{% endif %}>In progress</option>
+<option value="awaiting_retest" {% if task.status == 'awaiting_retest' %}selected{% endif %}>Awaiting retest</option>
+</select>
+<button class="button">Update task</button>
+</form>{% endif %}</div>
+</details>
     </article>{% empty %}<p class="muted">No review or remediation tasks recorded.</p>{% endfor %}
-    {% if can_write %}<details class="nested-details"><summary>Add a task</summary><form class="prose" method="post" action="{% url 'case_work' case.id %}">{% csrf_token %}<input type="hidden" name="version" value="{{ case.version }}"><input type="hidden" name="operation" value="task"><label for="new-task-kind">Task kind</label><select id="new-task-kind" name="kind"><option value="review">Review evidence</option><option value="remediation">Remediation</option></select><label for="new-task-title">Specific next action</label><input id="new-task-title" name="title" minlength="10" maxlength="160" required placeholder="Verify the private-record denial and owner control"><button class="button primary">Create task</button></form></details>{% endif %}
+    {% if not matching_retests %}<p class="muted">No matching native retest is available. Generic passing checks, historical resolved cases and analyst notes cannot verify remediation. The native run and its existing case/events must be imported by the trusted local operator after archive revalidation.</p>{% endif %}
+    {% if can_write %}<details class="nested-details">
+<summary>Add a task</summary>
+<form class="prose" method="post" action="{% url 'case_work' case.id %}">{% csrf_token %}<input type="hidden" name="version" value="{{ case.version }}">
+<input type="hidden" name="operation" value="task">
+<label for="new-task-kind">Task kind</label>
+<select id="new-task-kind" name="kind">
+<option value="review">Review evidence</option>
+<option value="remediation">Remediation</option>
+</select>
+<label for="new-task-title">Specific next action</label>
+<input id="new-task-title" name="title" minlength="10" maxlength="160" required placeholder="Verify the private-record denial and owner control">
+<button class="button primary">Create task</button>
+</form>
+</details>{% endif %}
   </div>
 </section>
