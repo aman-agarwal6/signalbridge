@@ -2,6 +2,7 @@
 
 import copy
 import hashlib
+import os
 import subprocess
 import time
 from datetime import timedelta
@@ -33,6 +34,21 @@ class ExecutionPolicyTests(SimpleTestCase):
         self.workspace = disposable_root(self)
         self.directory = base.private_run_directory(self.workspace, RUN)
         self.directory.mkdir(parents=True)
+        if os.name != "nt":
+            # The profile accepts only Windows Docker Desktop run folders. Off Windows, give
+            # this disposable folder that lexical identity; every other path is unchanged.
+            normalize, prefix = preserved.normalized_path, str(self.workspace)
+            self.enterContext(
+                patch.object(
+                    preserved,
+                    "normalized_path",
+                    side_effect=lambda value: normalize(
+                        "C:/synthetic" + value[len(prefix) :]
+                        if type(value) is str and value.startswith(prefix)
+                        else value
+                    ),
+                )
+            )
         self.now = timezone.now()
         for relative in policy.REVIEWED_FILES:
             path = self.workspace / relative
@@ -154,6 +170,7 @@ class ExecutionPolicyTests(SimpleTestCase):
             policy.validate_plan(omitted)
         (self.workspace / helper).write_bytes(b"changed non-executable ACL fixture")
         with (
+            patch.object(live.sys, "platform", "win32"),
             patch.object(live, "ROOT", self.workspace),
             patch.object(live, "private_acl") as acl,
             patch.object(policy, "capture") as capture,
@@ -262,6 +279,9 @@ class ExecutionPolicyTests(SimpleTestCase):
         context = Mock()
         context.digest, context.plan_digest = "b" * 64, "d" * 64
         context.plan_name = policy.CAPACITY_PLAN
+        # Windows-only process flags; the guard is launched only on Windows.
+        for name in ("CREATE_NO_WINDOW", "DETACHED_PROCESS", "CREATE_NEW_PROCESS_GROUP"):
+            self.enterContext(patch.object(live.subprocess, name, 0, create=True))
         with patch.object(live.subprocess, "Popen") as process:
             live.arm_guard("modeled", RUN, context)
         arguments = process.call_args.args[0]

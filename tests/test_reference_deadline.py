@@ -15,6 +15,8 @@ class ReferenceDeadlineTests(SimpleTestCase):
     def setUp(self):
         self.clock = 100.0
         self.context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        # Set explicitly, as lab_context() does: some OpenSSL builds report no floor by default.
+        self.context.minimum_version = ssl.TLSVersion.TLSv1_2
         self.raw = Mock()
         self.tls = Mock()
         self.tls.makefile.side_effect = lambda *_args: io.BytesIO(

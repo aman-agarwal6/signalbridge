@@ -95,6 +95,8 @@ class OIDCTransportTests(SimpleTestCase):
 
     def test_identity_connection_does_not_expand_reference_port_allowlist(self):
         context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        # Set explicitly, as lab_context() does: some OpenSSL builds report no floor by default.
+        context.minimum_version = ssl.TLSVersion.TLSv1_2
         with self.assertRaises(ValueError):
             BoundedHTTPSConnection(18844, context=context, seconds=5)
         with self.assertRaises(ValueError):

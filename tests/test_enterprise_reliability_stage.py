@@ -137,9 +137,11 @@ class ReliabilityRecipeTests(SimpleTestCase):
                 stage.subnet_free(Path("docker.exe"), subnet)
 
     def test_launcher_selects_its_own_recipe(self):
-        command = reference.compose_command(
-            Path("docker.exe"), RUN, DIRECTORY, profile="reliability"
-        )
+        # The launcher targets Windows Docker Desktop only.
+        with patch.object(reference.base.os, "name", "nt"):
+            command = reference.compose_command(
+                Path("docker.exe"), RUN, DIRECTORY, profile="reliability"
+            )
         self.assertTrue(str(command[-1]).endswith("compose.reliability.yaml"))
         with self.assertRaises(LabControlError):
             reference.compose_command(Path("docker.exe"), RUN, DIRECTORY, profile="arbitrary")

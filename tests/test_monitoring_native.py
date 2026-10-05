@@ -257,10 +257,15 @@ class HostIsolationTests(ForbiddenNative, unittest.TestCase):
     def test_explicit_reviewed_executable_and_closed_failure_categories(self):
         with self.assertRaises(base.LabControlError):
             host.executable("docker.exe")
-        with self.assertRaises(base.LabControlError):
+        # A drive path is absolute only on Windows, the one supported host.
+        with (
+            patch.object(Path, "is_absolute", return_value=True),
+            self.assertRaises(base.LabControlError),
+        ):
             host.executable("C:/reviewed/not-docker.exe")
         with (
             patch.object(host, "safe_path") as checked,
+            patch.object(Path, "is_absolute", return_value=True),
             patch.object(Path, "is_file", return_value=True),
         ):
             path = host.executable("C:/reviewed/docker.exe")

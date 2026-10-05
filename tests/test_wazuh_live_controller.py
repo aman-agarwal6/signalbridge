@@ -404,6 +404,7 @@ class LiveCollectorTests(SimpleTestCase):
 
         guard.wait.side_effect = finish
         with (
+            patch.object(live.sys, "platform", "win32"),
             patch.object(live, "ROOT", self.workspace),
             patch.object(live, "private_acl"),
             patch.object(live, "check_capacity", return_value={}),
@@ -451,6 +452,7 @@ class LiveCollectorTests(SimpleTestCase):
             raise private_failure(private)
 
         with (
+            patch.object(live.sys, "platform", "win32"),
             patch.object(live, "ROOT", self.workspace),
             patch.object(live, "private_acl", side_effect=acl) as private_acl,
             patch.object(live, "check_capacity", return_value={}),

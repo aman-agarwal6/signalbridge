@@ -102,7 +102,9 @@ class HeaderNativeProfileTests(SimpleTestCase):
             validator.assert_called_once()
         with self.assertRaises(LabControlError):
             evidence.validate_native(DIRECTORY, RUN, {}, {}, now=time.time(), profile="arbitrary")
-        command = launch.compose_command(Path("docker.exe"), RUN, DIRECTORY, profile="header")
+        # The launcher targets Windows Docker Desktop only.
+        with patch.object(launch.base.os, "name", "nt"):
+            command = launch.compose_command(Path("docker.exe"), RUN, DIRECTORY, profile="header")
         self.assertTrue(str(command[-1]).endswith("compose.header.yaml"))
 
     def test_operator_cannot_enable_native_profile_or_read_credentials_without_opt_in(self):
