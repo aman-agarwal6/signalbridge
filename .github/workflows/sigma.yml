@@ -9,6 +9,7 @@ on:
       - bridge/contract.py
       - fixtures/enterprise_detection_evaluation/round-20261005-public-release/**
       - docs/evidence/20261005-enterprise-detection-evaluation-public-release.json
+      - scripts/evaluate_enterprise_detection.py
       - .github/workflows/sigma.yml
   pull_request:
     paths:
@@ -17,6 +18,7 @@ on:
       - bridge/contract.py
       - fixtures/enterprise_detection_evaluation/round-20261005-public-release/**
       - docs/evidence/20261005-enterprise-detection-evaluation-public-release.json
+      - scripts/evaluate_enterprise_detection.py
       - .github/workflows/sigma.yml
 concurrency:
   group: sigma-${{ github.workflow }}-${{ github.ref }}

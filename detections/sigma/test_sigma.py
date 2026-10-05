@@ -13,7 +13,7 @@ from sigma.collection import SigmaCollection
 from sigma.correlations import SigmaCorrelationRule
 
 from .compile import COMPILED, DETECTIONS, RULES, compile_all, sqlite_queries
-from .replay import REPORT, build_report, python_rules, sigma_rules
+from .replay import REPORT, ROOT, ROUND, build_report, python_rules, sigma_rules
 
 # Technique IDs checked by hand against MITRE ATT&CK Enterprise; the README explains each choice.
 ATTACK_TAGS = {"attack.collection", "attack.persistence", "attack.t1078", "attack.t1213"}
@@ -67,6 +67,17 @@ class RuleFiles(unittest.TestCase):
 
 
 class Replay(unittest.TestCase):
+    def test_replays_the_round_the_evaluator_uses(self):
+        # Read as text: importing the evaluator pulls in Django and the lab guards.
+        source = (ROOT / "scripts/evaluate_enterprise_detection.py").read_text(encoding="utf-8")
+        current = re.search(r'^DATA = ROOT / "([^"]+)"$', source, re.MULTILINE)
+        self.assertIsNotNone(current, "evaluator DATA line not found")
+        self.assertEqual(
+            current.group(1),
+            ROUND.relative_to(ROOT).as_posix(),
+            "The evaluator moved to a new frozen round; point replay.ROUND at it and rerun.",
+        )
+
     def test_report_is_current_and_python_reproduces_the_receipt(self):
         report = build_report()
         self.assertEqual(json.loads(REPORT.read_text(encoding="utf-8")), report)
