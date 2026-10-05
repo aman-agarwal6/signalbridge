@@ -119,6 +119,8 @@ class PortfolioTests(TestCase):
         (self.root / "docs/evidence").mkdir(parents=True)
         (self.root / "templates").mkdir()
         shutil.copyfile(p.ROOT / "templates/portfolio.html", self.root / "templates/portfolio.html")
+        (self.root / "static").mkdir()
+        shutil.copyfile(p.ROOT / "static/portfolio.css", self.root / "static/portfolio.css")
         self.addCleanup(self.cleanup)
         self.now = datetime(2030, 1, 1, tzinfo=timezone.utc)
         # These copies are private test input, never purported new execution evidence.

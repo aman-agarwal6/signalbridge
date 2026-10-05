@@ -1,0 +1,51 @@
+{
+  "acknowledged": 6,
+  "by_type": {
+    "account_disabled": 2,
+    "session_established": 2,
+    "session_revoked": 2
+  },
+  "case_actions": {
+    "case.created": 1
+  },
+  "dry_run": false,
+  "duplicates": 0,
+  "duration_seconds": 0.186,
+  "failure": null,
+  "finished_at": "2026-10-05T04:37:27.808993+00:00",
+  "key_fetches": 1,
+  "kind": "signalbridge-accessops-leaver-poll",
+  "limits": [
+    "One poll run against the local AccessOps lab with synthetic test workers.",
+    "Signals prove what AccessOps reported and signed, not what a session accessed.",
+    "Builder-run receipt; the receiver token and subject identifiers are omitted."
+  ],
+  "offered": 6,
+  "open_cases": {
+    "L1": 4,
+    "L2": 0
+  },
+  "polls": 2,
+  "queue_drained": true,
+  "refused": {},
+  "reported_as_errors": 0,
+  "run_id": "931402fb1ee44209b58c60063f63150f",
+  "schema_version": 1,
+  "started_at": "2026-10-05T04:37:27.623445+00:00",
+  "stored": 6,
+  "stored_totals": {
+    "account_disabled": 13,
+    "session_established": 12,
+    "session_revoked": 13
+  },
+  "transmitter": {
+    "address": "127.0.0.1:8443",
+    "ca_file_sha256": "93ff5d947696134117ecd1c235629bb93a6e3c2ff64c26c0ff269c3ad9c9e8ca",
+    "issuer": "https://accessops.test:8443",
+    "server_certificate_sha256": "5a75425789c50e90ebb8d196bd47e2b16b1010954947f07acc4dda30981d0a44",
+    "signing_key_ids": [
+      "1WXEeCxmEsHEy6L6PWMeeIfzPJlaB0-giRfEquLzE_E"
+    ],
+    "tls_server_name": "accessops.test"
+  }
+}

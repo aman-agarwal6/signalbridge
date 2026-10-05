@@ -1,0 +1,87 @@
+{
+  "name": "sb-enterprise-zap-offline-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "services": {
+    "scanner": {
+      "cap_drop": [
+        "ALL"
+      ],
+      "cgroup": "private",
+      "cpus": 1.5,
+      "command": [
+        "-I",
+        "-B",
+        "/workspace/integrations/zap_enterprise/scanner_runner.py"
+      ],
+      "container_name": "sb-enterprise-zap-offline-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "entrypoint": [
+        "python3"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "SB_ZAP_RUN": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "SB_ZAP_SOURCE_PROOF": "1"
+      },
+      "healthcheck": {
+        "disable": true
+      },
+      "image": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "init": true,
+      "ipc": "private",
+      "labels": {
+        "org.signalbridge.enterprise.run": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "org.signalbridge.enterprise.scope": "authenticated-zap-offline"
+      },
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-file": "2",
+          "max-size": "2m"
+        }
+      },
+      "mem_limit": "2684354560",
+      "memswap_limit": "2684354560",
+      "network_mode": "none",
+      "pids_limit": 256,
+      "pull_policy": "never",
+      "read_only": true,
+      "restart": "no",
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "shm_size": "16777216",
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,nodev,size=512m,mode=0700,uid=1000,gid=1000"
+      ],
+      "user": "1000:1000",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/offline-scanner-profile/source",
+          "target": "/workspace",
+          "read_only": true,
+          "bind": {
+            "create_host_path": false
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/offline-scanner-profile/input",
+          "target": "/input",
+          "read_only": true,
+          "bind": {
+            "create_host_path": false
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/offline-scanner-profile/evidence",
+          "target": "/evidence",
+          "bind": {
+            "create_host_path": false
+          }
+        }
+      ],
+      "working_dir": "/workspace"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+cluster.name: sb-shuffle-lab
+node.name: shuffle-opensearch
+discovery.type: single-node
+network.host: 0.0.0.0
+node.store.allow_mmap: false
+plugins.security.disabled: true

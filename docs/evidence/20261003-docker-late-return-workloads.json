@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-docker-running-workloads-observation",
+  "recorded_at": "2026-10-03T04:00:53.269564+00:00",
+  "related_recovery_receipt": "docs/evidence/20261003-docker-late-return-stop-163a2eae1dab4669ba38665ffd1423bf.json",
+  "inventory_observed_after": "2026-10-03T03:57:25.340365+00:00",
+  "running_container_count": 8,
+  "running_workloads_preserved": true,
+  "docker_stop_requested": false,
+  "docker_started_by_this_action": false,
+  "restart_origin_established": false,
+  "other_project_names_or_configuration_published": false,
+  "scope": "Approved bounded inventory found running workloads; empty-engine stop condition was not satisfied. No further Docker action authorized."
+}

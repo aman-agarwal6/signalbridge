@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-keycloak-acquisition-stopped",
+  "recorded_at": "2026-10-03T02:58:30.283167+00:00",
+  "approval_reference": "call_zEB0RPOoKEYoVFAe1k2iXANg",
+  "status": "stopped_before_keycloak_image_or_native_containers",
+  "acquisition_sha256": "e6d020d51f1b548a71bf3e28c7395b8b3e509fd0291ee9a4223723255c733e1f",
+  "operator_script_sha256": "4a8f9a2ea34f789372b2c0ac0f7b2fb993d290fd81e472ab81a8c0224660de82",
+  "downloaded_wheel_bytes": 4967755,
+  "all_16_wheels_hash_verified": true,
+  "keycloak_image_download_started": false,
+  "native_controller_invoked": false,
+  "containers_created": 0,
+  "native_identity_tests_run": 0,
+  "credentials_generated": false,
+  "baseline": {
+    "free_disk_bytes": 73334984704,
+    "available_memory_bytes": 11472670720
+  },
+  "later_low_capacity_observation": {
+    "free_disk_bytes": 32088752128,
+    "available_memory_bytes": 471871488,
+    "whole_host_free_space_decrease_bytes": 41246232576
+  },
+  "planned_stage_growth_ceiling_bytes": 4294967296,
+  "sampled_guard_did_not_prevent_overshoot": true,
+  "diagnosis": {
+    "docker_backend_reported": "initializing settings: getting default data folder: unable to get ProgramData",
+    "cause_supported_by_code_and_log": "The operator wrapper supplied clean_environment(), which omitted the Windows ProgramData variable. Docker reported a startup crash before its engine became reachable.",
+    "resource_spike_cause": "Not established; the measured spike coincided with startup/crash and recovered after shutdown.",
+    "wsl_configuration_read_only": {
+      "memory": "8GB",
+      "processors": 4,
+      "swap": "1GB"
+    },
+    "host_settings_changed": false
+  },
+  "shutdown": {
+    "normal_stop_timed_out": true,
+    "later_force_stop_exit_code": 0,
+    "later_force_stop_message": "Docker Desktop is not running",
+    "subsequent_named_docker_and_vmmem_process_inventory": "none_found",
+    "recovery_capacity": {
+      "checked_at": "2026-10-03T02:52:10.089084+00:00",
+      "free_disk_bytes": 73724047360,
+      "available_memory_bytes": 23487303680
+    }
+  },
+  "correction_receipt": "docs/evidence/20261003-windows-startup-environment-correction.json",
+  "native_retry": false,
+  "new_launch_authorized": false,
+  "next_native_prerequisites": [
+    "Separate reviewed approval; the single acquisition/launch attempt has been used.",
+    "Required Windows environment preflight, with ProgramData preserved.",
+    "Startup emergency shutdown must not depend on a reachable container engine; strengthen this before another attempt.",
+    "Full current-source verification and new capacity checks before any launch."
+  ],
+  "limits": [
+    "No genuine Keycloak/SSO/MFA acceptance was obtained.",
+    "Peak resource use is unknown; the retained low-capacity sample is not a precise maximum.",
+    "The missing ProgramData diagnosis does not explain or bound every effect of the resource spike.",
+    "No independent native-controller watchdog was armed because container execution never began."
+  ]
+}

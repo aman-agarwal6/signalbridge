@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "status": "native_bootstrap_controller_prepared_pending_review_and_genuine_inputs",
+  "scope": "two_reference_applications_metadata_only",
+  "apps": [
+    "documents",
+    "expenses"
+  ],
+  "channels": [
+    "observation",
+    "detection"
+  ],
+  "image": "wazuh/wazuh-manager@sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0",
+  "pull_policy": "never",
+  "native_processes": [
+    "wazuh-db",
+    "wazuh-analysisd",
+    "wazuh-logcollector"
+  ],
+  "stock_init": false,
+  "native_driver": "integrations/wazuh_enterprise/native_collector.py",
+  "host_controller": "scripts/enterprise_wazuh_verify.py",
+  "native_driver_entrypoint": "/var/ossec/framework/python/bin/python3",
+  "native_driver_arguments": [
+    "-B",
+    "-m",
+    "integrations.wazuh_enterprise.native_collector"
+  ],
+  "native_working_directory": "/workspace",
+  "container": {
+    "user": "0:0",
+    "network": "none",
+    "published_ports": 0,
+    "restart": "no",
+    "root_filesystem": "disposable_writable",
+    "cap_drop": [
+      "ALL"
+    ],
+    "cap_add": [
+      "SETUID",
+      "SETGID",
+      "SYS_CHROOT"
+    ],
+    "privileged": false,
+    "no_new_privileges": true,
+    "docker_socket": false,
+    "host_namespaces": false,
+    "memory_bytes": 1610612736,
+    "memory_swap_bytes": 1610612736,
+    "cpus": 1,
+    "pids": 256,
+    "init": true,
+    "shm_bytes": 16777216,
+    "ipc": "private",
+    "cgroup": "private",
+    "container_log_max_bytes": 2097152,
+    "container_log_files": 2,
+    "input_mounts_readonly": [
+      "/signalbridge/input/documents/observation",
+      "/signalbridge/input/documents/detection",
+      "/signalbridge/input/expenses/observation",
+      "/signalbridge/input/expenses/detection"
+    ],
+    "source_mount_readonly": "/workspace",
+    "private_evidence_mount": "/evidence",
+    "other_project_mounts": false
+  },
+  "limits": {
+    "collector_seconds": 600,
+    "independent_host_shutdown_seconds": 900,
+    "minimum_free_disk_bytes": 26843545600,
+    "minimum_host_available_memory_bytes": 4294967296,
+    "minimum_host_available_memory_before_launch_bytes": 5905580032,
+    "whole_stage_disk_guard_bytes": 12884901888,
+    "additional_milestone_disk_ceiling_bytes": 32212254720,
+    "combined_milestone_guest_container_memory_bytes": 10737418240,
+    "native_record_bytes": 16384,
+    "private_output_bytes": 134217728
+  },
+  "input": {
+    "segments_per_app_channel": 8,
+    "segment_bytes": 2097152,
+    "batch_bytes": 131072,
+    "closed_enterprise_packets_only": true,
+    "actor_resource_content_credentials": false,
+    "published_export_inventory_required": true,
+    "bootstrap_logical_records": 128,
+    "bootstrap_input_bytes": 131072
+  },
+  "configuration_sha256": "1656f0124d3d18b750e7ada2ab86a0d1d2962f1f6c647ea394506f510d3f42c6",
+  "internal_options_sha256": "4a329a7b96663d5742b069c58a040c5cfa481b206cda6a533dbefa4e9f4bbfbe",
+  "launch_authorized": false,
+  "native_execution_verified": false,
+  "required_before_launch": [
+    "Current cached immutable image inspection; stop if absent, no automatic pull.",
+    "A fresh native reference-access run that produces the fixed 23-observation/one-forwarded-R3 Wazuh snapshot; host validation must recompute its exact source, case, packet and manifest bindings. Historical or modeled packets are not source proof.",
+    "Current-source verification, private run ACLs, reviewed host/process controller and effective container/kernel isolation.",
+    "Independent host watchdog, resource rechecks, exact user approval and both verified shutdown paths."
+  ],
+  "acceptance_boundary": "A ten-minute snapshot bootstrap cannot certify live outbox propagation, collector/input rotation recovery, the 24-hour workload or container/host restart recovery. A durable journal drains pinned output generations at rotation; missing prior inodes or incomplete final lines fail explicitly. Native rotation is unverified. Collector interruption may repeat native records; distinguish physical copies, capture retries and logical events. No indexer/dashboard, host monitoring, containment, paid service or external access."
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-pending-retest-review-regression",
+  "recorded_at": "2026-10-03T05:29:39.525436+00:00",
+  "status": "implemented_disposable_policy_checked",
+  "native_execution": false,
+  "changed_file_hashes_matched_before_and_after_checks": true,
+  "source_sha256_at_recording": {
+    "bridge/case_verification.py": "4c4ae51c5251c96d525f2a2329b8f93db89088496f1d183da2e1dca5bdf8a120",
+    "tests/test_case_retest_submission.py": "b205106f0196db848d37774979403ee318a262a07dc1b1e995e8e16e1551c26a",
+    "bridge/case_workflow.py": "80cc2b622cb6892f54401e26389ca366a025c78ac2292c63fdd41da7f798cb1a",
+    "bridge/case_workflow_views.py": "ab33092df98177d4fc1bb339988e656a84da1c8533cc97ddec3451cb74f6bbde",
+    "tests/test_case_verification.py": "2cc32dec223449086ba8a3e8d0e95e01ce0e2651fec408dd52b316c0a2b1e7b9",
+    "tests/test_enterprise_cases.py": "d4f795c8f980311e22ca958d4106c1002456ee0787602130313264c7cb632763"
+  },
+  "checks": {
+    "passed": true,
+    "methods": 58,
+    "framework_summary": {
+      "tests_run": 58,
+      "successful_summary": true,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0
+    },
+    "log_sha256": "6415d53e254a88e8b5a8e086ed83a2ba988d54a33ad492e26b17cae97706b10e"
+  },
+  "problem": "A valid repeat retest submission could invalidate the pending review by incrementing case version and consume its 20-record allowance.",
+  "behavior": [
+    "Reject a new retest while that task has a pending verification bound to the current case version.",
+    "25 repeats leave one verification, unchanged version/audit count and a usable independent review.",
+    "Valid-CSRF repeat POST is rejected without creating another record.",
+    "Stale and reviewer-rejected submissions can still be replaced."
+  ],
+  "root_review": "Reviewed locked parent case/task, transactional version updates and current app-role checks. No role, CSRF or evidence control was weakened.",
+  "limits": [
+    "Receipt fixtures are synthetic policy data, not proof of a native remediation.",
+    "PostgreSQL concurrency for this new denial remains unrun."
+  ],
+  "agent_reported_pre_fix": {
+    "methods": 4,
+    "failures": 2
+  },
+  "recording_correction": "Root checks all passed. The initial recording assertion expected the agent subset count45, but the root selected full modules executed58; the retained log confirms58 with zero failures/errors/skips. No second application test run was needed."
+}

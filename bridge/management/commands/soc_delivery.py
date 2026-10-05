@@ -14,7 +14,7 @@ class Command(BaseCommand):
     help = "Stage or append up to 100 sanitized records locally; no Wazuh receipt or network."
 
     def add_arguments(self, parser):
-        parser.add_argument("app", choices=["bettail", "netted"])
+        parser.add_argument("app", choices=["bettail", "netted", "documents", "expenses"])
         parser.add_argument("action", choices=["status", "stage", "publish", "once"])
 
     def handle(self, *args, **options):

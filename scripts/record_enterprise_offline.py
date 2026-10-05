@@ -25,7 +25,7 @@ from scripts.record_verification import (
 )
 
 
-def checks(python):
+def checks(python, certificate_python=None):
     targets = [
         "bridge",
         "reference_lab",
@@ -37,7 +37,7 @@ def checks(python):
         "manage.py",
     ]
     manage = [str(python), "-B", "manage.py"]
-    return [
+    result = [
         (
             "django-tests",
             "django",
@@ -87,6 +87,12 @@ def checks(python):
             ],
             120,
         ),
+        (
+            "identity-profile-tests",
+            "unittest",
+            [str(python), "-B", "-m", "unittest", "integrations.identity.native_tests", "-v"],
+            60,
+        ),
         ("django-check", None, [*manage, "check"], 60),
         ("migration-drift", None, [*manage, "makemigrations", "--check", "--dry-run"], 60),
         (
@@ -116,12 +122,50 @@ def checks(python):
                 ("node-courier-tests", "integrations/sender.test.mjs"),
                 ("node-http-harness-mock-tests", "integrations/supabase-http.test.mjs"),
                 ("node-bettail-route-mock-tests", "integrations/bettail-routes.test.mjs"),
+                (
+                    "node-bettail-access-observer-tests",
+                    "tests/bettail_enterprise_observer.test.mjs",
+                ),
             )
         ],
     ]
+    if certificate_python is not None:
+        result.append(
+            (
+                "memory-tls-certificate-tests",
+                "unittest",
+                [
+                    str(certificate_python),
+                    "-B",
+                    "-m",
+                    "unittest",
+                    "integrations.enterprise.certificate_tests",
+                    "integrations.identity.native_certificate_tests",
+                    "integrations.ssf.signature_tests",
+                    "-v",
+                ],
+                60,
+            )
+        )
+    if sys.platform == "win32":
+        result.append(
+            (
+                "private-acl-syntax",
+                None,
+                [
+                    r"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe",
+                    "-NoProfile",
+                    "-NonInteractive",
+                    "-Command",
+                    "$tokens=$null; $errors=$null; [void][System.Management.Automation.Language.Parser]::ParseFile('integrations/enterprise/reference-private-acl.ps1', [ref]$tokens, [ref]$errors); if ($errors.Count) { exit 1 }; 'Syntax parsed; ACL script not executed.'",
+                ],
+                30,
+            )
+        )
+    return result
 
 
-def record(python):
+def record(python, certificate_python=None):
     run_id = uuid.uuid4().hex
     directory = private_run_directory(ROOT, run_id)
     directory.mkdir(parents=True, exist_ok=False)
@@ -144,7 +188,20 @@ def record(python):
         "django": capture_small([str(python), "-m", "django", "--version"], ROOT, env),
         "node": capture_small(["node", "--version"], ROOT, env),
     }
-    for name, kind, command, timeout in checks(python):
+    if certificate_python is not None:
+        versions["certificate_runtime"] = capture_small(
+            [
+                str(certificate_python),
+                "-I",
+                "-c",
+                "import cryptography,sys; print(sys.version.split()[0] + '/' + cryptography.__version__)",
+            ],
+            ROOT,
+            env,
+        )
+        if versions["certificate_runtime"] != "3.12.14/50.0.1":
+            raise ValueError("The existing reviewed certificate test runtime is required.")
+    for name, kind, command, timeout in checks(python, certificate_python):
         result = run_check(name, command, timeout, ROOT, directory, env)
         if kind is not None:
             stdout = (directory / (name + ".stdout.txt")).read_text(
@@ -155,13 +212,13 @@ def record(python):
             )
             summary = (
                 parse_django_summary(stdout + "\n" + stderr)
-                if kind == "django"
+                if kind in ("django", "unittest")
                 else parse_node_tap_summary(stdout)
             )
             result["tests"] = summary
             denied = (
                 ("skipped", "failures", "errors", "expected_failures", "unexpected_successes")
-                if kind == "django"
+                if kind in ("django", "unittest")
                 else ("failures", "cancelled", "skipped", "todo")
             )
             result["passed"] = bool(
@@ -205,19 +262,24 @@ def record(python):
             "Reference HTTP-client tests use Django's client and transport doubles; no native source server, TLS or PostgreSQL acceptance proof.",
             "Node suites simulate upstream services; filesystem persistence checks do not establish sustained native delivery.",
             "No new detection evaluation, native Wazuh/ZAP/Shuffle, Keycloak, remote CI, dependency advisory certification or 24-hour run.",
+            "Optional certificate checks use real signatures and the TLS engine over memory BIOs without sockets. Identity profile checks use modeled transport; no provider is started. Private ACL parsing is syntax-only, with no permissions changed.",
             "Test counts describe executed test methods, not detection accuracy, enterprise coverage or business savings.",
         ],
     }
     report["passed"] = (
-        unchanged and len(results) == len(checks(python)) and all(r["passed"] for r in results)
+        unchanged
+        and len(results) == len(checks(python, certificate_python))
+        and all(r["passed"] for r in results)
     )
     (directory / "source-manifest.json").write_text(
-        json.dumps(before, indent=2) + "\n", encoding="utf8"
+        json.dumps(before, indent=2) + "\n", encoding="utf8", newline="\n"
     )
-    (directory / "report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf8")
-    public_id = "20261001-enterprise-offline-" + run_id
+    (directory / "report.json").write_text(
+        json.dumps(report, indent=2) + "\n", encoding="utf8", newline="\n"
+    )
+    public_id = datetime.fromisoformat(started).strftime("%Y%m%d") + "-enterprise-offline-" + run_id
     public = receipt_path(ROOT, "docs/evidence/" + public_id + ".json", public_id)
-    with public.open("x", encoding="utf8") as output:
+    with public.open("x", encoding="utf8", newline="\n") as output:
         output.write(json.dumps(report, indent=2) + "\n")
     print("Receipt: " + str(public))
     return report["passed"]
@@ -231,7 +293,16 @@ if __name__ == "__main__":
         required=True,
         help="Existing trusted interpreter; never installs packages.",
     )
+    parser.add_argument(
+        "--certificate-python",
+        type=Path,
+        help="Existing reviewed bundled certificate test runtime; optional, never installs anything.",
+    )
     options = parser.parse_args()
     if not options.python.is_absolute() or not options.python.is_file():
         parser.error("An absolute existing trusted interpreter path is required.")
-    raise SystemExit(0 if record(options.python) else 1)
+    if options.certificate_python is not None and (
+        not options.certificate_python.is_absolute() or not options.certificate_python.is_file()
+    ):
+        parser.error("The certificate test interpreter must be an existing absolute path.")
+    raise SystemExit(0 if record(options.python, options.certificate_python) else 1)

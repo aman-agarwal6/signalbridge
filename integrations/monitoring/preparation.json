@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "status": "application_exporter_implemented_native_monitoring_not_launched",
+  "scope": "Operational observations for one isolated enterprise lab, not a security detector or production deployment.",
+  "files": {
+    "exporter": "bridge/monitoring.py",
+    "worker_health": "bridge/worker_health.py",
+    "scrape_configuration": "integrations/monitoring/prometheus.example.yml",
+    "candidate_alerts": "integrations/monitoring/signalbridge-alerts.yml",
+    "grafana_dashboard": "integrations/monitoring/signalbridge-dashboard.json"
+  },
+  "configuration": {
+    "SB_METRICS_ENABLED": "Default disabled; exactly 1 opts in after operator configuration.",
+    "SB_METRICS_TOKEN": "Separate random runtime-only URL-safe token of 32 to 128 characters. Browser sessions and the two case service credentials cannot authenticate this endpoint.",
+    "SB_METRICS_APPS": "One to eight explicit provisioned application slugs, no duplicates. Stable order maps to app1 through app8; never reorder an active time series without declaring a new scrape instance.",
+    "SB_MONITORED_WORKERS": "One or two distinct worker identities, default default. Order maps to primary and secondary. Configure the same names passed to the worker command.",
+    "transport": "HTTPS required. Explicit private CA and dedicated credential file in the reviewed native scrape profile; no host trust-store changes or disabled TLS verification."
+  },
+  "bounds": {
+    "applications": 8,
+    "worker_slots": 2,
+    "loaded_completion_rows_per_app": 1000,
+    "completion_window_seconds": 3600,
+    "minimum_scrape_interval_seconds": 5,
+    "durable_rate_rows": 1,
+    "collection_cooperative_budget_seconds": 4,
+    "postgres_statement_timeout_milliseconds": 2000,
+    "response_ceiling_bytes": 65536,
+    "maximum_current_exporter_series": 165,
+    "prepared_scrape_sample_limit": 256
+  },
+  "interpretation": [
+    "Application gauges combine all retained source classes and lab/test environments. Fixture replay can update last received; no app-source heartbeat or production-traffic proof is claimed.",
+    "Counts are retained database gauges. Retention, backup restoration and reclassification can reduce them; do not use rate() as if they were monotonic counters.",
+    "Last seen timestamps and four fixed worker states describe shared worker pulses, not per-app delivery or completed detection.",
+    "Sample p95 uses nearest rank over at most 1000 latest valid completions in one hour and includes interruption/retry delay. It is absent when no valid samples exist. It cannot certify the declared 24-hour SLA or excluded-recovery-window targets.",
+    "Local SOC staged/file-appended gauges are deliberately separate from native Wazuh observation, reconciliation, heartbeat and connector errors, which remain unfinished.",
+    "Filesystem free bytes apply only to the configured workspace volume. They do not attribute Docker/VM growth and do not replace the independent runtime watchdog.",
+    "A failed scrape returns an error with no partial metrics. Admission remains recorded after failure; PostgreSQL-only timeout/concurrent admission behavior still needs native verification."
+  ],
+  "next_native_review": [
+    "Select official immutable Prometheus/Grafana image identities and inspect the existing cache. No download or launch is authorized by this file.",
+    "Prepare exact internal-network services, temporary scoped credentials/CA, loopback-only UI if needed, volume caps/retention, resource budgets and independent shutdown for review.",
+    "Validate the scrape and alert files with native promtool; verify real TLS authentication, matched dashboard query results, interruption alerts and verified shutdown.",
+    "Keep Alertmanager, external notifications, remote writes, host Docker socket, public deployment and autonomous response disabled."
+  ],
+  "primary_sources": [
+    "https://prometheus.io/docs/practices/instrumentation/",
+    "https://prometheus.io/docs/instrumenting/exposition_formats/",
+    "https://prometheus.io/docs/prometheus/latest/configuration/configuration/",
+    "https://grafana.com/docs/grafana/latest/administration/provisioning/"
+  ]
+}

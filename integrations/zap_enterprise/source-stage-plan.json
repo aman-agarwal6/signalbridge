@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "status": "prepared_requires_separate_machine_change_review",
+  "purpose": "Finite native authenticated reference header capture and signed telemetry delivery, separate from the permission-revocation experiment and any ZAP process.",
+  "software_prepared": [
+    "Opt-in fixed native header source/server/runner with exact two-account login, ten captures and two restoration reads; six authentication requests are excluded from captures.",
+    "A fixed five-minute missing-nosniff defect affects only the permitted synthetic member/document response. Authorization is unchanged; independent reset, expiry and owner/cross-app controls remain required.",
+    "Closed reconciliation binds six captured resource reads and two restoration reads to exactly eight acknowledged and processed events. No core case is expected from this profile.",
+    "Separate disposable PostgreSQL databases and non-superuser roles, with actual identity/privilege and cross-database connection-denial predicates.",
+    "Fixed TLS loopback source/console processes use a short-lived per-run CA and distinct server keys. No host trust-store change; client deadlines bound the complete request.",
+    "Closed profile-specific recipe, effective container/kernel controls and owned-resource controller share the existing reviewed isolation limits without adding ports or runtime egress.",
+    "The installed Compose CLI parsed the actual header recipe offline; the retained sanitized fixture validates exactly. No daemon or native component was started.",
+    "Host revalidation requires immutable selected-source bytes, exact raw receipts, event/digest completeness, reset and child-process shutdown. Independent watchdog and host shutdown receipts remain mandatory."
+  ],
+  "remaining_before_review": [
+    "Require the current selected-source full offline receipt to pass; preparation alone is not native execution.",
+    "Recheck capacity, cached components and private profile at launch; obtain a specific one-attempt approval. This document grants no authorization."
+  ],
+  "proposed_components": {
+    "database": {
+      "image": "postgres@sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+      "memory_mib": 512,
+      "cpus": 1,
+      "pids": 128,
+      "role": "Fresh disposable PostgreSQL volume; never the prior stage volume."
+    },
+    "runner": {
+      "image": "python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d",
+      "memory_mib": 512,
+      "cpus": 1,
+      "pids": 96,
+      "role": "Finite native source/console processes and their operator driver; not an independent OS security boundary between those processes."
+    }
+  },
+  "proposed_limits": {
+    "host_free_memory_headroom_gib": 4,
+    "host_free_disk_reserve_gib": 25,
+    "whole_stage_growth_guard_gib": 12,
+    "prior_consumption_included": true,
+    "initial_free_disk_bytes": 80498424546,
+    "watchdog_minutes": 30,
+    "source_http_requests": 80,
+    "console_readiness_requests": 10,
+    "readiness_phase_seconds": 20,
+    "source_request_phase_seconds": 180,
+    "collector_phase_seconds": 60,
+    "collector_operator_timeout_seconds": 90,
+    "one_server_process_seconds": 360,
+    "one_request_seconds": 5,
+    "response_bytes": 8192,
+    "outbox_events": 80,
+    "fixed_fault_seconds": 300,
+    "note": "Proposed guard preserves the earlier conservative baseline. Review current disk/memory before launch; monitoring is not a hard quota.",
+    "runner_wait_seconds": 900,
+    "watchdog_limit_semantics": "Thirty-minute deadline initiates scoped shutdown; individual Docker control operations are bounded. Capacity monitoring and daemon-dependent stopping are not hard quotas or a guarantee against host administrator/daemon failure.",
+    "authenticated_capture_phase_requests": 5,
+    "authenticated_capture_phases": 2,
+    "authenticated_profile_http_requests": 18,
+    "reconciled_logical_events": 8
+  },
+  "proposed_isolation": [
+    "Internal network, no published ports or runtime egress.",
+    "Non-root, read-only roots, all capabilities removed, no-new-privileges, finite pids and logs, restart disabled.",
+    "Snapshot of selected public source read-only; cached six hash-pinned wheels read-only. No live checkout, host socket or other-project mounts.",
+    "Separate finite noexec scratch and executable dependency tmpfs; private bounded output and per-run secrets only.",
+    "Explicit per-process trust in a disposable lab CA. No host trust-store change, public certificates, downloads or paid service.",
+    "PostgreSQL transport remains plaintext inside this isolated component network; full enterprise TLS and production deployment remain separate.",
+    "Private IPC/cgroup namespaces; kernel uid/gid/capability/seccomp/quota and source/secrets mount proofs must match the reviewed profile."
+  ],
+  "intended_evidence": [
+    "Actual TLS login/identity and fixed member/owner/cross-app HTTP results, observed protocol, controlled missing header, correction and restoration event IDs.",
+    "Separate PostgreSQL roles, HMAC/TLS delivery, eight exact source/event/digest bindings and no unexplained logical records.",
+    "Actual private ACL/container/kernel verification, immutable input snapshot, bounded collection calls and both shutdown receipts.",
+    "No ZAP execution claim; retain failed/partial captures and stop owned resources."
+  ],
+  "capacity_snapshot": {
+    "free_disk_bytes": 74801778688,
+    "available_physical_memory_bytes": 16812863488,
+    "measured_at": "2026-10-02T15:06:10.096752+00:00",
+    "probe": "Read-only Windows memory API and filesystem free space; not reserved capacity. Recheck before launch."
+  },
+  "host_launcher": "scripts/enterprise_reference_verify.py launch --profile header",
+  "historical_scoped_preparation_receipt": {
+    "reference": "docs/evidence/20261002-reference-runtime-preparation-85c0c273ad7d457399a7cc87c665cbed.json",
+    "scope": "Earlier permission-revocation profile only; does not verify this header source variant."
+  },
+  "full_preparation_evidence": "Inspect docs/enterprise-milestone.json current_offline_receipt; it must pass and match the selected source before reviewed launch.",
+  "profile": "signalbridge-reference-authenticated-headers-v1",
+  "review_boundary": "This is a separate first header source/delivery stage, not approval for the pending permission-revocation stage or any ZAP runtime. No additional downloads; same cached images/six wheels and temporary dependency installation only. The fixed header fault lasts at most five minutes and has cleanup/expiry protections.",
+  "prepared": [
+    "Fixed native header source entry, operator controls, distinct receipt validator and shared owned-resource controller profile.",
+    "Two-account real login, ten fixed captured requests and two independent post-reset document reads; six authentication requests are excluded from capture.",
+    "Every capture/restoration event binds to one of eight acknowledged/processed source events; no core case is expected from this header profile.",
+    "Native source/delivery captures are required before any separate offline ZAP phase. No native stage has run."
+  ]
+}

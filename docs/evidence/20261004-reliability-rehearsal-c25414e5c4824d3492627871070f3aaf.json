@@ -1,0 +1,83 @@
+{
+  "acceptance_passed": false,
+  "approval_reference": "20261004-owner-claude-reliability-rehearsal-1",
+  "capacity_before": {
+    "free_disk_bytes": 54483546112,
+    "free_memory_bytes": 11625971712
+  },
+  "error_class": "LabControlError",
+  "error_code": "A fixed source preparation or runtime phase failed.",
+  "finished_at": "2026-10-04T05:04:28.650588+00:00",
+  "free_disk_after_bytes": 54453743616,
+  "images": {
+    "database": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "runner": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d",
+    "wazuh": "sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0"
+  },
+  "independent_shutdown": {
+    "reason": "launcher_finished",
+    "run_id": "c25414e5c4824d3492627871070f3aaf",
+    "shutdown_verified": true,
+    "stopped_at": "2026-10-04T05:04:28.623975+00:00",
+    "stopped_component_count": 1
+  },
+  "independent_shutdown_error_class": "LabControlError",
+  "keep_awake_requested": true,
+  "kind": "signalbridge-native-reliability-rehearsal",
+  "limits": [
+    "Fixed two-application synthetic workload on one PC; not a production load test.",
+    "A rehearsal is shortened and scaled and is never the 24-hour result.",
+    "Wazuh-side windows and tool observations are measured only when the separate continuous Wazuh driver ran beside this stage; otherwise tool targets fail.",
+    "Hashes identify recorded bytes; local administrator tampering is outside this evidence."
+  ],
+  "main_shutdown": {
+    "run_id": "c25414e5c4824d3492627871070f3aaf",
+    "shutdown_verified": true,
+    "stopped_component_count": 1
+  },
+  "measurement_error_class": "LabControlError",
+  "preparation": {
+    "cached_wheels": {
+      "cache_run": "b8667b816ce8419da7f3d5d9ac9d6ad6",
+      "downloaded_bytes": 0,
+      "reused_bytes": 14200997,
+      "wheel_count": 6
+    },
+    "certificates": {
+      "authority_sha256": "ea8eadfc79c8be866d4a95406a0e1b963507814c1b1722062ea5677b8a0399b3",
+      "created_at": "2026-10-04T05:04:21+00:00",
+      "cryptography_version": "50.0.1",
+      "expires_at": "2026-10-04T07:04:21+00:00",
+      "host_trust_changed": false,
+      "loopback_only": true,
+      "python_version": "3.12.14",
+      "run_id": "c25414e5c4824d3492627871070f3aaf",
+      "server_certificate_sha256": {
+        "console": "268031ff61efc76bc077587fd8b87906b9f37fea1cda9b2652f015aecdf1eeb7",
+        "source": "e713d90bb1e1780f6a1bf9fc2ed660b8f0228d115906b97d3d4e1366d3de1de8"
+      },
+      "signing_key_persisted": false
+    },
+    "wheel_footprint": {
+      "archive_entries": 4472,
+      "claim": "Metadata estimate with 4 KiB rounding and inode allowance; not a native peak-memory measurement. Optional bytecode generation is disabled.",
+      "estimated_allocation_bytes": 58294272,
+      "uncompressed_bytes": 44906600
+    }
+  },
+  "rehearsal_ms": 4200000,
+  "run_id": "c25414e5c4824d3492627871070f3aaf",
+  "schema_version": 1,
+  "source_sha256": "f07337b21cca9647e19519cf1f5368d4e9ec2549eb9d609f9fa01a38024a3d6b",
+  "source_snapshot": {
+    "bytes": 7805426,
+    "file_count": 648,
+    "source_sha256": "f07337b21cca9647e19519cf1f5368d4e9ec2549eb9d609f9fa01a38024a3d6b"
+  },
+  "source_unchanged": true,
+  "stage_growth_ceiling_bytes": 32212254720,
+  "stage_initial_free_disk_bytes": 80498424546,
+  "started_at": "2026-10-04T05:04:20.975993+00:00",
+  "status": "incomplete",
+  "watchdog_pending": false
+}

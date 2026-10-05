@@ -1,0 +1,76 @@
+{
+  "kind": "signalbridge-wazuh-final-attempt-diagnosis",
+  "run_id": "009bc11e4fe649649d7dd44887be8b72",
+  "native_collection_accepted": false,
+  "native_processes_observed": true,
+  "kernel_observations_validated": true,
+  "kernel_controls": {
+    "uid": 0,
+    "gid": 0,
+    "capabilities": [
+      "SETGID",
+      "SETUID",
+      "SYS_CHROOT"
+    ],
+    "no_new_privileges": true,
+    "seccomp_filter": true,
+    "cgroup_version": 2,
+    "memory_bytes": 1610612736,
+    "swap_bytes": 0,
+    "pids": 256,
+    "cpu_quota_equals_period": true,
+    "source_and_four_inputs_readonly": true,
+    "disposable_root_and_evidence_writable": true,
+    "network_interfaces": [
+      "lo"
+    ]
+  },
+  "last_heartbeat": {
+    "coverage": {
+      "alerted_logical_inputs": 0,
+      "archived_logical_inputs": 0,
+      "bootstrap_counts_match": false,
+      "continuous_delivery_verified": false,
+      "distinct_alert_tool_ids": 0,
+      "distinct_archive_tool_ids": 0,
+      "expected_alert_inputs": 8,
+      "expected_logical_inputs": 24,
+      "extra_alert_copies": 0,
+      "extra_archive_copies": 0,
+      "forwarded_detections_are_independent_wazuh_rediscovery": false,
+      "genuine_source_execution_verified": false,
+      "missing_alert_inputs": 8,
+      "missing_archive_inputs": 24,
+      "native_record_format_verified": true,
+      "native_runtime_execution_verified": false,
+      "partial_native_files": {
+        "alert": false,
+        "archive": false
+      },
+      "physical_alert_copies": 0,
+      "physical_archive_copies": 0,
+      "repeated_alert_tool_ids": 0,
+      "repeated_archive_tool_ids": 0,
+      "unexpected_noncustom_alerts": 0
+    },
+    "native_runtime_execution_verified": false,
+    "observed_at": "2026-10-03T01:20:14.271823+00:00",
+    "run_id": "009bc11e-4fe6-4964-9d7d-d44887be8b72",
+    "sequence": 166,
+    "supervisor_children_alive": true
+  },
+  "main_shutdown_reported": true,
+  "independent_shutdown_reported": true,
+  "operator_ended_early": true,
+  "reason": "First-start logcollector seeks EOF for preloaded files without saved status; the immutable inputs cannot produce new records.",
+  "official_source": "https://github.com/wazuh/wazuh/blob/v4.14.0/src/logcollector/logcollector.c#L2588-L2593",
+  "next_design": "Start with empty monitored files, retain collector zero-byte readiness, then append the exact frozen packets using bounded publication. No further launch authorized.",
+  "old_launcher": "retired_no_cli_retry",
+  "retained_sha256": {
+    "heartbeat.json": "ef8189d5fc2da988b02d46706fafd30d75cf2fa5b0b961b8d72f6eeadeef508f",
+    "kernel-observed.json": "0d0b9ad938360062c3a5e491403d809d44e939a4ab63d1daf55e7d87d8cc87ab",
+    "wazuh-logcollector.log": "de517d9c505bc442d6730c3c54108d78dd121e13c71ebb00b45de2360e65354c",
+    "wazuh-analysisd.log": "67a4897dfba1058768cd49a8947307c680222fbbf7c6ea78b2abb811cdf2fc1f",
+    "wazuh-db.log": "f2238a170895e8cd98d509db777f5a2a033dbf75e6d0e7acc9be8fd5748046e7"
+  }
+}

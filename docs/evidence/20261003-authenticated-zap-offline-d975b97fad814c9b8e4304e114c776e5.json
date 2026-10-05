@@ -1,0 +1,352 @@
+{
+  "acceptance_passed": true,
+  "approval_reference": "20261003-owner-claude-zap-4",
+  "capacity_before": {
+    "available_host_memory_bytes": 11670466560,
+    "free_disk_bytes": 66022629376
+  },
+  "finished_at": "2026-10-03T18:37:36.266517+00:00",
+  "free_disk_after_bytes": 66012045312,
+  "image_id": "sha256:71db37cd5b75663b35758d10aaec05bf6fbac23f5020e3046c70e628a5f84efa",
+  "image_reference": "zaproxy/zap-stable@sha256:71db37cd5b75663b35758d10aaec05bf6fbac23f5020e3046c70e628a5f84efa",
+  "independent_shutdown": {
+    "reason": "launcher_finished",
+    "run_id": "d975b97fad814c9b8e4304e114c776e5",
+    "shutdown_verified": true,
+    "stopped_at": "2026-10-03T18:37:36.232270+00:00",
+    "stopped_component_count": 1
+  },
+  "independent_shutdown_verified": true,
+  "input_sha256": "8884f11853c39f8c2bc33bb9cca28591341fef9d5b7ab3af4656cc4fab1972f3",
+  "kind": "signalbridge-native-authenticated-zap-offline",
+  "limits": [
+    "Two fresh native passive analyses of credential-free captures; only header rule 10021.",
+    "Genuine source authentication is verified separately; no ZAP login, crawling, active requests or source changes.",
+    "Hashes and trusted operator receipts are not independent attestation against an administrator.",
+    "Capacity readings are detection guards, not physical quotas. Retained containers/images are not removed."
+  ],
+  "main_shutdown": {
+    "run_id": "d975b97fad814c9b8e4304e114c776e5",
+    "shutdown_verified": true,
+    "stopped_component_count": 1
+  },
+  "main_shutdown_verified": true,
+  "native_zap_executed": true,
+  "owned_container_id": "45175cf7cadfbb6c402280c22de3a00ba70a6d067cf70009852b9bf0635da105",
+  "parsed_configuration_verified": true,
+  "run_id": "d975b97fad814c9b8e4304e114c776e5",
+  "runner_exit_code": 0,
+  "runtime_isolation_verified": true,
+  "scanner_proof": {
+    "host_shutdowns_verified": false,
+    "input_sha256": "8884f11853c39f8c2bc33bb9cca28591341fef9d5b7ab3af4656cc4fab1972f3",
+    "installed_addons": {
+      "alertFilters": {
+        "installation_status": "INSTALLED",
+        "version": "27.0.0"
+      },
+      "ascanrules": {
+        "installation_status": "INSTALLED",
+        "version": "83.0.0"
+      },
+      "authhelper": {
+        "installation_status": "INSTALLED",
+        "version": "0.41.0"
+      },
+      "automation": {
+        "installation_status": "INSTALLED",
+        "version": "0.60.0"
+      },
+      "bruteforce": {
+        "installation_status": "INSTALLED",
+        "version": "21.0.0"
+      },
+      "callhome": {
+        "installation_status": "INSTALLED",
+        "version": "0.23.0"
+      },
+      "client": {
+        "installation_status": "INSTALLED",
+        "version": "0.30.0"
+      },
+      "commonlib": {
+        "installation_status": "INSTALLED",
+        "version": "1.43.0"
+      },
+      "database": {
+        "installation_status": "INSTALLED",
+        "version": "0.9.0"
+      },
+      "diff": {
+        "installation_status": "INSTALLED",
+        "version": "18.0.0"
+      },
+      "directorylistv1": {
+        "installation_status": "INSTALLED",
+        "version": "9.0.0"
+      },
+      "domxss": {
+        "installation_status": "INSTALLED",
+        "version": "24.0.0"
+      },
+      "encoder": {
+        "installation_status": "INSTALLED",
+        "version": "1.9.0"
+      },
+      "exim": {
+        "installation_status": "INSTALLED",
+        "version": "0.21.0"
+      },
+      "formhandler": {
+        "installation_status": "INSTALLED",
+        "version": "6.8.0"
+      },
+      "fuzz": {
+        "installation_status": "INSTALLED",
+        "version": "13.17.0"
+      },
+      "gettingStarted": {
+        "installation_status": "INSTALLED",
+        "version": "20.0.0"
+      },
+      "graaljs": {
+        "installation_status": "INSTALLED",
+        "version": "0.14.0"
+      },
+      "graphql": {
+        "installation_status": "INSTALLED",
+        "version": "0.33.0"
+      },
+      "help": {
+        "installation_status": "INSTALLED",
+        "version": "22.0.0"
+      },
+      "hud": {
+        "installation_status": "INSTALLED",
+        "version": "0.19.0"
+      },
+      "insights": {
+        "installation_status": "INSTALLED",
+        "version": "0.5.0"
+      },
+      "invoke": {
+        "installation_status": "INSTALLED",
+        "version": "17.0.0"
+      },
+      "network": {
+        "installation_status": "INSTALLED",
+        "version": "0.29.0"
+      },
+      "oast": {
+        "installation_status": "INSTALLED",
+        "version": "0.24.0"
+      },
+      "onlineMenu": {
+        "installation_status": "INSTALLED",
+        "version": "15.0.0"
+      },
+      "openapi": {
+        "installation_status": "INSTALLED",
+        "version": "57.0.0"
+      },
+      "postman": {
+        "installation_status": "INSTALLED",
+        "version": "0.9.0"
+      },
+      "pscan": {
+        "installation_status": "INSTALLED",
+        "version": "0.6.0"
+      },
+      "pscanrules": {
+        "installation_status": "INSTALLED",
+        "version": "75.0.0"
+      },
+      "quickstart": {
+        "installation_status": "INSTALLED",
+        "version": "59.0.0"
+      },
+      "replacer": {
+        "installation_status": "INSTALLED",
+        "version": "22.0.0"
+      },
+      "reports": {
+        "installation_status": "INSTALLED",
+        "version": "0.46.0"
+      },
+      "requester": {
+        "installation_status": "INSTALLED",
+        "version": "7.10.0"
+      },
+      "retest": {
+        "installation_status": "INSTALLED",
+        "version": "0.11.0"
+      },
+      "retire": {
+        "installation_status": "INSTALLED",
+        "version": "0.63.0"
+      },
+      "reveal": {
+        "installation_status": "INSTALLED",
+        "version": "10.0.0"
+      },
+      "scanpolicies": {
+        "installation_status": "INSTALLED",
+        "version": "0.8.0"
+      },
+      "scripts": {
+        "installation_status": "INSTALLED",
+        "version": "45.20.0"
+      },
+      "selenium": {
+        "installation_status": "INSTALLED",
+        "version": "15.53.0"
+      },
+      "sequence": {
+        "installation_status": "INSTALLED",
+        "version": "10.0.0"
+      },
+      "soap": {
+        "installation_status": "INSTALLED",
+        "version": "31.0.0"
+      },
+      "spider": {
+        "installation_status": "INSTALLED",
+        "version": "0.20.0"
+      },
+      "spiderAjax": {
+        "installation_status": "INSTALLED",
+        "version": "23.32.0"
+      },
+      "tips": {
+        "installation_status": "INSTALLED",
+        "version": "16.0.0"
+      },
+      "webdriverlinux": {
+        "installation_status": "INSTALLED",
+        "version": "215.0.0"
+      },
+      "websocket": {
+        "installation_status": "INSTALLED",
+        "version": "38.0.0"
+      },
+      "zest": {
+        "installation_status": "INSTALLED",
+        "version": "48.14.0"
+      }
+    },
+    "native_zap_executed": false,
+    "phases": {
+      "corrected": {
+        "api_calls": 53,
+        "api_observations_validated": true,
+        "findings": [],
+        "har_sha256": "dddeb6ff35e12b5b76fb9113a83a06b5c84e41c83700faf1946fc8610ee4358a",
+        "history": {
+          "empty_tree_records": 9,
+          "imported_messages": 5,
+          "message_ids": {
+            "0": "1",
+            "1": "4",
+            "2": "9",
+            "3": "13",
+            "4": "14"
+          },
+          "physical_history_records": 14
+        },
+        "passive_rule_scope": [
+          "10021"
+        ],
+        "phase": "corrected",
+        "profile": "signalbridge-reference-authenticated-headers-v1",
+        "runtime_attested": false,
+        "source_capture_attested": false
+      },
+      "fault": {
+        "api_calls": 40,
+        "api_observations_validated": true,
+        "findings": [
+          {
+            "confidence": "Medium",
+            "native_alert_id": "0",
+            "native_message_id": "4",
+            "ordinal": 1,
+            "plugin_id": "10021",
+            "risk": "Low",
+            "source_event_id": "bc15ec57-c9c3-46da-bdd5-4fb90e1a6514"
+          }
+        ],
+        "har_sha256": "9fede7dbdd89a662c743c3456c4e8de862c86ed48bcc852730940204b8ea65fe",
+        "history": {
+          "empty_tree_records": 9,
+          "imported_messages": 5,
+          "message_ids": {
+            "0": "1",
+            "1": "4",
+            "2": "9",
+            "3": "13",
+            "4": "14"
+          },
+          "physical_history_records": 14
+        },
+        "passive_rule_scope": [
+          "10021"
+        ],
+        "phase": "fault",
+        "profile": "signalbridge-reference-authenticated-headers-v1",
+        "runtime_attested": false,
+        "source_capture_attested": false
+      }
+    },
+    "profile": "signalbridge-reference-authenticated-headers-v1",
+    "raw_receipt_sha256": {
+      "allow-scanner.json": "e456fbf6f0c3063e2edf3637511d77a46ed92fb087081e74219a7288090b5752",
+      "corrected-analysis.json": "616fcd531ba408f013b3524f563e79628be44fa51a1af042fbeb80a1fe93533f",
+      "corrected-api.json": "03d22338b1e83b3d0fc0b47f24d93ed198216b9be8ccb98618ca3593e1e42dd9",
+      "corrected-process.json": "67cadcb002298a910c26faead8c5fd2d30c1c8501c81a5b865297e6c30e40b50",
+      "corrected-process.log": "e53ba0a95c8abf784926695ddf2a3d982ff63c96fef83461a66c4a9f10b635d9",
+      "fault-analysis.json": "2d1638fd0c4772c6e072da089a9c310a527169137f16fbac21f1049e28a0f0ed",
+      "fault-api.json": "01ef6da3149e03fd2dc33c4ebefb1a39d3676518954079374c8250b480497e5d",
+      "fault-process.json": "2958d4afb42446c4a2d761eb47c0a7bbd693e45623ba068759a27daf0ac2bfed",
+      "fault-process.log": "385986aad269eafcd3cbeb8204a091dd846d48b032d9c791cce8f767aa0365df",
+      "scanner-kernel.json": "4c46f023000026a318d1890198784906867ac016e1a37537fc6ebfbf01b3394d",
+      "scanner-runner.json": "e00aa6f75c826679d13c110c8cc0913136cd556ac9694ff6185387912c096f52"
+    },
+    "run_id": "d975b97fad814c9b8e4304e114c776e5",
+    "runtime_attested": false,
+    "scanner_receipts_revalidated": true,
+    "source_capture_attested": false,
+    "source_receipt_sha256": "b51b4468bdda8acb1041da195698c791b24797791d658ff9060012d422dd45db",
+    "source_run_id": "a2e95dd90658461ebd0b6f34102306ee",
+    "source_snapshot": {
+      "bytes": 7569689,
+      "file_count": 627,
+      "source_sha256": "439fdd540840e47e915f088f32079b6cb9d0c0fb1ccfb700e9704ac9571f4f50"
+    }
+  },
+  "schema_version": 1,
+  "source_archive_unchanged": true,
+  "source_binding": {
+    "assurance_limit": "Retained trusted-operator execution records; not independent attestation against an administrator.",
+    "independent_shutdown_verified": true,
+    "input_sha256": "8884f11853c39f8c2bc33bb9cca28591341fef9d5b7ab3af4656cc4fab1972f3",
+    "main_shutdown_verified": true,
+    "native_zap_executed": false,
+    "source_finished_at": "2026-10-03T18:36:44.645578+00:00",
+    "source_host_receipt_revalidated": true,
+    "source_receipt_sha256": "b51b4468bdda8acb1041da195698c791b24797791d658ff9060012d422dd45db",
+    "source_run_id": "a2e95dd90658461ebd0b6f34102306ee",
+    "source_sha256": "439fdd540840e47e915f088f32079b6cb9d0c0fb1ccfb700e9704ac9571f4f50"
+  },
+  "source_run_id": "a2e95dd90658461ebd0b6f34102306ee",
+  "source_sha256": "439fdd540840e47e915f088f32079b6cb9d0c0fb1ccfb700e9704ac9571f4f50",
+  "source_snapshot": {
+    "bytes": 7569689,
+    "file_count": 627,
+    "source_sha256": "439fdd540840e47e915f088f32079b6cb9d0c0fb1ccfb700e9704ac9571f4f50"
+  },
+  "source_unchanged": true,
+  "stage_growth_ceiling_bytes": 32212254720,
+  "stage_initial_free_disk_bytes": 80498424546,
+  "started_at": "2026-10-03T18:36:52.595759+00:00",
+  "status": "passed"
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-private-acl-correction",
+  "recorded_at": "2026-10-03T06:19:23.937346+00:00",
+  "status": "fresh_folder_persistence_failure_reproduced",
+  "scope": "Windows private-run folder preparation; no Docker or Wazuh execution.",
+  "implementation": [
+    "Existing owner is verified before mutation; only Access/DACL is persisted.",
+    "Ownership, exact current-user/System grants, inheritance, reparse and traversal checks remain required.",
+    "Launcher retains only bounded, typed helper branch metadata and rejects malformed, mixed or success-with-error output.",
+    "Current Wazuh launch review includes35 dependencies; historical manifests were preserved and cannot admit changed source."
+  ],
+  "scoped_verification": {
+    "kind": "signalbridge-private-acl-correction-scoped-verification",
+    "started_at": "2026-10-03T06:14:51.523509+00:00",
+    "finished_at": "2026-10-03T06:14:57.806913+00:00",
+    "passed": true,
+    "tests_run": 68,
+    "returncode": 0,
+    "source_unchanged_during_execution": true,
+    "source_sha256": {
+      "integrations/enterprise/reference-private-acl.ps1": "a7e75f0c9ae8756d2857e956a7b9c5d29fd62083e96cb5021f67cc4babb495cb",
+      "scripts/verify_reference_acl.ps1": "78553e61051cf6ad4f8784936fd2a2c5f4ce7199002c3c6598d6bd7911814230",
+      "tests/test_reference_private_acl_static.py": "fb877d8ca24473cbc6b94b46953008bae9b872b90355bcb5b8604f1d867c862b",
+      "integrations/enterprise/private_acl_diagnostics.py": "ce30c163ed092b74881924d04d24ba1fce96aaf919217f14c59b282de60ffa77",
+      "scripts/enterprise_reference_verify.py": "e854dc82ec2fe3f71891f7fd167842c6e41c53481419214c0b85ad4272d6b2a1",
+      "scripts/enterprise_wazuh_live_verify.py": "d47b7fb245978594dd70709750bf15768e56f96ecd81b8ee527a0377b6248dd2",
+      "tests/test_private_acl_diagnostics.py": "f390588fc285c98c4aebad97f2671b510e0aab587087d6215ffe562981364925",
+      "integrations/wazuh_enterprise/execution_policy.py": "f2c3843bb603bf06019712632977f819cf8799a1799b85d570604179aed7a75d",
+      "tests/test_wazuh_execution_policy.py": "59ac75de174476bc2af411687030c040a1d51d1673c3dfd3d091c9ba202fdc7f"
+    },
+    "test_log_sha256": "8155ef78055dcb19efd3cb6a12583d47ac3ee55788a481468c956469012ea66b",
+    "native_execution": false,
+    "limitations": [
+      "Modeled launcher/error-channel checks and read-only PowerShell source contracts.",
+      "No actual ACL changes, Docker operations, Wazuh collection or native acceptance in this verification.",
+      "Historical reviewed launch manifests remain unchanged and do not admit this current implementation."
+    ]
+  },
+  "native_fixture": {
+    "receipt": "docs/evidence/20261003-native-reference-acl-1d4dd5648f854440ae579788380b4d95.json",
+    "receipt_sha256": "fbd14c6eac1b533440e3de1a52fa81f2d8558b10a99100a3304ecb366549b8d6",
+    "passed": false,
+    "checks_passed": 1,
+    "cleanup_verified": true,
+    "temporary_workspace_removed": true,
+    "failure": {
+      "fixture_phase": 24,
+      "helper": {
+        "kind": "signalbridge-private-acl-failure",
+        "mode": "SecureEmpty",
+        "phase": 8,
+        "checked_count": 0
+      }
+    },
+    "docker_calls": 0,
+    "existing_lab_data_changed": false
+  },
+  "interpretation": [
+    "The original ownership-write hypothesis is insufficient: Access-only persistence also failed.",
+    "Helper phase8 identifies the failing operation, not its Windows error code or cause.",
+    "One expected inherited-access denial passed; protection and later fixture checks did not pass.",
+    "Fresh fixture cleanup was verified; this is not a collector shutdown proof.",
+    "Native integration acceptance remains unfinished."
+  ],
+  "next_action": "Prepare a bounded numeric-error diagnostic and review the actual access boundary before any further native lab launch.",
+  "peer_review": {
+    "transport": "Reviewed; failure-handler missing-state edge fixed before68-method run.",
+    "fixture": "Expected-denial branch corrected to require exact exit1 after failed native fixture; no native rerun."
+  },
+  "limitations": [
+    "Local builder-operated tests; no independent security attestation.",
+    "The68-method record is bound to its recorded source; later fixture edits do not inherit that verification.",
+    "No Wazuh launch retry, download, Desktop operation, host policy or ownership change occurred."
+  ],
+  "fixture_protocol_correction": {
+    "source_sha256": {
+      "scripts/verify_reference_acl.ps1": "ffd99caaf828d56c9b890165cd06a206f977e7b7f24f65518e12638680509568",
+      "tests/test_reference_private_acl_static.py": "421521e4a3b50a02bd921883cdf36ec97a650568c10c2fe45112161f6f5a4665"
+    },
+    "passed": true,
+    "test_methods": 11,
+    "source_unchanged": true,
+    "log_sha256": "de191b9586b2e09059705ebe8ff8d650c34b96ab4eef9585ad7a98930badacbe",
+    "scope": "Read-only source checks; actual corrected Windows fixture unrun."
+  }
+}

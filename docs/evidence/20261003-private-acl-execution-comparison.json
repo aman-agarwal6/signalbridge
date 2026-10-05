@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-private-acl-execution-comparison",
+  "recorded_at": "2026-10-03T06:40:09.472107+00:00",
+  "status": "same_frozen_fixture_passed_outside_restricted_execution",
+  "restricted": {
+    "receipt": "docs/evidence/20261003-native-reference-acl-d9bb7ea1aded4ce480cda3dd68c632f2.json",
+    "sha256": "98cfb460fce427ff0b7bfc19da1035087cc711dcb04e62c123472289ea5adff4",
+    "passed": false,
+    "checks_passed": 1,
+    "cleanup_verified": true,
+    "failure": {
+      "fixture_phase": 24,
+      "helper": {
+        "kind": "signalbridge-private-acl-failure",
+        "mode": "SecureEmpty",
+        "phase": 8,
+        "checked_count": 0,
+        "api_hresult": -2147024891
+      }
+    }
+  },
+  "matching_passing_receipts": [
+    {
+      "receipt": "docs/evidence/20261003-native-reference-acl-9ab2fe958d424a37b21593a5f90f1503.json",
+      "sha256": "42e7043d0aa981dac28497c84e9f46d55bff54c18b9e5034d6df12259534c380",
+      "passed": true,
+      "checks_passed": 8,
+      "cleanup_verified": true,
+      "temporary_workspace_removed": true,
+      "checks": [
+        "Inherited permissions rejected before protection",
+        "Fresh folder secured through raw DirectoryInfo ancestors",
+        "DACL-only protection retained the original current-user owner",
+        "Nested folder and file inherited only approved access",
+        "Nonempty folder cannot be reinitialized",
+        "Nonempty denial retained the original owner",
+        "Unexpected public read permission rejected",
+        "Restored private permissions verified"
+      ]
+    },
+    {
+      "receipt": "docs/evidence/20261003-native-reference-acl-a0ec43249c88466e95d02693b81e2369.json",
+      "sha256": "fa061411862d88354b987556ef109ad653efa100e83183faf9c52c6fda3e19a3",
+      "passed": true,
+      "checks_passed": 8,
+      "cleanup_verified": true,
+      "temporary_workspace_removed": true,
+      "checks": [
+        "Inherited permissions rejected before protection",
+        "Fresh folder secured through raw DirectoryInfo ancestors",
+        "DACL-only protection retained the original current-user owner",
+        "Nested folder and file inherited only approved access",
+        "Nonempty folder cannot be reinitialized",
+        "Nonempty denial retained the original owner",
+        "Unexpected public read permission rejected",
+        "Restored private permissions verified"
+      ]
+    }
+  ],
+  "execution_accounting": {
+    "root_reviewed_tool_requests": 1,
+    "matching_passing_receipts_found": 2,
+    "distinct_controls_per_receipt": 8,
+    "note": "Two matching passing receipts appeared after one reviewed outside-sandbox tool request. The tool output cannot distinguish their creation paths; both are preserved and not summed as16 distinct controls."
+  },
+  "scoped_verification": {
+    "source_sha256": {
+      "integrations/enterprise/reference-private-acl.ps1": "96493a025c98e149a37d815f539cfa26d1f7c2e9ad8727024f33e19c2fbf5966",
+      "scripts/verify_reference_acl.ps1": "f6707e31d7cb330241fb8a6b94bd7c206243a5524b3a2094bdb0cd4709dc6cd8",
+      "integrations/enterprise/private_acl_diagnostics.py": "1951f2c5dd528710fd7a134d869a0209aea81d41cbd66f5dabf80bba80cf70be",
+      "tests/test_private_acl_diagnostics.py": "f23a38fbdad621fb2c5357dffba1a2fa65019070907e141b7351b7ab17c4c331",
+      "tests/test_reference_private_acl_static.py": "3738637a345c4ad0603f4aac8b9beaff56e1ea0940ed03c1591bb7516078f2a1"
+    },
+    "unchanged": true,
+    "returncode": 0,
+    "tests_run": 40,
+    "native_execution_in_tests": false
+  },
+  "interpretation": [
+    "Identical frozen helper and fixture failed at DACL persistence with Access denied inside restricted execution; the reviewed outside-sandbox tool returned8 passing controls and verified cleanup.",
+    "The comparison points to the execution restriction and establishes a viable fresh-folder permission-setup route.",
+    "No ownership, host feature/service setting or existing-folder permission was changed.",
+    "Matching fresh synthetic scopes were removed and no Docker call occurred.",
+    "It does not establish why the older generic Wazuh failure occurred or prove collection, recovery, peer preservation or integration shutdown."
+  ],
+  "launch_authorized": false,
+  "remaining": "Prepare/review a current Wazuh source manifest and request one exact native launch using the viable execution route; no automatic collector retry."
+}

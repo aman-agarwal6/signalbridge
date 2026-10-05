@@ -1,0 +1,49 @@
+app_version: 1.4.0
+name: http
+description: Fixed HTTP POST action from the pinned frikky/shuffle http 1.4.0 image (offline definition).
+contact_info:
+  name: "SignalBridge lab"
+  url: https://shuffler.io
+  email: lab@example.invalid
+tags:
+  - HTTP
+categories:
+  - Other
+authentication:
+  required: false
+  parameters: []
+actions:
+  - name: POST
+    description: Send one bounded POST request.
+    parameters:
+      - name: url
+        description: Receiver URL.
+        multiline: false
+        example: "http://signalbridge:8000/"
+        required: true
+        schema:
+          type: string
+      - name: headers
+        description: One header per line.
+        multiline: true
+        example: "Content-Type: application/json"
+        required: false
+        schema:
+          type: string
+      - name: body
+        description: Request body.
+        multiline: true
+        example: "{}"
+        required: false
+        schema:
+          type: string
+      - name: timeout
+        description: Seconds.
+        multiline: false
+        example: "5"
+        required: false
+        schema:
+          type: string
+    returns:
+      schema:
+        type: string

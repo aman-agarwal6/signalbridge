@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-bettail-adapter-preparation",
+  "recorded_at": "2026-10-03T03:49:37.216726+00:00",
+  "status": "implemented_offline_checked_native_unrun",
+  "profile": "bettail-access-v1",
+  "native_execution": false,
+  "source_snapshot_digest": "1b53511c58642fec4d1d4351e66689662f99bc6986e5067f5f08c0990b603ad0",
+  "derived_source_digest": "83c1621eaf5515c3e4660c822676ccf306fa986d298556b9e1565932434dfc1b",
+  "original_files": 319,
+  "derived_files": 322,
+  "derived_bytes": 2609854,
+  "original_snapshot_revalidated": true,
+  "derived_contents_revalidated": true,
+  "private_review_sha256": "6b7815d58ed87085eff312cd061ae8ab4b2dffeee56a41a7047ff147b20e258e",
+  "adapter_and_test_sha256": {
+    "integrations/bettail_enterprise/202610020001_signalbridge_access.sql": "1c37dc93161b3721ccce8ed4c05018f2a107479374caf943598314b4cf9f94d8",
+    "integrations/bettail_enterprise/__init__.py": "1497dcc738ecf2706c2584c97964b1cfa00b6219bc5ae6d7d7b727d93f316145",
+    "integrations/bettail_enterprise/collector.py": "f6f058ac3051649a0bc29fa15cb0a46897541f90299e8477a43f594369d1627e",
+    "integrations/bettail_enterprise/observer.mjs": "5e0865b3bcce6ed2f1088cc27d8ca565674e9d9fa137c6eb5bb7394990d345eb",
+    "integrations/bettail_enterprise/prepare.py": "d8e3e8b547957dc0349a86db5cd5e7bda85a3efd198501f79d3829a86d600014",
+    "integrations/bettail_enterprise/telemetry.ts": "985d5c4c7636edce1939654381c284757be8ef34ca30bb48084b93f31ef797b6",
+    "tests/bettail_enterprise_observer.test.mjs": "8b2e1157bbdc8e495e91f08c6b5032ef8f105b7b28b2104cc1c0135735e45043",
+    "tests/bettail_enterprise_routes.mjs": "17a2b6d83405d088586f476a6f008e75c67a680c45d5946554eca62490045099",
+    "tests/test_bettail_enterprise.py": "6463d0acbc0eb6873fb9a8051730fdcc334a486033094f9df18193c611441ef4"
+  },
+  "checks": [
+    {
+      "name": "focused_python_unittest",
+      "scope": "Offline collector with modeled DB/transport, synthetic filesystem regression and static SQL guards; no SQL execution",
+      "status": "passed",
+      "tests": 17
+    },
+    {
+      "name": "node_observer",
+      "scope": "HMAC observer with modeled authenticated-client RPC",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "controls": 28,
+      "name": "patched_source_handlers",
+      "scope": "Actual patched GET handler code with modeled Supabase authentication/RPC/query and storage Blob replies",
+      "status": "passed"
+    },
+    {
+      "diagnostics": 0,
+      "name": "scoped_typescript",
+      "program_files": 665,
+      "roots": 3,
+      "scope": "Strict no-emit in-memory source check of the two patched routes and telemetry entry using existing dependency files; no Next build or server",
+      "status": "passed"
+    },
+    {
+      "name": "ruff_lint_and_format",
+      "scope": "Only owned adapter Python files and tests/test_bettail_enterprise.py",
+      "status": "passed"
+    },
+    {
+      "body_sha256": "80c3cf3ed4e3c0489213049e3ccec946fed22b47b2542624c8cb25d6eac1091c",
+      "default_arguments": 0,
+      "name": "frozen_mutate_definition_review",
+      "scope": "Read frozen migration definitions and transforms, checked prepared exact-body/signature guard; did not apply SQL",
+      "status": "passed"
+    },
+    {
+      "name": "source_manifest_and_copy",
+      "scope": "All original source hashes verified before/after; derived disk contents exactly match 322-file manifest; only two source routes change and three overlays are added; image POST body preserved",
+      "status": "passed"
+    },
+    {
+      "name": "no_overwrite",
+      "scope": "Second prepare call rejected existing fixed destination; retained manifest hash unchanged",
+      "status": "passed"
+    },
+    {
+      "name": "authored_text_review",
+      "scope": "Owned authored files decode as UTF-8, use LF and have no trailing whitespace; credential artifact screening applied to all copy inputs",
+      "status": "passed"
+    },
+    {
+      "name": "native_database_and_runtime",
+      "scope": "No SQL/migrations, real authorization, outbox transactions, leases/crash recovery, role denial, real Supabase/storage, HTTP ingestion or R3 correlation executed",
+      "status": "not_run"
+    }
+  ],
+  "limits": [
+    "Route, database and HTTP dependencies were modeled; SQL remains unapplied and the copied service unlaunched.",
+    "Scoped TypeScript compilation is not a complete Next build or runtime authorization/storage proof.",
+    "Source-content checks bind the prepared private copy; local hashes are not independent attestation.",
+    "Actual permissions, transactional outbox, role denial, retry recovery, ingestion and R3 linkage require a separately reviewed native run."
+  ]
+}

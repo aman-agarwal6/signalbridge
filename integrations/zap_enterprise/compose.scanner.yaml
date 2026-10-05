@@ -1,0 +1,57 @@
+name: "sb-enterprise-zap-offline-${SB_SCANNER_RUN:?}"
+services:
+  scanner:
+    image: "${SB_SCANNER_IMAGE:?}"
+    pull_policy: never
+    container_name: "sb-enterprise-zap-offline-${SB_SCANNER_RUN:?}"
+    labels:
+      org.signalbridge.enterprise.run: "${SB_SCANNER_RUN:?}"
+      org.signalbridge.enterprise.scope: authenticated-zap-offline
+    entrypoint: [python3]
+    command: [-I, -B, /workspace/integrations/zap_enterprise/scanner_runner.py]
+    working_dir: /workspace
+    environment:
+      SB_ZAP_SOURCE_PROOF: '1'
+      SB_ZAP_RUN: "${SB_SCANNER_RUN:?}"
+      PYTHONDONTWRITEBYTECODE: '1'
+    user: '1000:1000'
+    network_mode: none
+    read_only: true
+    init: true
+    restart: 'no'
+    mem_limit: 2560m
+    memswap_limit: 2560m
+    cpus: 1.5
+    pids_limit: 256
+    ipc: private
+    cgroup: private
+    shm_size: 16m
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      disable: true
+    logging:
+      driver: json-file
+      options:
+        max-size: 2m
+        max-file: '2'
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=512m,mode=0700,uid=1000,gid=1000
+    volumes:
+      - type: bind
+        source: "${SB_SCANNER_DIRECTORY:?}/source"
+        target: /workspace
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "${SB_SCANNER_DIRECTORY:?}/input"
+        target: /input
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "${SB_SCANNER_DIRECTORY:?}/evidence"
+        target: /evidence
+        bind:
+          create_host_path: false

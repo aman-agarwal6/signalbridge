@@ -1,0 +1,334 @@
+{
+  "acceptance_passed": false,
+  "approval_reference": "20261004-owner-claude-reliability-rehearsal-8",
+  "capacity_before": {
+    "free_disk_bytes": 65608806400,
+    "free_memory_bytes": 16446984192
+  },
+  "disk_guard": "launch_relative_owner_approved_2026-10-04",
+  "finished_at": "2026-10-04T09:26:14.545466+00:00",
+  "free_disk_after_bytes": 64846557184,
+  "images": {
+    "database": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "runner": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d",
+    "wazuh": "sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0"
+  },
+  "independent_shutdown": {
+    "reason": "launcher_finished",
+    "run_id": "8a1889fec8ef49f5acde3c01bfa88e63",
+    "shutdown_verified": true,
+    "stopped_at": "2026-10-04T09:26:14.292702+00:00",
+    "stopped_component_count": 3
+  },
+  "independent_shutdown_verified": true,
+  "keep_awake_requested": true,
+  "kind": "signalbridge-native-reliability-rehearsal",
+  "ledger_counts": {
+    "attempt": 1209,
+    "source": 1201,
+    "stored": 1201,
+    "tool": 1201
+  },
+  "limits": [
+    "Fixed two-application synthetic workload on one PC; not a production load test.",
+    "A rehearsal is shortened and scaled and is never the 24-hour result.",
+    "Wazuh-side windows and tool observations are measured only when the separate continuous Wazuh driver ran beside this stage; otherwise tool targets fail.",
+    "Hashes identify recorded bytes; local administrator tampering is outside this evidence."
+  ],
+  "main_shutdown": {
+    "run_id": "8a1889fec8ef49f5acde3c01bfa88e63",
+    "shutdown_verified": true,
+    "stopped_component_count": 3
+  },
+  "main_shutdown_verified": true,
+  "manager_exit_code": 0,
+  "manager_preparation": {
+    "plan_sha256": "99952b9694bec3cad8ecf5cedde9f30d268993f3b22abba8d749ec1b141c8b1b",
+    "source_sha256": "44a529281c43d26bbceeb603f4d0ac9d43dab44ccf7fb37ddb93b7d0969c0d6d"
+  },
+  "measurement": {
+    "accepted_logical_events": 1201,
+    "additional_transport_calls": 8,
+    "anomalies": {
+      "off_schedule_observations": 1,
+      "unexpected_attempt_identities": 0,
+      "unexpected_database_identities": 0,
+      "unexpected_tool_identities": 0
+    },
+    "declared_elapsed_ms": 2401806,
+    "expected_source_events": 47760,
+    "ingestion_all_periods": {
+      "maximum_ms": 859,
+      "p95_ms": 80,
+      "samples": 1201
+    },
+    "ingestion_outside_fixed_windows": {
+      "maximum_ms": 859,
+      "p95_ms": 80,
+      "samples": 1201
+    },
+    "limitations": [
+      "Reviewed launch profile, capacity/headroom checks and independent runtime watchdog.",
+      "Native source HTTP observations, exact outbox/database/tool snapshots and artifact hashes.",
+      "Measured monotonic 24-hour span, clock alignment, actual interruptions and recoveries.",
+      "Two active worker identities and physical executions, including rolled-back attempts.",
+      "Exact case/task identity reconciliation, idempotency and lost-reply evidence.",
+      "Separate PostgreSQL/delivery-state restoration and a working restored application.",
+      "Main and independent shutdown evidence, fault reset and final capacity readings."
+    ],
+    "missing_acceptance": 0,
+    "missing_acknowledgements": 0,
+    "missing_processing": 0,
+    "missing_slots": 46559,
+    "missing_tool_observation": 0,
+    "missing_transport_evidence": 0,
+    "native_acceptance": "not_established_by_this_measurement",
+    "observed_slots": 1201,
+    "physical_transport_calls": 1209,
+    "processed_logical_events": 1201,
+    "processing_all_periods": {
+      "maximum_ms": 4824,
+      "p95_ms": 249,
+      "samples": 1201
+    },
+    "processing_outside_fixed_windows": {
+      "maximum_ms": 4824,
+      "p95_ms": 249,
+      "samples": 1201
+    },
+    "profile": "enterprise-reliability-v1",
+    "profile_sha256": "f03078968e733a401b4e687aa34dfb7bcc5b238fede6b1080651962a96f6cd41",
+    "recovery": [
+      {
+        "component": "workers",
+        "events_due": 1201,
+        "late_or_missing": 0
+      },
+      {
+        "component": "collector",
+        "events_due": 1201,
+        "late_or_missing": 0
+      },
+      {
+        "component": "source_delivery",
+        "events_due": 1201,
+        "late_or_missing": 0
+      },
+      {
+        "component": "collector_rotation",
+        "events_due": 1201,
+        "late_or_missing": 0
+      },
+      {
+        "component": "wazuh_connector",
+        "events_due": 1201,
+        "late_or_missing": 0
+      }
+    ],
+    "schema_version": 1,
+    "source_events": 1201,
+    "source_events_per_app": {
+      "documents": 601,
+      "expenses": 600
+    },
+    "status": "rehearsal_not_a_24_hour_result",
+    "tool_additional_physical_records": 0,
+    "tool_distinct_native_ids": 1201,
+    "tool_observed_logical_events": 1201,
+    "transport_all_periods": {
+      "maximum_ms": 859,
+      "p95_ms": 80,
+      "samples": 1209
+    },
+    "transport_and_tool_outcomes": {
+      "accepted": 1201,
+      "retry": 8,
+      "tool_physical_records": 1201
+    },
+    "transport_outside_fixed_windows": {
+      "maximum_ms": 859,
+      "p95_ms": 80,
+      "samples": 1209
+    }
+  },
+  "parsed_configuration_verified": true,
+  "preparation": {
+    "cached_wheels": {
+      "cache_run": "b8667b816ce8419da7f3d5d9ac9d6ad6",
+      "downloaded_bytes": 0,
+      "reused_bytes": 14200997,
+      "wheel_count": 6
+    },
+    "certificates": {
+      "authority_sha256": "dc23a89464ebc0be01a697fdbbb63e29dee8a8b679acf49796e34ccf2def9bdc",
+      "created_at": "2026-10-04T08:43:45+00:00",
+      "cryptography_version": "50.0.1",
+      "expires_at": "2026-10-04T10:43:45+00:00",
+      "host_trust_changed": false,
+      "loopback_only": true,
+      "python_version": "3.12.14",
+      "run_id": "8a1889fec8ef49f5acde3c01bfa88e63",
+      "server_certificate_sha256": {
+        "console": "c697ecb677fc41362c7615aaa393289e69d8b9cac75cab612b08101498011629",
+        "source": "4f5a004541c61503bed748c67cdac653b056340d391b706308834d1aba9ef588"
+      },
+      "signing_key_persisted": false
+    },
+    "wheel_footprint": {
+      "archive_entries": 4472,
+      "claim": "Metadata estimate with 4 KiB rounding and inode allowance; not a native peak-memory measurement. Optional bytecode generation is disabled.",
+      "estimated_allocation_bytes": 58294272,
+      "uncompressed_bytes": 44906600
+    }
+  },
+  "rehearsal_ms": 2400000,
+  "run_id": "8a1889fec8ef49f5acde3c01bfa88e63",
+  "runner": {
+    "completed": false,
+    "database_boundaries": {
+      "console": {
+        "actual_identity_verified": true,
+        "component": "console",
+        "cross_database_connect_denied": true,
+        "denial_kind": "server_connect_privilege_message",
+        "denial_sqlstate": null
+      },
+      "source": {
+        "actual_identity_verified": true,
+        "component": "source",
+        "cross_database_connect_denied": true,
+        "denial_kind": "server_connect_privilege_message",
+        "denial_sqlstate": null
+      }
+    },
+    "phase": "finished",
+    "processes_stopped": true,
+    "rehearsal_ms": 2400000,
+    "run_id": "8a1889fec8ef49f5acde3c01bfa88e63",
+    "runner_windows": [
+      {
+        "action": "stop",
+        "at_ms": 200429,
+        "window": "workers"
+      },
+      {
+        "action": "start",
+        "at_ms": 203335,
+        "window": "workers"
+      },
+      {
+        "action": "stop",
+        "at_ms": 500214,
+        "window": "collector"
+      },
+      {
+        "action": "start",
+        "at_ms": 502501,
+        "window": "collector"
+      },
+      {
+        "action": "stop",
+        "at_ms": 800003,
+        "window": "source_delivery"
+      },
+      {
+        "action": "start",
+        "at_ms": 805001,
+        "window": "source_delivery"
+      }
+    ],
+    "schema_version": 1,
+    "service_events": [
+      {
+        "action": "start",
+        "at_ms": -41463,
+        "role": "worker-1"
+      },
+      {
+        "action": "start",
+        "at_ms": -41463,
+        "role": "worker-2"
+      },
+      {
+        "action": "start",
+        "at_ms": -41462,
+        "role": "collector"
+      },
+      {
+        "action": "start",
+        "at_ms": -41457,
+        "role": "publisher"
+      },
+      {
+        "action": "stop",
+        "at_ms": 200214,
+        "role": "worker-1"
+      },
+      {
+        "action": "stop",
+        "at_ms": 200429,
+        "role": "worker-2"
+      },
+      {
+        "action": "start",
+        "at_ms": 203334,
+        "role": "worker-1"
+      },
+      {
+        "action": "start",
+        "at_ms": 203335,
+        "role": "worker-2"
+      },
+      {
+        "action": "stop",
+        "at_ms": 500214,
+        "role": "collector"
+      },
+      {
+        "action": "start",
+        "at_ms": 502501,
+        "role": "collector"
+      },
+      {
+        "action": "stop",
+        "at_ms": 800003,
+        "role": "console"
+      },
+      {
+        "action": "start",
+        "at_ms": 805001,
+        "role": "console"
+      }
+    ],
+    "services_stopped": true,
+    "stored": {
+      "stored_rows": 1201
+    },
+    "streams": {
+      "streams": {
+        "documents": "ee58f0d3-3996-5427-aee1-44b6359f4359",
+        "expenses": "5e09256f-f70b-5831-9802-bab06a76852b"
+      }
+    },
+    "tls": {
+      "console_readiness_attempts": 2,
+      "tls_readiness": true
+    },
+    "unexpected_service_exits": [],
+    "workload_exit_code": 1
+  },
+  "runner_exit_code": 0,
+  "runtime_isolation_verified": true,
+  "schema_version": 1,
+  "source_sha256": "efcb434bb7bb65b6f58304243c03fb5fd763d733ddf621a86e1a2c0b3da8c0b9",
+  "source_snapshot": {
+    "bytes": 7875290,
+    "file_count": 659,
+    "source_sha256": "efcb434bb7bb65b6f58304243c03fb5fd763d733ddf621a86e1a2c0b3da8c0b9"
+  },
+  "source_unchanged": true,
+  "stage_growth_ceiling_bytes": 12884901888,
+  "stage_initial_free_disk_bytes": 65608806400,
+  "started_at": "2026-10-04T08:43:45.205791+00:00",
+  "status": "rehearsal_finished"
+}

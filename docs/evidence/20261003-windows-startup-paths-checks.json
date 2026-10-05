@@ -1,0 +1,68 @@
+{
+  "kind": "signalbridge-windows-startup-paths-offline-checks",
+  "recorded_at": "2026-10-03T03:23:58.289156+00:00",
+  "check": {
+    "name": "startup-paths",
+    "argv": [
+      "C:\\Users\\agarw\\OneDrive\\Documents\\ChatGPT\\Astra Projecs\\signalbridge\\.venv\\Scripts\\python.exe",
+      "-B",
+      "manage.py",
+      "test",
+      "tests.test_desktop_startup_guard",
+      "tests.test_reference_host_launch",
+      "tests.test_identity_host_controller",
+      "--settings",
+      "config.verification_settings",
+      "--verbosity",
+      "1",
+      "--noinput"
+    ],
+    "started_at": "2026-10-03T03:23:56.784541+00:00",
+    "finished_at": "2026-10-03T03:23:58.287211+00:00",
+    "duration_seconds": 1.503,
+    "exit_code": 0,
+    "error": null,
+    "passed": true,
+    "logs": {
+      "stdout": {
+        "file": "startup-paths.stdout.txt",
+        "sha256": "e36d7a155591a33a4dd0d33f49c4b7a0dc91d81d7e691fa759c232b9fd4d77d6"
+      },
+      "stderr": {
+        "file": "startup-paths.stderr.txt",
+        "sha256": "75bf37da01840a3931c657b39a066ac71f1ea79f55259ce28a1634287f779ff1"
+      }
+    }
+  },
+  "tests": {
+    "tests_run": 43,
+    "successful_summary": true,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "expected_failures": 0,
+    "unexpected_successes": 0
+  },
+  "files": {
+    "scripts/enterprise_reference_verify.py": "a864780b6af528c8e6d081a9b02140887a717307ba2d8fcf61a0fe8911d61916",
+    "integrations/enterprise/desktop_startup_guard.py": "627eceabe4395b43938c48569def2874c78c9afc90b819919e01a47cbd6b5248",
+    "tests/test_desktop_startup_guard.py": "bfb5008e69d399e4cbac0b552f907b2e67665f5afab5c3e463db2db879e29b80",
+    "tests/test_reference_host_launch.py": "2b5131d805980b42c72ce6bbb25a5820ea9757ae00bf3cca7383a66c46bc61bc",
+    "tests/test_identity_host_controller.py": "34c53f09d1c6351c128304552002ac560eacdef065241059cb04c5a33ff1d18b"
+  },
+  "native_startup": false,
+  "native_calls_in_guard_tests": "mocked",
+  "integrated_with_native_controller": false,
+  "cache_quarantine": {
+    "files": 4,
+    "bytes": 989728,
+    "verified_original_absent": true,
+    "location": "private incident evidence, excluded from publication",
+    "deleted": false
+  },
+  "limits": [
+    "Windows paths are preserved and validated; this does not establish successful Docker startup.",
+    "The startup guard is acquisition-only and has not been integrated with a new approved acquisition.",
+    "Sampled resource checks are not hard quotas. Unexpected late startup origin remains unestablished."
+  ]
+}

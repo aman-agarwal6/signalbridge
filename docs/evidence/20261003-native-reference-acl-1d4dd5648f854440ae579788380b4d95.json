@@ -1,0 +1,25 @@
+{
+    "schema_version":  1,
+    "kind":  "signalbridge-native-windows-private-acl-regression",
+    "started_at":  "2026-10-03T06:16:51.9504688Z",
+    "finished_at":  "2026-10-03T06:16:53.8841264Z",
+    "passed":  false,
+    "checks":  [
+                   "Inherited permissions rejected before protection"
+               ],
+    "checks_passed":  1,
+    "acl_script_sha256":  "a7e75f0c9ae8756d2857e956a7b9c5d29fd62083e96cb5021f67cc4babb495cb",
+    "verifier_sha256":  "78553e61051cf6ad4f8784936fd2a2c5f4ce7199002c3c6598d6bd7911814230",
+    "temporary_workspace_removed":  true,
+    "cleanup_verified":  true,
+    "failure":  {
+                    "fixture_phase":  24,
+                    "helper":  {
+                                   "kind":  "signalbridge-private-acl-failure",
+                                   "mode":  "SecureEmpty",
+                                   "phase":  8,
+                                   "checked_count":  0
+                               }
+                },
+    "limits":  "Actual Windows fixture permissions only; no source HTTP, database, Docker or native application acceptance."
+}

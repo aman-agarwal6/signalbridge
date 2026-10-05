@@ -1,0 +1,26 @@
+{
+  "kind": "signalbridge-desktop-startup-guard-offline-checks",
+  "recorded_at": "2026-10-03T03:14:17.704064+00:00",
+  "exit_code": 0,
+  "tests": {
+    "tests_run": 14,
+    "successful_summary": true,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "expected_failures": 0,
+    "unexpected_successes": 0
+  },
+  "log_sha256": "f39faca8899d30ba93db0f5f7147a986481a14db4690394c907ea59b7daea51f",
+  "files": {
+    "integrations/enterprise/desktop_startup_guard.py": "17becc487e85fba99d7f1b1043cf30dac7854e5563dce1845a2472bcb4fe7f44",
+    "tests/test_desktop_startup_guard.py": "517025de3b8440e8fa2ed4ce8263ff715c8839d97f7b659a0ac033fc014a0936"
+  },
+  "native_startup": false,
+  "integrated_with_native_controller": false,
+  "limits": [
+    "Native subprocess primitives are mocked; not actual Docker startup/shutdown assurance.",
+    "This module owns only startup/acquisition; running native test containers are outside its scope and treated as foreign.",
+    "Capacity sampling and a bounded quiet period do not impose hard quotas or establish permanent shutdown."
+  ]
+}

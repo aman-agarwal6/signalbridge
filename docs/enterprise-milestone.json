@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-10-01",
+  "updated_on": "2026-10-05",
   "status": "implementation_in_progress",
   "scope": "One enterprise, multiple application scopes and analyst teams; isolated reference lab only.",
   "completion_policy": "Every mandatory engineering acceptance gate must pass. Historical receipts and portable tests do not substitute for native execution.",
@@ -16,84 +16,124 @@
   "foundation": {
     "baseline": "Private recoverable baseline retained under var/enterprise/baseline-20261001; original and unrelated changes preserved.",
     "implemented": [
-      "PostgreSQL app-first SKIP LOCKED queue claims with atomic evidence/completion and SQLite serial fallback.",
-      "Processing timestamps, worker identity, committed attempt count and failed retry visibility.",
-      "Indexed membership subject and bounded latest-assertion loading for allowed reads.",
-      "Source-owned document/expense authorization, effective-access assertions and transactional outbox.",
-      "Fixed synthetic fault pair, maximum ten-minute expiry, reset and restoration regressions.",
-      "Collector-assigned instrumented_lab provenance without modifying historical classes or wire v1/v2.",
-      "Disposable PostgreSQL test profile, immutable official image identity and independent shutdown controller.",
-      "Durable source outbox leases with stale-reply rejection, exact acknowledgement, integrity checks and bounded TLS loopback transport.",
-      "App-scoped assignment, acknowledgement, deadlines, categorized notes and evidence-bound review/remediation tasks.",
-      "Separate machine read/task capabilities with signed method/path/body, nonce replay controls, retained failed-request rate slots and transactional task idempotency.",
-      "Executed two-component isolated PostgreSQL concurrency and killed-process verification: nine methods passed, no skips, source unchanged, both shutdown checks passed.",
-      "Bounded R4 extended denied-resource and R5 multi-account same-resource rules, versions, scoped indexed candidates and paired controls; 48-scenario frozen evaluation executed with retained false alerts and misses.",
-      "Analyst queues for assigned, unassigned, unacknowledged and overdue work; expanded rows show ownership, deadlines and acknowledgement. Five versioned rules are explained in the console.",
-      "Finite native source-proof client, separate database roles/settings, guarded source/console TLS process entries and fault-reset driver prepared. Offline controls pass; native recipe/controller and reconciliation still need completion and launch review."
+      "PostgreSQL app-first SKIP LOCKED queue claims; atomic evidence/completion; SQLite serial fallback; processing timestamps, committed attempts, worker identity and failed-retry visibility.",
+      "Source-owned document/expense authorization, app-scoped pseudonyms, effective-access assertions, transactional outbox and collector-assigned instrumented_lab provenance; wire v1/v2 preserved.",
+      "Genuine isolated reference run: 31 HTTP controls, 23 processed source events across two scopes, one R3 investigation, defect reset/restoration and both shutdown checks. Exact receipt is native_reference_access.receipt.",
+      "Nine recorded native PostgreSQL concurrency/crash methods. Later identity/retest races and separate restored application remain unfinished.",
+      "App-scoped analyst queues, assignment, acknowledgement, deadlines, categorized notes, evidence-bound review/remediation tasks and printable analyst briefs.",
+      "Separate signed case-evidence/read-task machine capabilities with replay controls and idempotency; no containment or automatic remediation approval.",
+      "Five versioned rules, bounded indexed correlation and 48 builder-selected evaluation scenarios; false alerts, misses and inconclusives retained.",
+      "Wazuh observation/core-signal ledgers, bounded segmented export, exact interrupted-write recovery, native-format matching, capture journal and separately guarded native collector runner.",
+      "Authenticated source capture and finite passive ZAP runner/importer prepared; native enterprise execution remains unfinished.",
+      "Explicit issuer/subject lifecycle, 15-minute sessions, local permission withdrawal and actual established-library signature/client checks. Native Keycloak/MFA remains unfinished.",
+      "Protected bounded monitoring exporter, worker freshness and operational console indicators. Native monitoring and 24-hour execution remain unfinished."
     ],
     "limitations": [
-      "Reference application authentication/HTTP-client regressions run in a disposable in-memory database, not a launched enterprise source service.",
-      "Committed processing attempts cannot count a process that dies before its SQL transaction commits; reliability receipts must report such physical executions separately.",
-      "Retrospective membership-change correlation retains its declared event ceiling; capacity exhaustion is visible and fails processing.",
-      "The passing PostgreSQL verification used two containers on an internal network with no published ports. It is plaintext component testing, not the enterprise TLS deployment profile.",
-      "Host disk monitoring is a two-second detection guard, not a hard storage quota; physical allocation or other host activity can cross a budget between readings. No enterprise resource guarantee is claimed.",
-      "No verified-fix task state is offered until the matching native retest/reviewer gate is implemented.",
-      "Native case/task concurrency is verified; TLS transport and genuine Shuffle execution remain unfinished.",
-      "Prepared native source transport has socket timeouts and a transfer timer. Before native review, verify the complete connection/handshake/response deadline against the declared request bound; the draft source plan is not launch authorization."
+      "Raw receipts identify their exact historical source revision and scope; earlier preparation statements are historical. Later code does not inherit native verification.",
+      "The reference run is a synthetic lab control, not production, copied BetTail coverage, broad detection accuracy or enterprise-tool parity.",
+      "Committed processing claims cannot count executions rolled back by a crash; physical requests/retries must be measured separately.",
+      "Host disk/memory watchdogs detect sampled limits; they are not hard quotas or resource guarantees.",
+      "Matching retest evidence and an independent current reviewer are required for verified remediation; historical resolved cases remain unchanged.",
+      "Imported native-format data alone does not attest tool execution or current connection health. Retained native receipts and current heartbeats have different meanings.",
+      "All mandatory unfinished native gates remain listed below. Human analyst work and independent human review are separate learning outcomes."
     ]
   },
   "mandatory_gates": [
     {
       "id": "access_assurance",
-      "status": "partial_portable_checks",
-      "remaining": "Native source HTTP/PostgreSQL execution, copied BetTail adapter and retained reset receipts."
+      "status": "native_reference_passed_copied_bettail_not_pursued",
+      "remaining": "Reference apps completed genuine allow/remove/deny/owner/cross-app/restore checks and detected one injected regression. Copied BetTail state/image adapter is implemented and offline checked; SQL, runtime, effective-access/outbox behavior and native correlation remain unrun. Copied BetTail native runtime: deliberately not pursued (owner decision, 2026-10-04). The adapter is implemented and offline-checked; a native run would need a Supabase-compatible database and new dependency downloads for little reviewer-visible value.",
+      "receipt": "docs/evidence/20261002-reference-access-b8667b816ce8419da7f3d5d9ac9d6ad6.json"
     },
     {
       "id": "identity",
-      "status": "not_implemented",
-      "remaining": "Keycloak SSO/MFA, issuer/subject binding, session/logout/disabled-account and role withdrawal verification."
+      "status": "passed_native_keycloak_profile_and_real_browser",
+      "remaining": "Native identity run 73632025 passed the whole identity gate: the 28 protocol controls (password+TOTP MFA, refusal paths, callback state/replay, admission, app scoping, CSRF, permission withdrawal, back-channel logout, signing-key rotation via bounded JWKS refresh, HTTP cookie/header policy and a real session expiry) plus 5 real Chromium 153 walkthrough controls: keyboard-only MFA sign-in with labelled inputs, browser-enforced cookie attributes, CSP blocking an inline script, framing blocked and sign-out ending the session. The browser found and the console fixed a real defect (form-action blocked the provider redirect). Both shutdowns verified; source unchanged. Accessibility scope is keyboard reachability and labels only, not a WCAG audit; one synthetic lab realm on loopback.",
+      "dependency_plan": "integrations/identity/dependency-stage.json",
+      "local_policy_receipt": "docs/evidence/20261002-identity-http-preparation.json",
+      "optional_execution_receipt": "docs/evidence/20261002-analyst-delivery.json",
+      "native_readiness_receipt": "docs/evidence/20261003-keycloak-launch-readiness.json",
+      "native_receipt": "docs/evidence/20261004-identity-native-73632025aeee400bb7ee49b69fba7c99.json",
+      "previous_native_receipt": "docs/evidence/20261003-identity-native-edcf15d6d9d84e1995e1ba45965190c8.json"
     },
     {
       "id": "postgresql",
-      "status": "passed_native_component",
-      "remaining": "Nine genuine PostgreSQL 17.11 checks passed: migrations, concurrent ingestion/duplicates/conflicts, two workers, case/task updates and killed-process rollback/recovery. Both independent and main shutdown verified. This is isolated plaintext component testing, not enterprise TLS/source/SSO/security-tool or reliability proof. Retained revision is identified by receipt.",
-      "receipt": "docs/evidence/20261001-postgresql-in-network-1d8fd148036e43b0915fbbe86606d013.json"
+      "status": "passed_native_component_including_identity_and_review_races",
+      "remaining": "Native PostgreSQL 17.11 run ed3829e7 passed all 14 checks: migrations, concurrent ingestion/duplicates/conflicts, two workers, case/task updates, killed-process rollback/recovery, identity callback/logout races and retest submission/reviewer races. Both shutdowns verified. Isolated plaintext component network; not enterprise TLS, SSO or reliability proof.",
+      "receipt": "docs/evidence/20261001-postgresql-in-network-ed3829e7b3dd45379d0c0290e324df85.json"
     },
     {
       "id": "wazuh",
-      "status": "historical_pilot_only",
-      "remaining": "Long-running native collection, checkpoints/rotation, reconciled imports, core signal export and truthful freshness."
+      "status": "native_collection_and_recovery_rotation_passed_24h_unfinished",
+      "remaining": "Native Wazuh 4.14 run 0d137b47 archived 24/24 records and raised 8/8 expected alerts exactly once from the retained reference run b8667b81. Recovery run 4a5748dc stopped the log collector after 11 archived records, rotated the largest input aside, published the backlog and restarted collection: 24/24 archived and 8/8 alerts with zero extra copies. Both runs verified main and independent shutdown. Wazuh ids are second+offset values, so 14 archived records carried only 5 distinct ids; reconciliation keys by target. The 24-hour run and indexer/dashboard remain outside these receipts.",
+      "verification_receipt": "docs/evidence/20261002-enterprise-offline-f18c899868e849a889ca247133f2fbef.json",
+      "local_rotation": {
+        "feature_flag": "SB_SOC_SEGMENTED_EXPORT=1",
+        "fresh_streams_only": true,
+        "maximum_segments_per_app_channel": 8,
+        "segment_capacity_bytes": 2097152,
+        "maximum_logical_bytes_per_stream": 16777216,
+        "automatic_deletion": false,
+        "local_methods": 20,
+        "native_collector_rotation": "not_run",
+        "native_postgresql_migration_concurrency": "not_run"
+      },
+      "latest_attempt": "docs/evidence/20261003-wazuh-capacity-preservation-stopped.json",
+      "native_receipts": [
+        "docs/evidence/20261003-wazuh-native-collection-0d137b4720ad476faa68d36754b7357f.json",
+        "docs/evidence/20261003-wazuh-native-recovery-4a5748dcc7a74525a7469dc8d802438a.json"
+      ]
     },
     {
       "id": "zap",
-      "status": "historical_anonymous_pilot_only",
-      "remaining": "Authenticated fixed profile, independent identity/coverage checks, correction and equivalent retest."
+      "status": "native_finding_correction_retest_and_operator_import_passed",
+      "remaining": "Native ZAP 2.17 run d975b97f raised exactly one Low 10021 X-Content-Type-Options finding in the fault phase and none in the corrected retest, from header source a2e95dd9 captured on the current source. Restoration run 6bce0948 restored that source's console (8 events) into a separate PostgreSQL database and ran the real import_zap_enterprise: two scoped results (documents finding with 6 event bindings, expenses without a finding with 2), audited, and an idempotent repeat. Both shutdowns verified in every run. Passive header analysis only; no active scanning or crawling.",
+      "verification_receipt": "docs/evidence/20261002-enterprise-offline-b95d414604984c82bd25fde501f10bf1.json",
+      "scanner_receipt": "docs/evidence/20261003-authenticated-zap-offline-d975b97fad814c9b8e4304e114c776e5.json",
+      "source_receipt": "docs/evidence/20261003-reference-header-a2e95dd90658461ebd0b6f34102306ee.json",
+      "operator_import_receipt": "docs/evidence/20261003-console-restoration-6bce09482a3b430aadb98b589d40f04e.json"
     },
     {
       "id": "shuffle",
-      "status": "required_native_execution_unfinished",
-      "remaining": "Offline native VM execution with case evidence resolution, one idempotent review task and validated execution receipt; bounded storage/TLS diagnosis."
+      "status": "passed_native_vm_execution",
+      "remaining": "Run 315cfb85 (2026-10-05): inside the dedicated network-less VirtualBox guest, Shuffle backend, Orborus and workers executed 9 scenarios as genuine executions against the signed review-task API. First task created (201); retry with a new nonce returned the same task (duplicate); replay 409 request_replayed; changed content 409 idempotency_conflict; foreign case 404 case_unavailable; stale evidence 409 case_evidence_changed; receiver timeout and lost reply handled, and the retry after the lost reply recovered the committed task. Receiver totals: 2 tasks, 2 idempotency records, 8 nonces. Fixes on the way: one vCPU (VirtualBox-on-Hyper-V timer stalls), Orborus non-swarm mode, signing the body Shuffle's HTTP app actually sends, read-only settings key handling. Guest report is builder-run, not independent attestation.",
+      "receipt": "docs/evidence/20261005-shuffle-native-workflow-315cfb85-9c28-4e4e-9cac-8ce455e92448.json"
     },
     {
       "id": "case_workflow",
-      "status": "partial_portable_workflow",
-      "remaining": "Ownership, notes, task states and two limited APIs implemented and regression checked; native PostgreSQL case/task concurrency passed. Matching native retest/reviewer verification and linked tool observations remain required."
+      "status": "native_restored_investigation_to_fix_passed_copied_bettail_not_pursued",
+      "remaining": "Restoration run de4f6409 copied the retained native console (b8667b81) read-only, backed it up with pg_dump, restored it into a fresh PostgreSQL database and migrated it, with all 23 events and the R3 case matching the archive exactly. On the restored console: acknowledge, assign, remediation task, the real native retest import (idempotent), self-review refused, an independent reviewer approved, task verified; the native Wazuh run 0d137b47 imported with 13 matched events and a verified case link; the case page rendered. Retest/reviewer races passed natively in ed3829e7. Copied BetTail runtime remains unrun. Copied BetTail native runtime: deliberately not pursued (owner decision, 2026-10-04). The adapter is implemented and offline-checked; a native run would need a Supabase-compatible database and new dependency downloads for little reviewer-visible value.",
+      "restoration_receipt": "docs/evidence/20261003-console-restoration-de4f6409fdf444a9bc22cf60463cdb05.json"
     },
     {
       "id": "detection",
-      "status": "passed_bounded_frozen_round",
-      "remaining": "R4/R5 paired controls and 48 selected scenarios executed under a fresh freeze. Formatting-only migration correction required a fresh identity and repeat using the same 48 scenarios, not additional statistical evidence. Both rounds retained. TP15/FP6/FN8/TN12 with seven inconclusives; 24 initial review cases, one later correction. Not blind or production accuracy. A source change requires a new round.",
-      "receipt": "docs/evidence/20261001-enterprise-detection-evaluation-format2.json"
+      "status": "passed_final_freeze_current_source",
+      "remaining": "Current round (2026-10-05, re-frozen after the leaver receiver and the read-only settings fix changed the frozen implementation): the same 48 builder-selected scenarios, byte-identical inputs and labels, under a fresh freeze of the current implementation: TP15/FP6/FN8/TN12 and 7 inconclusives (precision 15/21, recall 15/23, false-positive rate 6/18), unchanged from the leaver-receiver, final-delivery and delivery-preparation rounds, which are retained. Regression evidence, not independent accuracy.",
+      "receipt": "docs/evidence/20261005-enterprise-detection-evaluation-shuffle-native.json"
     },
     {
       "id": "operations",
-      "status": "not_executed",
-      "remaining": "Prometheus/Grafana, working separate restore, declared 24-hour run, reconciled logical and physical counts, measured latency and shutdown."
+      "status": "restoration_and_monitoring_passed_endurance_shown_full_24h_not_completed",
+      "remaining": "Restoration passed natively twice (de4f6409, 6bce0948) and monitoring passed 24/24 (0cd4256f). Endurance is shown by a compressed full-window run plus 10.5 hours continuous; the full 24-hour run was not completed (owner decision, 2026-10-04). Rehearsal 8a1889fe ran the full workload with all five fixed interruptions scaled into 40 minutes: 1,201/1,201 events accepted, processed and observed by Wazuh, every recovery on time, zero anomalies under the owner-approved schedule definition. The continuous run 894fb388 ran 13.5 hours: all 27,118 reads delivered with no service errors through the workers, collector and source-delivery interruptions; Wazuh captured continuously for 10.6 hours, then its collector stopped itself because the reviewed ten-minute log finder bounds a month log folder at 64 entries and Wazuh's ten-minute rotations exceeded it. The continuous collector now has a day-long bound (tested); a replacement 24-hour run was started and then stopped by the owner to prioritise the remaining deliverables. 68 of 27,118 reads were sent late, all during brief host disk stalls.",
+      "preparation": "integrations/monitoring/preparation.json",
+      "reliability_preparation_receipt": "docs/evidence/20261002-reliability-measurement-preparation.json",
+      "monitoring_receipt": "docs/evidence/20261003-monitoring-native-0cd4256f4a1c4f2692f67eae4704bd53.json",
+      "restoration_receipts": [
+        "docs/evidence/20261003-console-restoration-de4f6409fdf444a9bc22cf60463cdb05.json",
+        "docs/evidence/20261003-console-restoration-6bce09482a3b430aadb98b589d40f04e.json"
+      ],
+      "endurance_receipts": [
+        "docs/evidence/20261004-reliability-rehearsal-8a1889fec8ef49f5acde3c01bfa88e63.json",
+        "docs/evidence/20261004-reliability-rehearsal-8a1889fec8ef49f5acde3c01bfa88e63-remeasured.json",
+        "docs/evidence/20261004-reliability-24h-894fb388a2004b43b6b1643e93342df4.json",
+        "docs/evidence/20261004-reliability-continuous-894fb388a2004b43b6b1643e93342df4-summary.json",
+        "docs/evidence/20261004-reliability-24h-aa516fbd9ba940e7bca97652a44da1a2.json"
+      ]
     },
     {
       "id": "presentation",
-      "status": "pending_final_execution_evidence",
-      "remaining": "Accessible updated console walkthrough and one consolidated enterprise handoff PDF grounded in completed runs."
+      "status": "recorded_walkthrough_and_analyst_brief_delivered_final_milestone_pending",
+      "remaining": "New recorded native access walkthrough and authenticated printable analyst brief implemented; final all-integration demonstration still depends on unfinished native gates."
     }
   ],
   "approvals": [
@@ -151,6 +191,74 @@
       "reference": "call_DHhwYu87PrkFFmaGPHvpCT9T",
       "limits": "One retry, unchanged mounts and resource caps; optional bytecode disabled, staging inside existing dependency mount, verified footprint before launch. No downloads.",
       "receipt": "docs/evidence/20261001-postgresql-in-network-1d8fd148036e43b0915fbbe86606d013.json"
+    },
+    {
+      "id": "isolated_oidc_dependencies",
+      "status": "approved_used_installed",
+      "plan": "integrations/identity/dependency-stage.json",
+      "limits": "Ten exact official wheels totaling 4,895,036 bytes, capped at 8 MiB; four retained cached Django wheels; isolated Windows CPython 3.14 test venv; one GiB workspace-growth ceiling, twenty-five GiB reserve and ten-minute timeout. No Docker/VM/Keycloak, global install, host trust or service changes.",
+      "receipt": "docs/evidence/20261002-identity-dependencies-2d151d900f1745688c762d215237fb92.json"
+    },
+    {
+      "id": "native_header_source_launch",
+      "status": "requested_awaiting_explicit_reply",
+      "plan": "integrations/zap_enterprise/source-stage-plan.json",
+      "limits": "One header-source attempt; Docker Desktop, two cached images and six cached verified wheels; 512 MiB/one CPU each, no ports/runtime egress/Docker socket/other-project mounts, fixed five-minute header-only fault, eight reconciled events, twelve GiB whole-stage guard including prior consumption, twenty-five GiB free disk, four GiB host memory headroom and independent thirty-minute scoped shutdown. No downloads or native ZAP. Stop before launch on unexpected workloads or missing cache; retain evidence/volumes and both shutdown receipts."
+    },
+    {
+      "id": "reference_access_source_stage",
+      "status": "approved_single_attempt_used",
+      "result": "Stopped during folder ACL preparation; no containers or credentials created.",
+      "receipt": "docs/evidence/20261002-reference-access-ad6f0a4aff894c73ae1759b4fec4d84e.json"
+    },
+    {
+      "id": "reference_access_acl_corrected_retry",
+      "status": "approved_single_attempt_used",
+      "result": "Native containers and database checks reached; stopped at TLS readiness; both shutdown checks passed.",
+      "receipt": "docs/evidence/20261002-reference-access-02cb12391e284b4480a5dc9a0db9419d.json"
+    },
+    {
+      "id": "reference_source_diagnostic_retry_20261002",
+      "status": "approved_used_passed_shutdown_verified",
+      "authority": "User explicitly approved both outstanding questions in this chat.",
+      "limits": "One corrected access source-stage run; cached images/wheels; prior 12 GiB cumulative guard, 25 GiB disk and 4 GiB memory reserves; 30-minute watchdog; no downloads or profile expansion.",
+      "receipt": "docs/evidence/20261002-reference-access-b8667b816ce8419da7f3d5d9ac9d6ad6.json"
+    },
+    {
+      "id": "identity_dependency_environment_20261002",
+      "status": "approved_used_installed",
+      "authority": "User explicitly approved both outstanding questions in this chat.",
+      "limits": "Separate local SSO test environment; 4,895,036 bytes official hash-pinned downloads, 8 MiB download cap, 1 GiB growth cap, ten minutes, 25 GiB reserve; no Keycloak/service startup or changes to existing Python.",
+      "receipt": "docs/evidence/20261002-identity-dependencies-2d151d900f1745688c762d215237fb92.json"
+    },
+    {
+      "id": "20261003-user-wazuh-collector",
+      "status": "approved_attempt_used_image_preflight_failed_no_container_created",
+      "reference": "call_No637RGc5WRIGlN3CIRU40yP",
+      "limits": "One native collector run against the completed reference source snapshot (23 observations and one forwarded R3 signal). Cached pinned Wazuh image only, 1.5 GiB RAM, one CPU, no network or ports, 15-minute independent shutdown, 12 GiB cumulative disk guard, 25 GiB disk and 4 GiB host memory reserve; no downloads. Start Docker Desktop and stop it afterward; stop before launch if cached image missing or other containers running.",
+      "receipt": "docs/evidence/20261003-wazuh-reference-bootstrap-bdd940033d094724bb052e25512b36f9.json"
+    },
+    {
+      "id": "20261003-wazuh-inspection-corrected-retry",
+      "status": "approved_attempt_used_runtime_inspection_failed_container_never_started",
+      "reference": "call_awW6vzwMsNXO04vJSNNn46nO",
+      "limits": "One corrected native collector attempt after agent changes are reviewed. Same 24 packets, cached pinned image, 1.5 GiB/one CPU, no network or ports or downloads, 15-minute independent shutdown, 12 GiB cumulative disk guard, 25 GiB disk reserve and 4 GiB memory reserve; stop Docker afterward.",
+      "receipt": "docs/evidence/20261003-wazuh-reference-bootstrap-4e538a364db04a0dbcd03aceafdca8af.json"
+    },
+    {
+      "id": "20261003-wazuh-final-metadata-attempt",
+      "status": "final_attempt_used_daemons_ran_zero_records_launcher_retired",
+      "reference": "call_vvXAxCdGfWAXFRHLcYmC3Vns",
+      "limits": "One LAST attempt of this setup with corrected optional metadata and CAP_ spelling. Same24 inputs, cached image,1.5GiB/oneCPU, no network/ports/downloads,15minute watchdog,12GiB cumulative growth,25GiB disk and4GiB memory reserves. If unsuccessful, stop Docker, preserve evidence and move on or propose another solution. No more retries of this launcher.",
+      "receipt": "docs/evidence/20261003-wazuh-reference-bootstrap-009bc11e4fe649649d7dd44887be8b72.json"
+    },
+    {
+      "id": "native_keycloak_three_container_stage",
+      "status": "approved_attempt_used_startup_crash_no_containers",
+      "plan": "integrations/identity/native-stage-plan.json",
+      "limits": "One stage: reviewed pinned Keycloak image (~253 MiB compressed) and two wheels (~4.74 MiB, capped at 8 MiB), start Docker Desktop, three isolated containers totaling 3 GiB RAM/one CPU each, four GiB whole-stage growth from before Docker/downloads, 25 GiB free disk and 4 GiB host memory reserve, existing 30 GiB milestone guard, 30-minute independent shutdown and 60-second drain. No published ports, runtime internet, Docker socket, other-project mounts, host trust changes, paid services or production access. Stop if required cached PostgreSQL/Python images are missing or other workloads are running. No automatic retry.",
+      "reference": "call_zEB0RPOoKEYoVFAe1k2iXANg",
+      "receipt": "docs/evidence/20261003-keycloak-startup-stopped.json"
     }
   ],
   "learning_checkpoint": {
@@ -159,8 +267,7 @@
     "ai_reference_answer": "A scenario may meet more than one rule, so scenario-level accuracy and case-level workload use different denominators. The oracle business activity is benign despite matching telemetry; rule conformance does not establish malicious intent. A late correction still consumed initial analyst review work.",
     "human_assessment": "Not submitted or independently assessed."
   },
-  "current_offline_receipt": "docs/evidence/20261001-enterprise-offline-6f968bfab93a4ffd8738b9d515a68767.json",
-  "current_human_handoff": "output/pdf/SignalBridge_Enterprise_Handoff.pdf",
+  "current_offline_receipt": "docs/evidence/20261005-enterprise-offline-1a264ef20a15470c9bd7543b0a62ca78.json",
   "evidence_corrections": [
     {
       "receipt": "docs/evidence/20261001-enterprise-offline-cd0601aa7c3846f3b5cb30de63fb1710.json",
@@ -181,8 +288,680 @@
     {
       "receipt": "docs/evidence/20261001-enterprise-offline-6f968bfab93a4ffd8738b9d515a68767.json",
       "note": "Complete local verification repeated after the one-line hosted crash-helper import-path correction; 1,177 Python and 62 distinct Node methods passed. Public core and nine-method PostgreSQL CI also passed at the same code revision. Detector and frozen 48-scenario source unchanged; previous failed CI attempts are retained separately."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-detection-evaluation-source-contract.json",
+      "note": "Fresh source-contract freeze and declaration; prior rounds preserved. Identical inputs and labels reused, so repeated 48 scenarios add no independent statistical evidence."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-detection-evaluation-source-contract2.json",
+      "note": "The installed Psycopg startup path can omit SQLSTATE on connection rejection. Prepared native denial verification now requires the exact fixed-database server CONNECT-denial diagnostic after successful identity/privilege queries, or explicit SQLSTATE 42501; timeouts and generic failures remain inconclusive. A fresh freeze repeats the same 48 scenarios, not additional accuracy evidence."
+    },
+    {
+      "receipt": "docs/evidence/20261001-enterprise-offline-eb535cd785124fb785289e61a6ec0634.json",
+      "note": "Full current-source checks passed: 1,216 Python and 62 distinct Node methods, no failures/skips. The previous failed full round is preserved. Source test HTTP, reconciliation, recipe and runner controls remain offline; no native source acceptance is claimed."
+    },
+    {
+      "receipt": "docs/evidence/20261002-reference-runtime-preparation-aaf0c8139bc444ffb2cc9d363a9bade6.json",
+      "note": "Scoped preparation only: 63 denied/valid host/kernel/runner/publication methods plus five real memory-only TLS/certificate methods. Actual launch, kernel/container enforcement, native receipts, full regression and new freeze are pending; inspect the receipt for execution and source identity."
+    },
+    {
+      "receipt": "docs/evidence/20261002-reference-runtime-preparation-85c0c273ad7d457399a7cc87c665cbed.json",
+      "note": "The standalone publication CLI revealed an import-path failure after scoped tests passed. The scanner now bootstraps its trusted repository path and the final scoped run includes the direct publication CLI. Earlier passing scoped receipts remain; they did not include that CLI check."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-detection-evaluation-source-runtime.json",
+      "note": "Same inputs and labels as prior source-contract2, under a fresh freeze after host receipt/kernel/capacity preparation. Earlier freezes and receipts remain. One preparation freeze and repeat identity is used for this stable source phase; no native source or independent benchmark is claimed."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-0f555ea42a6d401ea2ce23a1658fea1c.json",
+      "note": "Complete stable source preparation run: 1,204 core methods, three offline fault methods, 45 reference methods, five real memory-only certificate/TLS methods and 62 distinct Node methods. Configuration, migrations, lint/format, publication and ACL syntax checks passed. The private Docker configuration initially hid Compose; the corrected explicit installed-plugin path passed a real offline parse. No ACL changes, Docker services, containers or VM launches occurred."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-detection-evaluation-operations.json",
+      "note": "A new source identity after operational exporter, named-worker health and migrations. R1-R5 implementation, selected inputs and oracle labels are unchanged. Earlier freezes/results are retained; this is regression separation, not stronger detection accuracy."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-af599fa371c84233bcf85dd91e02d84a.json",
+      "note": "Current full round: 1,231 core, three offline fault, 45 reference and five memory-only TLS methods, plus 62 distinct Node methods. All checks passed with unchanged selected source. Twenty-seven new monitoring checks cover authentication/TLS, scope/privacy, rate and clock failures, queue/sample semantics and prepared dashboard contracts. No native monitoring or source service, real ACL change, install, Docker/VM launch or production migration occurred."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-37a7cada640849de9fa98df163dcd617.json",
+      "note": "The full run retained one failing core method: the milestone still named the operations evaluation while DATA named the fresh identity-policy freeze. The binding test correctly rejected this mismatch. Other recorded check groups passed. Corrected only the milestone evaluation pointer; no integrity assertion or detector was weakened. A complete repeat is required."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-detection-evaluation-identity-policy.json",
+      "note": "Changed local identity implementation received a new frozen source identity, with the same selected scenarios and oracle labels. All previous freezes and outcomes retained. This is a source-bound regression repeat, not a new accuracy dataset."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-fb9dc6b7885e402fa565e554c74271fb.json",
+      "note": "Corrected the milestone evaluation pointer; complete repeat passed 1,269 core, three offline faults, 45 reference and five memory TLS methods, plus 62 distinct Node methods. Source unchanged across the full run. Prior failing full receipt retained. No integrity assertion, detector, label, native environment or service changed for the correction."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-edc3428f772d4dfcb97b6e7b5eae9684.json",
+      "note": "The full current round passed 1,302 core, three offline fault, 47 reference and five real memory-only TLS methods, plus 62 distinct Node methods: 1,357 distinct Python total. Source unchanged. Fresh evaluation preserved the same inputs/labels and all failures. Development checks exposed CSRF-parsed multipart rereading, corrected with retained size/CSRF controls. Native source, new PostgreSQL races, live migration/import and OIDC remain unrun."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-781dc29eff1f43f5a51aa35687ed7131.json",
+      "note": "First full Wazuh round failed the existing Integrations-page query budget: 14 queries versus eight allowed. Other groups passed. The limit was preserved; one SQL statement now combines separately aggregated scoped ledgers and queue counts, with no event-payload hydration. The preceding freeze/result remain historical."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-e85bcbc705be49a3abd3a71551d91ee3.json",
+      "note": "Corrected full round passed 1,336 core, three offline fault, 47 reference and five memory-only TLS methods: 1,391 distinct Python total, plus 62 distinct Node methods. All configuration/migration/lint/format/publication/ACL syntax checks passed with unchanged selected source. Thirty-four new Wazuh methods use modeled native-format records. No Docker, VM, server, installation, live migration or operator import occurred."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-795f58e87aec411fa329cbb9d9b655bc.json",
+      "note": "First new capture/API round passed 1,425 Python and 62 Node methods. Subsequent fidelity review found that its HAR assumed HTTP/1.1 responses. The native reference WSGI server uses HTTP/1.0; capture now retains the observed version. This earlier source receipt and freeze remain historical, with no native launch or fabricated result."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-e1a5f531dcbd4537b086eb7dbf843ce2.json",
+      "note": "Fresh corrected source round passed 1,358 core, three fault, 59 reference and five memory-only TLS methods: 1,425 Python total, plus 62 distinct Node methods. All configuration/migration/lint/format/publication/ACL syntax checks passed with unchanged selected source. The 34 new methods cover actual in-memory source auth and modeled native API output; no process launch, install or live migration occurred. Repeating unchanged 48-scenario labels preserves detection failures and adds no independent accuracy evidence."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-0d332f299ad248f5bb60c236b561c3da.json",
+      "note": "Full current source passed 1367 core, three offline fault, 65 reference and five memory-only TLS methods: 1,440 Python total, plus 62 distinct Node methods. Configuration/migration/lint/format/publication/ACL syntax checks passed with unchanged selected source. An initial focused recipe test failed from a missing json import; the import was corrected and all 72 focused checks passed. New native controls/archive facts are modeled; actual Compose config parsing is offline. The six additional source methods run genuine memory-only auth, signed ingestion and processing. No service, container, VM, dependency install or live migration occurred. Earlier receipts/freezes remain intact; unchanged 48-scenario inputs do not add independent accuracy evidence."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-110dfa9875d54373a40c4a38fc92424e.json",
+      "note": "Full current source passed 1,389 core, three offline fault, 65 reference and five memory-only TLS methods: 1,462 Python total plus 62 distinct Node methods. All configuration/migration/lint/format/publication/ACL syntax checks passed with unchanged selected source. Twenty-two new methods use hostile input/kernel/recipe models, socket/process doubles and byte streams. An initial fixture failed because Windows lacks Linux SIGKILL; the Linux-only forced-stop model was corrected without changing native cleanup. Exact actual Compose parsing uses a placeholder image ID and no daemon. No source or scanner process, Docker/VM, install or live migration ran. The unchanged 48-scenario repeat adds no independent accuracy evidence; earlier results remain retained."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-0855ae22795a4bdbb02873c56d6c1d6d.json",
+      "note": "One integrity method failed because the milestone still referenced the previous evaluation while DATA identified the new scanner-revalidation freeze. Other full groups passed. Corrected only the maintained evaluation receipt pointer and preserved this failed run; no detector, label, source code or assertion changed. A complete repeat was required."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-5818b1aca98c464eb823ae8c984bc058.json",
+      "note": "Complete current-source repeat passed 1,402 core, three offline-fault, 65 reference and five memory-only TLS methods: 1,475 distinct Python plus 62 Node. Configuration, migrations, lint/format, publication and ACL syntax passed. Thirteen new scanner archive methods use synthetic bytes; no scanner or service ran. Initial development fixtures exposed an incorrect expected call count, deferred malformed-entry rejection, a missing test import and Python 3.14 private temporary-folder ACL restrictions. Corrected typed input validation and synthetic fixture setup under the authorized checkout; native private ACL requirements stayed unchanged. Inaccessible temporary remnants were not deleted or permissions expanded. Earlier failures and the six false alerts/eight misses/seven inconclusives remain recorded."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-4903d7d4888e4dcbac239a4a8589ee0a.json",
+      "note": "The full current-source round passed 1,429 core, three offline-fault, 65 reference and five memory-only TLS methods: 1,502 distinct Python plus 62 distinct Node. Configuration, migration consistency, lint/format, publication and ACL syntax passed with unchanged source. Twenty-seven new methods model completed source archives, daemon/runtime facts, process replies and a bounded clock. Checks exposed a startup-order requirement: release the validated once-only input gate after container creation/runtime validation and before startup. Actual offline parsing verifies the corrected SB_SCANNER variable names through the new controller command. The main controller never kills an independent guard whose reply is delayed. No Docker/VM/service, ACL change, download, installation or live migration occurred. Detection inputs and six false alerts/eight misses/seven inconclusives are preserved."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-b95d414604984c82bd25fde501f10bf1.json",
+      "note": "The full current-source console round passed 1,444 core, three offline-fault, 65 reference and five memory-only TLS methods: 1,517 distinct Python plus 62 distinct Node. Configuration, migrations, lint/format, publication and ACL syntax passed with unchanged selected source. Fifteen new methods use synthetic host/archive facts and disposable SQLite. The importer requires both current app permissions and eight exact existing native events; it writes two scope-separated historical CheckRuns atomically, rejects conflicts and creates no event, finding, case or remediation decision. Console rendering is tested with Django's client, not a browser walkthrough. A focused lint check identified a blind exception assertion and unused/unordered imports; corrected before the new freeze/full run. No service/daemon/VM, ACL change, installation, native operator import or live migration occurred."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-1b30177c81874e2fb83bfc1e9ca55a12.json",
+      "note": "Rotation round passed 1464 core, three offline-fault, 65 reference and five memory-only TLS methods: 1,537 distinct Python plus 62 distinct Node. Configuration, migration drift, lint/format, publication and ACL syntax checks passed with unchanged selected source. Twenty new methods use reduced file bounds and disposable SQL/files; native-format imports remain modeled observations. No service, container, VM, package installation, ACL expansion, live migration or native import ran. The new freeze repeats the same selected 48 scenarios; it does not add independent accuracy evidence."
+    },
+    {
+      "receipt": "docs/evidence/20261002-enterprise-offline-f18c899868e849a889ca247133f2fbef.json",
+      "note": "Bootstrap preparation round passed 1495 core, three offline-fault, 65 reference and five memory-only TLS methods: 1,568 distinct Python plus 62 distinct Node. All recorded checks passed with unchanged selected source. Thirty-one new methods cover configuration, idle SQL/file snapshots and modeled native-output supervision. No services, containers, VMs, package installations, ACL expansion, live migrations or native operator import ran. The fresh 48-scenario freeze repeats existing inputs and labels; no independent statistical evidence was added."
+    },
+    {
+      "receipt": "docs/evidence/20261003-enterprise-offline-53e8b20e277444fc9a94a41860d675dd.json",
+      "note": "Refinement passed 1,734 distinct Python methods and 62 distinct Node methods plus all recorded checks. Retained the prior label-assertion failure; matched the assertion to the intentional ingestion label. Fixed native receipt admission binding, instrumented provenance and presentation. Historical results preserved; no native launch or new detection accuracy evaluation."
     }
   ],
   "native_source_stage_plan": "integrations/enterprise/reference-stage-plan.json",
-  "current_ci_receipt": "docs/evidence/20261001-github-ci-publication.json"
+  "current_ci_receipt": "docs/evidence/20261001-github-ci-publication.json",
+  "learning_checkpoints": [
+    {
+      "topic": "Trace one observation through the pipeline",
+      "prompt": "Why do an exact private-record response, an acknowledged outbox event, a processed console record and an R3 case establish different things? Trace the removal and read event IDs, and identify which native proof is still missing.",
+      "ai_reference_answer": "The response establishes the narrow source read result. Acknowledgement establishes accepted ingestion, not completed detection. Processing and the exact R3 evidence link the removed subject to a later allowed read. The October 2 native HTTPS/PostgreSQL source run recorded these bindings and both shutdowns. It did not establish Wazuh execution, continuous delivery or independent remediation review.",
+      "human_assessment": "Not submitted or independently assessed."
+    },
+    {
+      "workstream": "Source runtime and certificate preparation",
+      "prompt": "Explain what a successful memory-only TLS test proves, and identify the additional evidence required before saying the lab enforces the same controls during a real source run.",
+      "ai_reference_answer": "The real TLS engine accepted the explicit short-lived CA and loopback identity and rejected wrong address, unrelated CA and expiry. That does not establish application authorization, PostgreSQL behavior or native container isolation. Those require actual HTTP observations tied to source/console records, effective Docker/kernel evidence and both shutdown receipts. The current host/kernel controls were tested with hostile models; local administrator tampering remains outside this evidence boundary.",
+      "human_submission": "not_submitted"
+    },
+    {
+      "workstream": "Monitor the monitoring",
+      "prompt": "The queue is empty, one configured worker pulse is missing, and the processing latency sample has zero records. What can you conclude, and what would you check before saying the system is healthy?",
+      "ai_reference_answer": "There is no retained pending work and no valid latency sample. A missing expected pulse needs investigation; an empty queue cannot prove source delivery or successful detection. Check whether the lab is intended to run, configured worker names/processes, last accepted and processed records, source heartbeat evidence, and independent collector/tool receipts. Do not invent zero latency or call local export native tool delivery.",
+      "human_submission": "not_submitted"
+    },
+    {
+      "workstream": "Identity versus permission",
+      "prompt": "Keycloak authenticates a user who has a reviewer-looking provider role claim, but SignalBridge links the subject to a local viewer account. What may the user do? What evidence would prove immediate withdrawal without claiming native SSO was tested?",
+      "ai_reference_answer": "Identity alone does not grant app access. Explicit local app memberships remain authoritative, so the viewer may inspect only their app and cannot write or review. Local policy tests verify issuer/subject matching, denial after link/account/role withdrawal and a fresh transaction check after initial request admission. These are not signed-token or Keycloak/MFA executions. Those require the established client and native identity lab, plus retained negative controls.",
+      "human_submission": "not_submitted"
+    },
+    {
+      "workstream": "Verify a correction, not just close a review",
+      "prompt": "A removed member gets 403 after a fix, but the owner control also gets 403. Can you verify remediation? What must a matching receipt and an independent reviewer establish?",
+      "ai_reference_answer": "No: blocking everyone can pass a denial check while breaking legitimate access. Repeat the same removed-account/resource request and an owner read after correction. Bind the original removal/read and retest to the same app, pseudonyms, resource and episode; preserve incomplete runs. An independent current reviewer records a bounded decision. A historical lab approval does not establish current deployment health.",
+      "human_submission": "not_submitted"
+    },
+    {
+      "workstream": "Native observation versus forwarded detection",
+      "prompt": "The imported record uses Wazuh rule 100222 and includes a SignalBridge R3 evidence digest. Which engine found the revocation mismatch? Does a matching operator-supplied archive prove Wazuh is currently running? What additional evidence would you require?",
+      "ai_reference_answer": "SignalBridge correlated effective removal with a later allowed read. Rule 100222 is a forwarded core signal, not independent Wazuh rediscovery. Exact file/packet/rule/checkpoint matching proves consistency within the trusted local operator boundary; it does not attest execution or current health. Require a source-bound native run with retained input/output, effective configuration, process observations, reconciled counts and fresh collector heartbeats. Delivery and detection accuracy remain separate measures.",
+      "human_submission": "not_submitted"
+    },
+    {
+      "workstream": "Authenticated coverage and equivalent passive retest",
+      "prompt": "A member's captured document response is missing nosniff; the owner response is protected and a cross-app request is denied. After reset the same requests are repeated and ZAP rule 10021 is absent. What would this establish after a genuine native run? Does it establish that all authorization is secure, or that ZAP's login engine was tested? What if one request returned 503?",
+      "ai_reference_answer": "A source-bound completed native run can establish the one declared header finding and an equivalent correction, with independently checked identity and finite request coverage. It cannot establish complete application security, broad scanning or ZAP-managed authentication. Real source login is separate from offline analysis of credential-free captures. A 503 is incomplete coverage, not a clean result; preserve the failure and repeat the control. Current API observations are modeled and neither source nor scanner runtime is attested.",
+      "human_submission": "not_submitted"
+    },
+    {
+      "workstream": "Separate request coverage, source delivery and scanner execution",
+      "prompt": "The source profile has ten scan captures, two restoration reads, six authentication requests and eight processed events. Explain why the counts differ. Which additional evidence permits a native ZAP finding claim?",
+      "ai_reference_answer": "Identity and login checks do not emit private-read events. Each phase has three private reads and two identity observations; six captured resource reads plus two restoration reads emit eight events. Complete signed ingestion and worker processing establish delivery for that run, not scanner execution. A native ZAP claim additionally needs the actual isolated process, compatible add-ons, bound native history/alert records, an equivalent clean retest and verified shutdown. Current local proofs and modeled archive checks cannot substitute for these executions.",
+      "human_submission": "not_submitted"
+    },
+    {
+      "workstream": "Native process and incomplete coverage",
+      "prompt": "The first phase has a bound 10021 finding, but ZAP needs a forced stop or the retest loads different add-on versions. Can you record a completed equivalent retest? Which retained artifacts would you inspect?",
+      "ai_reference_answer": "No. Retain the finding as an observed claim for its bounded phase, but mark the overall run incomplete. Inspect original source/capture hashes, unfiltered API transcript and native message/event bindings, queue completion, installed versions, process logs and both shutdown receipts. A forced stop or changed scanner environment invalidates the declared comparison. Current lifecycle tests use doubles and do not establish that a native process ran.",
+      "human_submission": "not_submitted"
+    },
+    {
+      "workstream": "Evidence consistency versus native execution",
+      "prompt": "A saved archive has matching hashes, valid tool message IDs and a recomputed finding. What does that establish, and what additional evidence is needed before claiming native ZAP execution or a verified fix?",
+      "ai_reference_answer": "It establishes internal consistency of the declared bounded observation and retest. A trusted operator must also verify the genuine source run and current input, exact cached tool and effective isolated runtime, actual execution and both shutdowns. An administrator can fabricate consistent files. Even genuine header correction is one control, not complete application security or a verified authorization fix. Current tampering checks use synthetic archives and preserve attestation flags as false.",
+      "human_submission": "not_submitted"
+    },
+    {
+      "workstream": "Safe startup and shutdown evidence",
+      "prompt": "The created scanner container matches its declared isolation, but the independent shutdown guard's reply is missing. Can you mark the run accepted? Why check source evidence again at completion?",
+      "ai_reference_answer": "No. Isolation at creation does not establish completed execution or both required shutdowns. Keep the run incomplete and allow the independent finite guard to continue; never kill it to make cleanup appear complete. Revalidate the original source run, hashes, scope and shutdown so altered or stale evidence cannot be used as the scanner's input proof. Current methods model those facts; native observation still requires the separately reviewed launch.",
+      "human_submission": "not_submitted"
+    },
+    {
+      "workstream": "Tool finding versus authorization remediation",
+      "prompt": "A native header review reproduces one missing-nosniff finding and the corrected capture is clean for that rule. Can it verify an R3 removed-member access fix or establish current health? Why does import require both app scopes yet save separate results?",
+      "ai_reference_answer": "No. It verifies one historical header control under the declared fixed profile, not permission withdrawal, broader scanner coverage or current health. R3 remediation requires the original matching removal/read, corrected denial, surviving owner access and independent reviewer. Import validates all fixed positive/negative controls using current permissions for both scopes, then saves only each application's event identifiers. The local CLI operator remains trusted; naming an account for permission context does not constitute an analyst's own written investigation.",
+      "human_submission": "not_submitted"
+    },
+    {
+      "ai_reference_answer": "Revoking only existing browser sessions leaves a race: a pending authorization reply could create a new local session using the old provider session. A scoped logout record and serialized admission prevent this locally, while allowing a genuinely new provider session. Current sequential tests do not prove signed-token validation or native concurrency.",
+      "topic": "Provider logout and a delayed login reply",
+      "prompt": "Why must a logout notice also block an older login reply that arrives afterward?",
+      "human_assessment": "Not submitted or independently assessed."
+    },
+    {
+      "topic": "Why does an SSO callback use different request validation?",
+      "prompt": "Explain why ordinary case updates need CSRF tokens while a provider callback requires browser-bound one-time state, PKCE and a verified token. Which claims still need a real Keycloak run?",
+      "ai_reference_answer": "The provider cannot supply the console CSRF token. The callback instead consumes a short-lived state bound to its browser/issuer, exchanges a code with a server-held PKCE verifier, and checks nonce plus signed issuer/audience/expiry/MFA claims before local authorization. A modeled provider response proves routing policy only; it does not prove library validation, actual MFA, browser cookie behavior or native concurrency.",
+      "human_assessment": "Not submitted or independently assessed."
+    }
+  ],
+  "current_offline_receipt_status": "Final source with the accessibility fixes, the AccessOps leaver receiver and the Shuffle fixes (2026-10-05) passed all 16 offline checks: 2,097 Python test methods (1,987 Django, 78 reference app, 16 identity profile, 13 certificate and ES256, 3 fault) and 67 Node tests with none skipped or failed, plus Django checks, migration consistency, lint/format, the publication scan and ACL syntax. An earlier run failed only its format check on a generated migration; that receipt is retained. No native labs, services or provider were started by verification.",
+  "reference_launch_preparation": {
+    "status": "passed_native_reference_access",
+    "launcher": "scripts/enterprise_reference_verify.py",
+    "fixed_profile": "integrations/enterprise/reference-stage-plan.json",
+    "profile_note": "The static source snapshot plan predates this completed full receipt. Current execution/check status is assigned here without changing that recorded source profile.",
+    "capacity_snapshot": {
+      "available_memory_bytes": 16198467584,
+      "free_disk_bytes": 77103857664,
+      "measured_on": "2026-10-02",
+      "probe": "Read-only GlobalMemoryStatusEx and filesystem free space; not reserved capacity. Recheck at reviewed startup."
+    },
+    "acceptance": "Genuine HTTPS/PostgreSQL source execution: 31 controls, 23 source/processed events, one R3 case, reset/restoration and both shutdowns verified.",
+    "attempt_receipts": [
+      "docs/evidence/20261002-reference-access-ad6f0a4aff894c73ae1759b4fec4d84e.json",
+      "docs/evidence/20261002-reference-access-02cb12391e284b4480a5dc9a0db9419d.json",
+      "docs/evidence/20261002-reference-access-b8667b816ce8419da7f3d5d9ac9d6ad6.json"
+    ],
+    "acl_regression": "docs/evidence/20261002-native-reference-acl-fba00534c5094a0eaf9cc3e272c99121.json",
+    "diagnosis": "docs/evidence/20261002-reference-startup-diagnosis.json",
+    "additional_preflight_correction": {
+      "problem": "Native evidence inventory omitted the retained soc-delivery tree that the exporter creates. Offline fixtures previously copied only the immutable snapshot.",
+      "change": "Require both trees, validate retained segment paths, bounded inventory, byte counts and hashes against the snapshot manifest. Test archives now include actual generated outbox files.",
+      "verification": "20 reference_lab.test_reconciliation tests passed; modified Python files pass Ruff.",
+      "source_sha256": "0ea37d13d1b300a26a78255a73d4a60d51b1fc425e26c2f39a723db3114baf42",
+      "native_status": "passed_recorded_run",
+      "pending_approval": "Approved and used; no new source launch authorized by this status."
+    }
+  },
+  "historical_source_preparation_receipt": "docs/evidence/20261002-reference-runtime-preparation-85c0c273ad7d457399a7cc87c665cbed.json",
+  "operational_monitoring_preparation": {
+    "status": "locally_verified_native_pending",
+    "plan": "integrations/monitoring/preparation.json",
+    "verification_receipt": "docs/evidence/20261002-enterprise-offline-af599fa371c84233bcf85dd91e02d84a.json",
+    "application_test_methods": 27,
+    "native_execution": "not_run",
+    "live_migrations": "not_applied"
+  },
+  "identity_policy_preparation": {
+    "status": "local_policy_and_actual_library_checks_passed_native_provider_unfinished",
+    "policy_methods": 38,
+    "advisory_and_dependency_plan": "integrations/identity/dependency-stage.json",
+    "dependency_installation": "completed_in_separate_approved_environment",
+    "native_keycloak": "not_run",
+    "protocol_validation": "19_actual_library_signature_and_client_methods_passed_token_HTTP_modeled",
+    "backchannel_logout": "actual_signature_adapter_and_replay_checks_passed_with_synthetic_tokens; genuine_provider_execution_unrun",
+    "live_migrations": "not_applied",
+    "scope": "Trusted local operator and already-validated internal identity contract. The contract dataclass is not cryptographic evidence.",
+    "verification_receipt": "docs/evidence/20261002-enterprise-offline-fb9dc6b7885e402fa565e554c74271fb.json",
+    "human_handoff_review": "var/audit/enterprise-handoff/final-review.json",
+    "protocol_adapter": "integrations/identity/protocol.py",
+    "protocol_tests": "integrations/identity/protocol_tests.py",
+    "dependency_controller": "scripts/prepare_identity_runtime.py",
+    "dependency_controller_preflight": "Historical metadata preflight passed; separate approved environment was subsequently created. See dependency_receipt.",
+    "unverified_protocol_boundary": "Actual Authlib/JOSE client and signature checks passed with modeled token HTTP replies. Native Keycloak MFA/logout, browser cookie behavior, public-key rotation, PostgreSQL identity races and reviewed TLS launch remain required.",
+    "reference_sources": [
+      "https://github.com/authlib/authlib/blob/v1.8.0/authlib/integrations/django_client/apps.py",
+      "https://github.com/authlib/authlib/blob/v1.8.0/authlib/oidc/core/claims.py",
+      "https://jose.authlib.org/en/guide/jwt/",
+      "https://openid.net/specs/openid-connect-backchannel-1_0.html"
+    ],
+    "prepared_source_sha256": "a10678a80690665c79fe332fbf4d9b3efe166463a43cb198cabcb094aa3c504d",
+    "updated_at": "2026-10-02T22:50:12.040711+00:00",
+    "flow_policy_methods": 19,
+    "focused_policy_total_methods": 71,
+    "flow_policy_receipt": "docs/evidence/20261002-identity-state-policy.json",
+    "state_consumption": "issuer_and_browser_bound_single_use_policy_verified; opt_in_callback_implemented_native_provider_unrun",
+    "native_race_test_file": "tests/test_postgres_identity.py",
+    "native_race_methods_prepared": 3,
+    "native_race_methods_executed": 0,
+    "operator_policy_methods": 14,
+    "operator_policy_receipt": "docs/evidence/20261002-identity-operator-policy.json",
+    "operator_recovery": "implemented_locally_verified; no_live_account_changed",
+    "registry_retention": "bounded_preview_apply_command_locally_verified; native_operation_and_schedule_unverified",
+    "http_preparation_receipt": "docs/evidence/20261002-identity-http-preparation.json",
+    "http_configuration_transport_methods": 27,
+    "combined_focused_methods_including_existing_deadlines": 108,
+    "oidc_client": "Authlib_Django_adapter_executed_with_modeled_token_HTTP_replies_native_provider_unrun",
+    "callback": "opt_in_form_post_one_time_state; modeled_provider_checks_passed",
+    "optional_test_modules": [
+      "integrations.identity.protocol_tests",
+      "integrations.identity.client_tests"
+    ],
+    "optional_test_methods_prepared": {
+      "protocol_tests.py": 13,
+      "client_tests.py": 6
+    },
+    "dependency_receipt": "docs/evidence/20261002-identity-dependencies-2d151d900f1745688c762d215237fb92.json",
+    "optional_execution_receipt": "docs/evidence/20261002-analyst-delivery.json"
+  },
+  "case_verification_preparation": {
+    "status": "implemented_local_checks_passed_native_unfinished",
+    "profile": "reference-access-v2",
+    "application_policy_methods": 33,
+    "new_reference_methods": 2,
+    "new_postgresql_races": 2,
+    "native_postgresql_races": "not_run",
+    "native_source_retest": "not_run",
+    "live_migration": "not_applied",
+    "operator_import": "requires existing native case/events; does not fabricate them",
+    "scope": "Historical document-lab R3 correction only; not current deployment health or generic remediation coverage.",
+    "verification_receipt": "docs/evidence/20261002-enterprise-offline-edc3428f772d4dfcb97b6e7b5eae9684.json",
+    "source_profile_controls": 31,
+    "source_profile_logical_events": 23,
+    "human_handoff_review": "var/audit/enterprise-handoff/final-review.json"
+  },
+  "wazuh_enterprise_preparation": {
+    "status": "final_native_collection_attempt_failed_preloaded_snapshot_launcher_retired",
+    "application_methods": 34,
+    "profile": "integrations/wazuh_enterprise/signalbridge_rules.xml",
+    "contract": "integrations/wazuh_enterprise/contract.py",
+    "publish_bounds": "25 cases per sweep; 100 observation events per batch; 128 KiB batch / 16 MiB stream; signals contain at most 25 evidence UUIDs with full evidence digest and explicit truncation.",
+    "import_bounds": "100 complete records per transaction; 16 KiB record, 4 MiB segment, eight sequential segments per kind/app/run.",
+    "native_wazuh": "daemons_ran_zero_of_24_inputs_collected_no_accepted_collection_proof",
+    "native_postgresql": "not_run_for_new_models_and_queries",
+    "live_migration": "not_applied",
+    "operator_import": "not_run",
+    "continuous_collector": "not_implemented",
+    "outbound_rotation": {
+      "status": "implemented_locally_checked_native_unfinished",
+      "verification_receipt": "docs/evidence/20261002-enterprise-offline-1b30177c81874e2fb83bfc1e9ca55a12.json",
+      "feature_flag": "SB_SOC_SEGMENTED_EXPORT=1",
+      "fresh_streams_only": true,
+      "maximum_segments_per_app_channel": 8,
+      "segment_capacity_bytes": 2097152,
+      "maximum_logical_bytes_per_stream": 16777216,
+      "automatic_deletion": false,
+      "local_methods": 20,
+      "native_collector_rotation": "not_run",
+      "native_postgresql_migration_concurrency": "not_run"
+    },
+    "runtime_attestation_and_heartbeat": "kernel_controls_and_process_heartbeat_observed_on_final_attempt; not_external_attestation_or_collection_acceptance",
+    "verification_receipt": "docs/evidence/20261002-enterprise-offline-f18c899868e849a889ca247133f2fbef.json",
+    "assurance_boundary": "Trusted local database/file operator; native-format matches do not establish a running manager or independent R3 rediscovery.",
+    "human_handoff_review": "var/audit/enterprise-handoff/final-review.json",
+    "collector_bootstrap": {
+      "status": "final_native_attempt_incomplete_launcher_retired",
+      "recipe": "integrations/wazuh_enterprise/collector-stage-plan.json",
+      "local_snapshot_command": "prepare_wazuh_collector --run-id <canonical-UUID> --local-database-operator",
+      "fixed_apps": [
+        "documents",
+        "expenses"
+      ],
+      "fixed_channels": [
+        "observation",
+        "detection"
+      ],
+      "explicit_input_files": 32,
+      "maximum_logical_input_records": 128,
+      "maximum_input_bytes": 131072,
+      "native_driver_seconds": 600,
+      "required_independent_host_shutdown_seconds": 900,
+      "memory_bytes": 1610612736,
+      "cpus": 1,
+      "native_network": "none",
+      "local_preparation_methods": 21,
+      "local_bootstrap_methods": 10,
+      "launch_authorized": false,
+      "native_execution": "daemons_ran_collection_failed_0_of_24",
+      "host_controller": "natively_executed_then_retired; no further launch authorized",
+      "private_host_acl": "checked_before_native_execution; retained run and raw private evidence identify exact scope",
+      "genuine_source_attestation": "executed_23_observations_one_forwarded_signal_bound_to_native_reference_receipt",
+      "source_export_action": "fixed_console_only_action_stages_23_observations_and_one_forwarded_R3_then_captures_immutable_snapshot",
+      "snapshot_destination": "private_source_run_evidence_mount_only_fixed_paths",
+      "live_export_appends": "one_current_idle_snapshot_is_generated_during_source_proof;_continuous_publishing_not_implemented",
+      "collector_rotation_recovery": "unfinished",
+      "native_output_rotation": "fails_as_incomplete_preserving_last_valid_bytes",
+      "verification_receipt": "docs/evidence/20261002-enterprise-offline-f18c899868e849a889ca247133f2fbef.json",
+      "latest_attempt_receipt": "docs/evidence/20261003-wazuh-reference-bootstrap-009bc11e4fe649649d7dd44887be8b72.json",
+      "diagnosis_receipt": "docs/evidence/20261003-wazuh-final-attempt-diagnosis.json"
+    },
+    "source_snapshot_receipt": "docs/evidence/20261002-reference-access-b8667b816ce8419da7f3d5d9ac9d6ad6.json"
+  },
+  "zap_authenticated_preparation": {
+    "status": "local_checks_passed_native_unfinished",
+    "profile": "signalbridge-reference-authenticated-headers-v1",
+    "source_methods": 18,
+    "capture_and_api_methods": 22,
+    "requests_per_phase": 5,
+    "phases": [
+      "fault",
+      "corrected"
+    ],
+    "actual_source_events_in_memory_complete_exercise": 8,
+    "planned_source_transport": "Existing fixed HTTPS client with explicit lab CA, finite shared budget and observed HTTP/1.0 or HTTP/1.1 response version.",
+    "har_policy": "No login POST, cookies or authorization; exact known bodies and allowlisted actual response headers; placeholder timing; native ZAP imports with sendRequests=false and maxMessages=5.",
+    "passive_rule_scope": [
+      "10021"
+    ],
+    "fault": "Fixed member/document header only, 1-600 seconds; cleanup on failure and unchanged owner/cross-app controls.",
+    "contract": "integrations/zap_enterprise/capture.py",
+    "api_adapter": "integrations/zap_enterprise/passive.py",
+    "native_recipe_controller": "source_and_scanner_host_controllers_implemented_locally_checked_not_launched",
+    "native_source": "not_run",
+    "native_zap": "not_run",
+    "installed_addon_capability": "not_observed",
+    "live_migration": "not_applied",
+    "console_import": "implemented_locally_checked_native_execution_unrun",
+    "native_zap_login_engine": "outside_this_fixed_capture_profile",
+    "verification_receipt": "docs/evidence/20261002-enterprise-offline-b95d414604984c82bd25fde501f10bf1.json",
+    "human_handoff_review": "var/audit/enterprise-handoff/final-review.json",
+    "native_profile_control_methods": 9,
+    "source_recipe": "integrations/enterprise/compose.header.yaml",
+    "native_source_controller": "implemented_locally_checked_not_launched",
+    "native_source_stage_plan": "integrations/zap_enterprise/source-stage-plan.json",
+    "native_scanner_driver": "implemented_locally_checked_not_executed",
+    "native_scanner_recipe": "integrations/zap_enterprise/compose.scanner.yaml",
+    "native_scanner_stage_plan": "integrations/zap_enterprise/scanner-stage-plan.json",
+    "scanner_runtime_methods": 22,
+    "scanner_host_evidence_methods": 13,
+    "scanner_scoped_local_methods": 126,
+    "raw_scanner_evidence_verifier": "implemented_locally_checked_file_consistency_only",
+    "scanner_host_control_and_source_transfer_methods": 27,
+    "native_scanner_controller": "scripts/enterprise_zap_verify.py",
+    "native_source_transfer": "implemented_locally_checked_requires_completed_genuine_source",
+    "independent_scanner_shutdown_guard": "implemented_locally_checked_not_executed",
+    "native_console_import_methods": 15,
+    "native_console_import_command": "import_zap_enterprise --run-id <completed-run> --user-id <permission-account> --dry-run",
+    "native_operator_import": "not_run"
+  },
+  "native_header_source_stage_plan": "integrations/zap_enterprise/source-stage-plan.json",
+  "reference_header_launch_preparation": {
+    "status": "requested_awaiting_explicit_reply",
+    "launcher": "scripts/enterprise_reference_verify.py launch --profile header",
+    "fixed_profile": "integrations/zap_enterprise/source-stage-plan.json",
+    "offline_compose_parse": "passed_using_installed_cli_no_daemon",
+    "capacity_snapshot": {
+      "free_disk_bytes": 77103857664,
+      "available_physical_memory_bytes": 16198467584,
+      "measured_at": "2026-10-02T15:58:10-05:00",
+      "probe": "Read-only Windows memory API and filesystem free space; not reserved capacity. Recheck before launch."
+    },
+    "acceptance": "Actual private ACL/container/kernel/TLS/PostgreSQL evidence, eight reconciled source events, reset, child-process shutdown and both host shutdown receipts remain required. This is not the permission-revocation profile or native ZAP acceptance.",
+    "human_handoff_review": "var/audit/enterprise-handoff/final-review.json"
+  },
+  "zap_scanner_preparation": {
+    "status": "host_controller_prepared_requires_genuine_source_and_review_not_authorized",
+    "plan": "integrations/zap_enterprise/scanner-stage-plan.json",
+    "driver": "integrations/zap_enterprise/scanner_runner.py",
+    "local_methods": 77,
+    "actual_offline_recipe_parse": "passed_real_controller_command_placeholder_image_id_no_daemon",
+    "native_scanner": "not_run",
+    "native_input_transfer": "implemented_locally_checked_no_genuine_source_available",
+    "effective_container_and_host_controller": "implemented_locally_checked_not_executed",
+    "independent_scanner_watchdog": "implemented_locally_checked_not_executed",
+    "raw_native_evidence_verifier": "implemented_locally_checked_file_consistency_only_not_native_attestation",
+    "verification_receipt": "docs/evidence/20261002-enterprise-offline-b95d414604984c82bd25fde501f10bf1.json",
+    "human_handoff_review": "var/audit/enterprise-handoff/final-review.json",
+    "driver_runtime_methods": 22,
+    "evidence_revalidation_methods": 13,
+    "evidence_verifier": "integrations/zap_enterprise/scanner_host_evidence.py",
+    "host_control_and_source_transfer_methods": 27,
+    "controller": "scripts/enterprise_zap_verify.py",
+    "source_transfer": "integrations/zap_enterprise/source_transfer.py",
+    "offline_recipe_parse_receipt": "var/enterprise/runs/e43f5b28c4504e3586d959b9a4cce05e/preparation.json",
+    "native_console_import_methods": 15,
+    "console_import": "implemented_locally_checked_not_run"
+  },
+  "reliability_measurement_preparation": {
+    "status": "fixed_proposal_and_measurement_implemented_native_unfinished",
+    "receipt": "docs/evidence/20261002-reliability-measurement-preparation.json",
+    "profile_sha256": "f03078968e733a401b4e687aa34dfb7bcc5b238fede6b1080651962a96f6cd41",
+    "synthetic_test_methods": 19,
+    "schedule": "47,760 observations; 23,880 per app. Separate paced HTTPS source driver implemented with session renewal, durable request intents and exact outbox binding. Eleven focused methods include an explicitly accelerated schedule; actual 24-hour execution remains unrun.",
+    "claim_boundary": "A content-matching ledger or supplied duration cannot certify wall-clock execution; native acceptance is always explicitly unestablished by this component.",
+    "pending": [
+      "Reviewed launch profile, capacity/headroom checks and independent runtime watchdog.",
+      "Native source HTTP observations, exact outbox/database/tool snapshots and artifact hashes.",
+      "Measured monotonic 24-hour span, clock alignment, actual interruptions and recoveries.",
+      "Two active worker identities and physical executions, including rolled-back attempts.",
+      "Exact case/task identity reconciliation, idempotency and lost-reply evidence.",
+      "Separate PostgreSQL/delivery-state restoration and a working restored application.",
+      "Main and independent shutdown evidence, fault reset and final capacity readings."
+    ],
+    "approval": "Source retry and isolated SSO dependencies approved separately on October 2; no 24-hour launch approval."
+  },
+  "wazuh_capture_preparation": {
+    "status": "implemented_and_locally_checked_native_unfinished",
+    "receipt": "docs/evidence/20261002-wazuh-capture-preparation.json",
+    "scope": "Durable capture and collector/host wiring. Actual disposable files, hardlinks and SQLite; modeled native data and runtime facts.",
+    "native_execution": "attempted_incomplete_zero_records_captured; historical modeled checks remain valid only for their scope",
+    "remaining": "Retired preloaded-snapshot launch is not retryable. Empty-file readiness and bounded publisher are being prepared separately; continuous collection, native recovery, compressed old-generation discovery and the 24-hour run remain unfinished.",
+    "latest_attempt_receipt": "docs/evidence/20261003-wazuh-reference-bootstrap-009bc11e4fe649649d7dd44887be8b72.json"
+  },
+  "native_reference_access": {
+    "status": "passed_recorded_native_source",
+    "receipt": "docs/evidence/20261002-reference-access-b8667b816ce8419da7f3d5d9ac9d6ad6.json",
+    "source_events": 23,
+    "processed_events": 23,
+    "http_controls": 31,
+    "cases": 1,
+    "restoration_verified": true,
+    "both_shutdowns_verified": true,
+    "docker_desktop_stopped": true,
+    "limits": "Synthetic reference apps and one fixed injected defect; copied BetTail adapter and independent remediation review remain unfinished."
+  },
+  "analyst_delivery": {
+    "walkthrough": "portfolio/access-assurance.html",
+    "public_data": "portfolio/access-assurance.json",
+    "brief_route": "/investigations/<case_id>/brief/",
+    "receipt": "docs/evidence/20261002-analyst-delivery.json",
+    "ownership": "AI-assisted implementation; saved analyst notes remain separate from AI speaking prompts."
+  },
+  "identity_native_preparation": {
+    "plan": "integrations/identity/native-stage-plan.json",
+    "status": "approved_acquisition_stopped_docker_startup_crash_no_native_execution",
+    "local_checks": "Current whole-source offline receipt: 1,835 Python and 67 Node methods. Startup-only diagnostic/guard: 30 focused modeled methods; no corrected startup or native provider execution.",
+    "remaining": "Resolve coexistence with preserved other-project workloads and review startup/acquisition recovery before any fresh native authorization. Genuine provider/browser/MFA/rotation and PostgreSQL identity acceptance remain required.",
+    "host_controller_draft": {
+      "location": "var/audit/identity-controller-draft",
+      "status": "historical_draft_superseded_by_promoted_controller",
+      "focused_methods_passed": 8,
+      "boundary": "No Docker, download, host trust changes or persisted certificates in these checks.",
+      "remaining": "Original draft retained for recovery; current implementation and remaining work are described by host_controller and readiness_receipt."
+    },
+    "host_controller": "scripts/enterprise_identity_verify.py",
+    "readiness_receipt": "docs/evidence/20261003-keycloak-launch-readiness.json",
+    "native_http_control_count": 26,
+    "latest_attempt_receipt": "docs/evidence/20261003-keycloak-startup-stopped.json"
+  },
+  "wazuh_native_console_delivery": {
+    "status": "implemented_locally_verified_native_receipt_pending",
+    "command": "import_wazuh_native --run-id <completed-run> --app <documents-or-expenses> --user-id <authorized-account> --dry-run",
+    "scope": "Historical native receipt with exact source/native binding, app isolation and unmatched local evidence visible. Never a live connector or an authorization-check result.",
+    "focused_methods_passed": 65,
+    "new_methods": 16,
+    "integration_query_budget": 8,
+    "native_import_executed": false
+  },
+  "wazuh_native_attempts": {
+    "status": "final_attempt_failed_collection_old_launcher_retired",
+    "latest_run_id": "009bc11e4fe649649d7dd44887be8b72",
+    "native_processes_observed": true,
+    "observations_archived": 0,
+    "expected_inputs": 24,
+    "next_attempt": "none_authorized_no_more_retries_of_retired_launcher",
+    "root_receipt": "docs/evidence/20261003-wazuh-final-attempt-diagnosis.json"
+  },
+  "wazuh_ready_publication_preparation": {
+    "status": "finite_controller_implemented_native_execution_unverified",
+    "implementation": "integrations/wazuh_enterprise/ready_publisher.py",
+    "focused_methods_passed": 7,
+    "independent_agent_review": "no_additional_actionable_issue_in_helper_scope",
+    "behavior": "Empty exact input files; per-file zero-counter readiness; complete-record writes; durable source-bound checkpoints; no duplicate complete-record publication on resume; partial records fail without repair.",
+    "remaining": "Alternative shared-engine controller and historical import are scoped checked. One approved shared-profile attempt stopped before Docker calls at capacity guard; no retry authorized. Native collection and continuous recovery/rotation remain unfinished.",
+    "native_state_shape": "Existing proven pilot parser and retained upstream writer source support the shape; fixtures are modeled. No retained raw zero-state from this alternative exists.",
+    "controller": "scripts/enterprise_wazuh_live_verify.py",
+    "native_driver": "integrations/wazuh_enterprise/native_live_collector.py",
+    "receipt": "docs/evidence/20261003-wazuh-ready-publication-preparation.json",
+    "console_import": "implemented_offline_checked_native_unrun",
+    "focused_review_methods_passed": 42,
+    "retained_prior_revision_whole_source_receipt": "docs/evidence/20261003-enterprise-offline-56a599bd936646c9a615f6041c46611b.json"
+  },
+  "code_and_presentation_refinement": {
+    "status": "completed_local_cleanup",
+    "receipt": "docs/evidence/20261003-code-presentation-refinement.json",
+    "native_launches": false,
+    "new_detection_evaluation": false
+  },
+  "identity_startup_incident": {
+    "status": "second_empty_desktop_shutdown_verified_restart_origin_unestablished",
+    "receipt": "docs/evidence/20261003-keycloak-startup-stopped.json",
+    "boundary": "The sampled 4-GiB guard was exceeded during Docker startup; this is not an under-budget successful stage.",
+    "late_start_receipt": "docs/evidence/20261003-docker-late-start-stop.json",
+    "correction_receipt": "docs/evidence/20261003-windows-startup-paths-checks.json",
+    "correction": "ProgramData and SystemDrive preserved; strict absolute-folder/drive-root checks; misplaced cache retained privately. No corrected startup or native identity run.",
+    "latest_workload_observation": "docs/evidence/20261003-docker-late-return-workloads.json",
+    "current_boundary": "Later approved empty-engine check preserved eight running workloads. No Desktop stop requested. Startup-only diagnostic remains held. New Wazuh preservation-profile approval was used but stopped before Docker calls at the 12-GiB cumulative guard. Origin and disk-loss attribution remain unestablished."
+  },
+  "desktop_startup_guard_preparation": {
+    "status": "implemented_offline_checked_not_integrated_or_launched",
+    "implementation": "integrations/enterprise/desktop_startup_guard.py",
+    "receipt": "docs/evidence/20261003-windows-startup-paths-checks.json",
+    "scope": "One reviewed Docker startup/acquisition only; no download or container API. Independent pre-start watchdog and bounded late-start drain. All native calls mocked in tests.",
+    "limits": "Capacity sampling is not a quota, bounded absence does not establish permanent shutdown, and this does not cover an active native lab."
+  },
+  "bettail_adapter_preparation": {
+    "status": "implemented_offline_checked_native_not_pursued_owner_decision",
+    "receipt": "docs/evidence/20261003-bettail-adapter-preparation.json",
+    "implementation": "integrations/bettail_enterprise/",
+    "original_snapshot_unchanged": true,
+    "source_copy": "private_ignored_verified_derivative",
+    "sql_applied": false,
+    "native_runtime_started": false,
+    "remaining": "Native source authorization/storage, mutation/outbox transactions, delivery role/leases, signed ingestion and R3 linkage.",
+    "retained_prior_revision_whole_source_receipt": "docs/evidence/20261003-enterprise-offline-56a599bd936646c9a615f6041c46611b.json"
+  },
+  "desktop_startup_diagnostic_preparation": {
+    "status": "reviewed_offline_checked_held_running_workloads",
+    "driver": "scripts/enterprise_desktop_startup_verify.py",
+    "plan": "integrations/enterprise/desktop-startup-stage-plan.json",
+    "receipt": "docs/evidence/20261003-desktop-startup-diagnostic-preparation.json",
+    "focused_mocked_tests_passed": 30,
+    "native_execution": false,
+    "scope": "One startup-only diagnostic; empty engine then immediate bounded shutdown. No downloads, image queries or containers.",
+    "risk": "Sampled guards can overshoot; prior resource spike cause and late-start origin remain unknown.",
+    "current_blocker": "Eight other running workloads were observed and preserved. No startup or shutdown authority for those workloads; diagnostic admission requires stopped Desktop.",
+    "retained_prior_revision_whole_source_receipt": "docs/evidence/20261003-enterprise-offline-56a599bd936646c9a615f6041c46611b.json"
+  },
+  "offline_verification_attempts": {
+    "same_source_sha256": "f0a7b4e151ff839e4b0707b915541911a9ed06e89ed8cd4493075e48cd6297a2",
+    "failed_sandbox_receipt": "docs/evidence/20261003-enterprise-offline-054e724eb9234ce394b9982d5895b84c.json",
+    "passed_normal_access_receipt": "docs/evidence/20261003-enterprise-offline-56a599bd936646c9a615f6041c46611b.json",
+    "reason": "Three secure-temporary-folder filesystem methods failed under the Windows sandbox; unchanged-source rerun with normal local access passed.",
+    "python_methods": 1835,
+    "node_methods": 67
+  },
+  "preservation_and_key_refresh": {
+    "status": "implemented_scoped_verified_native_unrun",
+    "receipt": "docs/evidence/20261003-preservation-key-refresh-preparation.json",
+    "scoped_methods_passed": 147,
+    "actual_signature_methods_passed": 8,
+    "native_execution": false,
+    "wazuh_plan": "integrations/wazuh_enterprise/ready-publication-stage-plan.json",
+    "wazuh_plan_sha256": "0fd59e30e34cf1c3ee7080a34e2e45daa1b5566ef94346e4a61430955622bd01",
+    "identity": "Static default retained; opt-in fixed-endpoint CA-bound public key refresh has bounded expiry, cooldown and singleflight. Login/logout still require full protocol validation; network replies modeled.",
+    "preservation": "Explicit separate profile; at most eight baseline workloads. Engine/run/code/source/envelopes bound; transient drift remains failure; exact owned-only cleanup and measured late-operation drain. Snapshots are not service-health or administrator-isolation proof.",
+    "remaining": "Native compatibility/collection/preservation, native Keycloak rotation/MFA/browser behavior and all previously listed mandatory gates.",
+    "current_actual_signature_and_client_methods_passed": 27
+  },
+  "wazuh_preservation_attempt": {
+    "status": "stopped_before_docker_calls_capacity_guard",
+    "receipt": "docs/evidence/20261003-wazuh-preservation-preflight-stopped.json",
+    "native_execution": false,
+    "containers_created": 0,
+    "launch_docker_requests": 0,
+    "retry_authorized": false,
+    "free_disk_gib": 46.92,
+    "conservative_cumulative_loss_gib": 28.05,
+    "approved_stage_guard_gib": 12,
+    "cause": "Whole-host loss exceeds approved stage guard; other work is included and cannot be attributed solely to SignalBridge.",
+    "existing_workloads": "Untouched by this launch. Eight active containers were later observed in aggregate storage metadata; no health or baseline-preservation proof."
+  },
+  "identity_resource_isolation": {
+    "status": "implemented_scoped_checked_native_unrun",
+    "receipt": "docs/evidence/20261003-identity-resource-isolation-preparation.json",
+    "host_methods_passed": 26,
+    "root_host_and_driver_methods_passed": 31,
+    "native_execution": false,
+    "remaining": "Existing native identity plan requires re-review after this lifecycle correction; native compatibility/isolation and all identity gates remain unfinished."
+  },
+  "wazuh_capacity_revision": {
+    "status": "approved_attempt_used_preparation_failed",
+    "receipt": "docs/evidence/20261003-wazuh-capacity-revision-preparation.json",
+    "plan": "integrations/wazuh_enterprise/ready-publication-capacity-stage-plan.json",
+    "reviewed_plan_sha256": "9d33c56922fe5d34eae223544a987ff95f11089dd8bba0b2de1f3dc37cbc4f3c",
+    "scoped_methods_passed": 101,
+    "native_execution": false,
+    "launch_authorized": false,
+    "default_growth_guard_gib": 12,
+    "selected_prepared_growth_guard_gib": 30,
+    "retained_starting_disk_bytes": 80498424546,
+    "free_disk_bytes_at_preparation": 50498392064,
+    "available_memory_bytes_at_preparation": 8464347136,
+    "conservative_loss_bytes_at_preparation": 30000032482,
+    "remaining_guard_margin_bytes_at_preparation": 2212222238,
+    "limits": "Same 25 GiB disk and4 GiB memory reserves,1.5 GiB/one CPU collector, no downloads/Desktop changes, unchanged original baseline. Native execution requires fresh exact review/approval. These are sampled guards, not hard quotas.",
+    "attempt_receipt": "docs/evidence/20261003-wazuh-capacity-preservation-stopped.json",
+    "approval_used": true,
+    "retry_authorized": false
+  },
+  "pending_retest_review": {
+    "status": "implemented_disposable_policy_checked_native_concurrency_unrun",
+    "receipt": "docs/evidence/20261003-pending-retest-review-regression.json",
+    "root_methods_passed": 58,
+    "gain": "Repeat valid submissions cannot invalidate a pending independent review or consume its submission history; stale/rejected context still permits a fresh submission.",
+    "remaining": "Native retest demonstration, independent human reviewer and PostgreSQL concurrency remain required."
+  },
+  "wazuh_helper_freeze_and_diagnostics": {
+    "status": "implemented_scoped_checked_native_unrun",
+    "receipt": "docs/evidence/20261003-wazuh-helper-freeze-and-diagnostics.json",
+    "root_methods_passed": 54,
+    "native_execution": false,
+    "retry_authorized": false,
+    "remaining": "Underlying ACL failure diagnosis; fresh reviewed native plan/authorization; all required collection and recovery gates. Historical plans are retained, not launchable against current code."
+  },
+  "private_acl_correction": {
+    "status": "same_frozen_fixture_passed_outside_restricted_execution",
+    "receipt": "docs/evidence/20261003-private-acl-execution-comparison.json",
+    "remaining": "Prepare/review a current Wazuh source manifest and request one exact native launch using the viable execution route; no automatic collector retry.",
+    "native_wazuh_launch_authorized": false
+  }
 }

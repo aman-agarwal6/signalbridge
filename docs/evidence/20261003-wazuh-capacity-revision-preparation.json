@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-wazuh-capacity-revision-preparation",
+  "started_at": "2026-10-03T05:20:41.817393+00:00",
+  "finished_at": "2026-10-03T05:20:53.462042+00:00",
+  "status": "prepared_scoped_verified_native_unrun",
+  "native_execution": false,
+  "launch_authorized": false,
+  "plan": "integrations/wazuh_enterprise/ready-publication-capacity-stage-plan.json",
+  "reviewed_plan_sha256": "9d33c56922fe5d34eae223544a987ff95f11089dd8bba0b2de1f3dc37cbc4f3c",
+  "original_plan": "integrations/wazuh_enterprise/ready-publication-stage-plan.json",
+  "original_plan_sha256_unchanged": "0fd59e30e34cf1c3ee7080a34e2e45daa1b5566ef94346e4a61430955622bd01",
+  "source_unchanged_during_scoped_checks": true,
+  "source_sha256": {
+    "scripts/enterprise_wazuh_live_verify.py": "920fc97a92ba3c59a4139305fa95cbf27c0242d5a7d49436feff8f1b1b0a481e",
+    "scripts/enterprise_wazuh_verify.py": "3670a5520dd7747c6ac3cef5c710ed59096acc52592f150a8afa8c4c4ffb5e6c",
+    "scripts/enterprise_reference_verify.py": "a864780b6af528c8e6d081a9b02140887a717307ba2d8fcf61a0fe8911d61916",
+    "scripts/enterprise_zap_verify.py": "df68dfde135ce2a1f91211b7f24f35b48870fc7f109384bb85fbe0da8eb17e5c",
+    "integrations/enterprise/verification.py": "c9e938cf2abc4aa92093a0bb8618fc94c95a0a203e70cf82e3babb4114bd66d8",
+    "integrations/enterprise/network_verification.py": "094377a1313bb87766b47292ebd6a9b3e073cc5ed9d694d753e3df888004f526",
+    "integrations/enterprise/reference_host_controls.py": "1b84b2ab9286ab78e9d814750a5d523d339564e7a698888e5e262fbc52da4174",
+    "integrations/enterprise/windows_capacity.py": "dee835d548c43f5e87823ac6e4a5712fad77c77de61e4c731eb08a551732e49e",
+    "integrations/enterprise/preserved_workloads.py": "1828c5e866028348f9d33e74f452a36b0e589b89541e0e98f994047eef596996",
+    "integrations/wazuh_enterprise/execution_policy.py": "88e956d0268466cdbb908d29e1b57a7de39fb994c1e65ef6ce774fddd81dbc5b",
+    "integrations/wazuh_enterprise/preservation_profile.py": "9f17e871850388b055aa5dfc40d0df15d6fae3aadec101367fc728563f0703f5",
+    "integrations/wazuh_enterprise/collector_host_controls.py": "429808efede10f293f43997de4f8ec6873adc69d537748dcd4abc967b1566f9a",
+    "integrations/wazuh_enterprise/collector_profile.py": "551606468c28e458e26e7c76105e645ad1b8ffca6bbfd7ddd2f74f30b5891ec5",
+    "integrations/wazuh_enterprise/collector_kernel.py": "6767935f80867513eefeb6e22d09baa21559c04c84612b5e65a0a32b168cf137",
+    "integrations/wazuh_enterprise/collector_source_binding.py": "be83051b600d3853e9f02b39ee4a2329123849108ee57ed080ea90392849cf51",
+    "integrations/wazuh_enterprise/native_collector.py": "e2ab4a7a9ffcc491863bad4902d7f7f983070865e2e15d48949faf24c32588cd",
+    "integrations/wazuh_enterprise/native_live_collector.py": "fc7724fd59d1a75dfa0e367e3df935694494f7d4e7c4a315dfcda5094f4617d2",
+    "integrations/wazuh_enterprise/native_reconciliation.py": "89832f67ce37fc609276ff7f64f86e68c2b686351406e3bffe9ced54450b60b0",
+    "integrations/wazuh_enterprise/ready_contract.py": "4d7cc5c256ae2281387bdd5ce7a5797a2f52d6f17d6979b71a72ddbb47341c44",
+    "integrations/wazuh_enterprise/ready_publisher.py": "a020f1f72532b864cb12c9fca2d9b51ae60286d3d47b07cda3ee6697c298958f",
+    "integrations/wazuh_enterprise/capture_journal.py": "7f8f091304e7af828b6831a872d1bf08ef2117b484173e8127cc7ccb2f3ef9ed",
+    "integrations/wazuh_enterprise/contract.py": "ca34422238e94dd09cc50218471336033f43bf686d4e17bc60c322bf6b757007",
+    "integrations/wazuh_enterprise/export_snapshot.py": "2b36d36b372addda60e5c138f3d860e2506cbeaf082f3c121fee78ca900aa7e8",
+    "integrations/wazuh_enterprise/collector-stage-plan.json": "b55f858b930dd514fa9466b4f6b9bf8decbb9be8f029386f294bd3867f6ab607",
+    "integrations/wazuh_enterprise/manager-lab.conf": "1656f0124d3d18b750e7ada2ab86a0d1d2962f1f6c647ea394506f510d3f42c6",
+    "integrations/wazuh_enterprise/local_internal_options.conf": "4a329a7b96663d5742b069c58a040c5cfa481b206cda6a533dbefa4e9f4bbfbe",
+    "integrations/wazuh_enterprise/signalbridge_rules.xml": "20b7803863709bb21ff3847dba0f1cef89f31bf7e03fd7310fff6e9121d0f0aa",
+    "integrations/wazuh/run_pilot.py": "e5ab9c3ea13ee33cbdcc47459c64a851b092e9f78c5fc0564e359f9445e65ead",
+    "integrations/wazuh/run_context.py": "6759e3480648406d1aa8aa8c26b741fc7e00aa515b2cf4463b1a1ee7470650c8",
+    "integrations/wazuh/verify_static.py": "a59f7232db9bc2a207da70f87b5f38d838902edb0869384a5c3a68d3f04ff0b4",
+    "integrations/zap_enterprise/scanner_host_controls.py": "ea652922aba05cfd023bf3ee70982a8d2cceb8458d8465b93149b202998b1bb3",
+    "bridge/contract.py": "812a90a8c3b5833d22fcf833465d1d4fa8c8690d17d478959a67988ef0558647",
+    "bridge/runtime_identity.py": "fd1ba260b80473410d30ac42212dced8ec57108ac9052249c6b8834228b817b3",
+    "tests/test_wazuh_execution_policy.py": "f476db178b8de7127581d4562997a8cac76bdd495e87fc1e182833c6409610fe",
+    "tests/test_wazuh_host_controller.py": "14aa3d168355e75c7445204926d7282b9c2395b9a14f4da315e46a8cb90dd522",
+    "tests/test_wazuh_live_controller.py": "dfe5f122bba573088fc444dbf2ca53ea1be6cc616ad4472b9dde28a2a30548d8",
+    "tests/test_wazuh_native_review.py": "f64289341c8efa64f5100bb6b44ce62ab2f584305c28f32e5d3efea4b3d69171",
+    "tests/test_wazuh_preservation_profile.py": "87fffe0dc6e571919ca590b99042989aa0543ac0570cd46d1d79dd1fe8930689",
+    "tests/test_preserved_workloads.py": "22be5147ba09c2731d0a3346c15ec6ead60a8f8139bd37a35d1f94e369cc5d8c"
+  },
+  "checks": [
+    {
+      "name": "wazuh-policy-host-live-review-preservation",
+      "passed": true,
+      "methods": 101,
+      "log_sha256": "5d6ede035b5ac118472e59665c0c455b91f1d9290f84457faa7ee9121055e223",
+      "framework_summary": {
+        "tests_run": 101,
+        "successful_summary": true,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      }
+    }
+  ],
+  "review": {
+    "agent": "wazuh_review_sol",
+    "type": "independent_code_review",
+    "remaining_blockers": 0,
+    "native_commands_run": 0
+  },
+  "preparation_failures_retained": [
+    {
+      "error_class": "TypeError",
+      "reason": "Incorrect test environment helper argument; corrected before tests, plan creation or native requests."
+    }
+  ],
+  "remaining": [
+    "Fresh approval before any native launch",
+    "Native metadata/collection/shutdown/preservation proof",
+    "Continuous collector interruption and rotation recovery"
+  ],
+  "claim_boundary": "Modeled replies and real bounded files; these checks do not certify native Wazuh or preserved application health."
+}

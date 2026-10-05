@@ -2,34 +2,62 @@
 {% block content %}
 <div class="integrations-page">
   <div class="page-heading">
-    <div><div class="eyebrow">WORKSPACE / COLLECTION &amp; COVERAGE</div><h1>Integrations</h1><p>Bring evidence together. Know exactly where your visibility ends.</p></div>
+    <div><div class="eyebrow">WORKSPACE / COLLECTION &amp; COVERAGE</div><h1>Integrations</h1><p>Inspect what is configured, what was received, and what an actual tool execution proved.</p></div>
     <span class="badge lab">Local environment</span>
   </div>
 
+  <nav class="section-nav" aria-label="Integration sections"><a href="#collection-state">Collection state</a><a href="#delivery-evidence">Delivery &amp; receipts</a><a href="#tool-library-title">Tool capabilities</a><a href="#workspace-coverage">Coverage boundaries</a></nav>
+  <div class="integration-orientation"><strong>Three different questions</strong><p>Is ingestion configured? Did a record arrive? Did the tool observe it? A saved receipt describes its recorded run; it does not establish a connection now.</p></div>
+
   {% if app.slug != 'signalbridge' %}
-  <section class="tool-workspace" aria-labelledby="collector-title">
+  <section class="tool-workspace" id="collection-state" aria-labelledby="collector-title">
     <div class="tool-workspace-heading">
       <span class="tool-workspace-icon" aria-hidden="true">{% include "parts/icon.html" with name="integrations" %}</span>
       <div><div class="tool-kicker">THIS WORKSPACE</div><h2 id="collector-title">{{ app.name }} collector</h2><p>{{ app.coverage }}</p></div>
-      <span class="badge {% if app.enabled %}allowed{% else %}denied{% endif %}">{% if app.enabled %}Collector enabled{% else %}Collector disabled{% endif %}</span>
+      <span class="badge {% if app.enabled %}allowed{% else %}denied{% endif %}">{% if app.enabled %}Ingestion configured{% else %}Ingestion disabled{% endif %}</span>
     </div>
     <dl class="tool-collector-metrics">
-      <div><dt>LAST ACCEPTED EVENT · UTC</dt><dd>{{ app.last_seen|date:"M d, Y · H:i:s"|default:"Never" }}</dd><span>Receipt time, not continuous coverage</span></div>
-      <div><dt>REJECTED REQUESTS · ALL TIME</dt><dd>{{ app.rejected }}</dd><span>Requests the collector did not accept</span></div>
-      <div><dt>PROCESSING QUEUE</dt><dd>{{ pending_count }} pending <span>/ {{ dead_count }} failed</span></dd><a href="/events/?app={{ app.slug }}&amp;state=dead">Inspect failed events <span aria-hidden="true">→</span></a></div>
+      <div><dt>LAST ACCEPTED EVENT · UTC</dt><dd>{{ app.last_seen|date:"M d, Y · H:i:s"|default:"Never" }}</dd><dd class="tool-metric-note">Receipt time, not continuous coverage</dd></div>
+      <div><dt>REJECTED REQUESTS · ALL TIME</dt><dd>{{ app.rejected }}</dd><dd class="tool-metric-note">Requests the collector did not accept</dd></div>
+      <div><dt>PROCESSING QUEUE</dt><dd>{{ pending_count }} pending <span>/ {{ dead_count }} failed</span></dd><dd class="tool-metric-note"><a href="/events/?app={{ app.slug }}&amp;state=dead">Inspect failed events <span aria-hidden="true">&rarr;</span></a></dd></div>
     </dl>
   </section>
   {% else %}
-  <section class="tool-workspace tool-self-workspace" aria-labelledby="self-title">
+  <section class="tool-workspace tool-self-workspace" id="collection-state" aria-labelledby="self-title">
     <div class="tool-workspace-heading">
       <span class="tool-workspace-icon" aria-hidden="true">{% include "parts/icon.html" with name="shield" %}</span>
       <div><div class="tool-kicker">SELF-ASSURANCE</div><h2 id="self-title">SignalBridge scanner workspace</h2><p>{{ app.coverage }}</p></div>
       <span class="badge lab">Source &amp; dependency evidence</span>
     </div>
-    <div class="tool-workspace-actions"><a class="button" href="/findings/?app={{ app.slug }}">Review security findings <span aria-hidden="true">→</span></a><a class="tool-link" href="/scans/?app={{ app.slug }}">Inspect scan history</a></div>
+    <div class="tool-workspace-actions"><a class="button" href="/findings/?app={{ app.slug }}">Review security findings <span aria-hidden="true">&rarr;</span></a><a class="tool-link" href="/scans/?app={{ app.slug }}">Inspect scan history</a></div>
   </section>
   {% endif %}
 
+  <details class="integration-evidence" id="delivery-evidence">
+    <summary><span><strong>Delivery ledger &amp; recorded tool evidence</strong><small>Expand to inspect local counts, execution receipts, timestamps and incomplete runs.</small></span><span class="chevron" aria-hidden="true"></span></summary>
+    <div>
+  {% if enterprise_wazuh %}
+  <section class="tool-workspace" aria-labelledby="enterprise-wazuh-title">
+    <div class="tool-workspace-heading">{% include "parts/tool_identity.html" with tool="wazuh" %}<div><div class="tool-kicker">ENTERPRISE EVIDENCE LOOP</div><h2 id="enterprise-wazuh-title">Wazuh observations &amp; forwarded findings</h2><p>{{ enterprise_wazuh.connection_state }}</p></div><span class="badge lab">{% if native_wazuh.verified %}Historical proof below{% else %}Runtime proof pending{% endif %}</span></div>
+    <dl class="tool-collector-metrics"><div><dt>EVENTS RECONCILED</dt><dd>{{ enterprise_wazuh.observed_events }}</dd><dd class="tool-metric-note">Distinct events matched to imported native-format archives</dd></div><div><dt>SIGNALS RECONCILED</dt><dd>{{ enterprise_wazuh.observed_signals }}</dd><dd class="tool-metric-note">Core-generated SignalBridge findings, including R3</dd></div><div><dt>UNRECONCILED LOCAL EXPORTS</dt><dd>{{ enterprise_wazuh.unobserved_events }} events / {{ enterprise_wazuh.unobserved_signals }} signals</dd><dd class="tool-metric-note">Do not treat these records as confirmed tool receipt</dd></div></dl>
+    <details class="tool-details">
+      <summary>Delivery stages, timestamps &amp; trust boundary <span class="tool-disclosure-mark" aria-hidden="true">+</span></summary>
+      <div>
+        <dl class="field-grid">
+          <div><dt>Signals staged / file appended</dt><dd>{{ enterprise_wazuh.staged_signals }} / {{ enterprise_wazuh.exported_signals }}</dd></div>
+          <div><dt>Enterprise observation exports</dt><dd>{{ enterprise_wazuh.exported_events }} · historical v1 pilot exports excluded</dd></div>
+          <div><dt>Observation alerts / forwarded alerts</dt><dd>{{ enterprise_wazuh.observation_alerts }} / {{ enterprise_wazuh.forwarded_alerts }}</dd></div>
+          <div><dt>Physical imports / distinct tool records</dt><dd>{{ enterprise_wazuh.physical_import_records }} / {{ enterprise_wazuh.native_format_records }}</dd></div>
+          <div><dt>Repeated native IDs</dt><dd>{{ enterprise_wazuh.repeated_native_ids }} · distinct tool IDs for the same event remain separate records</dd></div>
+          <div><dt>Last native-format record · UTC</dt><dd>{{ enterprise_wazuh.last_native_at|date:"M d, Y · H:i:s"|default:"Not recorded" }}</dd></div>
+          <div><dt>Last import · UTC</dt><dd>{{ enterprise_wazuh.last_import_at|date:"M d, Y · H:i:s"|default:"Not recorded" }}</dd></div>
+        </dl>
+        <p>Minimal event exports omit actor and resource context. A forwarded R3 alert means SignalBridge found the correlation; it is not independent Wazuh rediscovery. These ledger counts refer to matching local records. Historical native receipts below can retain observations whose original source database is separate. Imported files are supplied by the trusted local operator; parsing alone does not attest a running manager. Current connectivity, collector heartbeats and long-running recovery remain unverified.</p>
+      </div>
+    </details>
+  </section>
+  {% endif %}
+  {% if native_wazuh.present %}{% include "parts/native_wazuh_review.html" with receipt=native_wazuh %}{% endif %}
   {% if delivery %}
   <section class="tool-workspace" aria-labelledby="delivery-title">
     <div class="tool-workspace-heading">
@@ -38,12 +66,18 @@
       <span class="badge lab">{% if wazuh_backfill.verified %}Historical receipt below{% else %}Manager receipt unknown{% endif %}</span>
     </div>
     <dl class="tool-collector-metrics">
-      <div><dt>ELIGIBLE EVENTS</dt><dd>{{ delivery.eligible }}</dd><span>Processed here, not yet staged</span></div>
-      <div><dt>STAGED EVENTS</dt><dd>{{ delivery.staged }}</dd><span>Retained for a retryable local append</span></div>
-      <div><dt>FILE APPEND CONFIRMED</dt><dd>{{ delivery.file_appended }}</dd><span>Local acknowledgement, not Wazuh ingestion</span></div>
+      <div><dt>ELIGIBLE EVENTS</dt><dd>{{ delivery.eligible }}</dd><dd class="tool-metric-note">Processed here, not yet staged</dd></div>
+      <div><dt>STAGED EVENTS</dt><dd>{{ delivery.staged }}</dd><dd class="tool-metric-note">Retained for a retryable local append</dd></div>
+      <div><dt>FILE APPEND CONFIRMED</dt><dd>{{ delivery.file_appended }}</dd><dd class="tool-metric-note">Local acknowledgement, not Wazuh ingestion</dd></div>
     </dl>
     <details class="tool-details"><summary>Interpret delivery status and recover safely <span class="tool-disclosure-mark" aria-hidden="true">+</span></summary><div>
       <p>An operator explicitly stages and publishes batches of up to 100 sanitized records. No background connection is started by this page. These counts come from the database ledger; opening this page does not inspect the file or the manager.</p>
+      {% if delivery.rotation.segmented_export %}
+      {% if delivery.rotation.error %}<p class="notice">Export segment metadata is inconsistent ({{ delivery.rotation.error }}). Preserve the database and files; publication requires investigation.</p>{% else %}
+      <p><strong>Retained enterprise segments:</strong> {{ delivery.rotation.segments|length }} of {{ delivery.rotation.maximum_segments }} allocated. {{ delivery.rotation.remaining_segments }} additional slots remain; the active file has {{ delivery.rotation.active_remaining_bytes }} bytes available. Each file is bounded at {{ delivery.rotation.segment_capacity_bytes }} bytes. Batch boundaries can exhaust the slots before the total byte limit.</p>
+      <p>Segments are retained and never overwritten automatically. These are recorded file offsets, not live file inspection or Wazuh receipt.</p>
+      <dl>{% for segment in delivery.rotation.segments %}<div><dt>Segment {{ segment.number }} · {% if segment.sealed %}sealed{% else %}active{% endif %}</dt><dd>{{ segment.bytes }} bytes · starts at {{ segment.start_offset }} · <code>{{ segment.collector_location }}</code></dd></div>{% endfor %}</dl>
+      {% endif %}{% endif %}
       <dl><div><dt>Recorded file size</dt><dd>{{ delivery.bytes }} of {{ delivery.capacity_bytes }} bytes. The publisher stops at its capacity limit and preserves existing evidence.</dd></div><div><dt>Interrupted delivery</dt><dd>A retry resumes only bytes that match the retained batch. Changed, missing or unexplained file content stops publication. Preserve both the database and collector file before investigating; do not delete either to clear an error.</dd></div><div><dt>Privacy and retention</dt><dd>Only the versioned event metadata leaves the event table; actor, resource and raw payload are omitted. Events referenced by the ledger are retained. This does not establish R1 correlation in Wazuh or a continuous connection.</dd></div></dl>
     </div></details>
   </section>
@@ -52,9 +86,13 @@
   {% if wazuh_backfill.has_receipt %}{% include "parts/wazuh_backfill_receipt.html" with backfill=wazuh_backfill %}{% endif %}
   {% if zap_repeats %}{% include "parts/zap_repeat_receipts.html" %}{% endif %}
 
+    {% if not enterprise_wazuh and not native_wazuh.present and not delivery and not wazuh_backfill.has_receipt and not zap_repeats %}<p class="empty-evidence">No delivery ledger or recorded tool execution is available in this workspace. Review the capabilities and coverage boundaries below.</p>{% endif %}
+    </div>
+  </details>
+
   <section class="tool-library" aria-labelledby="tool-library-title">
     <div class="tool-section-heading"><div><div class="tool-kicker">SECURITY OPERATIONS ECOSYSTEM</div><h2 id="tool-library-title">Your security tool library</h2><p>Available adapters and future connections, with their evidence boundaries in view.</p></div></div>
-    <nav class="tool-jump-links" aria-label="Integration groups"><a href="#available-tools">Report adapters <span>2 available</span></a><a href="#optional-tools">SOC extensions <span>3 tools</span></a><a href="#workspace-coverage">Workspace coverage <span aria-hidden="true">↓</span></a></nav>
+    <nav class="tool-jump-links" aria-label="Integration groups"><a href="#available-tools">Report adapters <span>2 available</span></a><a href="#optional-tools">SOC extensions <span>3 tools</span></a><a href="#workspace-coverage">Workspace coverage <span aria-hidden="true">&darr;</span></a></nav>
 
     <div class="tool-group-heading" id="available-tools"><h3>Available report adapters</h3><p>Availability does not mean a scan has run for {{ app.name }}.</p></div>
     <div class="tool-grid tool-grid-adapters">
@@ -63,7 +101,7 @@
         <div class="tool-card-identity">{% include "parts/tool_identity.html" with tool="ruff" %}<div><h3 id="ruff-title">Ruff + SARIF</h3><p>Python security lint</p></div></div>
         <p class="tool-description">Turn security-rule signals into source-linked findings an analyst can investigate.</p>
         <div class="tool-capability"><span class="tool-capability-label">Available now</span><p>Offline report import. A fixed local runner checks SignalBridge's own Python source.</p></div>
-        <a class="tool-card-action" href="/scans/?app={{ app.slug }}">Review workspace scan evidence <span aria-hidden="true">↗</span></a>
+        <a class="tool-card-action" href="/scans/?app={{ app.slug }}">Review workspace scan evidence <span aria-hidden="true">&nearr;</span></a>
         <details class="tool-details"><summary>Data, limits &amp; next proof <span class="tool-disclosure-mark" aria-hidden="true">+</span></summary><div>
           <dl><div><dt>Evidence retained</dt><dd>Rule, relative source location, scanner level and report hash. Fixed local runs also record execution and source-file hashes.</dd></div><div><dt>Coverage boundary</dt><dd>Lint signals require review; they do not establish exploitability. Imported SARIF claims are distinct from a recorded local execution. The fixed runner does not scan BetTail or Netted.</dd></div><div><dt>Next proof</dt><dd>Check this workspace's run, source scope and file hashes, then validate each signal in context. A quiet report does not prove the application is secure.</dd></div></dl>
         </div></details>
@@ -74,7 +112,7 @@
         <div class="tool-card-identity">{% include "parts/tool_identity.html" with tool="pip" %}<div><h3 id="pip-title">pip-audit</h3><p>Python package advisories</p></div></div>
         <p class="tool-description">Review known advisories alongside affected package versions and suggested fixes.</p>
         <div class="tool-capability"><span class="tool-capability-label">Available now</span><p>Offline JSON import. The fixed runner queries advisories for SignalBridge's pinned public packages.</p></div>
-        <a class="tool-card-action" href="/scans/?app={{ app.slug }}">Review workspace dependency evidence <span aria-hidden="true">↗</span></a>
+        <a class="tool-card-action" href="/scans/?app={{ app.slug }}">Review workspace dependency evidence <span aria-hidden="true">&nearr;</span></a>
         <details class="tool-details"><summary>Data, limits &amp; next proof <span class="tool-disclosure-mark" aria-hidden="true">+</span></summary><div>
           <dl><div><dt>Evidence retained</dt><dd>Package and version, advisory identifiers, reported fix versions, input and skipped counts, and report provenance.</dd></div><div><dt>Coverage boundary</dt><dd>The local runner requires an explicit advisory-query opt-in. It audits the pinned manifest, never the machine's environment. Suggested fixes are not applied; this report format supplies no vulnerability severity.</dd></div><div><dt>Next proof</dt><dd>Review the manifest hash, execution date and skipped inputs. Validate any upgrade with application tests. No reported advisory is a point-in-time result, not a safety guarantee.</dd></div></dl>
         </div></details>
@@ -82,7 +120,7 @@
     </div>
 
     <div class="tool-group-heading" id="optional-tools"><h3>Optional SOC extensions</h3><p>Report adapters, historical pilot evidence and active connections are separate capabilities.</p></div>
-    {% if app.slug != 'signalbridge' %}<div class="tool-self-coverage"><p>SOC pilot receipts belong to SignalBridge's synthetic lab. They do not establish security coverage for {{ app.name }}.</p>{% if lab_app %}<a class="tool-link" href="/integrations/?app=signalbridge#optional-tools">Inspect authorized lab pilot evidence <span aria-hidden="true">→</span></a>{% endif %}</div>{% endif %}
+    {% if app.slug != 'signalbridge' %}<div class="tool-self-coverage"><p>SOC pilot receipts belong to SignalBridge's synthetic lab. They do not establish security coverage for {{ app.name }}.</p>{% if lab_app %}<a class="tool-link" href="/integrations/?app=signalbridge#optional-tools">Inspect authorized lab pilot evidence <span aria-hidden="true">&rarr;</span></a>{% endif %}</div>{% endif %}
     <div class="tool-grid tool-grid-extensions">
       <article class="tool-card tool-wazuh" aria-labelledby="wazuh-title">
         <div class="tool-card-top"><span class="tool-family">MONITORING</span><span class="tool-status {% if wazuh_pilot.verified %}tool-status-available{% endif %}">{% if app.slug == 'signalbridge' %}{{ wazuh_pilot.status_label }}{% else %}No application assessment{% endif %}</span></div>
@@ -120,16 +158,16 @@
     <div class="tool-section-heading"><div><div class="tool-kicker">COVERAGE MAP</div><h2 id="coverage-title">From application to evidence</h2><p>Connections are useful when their actual observations can be inspected.</p></div></div>
     {% if app.slug != 'signalbridge' %}
     <div class="tool-coverage-grid">
-      <div class="tool-coverage-item"><span class="tool-step" aria-hidden="true">01</span><div><h3>Local metadata collector</h3><p>Signed delivery, source classification, duplicate handling and durable processing.</p><a class="tool-link" href="/events/?app={{ app.slug }}">Inspect events <span aria-hidden="true">→</span></a></div></div>
-      <div class="tool-coverage-item"><span class="tool-step" aria-hidden="true">02</span><div><h3>Database authorization</h3><p>Actual repository migrations challenged in disposable local databases. Inspect a recorded run for its result.</p><a class="tool-link" href="/checks/?app={{ app.slug }}">Inspect authorization runs <span aria-hidden="true">→</span></a></div></div>
+      <div class="tool-coverage-item"><span class="tool-step" aria-hidden="true">01</span><div><h3>Local metadata collector</h3><p>Signed delivery, source classification, duplicate handling and durable processing.</p><a class="tool-link" href="/events/?app={{ app.slug }}">Inspect events <span aria-hidden="true">&rarr;</span></a></div></div>
+      <div class="tool-coverage-item"><span class="tool-step" aria-hidden="true">02</span><div><h3>Database authorization</h3><p>Actual repository migrations challenged in disposable local databases. Inspect a recorded run for its result.</p><a class="tool-link" href="/checks/?app={{ app.slug }}">Inspect authorization runs <span aria-hidden="true">&rarr;</span></a></div></div>
       <div class="tool-coverage-item"><span class="tool-step" aria-hidden="true">03</span><div><h3>Hosted application telemetry</h3><p>No hosted event emitter is installed. Reads that bypass instrumentation are not observable.</p><span class="tool-status">Unverified</span></div></div>
-      <div class="tool-coverage-item"><span class="tool-step" aria-hidden="true">04</span><div><h3>Local Supabase service evidence</h3><p>Imported historical Auth, REST and private-file checks. Separate application-route receipts must be reviewed for their exact scope; signed URLs remain unverified.</p>{% if health.latest_http %}<a class="tool-link" href="/checks/?app={{ app.slug }}">{{ health.latest_http.status|title }} local run <span aria-hidden="true">→</span></a>{% else %}<span class="tool-status">No imported evidence</span>{% endif %}</div></div>
+      <div class="tool-coverage-item"><span class="tool-step" aria-hidden="true">04</span><div><h3>Local Supabase service evidence</h3><p>Imported historical Auth, REST and private-file checks. Separate application-route receipts must be reviewed for their exact scope; signed URLs remain unverified.</p>{% if health.latest_http %}<a class="tool-link" href="/checks/?app={{ app.slug }}">{{ health.latest_http.status|title }} local run <span aria-hidden="true">&rarr;</span></a>{% else %}<span class="tool-status">No imported evidence</span>{% endif %}</div></div>
     </div>
     {% else %}
-    <div class="tool-self-coverage"><p>This workspace holds SignalBridge's scanner evidence. A report can be imported without proving that its tool ran locally; a recorded execution adds its own source and process evidence.</p><a class="tool-link" href="/scans/?app={{ app.slug }}">Inspect report and execution provenance <span aria-hidden="true">→</span></a></div>
+    <div class="tool-self-coverage"><p>This workspace holds SignalBridge's scanner evidence. A report can be imported without proving that its tool ran locally; a recorded execution adds its own source and process evidence.</p><a class="tool-link" href="/scans/?app={{ app.slug }}">Inspect report and execution provenance <span aria-hidden="true">&rarr;</span></a></div>
     {% endif %}
     <details class="tool-quiet"><summary>What a quiet dashboard means <span class="tool-disclosure-mark" aria-hidden="true">+</span></summary><div><p>{% if app.slug == 'signalbridge' %}An empty findings list may mean no report was imported, the scan had limited inputs, or the report contained no signals. Check scan history, scope, completion and skipped inputs before drawing a conclusion.{% else %}No new events may mean no activity, a paused sender, or a coverage gap. Use the last accepted event, pending and failed counts, and the coverage map together.{% endif %}</p></div></details>
   </section>
-  {% if app.slug != 'signalbridge' %}<p class="tool-page-foot"><a class="tool-link" href="/detections/?app={{ app.slug }}">Inspect detector logic, source streams and processing health <span aria-hidden="true">→</span></a></p>{% endif %}
+  {% if app.slug != 'signalbridge' %}<p class="tool-page-foot"><a class="tool-link" href="/detections/?app={{ app.slug }}">Inspect detector logic, source streams and processing health <span aria-hidden="true">&rarr;</span></a></p>{% endif %}
 </div>
 {% endblock %}

@@ -1,0 +1,391 @@
+{
+  "name": "sb-enterprise-reference-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "networks": {
+    "reference": {
+      "name": "sb-enterprise-reference-internal-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "ipam": {
+        "config": [
+          {
+            "subnet": "198.18.170.0/24"
+          }
+        ]
+      },
+      "internal": true,
+      "labels": {
+        "org.signalbridge.enterprise.run": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "org.signalbridge.enterprise.scope": "reference-access-verification"
+      }
+    }
+  },
+  "secrets": {
+    "bootstrap_password": {
+      "name": "sb-enterprise-reference-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_bootstrap_password",
+      "file": "/reference-proof-profile/secrets/bootstrap-password"
+    },
+    "console_certificate": {
+      "name": "sb-enterprise-reference-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_console_certificate",
+      "file": "/reference-proof-profile/secrets/console-certificate.pem"
+    },
+    "console_password": {
+      "name": "sb-enterprise-reference-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_console_password",
+      "file": "/reference-proof-profile/secrets/console-password"
+    },
+    "console_private_key": {
+      "name": "sb-enterprise-reference-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_console_private_key",
+      "file": "/reference-proof-profile/secrets/console-private-key.pem"
+    },
+    "lab_ca": {
+      "name": "sb-enterprise-reference-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_lab_ca",
+      "file": "/reference-proof-profile/secrets/lab-ca.pem"
+    },
+    "source_certificate": {
+      "name": "sb-enterprise-reference-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_source_certificate",
+      "file": "/reference-proof-profile/secrets/source-certificate.pem"
+    },
+    "source_password": {
+      "name": "sb-enterprise-reference-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_source_password",
+      "file": "/reference-proof-profile/secrets/source-password"
+    },
+    "source_private_key": {
+      "name": "sb-enterprise-reference-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_source_private_key",
+      "file": "/reference-proof-profile/secrets/source-private-key.pem"
+    },
+    "source_profile": {
+      "name": "sb-enterprise-reference-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_source_profile",
+      "file": "/reference-proof-profile/secrets/source-profile"
+    }
+  },
+  "services": {
+    "database": {
+      "cap_drop": [
+        "ALL"
+      ],
+      "cgroup": "private",
+      "cpus": 1,
+      "command": [
+        "postgres",
+        "-c",
+        "shared_buffers=64MB",
+        "-c",
+        "max_connections=20",
+        "-c",
+        "log_statement=none"
+      ],
+      "entrypoint": null,
+      "environment": {
+        "POSTGRES_DB": "postgres",
+        "POSTGRES_INITDB_ARGS": "--auth-host=scram-sha-256 --auth-local=peer",
+        "POSTGRES_PASSWORD_FILE": "/run/secrets/bootstrap_password",
+        "POSTGRES_USER": "postgres"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "pg_isready",
+          "-h",
+          "127.0.0.1",
+          "-U",
+          "postgres",
+          "-d",
+          "postgres"
+        ],
+        "timeout": "2s",
+        "interval": "2s",
+        "retries": 30
+      },
+      "image": "postgres@sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+      "ipc": "private",
+      "labels": {
+        "org.signalbridge.enterprise.run": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "org.signalbridge.enterprise.scope": "reference-access-verification"
+      },
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-file": "2",
+          "max-size": "5m"
+        }
+      },
+      "mem_limit": "536870912",
+      "memswap_limit": "536870912",
+      "networks": {
+        "reference": null
+      },
+      "pids_limit": 128,
+      "pull_policy": "never",
+      "read_only": true,
+      "restart": "no",
+      "secrets": [
+        {
+          "source": "bootstrap_password",
+          "target": "/run/secrets/bootstrap_password"
+        },
+        {
+          "source": "source_password",
+          "target": "/run/secrets/source_password"
+        },
+        {
+          "source": "console_password",
+          "target": "/run/secrets/console_password"
+        }
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "shm_size": "67108864",
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,nodev,size=64m",
+        "/var/run/postgresql:rw,noexec,nosuid,nodev,size=16m"
+      ],
+      "user": "postgres",
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "reference_data",
+          "target": "/var/lib/postgresql/data",
+          "volume": {}
+        },
+        {
+          "type": "bind",
+          "source": "/reference-proof-profile/source/integrations/enterprise/init-reference.sh",
+          "target": "/docker-entrypoint-initdb.d/10-reference.sh",
+          "read_only": true,
+          "bind": {}
+        }
+      ]
+    },
+    "runner": {
+      "cap_drop": [
+        "ALL"
+      ],
+      "cgroup": "private",
+      "cpus": 2,
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "integrations.enterprise.reliability_runner"
+      ],
+      "depends_on": {
+        "database": {
+          "condition": "service_healthy",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "environment": {
+        "PIP_CONFIG_FILE": "/dev/null",
+        "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "SB_RELIABILITY_REHEARSAL_MS": "0",
+        "SB_RELIABILITY_RUNTIME": "1",
+        "SB_SOURCE_PROOF": "1",
+        "SB_SOURCE_RUN": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "image": "python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d",
+      "ipc": "private",
+      "labels": {
+        "org.signalbridge.enterprise.run": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "org.signalbridge.enterprise.scope": "reference-access-verification"
+      },
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-file": "2",
+          "max-size": "5m"
+        }
+      },
+      "mem_limit": "1610612736",
+      "memswap_limit": "1610612736",
+      "networks": {
+        "reference": null
+      },
+      "pids_limit": 256,
+      "pull_policy": "never",
+      "read_only": true,
+      "restart": "no",
+      "secrets": [
+        {
+          "source": "source_password",
+          "target": "/run/secrets/source_password"
+        },
+        {
+          "source": "console_password",
+          "target": "/run/secrets/console_password"
+        },
+        {
+          "source": "source_profile",
+          "target": "/run/secrets/source_profile"
+        },
+        {
+          "source": "lab_ca",
+          "target": "/run/secrets/lab_ca"
+        },
+        {
+          "source": "source_certificate",
+          "target": "/run/secrets/source_certificate"
+        },
+        {
+          "source": "source_private_key",
+          "target": "/run/secrets/source_private_key"
+        },
+        {
+          "source": "console_certificate",
+          "target": "/run/secrets/console_certificate"
+        },
+        {
+          "source": "console_private_key",
+          "target": "/run/secrets/console_private_key"
+        }
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,nodev,size=64m",
+        "/opt/verification-deps:rw,exec,nosuid,nodev,size=128m,mode=0700,uid=10001,gid=10001"
+      ],
+      "user": "10001:10001",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/reference-proof-profile/source",
+          "target": "/workspace",
+          "read_only": true,
+          "bind": {}
+        },
+        {
+          "type": "bind",
+          "source": "/reference-proof-profile/wheels",
+          "target": "/wheels",
+          "read_only": true,
+          "bind": {}
+        },
+        {
+          "type": "bind",
+          "source": "/reference-proof-profile/evidence",
+          "target": "/evidence",
+          "bind": {}
+        },
+        {
+          "type": "bind",
+          "source": "/reference-proof-profile/clock",
+          "target": "/clock",
+          "bind": {}
+        }
+      ],
+      "working_dir": "/workspace"
+    },
+    "wazuh": {
+      "cap_add": [
+        "SETUID",
+        "SETGID",
+        "SYS_CHROOT"
+      ],
+      "cap_drop": [
+        "ALL"
+      ],
+      "cgroup": "private",
+      "cpus": 1,
+      "command": [
+        "-B",
+        "-m",
+        "integrations.wazuh_enterprise.native_continuous_collector"
+      ],
+      "entrypoint": [
+        "/var/ossec/framework/python/bin/python3"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONUTF8": "1",
+        "SB_WAZUH_ENTERPRISE_RUN": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+      },
+      "hostname": "sb-wazuh-lab",
+      "image": "wazuh/wazuh-manager@sha256:f74021c1275393aa094b6f6bb57f9bac240cba7ddb35f2a841e430341f5fc6a0",
+      "init": true,
+      "ipc": "private",
+      "labels": {
+        "org.signalbridge.enterprise.run": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "org.signalbridge.enterprise.scope": "reference-access-verification"
+      },
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-file": "2",
+          "max-size": "2m"
+        }
+      },
+      "mem_limit": "1610612736",
+      "memswap_limit": "1610612736",
+      "network_mode": "none",
+      "pids_limit": 256,
+      "pull_policy": "never",
+      "restart": "no",
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "shm_size": "16777216",
+      "user": "0:0",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/reference-proof-profile/source",
+          "target": "/workspace",
+          "read_only": true,
+          "bind": {}
+        },
+        {
+          "type": "bind",
+          "source": "/reference-proof-profile/wazuh/evidence",
+          "target": "/evidence",
+          "bind": {}
+        },
+        {
+          "type": "bind",
+          "source": "/reference-proof-profile/clock",
+          "target": "/signalbridge/clock",
+          "read_only": true,
+          "bind": {}
+        },
+        {
+          "type": "bind",
+          "source": "/reference-proof-profile/evidence/soc-delivery/enterprise/documents/observation/a3ec00bd-5814-59a2-93bb-8fbbefd71bad",
+          "target": "/signalbridge/input/documents/observation",
+          "read_only": true,
+          "bind": {}
+        },
+        {
+          "type": "bind",
+          "source": "/reference-proof-profile/wazuh/idle/documents/detection",
+          "target": "/signalbridge/input/documents/detection",
+          "read_only": true,
+          "bind": {}
+        },
+        {
+          "type": "bind",
+          "source": "/reference-proof-profile/evidence/soc-delivery/enterprise/expenses/observation/24856317-a79f-5a27-932c-522a6c9e04d0",
+          "target": "/signalbridge/input/expenses/observation",
+          "read_only": true,
+          "bind": {}
+        },
+        {
+          "type": "bind",
+          "source": "/reference-proof-profile/wazuh/idle/expenses/detection",
+          "target": "/signalbridge/input/expenses/detection",
+          "read_only": true,
+          "bind": {}
+        }
+      ],
+      "working_dir": "/workspace"
+    }
+  },
+  "volumes": {
+    "reference_data": {
+      "name": "sb-enterprise-reference-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "labels": {
+        "org.signalbridge.enterprise.run": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "org.signalbridge.enterprise.scope": "reference-access-verification"
+      }
+    }
+  }
+}

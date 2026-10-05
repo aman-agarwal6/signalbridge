@@ -1,4 +1,5 @@
 import uuid
+from datetime import timedelta
 
 from django.conf import settings
 from django.db import models
@@ -133,25 +134,69 @@ class Event(models.Model):
                 fields=["integration", "environment", "source", "resource", "occurred_at"],
                 name="sb_event_resource_scope_time",
             ),
+            models.Index(
+                fields=["integration", "state", "processed_at"], name="sb_event_app_completion"
+            ),
         ]
 
 
 class SocStream(models.Model):
-    """One bounded local collector file per app; never an upstream acknowledgement."""
+    """Separate bounded observation/detection files; never upstream acknowledgement."""
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    integration = models.OneToOneField(Integration, on_delete=models.PROTECT)
+    integration = models.ForeignKey(Integration, on_delete=models.PROTECT)
+    channel = models.CharField(
+        max_length=12,
+        default="observation",
+        choices=[("observation", "Source observations"), ("detection", "Forwarded detections")],
+    )
     offset = models.PositiveIntegerField(default=0)
     prefix_sha256 = models.CharField(
         max_length=64, default="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     )
     revision = models.PositiveIntegerField(default=0)
+    selection_after = models.UUIDField(null=True)
+    segmented_export = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["integration", "channel"], name="unique_soc_channel"),
+            models.CheckConstraint(
+                condition=Q(channel__in=["observation", "detection"]), name="valid_soc_channel"
+            ),
+        ]
+
+
+class SocSegment(models.Model):
+    """Retained enterprise output segment; sealing never deletes local evidence."""
+
+    stream = models.ForeignKey(SocStream, on_delete=models.PROTECT, related_name="segments")
+    number = models.PositiveSmallIntegerField()
+    start_offset = models.PositiveIntegerField()
+    byte_count = models.PositiveIntegerField(default=0)
+    prefix_sha256 = models.CharField(
+        max_length=64, default="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    )
+    sealed_at = models.DateTimeField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["stream", "number"], name="unique_soc_segment"),
+            models.UniqueConstraint(
+                fields=["stream"], condition=Q(sealed_at__isnull=True), name="one_open_soc_segment"
+            ),
+            models.CheckConstraint(
+                condition=Q(number__lte=7, byte_count__lte=2097152), name="bounded_soc_segment"
+            ),
+        ]
 
 
 class SocBatch(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     stream = models.ForeignKey(SocStream, on_delete=models.PROTECT)
+    segment = models.ForeignKey(SocSegment, on_delete=models.PROTECT, null=True)
     body = models.TextField()
     body_sha256 = models.CharField(max_length=64)
     start_offset = models.PositiveIntegerField()
@@ -174,6 +219,95 @@ class SocBatch(models.Model):
 class SocDelivery(models.Model):
     event = models.OneToOneField(Event, on_delete=models.PROTECT)
     batch = models.ForeignKey(SocBatch, on_delete=models.PROTECT)
+
+
+class ForwardedDetection(models.Model):
+    """Immutable core-generated signal snapshot, distinct from native rediscovery."""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    investigation = models.ForeignKey("Investigation", on_delete=models.PROTECT)
+    batch = models.ForeignKey(SocBatch, on_delete=models.PROTECT)
+    case_version = models.PositiveIntegerField()
+    rule_version = models.CharField(max_length=40)
+    evidence_sha256 = models.CharField(max_length=64)
+    generation_source_sha256 = models.CharField(max_length=64)
+    packet = models.JSONField()
+    packet_sha256 = models.CharField(max_length=64)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=[
+                    "investigation",
+                    "evidence_sha256",
+                    "generation_source_sha256",
+                    "rule_version",
+                ],
+                name="unique_forwarded_detection_snapshot",
+            )
+        ]
+
+
+class WazuhRecord(models.Model):
+    """Sanitized operator-imported native-format record; runtime proof is separate."""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    integration = models.ForeignKey(Integration, on_delete=models.PROTECT)
+    collector_run = models.UUIDField()
+    native_id = models.CharField(max_length=80)
+    kind = models.CharField(max_length=8, choices=[("archive", "Archive"), ("alert", "Alert")])
+    event = models.ForeignKey(Event, on_delete=models.PROTECT, null=True)
+    signal = models.ForeignKey(ForwardedDetection, on_delete=models.PROTECT, null=True)
+    rule_id = models.CharField(max_length=6, blank=True)
+    rule_level = models.PositiveSmallIntegerField(null=True)
+    occurred_at = models.DateTimeField()
+    packet_sha256 = models.CharField(max_length=64)
+    record_sha256 = models.CharField(max_length=64)
+    imported_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["integration", "collector_run", "kind", "native_id"],
+                name="unique_wazuh_native_record",
+            ),
+            models.CheckConstraint(
+                condition=Q(event__isnull=False, signal__isnull=True)
+                | Q(event__isnull=True, signal__isnull=False),
+                name="one_wazuh_record_target",
+            ),
+            models.CheckConstraint(
+                condition=Q(kind__in=["archive", "alert"]), name="valid_wazuh_record_kind"
+            ),
+        ]
+
+
+class WazuhCursor(models.Model):
+    """Persistent prefix checkpoint for bounded append-only native-format files."""
+
+    integration = models.ForeignKey(Integration, on_delete=models.PROTECT)
+    collector_run = models.UUIDField()
+    kind = models.CharField(max_length=8, choices=[("archive", "Archive"), ("alert", "Alert")])
+    segment = models.PositiveSmallIntegerField(default=0)
+    offset = models.PositiveIntegerField(default=0)
+    prefix_sha256 = models.CharField(
+        max_length=64, default="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    )
+    physical_records = models.PositiveIntegerField(default=0)
+    last_native_at = models.DateTimeField(null=True)
+    last_import_at = models.DateTimeField(null=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["integration", "collector_run", "kind"], name="unique_wazuh_cursor"
+            ),
+            models.CheckConstraint(
+                condition=Q(kind__in=["archive", "alert"], segment__lte=7, offset__lte=4194304),
+                name="bounded_wazuh_cursor",
+            ),
+        ]
 
 
 class Investigation(models.Model):
@@ -242,6 +376,7 @@ class CaseTask(models.Model):
             ("open", "Open"),
             ("in_progress", "In progress"),
             ("awaiting_retest", "Awaiting retest"),
+            ("verified", "Verified in recorded lab"),
         ],
     )
     assignee = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True, blank=True)
@@ -257,7 +392,7 @@ class CaseTask(models.Model):
                 condition=Q(kind__in=["review", "remediation"]), name="valid_case_task_kind"
             ),
             models.CheckConstraint(
-                condition=Q(status__in=["open", "in_progress", "awaiting_retest"]),
+                condition=Q(status__in=["open", "in_progress", "awaiting_retest", "verified"]),
                 name="valid_case_task_state",
             ),
         ]
@@ -358,15 +493,246 @@ class CheckRun(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
+class CaseVerification(models.Model):
+    """A scoped, historical retest decision; never current deployment health."""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    task = models.ForeignKey(CaseTask, on_delete=models.PROTECT, related_name="verifications")
+    check_run = models.ForeignKey(CheckRun, on_delete=models.PROTECT)
+    case_version = models.PositiveIntegerField()
+    evidence_sha256 = models.CharField(max_length=64)
+    check_digest = models.CharField(max_length=64)
+    status = models.CharField(
+        max_length=12,
+        default="pending",
+        choices=[
+            ("pending", "Awaiting review"),
+            ("approved", "Approved"),
+            ("rejected", "Rejected"),
+        ],
+    )
+    submitted_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name="submitted_verifications"
+    )
+    reviewer = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT,
+        null=True,
+        related_name="reviewed_verifications",
+    )
+    rationale = models.CharField(max_length=1000, blank=True)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+    decided_at = models.DateTimeField(null=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["task", "check_run", "case_version"], name="unique_case_retest_submission"
+            ),
+            models.CheckConstraint(
+                condition=Q(
+                    status="pending", reviewer__isnull=True, decided_at__isnull=True, rationale=""
+                )
+                | (
+                    Q(
+                        status__in=["approved", "rejected"],
+                        reviewer__isnull=False,
+                        decided_at__isnull=False,
+                    )
+                    & ~Q(rationale="")
+                ),
+                name="valid_case_verification_decision",
+            ),
+            models.CheckConstraint(
+                condition=Q(reviewer__isnull=True) | ~Q(reviewer=models.F("submitted_by")),
+                name="independent_case_verification_reviewer",
+            ),
+        ]
+
+
 class LoginAttempt(models.Model):
     fingerprint = models.CharField(max_length=64, unique=True)
     window_start = models.DateTimeField()
     failures = models.PositiveIntegerField(default=0)
 
 
+class FederatedIdentity(models.Model):
+    """Explicit private identity link; provider claims never provision local roles."""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    issuer = models.CharField(max_length=255)
+    subject = models.CharField(max_length=255)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    enabled = models.BooleanField(default=True)
+    version = models.PositiveIntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["issuer", "subject"], name="sb_identity_issuer_subject"
+            ),
+            models.CheckConstraint(
+                condition=Q(version__gte=1), name="sb_identity_version_positive"
+            ),
+        ]
+
+
+class FederatedSession(models.Model):
+    """Revocable local admission, retaining no provider token or browser cookie."""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    identity = models.ForeignKey(FederatedIdentity, on_delete=models.PROTECT)
+    identity_version = models.PositiveIntegerField()
+    binding_digest = models.CharField(max_length=64, unique=True)
+    provider_session_digest = models.CharField(max_length=64, blank=True, default="")
+    created_at = models.DateTimeField()
+    authenticated_at = models.DateTimeField()
+    expires_at = models.DateTimeField(db_index=True)
+    revoked_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                condition=Q(expires_at__gt=models.F("created_at")), name="sb_sso_positive_lifetime"
+            ),
+            models.CheckConstraint(
+                condition=Q(expires_at__lte=models.F("created_at") + timedelta(minutes=15)),
+                name="sb_sso_max_lifetime",
+            ),
+            models.CheckConstraint(
+                condition=Q(identity_version__gte=1), name="sb_sso_link_version"
+            ),
+        ]
+
+
+class FederatedExchange(models.Model):
+    """One-time OIDC callback admission; no code, verifier, nonce or cookie."""
+
+    state_digest = models.CharField(max_length=64, primary_key=True)
+    browser_digest = models.CharField(max_length=64)
+    issuer_digest = models.CharField(max_length=64)
+    created_at = models.DateTimeField()
+    expires_at = models.DateTimeField(db_index=True)
+    consumed_at = models.DateTimeField(null=True)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                condition=Q(expires_at__gt=models.F("created_at"))
+                & Q(expires_at__lte=models.F("created_at") + timedelta(minutes=5)),
+                name="sb_exchange_lifetime",
+            ),
+        ]
+
+
+class FederatedLogoutNotice(models.Model):
+    """Replay and re-admission barrier; provider identifiers are keyed digests."""
+
+    token_digest = models.CharField(max_length=64, primary_key=True)
+    scope_digest = models.CharField(max_length=64)
+    received_at = models.DateTimeField()
+    block_until = models.DateTimeField(db_index=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["scope_digest", "block_until"], name="sb_logout_scope_expiry")
+        ]
+        constraints = [
+            models.CheckConstraint(
+                condition=Q(block_until__gt=models.F("received_at")),
+                name="sb_logout_block_lifetime",
+            ),
+        ]
+
+
+class FederatedFlowWindow(models.Model):
+    """Fixed global admission slots; no unbounded labels or per-person records."""
+
+    operation = models.CharField(max_length=12, primary_key=True)
+    window_start = models.DateTimeField()
+    requests = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                condition=Q(operation__in=["login", "logout", "protocol"]),
+                name="sb_federated_window_scope",
+            )
+        ]
+
+
+class IdentityAudit(models.Model):
+    """Closed identity audit without email, subject, token, cookie or claim payloads."""
+
+    identity = models.ForeignKey(FederatedIdentity, on_delete=models.PROTECT)
+    actor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, null=True)
+    session_id = models.UUIDField(null=True)
+    action = models.CharField(
+        max_length=24,
+        choices=[
+            ("link.provisioned", "Link provisioned"),
+            ("link.disabled", "Link disabled"),
+            ("link.enabled", "Link enabled"),
+            ("session.issued", "Session issued"),
+            ("session.revoked", "Session revoked"),
+            ("account.recovered", "Local account recovery"),
+        ],
+    )
+    origin = models.CharField(
+        max_length=24,
+        choices=[
+            ("local_operator", "Trusted local database operator"),
+            ("validated_oidc", "Validated OIDC admission"),
+            ("local_session", "Local browser session"),
+            ("provider_logout", "Validated provider logout"),
+        ],
+    )
+    identity_version = models.PositiveIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                condition=Q(
+                    action__in=[
+                        "link.provisioned",
+                        "link.disabled",
+                        "link.enabled",
+                        "session.issued",
+                        "session.revoked",
+                        "account.recovered",
+                    ]
+                ),
+                name="sb_identity_audit_action",
+            ),
+            models.CheckConstraint(
+                condition=Q(
+                    origin__in=[
+                        "local_operator",
+                        "validated_oidc",
+                        "local_session",
+                        "provider_logout",
+                    ]
+                ),
+                name="sb_identity_audit_origin",
+            ),
+        ]
+
+
 class WorkerHeartbeat(models.Model):
     name = models.CharField(max_length=40, unique=True)
     last_seen = models.DateTimeField()
+
+
+class MetricsScrapeState(models.Model):
+    """One admission row for the separately authenticated read-only exporter."""
+
+    id = models.PositiveSmallIntegerField(primary_key=True, default=1, editable=False)
+    last_started_at = models.DateTimeField()
+
+    class Meta:
+        constraints = [models.CheckConstraint(condition=Q(id=1), name="sb_metrics_singleton")]
 
 
 class ScanRun(models.Model):
@@ -527,3 +893,35 @@ class PracticeEntry(models.Model):
         if not self._state.adding:
             raise ValueError("Practice history cannot be edited.")
         return super().save(*args, **kwargs)
+
+
+class LeaverSignal(models.Model):
+    """A verified AccessOps leaver event (SSF Security Event Token), stored before its ack."""
+
+    EVENT_TYPES = [
+        ("account_disabled", "Account disabled"),
+        ("session_revoked", "Sessions revoked"),
+        ("session_established", "Sign-in after departure"),
+    ]
+    jti = models.CharField(max_length=32, primary_key=True)
+    txn = models.CharField(max_length=128, blank=True, default="")
+    event_type = models.CharField(max_length=24, choices=EVENT_TYPES)
+    subject_issuer = models.CharField(max_length=255)
+    subject_id = models.CharField(max_length=255)
+    event_at = models.DateTimeField()
+    issued_at = models.DateTimeField()
+    initiating_entity = models.CharField(max_length=16, blank=True, default="")
+    reason = models.CharField(max_length=200, blank=True, default="")
+    key_id = models.CharField(max_length=64)
+    token = models.TextField()
+    token_sha256 = models.CharField(max_length=64)
+    facts_sha256 = models.CharField(max_length=64)
+    received_at = models.DateTimeField()
+    cases = models.ManyToManyField(Investigation, related_name="leaver_signals", blank=True)
+
+    class Meta:
+        indexes = [
+            models.Index(
+                fields=["subject_issuer", "subject_id", "event_type"], name="sb_leaver_subject"
+            )
+        ]

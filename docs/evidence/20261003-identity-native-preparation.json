@@ -1,0 +1,33 @@
+{
+  "kind": "signalbridge-identity-native-preparation-checks",
+  "checked_at": "2026-10-03T01:04:41.776164+00:00",
+  "exit_code": 0,
+  "native_provider_executed": false,
+  "output_sha256": "dc242ff0faa2ecf47cbb7b4e629ce55797153ab20385e4d8fad3f46102c16ec4",
+  "source_sha256": {
+    "integrations/identity/client.py": "2ff82b95421f4baa51c835e9d8ecda0ce311bbb115c292d529316df5e4a6797a",
+    "integrations/identity/client_tests.py": "c508f67a3368bd63084edbccbd6037ba76b253847e8c9a4dcd393cda8c0fd99a",
+    "integrations/identity/compose.native.yaml": "91a405a195eeaaf930e7ac5ff1305fbc0dfc593a5628273c8a0640c33f7e9855",
+    "integrations/identity/configuration.py": "9e2c565a71ca16a203a52723d4d895ef9959c8c5bf2e57960409fd8a6c145c63",
+    "integrations/identity/constants.py": "0d34e595bd90da73b69b1529af68a8542f9114e948df4246092cc2091471f2cb",
+    "integrations/identity/dependency-stage.json": "922dd6f6b09d455317db7421b9605fd13485d08af9ae6b5409a9b296b0c5205e",
+    "integrations/identity/init-databases.sh": "4c9f573dbb77a2f5b29850fdad6b781f95776ffe25a1af6dc40bf46a09f2addb",
+    "integrations/identity/linux-cp314-requirements.lock": "3a3d1bc6db2ae25f3ebac4af39bd8c428037d521c153fa300779b6223e409a4e",
+    "integrations/identity/linux-wheels.json": "64d2906029cee3021dfdae535421be0ed753e6226b664dc9c8616de44cb85bff",
+    "integrations/identity/native-stage-plan.json": "2e8b51ce7f9e30c5669d097eb172c65e0679b7188c840999a01d298e1ab14e25",
+    "integrations/identity/native_driver.py": "cbbf06249d03a5027e07f458bd8e8ef328424294532b09392835bdcf8b559bf6",
+    "integrations/identity/native_http.py": "ea3e7cbfa6cdc3ed4f1dbff366368aabd135a88c05c692777f6b299b2827be93",
+    "integrations/identity/native_profile.py": "725dcf2f72e001897d13febd97477028927b57ef035f7cbff50489a148a7a964",
+    "integrations/identity/native_runner.py": "8f69cdd2a5475b317a13de8f6f0f825c94841a0a0932e7633a56be9b7a3e843c",
+    "integrations/identity/native_server.py": "5670975632486c9e34df01b14ff414bf19be8a752fa9214605fa9ec2e8a09d39",
+    "integrations/identity/native_settings.py": "ef0c88bd208450d6b5649700d77c38399afc210108b6de09c3e35f6d556b2ba6",
+    "integrations/identity/native_tests.py": "fcd3d387d30c98321858fd4fffc4a2db705c7e6a1e3a3fb58860e1ed89b4d8e6",
+    "integrations/identity/native_urls.py": "442b61f744babfe059a586cd6082c9805dd2edf5f83b52b1fa29f23ac6343ff3",
+    "integrations/identity/protocol.py": "367f6262e8e44bc574a9032cb77f1d59080dd1d6a3e48a2ddaaa41500d1d8f33",
+    "integrations/identity/protocol_tests.py": "cfa7ea45b55bffcfcb9819774f495c6e5662f1ecea7e3a91b8b14e83423b95fa",
+    "integrations/identity/realm.json": "196e95092f03dff04ec60940c53993d7046ce78c86ad26310b2798854c45f31d",
+    "integrations/identity/transport.py": "3b9a859645a11e735f7afa55037ac9f36b9eedc26f791f0311470ae8e2d91e6f",
+    "integrations/identity/windows-cp314-requirements.lock": "775116bb02c398e9c2777a8fa21f77e8fcc5693d7f77fc6f6c084b469dce12f9"
+  },
+  "scope": "Offline form parser, destination restriction, RFC6238 vector and synthetic realm provisioning; not native login or MFA."
+}

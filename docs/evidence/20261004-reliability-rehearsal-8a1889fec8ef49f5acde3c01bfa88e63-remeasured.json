@@ -1,0 +1,118 @@
+{
+  "declaration_sha256": "7cf023dc938f18f5eb9f81ceaa51bea6ffd3b7f739cff08cfe3eaa2c86a959c5",
+  "definition_change": "Owner-approved before the measured 24-hour run: schedule adherence is judged when the workload sends each read; the source's recorded time is reported as source_response. The original receipt, measured under the earlier rule, is unchanged.",
+  "kind": "signalbridge-reliability-rehearsal-remeasurement",
+  "measurement": {
+    "accepted_logical_events": 1201,
+    "additional_transport_calls": 8,
+    "anomalies": {
+      "unexpected_attempt_identities": 0,
+      "unexpected_database_identities": 0,
+      "unexpected_tool_identities": 0
+    },
+    "declared_elapsed_ms": 2401806,
+    "expected_source_events": 47760,
+    "ingestion_all_periods": {
+      "maximum_ms": 859,
+      "p95_ms": 80,
+      "samples": 1201
+    },
+    "ingestion_outside_fixed_windows": {
+      "maximum_ms": 859,
+      "p95_ms": 80,
+      "samples": 1201
+    },
+    "limitations": [
+      "Reviewed launch profile, capacity/headroom checks and independent runtime watchdog.",
+      "Native source HTTP observations, exact outbox/database/tool snapshots and artifact hashes.",
+      "Measured monotonic 24-hour span, clock alignment, actual interruptions and recoveries.",
+      "Two active worker identities and physical executions, including rolled-back attempts.",
+      "Exact case/task identity reconciliation, idempotency and lost-reply evidence.",
+      "Separate PostgreSQL/delivery-state restoration and a working restored application.",
+      "Main and independent shutdown evidence, fault reset and final capacity readings."
+    ],
+    "missing_acceptance": 0,
+    "missing_acknowledgements": 0,
+    "missing_processing": 0,
+    "missing_slots": 46559,
+    "missing_tool_observation": 0,
+    "missing_transport_evidence": 0,
+    "native_acceptance": "not_established_by_this_measurement",
+    "observed_slots": 1201,
+    "physical_transport_calls": 1209,
+    "processed_logical_events": 1201,
+    "processing_all_periods": {
+      "maximum_ms": 4824,
+      "p95_ms": 249,
+      "samples": 1201
+    },
+    "processing_outside_fixed_windows": {
+      "maximum_ms": 4824,
+      "p95_ms": 249,
+      "samples": 1201
+    },
+    "profile": "enterprise-reliability-v1",
+    "profile_sha256": "7cf023dc938f18f5eb9f81ceaa51bea6ffd3b7f739cff08cfe3eaa2c86a959c5",
+    "recovery": [
+      {
+        "component": "workers",
+        "events_due": 1201,
+        "late_or_missing": 0
+      },
+      {
+        "component": "collector",
+        "events_due": 1201,
+        "late_or_missing": 0
+      },
+      {
+        "component": "source_delivery",
+        "events_due": 1201,
+        "late_or_missing": 0
+      },
+      {
+        "component": "collector_rotation",
+        "events_due": 1201,
+        "late_or_missing": 0
+      },
+      {
+        "component": "wazuh_connector",
+        "events_due": 1201,
+        "late_or_missing": 0
+      }
+    ],
+    "schema_version": 1,
+    "source_events": 1201,
+    "source_events_per_app": {
+      "documents": 601,
+      "expenses": 600
+    },
+    "source_response": {
+      "maximum_ms": 671,
+      "p95_ms": 69,
+      "samples": 1201
+    },
+    "status": "rehearsal_not_a_24_hour_result",
+    "tool_additional_physical_records": 0,
+    "tool_distinct_native_ids": 1201,
+    "tool_observed_logical_events": 1201,
+    "transport_all_periods": {
+      "maximum_ms": 859,
+      "p95_ms": 80,
+      "samples": 1209
+    },
+    "transport_and_tool_outcomes": {
+      "accepted": 1201,
+      "retry": 8,
+      "tool_physical_records": 1201
+    },
+    "transport_outside_fixed_windows": {
+      "maximum_ms": 859,
+      "p95_ms": 80,
+      "samples": 1209
+    }
+  },
+  "original_receipt": "docs/evidence/20261004-reliability-rehearsal-8a1889fec8ef49f5acde3c01bfa88e63.json",
+  "recorded_at": "2026-10-04T23:49:26.540845+00:00",
+  "run_id": "8a1889fec8ef49f5acde3c01bfa88e63",
+  "schema_version": 1
+}

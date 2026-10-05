@@ -1,0 +1,54 @@
+# Candidate operations rules, not executed native alerts or security findings.
+groups:
+  - name: signalbridge-pipeline
+    interval: 15s
+    rules:
+      - alert: SignalBridgeMetricsUnavailable
+        expr: up{job="signalbridge"} == 0 or absent(up{job="signalbridge"})
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: Operational metrics are unavailable
+          description: Check the intended lab state, TLS, dedicated metrics credential and exporter/database errors. A failed scrape is incomplete evidence.
+      - alert: SignalBridgeWorkerPulseUnavailable
+        expr: signalbridge_worker_state{job="signalbridge",state=~"missing|stale|clock_error"} == 1
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: A configured worker pulse needs investigation
+          description: Check the expected worker identities, process state and clock. A recent pulse alone does not prove app processing; an intentionally stopped lab is not an attack.
+      - alert: SignalBridgeQueueDelayed
+        expr: (time() - signalbridge_queue_oldest_received_timestamp_seconds{job="signalbridge"} > 30) and on(job,instance,scope) (signalbridge_retained_events{job="signalbridge",state="pending"} > 0)
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: Pending events have waited more than 30 seconds
+          description: Inspect worker pulses, retry scheduling, processing failures and planned interruptions. This is a queue-age alert, not the declared p95 acceptance calculation.
+      - alert: SignalBridgeDeadLettersPresent
+        expr: signalbridge_retained_events{job="signalbridge",state="dead"} > 0
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: Accepted records have exhausted processing retries
+          description: Preserve the records and inspect the fixed processing error codes. Do not conclude the application is safe from a quiet investigation queue.
+      - alert: SignalBridgeProcessingClockError
+        expr: signalbridge_invalid_processing_timestamps{job="signalbridge"} > 0
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: Completion timestamps cannot be used as latency evidence
+          description: Check missing completion metadata, clock drift and received/completed ordering before interpreting the bounded latency sample.
+      - alert: SignalBridgeLocalExportStaged
+        expr: signalbridge_soc_local_delivery_records{job="signalbridge",stage="staged"} > 0
+        for: 2m
+        labels: {severity: warning}
+        annotations:
+          summary: Local SOC export remains staged
+          description: Check the local export writer and filesystem. This metric does not establish collector freshness, native Wazuh observation or end-to-end reconciliation.
+      - alert: SignalBridgeWorkspaceDiskHeadroomLow
+        expr: signalbridge_workspace_filesystem_free_bytes{job="signalbridge"} < 32212254720
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: Workspace filesystem has less than 30 GiB available
+          description: Preserve the 25 GiB safety reserve. This reads the workspace filesystem, not Docker/VM allocation or total lab growth; use the separate runtime guard before launching anything.

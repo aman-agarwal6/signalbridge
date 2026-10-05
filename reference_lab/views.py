@@ -10,7 +10,7 @@ from django.views.decorators.http import require_GET, require_http_methods, requ
 
 from bridge.contract import ContractError, parse_json
 
-from .authorization import change_permission, read_resource
+from .authorization import observe_permission_change, observe_resource
 from .models import LoginAttempt, Resource
 
 
@@ -57,12 +57,16 @@ def sign_out(request):
 @login_required
 def read(request, app, resource_id):
     try:
-        content = read_resource(app, resource_id, request.user.pk)
+        content, event_id = observe_resource(app, resource_id, request.user.pk)
     except Resource.DoesNotExist:
         return JsonResponse({"error": "Resource unavailable."}, status=404)
-    if content is None:
-        return JsonResponse({"error": "Access denied."}, status=403)
-    return JsonResponse({"app": app, "record_id": str(resource_id), "synthetic_content": content})
+    response = (
+        JsonResponse({"error": "Access denied."}, status=403)
+        if content is None
+        else JsonResponse({"app": app, "record_id": str(resource_id), "synthetic_content": content})
+    )
+    response["X-SB-Lab-Event-ID"] = event_id
+    return response
 
 
 @require_POST
@@ -80,9 +84,12 @@ def permission(request, app, resource_id):
         ):
             raise ValueError()
         subject = get_user_model().objects.get(username=value["subject"])
-        result = change_permission(
+        result, event_id = observe_permission_change(
             app, resource_id, request.user.pk, subject.pk, value["kind"], value["granted"]
         )
     except (ContractError, ValueError, Resource.DoesNotExist, get_user_model().DoesNotExist):
         return JsonResponse({"error": "Invalid permission request."}, status=400)
-    return JsonResponse(result)
+    response = JsonResponse(result)
+    if event_id is not None:
+        response["X-SB-Lab-Event-ID"] = event_id
+    return response

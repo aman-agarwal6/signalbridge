@@ -1,0 +1,21 @@
+{
+  "kind": "signalbridge-windows-startup-environment-correction",
+  "checked_at": "2026-10-03T02:56:28.738387+00:00",
+  "exit_code": 0,
+  "summary": {
+    "tests_run": 27,
+    "successful_summary": true,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "expected_failures": 0,
+    "unexpected_successes": 0
+  },
+  "log_sha256": "6032bb394f88a1ee51b07080422d7105624c71a0780211f4d052d941a2ed7670",
+  "source_sha256": "08a3ff9758cdd6f6e7fcf90ed4c2ee9bcdcf4d6eb1896fb2a14afceaad13c900",
+  "native_retry": false,
+  "limits": [
+    "Offline host controls only; corrected Docker startup has not been executed.",
+    "First direct test command stopped before discovery because a required ephemeral test secret was absent; this recorded command supplies a generated test secret without printing it."
+  ]
+}

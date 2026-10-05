@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-analyst-delivery-checks",
+  "recorded_at": "2026-10-03T00:10:52.921051+00:00",
+  "checks": [
+    {
+      "target": "tests.test_case_brief",
+      "passed": true,
+      "tests_run": 8,
+      "seconds": 0.375,
+      "scope": "Disposable SQLite: current roles, withdrawn access, cross-app denial, escaping, partial notes, unverified tasks and navigation."
+    },
+    {
+      "target": "integrations.identity.protocol_tests integrations.identity.client_tests",
+      "passed": true,
+      "tests_run": 19,
+      "seconds": 2.812,
+      "scope": "Actual Authlib/JOSE and ephemeral RSA signatures; token HTTP exchange modeled, not Keycloak/MFA."
+    }
+  ],
+  "files_sha256": {
+    "bridge/case_brief.py": "3f9aac1b0e9e3bb48eda55a3d6ebf4254b559e7c32b47fde6303130c1d82980a",
+    "templates/case_brief.html": "c66d3a6b62a4afeb016859512effab6eab2933e506ff74636a36820fe1b0ac64",
+    "static/case-brief.css": "fb207a25ebfca4a6db4b63aa890efddf22e870134be010f085e1df53cf6927ec",
+    "tests/test_case_brief.py": "b2d1f56eed3d4d2f798d10f7f9f7ff1d0e6bbb0891edae200ab50b7298274772",
+    "config/urls.py": "6725a537cb0c7a2452249d3dd57cc5264f4d58031a326693fb457be70ba325a0",
+    "templates/case.html": "e6cbcfafcfb618f5646f88953acc30d39cd7e756d91f3c33a513f2c9c3044b03"
+  },
+  "limits": [
+    "Focused checks only; not a new whole-project verification or detection benchmark.",
+    "No native Keycloak, current Wazuh manager, ZAP or Shuffle execution in these checks.",
+    "The separately completed native source run keeps its original source identity."
+  ],
+  "identity_files_sha256": {
+    "integrations/identity/client.py": "2ff82b95421f4baa51c835e9d8ecda0ce311bbb115c292d529316df5e4a6797a",
+    "integrations/identity/client_tests.py": "c508f67a3368bd63084edbccbd6037ba76b253847e8c9a4dcd393cda8c0fd99a",
+    "integrations/identity/configuration.py": "7737dc685f3e5c984f58030f115b97775bd3ba7d2de913493734d2520e00b9b1",
+    "integrations/identity/protocol.py": "367f6262e8e44bc574a9032cb77f1d59080dd1d6a3e48a2ddaaa41500d1d8f33",
+    "integrations/identity/protocol_tests.py": "cfa7ea45b55bffcfcb9819774f495c6e5662f1ecea7e3a91b8b14e83423b95fa",
+    "integrations/identity/transport.py": "3b9a859645a11e735f7afa55037ac9f36b9eedc26f791f0311470ae8e2d91e6f"
+  },
+  "identity_dependencies_receipt": "docs/evidence/20261002-identity-dependencies-2d151d900f1745688c762d215237fb92.json",
+  "visual_checks": {
+    "keyboardOpen": true,
+    "mobileWidth": {
+      "page": 390,
+      "viewport": 390
+    },
+    "briefMobileWidth": {
+      "page": 390,
+      "viewport": 390
+    },
+    "scope": "Offline HTML rendering with all network requests blocked; no live app or real user session."
+  },
+  "handoff_pages": 6,
+  "publication_scan": {
+    "files_checked": 777,
+    "passed": true
+  },
+  "handoff_sha256": "4a10a90aa4db56218c5aa2ba4588333240be1cc66b1fb8ebac0fe7aeae45d32b",
+  "presentation_review": {
+    "handoff_pages_visually_reviewed": 6,
+    "brief_print_background_corrected_and_reviewed": true,
+    "walkthrough_desktop_and_mobile_reviewed": true,
+    "scope": "Rendered offline HTML, keyboard disclosures and page widths; not a full accessibility audit or authenticated live browser walkthrough.",
+    "brief_print_pages_visually_reviewed": 3
+  }
+}

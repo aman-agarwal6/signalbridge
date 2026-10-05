@@ -1,0 +1,30 @@
+<section class="panel" id="leaver-signals" aria-labelledby="leaver-signals-title">
+<div class="panel-heading">
+<div>
+<h2 id="leaver-signals-title">Leaver signals from AccessOps</h2>
+<p>Each row is a Security Event Token whose ES256 signature, issuer and audience SignalBridge verified before storing it.</p>
+</div>
+</div>
+<div class="table-wrap">
+<table>
+<caption class="sr-only">Signed leaver signals linked to this case</caption>
+<thead>
+<tr>
+<th scope="col">Signal</th>
+<th scope="col">Event time · UTC</th>
+<th scope="col">Received · UTC</th>
+<th scope="col">Token ID</th>
+<th scope="col">Signing key</th>
+</tr>
+</thead>
+<tbody>{% for signal in leaver_signals %}<tr>
+<td>{{ signal.get_event_type_display }}{% if signal.initiating_entity %} <span class="tiny">({{ signal.initiating_entity }})</span>{% endif %}</td>
+<td class="mono">{{ signal.event_at|date:"M d, Y · H:i:s" }}</td>
+<td class="mono">{{ signal.received_at|date:"M d, Y · H:i:s" }}</td>
+<td class="mono">{{ signal.jti|slice:":12" }}&hellip;</td>
+<td class="mono">{{ signal.key_id|slice:":12" }}&hellip;</td>
+</tr>{% endfor %}</tbody>
+</table>
+</div>
+{% with first=leaver_signals.0 %}<p class="tiny">Workforce subject: <span class="mono">{{ first.subject_id }}</span> · issuer <span class="mono">{{ first.subject_issuer }}</span>. No names, emails or IP addresses are received.</p>{% endwith %}
+</section>

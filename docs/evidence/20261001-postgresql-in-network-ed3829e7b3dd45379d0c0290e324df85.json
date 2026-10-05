@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-native-in-network-postgresql",
+  "run_id": "ed3829e7b3dd45379d0c0290e324df85",
+  "approval_reference": "20261003-owner-claude-postgresql-1",
+  "status": "passed",
+  "started_at": "2026-10-03T18:39:56.994620+00:00",
+  "images": {
+    "database": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "runner": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+  },
+  "source_sha256": "439fdd540840e47e915f088f32079b6cb9d0c0fb1ccfb700e9704ac9571f4f50",
+  "source_snapshot": {
+    "source_sha256": "439fdd540840e47e915f088f32079b6cb9d0c0fb1ccfb700e9704ac9571f4f50",
+    "file_count": 627,
+    "bytes": 7569689
+  },
+  "initial_free_disk_bytes": 65995579392,
+  "free_disk_before_bytes": 65995579392,
+  "free_memory_before_bytes": 12675371008,
+  "stage_growth_ceiling_bytes": 8589934592,
+  "limits": [
+    "Component concurrency and killed-process transaction checks only; no source HTTP, enterprise TLS, identity, security-tool or 24-hour proof.",
+    "Two internal containers, one GiB combined memory, no published ports or external runtime network.",
+    "Wheel files are installed into disposable bounded container tmpfs; no host installation or new built image.",
+    "Host storage monitoring detects limits; it is not a hard quota or an allocation guarantee."
+  ],
+  "download": {
+    "wheel_count": 6,
+    "downloaded_bytes": 0,
+    "reused_bytes": 14200997,
+    "cache_run": "b8667b816ce8419da7f3d5d9ac9d6ad6"
+  },
+  "wheel_footprint": {
+    "uncompressed_bytes": 44906600,
+    "archive_entries": 4472,
+    "estimated_allocation_bytes": 58294272,
+    "claim": "Metadata estimate with 4 KiB rounding and inode allowance; not a native peak-memory measurement. Optional bytecode generation is disabled."
+  },
+  "parsed_configuration_verified": true,
+  "startup_log_sha256": "2cfe0694a60586637fa8a7ac7d008efab5d5711e5b4d07c9fb57205e795d90ad",
+  "runtime_isolation_verified": true,
+  "tests": {
+    "tests_run": 14,
+    "successful_summary": true,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "expected_failures": 0,
+    "unexpected_successes": 0
+  },
+  "test_log_sha256": "5de98dcd2145031ba819e149e07b08c05588bdbc82e7cd4d84b0092f19fed306",
+  "python_version": "3.14.7",
+  "stopped_component_count": 2,
+  "shutdown_verified": true,
+  "independent_shutdown_verified": true,
+  "finished_at": "2026-10-03T18:40:16.021487+00:00",
+  "duration_seconds": 19.027,
+  "free_disk_after_bytes": 65902649344,
+  "source_unchanged": true,
+  "acceptance_passed": true
+}

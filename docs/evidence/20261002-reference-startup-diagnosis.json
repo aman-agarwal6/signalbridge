@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-source-attempt-diagnosis",
+  "recorded_at": "2026-10-02T21:36:04.613200+00:00",
+  "source_attempt": "docs/evidence/20261002-reference-access-02cb12391e284b4480a5dc9a0db9419d.json",
+  "acceptance_passed": false,
+  "native_observations": {
+    "private_acl_preparation_completed": true,
+    "kernel_receipts": {
+      "kernel-identity": "957b712a65cde5d0defa82120dfe4f12dd20dd38055ec82ce5353475490ecef2",
+      "kernel-mounts": "bf0007e042acc54bdef74c37051f08437eac1e0f67753e690d7fccbf06ef860d"
+    },
+    "database_boundaries": {
+      "console": {
+        "actual_identity_verified": true,
+        "component": "console",
+        "cross_database_connect_denied": true,
+        "denial_kind": "server_connect_privilege_message",
+        "denial_sqlstate": null
+      },
+      "source": {
+        "actual_identity_verified": true,
+        "component": "source",
+        "cross_database_connect_denied": true,
+        "denial_kind": "server_connect_privilege_message",
+        "denial_sqlstate": null
+      }
+    },
+    "dependency_installation_completed": true,
+    "tls_readiness": "not_established",
+    "access_scenarios": "not_run",
+    "fault_reset": true,
+    "child_processes_stopped": true,
+    "main_shutdown": true,
+    "independent_shutdown": true
+  },
+  "raw_runner_sha256": "65f20ec594c47fabda3de6520e9201802fa8973f955e47361910e6780d92c874",
+  "diagnosis": "The failure is between database-boundary checks and successful TLS readiness. Prior output preserves only ValueError; exact cause is unconfirmed.",
+  "correction": "Readiness attempts now span the existing twenty-second budget instead of exhausting immediate connection refusals in two seconds. Ten-attempt and twenty-second ceilings remain. Failures retain fixed categories, phase, HTTP status and child exit codes without raw responses or exceptions.",
+  "verification": {
+    "command": "manage.py test tests.test_reference_runner tests.test_reference_host_launch tests.test_reference_deadline",
+    "passed": 41,
+    "failed": 0,
+    "skipped": 0,
+    "kind": "focused_offline_regression",
+    "ruff": "passed"
+  },
+  "source_sha256_after_correction": "1667d7091e120a8a0be67cc539755c1937bcb856246d3cc0d04c9e708f0829ef",
+  "next_native_attempt": "requires_separate_user_approval"
+}

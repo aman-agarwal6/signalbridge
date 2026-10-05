@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-native-wazuh-ready-publication",
+  "run_id": "e12d871dbcd4400a84ee146bd220eb6e",
+  "approval_reference": "20261003-capacity-preservation-wazuh-one",
+  "status": "incomplete",
+  "acceptance_passed": false,
+  "native_runtime_execution_verified": false,
+  "continuous_delivery_verified": false,
+  "started_at": "2026-10-03T05:25:41.000811+00:00",
+  "finished_at": "2026-10-03T05:25:41.889733+00:00",
+  "capacity_before": {
+    "available_host_memory_bytes": 7290064896,
+    "free_disk_bytes": 49777045504
+  },
+  "stage_growth_ceiling_bytes": 32212254720,
+  "error_class": "LabControlError",
+  "main_shutdown": {
+    "run_id": "e12d871dbcd4400a84ee146bd220eb6e",
+    "shutdown_error_class": "LabControlError",
+    "shutdown_verified": false
+  },
+  "recorded_at": "2026-10-03T05:29:39.522615+00:00",
+  "private_receipt_sha256": "687e0d115a30b2b638b9cd9dea596415b6b7af88e48626214a1f17e5990d3b3d",
+  "reviewed_plan": "integrations/wazuh_enterprise/ready-publication-capacity-stage-plan.json",
+  "reviewed_plan_sha256": "9d33c56922fe5d34eae223544a987ff95f11089dd8bba0b2de1f3dc37cbc4f3c",
+  "collector_creation_requested": false,
+  "collector_start_requested": false,
+  "watchdog_armed": false,
+  "preservation_baseline_captured": false,
+  "retry_authorized": false,
+  "interpretation": "Capacity passed. Preparation failed before child folders were created; only the final receipt exists. The first preparation operation was SecureEmpty private ACL verification. The helper suppressed diagnostics, so the underlying Windows failure is unestablished. Cleanup inspection also failed; no shutdown verification is claimed. No collector create/start request was reached.",
+  "remaining": [
+    "Private-folder preparation diagnosis without another native attempt",
+    "Native collection and preservation proof",
+    "Continuous recovery and rotation coverage"
+  ],
+  "post_attempt_read_only_acl_metadata": {
+    "owner_matches_current_identity": true,
+    "rules_protected": false,
+    "unexpected_allow_rule_count": 4,
+    "reparse_point": false,
+    "allowlist_basis": "Current identity, Windows System and Administrators; no names or SIDs emitted.",
+    "interpretation": "Consistent with protection not committed. This is not a before/after permission change or a diagnosis of the underlying error. No metadata mutation performed."
+  },
+  "static_audit": {
+    "hypothesis": "Fresh-folder ACL write/read-back denial; unconfirmed.",
+    "counter_evidence": "Six earlier Windows checks passed against the same helper, including SecureEmpty.",
+    "helper_sha256": "74f8e849f5f3018790a326696b03cbcd7a643c5cfa6c360ec757b2afc11eb5de",
+    "freeze_coverage_gap": "The used manifest hashed the wrapper but omitted its executed PowerShell ACL helper. Coverage is being tightened; no retrospective native acceptance is claimed."
+  }
+}

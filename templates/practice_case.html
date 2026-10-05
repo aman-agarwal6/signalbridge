@@ -1,5 +1,5 @@
 {% extends "base.html" %}{% block content %}
-<a class="back-link" href="/practice/?app={{ app.slug }}">← Analyst practice</a>
+<a class="back-link" href="/practice/?app={{ app.slug }}">&larr; Analyst practice</a>
 <div class="page-heading"><div><div class="eyebrow">{% if attempt.fictional %}FICTIONAL TABLETOP{% else %}HISTORICAL LAB EVIDENCE REVIEW{% endif %} / YOUR PRIVATE ATTEMPT</div><h1>{{ attempt.title }}</h1><p>Practice gathering evidence and writing a defensible handoff.</p></div><span class="badge {% if attempt.status == 'submitted' %}reviewed{% else %}pending{% endif %}">{{ attempt.status|title }}</span></div>
 {% if not attempt.valid %}<div class="notice"><strong>The retained exercise failed its integrity check. Changes and exports are blocked. Ask the operator to review it.</strong></div>{% endif %}
 <section class="practice-intro"><div><h2>Shift handoff</h2><p>{{ attempt.brief }}</p></div><div><span class="eyebrow">BUSINESS REQUIREMENT</span><p>{{ attempt.requirement }}</p><small>{{ attempt.scope }} Questions and coaching are authored teaching material.</small></div></section>

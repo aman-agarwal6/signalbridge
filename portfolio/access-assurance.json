@@ -1,0 +1,634 @@
+{
+  "kind": "signalbridge-recorded-access-walkthrough",
+  "schema_version": 1,
+  "run_id": "b8667b816ce8419da7f3d5d9ac9d6ad6",
+  "finished_at": "2026-10-02T23:49:10.024141+00:00",
+  "source_sha256": "6a0b6fb937544bb51fa673b34cb99a0cd5f522f3ac84871c609c379a89ff1471",
+  "receipt": "20261002-reference-access-b8667b816ce8419da7f3d5d9ac9d6ad6.json",
+  "receipt_sha256": "c254c2099077fdcb129902748a1f302476751605ea4c1b485fbfad1d7c608cc0",
+  "events": [
+    {
+      "event_id": "81d7aa57-abd6-41ac-a68e-572224465b38",
+      "app": "documents",
+      "digest": "e64b869672c5450de3133bfb2c7d8b821f599123b4b8168cb8b839925592aa9c",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.387144+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "a56abc50f2129848b5146e424009481c21149263c07dd72cf531a812672ad0b3",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "allowed",
+      "reason": "member",
+      "occurred_at": "2026-10-02T23:48:40.341793+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "e1a6515a-3d57-44b5-8860-85bf4fd82ea3",
+      "app": "documents",
+      "digest": "91e36ae63e8d418a7e33270a8a611ca7752199da8bd1e64e46bd189f1b424491",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.399148+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "96a93518b848b3b7f80652f34d22d2946b9e807fe862bab4690b5ab077385f7f",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "denied",
+      "reason": "membership_required",
+      "occurred_at": "2026-10-02T23:48:40.406163+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "f79ed90c-6c27-4931-8acb-c9d0ed3f5b61",
+      "app": "documents",
+      "digest": "fc2f13e87b16a716fa9b3857c45b4585af10556e832f30c09da93a207055d009",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.411554+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "01e4aadea1a1ce4867ccf2525778713f363146d0d98e7e22da1a52507652c438",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "denied",
+      "reason": "membership_required",
+      "occurred_at": "2026-10-02T23:48:40.466112+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "72d34194-5462-465c-9169-5a2c92ab8e48",
+      "app": "documents",
+      "digest": "bde6ecd6970d353a5469773bc9499bc0415126c78276551c47d40928a680f2ce",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.436518+00:00",
+      "state": "processed",
+      "operation": "membership.change",
+      "actor": "7d7c436375ddc8cbc8dc9f55c791a8d905a14d495e9baf702fa8f224ff2b5226",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "allowed",
+      "reason": "membership_removed",
+      "occurred_at": "2026-10-02T23:48:40.529593+00:00",
+      "membership": {
+        "state": "removed",
+        "subject": "a56abc50f2129848b5146e424009481c21149263c07dd72cf531a812672ad0b3"
+      }
+    },
+    {
+      "event_id": "2e3e6ab9-af04-4b70-a1e3-6af40051eaca",
+      "app": "documents",
+      "digest": "0a8da0412ce30e684e05af097cb0b9df11e8b527d79b02d34a120b2de723154a",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.449731+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "a56abc50f2129848b5146e424009481c21149263c07dd72cf531a812672ad0b3",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "denied",
+      "reason": "membership_required",
+      "occurred_at": "2026-10-02T23:48:40.641928+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "5e352674-4ccf-43b9-a6bb-76a1d645f7c1",
+      "app": "documents",
+      "digest": "1ca205c1c981fdbf94c92fd4db34f2e951c078afdc770c618f0e226eaf55a459",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.456617+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "7d7c436375ddc8cbc8dc9f55c791a8d905a14d495e9baf702fa8f224ff2b5226",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "allowed",
+      "reason": "owner",
+      "occurred_at": "2026-10-02T23:48:40.699895+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "9cb9a004-9f54-4c87-8740-cdb52b91c99f",
+      "app": "documents",
+      "digest": "d346c5f5f4262907e0b2a247202b7b3a2bbc67d498a71c355d3cbbfa3d393cf6",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.470633+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "a56abc50f2129848b5146e424009481c21149263c07dd72cf531a812672ad0b3",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "allowed",
+      "reason": "member",
+      "occurred_at": "2026-10-02T23:48:42.417343+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "05ff290d-15c0-444c-af76-108ccebc0a6d",
+      "app": "documents",
+      "digest": "573c7c6c6c9ae06f2a08f21f78f2d1121d57e374de3fa14a477b0b01ce97684c",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.484585+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "a56abc50f2129848b5146e424009481c21149263c07dd72cf531a812672ad0b3",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "denied",
+      "reason": "membership_required",
+      "occurred_at": "2026-10-02T23:48:44.181396+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "7a531e45-e252-40bc-981e-9e04b4f03ad7",
+      "app": "documents",
+      "digest": "b55a21cba80e3963f64b2d8c21bf50eff7c84bd4c22daaee723188264071676a",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.492665+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "7d7c436375ddc8cbc8dc9f55c791a8d905a14d495e9baf702fa8f224ff2b5226",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "allowed",
+      "reason": "owner",
+      "occurred_at": "2026-10-02T23:48:44.242503+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "39fb97e4-5f1c-4a81-baa4-55e34fe728aa",
+      "app": "documents",
+      "digest": "4102a767ff5d2f6d6bceae4319a133117e0eb4783cd7c2c228bfbfdd477abad6",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.509843+00:00",
+      "state": "processed",
+      "operation": "membership.change",
+      "actor": "7d7c436375ddc8cbc8dc9f55c791a8d905a14d495e9baf702fa8f224ff2b5226",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "allowed",
+      "reason": "member",
+      "occurred_at": "2026-10-02T23:48:44.307883+00:00",
+      "membership": {
+        "state": "granted",
+        "subject": "a56abc50f2129848b5146e424009481c21149263c07dd72cf531a812672ad0b3"
+      }
+    },
+    {
+      "event_id": "28e7e223-008c-4cce-9265-189e02efa1fc",
+      "app": "documents",
+      "digest": "e275f041616f96b37049c62ade573dbf59da4aa30b8c43c767d72718c48de805",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.523294+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "a56abc50f2129848b5146e424009481c21149263c07dd72cf531a812672ad0b3",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "allowed",
+      "reason": "member",
+      "occurred_at": "2026-10-02T23:48:44.366120+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "9327fd20-f91e-45d8-863c-4b980ec07426",
+      "app": "documents",
+      "digest": "44c12869d02e8a278e0903731402e0779d1c4bc353af6177ccf1068590b483d0",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.537077+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "a56abc50f2129848b5146e424009481c21149263c07dd72cf531a812672ad0b3",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "allowed",
+      "reason": "member",
+      "occurred_at": "2026-10-02T23:48:44.554172+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "65ded984-875f-4ac9-8a55-edaa11440808",
+      "app": "expenses",
+      "digest": "e2ae3e7f7620ad21c2914a8f9e77fb46b24f704175865921f74bad0b11eeddcd",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.543978+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "3bacf26b0ec043c82b4267ce3082f33168ea7023760c56bf0546b3ab1dcd1570",
+      "resource": "b6e32e69152a84216694aa8cf0d40a3b32a44c1302386ffb669a768d0f06dd5e",
+      "outcome": "allowed",
+      "reason": "member",
+      "occurred_at": "2026-10-02T23:48:44.747458+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "1c8e6158-3fd1-4ab4-bed2-f6a2dba23dc8",
+      "app": "expenses",
+      "digest": "5e9f05a37e469f8e144c1c0e5f3cc2ac084d60c49dd42c3075ad137fc9431208",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.555363+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "34b297093ce5b0df17ab06993c66b54a8c95e8fe3147bb40b23a1f63f93e08cd",
+      "resource": "b6e32e69152a84216694aa8cf0d40a3b32a44c1302386ffb669a768d0f06dd5e",
+      "outcome": "denied",
+      "reason": "membership_required",
+      "occurred_at": "2026-10-02T23:48:44.807541+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "32ce1137-045d-4519-ad34-082d2b320e8e",
+      "app": "expenses",
+      "digest": "fe5cc878478fdaff9f1a98023704d621980ec49826c9cc1305198ea3887125c3",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.566832+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "318220e43a9de951b1fad28baf03d4817d958cf0041f90ea03ffb7645415e2a4",
+      "resource": "b6e32e69152a84216694aa8cf0d40a3b32a44c1302386ffb669a768d0f06dd5e",
+      "outcome": "denied",
+      "reason": "membership_required",
+      "occurred_at": "2026-10-02T23:48:44.867417+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "6046b9d7-aaa2-4b8b-9d85-bc70ea6f7fc5",
+      "app": "expenses",
+      "digest": "d3d3630a1971f13ec54ba203e3ba0bb4644271308e4ef3db5e85997eac20b6ae",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.581852+00:00",
+      "state": "processed",
+      "operation": "membership.change",
+      "actor": "df4e77752d871b28878c30b3bb3038d93894372b3641b3df6de34cb2562dc051",
+      "resource": "b6e32e69152a84216694aa8cf0d40a3b32a44c1302386ffb669a768d0f06dd5e",
+      "outcome": "allowed",
+      "reason": "membership_removed",
+      "occurred_at": "2026-10-02T23:48:44.929006+00:00",
+      "membership": {
+        "state": "removed",
+        "subject": "3bacf26b0ec043c82b4267ce3082f33168ea7023760c56bf0546b3ab1dcd1570"
+      }
+    },
+    {
+      "event_id": "92835e9e-3839-4f46-a0ad-5e355878ef90",
+      "app": "expenses",
+      "digest": "a3029b1e3575b61f71f78c4498c095a2153774176c9b62988b2b468efa0be0c6",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.593232+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "3bacf26b0ec043c82b4267ce3082f33168ea7023760c56bf0546b3ab1dcd1570",
+      "resource": "b6e32e69152a84216694aa8cf0d40a3b32a44c1302386ffb669a768d0f06dd5e",
+      "outcome": "denied",
+      "reason": "membership_required",
+      "occurred_at": "2026-10-02T23:48:45.050440+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "f3af4151-0059-490e-85d1-11f13069ce4f",
+      "app": "expenses",
+      "digest": "9c5cd4caaa4d3fd7449ab576ea0962176d7e0c4d73cc9407a988789f9483c96c",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.600478+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "df4e77752d871b28878c30b3bb3038d93894372b3641b3df6de34cb2562dc051",
+      "resource": "b6e32e69152a84216694aa8cf0d40a3b32a44c1302386ffb669a768d0f06dd5e",
+      "outcome": "allowed",
+      "reason": "owner",
+      "occurred_at": "2026-10-02T23:48:45.108426+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "02164679-39a8-4914-a23d-39dd16dde27a",
+      "app": "expenses",
+      "digest": "fd096ef34ed67936043097925256b6da9f318af2539e0c7c8a987e3850fb0395",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.615352+00:00",
+      "state": "processed",
+      "operation": "membership.change",
+      "actor": "df4e77752d871b28878c30b3bb3038d93894372b3641b3df6de34cb2562dc051",
+      "resource": "b6e32e69152a84216694aa8cf0d40a3b32a44c1302386ffb669a768d0f06dd5e",
+      "outcome": "allowed",
+      "reason": "member",
+      "occurred_at": "2026-10-02T23:48:45.175635+00:00",
+      "membership": {
+        "state": "granted",
+        "subject": "3bacf26b0ec043c82b4267ce3082f33168ea7023760c56bf0546b3ab1dcd1570"
+      }
+    },
+    {
+      "event_id": "4d62ee91-132b-42b7-98c4-89e0fa0bf18d",
+      "app": "expenses",
+      "digest": "f5e3a39c0dd5d920bfa696345dea05d24c09807b31d6c195461de17e73f49f41",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.628646+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "3bacf26b0ec043c82b4267ce3082f33168ea7023760c56bf0546b3ab1dcd1570",
+      "resource": "b6e32e69152a84216694aa8cf0d40a3b32a44c1302386ffb669a768d0f06dd5e",
+      "outcome": "allowed",
+      "reason": "member",
+      "occurred_at": "2026-10-02T23:48:45.233669+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "df47df72-f4f2-4a57-8b91-b2bb814fde71",
+      "app": "expenses",
+      "digest": "fa41d5bb314619eb6c91f3bc77e7887b774cfe6ad4c196828692efa7ec677437",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.642320+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "3bacf26b0ec043c82b4267ce3082f33168ea7023760c56bf0546b3ab1dcd1570",
+      "resource": "b6e32e69152a84216694aa8cf0d40a3b32a44c1302386ffb669a768d0f06dd5e",
+      "outcome": "allowed",
+      "reason": "member",
+      "occurred_at": "2026-10-02T23:48:45.424698+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "e6c667f8-a18e-4cd1-9725-9eda50deaf27",
+      "app": "documents",
+      "digest": "e56023a2cdbf861e1e9ab4e4ff57e42cad83b403b2c421dbc1b62712af83233c",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.656041+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "a56abc50f2129848b5146e424009481c21149263c07dd72cf531a812672ad0b3",
+      "resource": "28543363586bf34931f7dcfe886fb8104166c711e48ff2e2b680d5ebe2df14e0",
+      "outcome": "allowed",
+      "reason": "member",
+      "occurred_at": "2026-10-02T23:48:47.647409+00:00",
+      "membership": null
+    },
+    {
+      "event_id": "48818336-7d00-4d69-8957-dce17027e3fa",
+      "app": "expenses",
+      "digest": "2196754c4322e6f9a1a17314479ae29a230ed8335a3d27834a8eb14318f466b1",
+      "source": "instrumented_lab",
+      "processed_at": "2026-10-02T23:48:54.671098+00:00",
+      "state": "processed",
+      "operation": "private_record.read",
+      "actor": "3bacf26b0ec043c82b4267ce3082f33168ea7023760c56bf0546b3ab1dcd1570",
+      "resource": "b6e32e69152a84216694aa8cf0d40a3b32a44c1302386ffb669a768d0f06dd5e",
+      "outcome": "allowed",
+      "reason": "member",
+      "occurred_at": "2026-10-02T23:48:47.712935+00:00",
+      "membership": null
+    }
+  ],
+  "controls": [
+    {
+      "step": "authenticated_document_member",
+      "passed": true
+    },
+    {
+      "step": "authenticated_expense_member",
+      "passed": true
+    },
+    {
+      "step": "authenticated_operator",
+      "passed": true
+    },
+    {
+      "step": "authenticated_outsider",
+      "passed": true
+    },
+    {
+      "step": "documents_allowed",
+      "event_id": "81d7aa57-abd6-41ac-a68e-572224465b38",
+      "http_status": 200,
+      "known_content": true,
+      "observation": "known_content_returned",
+      "passed": true
+    },
+    {
+      "step": "documents_outsider_denied",
+      "event_id": "e1a6515a-3d57-44b5-8860-85bf4fd82ea3",
+      "http_status": 403,
+      "known_content": false,
+      "observation": "explicit_denial",
+      "passed": true
+    },
+    {
+      "step": "documents_cross_app_denied",
+      "event_id": "f79ed90c-6c27-4931-8acb-c9d0ed3f5b61",
+      "http_status": 403,
+      "known_content": false,
+      "observation": "explicit_denial",
+      "passed": true
+    },
+    {
+      "step": "documents_permission_removed",
+      "event_id": "72d34194-5462-465c-9169-5a2c92ab8e48",
+      "http_status": 200,
+      "effective_access": false,
+      "passed": true
+    },
+    {
+      "step": "documents_session_still_valid",
+      "event_id": null,
+      "http_status": 200,
+      "session_unchanged": true,
+      "identity_matched": true,
+      "passed": true
+    },
+    {
+      "step": "documents_removed_member_denied",
+      "event_id": "2e3e6ab9-af04-4b70-a1e3-6af40051eaca",
+      "http_status": 403,
+      "known_content": false,
+      "observation": "explicit_denial",
+      "passed": true
+    },
+    {
+      "step": "documents_owner_control",
+      "event_id": "5e352674-4ccf-43b9-a6bb-76a1d645f7c1",
+      "http_status": 200,
+      "known_content": true,
+      "observation": "known_content_returned",
+      "passed": true
+    },
+    {
+      "step": "bounded_regression_known_content",
+      "event_id": "9cb9a004-9f54-4c87-8740-cdb52b91c99f",
+      "http_status": 200,
+      "known_content": true,
+      "observation": "known_content_returned",
+      "passed": true
+    },
+    {
+      "step": "regression_reset_denied",
+      "event_id": "05ff290d-15c0-444c-af76-108ccebc0a6d",
+      "http_status": 403,
+      "known_content": false,
+      "observation": "explicit_denial",
+      "passed": true
+    },
+    {
+      "step": "documents_reset_owner_control",
+      "event_id": "7a531e45-e252-40bc-981e-9e04b4f03ad7",
+      "http_status": 200,
+      "known_content": true,
+      "observation": "known_content_returned",
+      "passed": true
+    },
+    {
+      "step": "documents_permission_restored",
+      "event_id": "39fb97e4-5f1c-4a81-baa4-55e34fe728aa",
+      "http_status": 200,
+      "effective_access": true,
+      "passed": true
+    },
+    {
+      "step": "documents_restored_known_content",
+      "event_id": "28e7e223-008c-4cce-9265-189e02efa1fc",
+      "http_status": 200,
+      "known_content": true,
+      "observation": "known_content_returned",
+      "passed": true
+    },
+    {
+      "step": "documents_alternate_grant_preserved",
+      "event_id": null,
+      "http_status": 200,
+      "effective_access": true,
+      "passed": true
+    },
+    {
+      "step": "documents_alternate_grant_content",
+      "event_id": "9327fd20-f91e-45d8-863c-4b980ec07426",
+      "http_status": 200,
+      "known_content": true,
+      "observation": "known_content_returned",
+      "passed": true
+    },
+    {
+      "step": "expenses_allowed",
+      "event_id": "65ded984-875f-4ac9-8a55-edaa11440808",
+      "http_status": 200,
+      "known_content": true,
+      "observation": "known_content_returned",
+      "passed": true
+    },
+    {
+      "step": "expenses_outsider_denied",
+      "event_id": "1c8e6158-3fd1-4ab4-bed2-f6a2dba23dc8",
+      "http_status": 403,
+      "known_content": false,
+      "observation": "explicit_denial",
+      "passed": true
+    },
+    {
+      "step": "expenses_cross_app_denied",
+      "event_id": "32ce1137-045d-4519-ad34-082d2b320e8e",
+      "http_status": 403,
+      "known_content": false,
+      "observation": "explicit_denial",
+      "passed": true
+    },
+    {
+      "step": "expenses_permission_removed",
+      "event_id": "6046b9d7-aaa2-4b8b-9d85-bc70ea6f7fc5",
+      "http_status": 200,
+      "effective_access": false,
+      "passed": true
+    },
+    {
+      "step": "expenses_session_still_valid",
+      "event_id": null,
+      "http_status": 200,
+      "session_unchanged": true,
+      "identity_matched": true,
+      "passed": true
+    },
+    {
+      "step": "expenses_removed_member_denied",
+      "event_id": "92835e9e-3839-4f46-a0ad-5e355878ef90",
+      "http_status": 403,
+      "known_content": false,
+      "observation": "explicit_denial",
+      "passed": true
+    },
+    {
+      "step": "expenses_owner_control",
+      "event_id": "f3af4151-0059-490e-85d1-11f13069ce4f",
+      "http_status": 200,
+      "known_content": true,
+      "observation": "known_content_returned",
+      "passed": true
+    },
+    {
+      "step": "expenses_permission_restored",
+      "event_id": "02164679-39a8-4914-a23d-39dd16dde27a",
+      "http_status": 200,
+      "effective_access": true,
+      "passed": true
+    },
+    {
+      "step": "expenses_restored_known_content",
+      "event_id": "4d62ee91-132b-42b7-98c4-89e0fa0bf18d",
+      "http_status": 200,
+      "known_content": true,
+      "observation": "known_content_returned",
+      "passed": true
+    },
+    {
+      "step": "expenses_alternate_grant_preserved",
+      "event_id": null,
+      "http_status": 200,
+      "effective_access": true,
+      "passed": true
+    },
+    {
+      "step": "expenses_alternate_grant_content",
+      "event_id": "df47df72-f4f2-4a57-8b91-b2bb814fde71",
+      "http_status": 200,
+      "known_content": true,
+      "observation": "known_content_returned",
+      "passed": true
+    },
+    {
+      "step": "documents_final_restore_known_content",
+      "event_id": "e6c667f8-a18e-4cd1-9725-9eda50deaf27",
+      "http_status": 200,
+      "known_content": true,
+      "observation": "known_content_returned",
+      "passed": true
+    },
+    {
+      "step": "expenses_final_restore_known_content",
+      "event_id": "48818336-7d00-4d69-8957-dce17027e3fa",
+      "http_status": 200,
+      "known_content": true,
+      "observation": "known_content_returned",
+      "passed": true
+    }
+  ],
+  "cases": [
+    {
+      "app": "documents",
+      "case_id": "1576faa9-6deb-4511-804c-81dafa8bb648",
+      "evidence_event_ids": [
+        "72d34194-5462-465c-9169-5a2c92ab8e48",
+        "9cb9a004-9f54-4c87-8740-cdb52b91c99f"
+      ],
+      "rule": "R3",
+      "severity": "high",
+      "status": "open",
+      "version": 1
+    }
+  ],
+  "limits": [
+    "Recorded synthetic reference lab; not production or live monitoring.",
+    "One deliberately introduced regression is not a detection-accuracy benchmark.",
+    "The case remained open; reset checks are not independent analyst approval of remediation.",
+    "Wazuh inputs were staged in the source run. A later native collector attempt collected zero of 24 inputs and its launcher was retired. No successful enterprise collection is claimed.",
+    "The recorded source hash identifies the executed revision, not subsequent UI changes.",
+    "Local administrators can replace receipts; hashes are not independent attestation."
+  ],
+  "wazuh_attempt": {
+    "run_id": "009bc11e4fe649649d7dd44887be8b72",
+    "finished_at": "2026-10-03T01:20:15.581890+00:00",
+    "receipt": "20261003-wazuh-reference-bootstrap-009bc11e4fe649649d7dd44887be8b72.json",
+    "receipt_sha256": "16e85eddf1a2e4fad84e0bda39434fd6c8b9deb9c5db45ca26fa250eb5138a0a",
+    "diagnosis_receipt": "20261003-wazuh-final-attempt-diagnosis.json",
+    "diagnosis_sha256": "92a6e31362599d04950a966278b96eeae52bde767620b3a71d9e6b4a4c58ab2f",
+    "archived_inputs": 0,
+    "expected_inputs": 24,
+    "acceptance_passed": false,
+    "main_stop_reported": true,
+    "independent_stop_reported": true,
+    "independent_shutdown_reason": "control_error",
+    "launcher_retired": true,
+    "claim_boundary": "Retained failed execution and diagnosis; no collection success, continuous operation or independent attestation."
+  }
+}

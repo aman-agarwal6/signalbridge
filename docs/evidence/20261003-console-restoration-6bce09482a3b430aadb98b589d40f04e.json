@@ -1,0 +1,128 @@
+{
+  "acceptance_passed": true,
+  "approval_reference": "20261003-owner-claude-restoration-header-1",
+  "backup": {
+    "bytes": 165582,
+    "format": "pg_dump_custom",
+    "sha256": "c7cec346bc4a72aea99a0831679e68ce8655b5e6b02b3f65d0dc5fb3da018c62",
+    "source_rows": {
+      "cases": 0,
+      "events": 8
+    }
+  },
+  "capacity_before": {
+    "available_host_memory_bytes": 14853197824,
+    "free_disk_bytes": 65062674432
+  },
+  "console_events_sha256": "664edf55fbb1bc71bcdce566ad8a017fdf04e469de36062c170f0008ba4b237d",
+  "copy_verified": true,
+  "download": {
+    "cache_run": "b8667b816ce8419da7f3d5d9ac9d6ad6",
+    "downloaded_bytes": 0,
+    "reused_bytes": 14200997,
+    "wheel_count": 6
+  },
+  "finished_at": "2026-10-03T23:22:00.714106+00:00",
+  "free_disk_after_bytes": 64668774400,
+  "images": {
+    "database": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "runner": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+  },
+  "independent_shutdown": {
+    "reason": "launcher_finished",
+    "run_id": "6bce09482a3b430aadb98b589d40f04e",
+    "shutdown_verified": true,
+    "stopped_at": "2026-10-03T23:22:00.680521+00:00",
+    "stopped_component_count": 4
+  },
+  "independent_shutdown_verified": true,
+  "kind": "signalbridge-native-console-restoration",
+  "limits": [
+    "Restores one retained native console into a separate local PostgreSQL instance; not production backup tooling or point-in-time recovery.",
+    "Synthetic operator accounts exist only in the restored database; the original volume is copied read-only and never written.",
+    "Imports and workflows reuse retained native tool receipts; no tool, source app or provider runs here.",
+    "The Wazuh review is revalidated on the Windows host (its file-identity checks need the original files); the restored console imports that exact hash-pinned scope.",
+    "Capacity readings are detection guards, not physical quotas. Containers, volumes and the backup are retained, not deleted."
+  ],
+  "main_shutdown": {
+    "run_id": "6bce09482a3b430aadb98b589d40f04e",
+    "shutdown_verified": true,
+    "stopped_component_count": 4
+  },
+  "main_shutdown_verified": true,
+  "parsed_configuration_verified": true,
+  "profile": "header",
+  "restored_into_separate_database": true,
+  "retained_copies": {
+    "a2e95dd90658461ebd0b6f34102306ee": {
+      "bytes": 21805614,
+      "excluded": [
+        "docker-config",
+        "secrets"
+      ],
+      "files": 648,
+      "tree_sha256": "50ee9d749a6dea58ca4e7e3de537d251e990332735a1c7e7e60947a9c2f2362f"
+    },
+    "d975b97fad814c9b8e4304e114c776e5": {
+      "bytes": 7784287,
+      "excluded": [
+        "docker-config",
+        "secrets"
+      ],
+      "files": 643,
+      "tree_sha256": "bd8a5a279febc4ad29e277a08a8f05034c496e56bf5ee49c59fad7f00907aa8d"
+    }
+  },
+  "run_id": "6bce09482a3b430aadb98b589d40f04e",
+  "runner": {
+    "passed": true,
+    "pending_migrations": [],
+    "phase": "complete",
+    "profile": "header",
+    "restored": {
+      "archive_sha256": "664edf55fbb1bc71bcdce566ad8a017fdf04e469de36062c170f0008ba4b237d",
+      "cases": 0,
+      "events": 8
+    },
+    "run_id": "6bce09482a3b430aadb98b589d40f04e",
+    "schema_version": 1,
+    "workflow": {
+      "documents_finding_plugin": "10021",
+      "event_bindings": {
+        "documents": 6,
+        "expenses": 2
+      },
+      "expenses_finding": null,
+      "scoped_check_runs": 2,
+      "zap_import_lines": [
+        "Historical native header review imported."
+      ],
+      "zap_repeat_lines": [
+        "Native header review already imported; no duplicate created."
+      ]
+    }
+  },
+  "runner_exit_code": 0,
+  "runtime_isolation_verified": true,
+  "schema_version": 1,
+  "source_archive_unchanged": true,
+  "source_run_id": "a2e95dd90658461ebd0b6f34102306ee",
+  "source_sha256": "35ca81ddb52d63389c505e981606a44d38b19937d83233a982f300a0c5501156",
+  "source_snapshot": {
+    "bytes": 7665420,
+    "file_count": 634,
+    "source_sha256": "35ca81ddb52d63389c505e981606a44d38b19937d83233a982f300a0c5501156"
+  },
+  "source_unchanged": true,
+  "source_volume": {
+    "in_use": false,
+    "labels_verified": true,
+    "name": "sb-enterprise-reference-a2e95dd90658461ebd0b6f34102306ee"
+  },
+  "stage_growth_ceiling_bytes": 8589934592,
+  "stage_initial_free_disk_bytes": 65063096320,
+  "started_at": "2026-10-03T23:19:46.286040+00:00",
+  "status": "passed",
+  "tool_run_id": "d975b97fad814c9b8e4304e114c776e5",
+  "tool_scope_sha256": null
+}

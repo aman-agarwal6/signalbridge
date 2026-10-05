@@ -1,6 +1,7 @@
 """Synthetic credential-copy and fail-closed publication checks; no real keys in fixtures."""
 
 import base64
+import copy
 import json
 import shutil
 import stat
@@ -74,10 +75,319 @@ class PublicationTests(TestCase):
         with self.assertRaises(publication.PublicationError):
             publication.collect_secrets(self.root)
 
+    def test_restoration_passwords_are_collected_and_extra_files_fail_closed(self):
+        directory = "var/enterprise/runs/" + "a" * 32 + "/secrets/"
+        password = "R" * 32 + "s" * 32
+        self.write(directory + "bootstrap-password", "B" * 64)
+        self.write(directory + "console-password", password)
+        self.write(directory + "restoration-plan.json", json.dumps({"profile": "access"}))
+        self.write(directory + "tool-scope.json", "null")
+        self.write("docs/copied.txt", password)
+        self.assertEqual(self.scan(["docs/copied.txt"]), ["docs/copied.txt"])
+        self.write(directory + "unreviewed-secret", "synthetic-only")
+        with self.assertRaises(publication.PublicationError):
+            publication.collect_secrets(self.root)
+
     def test_enterprise_invalid_run_path_fails_closed(self):
         self.write("var/enterprise/runs/not-a-run/file", "synthetic-only")
         with self.assertRaises(publication.PublicationError):
             publication.collect_secrets(self.root)
+
+    def source_profile(self):
+        from integrations.enterprise.reference_native_support import ACCOUNTS, FIELDS
+
+        value = {k: uuid.uuid4().hex + uuid.uuid4().hex for k in FIELDS if k != "accounts"}
+        value["accounts"] = {k: uuid.uuid4().hex + uuid.uuid4().hex for k in ACCOUNTS}
+        return value
+
+    def test_source_profile_passwords_collected_after_incomplete_certificate_preparation(self):
+        profile = self.source_profile()
+        self.write(
+            "var/enterprise/runs/" + "a" * 32 + "/secrets/source-profile", json.dumps(profile)
+        )
+        credential = profile["accounts"]["document_member"]
+        self.write("docs/copied.txt", credential)
+        self.assertEqual(self.scan(["docs/copied.txt"]), ["docs/copied.txt"])
+
+    def test_source_private_key_body_is_detected_but_public_certificate_is_not_secret(self):
+        directory = "var/enterprise/runs/" + "a" * 32 + "/secrets/"
+        self.write(directory + "source-profile", json.dumps(self.source_profile()))
+        body = base64.b64encode(
+            b"synthetic-test-material-not-a-real-key-" + uuid.uuid4().hex.encode()
+        ).decode()
+        key = "-----BEGIN PRIVATE KEY-----\n" + body + "\n-----END PRIVATE KEY-----\n"
+        cert = "-----BEGIN CERTIFICATE-----\nc3ludGhldGljLXRlc3Q=\n-----END CERTIFICATE-----\n"
+        self.write(directory + "source-private-key.pem", key)
+        self.write(directory + "lab-ca.pem", cert)
+        self.write("docs/key-copy.txt", body)
+        self.write("docs/public-certificate.txt", cert)
+        self.assertEqual(
+            self.scan(["docs/key-copy.txt", "docs/public-certificate.txt"]), ["docs/key-copy.txt"]
+        )
+
+    def test_source_profile_and_private_key_bad_inventory_fail_closed(self):
+        directory = "var/enterprise/runs/" + "a" * 32 + "/secrets/"
+        profile = self.source_profile()
+        target = self.write(directory + "source-profile", json.dumps(profile))
+        for value in (
+            {**profile, "extra": "unexpected"},
+            {**profile, "accounts": {}},
+            {**profile, "source_secret": True},
+        ):
+            target.write_text(json.dumps(value))
+            with self.assertRaises(publication.PublicationError):
+                publication.collect_secrets(self.root)
+        target.write_text(json.dumps(profile))
+        self.write(directory + "source-private-key.pem", "not-a-key")
+        with self.assertRaises(publication.PublicationError):
+            publication.collect_secrets(self.root)
+
+    def identity_fixture(self, *, complete=True):
+        """Actual preparation shape with nonfunctional synthetic test values only."""
+        from integrations.identity import native_profile
+
+        run = "b" * 32
+        base = f"var/enterprise/runs/{run}/"
+        realm = json.loads((publication.ROOT / "integrations/identity/realm.json").read_bytes())
+        plan = json.loads(
+            (publication.ROOT / "integrations/identity/native-stage-plan.json").read_bytes()
+        )
+
+        def synthetic_token(size):
+            length = (size * 4 + 2) // 3
+            return ("synthetic-test-" + uuid.uuid4().hex).ljust(length, "x")
+
+        with (
+            patch.object(native_profile.secrets, "token_urlsafe", side_effect=synthetic_token),
+            patch.object(
+                native_profile.secrets,
+                "token_bytes",
+                side_effect=lambda size: (b"synthetic-totp-" + uuid.uuid4().bytes + b"xx")[:size],
+            ),
+        ):
+            prepared, profile = native_profile.material(realm, run)
+        self.write(base + "source/integrations/identity/realm.json", json.dumps(realm))
+        self.write(base + "source/integrations/identity/native-stage-plan.json", json.dumps(plan))
+        config = {
+            **plan["required_keycloak_config"],
+            "db-password": profile["keycloak_database_password"],
+            "bootstrap-admin-username": profile["operator_username"],
+            "bootstrap-admin-password": profile["operator_password"],
+        }
+        files = {
+            "identity-profile.json": json.dumps(profile),
+            "signalbridge-realm.json": json.dumps(prepared),
+            "bootstrap-password": profile["bootstrap_database_password"],
+            "console-password": profile["database_password"],
+            "keycloak-password": profile["keycloak_database_password"],
+            "keycloak.conf": "".join(
+                key + "=" + value + "\n" for key, value in sorted(config.items())
+            ),
+        }
+        cert = "-----BEGIN CERTIFICATE-----\nc3ludGhldGljLXRlc3Q=\n-----END CERTIFICATE-----\n"
+        files["lab-ca.pem"] = cert
+        for name in ("provider", "console"):
+            body = base64.b64encode(
+                ("synthetic-non-key-" + name + uuid.uuid4().hex).encode()
+            ).decode()
+            files[name + "-certificate.pem"] = cert
+            files[name + "-private-key.pem"] = (
+                "-----BEGIN PRIVATE KEY-----\n" + body + "\n-----END PRIVATE KEY-----\n"
+            )
+        directory = base + "secrets/"
+        if complete:
+            for name, value in files.items():
+                self.write(directory + name, value)
+        return directory, profile, files
+
+    def test_identity_all_generated_passwords_totp_and_private_key_encodings_are_covered(self):
+        directory, profile, files = self.identity_fixture()
+        sensitive = {
+            profile[key]
+            for key in (
+                "django_secret",
+                "database_password",
+                "keycloak_database_password",
+                "bootstrap_database_password",
+                "operator_password",
+            )
+        }
+        for account in profile["accounts"].values():
+            sensitive.update((account["password"], account["totp_base32"]))
+        for name in ("provider", "console"):
+            key = files[name + "-private-key.pem"]
+            sensitive.update((key, "".join(key.splitlines()[1:-1])))
+        self.assertEqual(len(sensitive), 23)
+        discovered = publication.collect_secrets(self.root)
+        self.assertTrue(sensitive.issubset(discovered))
+        for index, value in enumerate(sensitive):
+            name = f"docs/identity-copy-{index}.txt"
+            self.write(name, value.encode("utf-16-le" if index % 2 else "utf8"))
+            self.assertEqual(publication.scan_publishable(self.root, [name], discovered), [name])
+        public = (
+            profile["issuer"]
+            + profile["run_id"]
+            + profile["operator_username"]
+            + files["lab-ca.pem"]
+        )
+        public += "".join(
+            account["subject"] + account["username"] for account in profile["accounts"].values()
+        )
+        self.write("docs/identity-public.txt", public)
+        self.assertEqual(
+            publication.scan_publishable(self.root, ["docs/identity-public.txt"], discovered), []
+        )
+        self.assertEqual(
+            self.scan([directory + "identity-profile.json"]), [directory + "identity-profile.json"]
+        )
+
+    def test_identity_partial_preparation_collects_profile_secrets_at_every_step(self):
+        directory, profile, files = self.identity_fixture(complete=False)
+        for name, value in files.items():
+            with self.subTest(last_written=name):
+                self.write(directory + name, value)
+                collected = publication.collect_secrets(self.root)
+                self.assertIn(profile["operator_password"], collected)
+                self.assertIn(profile["accounts"]["analyst"]["totp_base32"], collected)
+        self.write(directory + "keycloak.conf", files["keycloak.conf"][:-10])
+        with self.assertRaises(publication.PublicationError):
+            publication.collect_secrets(self.root)
+
+    def test_identity_profile_unknown_fields_scopes_or_malformed_credentials_fail_closed(self):
+        directory, profile, _ = self.identity_fixture()
+        for alter in (
+            lambda value: value.update(extra_password="synthetic-hidden-password"),
+            lambda value: value.update(run_id="c" * 32),
+            lambda value: value.update(operator_password=True),
+            lambda value: value["accounts"].pop("viewer"),
+            lambda value: value["accounts"].update({"analy\u0455t": {}}),
+            lambda value: value["accounts"]["analyst"].update(username="sb-lab-analy\u0455t"),
+            lambda value: value["accounts"]["analyst"].update(new_token="synthetic-hidden-token"),
+            lambda value: value["accounts"]["analyst"].update(
+                totp_base32="lowercase-not-supported"
+            ),
+        ):
+            value = copy.deepcopy(profile)
+            alter(value)
+            self.write(directory + "identity-profile.json", json.dumps(value))
+            with self.assertRaises(publication.PublicationError):
+                publication.collect_secrets(self.root)
+
+    def test_identity_realm_nested_credentials_and_configuration_must_match_profile(self):
+        directory, _, files = self.identity_fixture()
+        realm = json.loads(files["signalbridge-realm.json"])
+        changed = copy.deepcopy(realm)
+        changed["users"][0]["credentials"][1]["secretData"] = (
+            '{"value":"synthetic-hidden","value":"synthetic-other"}'
+        )
+        for name, bad in (
+            ("signalbridge-realm.json", json.dumps(changed)),
+            ("signalbridge-realm.json", json.dumps({**realm, "clientSecret": "synthetic-hidden"})),
+            ("bootstrap-password", "changed-synthetic-password".ljust(64, "x")),
+            ("keycloak.conf", files["keycloak.conf"] + "extra-password=synthetic-hidden\n"),
+            ("keycloak.conf", files["keycloak.conf"] + "db-password=synthetic-hidden\n"),
+        ):
+            with self.subTest(file=name):
+                self.write(directory + name, bad)
+                with self.assertRaises(publication.PublicationError):
+                    publication.collect_secrets(self.root)
+                self.write(directory + name, files[name])
+
+    def test_identity_inventory_missing_profile_and_linked_key_fail_closed(self):
+        directory, _, files = self.identity_fixture(complete=False)
+        self.write(directory + "signalbridge-realm.json", files["signalbridge-realm.json"])
+        with self.assertRaises(publication.PublicationError):
+            publication.collect_secrets(self.root)
+        self.write(directory + "identity-profile.json", files["identity-profile.json"])
+        unknown = self.write(directory + "unreviewed-private-file", "synthetic-only")
+        with self.assertRaises(publication.PublicationError):
+            publication.collect_secrets(self.root)
+        unknown.unlink()
+        target = self.write(directory + "console-private-key.pem", files["console-private-key.pem"])
+        original = Path.lstat
+        for blocked in (target, target.parent, target.parent.parent):
+
+            def linked(path, blocked=blocked, **kwargs):
+                if path == blocked:
+                    return SimpleNamespace(
+                        st_mode=stat.S_IFREG if path == target else stat.S_IFDIR,
+                        st_file_attributes=stat.FILE_ATTRIBUTE_REPARSE_POINT,
+                    )
+                return original(path, **kwargs)
+
+            with (
+                self.subTest(linked=blocked.name),
+                patch.object(Path, "lstat", linked),
+                self.assertRaises(publication.PublicationError),
+            ):
+                publication.collect_secrets(self.root)
+
+    def test_identity_secret_inspection_failure_is_fixed_error_and_count_is_bounded(self):
+        directory, _, _ = self.identity_fixture()
+        profile = self.root / directory / "identity-profile.json"
+        original = Path.stat
+
+        def denied(path, **kwargs):
+            if path == profile:
+                raise PermissionError("synthetic-sensitive-diagnostic")
+            return original(path, **kwargs)
+
+        with (
+            patch.object(Path, "stat", denied),
+            self.assertRaises(publication.PublicationError) as error,
+        ):
+            publication.collect_secrets(self.root)
+        self.assertNotIn("synthetic-sensitive-diagnostic", str(error.exception))
+        self.write(directory + "twelfth-file", "synthetic-only")
+        with self.assertRaisesRegex(publication.PublicationError, "entries exceed"):
+            publication.collect_secrets(self.root)
+
+    def test_identity_sizes_and_malformed_pem_are_bounded_before_publication(self):
+        directory, _, files = self.identity_fixture()
+        for name, bad in (
+            ("identity-profile.json", "x" * 16385),
+            ("signalbridge-realm.json", "x" * 65537),
+            ("keycloak.conf", "x" * 16385),
+            ("provider-private-key.pem", "not-a-private-key"),
+            ("lab-ca.pem", "x" * 4097),
+        ):
+            with self.subTest(file=name):
+                self.write(directory + name, bad)
+                with self.assertRaises(publication.PublicationError):
+                    publication.collect_secrets(self.root)
+                self.write(directory + name, files[name])
+
+    def test_identity_publication_failure_messages_and_filenames_do_not_expose_values(self):
+        directory, profile, _ = self.identity_fixture()
+        sensitive = profile["operator_password"]
+        name = "docs/" + sensitive + ".txt"
+        self.write(name, sensitive)
+        output = StringIO()
+        with (
+            patch.object(publication, "publication_files", return_value=[name]),
+            redirect_stdout(output),
+        ):
+            self.assertEqual(publication.main(self.root), 1)
+        self.assertIn("[redacted]", output.getvalue())
+        self.assertNotIn(sensitive, output.getvalue())
+        self.write(directory + "identity-profile.json", '{"operator_password":"' + sensitive)
+        output = StringIO()
+        with (
+            patch.object(publication, "publication_files", return_value=[]),
+            redirect_stdout(output),
+        ):
+            self.assertEqual(publication.main(self.root), 1)
+        self.assertNotIn(sensitive, output.getvalue())
+
+    def test_duplicate_private_json_fields_rejected_without_values(self):
+        path = self.write(
+            "var/synthetic-keys.json", '{"scope":"synthetic-original","scope":"synthetic-hidden"}'
+        )
+        with self.assertRaises(publication.PublicationError) as error:
+            publication.collect_secrets(self.root)
+        self.assertNotIn("synthetic-original", str(error.exception))
+        self.assertNotIn("synthetic-hidden", str(error.exception))
+        self.assertTrue(path.is_file())
 
     def test_known_lab_env_and_private_jwk_values_are_detected_in_renamed_public_files(self):
         self.write("docs/env-copy.md", "Example: " + self.secret)

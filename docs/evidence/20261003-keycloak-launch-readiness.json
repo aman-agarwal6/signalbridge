@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-keycloak-launch-readiness",
+  "recorded_at": "2026-10-03T02:43:26.093057+00:00",
+  "status": "locally_verified_awaiting_explicit_native_stage_approval",
+  "source_sha256": "b580a20f99038f6c43517ac90ba14ad221ed7048c23079a76234f6fc9675d931",
+  "offline_verification": "docs/evidence/20261003-enterprise-offline-4527c209d67b4896836b0769fae2241c.json",
+  "verification": {
+    "core_methods": 1673,
+    "offline_fault_methods": 3,
+    "reference_methods": 78,
+    "identity_profile_methods": 12,
+    "memory_crypto_tls_methods": 6,
+    "node_methods": 62,
+    "all_checks_passed": true,
+    "native_execution": false
+  },
+  "implemented": [
+    "Three-container cached-only Keycloak host controller and private short-lived certificates.",
+    "26 finite native HTTP controls; role/CSRF and cross-application writes verify database outcomes, not HTTP status alone.",
+    "Own-run credential publication scan, runtime fact retention and runner kernel verification before execution release.",
+    "Independent 30-minute watchdog with cooperative abort and repeated 60-second shutdown drain.",
+    "Whole-stage disk measurement starts before Docker and downloads; existing milestone reserve remains enforced."
+  ],
+  "root_review": [
+    "Reviewed all five promoted host/certificate files, native driver and runner changes, plus publication admission boundaries.",
+    "Optional cryptography remains separate from the lightweight application environment.",
+    "No Docker, VM, download, persisted credential or host trust change occurred during this preparation."
+  ],
+  "capacity_snapshot": {
+    "free_disk_bytes": 73398087680,
+    "available_host_memory_bytes": 12530286592,
+    "measured_at": "2026-10-03T02:43:26.093057+00:00",
+    "reserved": false
+  },
+  "required_downloads": {
+    "keycloak_image": "quay.io/keycloak/keycloak@sha256:d79bc4bf1c54e802735ef91926b5c003de1fbb50b1a93382611972277219c9ad",
+    "keycloak_compressed_bytes": 265377959,
+    "wheel_bytes": 4967755,
+    "cached_wheels_reverified": 14
+  },
+  "native_gate_passed": false,
+  "remaining": [
+    "Owner approval for exact downloads, Docker Desktop start and one native launch.",
+    "Actual cached PostgreSQL/Python image inspection with Docker running; stop if missing or another workload is running.",
+    "Genuine provider execution and both shutdown receipts.",
+    "Real browser behavior, native signing-key rotation and remaining hostile signed-token/identity concurrency checks."
+  ],
+  "limits": [
+    "Offline tests exercise code and modeled runtime facts; they do not establish genuine Keycloak, MFA, native enforcement or browser behavior.",
+    "Identity fixtures are explicitly synthetic and do not certify native source findings or verified remediation.",
+    "The controller independently probes only the runner kernel; database and Keycloak control verification uses Docker metadata.",
+    "Capacity checks sample whole-host usage; they are not attributable disk measurements or hard storage quotas."
+  ]
+}

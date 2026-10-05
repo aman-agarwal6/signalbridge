@@ -6,14 +6,23 @@ import re
 import shutil
 import stat
 import subprocess
+import sys
+import uuid
 from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 MAX_PRIVATE_BYTES = 1024 * 1024
 MAX_PUBLIC_BYTES = 50 * 1024 * 1024
 MAX_TOTAL_BYTES = 250 * 1024 * 1024
 MAX_FILES = 20000
 MAX_SECRETS = 10000
+RESTORATION_SECRETS = {
+    "bootstrap-password",
+    "console-password",
+    "restoration-plan.json",
+    "tool-scope.json",
+}
 MAX_HTTP_RUNS = 100
 MAX_ROUTE_PRIVATE_FILES = 100
 RUN_ID = r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}"
@@ -64,8 +73,8 @@ def _read(path, root, maximum):
     return raw
 
 
-def _text(path, root, legacy_windows=False):
-    raw = _read(path, root, MAX_PRIVATE_BYTES)
+def _text(path, root, legacy_windows=False, *, maximum=None):
+    raw = _read(path, root, MAX_PRIVATE_BYTES if maximum is None else maximum)
     try:
         if raw.startswith((b"\xff\xfe", b"\xfe\xff")):
             return raw.decode("utf-16")
@@ -79,11 +88,35 @@ def _text(path, root, legacy_windows=False):
         raise PublicationError("A local credential file has an unsupported encoding.") from None
 
 
-def _json(path, root):
+def _json_text(text):
+    def closed_pairs(items):
+        value = {}
+        for key, item in items:
+            if key in value:
+                raise PublicationError("A local credential file has duplicate JSON fields.")
+            value[key] = item
+        return value
+
     try:
-        return json.loads(_text(path, root))
+        return json.loads(text, object_pairs_hook=closed_pairs)
     except (json.JSONDecodeError, RecursionError):
         raise PublicationError("A local credential file has invalid JSON.") from None
+
+
+def _json(path, root, *, maximum=None):
+    return _json_text(_text(path, root, maximum=maximum))
+
+
+def _bounded_entries(directory, maximum):
+    try:
+        files = []
+        for path in directory.iterdir():
+            if len(files) == maximum:
+                raise PublicationError("Private directory entries exceed the supported bounds.")
+            files.append(path)
+        return files
+    except OSError:
+        raise PublicationError("A private directory could not be enumerated.") from None
 
 
 def _add(secrets, value):
@@ -341,12 +374,16 @@ def collect_secrets(root=ROOT):
     django_key = root / "var/django-secret"
     if django_key.exists() or django_key.is_symlink():
         _add(secrets, _text(django_key, root))
+    # The AccessOps leaver-signal receiver's bearer token (accessops_signals setup).
+    receiver = root / "var/ssf/receiver-token"
+    if receiver.exists() or receiver.is_symlink():
+        _add(secrets, _text(receiver, root).strip())
     enterprise_runs = root / "var/enterprise/runs"
     if enterprise_runs.exists() or enterprise_runs.is_symlink():
         _safe_path(enterprise_runs, root)
-        runs = list(enterprise_runs.iterdir())
-        if len(runs) > 100:
-            raise PublicationError("Enterprise private run count exceeds the supported bounds.")
+        # Every retained run contributes known secrets; the bound only stops an
+        # unbounded walk. Native diagnostics legitimately retain many runs.
+        runs = _bounded_entries(enterprise_runs, 1000)
         for run in runs:
             _safe_path(run, root)
             if not run.is_dir() or not re.fullmatch(r"[a-f0-9]{32}", run.name):
@@ -354,16 +391,8 @@ def collect_secrets(root=ROOT):
             directory = run / "secrets"
             if directory.exists() or directory.is_symlink():
                 _safe_path(directory, root)
-                files = list(directory.iterdir())
-                if {file.name for file in files} != {"bootstrap-password", "verifier-password"}:
-                    raise PublicationError(
-                        "Enterprise private credentials have an unreviewed shape."
-                    )
-                for file in files:
-                    value = _text(file, root)
-                    if not re.fullmatch(r"[A-Za-z0-9_-]{64}", value):
-                        raise PublicationError("Enterprise private credential format is invalid.")
-                    _add(secrets, value)
+                files = _bounded_entries(directory, 11)
+                collect_enterprise_credentials(files, root, secrets)
     labs = root / "var/labs"
     if labs.exists() or labs.is_symlink():
         _safe_path(labs, root)
@@ -412,6 +441,274 @@ def collect_secrets(root=ROOT):
                             _add(secrets, actor["token"])
             collect_route_secrets(lab / "routes/evidence", root, secrets)
     return secrets
+
+
+def collect_enterprise_credentials(files, root, secrets):
+    """Collect source-run secrets even when preparation stopped before TLS files.
+
+    This is a publication leakage check, not proof that a native profile is complete.
+    The source profile is written first; missing keys cannot silently hide passwords.
+    Runtime launch separately requires the entire reviewed nine-file inventory.
+    """
+    from integrations.enterprise.reference_controls import SECRETS
+    from integrations.enterprise.reference_native_support import ACCOUNTS, FIELDS
+
+    names = {file.name for file in files}
+    if "identity-profile.json" in names:
+        collect_identity_credentials(files, root, secrets)
+        return
+    if names == RESTORATION_SECRETS:
+        # Console restoration: two generated passwords; plan and scope are not secret.
+        for file in files:
+            if file.name in ("bootstrap-password", "console-password"):
+                value = _text(file, root)
+                if not re.fullmatch(r"[A-Za-z0-9_-]{64}", value):
+                    raise PublicationError("Restoration credential format is invalid.")
+                _add(secrets, value)
+        return
+    reference = "source-profile" in names
+    if names != {"bootstrap-password", "verifier-password"} and not (
+        reference and names.issubset(set(SECRETS.values()))
+    ):
+        raise PublicationError("Enterprise private credentials have an unreviewed shape.")
+    for file in files:
+        value = _text(file, root)
+        if file.name == "source-profile":
+            data = _json(file, root)
+            if (
+                not isinstance(data, dict)
+                or set(data) != FIELDS
+                or not isinstance(data["accounts"], dict)
+                or set(data["accounts"]) != ACCOUNTS
+            ):
+                raise PublicationError("Source private profile has an unsupported shape.")
+            values = [*data["accounts"].values(), *(v for k, v in data.items() if k != "accounts")]
+            if any(
+                not isinstance(v, str) or not re.fullmatch(r"[A-Za-z0-9_-]{64}", v) for v in values
+            ) or len(set(values)) != len(values):
+                raise PublicationError("Source private profile credentials are invalid.")
+            for secret in values:
+                _add(secrets, secret)
+        elif file.name.endswith("private-key.pem"):
+            match = re.fullmatch(
+                r"-----BEGIN PRIVATE KEY-----\n([A-Za-z0-9+/=\n]+)-----END PRIVATE KEY-----\n",
+                value,
+            )
+            if not match or len(value) > 4096:
+                raise PublicationError("Source private key format is invalid.")
+            _add(secrets, value)
+            _add(secrets, re.sub(r"\s", "", match[1]))
+        elif file.name.endswith(".pem"):
+            if (
+                not re.fullmatch(
+                    r"-----BEGIN CERTIFICATE-----\n[A-Za-z0-9+/=\n]+-----END CERTIFICATE-----\n",
+                    value,
+                )
+                or len(value) > 4096
+            ):
+                raise PublicationError("Source public certificate format is invalid.")
+        else:
+            if not re.fullmatch(r"[A-Za-z0-9_-]{64}", value):
+                raise PublicationError("Enterprise private credential format is invalid.")
+            _add(secrets, value)
+
+
+def _identity_require(condition):
+    if not condition:
+        raise PublicationError(
+            "Native identity credentials have an unreviewed or inconsistent shape."
+        )
+
+
+def _identity_profile(path, root):
+    from integrations.identity.constants import ISSUER
+    from integrations.identity.native_profile import ACCOUNTS
+
+    value = _json(path, root, maximum=16384)
+    secret_fields = {
+        "django_secret": 86,
+        "database_password": 64,
+        "keycloak_database_password": 64,
+        "bootstrap_database_password": 64,
+        "operator_password": 64,
+    }
+    _identity_require(
+        type(value) is dict
+        and set(value) == {*secret_fields, "run_id", "issuer", "accounts", "operator_username"}
+        and value["run_id"] == path.parent.parent.name
+        and re.fullmatch(r"[a-f0-9]{32}", value["run_id"])
+        and value["issuer"] == ISSUER
+        and value["operator_username"] == "sb-lab-operator"
+        and type(value["accounts"]) is dict
+        and set(value["accounts"]) == set(ACCOUNTS)
+    )
+    sensitive = set()
+    for field, length in secret_fields.items():
+        token = value[field]
+        _identity_require(type(token) is str and re.fullmatch(r"[A-Za-z0-9_-]{%d}" % length, token))
+        _add(sensitive, token)
+    for name, account in value["accounts"].items():
+        _identity_require(
+            type(account) is dict
+            and set(account) == {"username", "subject", "password", "totp_base32"}
+            and account["username"] == "sb-lab-" + name.replace("_", "-")
+            and account["subject"] == str(uuid.uuid5(uuid.UUID(hex=value["run_id"]), name))
+        )
+        for field, pattern in (
+            ("password", r"[A-Za-z0-9_-]{48}"),
+            ("totp_base32", r"[A-Z2-7]{52}"),
+        ):
+            token = account[field]
+            _identity_require(type(token) is str and re.fullmatch(pattern, token))
+            _add(sensitive, token)
+    return value, sensitive
+
+
+def _identity_realm(path, root, profile, run):
+    """Reject additional or changed realm credentials, including nested OTP JSON."""
+    from integrations.identity.native_profile import ACCOUNTS
+
+    template = _json(run / "source/integrations/identity/realm.json", root, maximum=65536)
+    value = _json(path, root, maximum=65536)
+    _identity_require(
+        type(template) is dict
+        and template.get("realm") == "signalbridge"
+        and template.get("users") == []
+        and type(value) is dict
+        and set(value) == set(template)
+        and type(value.get("users")) is list
+        and len(value["users"]) == len(ACCOUNTS)
+        and {key: item for key, item in value.items() if key != "users"}
+        == {key: item for key, item in template.items() if key != "users"}
+    )
+    for name, user in zip(ACCOUNTS, value["users"], strict=True):
+        account = profile["accounts"][name]
+        expected = {
+            "id": account["subject"],
+            "username": account["username"],
+            "firstName": "Synthetic",
+            "lastName": name.replace("_", " ").title(),
+            "email": account["username"] + "@identity.signalbridge.invalid",
+            "enabled": name != "provider_disabled",
+            "emailVerified": False,
+            "requiredActions": [],
+            "groups": [],
+            "realmRoles": [],
+        }
+        _identity_require(
+            type(user) is dict
+            and set(user) == {*expected, "credentials"}
+            and {key: item for key, item in user.items() if key != "credentials"} == expected
+            and type(user["credentials"]) is list
+            and len(user["credentials"]) == 2
+        )
+        password, otp = user["credentials"]
+        _identity_require(
+            password == {"type": "password", "value": account["password"], "temporary": False}
+            and type(otp) is dict
+            and set(otp) == {"type", "userLabel", "secretData", "credentialData"}
+            and otp["type"] == "otp"
+            and otp["userLabel"] == "Disposable synthetic MFA factor"
+            and type(otp["secretData"]) is str
+            and type(otp["credentialData"]) is str
+        )
+        _identity_require(
+            _json_text(otp["secretData"]) == {"value": account["totp_base32"]}
+            and _json_text(otp["credentialData"])
+            == {
+                "subType": "totp",
+                "digits": 6,
+                "counter": 0,
+                "period": 30,
+                "algorithm": "HmacSHA256",
+                "secretEncoding": "BASE32",
+            }
+        )
+
+
+def _identity_config(path, root, profile, run):
+    plan = _json(run / "source/integrations/identity/native-stage-plan.json", root, maximum=32768)
+    _identity_require(type(plan) is dict and type(plan.get("required_keycloak_config")) is dict)
+    expected = {
+        **plan["required_keycloak_config"],
+        "db-password": profile["keycloak_database_password"],
+        "bootstrap-admin-username": profile["operator_username"],
+        "bootstrap-admin-password": profile["operator_password"],
+    }
+    text = _text(path, root, maximum=16384)
+    _identity_require(text.endswith("\n") and not any(char in text for char in "\r\x00"))
+    actual = {}
+    for line in text.splitlines():
+        key, separator, value = line.partition("=")
+        _identity_require(separator == "=" and key not in actual and key in expected)
+        actual[key] = value
+    _identity_require(actual == expected)
+
+
+def collect_identity_credentials(files, root, secrets):
+    """Discover the fixed profile first, even after interrupted preparation.
+
+    Copies must agree with the retained profile; a mismatch blocks publication.
+    Source snapshots precede secret generation and remain private under var/.
+    Tokens/cookies remain in memory, and database volumes are not read here.
+    This is a byte-copy guard, not TLS validation or native identity acceptance.
+    """
+    passwords = {
+        "bootstrap-password": "bootstrap_database_password",
+        "console-password": "database_password",
+        "keycloak-password": "keycloak_database_password",
+    }
+    pem_names = {
+        "lab-ca.pem",
+        "console-certificate.pem",
+        "console-private-key.pem",
+        "provider-certificate.pem",
+        "provider-private-key.pem",
+    }
+    by_name = {file.name: file for file in files}
+    allowed = {
+        *passwords,
+        *pem_names,
+        "identity-profile.json",
+        "signalbridge-realm.json",
+        "keycloak.conf",
+    }
+    _identity_require(
+        len(by_name) == len(files)
+        and "identity-profile.json" in by_name
+        and set(by_name) <= allowed
+    )
+    profile_path = by_name["identity-profile.json"]
+    run = profile_path.parent.parent
+    try:
+        for path in files:
+            _safe_path(path, root)
+            _identity_require(
+                path.parent == profile_path.parent and path.is_file() and path.stat().st_nlink == 1
+            )
+    except OSError:
+        raise PublicationError("Native identity credentials could not be inspected.") from None
+    profile, sensitive = _identity_profile(profile_path, root)
+    for secret in sensitive:
+        _add(secrets, secret)
+    for name, path in by_name.items():
+        if name in passwords:
+            _identity_require(_text(path, root, maximum=64) == profile[passwords[name]])
+        elif name == "signalbridge-realm.json":
+            _identity_realm(path, root, profile, run)
+        elif name == "keycloak.conf":
+            _identity_config(path, root, profile, run)
+        elif name in pem_names:
+            value = _text(path, root, maximum=4096)
+            private = name.endswith("private-key.pem")
+            label = "PRIVATE KEY" if private else "CERTIFICATE"
+            match = re.fullmatch(
+                rf"-----BEGIN {label}-----\n([A-Za-z0-9+/=\n]+)-----END {label}-----\n", value
+            )
+            _identity_require(match is not None)
+            if private:
+                _add(secrets, value)
+                _add(secrets, re.sub(r"\s", "", match[1]))
 
 
 def publication_files(root=ROOT):

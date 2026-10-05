@@ -1,0 +1,105 @@
+# Reviewed restoration profile. Launch only through scripts/enterprise_restoration_verify.py.
+name: sb-enterprise-restoration
+services:
+  database:
+    image: ${SB_RESTORE_DB_IMAGE:?An already installed reviewed PostgreSQL image is required}
+    pull_policy: never
+    restart: "no"
+    user: postgres
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1
+    pids_limit: 128
+    shm_size: 64m
+    read_only: true
+    cgroup: private
+    ipc: private
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    labels:
+      org.signalbridge.enterprise.run: ${SB_RESTORE_RUN:?A unique restoration run identity is required}
+      org.signalbridge.enterprise.scope: console-restoration-verification
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/bootstrap_password
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256 --auth-local=peer
+    command: [postgres, -c, shared_buffers=64MB, -c, max_connections=20, -c, log_statement=none]
+    secrets: [bootstrap_password, console_password]
+    volumes:
+      - restored_data:/var/lib/postgresql/data
+      - ${SB_RESTORE_RUN_DIR:?A verified private restoration run is required}/source/integrations/enterprise/init-restoration.sh:/docker-entrypoint-initdb.d/10-restoration.sh:ro
+      - ${SB_RESTORE_RUN_DIR}/backup:/backup:ro
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m
+      - /var/run/postgresql:rw,noexec,nosuid,nodev,size=16m
+    networks: [restoration]
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: "2"}
+    healthcheck:
+      test: [CMD, pg_isready, -h, "127.0.0.1", -U, postgres, -d, postgres]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  runner:
+    image: ${SB_RESTORE_PYTHON_IMAGE:?An already installed reviewed Python image is required}
+    pull_policy: never
+    restart: "no"
+    user: "10001:10001"
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1
+    pids_limit: 96
+    read_only: true
+    cgroup: private
+    ipc: private
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    labels:
+      org.signalbridge.enterprise.run: ${SB_RESTORE_RUN}
+      org.signalbridge.enterprise.scope: console-restoration-verification
+    environment:
+      SB_RESTORATION_PROOF: "1"
+      SB_RESTORE_RUN: ${SB_RESTORE_RUN}
+      PYTHONDONTWRITEBYTECODE: "1"
+      PIP_CONFIG_FILE: /dev/null
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    working_dir: /workspace
+    command: [python, -B, -m, integrations.enterprise.restoration_runner]
+    depends_on:
+      database: {condition: service_healthy}
+    secrets: [console_password, restoration_plan, tool_scope]
+    volumes:
+      - ${SB_RESTORE_RUN_DIR}/source:/workspace:ro
+      - ${SB_RESTORE_RUN_DIR}/wheels:/wheels:ro
+      - ${SB_RESTORE_RUN_DIR}/evidence:/evidence:rw
+      - ${SB_RESTORE_SOURCE_RUN_DIR:?The retained source run is required}:/workspace/var/enterprise/runs/${SB_RESTORE_SOURCE_RUN:?}:ro
+      - ${SB_RESTORE_TOOL_RUN_DIR:?The retained tool run is required}:/workspace/var/enterprise/runs/${SB_RESTORE_TOOL_RUN:?}:ro
+    # Driver shared libraries require executable mappings. Keep ordinary scratch
+    # storage noexec and allow them only in the bounded offline dependency area.
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m
+      - /opt/verification-deps:rw,exec,nosuid,nodev,size=128m,mode=0700,uid=10001,gid=10001
+    networks: [restoration]
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: "2"}
+secrets:
+  bootstrap_password: {file: "${SB_RESTORE_RUN_DIR}/secrets/bootstrap-password"}
+  console_password: {file: "${SB_RESTORE_RUN_DIR}/secrets/console-password"}
+  restoration_plan: {file: "${SB_RESTORE_RUN_DIR}/secrets/restoration-plan.json"}
+  tool_scope: {file: "${SB_RESTORE_RUN_DIR}/secrets/tool-scope.json"}
+volumes:
+  restored_data:
+    name: sb-enterprise-restoration-${SB_RESTORE_RUN}
+    labels:
+      org.signalbridge.enterprise.run: ${SB_RESTORE_RUN}
+      org.signalbridge.enterprise.scope: console-restoration-verification
+networks:
+  restoration:
+    name: sb-enterprise-restoration-internal-${SB_RESTORE_RUN}
+    internal: true
+    labels:
+      org.signalbridge.enterprise.run: ${SB_RESTORE_RUN}
+      org.signalbridge.enterprise.scope: console-restoration-verification

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "kind": "reference-source-proof-preparation",
+  "recorded_at": "2026-10-02T04:33:29.389499+00:00",
+  "status": "offline_preparation_not_native_acceptance",
+  "source_sha256": "baa5d8f8faa8e055e0bb012b2a242d5ebb1df172e0a837dae8bb908d386db10c",
+  "implemented": [
+    "Exact source observation UUID headers and transaction-bound outbox IDs",
+    "Total TCP/TLS/response deadline and explicit lab CA trust",
+    "Closed source/console/case reconciliation with exact R3 evidence",
+    "Finite native runner and explicit database-role denial predicates",
+    "Closed parsed recipe and hostile-profile controls"
+  ],
+  "memory_end_to_end": {
+    "http_controls": 30,
+    "logical_source_events": 22,
+    "logical_processed_events": 22,
+    "cases": 1,
+    "rule": "R3",
+    "environment": "Django test client, real source/ingest/worker paths, in-memory SQLite; no sockets, TLS or native PostgreSQL"
+  },
+  "parsed_recipe": {
+    "tool": "Installed Docker Compose CLI; daemon not started",
+    "sha256": "756eb2ea194c15595953c54c8998deca478c327c3e38bdcd5fc46484d98be499",
+    "parsed_configuration_verified": true,
+    "effective_runtime_verified": false
+  },
+  "retained_failed_round": "docs/evidence/20261001-enterprise-offline-ef83a1495fe14079b94ff6c6c2459ba7.json",
+  "corrections": [
+    {
+      "stage": "Runner guard test draft",
+      "observed": "Three assertion failures, including two identity subtests, because the mock context manager returned a truthy exit value and swallowed exceptions.",
+      "change": "Set the test context-manager exit value to False; all 11 runner guard methods then passed.",
+      "record": "Conversation tool output chunks 7e531e and c37c83; no native execution occurred."
+    },
+    {
+      "stage": "Full offline round",
+      "observed": "One core regression still read the previous evaluation receipt while comparing the fresh freeze.",
+      "change": "Bind the current receipt through the milestone, require its path stays under docs/evidence, and retain all declaration/data/metric checks.",
+      "record": "Failed full execution receipt and raw logs retained; six affected methods passed before rerunning all checks."
+    }
+  ],
+  "remaining": [
+    "Offline certificate preparation",
+    "Effective runtime/controller ownership checks and independent watchdog",
+    "Reviewed native launch authorization",
+    "Actual TLS/PostgreSQL source execution and both shutdown receipts",
+    "Copied BetTail adapter and all other unfinished enterprise gates"
+  ],
+  "limits": [
+    "These memory results and parsed recipe do not establish native execution, enterprise isolation, independent review or production readiness.",
+    "Committed outbox claims are not transmitted packets; initiated transport calls and native tool records remain separate metrics."
+  ]
+}

@@ -1,13 +1,25 @@
-from django.contrib.auth.views import LogoutView
 from django.urls import path
 
-from bridge import case_workflow_views, practice_views, scan_views, service_api, views
+from bridge import (
+    case_brief,
+    case_workflow_views,
+    monitoring,
+    oidc_views,
+    practice_views,
+    scan_views,
+    service_api,
+    views,
+)
+from bridge.federation_views import PolicyLogoutView
 from bridge.ingestion import ingest
 
 urlpatterns = [
     path("", views.overview, name="overview"),
     path("login/", views.sign_in, name="login"),
-    path("logout/", LogoutView.as_view(), name="logout"),
+    path("logout/", PolicyLogoutView.as_view(), name="logout"),
+    path("sso/start/", oidc_views.start, name="sso_start"),
+    path("sso/callback/", oidc_views.callback, name="sso_callback"),
+    path("sso/backchannel/", oidc_views.backchannel, name="sso_backchannel"),
     path("integrations/", views.integrations, name="integrations"),
     path("detections/", views.detection_coverage, name="detections"),
     path("lab/", views.capability_lab, name="capability_lab"),
@@ -20,6 +32,7 @@ urlpatterns = [
     path("investigations/", views.investigations, name="investigations"),
     path("investigations/<uuid:case_id>/", views.investigation, name="case"),
     path("investigations/<uuid:case_id>/export/", views.case_export, name="case_export"),
+    path("investigations/<uuid:case_id>/brief/", case_brief.brief, name="case_brief"),
     path("investigations/<uuid:case_id>/work/", case_workflow_views.update, name="case_work"),
     path("checks/", views.checks, name="checks"),
     path("replay/", views.replay_lab, name="replay"),
@@ -40,4 +53,5 @@ urlpatterns = [
         name="service_review_task",
     ),
     path("health/", views.health, name="health"),
+    path("metrics/", monitoring.metrics, name="metrics"),
 ]

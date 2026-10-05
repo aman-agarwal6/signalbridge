@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-bounded-delivery-checkpoint",
+  "recorded_at": "2026-10-03T01:42:16.028844+00:00",
+  "last_native_wazuh_attempt": {
+    "run_id": "009bc11e4fe649649d7dd44887be8b72",
+    "collected_inputs": 0,
+    "expected_inputs": 24,
+    "acceptance_passed": false,
+    "old_launcher": "retired",
+    "another_attempt_authorized": false,
+    "receipt": "20261003-wazuh-reference-bootstrap-009bc11e4fe649649d7dd44887be8b72.json"
+  },
+  "focused_checks": {
+    "ready_publisher": {
+      "methods": 7,
+      "passed": true,
+      "scope": "Real disposable filesystem; modeled collector state; no native Wazuh."
+    },
+    "identity_controller_draft": {
+      "methods": 8,
+      "passed": true,
+      "scope": "Offline argument/control/certificate checks; no native provider, Docker actions or persisted certificates.",
+      "watchdog_setup_failure_regression": true
+    }
+  },
+  "test_invocation_correction": "The parent publisher check first stopped before tests because its ephemeral SB_SECRET_KEY was omitted; rerun with an in-process random verification key passed all seven methods.",
+  "walkthrough": {
+    "keyboard_disclosure": true,
+    "narrow_viewport_width": 390,
+    "horizontal_overflow": false,
+    "inspection": "Temporary headless Edge, all page network requests blocked; offline HTML only."
+  },
+  "retained_private_visual_receipt": "var/audit/analyst-delivery/collector-visual-checks.json",
+  "source_files_sha256": {
+    "integrations/wazuh_enterprise/ready_publisher.py": "db36a3e51c7243717ecd015bc10738d262eb595bf4eedc0ef8b11c7f6c0aa135",
+    "tests/test_wazuh_ready_publisher.py": "4fbee6e088d8ec9ecb51b8cdcfe0aa6095ecb144fccd2e8a74e35749af0bcd8c",
+    "docs/publishing/build_access_walkthrough.py": "b00c34788f97b99b3c27538d78954ef40eba8d3e1049fcce4d5a14d26e81adef",
+    "docs/publishing/access_walkthrough.html": "b1c8d04ad6caa903a1a30488d1ac89d168925c0ddd150f43bfc6b88e23ee1222",
+    "scripts/enterprise_wazuh_verify.py": "013a41c863fb3e08e486f7a389c6350847f22736fdf8d4b1885a7635861b0dcc"
+  },
+  "claim_boundary": "Focused checks do not replace full-source acceptance, genuine collector collection, native identity, working restore or actual 24-hour execution. Goal remains incomplete.",
+  "draft_files_sha256": {
+    "var/audit/identity-controller-draft/draft_tests.py": "18d5dae6a531a3ca4c2e550d434accd7aecc03bba71dbd3f6b234f1d1c8a4126",
+    "var/audit/identity-controller-draft/scripts/enterprise_identity_verify.py": "f1f6defbc3e362a953b7a2d79ca0f08aeb2108772178ec5a9368d12eaca617c3",
+    "var/audit/identity-controller-draft/integrations/identity/native_certificates.py": "f5848cad31d0650e2602e0e4bbf39d97751580676acd164cecdac1c9d184d628",
+    "var/audit/identity-controller-draft/integrations/identity/native_host.py": "d8e56faca8d3e01509fbdfdc59d48f16b4d6cd1fa9aba4d0759884253add5672"
+  }
+}

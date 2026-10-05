@@ -1,0 +1,120 @@
+{
+  "acceptance_passed": true,
+  "approval_reference": "20261003-owner-claude-header-1",
+  "capacity_before": {
+    "free_disk_bytes": 66388443136,
+    "free_memory_bytes": 17374441472
+  },
+  "finished_at": "2026-10-03T18:10:33.846286+00:00",
+  "free_disk_after_bytes": 66294583296,
+  "images": {
+    "database": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+    "runner": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+  },
+  "independent_shutdown": {
+    "reason": "launcher_finished",
+    "run_id": "cfb623ef30b5457abdaf257110682dbc",
+    "shutdown_verified": true,
+    "stopped_at": "2026-10-03T18:10:33.823102+00:00",
+    "stopped_component_count": 2
+  },
+  "independent_shutdown_verified": true,
+  "kind": "signalbridge-native-authenticated-header-capture",
+  "limits": [
+    "Fixed two-application synthetic source proof; not SSO, security-tool, restoration or 24-hour acceptance.",
+    "Source/console processes share one uid; database roles are not independent OS security boundaries.",
+    "Hashes identify recorded bytes; local administrator tampering is outside this evidence boundary.",
+    "Capacity readings are detection guards, not hard quotas. No images, volumes or other projects are removed."
+  ],
+  "main_shutdown": {
+    "run_id": "cfb623ef30b5457abdaf257110682dbc",
+    "shutdown_verified": true,
+    "stopped_component_count": 2
+  },
+  "main_shutdown_verified": true,
+  "native_proof": {
+    "collection": {
+      "collector_transport_invocations": 8,
+      "committed_claim_results": 8,
+      "phase_deadline_reached": false
+    },
+    "native_receipts_revalidated": true,
+    "native_zap_executed": false,
+    "profile": "signalbridge-reference-authenticated-headers-v1",
+    "raw_receipt_sha256": {
+      "allow-source": "9a2b414e34c4b0e0209b1aafe10af31a05f7abe1d88211a08bdc528cf3c8ee52",
+      "console-events": "2b5178d7a61cd9a74bd1fa1c2f3b98525dbe20fd602b0d982ecd328e6b0ca4d4",
+      "header-execution": "b173af1b7b5c9a5e98352671815cd64a7ced370aea11e846f184922043e1d74a",
+      "header-reconciliation": "4b8323c121a9c2b7443068d445b634ca57b3a44fe0775e3c704e478da1102b55",
+      "header-runner": "4f3950d6ce18e4f6bda1a6af3a09a7fe5fe446e9fa9f75af8241f47b2ee6c8c4",
+      "install.log": "3719f5f91acd8e630a73a0d84a7ab869885e4902fbe225c34c2a2bfd2ea89efa",
+      "kernel-identity": "957b712a65cde5d0defa82120dfe4f12dd20dd38055ec82ce5353475490ecef2",
+      "kernel-mounts": "bf0007e042acc54bdef74c37051f08437eac1e0f67753e690d7fccbf06ef860d",
+      "source-captures": "3413358297f17b2573a19c50d99108ef91d5781f26515f78d8164838ffc735fe",
+      "source-outbox": "6aef7ad239da93b2b6ec1dc49d2b9b01929d8c0c0cad00cb24b8e36b15db7568"
+    },
+    "reconciliation": {
+      "logical_cases": 0,
+      "logical_processed_events": 8,
+      "logical_source_events": 8,
+      "profile": "signalbridge-reference-authenticated-headers-v1",
+      "reconciled": true,
+      "runtime_attested": false,
+      "source_capture_attested": false,
+      "source_outbox_claims": 8,
+      "worker_committed_attempts": 8
+    },
+    "runner_duration_seconds": 30.882,
+    "source_http_requests": 19,
+    "source_snapshot": {
+      "bytes": 7566965,
+      "file_count": 627,
+      "source_sha256": "6c99aaa67ee72893d55aaad477bf7f26eb9ff547375a331375f8a2d67144647c"
+    }
+  },
+  "parsed_configuration_verified": true,
+  "preparation": {
+    "cached_wheels": {
+      "cache_run": "b8667b816ce8419da7f3d5d9ac9d6ad6",
+      "downloaded_bytes": 0,
+      "reused_bytes": 14200997,
+      "wheel_count": 6
+    },
+    "certificates": {
+      "authority_sha256": "d92a113d1275cd51baa2c14ff8e974393a66b7b30905acc0c91555eaf3955bef",
+      "created_at": "2026-10-03T18:09:47+00:00",
+      "cryptography_version": "50.0.1",
+      "expires_at": "2026-10-03T20:09:47+00:00",
+      "host_trust_changed": false,
+      "loopback_only": true,
+      "python_version": "3.12.14",
+      "run_id": "cfb623ef30b5457abdaf257110682dbc",
+      "server_certificate_sha256": {
+        "console": "d940bc344a7de1d3c449714db8188c3faa5bb6d16ee2061164c35135571fcc5c",
+        "source": "50fe4379ac92551f4622d900ffe77c956d246bec7c78c257d22396707cbe9247"
+      },
+      "signing_key_persisted": false
+    },
+    "wheel_footprint": {
+      "archive_entries": 4472,
+      "claim": "Metadata estimate with 4 KiB rounding and inode allowance; not a native peak-memory measurement. Optional bytecode generation is disabled.",
+      "estimated_allocation_bytes": 58294272,
+      "uncompressed_bytes": 44906600
+    }
+  },
+  "run_id": "cfb623ef30b5457abdaf257110682dbc",
+  "runner_exit_code": 0,
+  "runtime_isolation_verified": true,
+  "schema_version": 1,
+  "source_sha256": "6c99aaa67ee72893d55aaad477bf7f26eb9ff547375a331375f8a2d67144647c",
+  "source_snapshot": {
+    "bytes": 7566965,
+    "file_count": 627,
+    "source_sha256": "6c99aaa67ee72893d55aaad477bf7f26eb9ff547375a331375f8a2d67144647c"
+  },
+  "source_unchanged": true,
+  "stage_growth_ceiling_bytes": 32212254720,
+  "stage_initial_free_disk_bytes": 80498424546,
+  "started_at": "2026-10-03T18:09:46.695764+00:00",
+  "status": "passed"
+}

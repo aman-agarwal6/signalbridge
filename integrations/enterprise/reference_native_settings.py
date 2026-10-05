@@ -42,6 +42,12 @@ DATABASES = {
         },
     }
 }
+if component == "console":
+    # This closed two-container proof gets one dedicated writable evidence
+    # mount. Never let a request/environment variable choose export paths.
+    SOC_SEGMENTED_EXPORT = True
+    SOC_DELIVERY_ROOT = Path("/evidence/soc-delivery")
+    WAZUH_SNAPSHOT_ROOT = Path("/evidence/wazuh-enterprise/native")
 ALLOWED_HOSTS = ["127.0.0.1"]
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True

@@ -1,0 +1,554 @@
+{
+  "approval_reference": "20261004-owner-claude-identity-browser-7",
+  "capacity_before": {
+    "available_memory_bytes": 11895705600,
+    "free_disk_bytes": 54773923840
+  },
+  "entire_identity_gate_passed": true,
+  "finished_at": "2026-10-04T05:03:34.659063+00:00",
+  "images": {
+    "browser": {
+      "id": "sha256:72bd171a9ffc2b4b59532aaa6210e21014d07093120dc25528870c0b840da1f0",
+      "reference": "mcr.microsoft.com/playwright/python@sha256:72bd171a9ffc2b4b59532aaa6210e21014d07093120dc25528870c0b840da1f0"
+    },
+    "database": {
+      "id": "sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0",
+      "reference": "postgres@sha256:e31e3d5327d1806f6177827c9710643e4f35f7ab3f14d26d05332753d3e95ee0"
+    },
+    "keycloak": {
+      "id": "sha256:d79bc4bf1c54e802735ef91926b5c003de1fbb50b1a93382611972277219c9ad",
+      "reference": "quay.io/keycloak/keycloak@sha256:d79bc4bf1c54e802735ef91926b5c003de1fbb50b1a93382611972277219c9ad"
+    },
+    "runner": {
+      "id": "sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d",
+      "reference": "python@sha256:7bf6c3111fe094f8ee1a1cbcdc63c4cfb345b0e3df42d5aa9a90b3b4b022ab6d"
+    }
+  },
+  "independent_shutdown": {
+    "deadline_exhausted": false,
+    "drain_completed": true,
+    "reason": "launcher_finished",
+    "run_id": "73632025aeee400bb7ee49b69fba7c99",
+    "shutdown_verified": true,
+    "stopped_at": "2026-10-04T05:03:34.628064+00:00",
+    "stopped_components": [
+      "browser",
+      "runner",
+      "keycloak",
+      "database"
+    ]
+  },
+  "kind": "signalbridge-native-keycloak-host",
+  "limits": [
+    "A real headless Chromium walkthrough checks login, cookies, CSP, framing and keyboard paths; it is not a full accessibility (WCAG) audit.",
+    "Selected native role-write and callback controls do not establish all browser/protocol attack defenses.",
+    "PostgreSQL is plaintext inside the isolated component network.",
+    "Private synthetic credentials and volumes are retained; no cleanup or download occurs.",
+    "Host capacity readings are guards, not physical filesystem quotas.",
+    "Disk guards measure whole-host free-space decreases, not attributable SignalBridge usage.",
+    "Runner kernel controls are measured; database/Keycloak controls use Docker metadata.",
+    "One launch only; no retry or previous stage authorization is implied.",
+    "An unreachable daemon or exhausted drain period leaves shutdown unverified."
+  ],
+  "main_shutdown": {
+    "run_id": "73632025aeee400bb7ee49b69fba7c99",
+    "shutdown_verified": true,
+    "stopped_components": [
+      "browser",
+      "runner",
+      "keycloak",
+      "database"
+    ]
+  },
+  "milestone_growth_ceiling_bytes": 32212254720,
+  "milestone_initial_free_disk_bytes": 80498424546,
+  "native_profile_passed": true,
+  "native_receipt": {
+    "browser": {
+      "passed": true,
+      "sha256": "3a84280aacbc9895c7da3b710239023429efaad6bc4f9e32baf55f81cc290ea4"
+    },
+    "browser_result": {
+      "accessibility_scope": "keyboard reachability and labelled inputs only; not a WCAG audit",
+      "browser_engine": "chromium",
+      "browser_version": "153.0.8010.12",
+      "controls": [
+        {
+          "control": "browser_keyboard_mfa_login",
+          "factors": [
+            "password",
+            "totp"
+          ],
+          "keyboard_activation": true,
+          "labelled_inputs": [
+            "username",
+            "password",
+            "otp"
+          ],
+          "passed": true,
+          "tab_presses_to_sign_in": 4,
+          "tls_verified_by_spki_pin": true,
+          "typed_credentials": true
+        },
+        {
+          "control": "browser_cookie_attributes_enforced",
+          "cookies": {
+            "csrf": {
+              "http_only": false,
+              "same_site": "Strict",
+              "secure": true
+            },
+            "session": {
+              "http_only": true,
+              "same_site": "None",
+              "secure": true
+            }
+          },
+          "passed": true,
+          "session_hidden_from_script": true
+        },
+        {
+          "control": "browser_csp_blocks_inline_script",
+          "passed": true,
+          "violated_directive": "script-src-elem"
+        },
+        {
+          "blocked_frame_url": "chrome-error",
+          "control": "browser_framing_blocked",
+          "passed": true
+        },
+        {
+          "control": "browser_logout_ends_session",
+          "keyboard_activation": true,
+          "passed": true
+        }
+      ],
+      "duration_seconds": 6.06,
+      "passed": true,
+      "run_id": "73632025aeee400bb7ee49b69fba7c99",
+      "schema_version": 1
+    },
+    "dependencies": {
+      "expanded_bytes": 63334627,
+      "hashes_verified": true,
+      "runtime_downloads": false,
+      "wheel_count": 16
+    },
+    "execution": {
+      "browser_automation": false,
+      "case_evidence_source": "synthetic_demo",
+      "controls": [
+        {
+          "control": "wrong_password_rejected",
+          "observed_at": "2026-10-04T04:57:10.547243+00:00",
+          "passed": true
+        },
+        {
+          "control": "provider_disabled_login_rejected",
+          "observed_at": "2026-10-04T04:57:10.918773+00:00",
+          "passed": true
+        },
+        {
+          "control": "password_alone_not_admitted",
+          "observed_at": "2026-10-04T04:57:11.249762+00:00",
+          "passed": true
+        },
+        {
+          "control": "wrong_totp_rejected",
+          "observed_at": "2026-10-04T04:57:11.426853+00:00",
+          "passed": true
+        },
+        {
+          "auto_privilege_grant": false,
+          "control": "expiry_native_mfa_login",
+          "factors": [
+            "password",
+            "totp"
+          ],
+          "local_role": "analyst",
+          "observed_at": "2026-10-04T04:57:12.304153+00:00",
+          "passed": true
+        },
+        {
+          "control": "callback_wrong_state_rejected",
+          "native_provider_callback": true,
+          "observed_at": "2026-10-04T04:57:12.737088+00:00",
+          "passed": true,
+          "status": 403
+        },
+        {
+          "auto_privilege_grant": false,
+          "control": "analyst_native_mfa_login",
+          "factors": [
+            "password",
+            "totp"
+          ],
+          "local_role": "analyst",
+          "observed_at": "2026-10-04T04:57:12.942761+00:00",
+          "passed": true
+        },
+        {
+          "admission_unchanged": true,
+          "control": "callback_replay_rejected",
+          "native_callback_reused": true,
+          "observed_at": "2026-10-04T04:57:13.110748+00:00",
+          "passed": true,
+          "status": 403
+        },
+        {
+          "auto_privilege_grant": false,
+          "control": "viewer_native_mfa_login",
+          "factors": [
+            "password",
+            "totp"
+          ],
+          "local_role": "viewer",
+          "observed_at": "2026-10-04T04:57:13.675995+00:00",
+          "passed": true
+        },
+        {
+          "auto_privilege_grant": false,
+          "control": "reviewer_native_mfa_login",
+          "factors": [
+            "password",
+            "totp"
+          ],
+          "local_role": "reviewer",
+          "observed_at": "2026-10-04T04:57:14.258845+00:00",
+          "passed": true
+        },
+        {
+          "callback_status": 403,
+          "control": "local_disabled_local_admission_denied",
+          "observed_at": "2026-10-04T04:57:14.736341+00:00",
+          "passed": true
+        },
+        {
+          "callback_status": 403,
+          "control": "unmapped_local_admission_denied",
+          "observed_at": "2026-10-04T04:57:15.236992+00:00",
+          "passed": true
+        },
+        {
+          "control": "analyst_application_boundary",
+          "observed_at": "2026-10-04T04:57:15.419008+00:00",
+          "other_app_status": 404,
+          "own_app_status": 200,
+          "passed": true
+        },
+        {
+          "control": "viewer_application_boundary",
+          "observed_at": "2026-10-04T04:57:15.581846+00:00",
+          "other_app_status": 404,
+          "own_app_status": 200,
+          "passed": true
+        },
+        {
+          "control": "reviewer_application_boundary",
+          "observed_at": "2026-10-04T04:57:15.751353+00:00",
+          "other_app_status": 404,
+          "own_app_status": 200,
+          "passed": true
+        },
+        {
+          "committed_state_unchanged": true,
+          "control": "viewer_note_write_denied",
+          "observed_at": "2026-10-04T04:57:15.869630+00:00",
+          "passed": true,
+          "status": 403
+        },
+        {
+          "committed_state_unchanged": true,
+          "control": "csrf_missing_write_denied",
+          "observed_at": "2026-10-04T04:57:15.940977+00:00",
+          "passed": true,
+          "status": 403
+        },
+        {
+          "case_version": 2,
+          "committed_notes": 1,
+          "control": "analyst_note_write_persisted",
+          "observed_at": "2026-10-04T04:57:16.026689+00:00",
+          "passed": true,
+          "status": 302
+        },
+        {
+          "committed_state_unchanged": true,
+          "control": "analyst_reviewer_action_denied",
+          "observed_at": "2026-10-04T04:57:16.121899+00:00",
+          "passed": true,
+          "status": 403
+        },
+        {
+          "committed_state_unchanged": true,
+          "control": "analyst_cross_app_write_denied",
+          "observed_at": "2026-10-04T04:57:16.201441+00:00",
+          "passed": true,
+          "status": 404
+        },
+        {
+          "committed_state_unchanged": true,
+          "control": "viewer_cross_app_write_denied",
+          "observed_at": "2026-10-04T04:57:16.278772+00:00",
+          "passed": true,
+          "status": 404
+        },
+        {
+          "committed_state_unchanged": true,
+          "control": "reviewer_cross_app_write_denied",
+          "observed_at": "2026-10-04T04:57:16.356181+00:00",
+          "passed": true,
+          "status": 404
+        },
+        {
+          "control": "malformed_logout_token_rejected",
+          "observed_at": "2026-10-04T04:57:16.463155+00:00",
+          "passed": true,
+          "sessions_unchanged": true,
+          "status": 403,
+          "token_kind": "malformed_fixture"
+        },
+        {
+          "account_still_authenticated": true,
+          "committed_state_unchanged": true,
+          "control": "permission_withdrawal_immediate",
+          "formerly_allowed_status": 404,
+          "observed_at": "2026-10-04T04:57:16.669843+00:00",
+          "passed": true,
+          "unchanged_browser_session": true,
+          "write_status": 404
+        },
+        {
+          "control": "native_backchannel_logout_revoked_session",
+          "observed_at": "2026-10-04T04:57:17.451599+00:00",
+          "passed": true,
+          "provider_status": 204
+        },
+        {
+          "auto_privilege_grant": false,
+          "bounded_jwks_refresh_required": true,
+          "control": "provider_signing_key_rotation_admitted",
+          "factors": [
+            "password",
+            "totp"
+          ],
+          "local_role": "viewer",
+          "new_key_absent_from_startup_jwks": true,
+          "new_signing_key_active": true,
+          "observed_at": "2026-10-04T04:57:34.569632+00:00",
+          "passed": true,
+          "provider_component_status": 201
+        },
+        {
+          "browser_engine": false,
+          "content_security_policy_directives": [
+            "base-uri 'none'",
+            "default-src 'self'",
+            "form-action 'self' https://127.0.0.2:18844",
+            "frame-ancestors 'none'",
+            "object-src 'none'",
+            "script-src 'none'"
+          ],
+          "control": "http_cookie_and_header_policy",
+          "csrf_cookie": {
+            "http_only": false,
+            "same_site": "Strict",
+            "secure": true
+          },
+          "hsts_sent": false,
+          "observed_at": "2026-10-04T04:57:34.716743+00:00",
+          "pages": [
+            "case_brief",
+            "login"
+          ],
+          "passed": true,
+          "session_cookie": {
+            "http_only": true,
+            "same_site": "None",
+            "secure": true
+          }
+        },
+        {
+          "clock_or_database_time_changed": false,
+          "control": "real_session_expiry_denied",
+          "lifetime_seconds": 299.791107,
+          "observed_at": "2026-10-04T05:02:12.046673+00:00",
+          "passed": true
+        }
+      ],
+      "host_trust_changed": false,
+      "mocked_token_responses": false,
+      "native_keycloak": true,
+      "passed": true,
+      "remediation_verification_exercised": false,
+      "requests": 106
+    },
+    "native_keycloak": true,
+    "passed": true,
+    "phase": "complete",
+    "retained_runtime": {
+      "created_sha256": "9ecef296aae17c84a45164c1cd893cb43b0fdf46ee2cbab61b3e93ada6668bc6",
+      "runner_kernel_sha256": "8a6194491da013da09425a42093c42585065e8b8b761760d12f2a7194330d6c5",
+      "running_sha256": "3dc25196afa01a6c2b0089ffd47225b06e26da6690f74e7f1ecc2de248763c8b"
+    },
+    "run_id": "73632025aeee400bb7ee49b69fba7c99",
+    "runner_kernel": {
+      "capabilities_zero": true,
+      "cgroup_v2_limits_verified": true,
+      "component": "runner",
+      "database_keycloak_kernel_probe": false,
+      "dependency_exec_private_256_mib": true,
+      "gid": 10001,
+      "no_new_privileges": true,
+      "readonly_root_and_inputs_verified": true,
+      "scratch_noexec_64_mib": true,
+      "seccomp_filter": true,
+      "uid": 10001
+    },
+    "server_stopped": true
+  },
+  "phase": "native_execution",
+  "preparation": {
+    "browser_wheels": {
+      "downloads": false,
+      "files": [
+        {
+          "filename": "greenlet-3.2.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "45fcea7b697b91290b36eafc12fff479aca6ba6500d98ef6f34d5634c7119cbe",
+          "size": 655426
+        },
+        {
+          "filename": "playwright-1.63.0-py3-none-manylinux1_x86_64.whl",
+          "sha256": "ad21bc07516b187965a7521c5cf0df0bd657b17482eaad74335272d35a2b07de",
+          "size": 48217159
+        },
+        {
+          "filename": "pyee-13.0.1-py3-none-any.whl",
+          "sha256": "af2f8fede4171ef667dfded53f96e2ed0d6e6bd7ee3bb46437f77e3b57689228",
+          "size": 15659
+        },
+        {
+          "filename": "typing_extensions-4.16.0-py3-none-any.whl",
+          "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+          "size": 45571
+        }
+      ]
+    },
+    "certificates": {
+      "ca_private_key_persisted": false,
+      "created_at": "2026-10-04T04:55:27+00:00",
+      "expires_at": "2026-10-04T06:55:27+00:00",
+      "host_trust_changed": false,
+      "public_file_sha256": {
+        "console-certificate.pem": "b2cb0750fdf10343e92ed61b70f8353394540220fceeadea7ef8de084adcd71f",
+        "lab-ca.pem": "4d30d41b13202d15e3f6485532d4da1f7db9d7c8fe6c73f2224d7ae06774bd21",
+        "provider-certificate.pem": "d7d834f6209c270d2152983eabfacd2ca2d086176619e98b0703f52ecb3f0d30"
+      },
+      "run_id": "73632025aeee400bb7ee49b69fba7c99",
+      "server_addresses": {
+        "console": "127.0.0.1",
+        "provider": "127.0.0.2"
+      }
+    },
+    "source_snapshot": {
+      "bytes": 7805426,
+      "file_count": 648,
+      "source_sha256": "f07337b21cca9647e19519cf1f5368d4e9ec2549eb9d609f9fa01a38024a3d6b"
+    },
+    "wheels": {
+      "downloads": false,
+      "expanded_bytes": 63334627,
+      "files": [
+        {
+          "filename": "authlib-1.8.0-py2.py3-none-any.whl",
+          "sha256": "88aebbd9af6757e14e912d5dc007ae1dc1f3e27e3b2152ce7c552ee2c3b3c121",
+          "size": 260804
+        },
+        {
+          "filename": "joserfc-1.7.5-py3-none-any.whl",
+          "sha256": "add2c2c84e8373b084d526a8b53daba5d7a513a118cd2dcd9fc9f979d0922159",
+          "size": 71269
+        },
+        {
+          "filename": "cryptography-50.0.1-cp311-abi3-manylinux_2_34_x86_64.whl",
+          "sha256": "51afcfceb15597cf2635068e4ac9a56b2abde622edde17f37d85fd7b5306497a",
+          "size": 4746230
+        },
+        {
+          "filename": "cffi-2.1.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "b0431303acaea1089ad4b3e9ce4e6518193def1118d4073ca848635ee4ea2e96",
+          "size": 221525
+        },
+        {
+          "filename": "pycparser-3.0-py3-none-any.whl",
+          "sha256": "b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992",
+          "size": 48172
+        },
+        {
+          "filename": "requests-2.34.2-py3-none-any.whl",
+          "sha256": "2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0",
+          "size": 73075
+        },
+        {
+          "filename": "charset_normalizer-3.5.1-py3-none-any.whl",
+          "sha256": "6df0ec430f9a831772c23ca5a224cba36517a58a84bb32c32bb59a9fa67c47f6",
+          "size": 68658
+        },
+        {
+          "filename": "urllib3-2.8.0-py3-none-any.whl",
+          "sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3",
+          "size": 135717
+        },
+        {
+          "filename": "certifi-2026.7.22-py3-none-any.whl",
+          "sha256": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775",
+          "size": 136983
+        },
+        {
+          "filename": "idna-3.20-py3-none-any.whl",
+          "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c",
+          "size": 69583
+        },
+        {
+          "filename": "django-5.2.17-py3-none-any.whl",
+          "sha256": "f04fb3b36ee119e1af4fa1d397d5fd6cf12700f49321e84d4f4c642c5b1973db",
+          "size": 8315563
+        },
+        {
+          "filename": "asgiref-3.12.1-py3-none-any.whl",
+          "sha256": "fe386d1c2bff7259ea95929266d12a8cf9a8b5a1c2598402967d8792e7a7c094",
+          "size": 25478
+        },
+        {
+          "filename": "sqlparse-0.6.0-py3-none-any.whl",
+          "sha256": "b861c0288ce2fa56209a9a6412d2e066ac664b3873b89c26c9d8415e8e32996f",
+          "size": 50070
+        },
+        {
+          "filename": "tzdata-2026.4-py2.py3-none-any.whl",
+          "sha256": "c2169a8b0a7a5e9674da5a135ccdfb2b3e671b333ed9fed17b41f73c34476e81",
+          "size": 347494
+        },
+        {
+          "filename": "psycopg-3.3.6-py3-none-any.whl",
+          "sha256": "a1db9f7148b06a28606767efaca51fa6f9398c5c0a3810519be69d7000bdb631",
+          "size": 215490
+        },
+        {
+          "filename": "psycopg_binary-3.3.6-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+          "sha256": "31cd942c23f613276b81a6e6598cefa12960058b0f46e1e874b540c793f6aca5",
+          "size": 5246902
+        }
+      ]
+    }
+  },
+  "real_browser_passed": true,
+  "run_id": "73632025aeee400bb7ee49b69fba7c99",
+  "schema_version": 1,
+  "source_sha256": "f07337b21cca9647e19519cf1f5368d4e9ec2549eb9d609f9fa01a38024a3d6b",
+  "source_unchanged": true,
+  "stage_growth_ceiling_bytes": 4294967296,
+  "stage_initial_free_disk_bytes": 54840844288,
+  "started_at": "2026-10-04T04:55:23.289709+00:00",
+  "status": "passed_native_profile"
+}

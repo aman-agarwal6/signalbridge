@@ -80,12 +80,15 @@ class EnterpriseEvaluationTests(SimpleTestCase):
                 declared()
 
     def test_retained_round_binds_source_inputs_labels_metrics_and_physical_requests(self):
-        report = json.loads(
-            (
-                ROOT / "docs/evidence/20261001-enterprise-detection-evaluation-format2.json"
-            ).read_text(encoding="utf8")
-        )
+        milestone = json.loads((ROOT / "docs/enterprise-milestone.json").read_text(encoding="utf8"))
+        receipt = next(g["receipt"] for g in milestone["mandatory_gates"] if g["id"] == "detection")
+        candidate = (ROOT / receipt).resolve()
+        self.assertTrue(candidate.is_relative_to((ROOT / "docs/evidence").resolve()))
+        self.assertEqual(candidate.suffix, ".json")
+        report = json.loads(candidate.read_text(encoding="utf8"))
         frozen = json.loads((DATA / "freeze.json").read_text(encoding="utf8"))
+        self.assertIn("integrations/wazuh_enterprise/contract.py", frozen["files"])
+        self.assertIn("integrations/wazuh_enterprise/signalbridge_rules.xml", frozen["files"])
         declaration = json.loads((DATA / "declaration.json").read_text(encoding="utf8"))
         self.assertEqual(report["implementation"], frozen)
         self.assertEqual(report["declaration"], declaration)

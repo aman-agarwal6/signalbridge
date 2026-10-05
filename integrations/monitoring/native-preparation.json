@@ -1,0 +1,81 @@
+{
+  "status": "code_prepared_native_execution_not_authorized_or_run",
+  "scope": "finite_standalone_synthetic_sqlite_operational_proof",
+  "claim_limits": [
+    "Actual exporter observations are obtained from signed synthetic intake and real application worker processing in a fresh disposable SQLite DB.",
+    "This profile does not monitor the retained native reference run, connect enterprise sources, prove the 24-hour SLA or verify browser rendering.",
+    "No TLS handshake, Docker engine, Prometheus/Grafana startup/query, alert interruption, recovery or shutdown execution is claimed by preparation or modeled tests."
+  ],
+  "entry_point": "python -B -m integrations.monitoring.native_host execute --run FRESH_32_HEX_RUN --reviewed-source-sha256 REVIEWED_64_HEX_SOURCE --approval-reference FRESH_APPROVAL_REFERENCE --docker-reviewed-path EXPLICIT_REVIEWED_DOCKER_EXE --certificate-python REVIEWED_CERTIFICATE_RUNTIME",
+  "approval": "A fresh approval must cover the actual command, executable, final source/controller/helper revisions, private preparation, cached-only startup, temporary dependency installation/migrations within the disposable container, independent watchdog and owned-only shutdown. Placeholders are deliberately nonfunctional. An approval reference is a record, not authority.",
+  "containers": 3,
+  "images": "image-lock.json; exact linux/amd64 manifest and config digests; no pull/build/acquisition fallback",
+  "isolation": {
+    "default": "exclusive_running_engine",
+    "runner_network": "none",
+    "prometheus_and_grafana_network": "container namespace of the exact current runner ID",
+    "listeners": "127.0.0.1 only within that namespace: exporter18843, Prometheus19090, Grafana13000",
+    "published_ports": 0,
+    "dns_or_external_egress": "no routed interface in the namespace",
+    "docker_socket_or_host_control_mounts": false,
+    "networks_or_volumes_created": false,
+    "privileged": false,
+    "host_trust_changed": false,
+    "alertmanager_remote_write_external_messages": false,
+    "preservation_or_shared_engine_mode": false
+  },
+  "capacity": {
+    "original_milestone_free_disk_baseline_bytes": 80498424546,
+    "combined_lab_ram_ceiling_bytes": 10737418240,
+    "combined_container_memory_cap_bytes": 1610612736,
+    "combined_container_tmpfs_limit_bytes": 486539264,
+    "runtime_only_physical_stage_growth_ceiling_bytes": 536870912,
+    "cumulative_whole_host_loss_ceiling_bytes": 32212254720,
+    "free_disk_reserve_bytes": 26843545600,
+    "available_host_memory_reserve_bytes": 4294967296,
+    "image_compressed_layer_bytes_if_uncached": 632483374,
+    "acquisition": "Image acquisition is separate and unapproved. The approximately603MiB compressed layers already exceed the512MiB runtime-only growth budget. Expanded image/VM footprint is unknown. Any acquisition needs a separate reviewed budget and fresh capacity against the unchanged original30GiB baseline. This controller requires all exact images already cached and never acquires them.",
+    "parent_reported_read_only_observation": {
+      "reported_date": "2026-10-03",
+      "free_disk_bytes": 59184041984,
+      "available_memory_bytes": 8656474112,
+      "conservative_cumulative_loss_bytes": 21314382562,
+      "remaining_below_30GiB_bytes": 10897872158,
+      "limit": "A parent-reported planning observation with an unknown reason for increased free capacity. It does not reset the baseline, certify current reserves, cache presence, peer state or launch readiness."
+    }
+  },
+  "runtime_bounds": {
+    "native_deadline_seconds": 900,
+    "resource_commit_window_seconds": 120,
+    "late_create_shutdown_drain_seconds": 60,
+    "per_request_seconds": 5,
+    "http_requests": 256,
+    "http_response_bytes": 1048576,
+    "exporter_response_bytes": 65536,
+    "prometheus_scrape_seconds": 15,
+    "prometheus_scrape_timeout_seconds": 7,
+    "prometheus_query_timeout_seconds": 5,
+    "paused_worker_backlog_phase_seconds": 180,
+    "prometheus_tsdb_retention": "30m/64MB in128MiB tmpfs",
+    "shutdown_limits": "Container stop10s command bound/5s graceful stop, independent60s late-create drain. Launcher waits up to150s for the independent receipt. Private preparation is separately bounded, and all preparation growth is included in the stage baseline."
+  },
+  "proof_actions": [
+    "Install only the3 hash-verified retained wheels into runner tmpfs, migrate fresh SQLite, and start the actual TLS exporter with separately injected private Bearer auth.",
+    "Commit6 signed synthetic HTTP intake events, retry one identical event and submit one invalid signature; leave actual pending records while the named worker is deliberately paused. Without mocked clocks or backdated timestamps, require real pending/eligible gauges, oldest age, missing-worker state and local worker/queue alerts over actual elapsed time within180s. Then perform the real named-worker drain and reconcile processed records, an empty eligible queue, fresh pulse and alert clearing.",
+    "Require verified CA/IP TLS, missing/wrong exporter Bearer denial, wrong CA denial, missing Prometheus client certificate denial and unauthenticated Grafana API denial.",
+    "Observe successful native scrapes and match4 operational gauges with actual application counts, not hard-coded metric responses.",
+    "Fetch the provisioned dashboard through authenticated TLS and compare all12 Grafana datasource panel queries with native Prometheus series, timestamps and finite values at a bounded common query window. Preserve genuinely empty evidence.",
+    "Stop the actual exporter listener; observe native up=0 and the local MetricsUnavailable alert firing after its1m hold; restore the listener and require up=1, alert clearing and another12 panel comparisons.",
+    "Retain a bounded private proof receipt, or a closed partial receipt on a request/time/control failure; both launcher and independent watchdog revalidate exact ownership and stop only current stage containers. A failed control, capacity guard, interruption, receipt or shutdown cannot produce a passing host result."
+  ],
+  "remaining_holds": [
+    "Fresh explicit native approval; no current authority to change the machine.",
+    "Final source freeze must include the forthcoming shared private-ACL numeric diagnostic revision; its native folder behavior remains unverified by this task.",
+    "Local presence and exact identity of all3 images have not been inspected. Missing images stop this cached-only controller; acquisition is a separate decision.",
+    "Eight unrelated workloads were previously reported running. The current peer state is unverified; any foreign running container refuses this exclusive-engine stage. No preservation launch or foreign shutdown is implemented.",
+    "Current host reserves and cumulative loss must be freshly measured against the original baseline. Image expansion and native memory/startup compatibility remain unknown.",
+    "Native command compatibility, TLS enforcement, datasource frame shapes, interruption timings, recovery, browser rendering and both actual shutdown checks remain mandatory.",
+    "Enterprise-source monitoring connection and the24-hour operational run remain separate work."
+  ],
+  "recovery": "On any failure the independent watchdog writes an abort marker and drains only freshly verified stage-owned containers for60s. The launcher also revalidates owned-only stop. Retain the private run and receipts. Do not remove resources, retry, reset the baseline, stop peers or infer shutdown when the daemon is unreachable. A failed native attempt consumes its approval; any retry requires renewed review and approval."
+}

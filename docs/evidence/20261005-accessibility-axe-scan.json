@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-accessibility-axe-scan",
+  "run_id": "02061f9551504c20b6ac4b67a30e6cf3",
+  "recorded_at": "2026-10-05T02:43:10.247455+00:00",
+  "tool": {
+    "name": "axe-core",
+    "version": "4.13.0",
+    "license": "MPL-2.0",
+    "npm_integrity": "sha512-UzGt8zg7Ny8djbYMhxl2zuEevVa7r2gJjYY5Lwr1xM7+XU2nd6CkIWFTVcCIbAP63vSz71NaVyyuSk9lHKcy0A==",
+    "acquisition": "npm pack from the public registry; tarball sha512 matched the registry integrity; not vendored"
+  },
+  "browser": "Chrome/154.0.8037.93 (headless, throwaway profile)",
+  "scanner": {
+    "path": "scripts/accessibility_scan.mjs",
+    "sha256": "f5b2d44c2e7d4934a6f8e3e3849fb2f6d30c5ba6b49c4021dddff1f90ca2309e"
+  },
+  "rule_tags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa",
+    "wcag22aa",
+    "best-practice"
+  ],
+  "environment": "Disposable git worktree of this branch with the fixes applied, its own SQLite console on 127.0.0.1:8751 and synthetic demo data (24 events, investigations, replays); signed in as the synthetic analyst account through Django's own login. Viewport 1280x900, light and dark color schemes. The workspace console and its data were not used.",
+  "result": {
+    "pages": 19,
+    "page_runs": 38,
+    "violations_after_fixes": 0,
+    "needs_manual_review_total": 40
+  },
+  "found_before_fixes": [
+    {
+      "rule": "nested-interactive",
+      "impact": "serious",
+      "wcag": "4.1.2 (A)",
+      "where": "/ (activity chart)",
+      "elements": 1,
+      "cause": "The chart SVG had role=img but contains a focusable link per day; role=img hides them from assistive technology.",
+      "fix": "role=group with the same accessible name, so each day's link stays reachable."
+    },
+    {
+      "rule": "empty-table-header",
+      "impact": "minor",
+      "wcag": "best practice",
+      "where": "/ (recent events table)",
+      "elements": 1,
+      "cause": "The action column header was empty.",
+      "fix": "A screen-reader-only header, Inspect."
+    },
+    {
+      "rule": "definition-list",
+      "impact": "serious",
+      "wcag": "1.3.1 (A)",
+      "where": "/integrations/ (the same pattern also in three tool-receipt partials)",
+      "elements": 1,
+      "cause": "Metric lists put explanatory notes and a link directly inside dt/dd groups.",
+      "fix": "Each of the 18 notes and links across six lists in four templates is now its own dd with the same styling."
+    },
+    {
+      "rule": "color-contrast",
+      "impact": "serious",
+      "wcag": "1.4.3 (AA)",
+      "where": "file: portfolio/index.html",
+      "elements": 11,
+      "cause": "A dark-theme link color (mint #9ce5ca) inherited inside a light panel (1.29:1), and three greys between 4.28:1 and 4.47:1 for small text.",
+      "fix": "Light-panel links use the existing dark green (6.10:1); greys darkened to 4.84:1-5.53:1."
+    },
+    {
+      "rule": "heading-order",
+      "impact": "moderate",
+      "wcag": "best practice",
+      "where": "file: portfolio/index.html",
+      "elements": 1,
+      "cause": "A card caption was an h3 directly after the h1.",
+      "fix": "A styled paragraph with the same look; the h1 to h2 outline is unbroken."
+    },
+    {
+      "rule": "landmark-one-main, region",
+      "impact": "moderate",
+      "wcag": "best practice",
+      "where": "404 pages (e.g. /lab/ outside its workspace)",
+      "elements": 3,
+      "cause": "Django's built-in 404 page has no main landmark or navigation back.",
+      "fix": "A console 404 page with a main landmark and a link to the overview."
+    }
+  ],
+  "process_note": "An earlier pass ran before the disposable server served stylesheets; its size results were invalid and were discarded. The scanner now records loaded stylesheets per page and stops if a page has none.",
+  "pages": [
+    {
+      "page": "/",
+      "stylesheets": 3,
+      "light": {
+        "violations": 0,
+        "passed_rules": 47,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 47,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/integrations/",
+      "stylesheets": 3,
+      "light": {
+        "violations": 0,
+        "passed_rules": 39,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 39,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/detections/",
+      "stylesheets": 4,
+      "light": {
+        "violations": 0,
+        "passed_rules": 50,
+        "needs_manual_review": 2
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 50,
+        "needs_manual_review": 2
+      }
+    },
+    {
+      "page": "/events/",
+      "stylesheets": 3,
+      "light": {
+        "violations": 0,
+        "passed_rules": 38,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 38,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/findings/",
+      "stylesheets": 3,
+      "light": {
+        "violations": 0,
+        "passed_rules": 37,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 37,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/scans/",
+      "stylesheets": 3,
+      "light": {
+        "violations": 0,
+        "passed_rules": 36,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 36,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/investigations/",
+      "stylesheets": 3,
+      "light": {
+        "violations": 0,
+        "passed_rules": 38,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 38,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/checks/",
+      "stylesheets": 4,
+      "light": {
+        "violations": 0,
+        "passed_rules": 37,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 37,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/replay/",
+      "stylesheets": 3,
+      "light": {
+        "violations": 0,
+        "passed_rules": 37,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 37,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/practice/",
+      "stylesheets": 4,
+      "light": {
+        "violations": 0,
+        "passed_rules": 38,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 38,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/requirements/",
+      "stylesheets": 3,
+      "light": {
+        "violations": 0,
+        "passed_rules": 37,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 37,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/investigations/<case>/",
+      "stylesheets": 3,
+      "light": {
+        "violations": 0,
+        "passed_rules": 42,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 42,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/investigations/<case>/brief/",
+      "stylesheets": 1,
+      "light": {
+        "violations": 0,
+        "passed_rules": 28,
+        "needs_manual_review": 0
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 28,
+        "needs_manual_review": 0
+      }
+    },
+    {
+      "page": "/lab/?app=signalbridge",
+      "stylesheets": 3,
+      "light": {
+        "violations": 0,
+        "passed_rules": 38,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 38,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/lab/",
+      "stylesheets": 2,
+      "light": {
+        "violations": 0,
+        "passed_rules": 19,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 19,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "/login/",
+      "stylesheets": 2,
+      "light": {
+        "violations": 0,
+        "passed_rules": 28,
+        "needs_manual_review": 2
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 28,
+        "needs_manual_review": 2
+      }
+    },
+    {
+      "page": "file: portfolio/index.html",
+      "stylesheets": 1,
+      "light": {
+        "violations": 0,
+        "passed_rules": 48,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 48,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "file: portfolio/access-assurance.html",
+      "stylesheets": 1,
+      "light": {
+        "violations": 0,
+        "passed_rules": 32,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 32,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "file: portfolio/evaluation.html",
+      "stylesheets": 1,
+      "light": {
+        "violations": 0,
+        "passed_rules": 36,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 36,
+        "needs_manual_review": 1
+      }
+    }
+  ],
+  "limits": [
+    "Automated rules catch only part of WCAG; no manual screen-reader, zoom/reflow, cognitive or full keyboard-order audit was done (the identity run separately checked keyboard sign-in).",
+    "Items axe marks as needing manual review were counted but not reviewed.",
+    "Synthetic data only; pages with empty states (findings, scans) were scanned in that state.",
+    "One desktop viewport; no mobile viewport or high-contrast mode."
+  ]
+}

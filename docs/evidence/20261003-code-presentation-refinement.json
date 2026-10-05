@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-code-and-presentation-refinement",
+  "recorded_at": "2026-10-03T02:12:40.708646+00:00",
+  "source_sha256": "28f0fb4fd20e47b832c0bb556aa24d34d1e0389de14894f86f05597ea16f7108",
+  "verification_receipt": "docs/evidence/20261003-enterprise-offline-53e8b20e277444fc9a94a41860d675dd.json",
+  "changes": [
+    "Bound Wazuh verified historical receipt labels to the exact imported CheckRun audit object.",
+    "Reject repeated Wazuh and ZAP imports without matching admission audits; reject wrong-suite ZAP records. Shared consistency helpers preserve receipt hash formats.",
+    "Correct instrumented-lab provenance display; prioritize investigations and collection failures; distinguish ingestion configuration from native tool receipts.",
+    "Improve console and portable-view typography, narrow layouts, keyboard navigation and expandable evidence; extract bounded trusted portfolio stylesheets.",
+    "Remove unused legacy stylesheet and unreachable retired Wazuh launch implementation; CLI remains fail-closed.",
+    "Consolidate maintained reading paths into README, engineering reference and six-page handoff. Replace encoding-corrupted arrows and reject damaged PDF text."
+  ],
+  "verification": {
+    "core_python_methods": 1648,
+    "offline_fault_methods": 3,
+    "reference_application_methods": 78,
+    "memory_tls_methods": 5,
+    "distinct_node_methods": 62,
+    "lint_format_migration_publication_and_configuration": "passed",
+    "console_browser": "Four synthetic screens at 390 and 1440 pixels, disclosures expanded, visible focus and Enter/Space controls checked; network blocked.",
+    "portfolio_browser": "Two static pages at 390 and 1440 pixels, case-selector arrow keys and disclosures checked; network blocked.",
+    "historical_tables_unchanged": 14,
+    "native_source_walkthrough_json_unchanged": true,
+    "pdf": "Six pages rendered and inspected; encoding guard, extracted text, bookmarks and local documentation links checked."
+  },
+  "preserved_failure": {
+    "receipt": "docs/evidence/20261003-enterprise-offline-142fb02939c644adbb57502e3220cb24.json",
+    "reason": "One existing presentation assertion expected Collector enabled. Updated it to the intentional Ingestion configured label; corrected full run passed."
+  },
+  "limits": [
+    "Local code review and builder-operated checks, not an independent security audit or PR-plugin review.",
+    "Synthetic browser fixtures do not verify a signed-in live session.",
+    "No native lab launched, new download, production mutation, publication or detection freeze. Earlier native receipts remain tied to their original source revisions.",
+    "All mandatory unfinished enterprise gates remain open; no new integration acceptance or detection accuracy claim."
+  ]
+}

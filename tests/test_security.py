@@ -463,6 +463,21 @@ class SecurityTests(TestCase):
         self.assertEqual(response.headers["X-Frame-Options"], "DENY")
         self.assertIn("no-store", response.headers["Cache-Control"])
 
+    def test_form_action_allows_only_the_fixed_provider_when_federated(self):
+        # Browsers block a sign-in POST whose redirect leaves form-action, so the
+        # organization button needs exactly the provider origin and nothing else.
+        def directive(response):
+            parts = [p.strip() for p in response.headers["Content-Security-Policy"].split(";")]
+            return [p for p in parts if p.startswith("form-action")]
+
+        with self.settings(FEDERATED_AUTH_ENABLED=False):
+            self.assertEqual(directive(self.client.get("/login/")), ["form-action 'self'"])
+        with self.settings(FEDERATED_AUTH_ENABLED=True):
+            self.assertEqual(
+                directive(self.client.get("/login/")),
+                ["form-action 'self' https://127.0.0.2:18844"],
+            )
+
     def test_sign_in_throttles_repeated_bad_credentials(self):
         for _ in range(8):
             self.client.post("/login/", {"username": "viewer", "password": "bad"})

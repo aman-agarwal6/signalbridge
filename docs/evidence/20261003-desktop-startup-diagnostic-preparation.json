@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-desktop-startup-diagnostic-preparation",
+  "recorded_at": "2026-10-03T03:54:11.186439+00:00",
+  "status": "reviewed_and_offline_checked_native_unrun",
+  "native_execution": false,
+  "focused_agent_tests": {
+    "diagnostic": 14,
+    "existing_guard": 16,
+    "passed": 30,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "reviewed_file_sha256": {
+    "scripts/enterprise_desktop_startup_verify.py": "2d64ce5f8219016ef7d447674d3d98029bdae622a4c6ca68c2fb72a35478c455",
+    "integrations/enterprise/desktop-startup-stage-plan.json": "d6a9b532f2481cb2a9ef699b15d2f5f90a415e29c7d094e872a1bf5d913f06a9",
+    "tests/test_desktop_startup_diagnostic.py": "bf2a384add44b4de6889a98250edfd319ac8e8e24eaef8f5f3075588e14d4eb7",
+    "integrations/enterprise/desktop_startup_guard.py": "627eceabe4395b43938c48569def2874c78c9afc90b819919e01a47cbd6b5248"
+  },
+  "checks": [
+    "Root inspected the driver, guard interactions, fixed executable path, plan and modeled denial paths.",
+    "Ruff lint/format and JSON validation passed in the focused agent review."
+  ],
+  "limits": [
+    "Tests mock all native/service boundaries. No Docker commands, downloads, containers or host changes occurred.",
+    "Sampled capacity guards can overshoot; prior startup lost about 38.4 GiB free disk and left about 0.44 GiB available RAM.",
+    "A finite stopped observation does not establish permanent absence or resolve the unexplained late startup.",
+    "Fresh explicit startup-only approval is required; previous Keycloak acquisition authority was used."
+  ]
+}

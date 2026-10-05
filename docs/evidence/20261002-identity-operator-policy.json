@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "scope": "Disposable local identity policy and operator recovery/retention; no live account or native protocol proof.",
+  "recorded_at": "2026-10-02T22:23:16.762818+00:00",
+  "command": [
+    "manage.py",
+    "test",
+    "tests.test_federation_operator",
+    "tests.test_federation_policy",
+    "tests.test_oidc_state",
+    "--settings",
+    "config.verification_settings",
+    "--noinput"
+  ],
+  "actual_runner_result": {
+    "executed_at": "2026-10-02T22:20:47.129625+00:00",
+    "runner": "Django DiscoverRunner",
+    "database": "django.db.backends.sqlite3",
+    "tests": 71,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 7.356,
+    "passed": true
+  },
+  "runner_result_sha256": "3ec746580775bccd9836b5e3966c72a5d709c4f8d17805b30da9970456341af1",
+  "method_groups": {
+    "account_policy": 38,
+    "state_logout_policy": 19,
+    "operator_recovery_retention": 14
+  },
+  "checks": {
+    "migration_consistency": "passed",
+    "ruff_check": "passed",
+    "ruff_format": "passed"
+  },
+  "source_sha256_after_execution": {
+    "bridge/models.py": "3eba22d6a18efe79505589a3d8738dd0c4692fc725ffbf769d850dbb32e5da85",
+    "bridge/federation.py": "585d13f35ddf8c3c367d8ac3f79e4091a0960b4f36306321998aa7dd654fc072",
+    "bridge/oidc_state.py": "a87677a7365410867f3f0b4594413fc93eebde193d8dcb69dd6d9c1c955a616f",
+    "bridge/federation_operator.py": "73c212f9e953f7d5486a8cf15b69e390b7db7281985b8537152b8481e358e373",
+    "bridge/management/commands/federated_identity.py": "e8177af78c813651de80554966aa6d3ac596a30be12151f876478599c3fd67d0",
+    "bridge/migrations/0019_federatedexchange_federatedflowwindow_and_more.py": "8933847e444d9c17a6218f31c2bbe59ac1d56cc4593defffae2a64836abcf565",
+    "bridge/migrations/0020_remove_identityaudit_sb_identity_audit_action_and_more.py": "85e11ae734780f248476d4605ed56b5edeb5996aa0f6fc5eeecf83477adee4bc",
+    "tests/test_federation_policy.py": "b914226750451586dce384b087b41611794c847dd81431b955b5dac65174d458",
+    "tests/test_oidc_state.py": "fe9c8261ea958428a495eca2295b8772f41fa4e44e59eb21d80d195dd25b16b8",
+    "tests/test_federation_operator.py": "3fe4b0504e0dc297c613d02d4ef8e7926118447f06621dd2a9a72eee291df379"
+  },
+  "source_binding_limit": "Scoped file hashes captured after execution; no entire-source before/after attestation or full-suite claim.",
+  "native_postgresql_identity_races": {
+    "prepared": 3,
+    "executed": 0
+  },
+  "not_executed": [
+    "Dependency installation",
+    "Signed-token tests",
+    "Keycloak SSO/MFA",
+    "OIDC HTTP callback/provider logout",
+    "Live database migration",
+    "Live account recovery or cleanup",
+    "Operational cleanup scheduler",
+    "Native PostgreSQL identity races"
+  ],
+  "machine_changes": "None. Disposable SQLite tests only; no service or listener started."
+}

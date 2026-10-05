@@ -29,7 +29,9 @@ def evidence_binding(case):
 def operate(user, case_id, version, operation, values):
     initial = Investigation.objects.only("integration_id").get(pk=case_id)
     write_membership(user, initial.integration)
-    case = Investigation.objects.select_for_update().get(pk=case_id)
+    case = Investigation.objects.select_for_update().get(
+        pk=case_id, integration_id=initial.integration_id
+    )
     if type(version) is not int or version < 1 or case.version != version:
         raise WorkflowError("Case changed. Reload before saving.")
     detail = {}
@@ -104,6 +106,11 @@ def operate(user, case_id, version, operation, values):
         task.status = state
         task.save(update_fields=["status", "updated_at"])
         detail = {"task_id": str(task.pk), "task_status": state}
+    elif operation in ("submit_retest", "review_retest"):
+        from .case_verification import decide, submit
+
+        action = submit if operation == "submit_retest" else decide
+        detail = action(case, user, values, evidence_binding(case))
     else:
         raise WorkflowError("Invalid case operation.")
     case.version += 1
