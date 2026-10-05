@@ -271,9 +271,13 @@ class SharedClockTests(SimpleTestCase):
             clock.wait_until(0, lambda: True)
 
     def test_origin_outside_the_reviewed_lead_or_lag_is_refused(self):
-        for seconds in (-121, 121):
-            with self.subTest(seconds=seconds), self.assertRaises(WorkloadError):
-                SharedClock(self.lab(seconds))
+        # Fixed reading: the monotonic clock counts from boot. On a CI runner up for
+        # under two minutes, a real 121-second lag would put the origin before boot,
+        # which LabClock refuses before SharedClock's own range check runs.
+        with patch("time.monotonic_ns", return_value=10**15):
+            for seconds in (-121, 121):
+                with self.subTest(seconds=seconds), self.assertRaises(WorkloadError):
+                    SharedClock(self.lab(seconds))
 
     def test_wall_clock_steps_never_move_the_lab_timeline(self):
         clock = SharedClock(self.lab(-1))
