@@ -267,7 +267,7 @@
     "ai_reference_answer": "A scenario may meet more than one rule, so scenario-level accuracy and case-level workload use different denominators. The oracle business activity is benign despite matching telemetry; rule conformance does not establish malicious intent. A late correction still consumed initial analyst review work.",
     "human_assessment": "Not submitted or independently assessed."
   },
-  "current_offline_receipt": "docs/evidence/20261005-enterprise-offline-53d117a227744280b4844e317cfaba0b.json",
+  "current_offline_receipt": "docs/evidence/20261005-enterprise-offline-3e814024cd9948f4818d3dabe6362de9.json",
   "evidence_corrections": [
     {
       "receipt": "docs/evidence/20261001-enterprise-offline-cd0601aa7c3846f3b5cb30de63fb1710.json",
@@ -482,7 +482,7 @@
       "human_assessment": "Not submitted or independently assessed."
     }
   ],
-  "current_offline_receipt_status": "Final source with the accessibility fixes, the AccessOps leaver receiver, the Shuffle fixes and the evidence-refresh fixes (2026-10-05) passed all 16 offline checks: 2,100 Python test methods (1,990 Django, 78 reference app, 16 identity profile, 13 certificate and ES256, 3 fault) and 67 Node tests with none skipped or failed, plus Django checks, migration consistency, lint/format, the publication scan and ACL syntax. An earlier run failed only its format check on a generated migration; that receipt is retained. No native labs, services or provider were started by verification.",
+  "current_offline_receipt_status": "Final source with the accessibility fixes, the AccessOps leaver receiver, the Shuffle fixes, the evidence-refresh fixes, the Linux CI test fixes and the October evidence viewer (2026-10-05) passed all 16 offline checks: 2,104 Python test methods (1,994 Django, 78 reference app, 16 identity profile, 13 certificate and ES256, 3 fault) and 67 Node tests with none skipped or failed, plus Django checks, migration consistency, lint/format, the publication scan and ACL syntax. An earlier run failed only its format check on a generated migration; that receipt is retained. No native labs, services or provider were started by verification.",
   "reference_launch_preparation": {
     "status": "passed_native_reference_access",
     "launcher": "scripts/enterprise_reference_verify.py",

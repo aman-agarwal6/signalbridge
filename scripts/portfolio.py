@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
 
 from bridge.simulation_evidence import json_document, stamp, validate_result
 from scripts.portfolio_integrations import load_integrations
+from scripts.portfolio_native import load_native
 from scripts.portfolio_story import load_story
 from scripts.record_verification import (
     DJANGO_SUMMARY_FIELDS,
@@ -354,6 +355,7 @@ def reconstruct_metrics(
             "detection_challenge": challenge_run,
             "same_declared_scenarios": comparison,
             "integrations": load_integrations(root, read_public, require),
+            "native": load_native(root, read_public, require),
             "limits": [
                 "Builder-operated evidence, not an independent audit or an enterprise benchmark.",
                 "Core verification and synthetic simulation are different executions with separate dates.",
@@ -472,7 +474,7 @@ def recheck_evidence(root, metrics):
         for key in ("core", "current_simulation", "historical_baseline", "detection_challenge")
         if metrics[key]
     ]
-    for collection in (metrics["integrations"], metrics["story"]):
+    for collection in (metrics["integrations"], metrics["native"], metrics["story"]):
         if collection:
             receipts.extend(collection["receipts"])
     for receipt in receipts:

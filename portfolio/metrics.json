@@ -1,15 +1,15 @@
 {
   "schema_version": 2,
   "kind": "signalbridge-public-portfolio",
-  "generated_at": "2026-10-05T16:07:46.327240+00:00",
+  "generated_at": "2026-10-05T17:30:19.238123+00:00",
   "core": {
     "checks": [
       {
-        "duration_seconds": 87.234,
+        "duration_seconds": 95.313,
         "exit_code": 0,
         "log_sha256": {
-          "stderr": "8c1eeca9061de336a9eb973d844b939cc1c4e4bcc48ec518bc035a86330f1dca",
-          "stdout": "a7d88d3f90a022d997fa10aa7527e36534967a15e7816c274b2fba300d3eabd8"
+          "stderr": "55d8d0c705c578c52d836936ba4d9190e50bdf54093706f4f8782054d536c2ac",
+          "stdout": "c484d93db1faf913e05428a55704e5015f23349941e3b44ce66ea95061fbab00"
         },
         "name": "django-tests",
         "passed": true,
@@ -19,12 +19,12 @@
           "failures": 0,
           "skipped": 0,
           "successful_summary": true,
-          "tests_run": 1993,
+          "tests_run": 1997,
           "unexpected_successes": 0
         }
       },
       {
-        "duration_seconds": 1.357,
+        "duration_seconds": 1.392,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -34,7 +34,7 @@
         "passed": true
       },
       {
-        "duration_seconds": 1.429,
+        "duration_seconds": 1.419,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -44,7 +44,7 @@
         "passed": true
       },
       {
-        "duration_seconds": 0.04,
+        "duration_seconds": 0.042,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -54,31 +54,31 @@
         "passed": true
       },
       {
-        "duration_seconds": 0.033,
+        "duration_seconds": 0.041,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "30f9ce60b05856d055e2ae36819c965642d2cd576833379bfc8d9b6463373daf"
+          "stdout": "ba125731aee4475d0522fe9eb59a9ddfe3aad88bcddb2bfec3a9d8d67ae9da36"
         },
         "name": "ruff-format",
         "passed": true
       },
       {
-        "duration_seconds": 16.487,
+        "duration_seconds": 17.29,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "951ffaaaaf154470a01149cc1d717ac2ccf18d30b5f9777e5c9a8fb2271cfd6f"
+          "stdout": "d26ab69a83f11211f587d2639e90f162b13f2a01d9a8f048f55fd06d3bb574c8"
         },
         "name": "publication-scan",
         "passed": true
       },
       {
-        "duration_seconds": 0.333,
+        "duration_seconds": 0.253,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "39c42acc83ed548da8969c589621e783b57311e3a39f71ae7cfeedd58912ee74"
+          "stdout": "acf7d37591de7ef9a7da275a2b338f21920dbbb3ce73b23076b85d7ebb944c97"
         },
         "name": "node-courier-tests",
         "passed": true,
@@ -94,11 +94,11 @@
         }
       },
       {
-        "duration_seconds": 0.116,
+        "duration_seconds": 0.125,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "50ec1a0c72cba380d2ddb37f70e8a0536c3b8a60f0de81a57ef1306716398e4a"
+          "stdout": "9c087653089ea21bf472bcf5d77ba09bc185f221e6337ba764df477c4d603bb1"
         },
         "name": "node-http-harness-mock-tests",
         "passed": true,
@@ -114,11 +114,11 @@
         }
       },
       {
-        "duration_seconds": 0.134,
+        "duration_seconds": 0.136,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "45aff7811ddc4ee948b365e2a9907313206feb8fc144f21391a20c3226804afc"
+          "stdout": "9a572e33bbf6e55b7aedbad88806e18bfb359837654f9e38520d7f3524e6e682"
         },
         "name": "node-bettail-route-mock-tests",
         "passed": true,
@@ -142,20 +142,20 @@
       "Hashes identify content; a filesystem administrator can replace logs and receipts.",
       "Documentation and generated evidence are excluded from the source digest."
     ],
-    "duration_seconds": 109.225,
-    "finished_at": "2026-10-05T16:07:30.681671+00:00",
+    "duration_seconds": 118.23,
+    "finished_at": "2026-10-05T17:30:02.792896+00:00",
     "kind": "signalbridge-core-verification-receipt",
     "passed": true,
-    "revision": "78165d513ce55a2172c438d4988530087dcd0ed9",
-    "run_id": "20261005T160541456302Z-20aa4f17",
+    "revision": "e404062a53fb04a0010ed49029c2d21998277c00",
+    "run_id": "20261005T172804562269Z-73bbd2b8",
     "schema_version": 1,
-    "source_file_count": 689,
-    "source_sha256": "790fcdbceb6b56620c8484c8b5dd2bbf78f8a65b7019dd77bb89877e3dd5d53c",
+    "source_file_count": 690,
+    "source_sha256": "74f652fd84c22a6cc29fd22b7bc37ff2791901ea3529152e3845dce6e3988f35",
     "source_unchanged": true,
-    "started_at": "2026-10-05T16:05:41.456891+00:00",
+    "started_at": "2026-10-05T17:28:04.562929+00:00",
     "working_tree_dirty": true,
-    "receipt": "20261005T160541456302Z-20aa4f17.json",
-    "receipt_sha256": "2e8176c3c2c4f3b3a916911c0b3b95ba257e38358a47e7b39a7ff7c5e7720fd4"
+    "receipt": "20261005T172804562269Z-73bbd2b8.json",
+    "receipt_sha256": "af918701901708e1f38002c2396609436d4045f88d2f7098aeb15f0b0d1ffb04"
   },
   "historical_baseline": {
     "receipt": "20260924-offline-simulation.json",
@@ -357,23 +357,23 @@
     }
   },
   "current_simulation": {
-    "receipt": "20261005-simulation-96b92f85fa2b45c894166839b87ec871.json",
-    "receipt_sha256": "8065186a4d99f932e5bb06b17cf136a8d9f7e6adfb17f5223b3b70f1c3a6d2bf",
-    "run_id": "96b92f85fa2b45c894166839b87ec871",
-    "source_sha256": "790fcdbceb6b56620c8484c8b5dd2bbf78f8a65b7019dd77bb89877e3dd5d53c",
-    "source_file_count": 689,
-    "revision": "78165d513ce55a2172c438d4988530087dcd0ed9",
+    "receipt": "20261005-simulation-e69afefc6019460cbbbac918f04f637d.json",
+    "receipt_sha256": "5724ccf83f6c21b3d02bd60111aadd4c4f5fd06677e444f766930fb1651321de",
+    "run_id": "e69afefc6019460cbbbac918f04f637d",
+    "source_sha256": "74f652fd84c22a6cc29fd22b7bc37ff2791901ea3529152e3845dce6e3988f35",
+    "source_file_count": 690,
+    "revision": "e404062a53fb04a0010ed49029c2d21998277c00",
     "working_tree_dirty": true,
     "python": "3.14.4",
-    "result_sha256": "1baa97fcd88dfee061840ac6a71b9d617e95af7671ebd28b18215436cc13639e",
-    "provenance_sha256": "d684b425ea8805f39c06bac6e3d87eaac405709fc14670398b16e22281712f47",
+    "result_sha256": "084157f3a123e80e8d26d0e6531931e7be9157e62e122d2953c07c8c1b975026",
+    "provenance_sha256": "fb04442e448a7bb54d2b9fe94929f4e575fc9174608b4324b21107e4536ce460",
     "status": "passed",
     "matches_current_source": true,
     "results": {
       "schema_version": 1,
       "kind": "signalbridge-offline-capability-simulation",
-      "started_at": "2026-10-05T16:07:34.054372+00:00",
-      "finished_at": "2026-10-05T16:07:37.487150+00:00",
+      "started_at": "2026-10-05T17:30:06.420945+00:00",
+      "finished_at": "2026-10-05T17:30:10.126627+00:00",
       "execution_status": "completed",
       "database": "disposable in-memory SQLite",
       "transport": "Django in-process test client",
@@ -531,11 +531,11 @@
         "accepted_events": 600,
         "processed_events": 600,
         "source_rate_limit": "600 per application per minute",
-        "ingest_seconds": 1.956805,
-        "processing_seconds": 1.233614,
-        "in_process_requests_per_second": 306.62,
-        "in_process_request_p50_ms": 3.009,
-        "in_process_request_p95_ms": 4.985,
+        "ingest_seconds": 1.952926,
+        "processing_seconds": 1.509058,
+        "in_process_requests_per_second": 307.23,
+        "in_process_request_p50_ms": 3.124,
+        "in_process_request_p95_ms": 3.842,
         "alerts_from_benign_load": 0,
         "limits": "Single-process SQLite harness timing includes test-client overhead; not network or production capacity."
       },
@@ -545,7 +545,7 @@
         "pending": 0,
         "dead": 0
       },
-      "duration_seconds": 3.432773,
+      "duration_seconds": 3.705677,
       "requests_executed": 639,
       "coverage": {
         "met": 15,
@@ -556,23 +556,23 @@
     }
   },
   "detection_challenge": {
-    "receipt": "20261005-challenge-03d797940aea494c8b10eea43e0676cf.json",
-    "receipt_sha256": "0126b3a873fe00244dc2942b5ce8fd31c660049ec446948d3ff1b8713cb05a05",
-    "run_id": "03d797940aea494c8b10eea43e0676cf",
-    "source_sha256": "790fcdbceb6b56620c8484c8b5dd2bbf78f8a65b7019dd77bb89877e3dd5d53c",
-    "source_file_count": 689,
-    "revision": "78165d513ce55a2172c438d4988530087dcd0ed9",
+    "receipt": "20261005-challenge-8b86fb3dec004b42a35d650257aaea24.json",
+    "receipt_sha256": "ace8a0ca3915aad934335c1b56f39d7bee616cf8ff1b30e816e46edf80107eb9",
+    "run_id": "8b86fb3dec004b42a35d650257aaea24",
+    "source_sha256": "74f652fd84c22a6cc29fd22b7bc37ff2791901ea3529152e3845dce6e3988f35",
+    "source_file_count": 690,
+    "revision": "e404062a53fb04a0010ed49029c2d21998277c00",
     "working_tree_dirty": true,
     "python": "3.14.4",
-    "result_sha256": "890f32a7e6666399b0e7d75884368c3329fe388e957c9b1e301d6e973af022e5",
-    "provenance_sha256": "8c411612c87f27d31474ebb2ca434c628b7f4d44eda8049deffe830b8bf7b6d8",
+    "result_sha256": "a2e579dbf2e435123bf761166da57230826ab3d845677e8c31680f4b800a6562",
+    "provenance_sha256": "0e39a01da52b8749932e27e7e4b80b9a8fd1d3a0208e06b7537ddc4501fc05ea",
     "status": "partial",
     "matches_current_source": true,
     "results": {
       "schema_version": 1,
       "kind": "detection-challenge-v1",
       "declaration_sha256": "6709461d435e6dad7f89cf9e447f3629423caf9728e11118858ddcdae0cf8345",
-      "started_at": "2026-10-05T16:07:43.167550+00:00",
+      "started_at": "2026-10-05T17:30:16.004585+00:00",
       "execution_status": "completed",
       "database": "disposable in-memory SQLite",
       "transport": "Django in-process test client",
@@ -768,8 +768,8 @@
           ]
         }
       },
-      "finished_at": "2026-10-05T16:07:43.625315+00:00",
-      "duration_seconds": 0.458795
+      "finished_at": "2026-10-05T17:30:16.424502+00:00",
+      "duration_seconds": 0.420438
     }
   },
   "same_declared_scenarios": true,
@@ -1912,6 +1912,310 @@
         "receipt": "20260925-zap-console-import.json",
         "receipt_sha256": "c61d9a52accfffc6c1800ac045ae83b8e8c3131ed32d8c1a4e14e77702946b39",
         "reviewed_content_sha256": "27d7dbb254d358ea0f1b6f969479d6b6eb32b16fb3cfb77ab9a5875254d8c205"
+      }
+    ]
+  },
+  "native": {
+    "scope": "Real tools in an isolated lab with synthetic accounts and data.",
+    "first_day": "October 3",
+    "last_day": "October 5",
+    "passed": 8,
+    "partial": [
+      {
+        "key": "endurance",
+        "short": "Endurance, 13.5 of 24 hours",
+        "tool": "Reliability lab \u00b7 Wazuh",
+        "title": "13.5 hours of continuous reads, with planned interruptions",
+        "date": "October 4",
+        "status": "partial",
+        "figure": "27,118 / 27,118",
+        "figure_label": "reads delivered",
+        "facts": [
+          "40-minute rehearsal: all 5 interruptions recovered with 0 events late or missing",
+          "Wazuh captured the first 10.6 hours, then hit a log-folder limit, since fixed"
+        ],
+        "limit": "Not a 24-hour result; the run was stopped after the Wazuh capture ended.",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261004-reliability-rehearsal-8a1889fec8ef49f5acde3c01bfa88e63-remeasured.json",
+            "label": "Rehearsal"
+          },
+          {
+            "path": "docs/evidence/20261004-reliability-continuous-894fb388a2004b43b6b1643e93342df4-summary.json",
+            "label": "Continuous run"
+          }
+        ]
+      }
+    ],
+    "runs": [
+      {
+        "key": "shuffle",
+        "short": "Shuffle",
+        "tool": "Shuffle SOAR",
+        "title": "A real workflow through nine failure cases",
+        "date": "October 5",
+        "status": "passed",
+        "figure": "9 / 9",
+        "figure_label": "scenarios answered as designed",
+        "facts": [
+          "2 review tasks created; each retry returned its original task",
+          "Replayed, changed, wrong-app and stale requests were refused",
+          "A lost reply was recovered by retrying"
+        ],
+        "limit": "Nine synthetic scenarios in a dedicated offline VM.",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261005-shuffle-native-workflow-315cfb85-9c28-4e4e-9cac-8ce455e92448.json",
+            "label": "Workflow run"
+          }
+        ]
+      },
+      {
+        "key": "leaver",
+        "short": "Leaver signals",
+        "tool": "AccessOps \u00b7 Shared Signals",
+        "title": "Leaver events from another system, verified before use",
+        "date": "October 5",
+        "status": "passed",
+        "figure": "38 / 38",
+        "figure_label": "signed tokens verified, stored once and acknowledged",
+        "facts": [
+          "Dry run first: 32 tokens checked, nothing stored or acknowledged",
+          "Round 2 opened 1 access-after-departure case from real lab activity",
+          "Round 1's 3 cases came from the sender's test backdating departures"
+        ],
+        "limit": "Two lab systems on one PC, with synthetic accounts.",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261005-accessops-leaver-dry-run-f567427abbbc4929ad50e25be2c84724.json",
+            "label": "Dry run"
+          },
+          {
+            "path": "docs/evidence/20261005-accessops-leaver-poll-eefe76ecded04ffe9892bd174c973232.json",
+            "label": "Round 1"
+          },
+          {
+            "path": "docs/evidence/20261005-accessops-leaver-poll-931402fb1ee44209b58c60063f63150f.json",
+            "label": "Round 2"
+          }
+        ]
+      },
+      {
+        "key": "identity",
+        "short": "Login and MFA",
+        "tool": "Keycloak \u00b7 Chromium",
+        "title": "Password and TOTP sign-in, attacked and walked through",
+        "date": "October 4",
+        "status": "passed",
+        "figure": "28 / 28",
+        "figure_label": "protocol controls passed",
+        "facts": [
+          "Covered callback replay, a missing CSRF token, cross-app writes, signing-key rotation, back-channel logout and real session expiry",
+          "5 / 5 real-browser controls: keyboard sign-in, cookie attributes, CSP, framing and sign-out"
+        ],
+        "limit": "A real Keycloak server and browser in an isolated lab, with synthetic accounts.",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261004-identity-native-73632025aeee400bb7ee49b69fba7c99.json",
+            "label": "Identity run"
+          }
+        ]
+      },
+      {
+        "key": "endurance",
+        "short": "Endurance, 13.5 of 24 hours",
+        "tool": "Reliability lab \u00b7 Wazuh",
+        "title": "13.5 hours of continuous reads, with planned interruptions",
+        "date": "October 4",
+        "status": "partial",
+        "figure": "27,118 / 27,118",
+        "figure_label": "reads delivered",
+        "facts": [
+          "40-minute rehearsal: all 5 interruptions recovered with 0 events late or missing",
+          "Wazuh captured the first 10.6 hours, then hit a log-folder limit, since fixed"
+        ],
+        "limit": "Not a 24-hour result; the run was stopped after the Wazuh capture ended.",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261004-reliability-rehearsal-8a1889fec8ef49f5acde3c01bfa88e63-remeasured.json",
+            "label": "Rehearsal"
+          },
+          {
+            "path": "docs/evidence/20261004-reliability-continuous-894fb388a2004b43b6b1643e93342df4-summary.json",
+            "label": "Continuous run"
+          }
+        ]
+      },
+      {
+        "key": "wazuh-collection",
+        "short": "Wazuh collection",
+        "tool": "Wazuh",
+        "title": "Every record archived, every alert raised once",
+        "date": "October 3",
+        "status": "passed",
+        "figure": "24 / 24",
+        "figure_label": "records archived",
+        "facts": [
+          "8 / 8 expected alerts, each raised once",
+          "0 missing records and 0 extra copies",
+          "Input: the October 2 access run's 23 observations and 1 forwarded detection"
+        ],
+        "limit": "One forwarded SignalBridge detection; not independent Wazuh rediscovery.",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261003-wazuh-native-collection-0d137b4720ad476faa68d36754b7357f.json",
+            "label": "Collection run"
+          }
+        ]
+      },
+      {
+        "key": "wazuh-recovery",
+        "short": "Wazuh recovery",
+        "tool": "Wazuh",
+        "title": "Collector stopped mid-run, log rotated, nothing lost",
+        "date": "October 3",
+        "status": "passed",
+        "figure": "24 / 24",
+        "figure_label": "records archived after recovery",
+        "facts": [
+          "13 records waited while the collector was stopped",
+          "The source log rotated during the run",
+          "0 extra copies; 8 / 8 alerts"
+        ],
+        "limit": "A planned stop and rotation in the lab, not an unplanned outage.",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261003-wazuh-native-recovery-4a5748dcc7a74525a7469dc8d802438a.json",
+            "label": "Recovery run"
+          }
+        ]
+      },
+      {
+        "key": "zap",
+        "short": "ZAP",
+        "tool": "OWASP ZAP",
+        "title": "A finding on the faulty build, gone after the fix",
+        "date": "October 3",
+        "status": "passed",
+        "figure": "1 \u2192 0",
+        "figure_label": "findings before and after the fix",
+        "facts": [
+          "Low-risk finding from ZAP rule 10021 on the faulty build",
+          "The corrected build, scanned the same way, had none"
+        ],
+        "limit": "Authenticated passive scan of the lab reference app; not a full assessment.",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261003-authenticated-zap-offline-d975b97fad814c9b8e4304e114c776e5.json",
+            "label": "Scan run"
+          }
+        ]
+      },
+      {
+        "key": "restoration",
+        "short": "Investigation to fix",
+        "tool": "SignalBridge console \u00b7 PostgreSQL",
+        "title": "From finding to verified fix, on a restored console",
+        "date": "October 3",
+        "status": "passed",
+        "figure": "23 / 23",
+        "figure_label": "events restored into a separate database",
+        "facts": [
+          "Assigned, remediation task, retest imported, independent reviewer approved",
+          "Self-review refused; a repeated retest import created no duplicate",
+          "The Wazuh run matched 13 events to the case"
+        ],
+        "limit": "Synthetic lab data; one case through the full workflow.",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261003-console-restoration-de4f6409fdf444a9bc22cf60463cdb05.json",
+            "label": "Restoration run"
+          }
+        ]
+      },
+      {
+        "key": "monitoring",
+        "short": "Monitoring",
+        "tool": "Prometheus \u00b7 Grafana",
+        "title": "Alerts that fire on a backlog and then clear",
+        "date": "October 3",
+        "status": "passed",
+        "figure": "24 / 24",
+        "figure_label": "monitoring controls passed",
+        "facts": [
+          "Queue-delay and missing-worker alerts fired, then cleared after recovery",
+          "Requests without credentials were denied by the exporter, Prometheus and Grafana",
+          "Every dashboard query matched the database"
+        ],
+        "limit": "Lab thresholds and synthetic load, not production capacity.",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261003-monitoring-native-0cd4256f4a1c4f2692f67eae4704bd53.json",
+            "label": "Monitoring run"
+          }
+        ]
+      }
+    ],
+    "receipts": [
+      {
+        "receipt": "20261003-wazuh-native-collection-0d137b4720ad476faa68d36754b7357f.json",
+        "receipt_sha256": "6621b54d8506ece575b6f34fc95c53482538fe656b6b55a74679a2649a9ea2cc",
+        "reviewed_content_sha256": "ed0d3e1b84bef62676f19066ff58fa3a26f03ef756a33635733d1dff10735441"
+      },
+      {
+        "receipt": "20261003-wazuh-native-recovery-4a5748dcc7a74525a7469dc8d802438a.json",
+        "receipt_sha256": "5a1be12b2283998c94e8f6da338762bd1277aae0f0c6808fab26dbdd251da01d",
+        "reviewed_content_sha256": "8dfb4b446691e38481a734e1edc768e0e68138c8035dac0bdae2265ec50c4642"
+      },
+      {
+        "receipt": "20261003-authenticated-zap-offline-d975b97fad814c9b8e4304e114c776e5.json",
+        "receipt_sha256": "72712c51e6c896f4053e826b1447f0b17b3aef6e74de2535b6259ea4256540a6",
+        "reviewed_content_sha256": "6dbe99149ec2e9f54ca74445a73ae509723255bda127c1dea35c53e1092007b7"
+      },
+      {
+        "receipt": "20261003-console-restoration-de4f6409fdf444a9bc22cf60463cdb05.json",
+        "receipt_sha256": "fc260bfcb7df5b2dd9c1b3d0500cc229686146164bf08c1f1d65b05db5b62361",
+        "reviewed_content_sha256": "c0baa9569de5e11875969206f931028aa18b7ffd8ccac299d95de746bbbdcf1d"
+      },
+      {
+        "receipt": "20261003-monitoring-native-0cd4256f4a1c4f2692f67eae4704bd53.json",
+        "receipt_sha256": "8fdf442228fd3b344adc57efeb9e8d27f1c6ace349ad53a00a4ea28de8465465",
+        "reviewed_content_sha256": "173154f1ada326d6735a0688df8895525f14c3cd9613749523935f920e77c22a"
+      },
+      {
+        "receipt": "20261004-identity-native-73632025aeee400bb7ee49b69fba7c99.json",
+        "receipt_sha256": "92bb7d4f98fd51eb2ed7f5ef62cac7834096b3632b402dd1eb0a5b9e32de70ab",
+        "reviewed_content_sha256": "79b6829c9f34c8098b7aa7cdd7171bf34db45bfdd9c3f5dd37f30930e2039a12"
+      },
+      {
+        "receipt": "20261004-reliability-rehearsal-8a1889fec8ef49f5acde3c01bfa88e63-remeasured.json",
+        "receipt_sha256": "2b6aae045e897e9ed67144641340650732a01f77ea3f0b517c03affc0da33d2f",
+        "reviewed_content_sha256": "c65d6f75aa3acc331c4c2075f1c6b35d9f7141a7b2a09b96820db1d9682d4c7d"
+      },
+      {
+        "receipt": "20261004-reliability-continuous-894fb388a2004b43b6b1643e93342df4-summary.json",
+        "receipt_sha256": "2ef58df4b683cd4d2858494b0a2a5f6d1b319585ca07d097826407ddc9a95efb",
+        "reviewed_content_sha256": "4505c1bd318a0c0f45157da99c5d55c2fb098a0f27475e957cf3a998bb37c0c8"
+      },
+      {
+        "receipt": "20261005-shuffle-native-workflow-315cfb85-9c28-4e4e-9cac-8ce455e92448.json",
+        "receipt_sha256": "f37799caec1c590e8730989c81ea0e4bdff0f57405d08381d0a88b953d8e3c08",
+        "reviewed_content_sha256": "feffebd04e6be35b7154a7cb3134d85a3953777f427b4961edafe1561028efd2"
+      },
+      {
+        "receipt": "20261005-accessops-leaver-dry-run-f567427abbbc4929ad50e25be2c84724.json",
+        "receipt_sha256": "051829b2b5338ff6e8d5c04cb34763b090977e03cd57aaa1f01133890f407319",
+        "reviewed_content_sha256": "63f36b913e5e0e6897f6fefed3c9c1e6acdfc230cbe1028ee0199c2bd9d509b4"
+      },
+      {
+        "receipt": "20261005-accessops-leaver-poll-eefe76ecded04ffe9892bd174c973232.json",
+        "receipt_sha256": "3af26d516aded932de1f8291ebc6bf92e79ac18913bb299ca8c01d4803316b8b",
+        "reviewed_content_sha256": "faf8fafc94f5d11bfc20e42c8f4343df8e2e19ed07061d5ece0db0a877113f65"
+      },
+      {
+        "receipt": "20261005-accessops-leaver-poll-931402fb1ee44209b58c60063f63150f.json",
+        "receipt_sha256": "be67a8bd3b697843e615d395e9c91f66a0116c112ee57ebd3c4cf529541b3c62",
+        "reviewed_content_sha256": "239459cfa560aaac5443af14dae22a9b0f4107090dfe2ed8d754db902f6f4a06"
       }
     ]
   },
