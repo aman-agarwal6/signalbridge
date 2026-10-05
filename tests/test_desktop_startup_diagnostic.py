@@ -182,6 +182,8 @@ class DesktopStartupDiagnosticTests(unittest.TestCase):
             value = driver.launch(driver.DOCKER, APPROVAL)
         return value, events, written, owner, admission
 
+    # The driver only runs from the reviewed checkout folder; CI checks out under the repo name.
+    @patch.object(driver, "ROOT", driver.ROOT.with_name("signalbridge-public"))
     def test_validation_requires_exact_existing_absolute_unredirected_executable(self):
         with (
             patch.object(driver.sys, "platform", "win32"),
@@ -214,6 +216,16 @@ class DesktopStartupDiagnosticTests(unittest.TestCase):
             patch.object(Path, "is_absolute", return_value=True),
             patch.object(Path, "is_symlink", return_value=False),
             patch.object(Path, "lstat", return_value=SimpleNamespace(st_file_attributes=0x400)),
+            self.assertRaises(driver.LabControlError),
+        ):
+            driver.validate_request(driver.DOCKER, APPROVAL)
+        with (
+            patch.object(driver, "ROOT", driver.ROOT.with_name("signalbridge")),
+            patch.object(driver.sys, "platform", "win32"),
+            patch.object(Path, "is_file", return_value=True),
+            patch.object(Path, "is_absolute", return_value=True),
+            patch.object(Path, "is_symlink", return_value=False),
+            patch.object(Path, "lstat", return_value=SimpleNamespace(st_file_attributes=0)),
             self.assertRaises(driver.LabControlError),
         ):
             driver.validate_request(driver.DOCKER, APPROVAL)
