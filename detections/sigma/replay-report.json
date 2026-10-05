@@ -1,0 +1,628 @@
+{
+  "kind": "signalbridge-sigma-replay",
+  "round_id": "f8f7aa48-c0aa-486d-9c83-ea01f5dffc43",
+  "inputs_sha256": "a246cef144fb2ae4ff50b575f1b7c401949ea8164fe6ae28878aa3be58b94fcc",
+  "engine_sha256": {
+    "bridge/engine.py": "dd3207dbded9eeb75b88d982872da955ab194d6df07d37f223aaccb3ed5835d2",
+    "bridge/contract.py": "a654b890d8ecae2230fc26116ddb9667d1f7411ead0f95236ddb228ebc37fc2d"
+  },
+  "rules_sha256": {
+    "r1_repeated_private_access_failures.yml": "9d11fc75ab32c6f6329fa2ed0640a960ee56725277f045ee62b7b01a567f37ef",
+    "r2_allowed_read_after_reported_revocation.yml": "ec5773247cb2cecf9893d66c5f0b6aa6af5d3e09d2fadf83da34a83bab8dd665",
+    "r3_allowed_read_after_membership_removal.yml": "8576aae7a244fdc53abc8bfd01b3a1cc8de98870cc068a624a3fefa1a91343fc",
+    "r4_extended_private_resource_probing.yml": "71cf37a8b80b2c354693850dc87c53886c8b357f078be49ddaa8011fad357f25",
+    "r5_private_resource_denials_across_accounts.yml": "1d55da960328bc7beda52b01feeaaa1fe49c02ad0fddd300ef65d091a412bc55",
+    "signalbridge_membership_removed.yml": "3e4222004e0baf517573793e6a2d64ab01efe64d6b1cc79eea2cdc3042d938b9",
+    "signalbridge_private_read_allowed.yml": "70e216036504a8f430066214674feb240a34330d3e6771a68ba751f06ef2fd7a",
+    "signalbridge_private_read_denied.yml": "6737df5b405ad16a99338111deef22aac3b17b6bbb9e6c6104eecb69eeb208e9",
+    "signalbridge_private_read_failed.yml": "51d2a3553b230126edc58f7f9279e52602050bada8c538b5a7c674d826d00f97"
+  },
+  "packages": {
+    "pySigma": "1.5.1",
+    "pySigma-backend-splunk": "2.1.0",
+    "pySigma-backend-kusto": "1.0.1",
+    "pySigma-backend-sqlite": "2.0.0"
+  },
+  "method": "Each scenario is rebuilt as the published evaluator delivers it (UTC-midnight base, declared offsets, repeats removed). Python: bridge.engine.detections() per app and source. Sigma: the rules compiled by pySigma-backend-sqlite and executed on an in-memory SQLite table. A rule counts as fired if it returns any row.",
+  "summary": {
+    "scenarios": 48,
+    "python_matches_receipt": 48,
+    "sigma_matches_python": 45,
+    "per_rule": {
+      "R1": {
+        "both": 3,
+        "python_only": 0,
+        "sigma_only": 0
+      },
+      "R2": {
+        "both": 2,
+        "python_only": 0,
+        "sigma_only": 0
+      },
+      "R3": {
+        "both": 5,
+        "python_only": 0,
+        "sigma_only": 3
+      },
+      "R4": {
+        "both": 6,
+        "python_only": 0,
+        "sigma_only": 0
+      },
+      "R5": {
+        "both": 6,
+        "python_only": 0,
+        "sigma_only": 0
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "id": "Q01",
+      "title": "Effective permission removed, private read succeeds",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R3"
+      ],
+      "python_rules": [
+        "R3"
+      ],
+      "sigma_rules": [
+        "R3"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q02",
+      "title": "Removal telemetry delivered after successful read",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R3"
+      ],
+      "python_rules": [
+        "R3"
+      ],
+      "sigma_rules": [
+        "R3"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q03",
+      "title": "Re-grant followed by a second removal",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R3"
+      ],
+      "python_rules": [
+        "R3"
+      ],
+      "sigma_rules": [
+        "R3"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q04",
+      "title": "Exact 24-hour revocation horizon",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R3"
+      ],
+      "python_rules": [
+        "R3"
+      ],
+      "sigma_rules": [
+        "R3"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q05",
+      "title": "Read beyond the 24-hour horizon",
+      "label": "suspicious",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q06",
+      "title": "Removal event missing from an unauthorized read",
+      "label": "suspicious",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q07",
+      "title": "Source-labeled revocation read",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R2"
+      ],
+      "python_rules": [
+        "R2"
+      ],
+      "sigma_rules": [
+        "R2"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q08",
+      "title": "Controlled boundary defect and duplicate delivery",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R2"
+      ],
+      "python_rules": [
+        "R2"
+      ],
+      "sigma_rules": [
+        "R2"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q09",
+      "title": "Owner remains authorized after group removal",
+      "label": "benign",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q10",
+      "title": "Alternate direct grant remains valid",
+      "label": "benign",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q11",
+      "title": "Re-grant occurs before read",
+      "label": "benign",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [
+        "R3"
+      ],
+      "sigma_agrees": false
+    },
+    {
+      "id": "Q12",
+      "title": "Removal affected a different subject",
+      "label": "benign",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q13",
+      "title": "Removal concerns a different resource",
+      "label": "benign",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q14",
+      "title": "Two business apps do not share revocation",
+      "label": "benign",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q15",
+      "title": "Source provenance classes do not combine",
+      "label": "benign",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q16",
+      "title": "Removed member receives explicit denial",
+      "label": "benign",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q17",
+      "title": "Alternate grant not emitted to monitoring",
+      "label": "benign",
+      "receipt_rules": [
+        "R3"
+      ],
+      "python_rules": [
+        "R3"
+      ],
+      "sigma_rules": [
+        "R3"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q18",
+      "title": "Late re-grant corrects an earlier alert",
+      "label": "benign",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [
+        "R3"
+      ],
+      "sigma_agrees": false
+    },
+    {
+      "id": "Q19",
+      "title": "Simultaneous removal and successful read",
+      "label": "inconclusive",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q20",
+      "title": "Conflicting membership assertions at same instant",
+      "label": "inconclusive",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [
+        "R3"
+      ],
+      "sigma_agrees": false
+    },
+    {
+      "id": "Q21",
+      "title": "Service failure after removal",
+      "label": "inconclusive",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q22",
+      "title": "Not-visible result after removal",
+      "label": "inconclusive",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q23",
+      "title": "Legacy membership lacks subject relationship",
+      "label": "inconclusive",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q24",
+      "title": "Permission change with missing read telemetry",
+      "label": "inconclusive",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q25",
+      "title": "Extended probing across five resources",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R4"
+      ],
+      "python_rules": [
+        "R4"
+      ],
+      "sigma_rules": [
+        "R4"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q26",
+      "title": "Slow probing arrives in reverse order",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R4"
+      ],
+      "python_rules": [
+        "R4"
+      ],
+      "sigma_rules": [
+        "R4"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q27",
+      "title": "Ten-minute minimum span boundary",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R1",
+        "R4"
+      ],
+      "python_rules": [
+        "R1",
+        "R4"
+      ],
+      "sigma_rules": [
+        "R1",
+        "R4"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q28",
+      "title": "Thirty-minute inclusive slow horizon",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R4"
+      ],
+      "python_rules": [
+        "R4"
+      ],
+      "sigma_rules": [
+        "R4"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q29",
+      "title": "Extended probing beyond the slow horizon",
+      "label": "suspicious",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q30",
+      "title": "Four-resource slow probing under threshold",
+      "label": "suspicious",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q31",
+      "title": "Legitimate employee follows five stale links",
+      "label": "benign",
+      "receipt_rules": [
+        "R4"
+      ],
+      "python_rules": [
+        "R4"
+      ],
+      "sigma_rules": [
+        "R4"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q32",
+      "title": "Legitimate repeated denial of one resource",
+      "label": "benign",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q33",
+      "title": "Approved test produces extended denials",
+      "label": "benign",
+      "receipt_rules": [
+        "R4"
+      ],
+      "python_rules": [
+        "R4"
+      ],
+      "sigma_rules": [
+        "R4"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q34",
+      "title": "Unavailable responses over extended period",
+      "label": "inconclusive",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q35",
+      "title": "Six denied reads by three accounts",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R5"
+      ],
+      "python_rules": [
+        "R5"
+      ],
+      "sigma_rules": [
+        "R5"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q36",
+      "title": "Distributed denials delivered in reverse order",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R5"
+      ],
+      "python_rules": [
+        "R5"
+      ],
+      "sigma_rules": [
+        "R5"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q37",
+      "title": "Ten-minute distributed horizon boundary",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R5"
+      ],
+      "python_rules": [
+        "R5"
+      ],
+      "sigma_rules": [
+        "R5"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q38",
+      "title": "Distributed activity outside ten minutes",
+      "label": "suspicious",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q39",
+      "title": "Only one denial per account",
+      "label": "suspicious",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q40",
+      "title": "Six denials involve only two accounts",
+      "label": "suspicious",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q41",
+      "title": "Distributed probes target different resources",
+      "label": "suspicious",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q42",
+      "title": "Three employees follow a shared stale link",
+      "label": "benign",
+      "receipt_rules": [
+        "R5"
+      ],
+      "python_rules": [
+        "R5"
+      ],
+      "sigma_rules": [
+        "R5"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q43",
+      "title": "Legitimate group permission withdrawal",
+      "label": "benign",
+      "receipt_rules": [
+        "R5"
+      ],
+      "python_rules": [
+        "R5"
+      ],
+      "sigma_rules": [
+        "R5"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q44",
+      "title": "Distributed threshold splits across apps",
+      "label": "benign",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q45",
+      "title": "Distributed threshold splits across source classes",
+      "label": "benign",
+      "receipt_rules": [],
+      "python_rules": [],
+      "sigma_rules": [],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q46",
+      "title": "Lost replies retry distributed observations",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R5"
+      ],
+      "python_rules": [
+        "R5"
+      ],
+      "sigma_rules": [
+        "R5"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q47",
+      "title": "Fast unauthorized private-resource probing",
+      "label": "suspicious",
+      "receipt_rules": [
+        "R1"
+      ],
+      "python_rules": [
+        "R1"
+      ],
+      "sigma_rules": [
+        "R1"
+      ],
+      "sigma_agrees": true
+    },
+    {
+      "id": "Q48",
+      "title": "Three legitimate stale private links",
+      "label": "benign",
+      "receipt_rules": [
+        "R1"
+      ],
+      "python_rules": [
+        "R1"
+      ],
+      "sigma_rules": [
+        "R1"
+      ],
+      "sigma_agrees": true
+    }
+  ]
+}

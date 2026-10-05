@@ -1,0 +1,31 @@
+title: Allowed Private Read After a Reported Boundary Change
+id: cca2a249-9f77-4562-a8aa-07068e4d1cca
+name: signalbridge_r2
+status: test
+description: >
+  The source app reports that a private read succeeded although the account's membership was
+  removed, or during a controlled policy regression. Sigma version of SignalBridge rule R2
+  (source-revocation-v1).
+references:
+  - https://github.com/aman-agarwal6/signalbridge/blob/main/bridge/engine.py
+author: Aman Agarwal
+date: 2026-10-05
+tags:
+  - attack.persistence
+  - attack.t1078
+  - attack.collection
+  - attack.t1213
+logsource:
+  product: signalbridge
+  service: access_telemetry
+detection:
+  selection:
+    operation: private_record.read
+    outcome: allowed
+    reason:
+      - membership_removed
+      - policy_regression
+  condition: selection
+falsepositives:
+  - A mislabeled source operation or a deliberately injected lab fault.
+level: critical

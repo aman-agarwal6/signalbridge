@@ -1,0 +1,18 @@
+| multisearch
+[ search sourcetype="signalbridge:access" sourcetype="signalbridge:access" operation="private_record.read" outcome="denied"
+
+| bin _time span=10m
+| stats count as event_count by _time app environment source resource
+
+| search event_count >= 6 | eval event_type="signalbridge_r5_denials" ]
+[ search sourcetype="signalbridge:access" sourcetype="signalbridge:access" operation="private_record.read" outcome="denied"
+
+| bin _time span=10m
+| stats dc(actor) as value_count by _time app environment source resource
+
+| search value_count >= 3 | eval event_type="signalbridge_r5_accounts" ]
+
+| bin _time span=10m
+| stats dc(event_type) as event_type_count by _time app environment source resource
+
+| search event_type_count >= 2

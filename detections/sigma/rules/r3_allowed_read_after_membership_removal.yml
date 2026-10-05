@@ -1,0 +1,37 @@
+title: Allowed Private Read After Resource Membership Removal
+id: 08872b34-85f5-463e-99f2-5dfd5dc4848c
+name: signalbridge_r3
+status: test
+description: >
+  An account removed from a resource reads that same resource successfully within 24 hours, in
+  one app, environment and source. Sigma version of SignalBridge rule R3 (resource-membership-v1).
+  Sigma cannot express R3's re-grant suppression or its latest-assertion check, so this version
+  can also fire after the account was granted access again.
+references:
+  - https://github.com/aman-agarwal6/signalbridge/blob/main/bridge/engine.py
+author: Aman Agarwal
+date: 2026-10-05
+tags:
+  - attack.persistence
+  - attack.t1078
+  - attack.collection
+  - attack.t1213
+correlation:
+  type: temporal_ordered
+  rules:
+    - signalbridge_membership_removed
+    - signalbridge_private_read_allowed
+  group-by:
+    - app
+    - environment
+    - source
+    - resource
+    - account
+  aliases:
+    account:
+      signalbridge_membership_removed: membership.subject
+      signalbridge_private_read_allowed: actor
+  timespan: 24h
+falsepositives:
+  - A re-grant after the removal, clock skew, or another valid permission such as ownership.
+level: high

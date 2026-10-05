@@ -1,0 +1,49 @@
+# Sigma tooling for detections/, pinned with hashes for Linux x86_64 (CI) and Windows
+# x86_64 (local) wheels on Python 3.14. Install with:
+#   python -m pip install --require-hashes --only-binary :all: -r detections/requirements.txt
+certifi==2026.7.22 \
+    --hash=sha256:62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775
+charset-normalizer==3.5.2 \
+    --hash=sha256:34276fd796040bf0993ab33a369aa572e6979c7aab225a88893667ad8eac8f7a \
+    --hash=sha256:b6b751274acb69d77b3323d6b7dbaa3c7fdfc1eb829b7eb61d262f32e1af9685 \
+    --hash=sha256:e4e81e09c1578b8df602e3db08b0b3ea0a6947ad612f52bf8dc5ea8d47691f0c
+diskcache-stubs==5.6.3.6.20240818 \
+    --hash=sha256:e1db90940b344140730976abe79f57f5b43ca296cbb43fa95da0c69b12d5de4f
+diskcache==5.6.3 \
+    --hash=sha256:5e31b2d5fbad117cc363ebaf6b689474db18a1f6438bc82358b024abd4c2ca19
+idna==3.20 \
+    --hash=sha256:ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c
+Jinja2==3.1.6 \
+    --hash=sha256:85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67
+jq==1.12.0 \
+    --hash=sha256:4ba6d3d2632fe2c53f55cefe6b20a766a844c79a51744ecf27df1876d8b8f3f0 \
+    --hash=sha256:97ca6233eacc643927aa629c44d358bcf265a923637754196c37dc4e0268ba6b
+MarkupSafe==3.0.4 \
+    --hash=sha256:a8e9f292fcda89b324f2f5c91d13f1424a153e40fc2756f38ee23b15835ff300 \
+    --hash=sha256:c1bc67752d5f21013cfe430df4062441714eab79f65a6a05e01505957e9c35fe
+packaging==26.3 \
+    --hash=sha256:d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c
+pyparsing==3.3.3 \
+    --hash=sha256:ece8c00a69cf01b45d0b1dedabb469c90d8caf996d4fda40f147627a122849a4
+pySigma-backend-kusto==1.0.1 \
+    --hash=sha256:8b6a6763a2839b8bc75e333ea2bcb2f3bb07d98b46072a1bef602c1e9b504799
+pysigma-backend-splunk==2.1.0 \
+    --hash=sha256:90da654b17c7a396ba23af14a29ed559c562ae5bb60c4ceda47cd9744dd3581c
+pySigma-backend-sqlite==2.0.0 \
+    --hash=sha256:08b94d016912c3d14f80197d39c5e0b87a6f51c159f9aca3e06a377e753da67c
+pySigma==1.5.1 \
+    --hash=sha256:1e6e080bde31db6039eb5d87d43322bf416534f30048091c65038e88225b8200
+PyYAML==6.0.3 \
+    --hash=sha256:4a2e8cebe2ff6ab7d1050ecd59c25d4c8bd7e6f400f5f82b96557ac0abafd0ac \
+    --hash=sha256:c458b6d084f9b935061bc36216e8a69a7e293a2f1e68bf956dcd9e6cbcd143f5
+requests==2.34.2 \
+    --hash=sha256:2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0
+ruff==0.16.8 \
+    --hash=sha256:15e7d226246961db9235098333caa13063906d3851136b84c2900b82f5daa1df \
+    --hash=sha256:a6b85621fd3c81e31fc5f5add09c9c078b430db3595ca632efafdec9e64ebfaa
+types-PyYAML==6.0.12.20260906 \
+    --hash=sha256:bca893ff0d51df5c9053137d5d0e6ccd36e939a196356f1d5c16372422f5137b
+typing_extensions==4.16.0 \
+    --hash=sha256:481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8
+urllib3==2.8.0 \
+    --hash=sha256:0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3

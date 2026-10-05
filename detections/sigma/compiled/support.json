@@ -1,0 +1,42 @@
+{
+  "packages": {
+    "pySigma": "1.5.1",
+    "pySigma-backend-splunk": "2.1.0",
+    "pySigma-backend-kusto": "1.0.1",
+    "pySigma-backend-sqlite": "2.0.0"
+  },
+  "splunk_sourcetype": "signalbridge:access",
+  "sentinel_table": "SignalBridgeAccess_CL",
+  "rules": {
+    "R1": {
+      "sigma_rule": "signalbridge_r1",
+      "splunk_spl": "converted",
+      "sentinel_kql": "unsupported: Backend does not support correlation rules.",
+      "sqlite": "converted"
+    },
+    "R2": {
+      "sigma_rule": "signalbridge_r2",
+      "splunk_spl": "converted",
+      "sentinel_kql": "converted",
+      "sqlite": "converted"
+    },
+    "R3": {
+      "sigma_rule": "signalbridge_r3",
+      "splunk_spl": "unsupported: Correlation type 'temporal_ordered' is not supported by backend.",
+      "sentinel_kql": "unsupported: Backend does not support correlation rules.",
+      "sqlite": "converted"
+    },
+    "R4": {
+      "sigma_rule": "signalbridge_r4",
+      "splunk_spl": "converted",
+      "sentinel_kql": "unsupported: Backend does not support correlation rules.",
+      "sqlite": "converted"
+    },
+    "R5": {
+      "sigma_rule": "signalbridge_r5",
+      "splunk_spl": "converted",
+      "sentinel_kql": "unsupported: Backend does not support correlation rules.",
+      "sqlite": "converted"
+    }
+  }
+}

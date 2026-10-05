@@ -1,0 +1,30 @@
+title: Repeated Private-Resource Access Failures
+id: 51af5afe-7e52-4480-a28f-740ed0f6dc18
+name: signalbridge_r1
+status: test
+description: >
+  One account is denied, or cannot see, at least three distinct private records within five
+  minutes in one app, environment and source. Sigma version of SignalBridge rule R1 (rolling-v2).
+references:
+  - https://github.com/aman-agarwal6/signalbridge/blob/main/bridge/engine.py
+author: Aman Agarwal
+date: 2026-10-05
+tags:
+  - attack.collection
+  - attack.t1213
+correlation:
+  type: value_count
+  rules:
+    - signalbridge_private_read_failed
+  group-by:
+    - app
+    - environment
+    - source
+    - actor
+  timespan: 5m
+  condition:
+    field: resource
+    gte: 3
+falsepositives:
+  - A legitimate user following expired links, stale memberships or unavailable records.
+level: medium
