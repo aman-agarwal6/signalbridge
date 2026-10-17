@@ -138,6 +138,35 @@ Some receipts are **promotions** (`kind: signalbridge-native-receipt-promotion`)
 
 The September files in `docs/evidence/` are earlier development checkpoints, kept on purpose, including failed and incomplete runs. Each file states its own status and limits. [Lessons learned](LESSONS.md) explains the failures that came before the passing runs.
 
+## Commit IDs changed on 17 October 2026
+
+On 17 October 2026 I rewrote this repository's history to remove two generated PDF files from `output/pdf/` that were not meant to be published. They had already been deleted from the branch on 5 October. Nothing else changed: every commit keeps its author, date, message and files apart from those two PDFs, and the current code is byte-for-byte the same.
+
+Commits before 1 October kept their IDs. Receipts written earlier cite the old IDs for the rest; this table maps them.
+
+| Old | New | Commit |
+| --- | --- | --- |
+| `5486513` | `e1a8c9e` | Add access-assurance workflows and verified PostgreSQL recovery |
+| `3a87ad5` | `9ec039c` | Repair hosted PostgreSQL permissions and historical challenge scope |
+| `c958c59` | `cffae87` | Provide the fixed crash probe its checked-out source path |
+| `48caf02` | `20fc07c` | Document verified public CI and retain publication failures |
+| `78165d5` | `d38400f` | Add the enterprise lab, native evidence and AccessOps leaver signals |
+| `9300dbf` | `f1630d5` | Regenerate the portfolio viewer from current verified source |
+| `c761b69` | `2419fa5` | Pin the checkout name in the desktop-startup validation test |
+| `b618f3f` | `02cda2f` | Make the Windows host-controller tests run on the Linux CI runner |
+| `e0df57f` | `705090d` | Stop the shared-clock range test depending on host uptime |
+| `e404062` | `114662c` | Link AccessOps from the leaver-signals result |
+| `f4134d8` | `4a93db2` | Lead the evidence viewer with the October native runs |
+| `85f59b8` | `0c9c313` | Add the detection rules as Sigma, compiled for Splunk and Sentinel |
+| `88136f6` | `6b3a1d4` | Fail the Sigma check when the evaluator moves to a new frozen round |
+| `fee1e3f` | `75d2341` | Quote the pip binary flag so the Sigma workflow parses |
+| `cd333a1` | `4c6117d` | Run the detection queries in Splunk Free and the Kusto emulator |
+| `e46d370` | `498c06b` | Set up a blind evaluation for the detection rules |
+| `9b92016` | `9beeb5b` | Add a signed release workflow and the v0.1.0 notes |
+| `4d4a83b` | `16bcc03` | Rewrite the README and docs in my own voice (#1) |
+
+The `v0.1.0` tag now points to `9beeb5b`. The release files are unchanged, and their signed build provenance still names the release commit by its old ID, `9b92016`.
+
 ## What none of this shows
 
 - Production readiness, high availability or performance at enterprise scale. Everything ran on one PC with synthetic data.
