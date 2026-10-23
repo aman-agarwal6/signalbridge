@@ -1,0 +1,30 @@
+title: Successful Entra Sign-in with the Device Code Flow
+id: eb2f3bc1-90a1-4874-b2a2-744169827284
+name: identity_entra_device_code_signin
+status: experimental
+description: >
+  E3. A successful interactive sign-in that used the OAuth device code flow. In device code
+  phishing the victim types an attacker's code at microsoft.com/devicelogin, and the attacker's
+  session receives the access and refresh tokens; MFA happens on the victim's side, so it does
+  not stop this. Large device code phishing campaigns against Microsoft 365 ran through 2025 and
+  2026. Entra records the flow as authenticationProtocol deviceCode.
+references:
+  - https://attack.mitre.org/techniques/T1528/
+  - https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-block-authentication-flows
+author: Aman Agarwal
+date: 2026-10-22
+tags:
+  - attack.credential-access
+  - attack.t1528
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection:
+    AuthenticationProtocol: deviceCode
+    ResultType: 0
+  condition: selection
+falsepositives:
+  - Meeting-room devices and command-line tools that legitimately use the device code flow.
+    Block the flow with Conditional Access for everyone else, then alert on the exceptions.
+level: medium

@@ -1,0 +1,56 @@
+title: Kerberos Service Ticket for a User-Run Service
+id: 1447ffff-5147-4a4a-af26-f28ce71e3361
+name: identity_kerberos_user_service_ticket
+status: experimental
+description: >
+  A successful service ticket request (4769) for a service that runs under a user account, not a
+  computer account or krbtgt. Any encryption type, and any requester: a tool run as SYSTEM
+  requests as the computer account, so computer requesters are kept. Input to W1.
+author: Aman Agarwal
+date: 2026-10-22
+modified: 2026-10-22
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4769
+    Status: '0x0'
+  filter_computer_services:
+    ServiceName|endswith:
+      - '$'
+      - 'krbtgt'
+  condition: selection and not 1 of filter_*
+falsepositives:
+  - Expected on its own; only the correlation raises an alert.
+level: informational
+---
+title: Kerberoasting Burst - Tickets for Many User-Run Services
+id: bb8d5a1a-7cae-4097-8833-edbac25c0e3b
+name: identity_kerberoasting_burst
+status: experimental
+description: >
+  W1. One account gets service tickets for five or more distinct user-run services within ten
+  minutes. Kerberoasting tools request a ticket for every such service, then crack the service
+  passwords offline. Any encryption type counts, so AES-only roasting is included. A single RC4
+  ticket is left to SigmaHQ's single-event rule.
+references:
+  - https://attack.mitre.org/techniques/T1558/003/
+author: Aman Agarwal
+date: 2026-10-22
+tags:
+  - attack.credential-access
+  - attack.t1558.003
+correlation:
+  type: value_count
+  rules:
+    - identity_kerberos_user_service_ticket
+  group-by:
+    - TargetUserName
+  timespan: 10m
+  condition:
+    field: ServiceName
+    gte: 5
+falsepositives:
+  - Inventory or monitoring tools, and application servers that call several user-run services.
+level: high

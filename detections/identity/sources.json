@@ -1,0 +1,455 @@
+{
+  "attack_data": {
+    "repository": "https://github.com/splunk/attack_data",
+    "commit": "7be4e723d31aa3c953e99cc99acab3bbd37818c8",
+    "license": "Apache-2.0",
+    "url": "https://media.githubusercontent.com/media/splunk/attack_data/{commit}/datasets/attack_techniques/{path}"
+  },
+  "sigmahq": {
+    "repository": "https://github.com/SigmaHQ/sigma",
+    "commit": "05d1031f537e830b76da53bae2400c5814c89165",
+    "license": "Detection Rule License 1.1",
+    "url": "https://raw.githubusercontent.com/SigmaHQ/sigma/{commit}/{path}"
+  },
+  "expectations_note": "Which rules should fire on each file was decided from the file's description and technique before the first run, not from the results.",
+  "changes_after_first_run": [
+    "W1: computer-account requesters are no longer filtered out; the first run showed Kerberoasting run as SYSTEM requests as the computer account.",
+    "W5: added for sprays seen only as NTLM checks (4776), which name a workstation instead of an IP address. Its expectations were set after the first run."
+  ],
+  "datasets": [
+    {
+      "id": "kerberoast-rc4-single",
+      "path": "T1558.003/kerberoasting_spn_request_with_rc4_encryption/windows-xml.log",
+      "format": "windows_xml",
+      "sha256": "fd4d9e35bd90964710a2f67bd90476ac69301310256bb319b16662aa04821d79",
+      "bytes": 1127,
+      "technique": "T1558.003",
+      "summary": "One RC4 service ticket requested for a user service account.",
+      "expect": {
+        "mine": [
+          "W1"
+        ],
+        "sigmahq": [
+          "win_security_kerberoasting_activity",
+          "win_security_susp_rc4_kerberos"
+        ]
+      }
+    },
+    {
+      "id": "kerberoast-burst",
+      "path": "T1558.003/unusual_number_of_kerberos_service_tickets_requested/windows-xml.log",
+      "format": "windows_xml",
+      "sha256": "e3e40630126969786c1a4c9cfcfea91773c5a4e3feb89cea28ac29fa6ef4117e",
+      "bytes": 174355,
+      "technique": "T1558.003",
+      "summary": "One account requests an unusual number of service tickets.",
+      "expect": {
+        "mine": [
+          "W1"
+        ],
+        "sigmahq": [
+          "win_security_kerberoasting_activity",
+          "win_security_susp_rc4_kerberos"
+        ]
+      }
+    },
+    {
+      "id": "preauth-disabled",
+      "path": "T1558.004/powershell/windows-security-xml.log",
+      "format": "windows_xml",
+      "sha256": "8b0e5da47d971941d356c0691af64e11e7f0981e3ae8e7e460b2a4c6801654d4",
+      "bytes": 40982,
+      "technique": "T1558.004",
+      "summary": "PowerShell turns off Kerberos pre-authentication on accounts, which sets up AS-REP roasting.",
+      "expect": {
+        "mine": [
+          "W4"
+        ],
+        "sigmahq": []
+      }
+    },
+    {
+      "id": "spray-kerberos-invalid-users",
+      "path": "T1110.003/purplesharp_invalid_users_kerberos_xml/windows-security.log",
+      "format": "windows_xml",
+      "sha256": "5fdf6d4ff1d9495d7b99621de2ac537d4e07d6000d6c24a6b82878ce75085360",
+      "bytes": 190256,
+      "technique": "T1110.003",
+      "summary": "PurpleSharp sprays one password over Kerberos at accounts that don't exist.",
+      "expect": {
+        "mine": [
+          "W2"
+        ],
+        "sigmahq": []
+      }
+    },
+    {
+      "id": "spray-kerberos-valid-users",
+      "path": "T1110.003/purplesharp_valid_users_kerberos_xml/windows-security.log",
+      "format": "windows_xml",
+      "sha256": "f786402e2336f80ef4202129ccc5809b8fdf6372301e647b48d2c69faeb55a96",
+      "bytes": 195548,
+      "technique": "T1110.003",
+      "summary": "PurpleSharp sprays one password over Kerberos at real accounts.",
+      "expect": {
+        "mine": [
+          "W2"
+        ],
+        "sigmahq": []
+      }
+    },
+    {
+      "id": "spray-kerberos-disabled-users",
+      "path": "T1110.003/purplesharp_disabled_users_kerberos_xml/windows-security.log",
+      "format": "windows_xml",
+      "sha256": "8c23ac6554c0f02775b9ac46647bd58e42b15dc60123aac192b14d1e4268272d",
+      "bytes": 190306,
+      "technique": "T1110.003",
+      "summary": "PurpleSharp sprays one password over Kerberos at disabled accounts.",
+      "expect": {
+        "mine": [
+          "W2",
+          "W3"
+        ],
+        "sigmahq": [
+          "win_security_susp_failed_logon_reasons"
+        ]
+      }
+    },
+    {
+      "id": "spray-ntlm-invalid-users",
+      "path": "T1110.003/purplesharp_invalid_users_ntlm_xml/windows-security.log",
+      "format": "windows_xml",
+      "sha256": "5c7354784cef32c1ffcd6f5a56919741e35f03d361404ea275ab79b2db5576d1",
+      "bytes": 173185,
+      "technique": "T1110.003",
+      "summary": "PurpleSharp sprays one password over NTLM at accounts that don't exist.",
+      "expect": {
+        "mine": [
+          "W2",
+          "W5"
+        ],
+        "sigmahq": []
+      }
+    },
+    {
+      "id": "spray-ntlm-valid-users",
+      "path": "T1110.003/purplesharp_valid_users_ntlm_xml/windows-security.log",
+      "format": "windows_xml",
+      "sha256": "e3d316fde69dc39af7cd391f9141329a2693d531facbba30a564683cbc8d941a",
+      "bytes": 172183,
+      "technique": "T1110.003",
+      "summary": "PurpleSharp sprays one password over NTLM at real accounts.",
+      "expect": {
+        "mine": [
+          "W2",
+          "W5"
+        ],
+        "sigmahq": []
+      }
+    },
+    {
+      "id": "spray-explicit-credentials",
+      "path": "T1110.003/purplesharp_explicit_credential_spray_xml/windows-security.log",
+      "format": "windows_xml",
+      "sha256": "5569e9be2a25a2780a3bbc2eefefa63956304a6ed0ce3cb333f4ea78d123fe3a",
+      "bytes": 179782,
+      "technique": "T1110.003",
+      "summary": "PurpleSharp sprays from one process by logging on with explicit credentials.",
+      "expect": {
+        "mine": [
+          "W2",
+          "W5"
+        ],
+        "sigmahq": []
+      }
+    },
+    {
+      "id": "spray-remote",
+      "path": "T1110.003/purplesharp_remote_spray_xml/windows-security.log",
+      "format": "windows_xml",
+      "sha256": "92ab741ca691f9b7308cc684864bee0b0bff1bb1e01440c4ab874a3afa3f4307",
+      "bytes": 292831,
+      "technique": "T1110.003",
+      "summary": "PurpleSharp sprays one password at accounts from a remote host.",
+      "expect": {
+        "mine": [
+          "W2",
+          "W5"
+        ],
+        "sigmahq": []
+      }
+    },
+    {
+      "id": "entra-spray",
+      "path": "T1110.003/password_spraying_azuread/azuread_signin.log",
+      "format": "entra_json",
+      "sha256": "14b4ded54e61209e62cd8d883032a8bb3f33753cec0423510a725142ae36c0f6",
+      "bytes": 113331,
+      "technique": "T1110.003",
+      "summary": "MSOLSpray tries one password against 30 Entra accounts.",
+      "expect": {
+        "mine": [
+          "E1"
+        ],
+        "sigmahq": []
+      }
+    },
+    {
+      "id": "entra-distributed-spray",
+      "path": "T1110.003/azure_ad_distributed_spray/azure_ad_distributed_spray.log",
+      "format": "entra_json",
+      "sha256": "e449c7a937e83f9795065e6ac215ad71ec80ae2fa66fdba0621326aa23bd7f85",
+      "bytes": 116354,
+      "technique": "T1110.003",
+      "summary": "A password spray against Entra spread across many source addresses.",
+      "expect": {
+        "mine": [
+          "E1"
+        ],
+        "sigmahq": []
+      }
+    },
+    {
+      "id": "entra-brute-force-one-user",
+      "path": "T1110.001/azure_ad_high_number_of_failed_authentications_for_user/azuread.log",
+      "format": "entra_json",
+      "sha256": "1d5c729dc5e864ca2894cceae832ff4119f17a709e1ec33838b3f60baab3af87",
+      "bytes": 105311,
+      "technique": "T1110.001",
+      "summary": "Many passwords tried against one account. Not a spray; no rule here covers it.",
+      "expect": {
+        "mine": [],
+        "sigmahq": []
+      }
+    },
+    {
+      "id": "entra-success-different-ips",
+      "path": "T1110.001/azure_ad_successful_authentication_from_different_ips/azuread.log",
+      "format": "entra_json",
+      "sha256": "7de7bf2e60ee2746ab4cabfb714ffc42e7a1d839e7b5f33b2b0d07f228266a86",
+      "bytes": 58284,
+      "technique": "T1110.001",
+      "summary": "Successful sign-ins to one account from different addresses. No rule here covers it.",
+      "expect": {
+        "mine": [],
+        "sigmahq": []
+      }
+    },
+    {
+      "id": "entra-mfa-denials",
+      "path": "T1621/azure_ad_multiple_denied_mfa_requests/azure_ad_multiple_denied_mfa_requests.log",
+      "format": "entra_json",
+      "sha256": "2518337c58d1cb33f5559fc7292483fe9a50315338e8dd08f515e2ff01838481",
+      "bytes": 46430,
+      "technique": "T1621",
+      "summary": "A user denies a run of MFA prompts.",
+      "expect": {
+        "mine": [
+          "E2"
+        ],
+        "sigmahq": [
+          "azure_mfa_denies"
+        ]
+      }
+    },
+    {
+      "id": "entra-mfa-denial-pair",
+      "path": "T1621/azuread/azure-audit.log",
+      "format": "entra_json",
+      "sha256": "b48398c6c372ba551d569328915058cc6c66554d3b17ce0db297231cecc622fa",
+      "bytes": 7302,
+      "technique": "T1621",
+      "summary": "Two sign-ins fail the MFA challenge.",
+      "expect": {
+        "mine": [
+          "E2"
+        ],
+        "sigmahq": [
+          "azure_mfa_denies"
+        ]
+      }
+    },
+    {
+      "id": "entra-device-code",
+      "path": "T1528/device_code_authentication/azure-audit.log",
+      "format": "entra_json",
+      "sha256": "4348ea10f629c00182540f6885719ff098b182f1ec1139cb9f4f65c42b986f85",
+      "bytes": 48915,
+      "technique": "T1528",
+      "summary": "TokenTactics device code phishing: the victim enters a code and the attacker gets tokens.",
+      "expect": {
+        "mine": [
+          "E3"
+        ],
+        "sigmahq": [
+          "azure_app_device_code_authentication"
+        ]
+      }
+    },
+    {
+      "id": "entra-consent-granted",
+      "path": "T1528/azure_ad_user_consent_granted/azure_ad_user_consent_granted.log",
+      "format": "entra_json",
+      "sha256": "c246dccc71905891c49b06b0679c55fdcb25247eed513d6de5f45537e363aebb",
+      "bytes": 32822,
+      "technique": "T1528",
+      "summary": "A user consents to a malicious multi-tenant app that asks for mail access.",
+      "expect": {
+        "mine": [
+          "E6"
+        ],
+        "sigmahq": [
+          "azure_app_end_user_consent"
+        ]
+      }
+    },
+    {
+      "id": "entra-auth-method-registered",
+      "path": "T1556.006/azure_ad_new_mfa_method_registered_for_user/azuread.log",
+      "format": "entra_json",
+      "sha256": "89e7ad5f69700243fee54a46e67f80b62fdabd33d479d5bb4b15b290a180b5fc",
+      "bytes": 2698,
+      "technique": "T1556.006",
+      "summary": "New MFA methods (an app password and SMS) registered for a user.",
+      "expect": {
+        "mine": [
+          "E4"
+        ],
+        "sigmahq": [
+          "azure_change_to_authentication_method"
+        ]
+      }
+    },
+    {
+      "id": "entra-mfa-phone-added",
+      "path": "T1098.005/azure_ad_register_new_mfa_method/azure_ad_register_new_mfa_method.log",
+      "format": "entra_json",
+      "sha256": "c99d21c5ffc0a698829aa9be7fc91f10e1ac5154c89dd12d9c16b3a9da1c8cc7",
+      "bytes": 125080,
+      "technique": "T1098.005",
+      "summary": "A phone added as a new MFA method, with the sign-ins around it.",
+      "expect": {
+        "mine": [
+          "E4"
+        ],
+        "sigmahq": [
+          "azure_change_to_authentication_method"
+        ]
+      }
+    },
+    {
+      "id": "entra-tap-created",
+      "path": "T1556.006/azure_ad_temporary_access_pass/azure-audit.log",
+      "format": "entra_json",
+      "sha256": "95c51d3d30174a423c2e9522af278d565cbf882f1dc0b0cbf7e5e7a5aec4593d",
+      "bytes": 1394,
+      "technique": "T1556.006",
+      "summary": "A Temporary Access Pass issued for a Global Administrator outside business hours (2026).",
+      "expect": {
+        "mine": [
+          "E5"
+        ],
+        "sigmahq": [
+          "azure_tap_added"
+        ]
+      }
+    },
+    {
+      "id": "entra-app-secret-added",
+      "path": "T1098.001/azure_ad_service_principal_credentials/azure-audit.log",
+      "format": "entra_json",
+      "sha256": "0a6de8d20356feb056af2d90a17d82012348236f70b67b60a57f680016b7326e",
+      "bytes": 1850,
+      "technique": "T1098.001",
+      "summary": "A new client secret and certificate added to an existing app registration.",
+      "expect": {
+        "mine": [
+          "E7"
+        ],
+        "sigmahq": [
+          "azure_app_credential_added"
+        ]
+      }
+    },
+    {
+      "id": "entra-federated-credential-added",
+      "path": "T1098.001/azure_ad_federated_identity_credential/azure-audit.log",
+      "format": "entra_json",
+      "sha256": "68a71da7b6ee2370fd29439c2590620061973f11f2938261b98e489017653425",
+      "bytes": 2998,
+      "technique": "T1098.001",
+      "summary": "A GitHub Actions federated credential added to a production service principal (2026).",
+      "expect": {
+        "mine": [
+          "E7"
+        ],
+        "sigmahq": [
+          "azure_app_credential_added"
+        ]
+      }
+    }
+  ],
+  "sigmahq_rules": [
+    {
+      "name": "win_security_kerberoasting_activity",
+      "path": "rules/windows/builtin/security/win_security_kerberoasting_activity.yml",
+      "sha256": "cec0c81991d59e93a2acefefbea2fd3a0efec40e9c93acaa882c17b6dbbf641b",
+      "bytes": 1450
+    },
+    {
+      "name": "win_security_susp_rc4_kerberos",
+      "path": "rules/windows/builtin/security/win_security_susp_rc4_kerberos.yml",
+      "sha256": "6b95365726dfb2744695f0402f9784dc015f027f53543b4db4d0f60527b9b2b8",
+      "bytes": 871
+    },
+    {
+      "name": "win_security_susp_failed_logon_reasons",
+      "path": "rules/windows/builtin/security/win_security_susp_failed_logon_reasons.yml",
+      "sha256": "b5567dfa0e49d6119aa008844d3681228584b880f4249befa13b6e11a0dfaef4",
+      "bytes": 2426
+    },
+    {
+      "name": "azure_app_device_code_authentication",
+      "path": "rules/cloud/azure/signin_logs/azure_app_device_code_authentication.yml",
+      "sha256": "86b77dcf54abe01d3a9eaeed7532ebbece4059f9b232ad62c061f40df356e51f",
+      "bytes": 1128
+    },
+    {
+      "name": "azure_mfa_denies",
+      "path": "rules/cloud/azure/signin_logs/azure_mfa_denies.yml",
+      "sha256": "ced77e7d3a0c4e1756c5f29bd6b860eb525dce951c014971e09e9fbf72203002",
+      "bytes": 942
+    },
+    {
+      "name": "azure_login_to_disabled_account",
+      "path": "rules/cloud/azure/signin_logs/azure_login_to_disabled_account.yml",
+      "sha256": "b0521dd4f1cf761618b7d33002f18d29c22e2720a9cd5d3235e2a17b5206f8cb",
+      "bytes": 739
+    },
+    {
+      "name": "azure_change_to_authentication_method",
+      "path": "rules/cloud/azure/audit_logs/azure_change_to_authentication_method.yml",
+      "sha256": "b5f0dda93aa123d14cb73c0f5bf81be94be2b4df18a1bba211db8db4e16eb662",
+      "bytes": 866
+    },
+    {
+      "name": "azure_tap_added",
+      "path": "rules/cloud/azure/audit_logs/azure_tap_added.yml",
+      "sha256": "8dd3256ae10fd12977c7306723657fc32446b3ea0d50e07b9f6950acf5606fd3",
+      "bytes": 926
+    },
+    {
+      "name": "azure_app_end_user_consent",
+      "path": "rules/cloud/azure/audit_logs/azure_app_end_user_consent.yml",
+      "sha256": "c09f9225d92cf53a3343d00b66ed96f0fba765ad81f434a35340a71e9158265c",
+      "bytes": 599
+    },
+    {
+      "name": "azure_app_credential_added",
+      "path": "rules/cloud/azure/audit_logs/azure_app_credential_added.yml",
+      "sha256": "5ae0dcf1e9c2f626091067fc062a9f710e70701fb85ee0063e1a56c6d959278b",
+      "bytes": 1075
+    }
+  ]
+}

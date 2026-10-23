@@ -50,5 +50,9 @@ jobs:
         run: |
           python -m detections.sigma.compile --check
           python -m detections.sigma.replay --check
+      - name: Identity rules score on the pinned public logs is current
+        run: |
+          python -m detections.identity.fetch
+          python -m detections.identity.score --check
       - name: Tests
         run: python -m unittest discover -s detections -t . -p "test_*.py" -v

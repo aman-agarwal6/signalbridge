@@ -1,0 +1,28 @@
+title: New Authentication Method Registered for an Entra Account
+id: fffb60ee-737d-4780-a1a7-9ba5e0c691c3
+name: identity_entra_auth_method_registered
+status: experimental
+description: >
+  E4. A user or an administrator registered a new sign-in method (phone, authenticator app, app
+  password) for an account. After a help-desk social engineering call, attackers add their own
+  method so they can pass MFA later. Pair it with the sign-ins that follow.
+references:
+  - https://attack.mitre.org/techniques/T1098/005/
+author: Aman Agarwal
+date: 2026-10-22
+tags:
+  - attack.persistence
+  - attack.t1098.005
+logsource:
+  product: azure
+  service: auditlogs
+detection:
+  selection:
+    LoggedByService: Authentication Methods
+    OperationName:
+      - User registered security info
+      - Admin registered security info
+  condition: selection
+falsepositives:
+  - New hires setting up MFA and people replacing a phone. Check against help-desk tickets.
+level: medium

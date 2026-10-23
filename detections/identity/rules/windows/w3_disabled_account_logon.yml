@@ -1,0 +1,39 @@
+title: Logon Attempt with a Disabled Windows Account
+id: 4fcf32fd-3d1f-4522-be35-0174610dd495
+name: identity_windows_disabled_account_logon
+status: experimental
+description: >
+  W3. Someone tries to authenticate as a disabled account. For a leaver, it means a person, a
+  script or a device still holds that account's credentials. NTLM and logon failures report a
+  disabled account as 0xC0000072. Kerberos reports 0x12, which also covers expired, locked-out
+  and outside-logon-hours accounts. Network attempts are kept on purpose: an attempt from another
+  machine is the case that matters after someone leaves.
+references:
+  - https://attack.mitre.org/techniques/T1078/002/
+  - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4768
+author: Aman Agarwal
+date: 2026-10-22
+tags:
+  - attack.initial-access
+  - attack.t1078.002
+logsource:
+  product: windows
+  service: security
+detection:
+  logon_or_ntlm:
+    EventID:
+      - 4625
+      - 4776
+  disabled:
+    - Status: '0xC0000072'
+    - SubStatus: '0xC0000072'
+  kerberos_revoked:
+    EventID:
+      - 4768
+      - 4771
+    Status: '0x12'
+  condition: (logon_or_ntlm and disabled) or kerberos_revoked
+falsepositives:
+  - Old mapped drives, scheduled tasks or phones still signing in with a leaver's account.
+  - Locked-out or expired accounts, for the Kerberos events.
+level: medium
