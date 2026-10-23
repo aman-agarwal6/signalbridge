@@ -1,5 +1,10 @@
 # Detection rules as Sigma, Splunk SPL and KQL
 
+This folder holds two rule sets:
+- **[Identity attack detections](identity/README.md)**: 13 Sigma rules for Windows domain
+  controller and Microsoft Entra ID logs, scored on public attack captures beside SigmaHQ's rules.
+- **The access lab's rules R1–R5**, described below. They read SignalBridge's own app telemetry.
+
 SignalBridge's five detection rules (R1–R5, in [`bridge/engine.py`](../bridge/engine.py)) are
 written here as [Sigma](https://sigmahq.io/) rules, so they can run outside SignalBridge.
 pySigma compiles them for Splunk and Microsoft Sentinel; where it can't, the query is written by

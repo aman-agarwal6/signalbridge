@@ -1,0 +1,47 @@
+title: Entra Sign-in Failed at MFA
+id: b777a99e-b2bd-47f1-bb27-b9b6bf768919
+name: identity_entra_mfa_failed
+status: experimental
+description: >
+  An interactive Entra sign-in that passed the password but failed the MFA step (500121): the
+  prompt was denied, ignored or timed out. Input to E2.
+author: Aman Agarwal
+date: 2026-10-22
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection:
+    ResultType: 500121
+  condition: selection
+falsepositives:
+  - Expected on its own; only the correlation raises an alert.
+level: informational
+---
+title: MFA Fatigue - Repeated MFA Failures for One Entra Account
+id: 7a072904-1366-4452-96e2-83dbcf3458cb
+name: identity_entra_mfa_fatigue
+status: experimental
+description: >
+  E2. Three or more sign-ins for one account fail at the MFA step within ten minutes. Each one
+  means someone already had the password. Repeated prompts are how push-spam ("MFA fatigue")
+  attacks wear a user down until they approve.
+references:
+  - https://attack.mitre.org/techniques/T1621/
+author: Aman Agarwal
+date: 2026-10-22
+tags:
+  - attack.credential-access
+  - attack.t1621
+correlation:
+  type: event_count
+  rules:
+    - identity_entra_mfa_failed
+  group-by:
+    - UserPrincipalName
+  timespan: 10m
+  condition:
+    gte: 3
+falsepositives:
+  - A user with a new phone, or an authenticator app that keeps timing out.
+level: high

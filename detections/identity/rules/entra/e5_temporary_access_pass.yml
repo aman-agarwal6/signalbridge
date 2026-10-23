@@ -1,0 +1,29 @@
+title: Temporary Access Pass Issued for an Entra Account
+id: 719fbc3d-43e3-4465-a2fd-1a468e280444
+name: identity_entra_temporary_access_pass
+status: experimental
+description: >
+  E5. An administrator issued a Temporary Access Pass, a time-limited passcode that signs in
+  without the account's password or MFA. Matches the current activity name and the older one
+  ("Admin registered security info" with a temporary access pass reason).
+references:
+  - https://attack.mitre.org/techniques/T1098/
+  - https://learn.microsoft.com/en-us/entra/identity/authentication/howto-authentication-temporary-access-pass
+author: Aman Agarwal
+date: 2026-10-22
+tags:
+  - attack.persistence
+  - attack.t1098
+logsource:
+  product: azure
+  service: auditlogs
+detection:
+  current_name:
+    OperationName: Create Temporary Access Pass method for user
+  older_name:
+    OperationName: Admin registered security info
+    ResultReason|contains: temporary access pass
+  condition: current_name or older_name
+falsepositives:
+  - Onboarding and account recovery. Each pass should match a ticket.
+level: high

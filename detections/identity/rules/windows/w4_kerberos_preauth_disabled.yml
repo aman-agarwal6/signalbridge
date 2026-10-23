@@ -1,0 +1,27 @@
+title: Kerberos Pre-Authentication Turned Off for an Account
+id: 994564e5-306c-465b-bdaf-170e6d61517b
+name: identity_kerberos_preauth_disabled
+status: experimental
+description: >
+  W4. An account change (4738) turns on "Don't require Kerberos preauthentication" (%%2096).
+  Anyone can then request an AS-REP for the account and crack its password offline (AS-REP
+  roasting). An attacker with write access to the account can set the flag on purpose.
+references:
+  - https://attack.mitre.org/techniques/T1558/004/
+  - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4738
+author: Aman Agarwal
+date: 2026-10-22
+tags:
+  - attack.credential-access
+  - attack.t1558.004
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4738
+    UserAccountControl|contains: '%%2096'
+  condition: selection
+falsepositives:
+  - A legacy application that cannot do Kerberos pre-authentication; record it as an exception.
+level: medium

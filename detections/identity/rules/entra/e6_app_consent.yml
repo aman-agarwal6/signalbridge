@@ -1,0 +1,27 @@
+title: Consent Granted to an Entra Application
+id: 285ff723-8b26-46a1-80ef-e3a6e3f1a03f
+name: identity_entra_app_consent
+status: experimental
+description: >
+  E6. A user or an administrator granted an application access to data. In consent phishing the
+  app asks for mail or file access and then reads it with its own tokens, which survive a
+  password reset. Admin consent is included, because tenants that limit user consent leave
+  administrators as the target.
+references:
+  - https://attack.mitre.org/techniques/T1528/
+author: Aman Agarwal
+date: 2026-10-22
+tags:
+  - attack.credential-access
+  - attack.t1528
+logsource:
+  product: azure
+  service: auditlogs
+detection:
+  selection:
+    OperationName: Consent to application
+    Result: success
+  condition: selection
+falsepositives:
+  - Approved apps; keep an allowlist of their application IDs.
+level: medium

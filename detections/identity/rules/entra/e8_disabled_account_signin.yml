@@ -1,0 +1,26 @@
+title: Sign-in Attempt with a Disabled Entra Account
+id: 5a5d7766-cb85-4658-bb4d-7d095bc0622f
+name: identity_entra_disabled_account_signin
+status: experimental
+description: >
+  E8. Entra refused a sign-in because an administrator disabled the account (50057). After
+  offboarding, it means a person, a script or a device still holds the leaver's password or
+  session. Matches the code only, so a change to Microsoft's wording does not break it.
+references:
+  - https://attack.mitre.org/techniques/T1078/004/
+  - https://learn.microsoft.com/en-us/entra/identity-platform/reference-error-codes
+author: Aman Agarwal
+date: 2026-10-22
+tags:
+  - attack.initial-access
+  - attack.t1078.004
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection:
+    ResultType: 50057
+  condition: selection
+falsepositives:
+  - Phones and mail clients still configured with a leaver's account.
+level: medium

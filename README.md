@@ -1,8 +1,30 @@
 # SignalBridge
 
-**Catch the access that should have ended.** SignalBridge is a detection lab. Two test apps send signed events about who tried to read what; five detection rules flag access that continues after a permission was removed, and an analyst takes each finding to a fix that someone else verifies. I ran it against real Keycloak, Wazuh, OWASP ZAP and Shuffle in an isolated lab.
+**Detection engineering for identity attacks: who still has access, and who is trying to get it.**
 
-[Case study](https://aman-agarwal6.github.io/projects/signalbridge.html) · [Evidence guide](docs/EVIDENCE.md) · [Lessons learned](docs/LESSONS.md) · [Releases](https://github.com/aman-agarwal6/signalbridge/releases)
+[Identity detections](detections/identity/README.md) · [Case study](https://aman-agarwal6.github.io/projects/signalbridge.html) · [Evidence guide](docs/EVIDENCE.md) · [Lessons learned](docs/LESSONS.md) · [Releases](https://github.com/aman-agarwal6/signalbridge/releases)
+
+## At a glance
+
+- **13 Sigma rules for identity attacks**, including password spraying, Kerberoasting, MFA fatigue, device code phishing and backdoored app credentials. They read Windows domain controller and Microsoft Entra ID logs. On 23 public attack captures they flagged 18 of 21 attacks and raised no alerts on files a rule wasn't meant for.
+- **Community rules checked against real exports.** Three of SigmaHQ's Entra rules (device code, Temporary Access Pass, app credentials) can't fire on these logs. SigmaHQ's Kerberoasting rule and my own first version both missed Kerberoasting run as SYSTEM.
+- **Access that should have ended.** In the lab, a planted authorization bug let a removed member read a private document, and rule R3 opened the investigation. Testing also found a race that let a just-removed user make 4 writes, now fixed inside the database transaction.
+- **Works with [AccessOps](https://github.com/aman-agarwal6/AccessOps).** SignalBridge verifies AccessOps' signed leaver events. When a departed test account was used again, it opened a critical case.
+
+## Identity attack detections
+
+Scored on [Splunk's attack_data](https://github.com/splunk/attack_data) captures, which I didn't write, beside SigmaHQ's rules for the same attacks. Inputs are pinned by SHA-256, and CI re-scores them on every change.
+
+| | My 13 rules | SigmaHQ's 10 rules for the same attacks |
+| --- | --- | --- |
+| Attack files flagged | **18 of 21** | 6 of the 12 their rules cover |
+| Alerts on files a rule wasn't meant for | 0 | 0 |
+
+My rules miss one RC4 ticket (by design; SigmaHQ's rule catches it), a spray spread across many addresses, and an account with only two MFA failures. Rules, findings, the first run and the two fixes after it are in the [identity detections README](detections/identity/README.md).
+
+## The access lab
+
+Two test apps send signed events about who tried to read what. Five detection rules flag access that continues after a permission was removed, and an analyst takes each finding to a fix that someone else verifies. I ran it against real Keycloak, Wazuh, OWASP ZAP and Shuffle in an isolated lab.
 
 ```mermaid
 flowchart LR
@@ -17,7 +39,7 @@ flowchart LR
     AO[AccessOps leaver events] -- SSF poll, ES256 tokens --> D
 ```
 
-## What testing found
+### What testing found
 
 | Problem | Before the fix | Now |
 | --- | --- | --- |
@@ -29,7 +51,7 @@ flowchart LR
 
 [Lessons learned](docs/LESSONS.md) covers each of these and the other failures the lab runs uncovered.
 
-## Results
+### Results
 
 October 1–5, 2026, with synthetic data. The runs used real components (PostgreSQL, Keycloak, Wazuh, ZAP, Prometheus and Grafana, Chromium) in an isolated lab; the detection evaluation runs in memory. Each row links the record its run wrote.
 
@@ -77,7 +99,8 @@ python -m venv .venv
 ## Limits
 
 - Synthetic data in an isolated lab on one PC; not a production deployment.
-- I wrote the 48 evaluation scenarios knowing the rules, so the scores catch regressions rather than measure real-world accuracy.
+- The identity rules ran on attack-lab captures through SQLite, not in a production SIEM, so they show what each rule catches, not a false-alarm rate. Their own [limits](detections/identity/README.md#limits) list the rest.
+- I wrote the access lab's 48 evaluation scenarios knowing the rules, so those scores catch regressions rather than measure real-world accuracy.
 - The planned 24-hour run stopped at 10.6 hours of Wazuh capture, and I didn't repeat it.
 - The console trusts local administrators and must not be exposed publicly. See [SECURITY.md](SECURITY.md).
 

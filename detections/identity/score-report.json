@@ -1,0 +1,1008 @@
+{
+  "kind": "signalbridge-identity-score",
+  "sources": {
+    "attack_data": {
+      "repository": "https://github.com/splunk/attack_data",
+      "commit": "7be4e723d31aa3c953e99cc99acab3bbd37818c8",
+      "license": "Apache-2.0",
+      "url": "https://media.githubusercontent.com/media/splunk/attack_data/{commit}/datasets/attack_techniques/{path}"
+    },
+    "sigmahq": {
+      "repository": "https://github.com/SigmaHQ/sigma",
+      "commit": "05d1031f537e830b76da53bae2400c5814c89165",
+      "license": "Detection Rule License 1.1",
+      "url": "https://raw.githubusercontent.com/SigmaHQ/sigma/{commit}/{path}"
+    }
+  },
+  "packages": {
+    "pySigma": "1.5.1",
+    "pySigma-backend-sqlite": "2.0.0"
+  },
+  "rules_sha256": {
+    "entra/e1_password_spray.yml": "9182827a3e00eb2036b586c583843ede63a2069a4d9e3c7b288faa417ba08e01",
+    "entra/e2_mfa_fatigue.yml": "71bb6243b077078c606a6a6ecaf8a4aaade4cf0dbdd1955e0d0fe32a5447dfb0",
+    "entra/e3_device_code_signin.yml": "49d1e8012b58223777e925d9d9351d592974c8196506e8026c5defefb082b4f6",
+    "entra/e4_auth_method_registered.yml": "77f61b1b3285928678444478deb8cdc275068b4e9dbc1e63cf5bc2445e213316",
+    "entra/e5_temporary_access_pass.yml": "25a978f0f14d07dfb57676e41aaa2462c5d8fd42231f2456b86b2ce9534de7a5",
+    "entra/e6_app_consent.yml": "f2c841eece6a2b90373b019377c78822fc57c86581577d23e15a89f0a8ea45a0",
+    "entra/e7_app_credential_added.yml": "bdbca0e35b24c48a0c6b6038503d5670720dd4808276e99947862b1ebb34879f",
+    "entra/e8_disabled_account_signin.yml": "8634403714e17245bf99222b79e55638cb17a93f89d495f42742aa94ee5c92ab",
+    "windows/w1_kerberoasting_burst.yml": "bc37c69e835bfeb39ff31cbb3a5344fa427d623070760760fc2f440c7fb9ad07",
+    "windows/w2_password_spray.yml": "00610bf236542440cd68ecb4dcd0415c70cbf6269c4de0add7f7f7cc342e77b4",
+    "windows/w3_disabled_account_logon.yml": "e3612e5434f3b68f9a82871cb08d64bc93c5e937a38b58937113cfffab5854b6",
+    "windows/w4_kerberos_preauth_disabled.yml": "6af6ce1e4f0c53506fa53bcf939e89b70abef0deaf8afffd316cafe6d60362c0",
+    "windows/w5_ntlm_password_spray.yml": "105e0e30c4deb423759b65f67a3d343122c078aeb05a1c85c9c7eaa6f0376f1e"
+  },
+  "method": "Each pinned log file is parsed into rows per Sigma log source (logs.py). Every rule is compiled by pySigma-backend-sqlite and run on an in-memory table of that file's rows for the rule's log source, with case-insensitive columns. A rule fires on a file if its query returns any row; 'hits' counts the rows. Which rules should fire on each file comes from sources.json, set before the first run.",
+  "entra_columns": {
+    "Category": [
+      "properties.category",
+      "category"
+    ],
+    "OperationName": [
+      "operationName"
+    ],
+    "ResultType": [
+      "resultType"
+    ],
+    "ResultDescription": [
+      "resultDescription"
+    ],
+    "Result": [
+      "properties.result"
+    ],
+    "ResultReason": [
+      "properties.resultReason"
+    ],
+    "LoggedByService": [
+      "properties.loggedByService"
+    ],
+    "ActivityDisplayName": [
+      "properties.activityDisplayName"
+    ],
+    "UserPrincipalName": [
+      "properties.userPrincipalName"
+    ],
+    "IPAddress": [
+      "properties.ipAddress",
+      "callerIpAddress"
+    ],
+    "AppDisplayName": [
+      "properties.appDisplayName"
+    ],
+    "AuthenticationProtocol": [
+      "properties.authenticationProtocol"
+    ],
+    "AuthenticationRequirement": [
+      "properties.authenticationRequirement"
+    ],
+    "Status": [
+      "properties.status"
+    ],
+    "InitiatedBy": [
+      "properties.initiatedBy"
+    ],
+    "TargetResources": [
+      "properties.targetResources"
+    ],
+    "AdditionalDetails": [
+      "properties.additionalDetails"
+    ]
+  },
+  "summary": {
+    "mine": {
+      "expected": 26,
+      "caught": 22,
+      "missed": 4,
+      "unexpected": 0,
+      "rules_without_public_data": [
+        "E8"
+      ]
+    },
+    "sigmahq": {
+      "expected": 14,
+      "caught": 7,
+      "missed": 7,
+      "unexpected": 0,
+      "rules_without_public_data": [
+        "azure_login_to_disabled_account"
+      ]
+    }
+  },
+  "rules": {
+    "mine": {
+      "W1": {
+        "name": "identity_kerberoasting_burst",
+        "title": "Kerberoasting Burst - Tickets for Many User-Run Services",
+        "level": "high",
+        "log_source": "windows/security",
+        "caught": [
+          "kerberoast-burst"
+        ],
+        "missed": [
+          "kerberoast-rc4-single"
+        ],
+        "unexpected": [],
+        "fields": [
+          "EventID",
+          "ServiceName",
+          "Status",
+          "TargetUserName"
+        ],
+        "fields_never_present": []
+      },
+      "W2": {
+        "name": "identity_windows_password_spray",
+        "title": "Password Spray - One Source Fails for Many Windows Accounts",
+        "level": "high",
+        "log_source": "windows/security",
+        "caught": [
+          "spray-kerberos-invalid-users",
+          "spray-kerberos-valid-users",
+          "spray-kerberos-disabled-users",
+          "spray-ntlm-invalid-users",
+          "spray-ntlm-valid-users",
+          "spray-remote"
+        ],
+        "missed": [
+          "spray-explicit-credentials"
+        ],
+        "unexpected": [],
+        "fields": [
+          "Computer",
+          "EventID",
+          "IpAddress",
+          "Status",
+          "TargetUserName"
+        ],
+        "fields_never_present": []
+      },
+      "W3": {
+        "name": "identity_windows_disabled_account_logon",
+        "title": "Logon Attempt with a Disabled Windows Account",
+        "level": "medium",
+        "log_source": "windows/security",
+        "caught": [
+          "spray-kerberos-disabled-users"
+        ],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "EventID",
+          "Status",
+          "SubStatus"
+        ],
+        "fields_never_present": []
+      },
+      "W4": {
+        "name": "identity_kerberos_preauth_disabled",
+        "title": "Kerberos Pre-Authentication Turned Off for an Account",
+        "level": "medium",
+        "log_source": "windows/security",
+        "caught": [
+          "preauth-disabled"
+        ],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "EventID",
+          "UserAccountControl"
+        ],
+        "fields_never_present": []
+      },
+      "W5": {
+        "name": "identity_windows_ntlm_password_spray",
+        "title": "Password Spray - One Workstation Fails NTLM for Many Accounts",
+        "level": "high",
+        "log_source": "windows/security",
+        "caught": [
+          "spray-ntlm-invalid-users",
+          "spray-ntlm-valid-users",
+          "spray-explicit-credentials",
+          "spray-remote"
+        ],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "Computer",
+          "EventID",
+          "Status",
+          "TargetUserName",
+          "Workstation"
+        ],
+        "fields_never_present": []
+      },
+      "E1": {
+        "name": "identity_entra_password_spray",
+        "title": "Password Spray - One Address Fails for Many Entra Accounts",
+        "level": "high",
+        "log_source": "azure/signinlogs",
+        "caught": [
+          "entra-spray"
+        ],
+        "missed": [
+          "entra-distributed-spray"
+        ],
+        "unexpected": [],
+        "fields": [
+          "IPAddress",
+          "ResultType",
+          "UserPrincipalName"
+        ],
+        "fields_never_present": []
+      },
+      "E2": {
+        "name": "identity_entra_mfa_fatigue",
+        "title": "MFA Fatigue - Repeated MFA Failures for One Entra Account",
+        "level": "high",
+        "log_source": "azure/signinlogs",
+        "caught": [
+          "entra-mfa-denials"
+        ],
+        "missed": [
+          "entra-mfa-denial-pair"
+        ],
+        "unexpected": [],
+        "fields": [
+          "ResultType",
+          "UserPrincipalName"
+        ],
+        "fields_never_present": []
+      },
+      "E3": {
+        "name": "identity_entra_device_code_signin",
+        "title": "Successful Entra Sign-in with the Device Code Flow",
+        "level": "medium",
+        "log_source": "azure/signinlogs",
+        "caught": [
+          "entra-device-code"
+        ],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "AuthenticationProtocol",
+          "ResultType"
+        ],
+        "fields_never_present": []
+      },
+      "E4": {
+        "name": "identity_entra_auth_method_registered",
+        "title": "New Authentication Method Registered for an Entra Account",
+        "level": "medium",
+        "log_source": "azure/auditlogs",
+        "caught": [
+          "entra-auth-method-registered",
+          "entra-mfa-phone-added"
+        ],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "LoggedByService",
+          "OperationName"
+        ],
+        "fields_never_present": []
+      },
+      "E5": {
+        "name": "identity_entra_temporary_access_pass",
+        "title": "Temporary Access Pass Issued for an Entra Account",
+        "level": "high",
+        "log_source": "azure/auditlogs",
+        "caught": [
+          "entra-tap-created"
+        ],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "OperationName",
+          "ResultReason"
+        ],
+        "fields_never_present": []
+      },
+      "E6": {
+        "name": "identity_entra_app_consent",
+        "title": "Consent Granted to an Entra Application",
+        "level": "medium",
+        "log_source": "azure/auditlogs",
+        "caught": [
+          "entra-consent-granted"
+        ],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "OperationName",
+          "Result"
+        ],
+        "fields_never_present": []
+      },
+      "E7": {
+        "name": "identity_entra_app_credential_added",
+        "title": "Credential Added to an Entra Application or Service Principal",
+        "level": "medium",
+        "log_source": "azure/auditlogs",
+        "caught": [
+          "entra-app-secret-added",
+          "entra-federated-credential-added"
+        ],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "OperationName",
+          "TargetResources"
+        ],
+        "fields_never_present": []
+      },
+      "E8": {
+        "name": "identity_entra_disabled_account_signin",
+        "title": "Sign-in Attempt with a Disabled Entra Account",
+        "level": "medium",
+        "log_source": "azure/signinlogs",
+        "caught": [],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "ResultType"
+        ],
+        "fields_never_present": []
+      }
+    },
+    "sigmahq": {
+      "win_security_kerberoasting_activity": {
+        "name": "win_security_kerberoasting_activity",
+        "title": "Kerberoasting Activity - Initial Query",
+        "level": "medium",
+        "log_source": "windows/security",
+        "caught": [
+          "kerberoast-rc4-single"
+        ],
+        "missed": [
+          "kerberoast-burst"
+        ],
+        "unexpected": [],
+        "fields": [
+          "EventID",
+          "ServiceName",
+          "Status",
+          "TargetUserName",
+          "TicketEncryptionType"
+        ],
+        "fields_never_present": []
+      },
+      "win_security_susp_rc4_kerberos": {
+        "name": "win_security_susp_rc4_kerberos",
+        "title": "Suspicious Kerberos RC4 Ticket Encryption",
+        "level": "medium",
+        "log_source": "windows/security",
+        "caught": [
+          "kerberoast-rc4-single"
+        ],
+        "missed": [
+          "kerberoast-burst"
+        ],
+        "unexpected": [],
+        "fields": [
+          "EventID",
+          "ServiceName",
+          "TicketEncryptionType",
+          "TicketOptions"
+        ],
+        "fields_never_present": []
+      },
+      "win_security_susp_failed_logon_reasons": {
+        "name": "win_security_susp_failed_logon_reasons",
+        "title": "Account Tampering - Suspicious Failed Logon Reasons",
+        "level": "medium",
+        "log_source": "windows/security",
+        "caught": [],
+        "missed": [
+          "spray-kerberos-disabled-users"
+        ],
+        "unexpected": [],
+        "fields": [
+          "EventID",
+          "Status",
+          "SubStatus",
+          "SubjectUserSid"
+        ],
+        "fields_never_present": []
+      },
+      "azure_app_device_code_authentication": {
+        "name": "azure_app_device_code_authentication",
+        "title": "Application Using Device Code Authentication Flow",
+        "level": "medium",
+        "log_source": "azure/signinlogs",
+        "caught": [],
+        "missed": [
+          "entra-device-code"
+        ],
+        "unexpected": [],
+        "fields": [
+          "properties.message"
+        ],
+        "fields_never_present": [
+          "properties.message"
+        ]
+      },
+      "azure_mfa_denies": {
+        "name": "azure_mfa_denies",
+        "title": "Multifactor Authentication Denied",
+        "level": "medium",
+        "log_source": "azure/signinlogs",
+        "caught": [
+          "entra-mfa-denials",
+          "entra-mfa-denial-pair"
+        ],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "AuthenticationRequirement",
+          "Status"
+        ],
+        "fields_never_present": []
+      },
+      "azure_login_to_disabled_account": {
+        "name": "azure_login_to_disabled_account",
+        "title": "Login to Disabled Account",
+        "level": "medium",
+        "log_source": "azure/signinlogs",
+        "caught": [],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "ResultDescription",
+          "ResultType"
+        ],
+        "fields_never_present": []
+      },
+      "azure_change_to_authentication_method": {
+        "name": "azure_change_to_authentication_method",
+        "title": "Change to Authentication Method",
+        "level": "medium",
+        "log_source": "azure/auditlogs",
+        "caught": [
+          "entra-auth-method-registered",
+          "entra-mfa-phone-added"
+        ],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "Category",
+          "LoggedByService",
+          "OperationName"
+        ],
+        "fields_never_present": []
+      },
+      "azure_tap_added": {
+        "name": "azure_tap_added",
+        "title": "Temporary Access Pass Added To An Account",
+        "level": "high",
+        "log_source": "azure/auditlogs",
+        "caught": [],
+        "missed": [
+          "entra-tap-created"
+        ],
+        "unexpected": [],
+        "fields": [
+          "Status",
+          "properties.message"
+        ],
+        "fields_never_present": [
+          "Status",
+          "properties.message"
+        ]
+      },
+      "azure_app_end_user_consent": {
+        "name": "azure_app_end_user_consent",
+        "title": "End User Consent",
+        "level": "low",
+        "log_source": "azure/auditlogs",
+        "caught": [
+          "entra-consent-granted"
+        ],
+        "missed": [],
+        "unexpected": [],
+        "fields": [
+          "ConsentContext.IsAdminConsent"
+        ],
+        "fields_never_present": []
+      },
+      "azure_app_credential_added": {
+        "name": "azure_app_credential_added",
+        "title": "Added Credentials to Existing Application",
+        "level": "high",
+        "log_source": "azure/auditlogs",
+        "caught": [],
+        "missed": [
+          "entra-app-secret-added",
+          "entra-federated-credential-added"
+        ],
+        "unexpected": [],
+        "fields": [
+          "properties.message"
+        ],
+        "fields_never_present": [
+          "properties.message"
+        ]
+      }
+    }
+  },
+  "datasets": [
+    {
+      "id": "kerberoast-rc4-single",
+      "technique": "T1558.003",
+      "path": "T1558.003/kerberoasting_spn_request_with_rc4_encryption/windows-xml.log",
+      "events": {
+        "windows/security": 1
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "W1"
+        ],
+        "sigmahq": [
+          "win_security_kerberoasting_activity",
+          "win_security_susp_rc4_kerberos"
+        ]
+      },
+      "mine": {},
+      "sigmahq": {
+        "win_security_kerberoasting_activity": 1,
+        "win_security_susp_rc4_kerberos": 1
+      }
+    },
+    {
+      "id": "kerberoast-burst",
+      "technique": "T1558.003",
+      "path": "T1558.003/unusual_number_of_kerberos_service_tickets_requested/windows-xml.log",
+      "events": {
+        "windows/security": 159
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "W1"
+        ],
+        "sigmahq": [
+          "win_security_kerberoasting_activity",
+          "win_security_susp_rc4_kerberos"
+        ]
+      },
+      "mine": {
+        "W1": 1
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "preauth-disabled",
+      "technique": "T1558.004",
+      "path": "T1558.004/powershell/windows-security-xml.log",
+      "events": {
+        "windows/security": 25
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "W4"
+        ],
+        "sigmahq": []
+      },
+      "mine": {
+        "W4": 3
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "spray-kerberos-invalid-users",
+      "technique": "T1110.003",
+      "path": "T1110.003/purplesharp_invalid_users_kerberos_xml/windows-security.log",
+      "events": {
+        "windows/security": 137
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "W2"
+        ],
+        "sigmahq": []
+      },
+      "mine": {
+        "W2": 82
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "spray-kerberos-valid-users",
+      "technique": "T1110.003",
+      "path": "T1110.003/purplesharp_valid_users_kerberos_xml/windows-security.log",
+      "events": {
+        "windows/security": 145
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "W2"
+        ],
+        "sigmahq": []
+      },
+      "mine": {
+        "W2": 85
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "spray-kerberos-disabled-users",
+      "technique": "T1110.003",
+      "path": "T1110.003/purplesharp_disabled_users_kerberos_xml/windows-security.log",
+      "events": {
+        "windows/security": 137
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "W2",
+          "W3"
+        ],
+        "sigmahq": [
+          "win_security_susp_failed_logon_reasons"
+        ]
+      },
+      "mine": {
+        "W2": 82,
+        "W3": 50
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "spray-ntlm-invalid-users",
+      "technique": "T1110.003",
+      "path": "T1110.003/purplesharp_invalid_users_ntlm_xml/windows-security.log",
+      "events": {
+        "windows/security": 137
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "W2",
+          "W5"
+        ],
+        "sigmahq": []
+      },
+      "mine": {
+        "W2": 41,
+        "W5": 41
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "spray-ntlm-valid-users",
+      "technique": "T1110.003",
+      "path": "T1110.003/purplesharp_valid_users_ntlm_xml/windows-security.log",
+      "events": {
+        "windows/security": 136
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "W2",
+          "W5"
+        ],
+        "sigmahq": []
+      },
+      "mine": {
+        "W2": 41,
+        "W5": 41
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "spray-explicit-credentials",
+      "technique": "T1110.003",
+      "path": "T1110.003/purplesharp_explicit_credential_spray_xml/windows-security.log",
+      "events": {
+        "windows/security": 152
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "W2",
+          "W5"
+        ],
+        "sigmahq": []
+      },
+      "mine": {
+        "W5": 47
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "spray-remote",
+      "technique": "T1110.003",
+      "path": "T1110.003/purplesharp_remote_spray_xml/windows-security.log",
+      "events": {
+        "windows/security": 232
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "W2",
+          "W5"
+        ],
+        "sigmahq": []
+      },
+      "mine": {
+        "W2": 41,
+        "W5": 41
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "entra-spray",
+      "technique": "T1110.003",
+      "path": "T1110.003/password_spraying_azuread/azuread_signin.log",
+      "events": {
+        "azure/signinlogs": 31
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "E1"
+        ],
+        "sigmahq": []
+      },
+      "mine": {
+        "E1": 12
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "entra-distributed-spray",
+      "technique": "T1110.003",
+      "path": "T1110.003/azure_ad_distributed_spray/azure_ad_distributed_spray.log",
+      "events": {
+        "azure/signinlogs": 31
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "E1"
+        ],
+        "sigmahq": []
+      },
+      "mine": {},
+      "sigmahq": {}
+    },
+    {
+      "id": "entra-brute-force-one-user",
+      "technique": "T1110.001",
+      "path": "T1110.001/azure_ad_high_number_of_failed_authentications_for_user/azuread.log",
+      "events": {
+        "azure/signinlogs": 30
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [],
+        "sigmahq": []
+      },
+      "mine": {},
+      "sigmahq": {}
+    },
+    {
+      "id": "entra-success-different-ips",
+      "technique": "T1110.001",
+      "path": "T1110.001/azure_ad_successful_authentication_from_different_ips/azuread.log",
+      "events": {
+        "azure/signinlogs": 15
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [],
+        "sigmahq": []
+      },
+      "mine": {},
+      "sigmahq": {}
+    },
+    {
+      "id": "entra-mfa-denials",
+      "technique": "T1621",
+      "path": "T1621/azure_ad_multiple_denied_mfa_requests/azure_ad_multiple_denied_mfa_requests.log",
+      "events": {
+        "azure/signinlogs": 11
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "E2"
+        ],
+        "sigmahq": [
+          "azure_mfa_denies"
+        ]
+      },
+      "mine": {
+        "E2": 5
+      },
+      "sigmahq": {
+        "azure_mfa_denies": 11
+      }
+    },
+    {
+      "id": "entra-mfa-denial-pair",
+      "technique": "T1621",
+      "path": "T1621/azuread/azure-audit.log",
+      "events": {
+        "azure/signinlogs": 2
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "E2"
+        ],
+        "sigmahq": [
+          "azure_mfa_denies"
+        ]
+      },
+      "mine": {},
+      "sigmahq": {
+        "azure_mfa_denies": 1
+      }
+    },
+    {
+      "id": "entra-device-code",
+      "technique": "T1528",
+      "path": "T1528/device_code_authentication/azure-audit.log",
+      "events": {
+        "azure/signinlogs": 5
+      },
+      "set_aside": {
+        "NonInteractiveUserSignInLogs": 7,
+        "ServicePrincipalSignInLogs": 4
+      },
+      "expect": {
+        "mine": [
+          "E3"
+        ],
+        "sigmahq": [
+          "azure_app_device_code_authentication"
+        ]
+      },
+      "mine": {
+        "E3": 1
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "entra-consent-granted",
+      "technique": "T1528",
+      "path": "T1528/azure_ad_user_consent_granted/azure_ad_user_consent_granted.log",
+      "events": {
+        "azure/signinlogs": 5,
+        "azure/auditlogs": 5
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "E6"
+        ],
+        "sigmahq": [
+          "azure_app_end_user_consent"
+        ]
+      },
+      "mine": {
+        "E6": 1
+      },
+      "sigmahq": {
+        "azure_app_end_user_consent": 1
+      }
+    },
+    {
+      "id": "entra-auth-method-registered",
+      "technique": "T1556.006",
+      "path": "T1556.006/azure_ad_new_mfa_method_registered_for_user/azuread.log",
+      "events": {
+        "azure/auditlogs": 2
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "E4"
+        ],
+        "sigmahq": [
+          "azure_change_to_authentication_method"
+        ]
+      },
+      "mine": {
+        "E4": 2
+      },
+      "sigmahq": {
+        "azure_change_to_authentication_method": 2
+      }
+    },
+    {
+      "id": "entra-mfa-phone-added",
+      "technique": "T1098.005",
+      "path": "T1098.005/azure_ad_register_new_mfa_method/azure_ad_register_new_mfa_method.log",
+      "events": {
+        "azure/signinlogs": 3,
+        "azure/auditlogs": 5
+      },
+      "set_aside": {
+        "NonInteractiveUserSignInLogs": 30
+      },
+      "expect": {
+        "mine": [
+          "E4"
+        ],
+        "sigmahq": [
+          "azure_change_to_authentication_method"
+        ]
+      },
+      "mine": {
+        "E4": 1
+      },
+      "sigmahq": {
+        "azure_change_to_authentication_method": 1
+      }
+    },
+    {
+      "id": "entra-tap-created",
+      "technique": "T1556.006",
+      "path": "T1556.006/azure_ad_temporary_access_pass/azure-audit.log",
+      "events": {
+        "azure/auditlogs": 1
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "E5"
+        ],
+        "sigmahq": [
+          "azure_tap_added"
+        ]
+      },
+      "mine": {
+        "E5": 1
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "entra-app-secret-added",
+      "technique": "T1098.001",
+      "path": "T1098.001/azure_ad_service_principal_credentials/azure-audit.log",
+      "events": {
+        "azure/auditlogs": 1
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "E7"
+        ],
+        "sigmahq": [
+          "azure_app_credential_added"
+        ]
+      },
+      "mine": {
+        "E7": 1
+      },
+      "sigmahq": {}
+    },
+    {
+      "id": "entra-federated-credential-added",
+      "technique": "T1098.001",
+      "path": "T1098.001/azure_ad_federated_identity_credential/azure-audit.log",
+      "events": {
+        "azure/auditlogs": 2
+      },
+      "set_aside": {},
+      "expect": {
+        "mine": [
+          "E7"
+        ],
+        "sigmahq": [
+          "azure_app_credential_added"
+        ]
+      },
+      "mine": {
+        "E7": 1
+      },
+      "sigmahq": {}
+    }
+  ]
+}
