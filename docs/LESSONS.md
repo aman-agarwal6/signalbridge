@@ -18,8 +18,8 @@ Running SignalBridge against real components found problems that unit tests and 
 
 | What broke | How it showed up | Fix |
 | --- | --- | --- |
-| A case write could rely on a permission check made earlier in the same request | Tests that downgraded the user's role, removed their membership or disabled the account after that check: all 4 writes still went through | Account and role are re-read inside the write transaction; 13 regression tests. These were deterministic SQLite tests, not a timed exploit ([record](evidence/20260925-authorization-refresh.json)) |
-| The Supabase lab used for the BetTail test copy kept a known default database password, and 3 backend services were set to publish host ports | Scanner triage on 24 September and a hardening preflight check | All 8 database role passwords rotated and each checked (32/32); host-port bindings 3 → 0; memory and CPU capped ([record](evidence/20260925-bettail-hardening-complete.json)) |
+| A case write could rely on a permission check made earlier in the same request | Tests that downgraded the user's role, removed their membership or disabled the account after that check: all 4 writes still went through | Account and role are re-read inside the write transaction; 13 regression tests. These were deterministic SQLite tests, not a timing exploit ([record](evidence/20260925-authorization-refresh.json)) |
+| The Supabase lab running a test copy of my BetTail app kept a known default database password, and 3 backend services were set to publish host ports | Scanner triage on 24 September and a hardening preflight check | All 8 database role passwords rotated and each checked (32/32); host-port bindings 3 → 0; memory and CPU capped ([record](evidence/20260925-bettail-hardening-complete.json)) |
 
 **Lesson:** a check made at the start of a request can be stale by the time the write commits. The permission check belongs inside the same transaction as the write.
 

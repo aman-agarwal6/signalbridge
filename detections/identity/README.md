@@ -46,8 +46,8 @@ files, checks their SHA-256 and fails if the report changes.
 Before the first scoring run, I wrote down in [`sources.json`](sources.json) which of my first 12
 rules (W1–W4, E1–E8) should fire on each file. I had already looked at the captures' event types
 and field names while writing the rules. The first run caught 17 of 22 expected rule-file pairs,
-with no alerts on files a rule wasn't meant for. Its raw output isn't published; this section
-describes it. It exposed two design flaws, which I fixed instead of changing any thresholds:
+with no alerts on files a rule wasn't meant for (its raw output isn't published). It exposed two
+design flaws, which I fixed instead of changing any thresholds:
 
 1. **W1 skipped computer requesters**, copying SigmaHQ's noise filter. A burst rule doesn't need
    that filter, and it hid Kerberoasting run as SYSTEM.
@@ -114,7 +114,7 @@ python -m unittest detections.identity.test_identity
 
 - The captures come from Splunk's attack lab and hold little normal traffic. Each of my rules ran
   on 3 to 9 captures it wasn't meant for, and most of those hold none of the events the rule
-  reads. Zero alerts there is a misfire check, not a false-alarm rate for a real network.
+  reads. Zero alerts there is a misfire check, not a false-positive rate for a real network.
 - I decided which rules should fire on each file. For everything except W5, I wrote that down
   before the first run.
 - The rules ran in SQLite through pySigma, not in Splunk or Sentinel. Field names follow

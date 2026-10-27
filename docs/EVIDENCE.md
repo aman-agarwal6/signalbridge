@@ -22,7 +22,7 @@ Every claim on the [front page](../README.md) points to a **receipt**: a JSON fi
 
 Some receipts are **promotions** (`kind: signalbridge-native-receipt-promotion`). These are verbatim copies of a private receipt, wrapped with the private file's hash so the copy can be checked against the original.
 
-Receipts are kept exactly as recorded, including their original approval labels and authorship notes.
+Receipts are kept exactly as recorded, with their original wording.
 
 ## The runs
 
@@ -48,7 +48,7 @@ Receipts are kept exactly as recorded, including their original approval labels 
 
 ### Wazuh ([0d137b47](evidence/20261003-wazuh-native-collection-0d137b4720ad476faa68d36754b7357f.json), [4a5748dc](evidence/20261003-wazuh-native-recovery-4a5748dcc7a74525a7469dc8d802438a.json))
 
-**What happened.** SignalBridge exported SOC records to a real Wazuh manager. The first run checked that all 24 records were archived and all 8 expected alerts fired exactly once. The recovery run stopped the collector mid-stream and rotated the logs, then confirmed nothing was lost or duplicated.
+**What happened.** SignalBridge exported SOC records to a real Wazuh manager. The first run checked that all 24 records were archived and all 8 expected alerts fired exactly once. The recovery run stopped and restarted the collector mid-stream and rotated an input file, then confirmed nothing was lost or duplicated.
 
 **Read.** Both are promotions; inside `receipt`, see `native_proof`, `preservation_verified` and `profile: recovery_rotation` on the second.
 
@@ -100,7 +100,7 @@ Receipts are kept exactly as recorded, including their original approval labels 
 
 **Read.** `dispatcher.scenarios` (per-scenario Shuffle execution ID, HTTP status, duplicate flag and error), `guest.receiver` (task, idempotency and nonce counts), `guest.steps`, `boot_attempts`, `shutdown_verified`.
 
-**Limits.** The guest's report comes from the project's own tooling. One fixed workflow with one HTTP action; synthetic cases; the VM runs with one virtual CPU on this PC (see the Shuffle README).
+**Limits.** The guest's report comes from my own tooling. One fixed workflow with one HTTP action; synthetic cases; the VM runs with one virtual CPU on this PC (see the Shuffle README).
 
 ### Leaver signals from AccessOps ([dry run](evidence/20261005-accessops-leaver-dry-run-f567427abbbc4929ad50e25be2c84724.json), [poll](evidence/20261005-accessops-leaver-poll-eefe76ecded04ffe9892bd174c973232.json), [round 2 dry run](evidence/20261005-accessops-leaver-dry-run-18b5f038aaef4f228abe27f8d2719f94.json), [round 2 poll](evidence/20261005-accessops-leaver-poll-931402fb1ee44209b58c60063f63150f.json))
 
@@ -112,7 +112,7 @@ Receipts are kept exactly as recorded, including their original approval labels 
 
 ### Accessibility ([axe scan](evidence/20261005-accessibility-axe-scan.json), [viewer rescan](evidence/20261027-accessibility-axe-scan-viewer.json))
 
-**What happened.** On 5 October 2026 at 02:43 UTC, axe-core 4.13 ran in headless Chrome against 16 console pages (overview, integrations, detections, events, findings, scans, investigations and one case with its printable brief, checks, replay, practice, requirements, the capability lab, a 404 page and sign-in) and the three portfolio pages: 19 pages, 38 page runs in light and dark color schemes, using WCAG 2.0-2.2 A/AA and best-practice rules. It ran on a disposable copy of the console with synthetic data, signed in as the synthetic analyst. It found six kinds of problem, all fixed: an activity chart whose `role="img"` hid its links from screen readers, invalid definition-list markup, an empty table header, low contrast (a mint link color inherited inside a light panel at 1.29:1, and small grey text just under 4.5:1), a skipped heading level, and a bare default 404 page without a main landmark. After the fixes: 0 violations on all 38 page runs.
+**What happened.** On 5 October 2026 at 02:43 UTC, axe-core 4.13 ran in headless Chrome against 16 console pages (overview, integrations, detections, events, findings, scans, investigations and one case with its printable brief, checks, replay, practice, requirements, the capability lab, a 404 page and sign-in) and the three evidence viewer pages: 19 pages, 38 page runs in light and dark color schemes, using WCAG 2.0-2.2 A/AA and best-practice rules. It ran on a disposable copy of the console with synthetic data, signed in as the synthetic analyst. It found six kinds of problem, all fixed: an activity chart whose `role="img"` hid its links from screen readers, invalid definition-list markup, an empty table header, low contrast (a mint link color inherited inside a light panel at 1.29:1, and small grey text just under 4.5:1), a skipped heading level, and a bare default 404 page without a main landmark. After the fixes: 0 violations on all 38 page runs.
 
 The three viewer pages changed after that scan (commits `f1630d5`, `4a93db2` and `16bcc03`, then the 27 October refresh). On 27 October I rescanned the regenerated pages with the same scanner and axe-core version: 0 violations on 6 page runs. The console templates and stylesheets haven't changed since the first scan, so the console pages were not rescanned.
 
@@ -140,19 +140,19 @@ The three viewer pages changed after that scan (commits `f1630d5`, `4a93db2` and
 
 ### Identity detections ([score report](../detections/identity/score-report.json), [README](../detections/identity/README.md))
 
-**What happened.** I wrote 13 Sigma rules for identity attacks: W1–W5 for Windows domain controller events and E1–E8 for Microsoft Entra ID sign-in and audit logs. They were scored beside SigmaHQ's 10 rules for the same attacks on 23 public attack captures from Splunk's attack_data, which I didn't write. The captures (commit `7be4e72`) and the SigmaHQ rules (commit `05d1031`) are pinned by SHA-256 in [`sources.json`](../detections/identity/sources.json). pySigma compiles each rule to SQLite and runs it on that file's events. CI fetches the same files and fails if the report changes.
+**What happened.** I wrote 13 Sigma rules for identity attacks: W1–W5 for Windows domain controller events and E1–E8 for Microsoft Entra ID sign-in and audit logs. I scored them beside SigmaHQ's 10 rules for the same attacks on 23 public attack captures from Splunk's attack_data, which I didn't write. The captures (commit `7be4e72`) and the SigmaHQ rules (commit `05d1031`) are pinned by SHA-256 in [`sources.json`](../detections/identity/sources.json). pySigma compiles each rule to SQLite and runs it on that file's events. CI fetches the same files and fails if the report changes.
 
 **Result.** My rules flagged 18 of the 21 files they target (22 of 26 expected rule-file pairs). SigmaHQ's rules flagged 6 of the 12 files they cover (7 of 14 pairs). Together they flagged 20 of 21. No rule fired on a file it wasn't meant for. Three SigmaHQ Entra rules (device code, Temporary Access Pass, app credentials) can't fire on these captures: they match a `properties.message` field that these Entra diagnostic-settings records don't have.
 
-**Read.** `summary` (expected, caught, missed and unexpected per side), `rules.*.caught`, `rules.*.missed`, `rules.*.fields_never_present`, and `datasets` (hits per file). In `sources.json`, `changes_after_first_run` lists the two changes made after the first scoring run.
+**Read.** `summary` (expected, caught, missed and unexpected per side), `rules.<side>.<rule>.caught`, `rules.<side>.<rule>.missed`, `rules.<side>.<rule>.fields_never_present`, and `datasets` (hits per file). In `sources.json`, `changes_after_first_run` lists the two changes made after the first scoring run.
 
-**Limits.** 12 of my 13 rules had test data; E8 has no public capture. 9 of SigmaHQ's 10 did. For W1–W4 and E1–E8, I wrote down which rules should fire on each file before the first scoring run; W5 was added after that run, with its expectations set after seeing the results. The first run's raw output isn't published; the README describes it. Zero alerts on other files is a misfire check, not a false-positive rate: most of those files hold none of the events a rule reads, and the captures have almost no normal traffic. The rules ran in SQLite through pySigma, not in a production SIEM.
+**Limits.** 12 of my 13 rules had test data; E8 has no public capture. 9 of SigmaHQ's 10 did. For W1–W4 and E1–E8, I wrote down which rules should fire on each file before the first scoring run; I added W5 after that run and set its expectations after seeing the results. The first run's raw output isn't published; the README describes it. Zero alerts on other files is a misfire check, not a false-positive rate: most of those files hold none of the events a rule reads, and the captures have almost no normal traffic. The rules ran in SQLite through pySigma, not in a production SIEM.
 
-### September fixes ([write race](evidence/20260925-authorization-refresh.json), [lab password](evidence/20260925-bettail-hardening-complete.json))
+### September fixes ([stale permission check](evidence/20260925-authorization-refresh.json), [lab password](evidence/20260925-bettail-hardening-complete.json))
 
-**Write race.** A case write could rely on a permission check made earlier in the same request. Four tests changed permissions after that check: two downgraded an analyst to viewer, one removed the selected workspace membership and one disabled the account. All 4 writes still went through (case version 1 to 2). The fix re-reads the account and app role inside the write transaction, and 13 regression tests in [`tests/test_authorization_refresh.py`](../tests/test_authorization_refresh.py) cover it. Read `before` and `after.test_cases`. Limits: deterministic SQLite tests at fixed points in the request, not a timing exploit; they don't show PostgreSQL row-lock behavior.
+**Stale permission check.** A case write could rely on a permission check made earlier in the same request. Four tests changed permissions after that check: two downgraded an analyst to viewer, one removed the selected workspace membership and one disabled the account. All 4 writes still went through (case version 1 to 2). The fix re-reads the account and app role inside the write transaction, and 13 regression tests in [`tests/test_authorization_refresh.py`](../tests/test_authorization_refresh.py) cover it. Read `before` and `after.test_cases`. Limits: deterministic SQLite tests at fixed points in the request, not a timing exploit; they don't show PostgreSQL row-lock behavior.
 
-**Default lab password.** Scanner triage on 24 September flagged a known default database password in the Supabase lab used for the BetTail test copy, and a configuration check found 3 backend services set to publish host ports. On 25 September I rotated all 8 database role passwords. For each role the new password was accepted, the old default and a wrong password were rejected, and a retest passed (32/32 checks). Backend host-port bindings went from 3 to 0, memory and CPU were capped (4,256 MiB, 5.75 CPUs), and swap and automatic restart were turned off. Read `credential_checks` and `containers`. Limits: this is the copied lab database, not SignalBridge's own console database. The 24 September triage file still shows the finding as open because it is a snapshot from before the fix.
+**Default lab password.** Scanner triage on 24 September flagged a known default database password in the Supabase lab running a test copy of my BetTail app, and a configuration check found 3 backend services set to publish host ports. On 25 September I rotated all 8 database role passwords. For each role the new password was accepted, the old default and a wrong password were rejected, and a retest passed (32/32 checks). Backend host-port bindings went from 3 to 0, memory and CPU were capped (4,256 MiB, 5.75 CPUs), and swap and automatic restart were turned off. Read `credential_checks` and `containers`. Limits: this is the copied lab database, not SignalBridge's own console database. The 24 September triage file still shows the finding as open because it is a snapshot from before the fix.
 
 ## Older files
 
