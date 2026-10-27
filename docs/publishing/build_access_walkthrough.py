@@ -12,10 +12,13 @@ from django.template import Context, Engine
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from scripts.portfolio import load_stylesheet  # noqa: E402
+from scripts.portfolio import load_stylesheet, read_public, require  # noqa: E402
+from scripts.portfolio_native import COLLECTION, load_native  # noqa: E402
 
 RUN = "b8667b816ce8419da7f3d5d9ac9d6ad6"
 RECEIPT = f"20261002-reference-access-{RUN}.json"
+# October native runs named on this page, in the order they ran.
+LATER_RUNS = ("wazuh-collection", "zap", "identity", "shuffle")
 
 
 def read(path):
@@ -70,6 +73,50 @@ def failed_collector(milestone):
         "independent_shutdown_reason": attempt["independent_shutdown"]["reason"],
         "launcher_retired": True,
         "claim_boundary": "Retained failed execution and diagnosis; no collection success, continuous operation or independent attestation.",
+    }
+
+
+def later_runs():
+    """Summarize the October native runs from their reviewed public receipts."""
+    native = load_native(ROOT, read_public, require)
+    if native is None:
+        raise ValueError("The October native receipts are missing.")
+    by_key = {run["key"]: run for run in native["runs"]}
+    collection, _ = read_public(ROOT, COLLECTION)
+    receipt = collection["receipt"]
+    coverage = receipt["native_proof"]["coverage"]
+    if not (
+        receipt["status"] == "passed"
+        and receipt["source_binding"]["native_source_run_id"] == RUN
+        and receipt["source_binding"]["independent_wazuh_r3_rediscovery"] is False
+    ):
+        raise ValueError("The Wazuh collection run does not consume this source run.")
+    # The page says the expected alerts were each raised once; require exactly that.
+    if not (
+        coverage["alerted_logical_inputs"] == coverage["expected_alert_inputs"]
+        and coverage["missing_alert_inputs"] == 0
+        and coverage["extra_alert_copies"] == 0
+        and coverage["repeated_alert_tool_ids"] == 0
+    ):
+        raise ValueError("The Wazuh collection alerts do not match the page's wording.")
+    return {
+        "collection": {
+            "run_id": receipt["run_id"],
+            "started_at": receipt["started_at"],
+            "receipt": COLLECTION,
+            "archived_inputs": coverage["archived_logical_inputs"],
+            "expected_inputs": coverage["expected_logical_inputs"],
+            "alerted_inputs": coverage["alerted_logical_inputs"],
+            "expected_alerts": coverage["expected_alert_inputs"],
+            "independent_r3_rediscovery": False,
+        },
+        "runs": [
+            {
+                key: by_key[name][key]
+                for key in ("tool", "date", "title", "figure", "figure_label", "receipts")
+            }
+            for name in LATER_RUNS
+        ],
     }
 
 
@@ -183,11 +230,17 @@ def build():
         )
     else:
         report["wazuh_attempt"] = failed_collector(milestone)
+        report["later_runs"] = later_runs()
         if report["wazuh_attempt"]:
+            collection = report["later_runs"]["collection"]
             report["limits"][3] = (
-                "Wazuh inputs were staged in the source run. A later native collector attempt "
-                "collected zero of 24 inputs and its launcher was retired. No successful "
-                "enterprise collection is claimed."
+                "Wazuh inputs were staged in the source run. The last attempt with the original "
+                "collector launcher collected zero of 24 inputs, and that launcher was retired. "
+                "A later native run "
+                f"({collection['run_id'][:8]}) archived {collection['archived_inputs']} of "
+                f"{collection['expected_inputs']} inputs and raised the "
+                f"{collection['alerted_inputs']} expected alerts, each once. Wazuh received the "
+                "R3 finding from SignalBridge; it did not rediscover it independently."
             )
     by_step = {s["step"]: s for s in steps}
     by_id = {e["event_id"]: e for e in events}

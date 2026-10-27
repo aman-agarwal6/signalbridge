@@ -1,15 +1,15 @@
 {
   "schema_version": 2,
   "kind": "signalbridge-public-portfolio",
-  "generated_at": "2026-10-05T17:30:19.238123+00:00",
+  "generated_at": "2026-10-27T19:17:58.622079+00:00",
   "core": {
     "checks": [
       {
-        "duration_seconds": 95.313,
+        "duration_seconds": 86.177,
         "exit_code": 0,
         "log_sha256": {
-          "stderr": "55d8d0c705c578c52d836936ba4d9190e50bdf54093706f4f8782054d536c2ac",
-          "stdout": "c484d93db1faf913e05428a55704e5015f23349941e3b44ce66ea95061fbab00"
+          "stderr": "1678b43a55f0d14a390e4b35ead35a0f6f027d1277979e8dc806664102f2d782",
+          "stdout": "87d8d58568fa5de7c7c13ca294580c607ba182457b7a2be4c80f46cc2ad2480b"
         },
         "name": "django-tests",
         "passed": true,
@@ -19,12 +19,12 @@
           "failures": 0,
           "skipped": 0,
           "successful_summary": true,
-          "tests_run": 1997,
+          "tests_run": 2000,
           "unexpected_successes": 0
         }
       },
       {
-        "duration_seconds": 1.392,
+        "duration_seconds": 1.284,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -34,7 +34,7 @@
         "passed": true
       },
       {
-        "duration_seconds": 1.419,
+        "duration_seconds": 1.334,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -44,7 +44,7 @@
         "passed": true
       },
       {
-        "duration_seconds": 0.042,
+        "duration_seconds": 0.043,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -54,31 +54,31 @@
         "passed": true
       },
       {
-        "duration_seconds": 0.041,
+        "duration_seconds": 0.036,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "ba125731aee4475d0522fe9eb59a9ddfe3aad88bcddb2bfec3a9d8d67ae9da36"
+          "stdout": "e12937b901dfe2a1009518320954c11b37d6f8c321d8f5f78b11f1f5eb917834"
         },
         "name": "ruff-format",
         "passed": true
       },
       {
-        "duration_seconds": 17.29,
+        "duration_seconds": 17.044,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "d26ab69a83f11211f587d2639e90f162b13f2a01d9a8f048f55fd06d3bb574c8"
+          "stdout": "b83833681cdb51857ff1606ed090f3c65480b521940fce05fad6beddd4898a2e"
         },
         "name": "publication-scan",
         "passed": true
       },
       {
-        "duration_seconds": 0.253,
+        "duration_seconds": 0.348,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "acf7d37591de7ef9a7da275a2b338f21920dbbb3ce73b23076b85d7ebb944c97"
+          "stdout": "f853f76a2f5392fe9512c2f278470c3cd07ea9e3c05ad54dc18b4e4950f08391"
         },
         "name": "node-courier-tests",
         "passed": true,
@@ -94,11 +94,11 @@
         }
       },
       {
-        "duration_seconds": 0.125,
+        "duration_seconds": 0.127,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "9c087653089ea21bf472bcf5d77ba09bc185f221e6337ba764df477c4d603bb1"
+          "stdout": "30a6a87417186e8f1892cd65efc0d319787c5f3ddcc5eb69b59d3945079d26e3"
         },
         "name": "node-http-harness-mock-tests",
         "passed": true,
@@ -114,11 +114,11 @@
         }
       },
       {
-        "duration_seconds": 0.136,
+        "duration_seconds": 0.138,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "9a572e33bbf6e55b7aedbad88806e18bfb359837654f9e38520d7f3524e6e682"
+          "stdout": "e373cf8d23d0482135ec79212a97044220a0a20f4ab5136eaf5142fb46b116eb"
         },
         "name": "node-bettail-route-mock-tests",
         "passed": true,
@@ -135,27 +135,27 @@
       }
     ],
     "coverage_limits": [
-      "Builder-operated local core verification; not an independent audit.",
+      "Self-run local core verification; not an independent audit.",
       "Node courier, HTTP-harness and BetTail route suites use mocks; they do not contact real services.",
       "No real Supabase auth, source-app HTTP/storage, PostgreSQL concurrency or container tests.",
       "No dependency advisory lookup, remote CI, deployment or production validation.",
       "Hashes identify content; a filesystem administrator can replace logs and receipts.",
       "Documentation and generated evidence are excluded from the source digest."
     ],
-    "duration_seconds": 118.23,
-    "finished_at": "2026-10-05T17:30:02.792896+00:00",
+    "duration_seconds": 108.926,
+    "finished_at": "2026-10-27T19:17:43.147632+00:00",
     "kind": "signalbridge-core-verification-receipt",
     "passed": true,
-    "revision": "e404062a53fb04a0010ed49029c2d21998277c00",
-    "run_id": "20261005T172804562269Z-73bbd2b8",
+    "revision": "0a3020f80343bede5ad4e0b25ea8d06968ea7148",
+    "run_id": "20261027T191554221152Z-fb9c8de1",
     "schema_version": 1,
-    "source_file_count": 690,
-    "source_sha256": "74f652fd84c22a6cc29fd22b7bc37ff2791901ea3529152e3845dce6e3988f35",
+    "source_file_count": 691,
+    "source_sha256": "be7bd0ebb6cbd1cedf8d9b95082ead90fcc7a25a6d544237d1a778732f38416e",
     "source_unchanged": true,
-    "started_at": "2026-10-05T17:28:04.562929+00:00",
-    "working_tree_dirty": true,
-    "receipt": "20261005T172804562269Z-73bbd2b8.json",
-    "receipt_sha256": "af918701901708e1f38002c2396609436d4045f88d2f7098aeb15f0b0d1ffb04"
+    "started_at": "2026-10-27T19:15:54.221873+00:00",
+    "working_tree_dirty": false,
+    "receipt": "20261027T191554221152Z-fb9c8de1.json",
+    "receipt_sha256": "487b841240154318d7f87287134812ef0a6f0748dc308eec0bdc2ca720974ad2"
   },
   "historical_baseline": {
     "receipt": "20260924-offline-simulation.json",
@@ -357,23 +357,23 @@
     }
   },
   "current_simulation": {
-    "receipt": "20261005-simulation-e69afefc6019460cbbbac918f04f637d.json",
-    "receipt_sha256": "5724ccf83f6c21b3d02bd60111aadd4c4f5fd06677e444f766930fb1651321de",
-    "run_id": "e69afefc6019460cbbbac918f04f637d",
-    "source_sha256": "74f652fd84c22a6cc29fd22b7bc37ff2791901ea3529152e3845dce6e3988f35",
-    "source_file_count": 690,
-    "revision": "e404062a53fb04a0010ed49029c2d21998277c00",
+    "receipt": "20261027-simulation-d80adaf71a8644e69674ccd4e6935a7d.json",
+    "receipt_sha256": "d994ce7f8a9c87d865027ed2f827248bfc700b525d24cbb098b12a432dc63ddb",
+    "run_id": "d80adaf71a8644e69674ccd4e6935a7d",
+    "source_sha256": "be7bd0ebb6cbd1cedf8d9b95082ead90fcc7a25a6d544237d1a778732f38416e",
+    "source_file_count": 691,
+    "revision": "0a3020f80343bede5ad4e0b25ea8d06968ea7148",
     "working_tree_dirty": true,
     "python": "3.14.4",
-    "result_sha256": "084157f3a123e80e8d26d0e6531931e7be9157e62e122d2953c07c8c1b975026",
-    "provenance_sha256": "fb04442e448a7bb54d2b9fe94929f4e575fc9174608b4324b21107e4536ce460",
+    "result_sha256": "05f36fb6abba311ef065e9c843061c87b96e1a4c6cf3dd815f33fd028d89e9d1",
+    "provenance_sha256": "ce48c98c4dbbb09e084e0222d84658dcf549843e613fc6869d2704b4b32ed7c4",
     "status": "passed",
     "matches_current_source": true,
     "results": {
       "schema_version": 1,
       "kind": "signalbridge-offline-capability-simulation",
-      "started_at": "2026-10-05T17:30:06.420945+00:00",
-      "finished_at": "2026-10-05T17:30:10.126627+00:00",
+      "started_at": "2026-10-27T19:17:46.623598+00:00",
+      "finished_at": "2026-10-27T19:17:49.887739+00:00",
       "execution_status": "completed",
       "database": "disposable in-memory SQLite",
       "transport": "Django in-process test client",
@@ -531,11 +531,11 @@
         "accepted_events": 600,
         "processed_events": 600,
         "source_rate_limit": "600 per application per minute",
-        "ingest_seconds": 1.952926,
-        "processing_seconds": 1.509058,
-        "in_process_requests_per_second": 307.23,
-        "in_process_request_p50_ms": 3.124,
-        "in_process_request_p95_ms": 3.842,
+        "ingest_seconds": 1.81095,
+        "processing_seconds": 1.219424,
+        "in_process_requests_per_second": 331.32,
+        "in_process_request_p50_ms": 2.951,
+        "in_process_request_p95_ms": 3.356,
         "alerts_from_benign_load": 0,
         "limits": "Single-process SQLite harness timing includes test-client overhead; not network or production capacity."
       },
@@ -545,7 +545,7 @@
         "pending": 0,
         "dead": 0
       },
-      "duration_seconds": 3.705677,
+      "duration_seconds": 3.264137,
       "requests_executed": 639,
       "coverage": {
         "met": 15,
@@ -556,23 +556,23 @@
     }
   },
   "detection_challenge": {
-    "receipt": "20261005-challenge-8b86fb3dec004b42a35d650257aaea24.json",
-    "receipt_sha256": "ace8a0ca3915aad934335c1b56f39d7bee616cf8ff1b30e816e46edf80107eb9",
-    "run_id": "8b86fb3dec004b42a35d650257aaea24",
-    "source_sha256": "74f652fd84c22a6cc29fd22b7bc37ff2791901ea3529152e3845dce6e3988f35",
-    "source_file_count": 690,
-    "revision": "e404062a53fb04a0010ed49029c2d21998277c00",
+    "receipt": "20261027-challenge-378ea6cca74d41ce8dad531260f8cbda.json",
+    "receipt_sha256": "da615cefbb916fa6116c42481322f93932fd1d7be319f03654e41c2bf9d755c0",
+    "run_id": "378ea6cca74d41ce8dad531260f8cbda",
+    "source_sha256": "be7bd0ebb6cbd1cedf8d9b95082ead90fcc7a25a6d544237d1a778732f38416e",
+    "source_file_count": 691,
+    "revision": "0a3020f80343bede5ad4e0b25ea8d06968ea7148",
     "working_tree_dirty": true,
     "python": "3.14.4",
-    "result_sha256": "a2e579dbf2e435123bf761166da57230826ab3d845677e8c31680f4b800a6562",
-    "provenance_sha256": "0e39a01da52b8749932e27e7e4b80b9a8fd1d3a0208e06b7537ddc4501fc05ea",
+    "result_sha256": "04688bcf3c7ce8fd3a1366c053da5b309aa38b279884d1cb19791e56cbda0f00",
+    "provenance_sha256": "fb386c09cc8b5de78b39632c959745cd19249a39ca137c3df21adb4b5fff7da1",
     "status": "partial",
     "matches_current_source": true,
     "results": {
       "schema_version": 1,
       "kind": "detection-challenge-v1",
       "declaration_sha256": "6709461d435e6dad7f89cf9e447f3629423caf9728e11118858ddcdae0cf8345",
-      "started_at": "2026-10-05T17:30:16.004585+00:00",
+      "started_at": "2026-10-27T19:17:55.531470+00:00",
       "execution_status": "completed",
       "database": "disposable in-memory SQLite",
       "transport": "Django in-process test client",
@@ -768,8 +768,8 @@
           ]
         }
       },
-      "finished_at": "2026-10-05T17:30:16.424502+00:00",
-      "duration_seconds": 0.420438
+      "finished_at": "2026-10-27T19:17:55.926473+00:00",
+      "duration_seconds": 0.395475
     }
   },
   "same_declared_scenarios": true,
@@ -2218,6 +2218,41 @@
         "reviewed_content_sha256": "239459cfa560aaac5443af14dae22a9b0f4107090dfe2ed8d754db902f6f4a06"
       }
     ]
+  },
+  "identity": {
+    "report": "detections/identity/score-report.json",
+    "report_sha256": "f242d8aaff3c05278fb697cf327ab05d0b6f8e3e5bf4254e8cf7e331d6709264",
+    "captures": 23,
+    "attack_data_commit": "7be4e72",
+    "sigmahq_commit": "05d1031",
+    "mine": {
+      "rules": 13,
+      "rules_with_data": 12,
+      "without_data": [
+        "E8"
+      ],
+      "files_targeted": 21,
+      "files_flagged": 18,
+      "pairs_expected": 26,
+      "pairs_caught": 22,
+      "unexpected": 0,
+      "message_field_rules": 0
+    },
+    "sigmahq": {
+      "rules": 10,
+      "rules_with_data": 9,
+      "without_data": [
+        "azure_login_to_disabled_account"
+      ],
+      "files_targeted": 12,
+      "files_flagged": 6,
+      "pairs_expected": 14,
+      "pairs_caught": 7,
+      "unexpected": 0,
+      "message_field_rules": 3
+    },
+    "together_targeted": 21,
+    "together_flagged": 20
   },
   "limits": [
     "Self-run evidence, not an outside audit or an enterprise benchmark.",

@@ -33,7 +33,7 @@
     "windows/w4_kerberos_preauth_disabled.yml": "6af6ce1e4f0c53506fa53bcf939e89b70abef0deaf8afffd316cafe6d60362c0",
     "windows/w5_ntlm_password_spray.yml": "105e0e30c4deb423759b65f67a3d343122c078aeb05a1c85c9c7eaa6f0376f1e"
   },
-  "method": "Each pinned log file is parsed into rows per Sigma log source (logs.py). Every rule is compiled by pySigma-backend-sqlite and run on an in-memory table of that file's rows for the rule's log source, with case-insensitive columns. A rule fires on a file if its query returns any row; 'hits' counts the rows. Which rules should fire on each file comes from sources.json, set before the first run.",
+  "method": "Each pinned log file is parsed into rows per Sigma log source (logs.py). Every rule is compiled by pySigma-backend-sqlite and run on an in-memory table of that file's rows for the rule's log source, with case-insensitive columns. A rule fires on a file if its query returns any row; 'hits' counts the rows. Which rules should fire on each file comes from sources.json. Expectations for W1-W4 and E1-E8 were set before the first scoring run; W5's were added after it (see changes_after_first_run in sources.json).",
   "entra_columns": {
     "Category": [
       "properties.category",

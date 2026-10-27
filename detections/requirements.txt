@@ -1,8 +1,9 @@
 # Sigma tooling for detections/, pinned with hashes for Linux x86_64 (CI) and Windows
 # x86_64 (local) wheels on Python 3.14. Install with:
 #   python -m pip install --require-hashes --only-binary :all: -r detections/requirements.txt
-certifi==2026.7.22 \
-    --hash=sha256:62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775
+certifi==2026.10.19 \
+    --hash=sha256:035c1e85572b141bf1c3a3eff0e33a8eb74917522f2559075ff8d2fea780a1ae \
+    --hash=sha256:42d35340cc5b9ba78e818ddbff0c5b1c2b779de448a340fd1b989f5fa8670e1b
 charset-normalizer==3.5.2 \
     --hash=sha256:34276fd796040bf0993ab33a369aa572e6979c7aab225a88893667ad8eac8f7a \
     --hash=sha256:b6b751274acb69d77b3323d6b7dbaa3c7fdfc1eb829b7eb61d262f32e1af9685 \

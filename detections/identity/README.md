@@ -9,20 +9,25 @@ I scored them on 23 public attack captures from Splunk's
 [attack_data](https://github.com/splunk/attack_data) repository, which I didn't write, and scored
 SigmaHQ's community rules for the same attacks on the same files.
 
-| | My 13 rules | SigmaHQ's 10 rules for the same attacks |
+| | My rules (12 with test data) | SigmaHQ's rules (9 with test data) |
 | --- | --- | --- |
 | Attack files flagged | **18 of 21** | 6 of the 12 their rules cover |
 | Alerts on files a rule wasn't meant for | 0 | 0 |
 | Together | 20 of 21; only a spray spread across many addresses got past both | |
+
+I wrote 13 rules; SigmaHQ has 10 for the same attacks. My E8 and SigmaHQ's sign-in-to-disabled-account
+rule have no public capture to catch. Both still ran on all 9 Entra sign-in captures and raised
+nothing, but their detection is untested. The other 2 of the 23 captures are attacks that no rule
+targets.
 
 The full per-file record is [`score-report.json`](score-report.json). CI downloads the same pinned
 files, checks their SHA-256 and fails if the report changes.
 
 ## What the comparison found
 
-| Finding | What happened | What I did |
+| Finding | What happened | My rules |
 | --- | --- | --- |
-| Three SigmaHQ Entra rules can't fire on these exports | The device code, Temporary Access Pass and app credential rules match a `properties.message` field. No sign-in or audit record here has one. Device code sign-ins are recorded as `authenticationProtocol: deviceCode` | E3, E5 and E7 match the fields the records do have |
+| Three SigmaHQ Entra rules can't fire on these exports | The device code, Temporary Access Pass and app credential rules match a `properties.message` field. No sign-in or audit record in these Entra diagnostic-settings captures has one. Device code sign-ins are recorded as `authenticationProtocol: deviceCode` | I wrote E3, E5 and E7 after looking at these captures, so they match fields the records do have. They weren't changed after the comparison |
 | App credential activity name | SigmaHQ's rule spells it with a hyphen. Entra writes `Update application – Certificates and secrets management ` with an en dash and a trailing space, so an exact match fails | E7 matches the stable part of the name |
 | Temporary Access Pass | SigmaHQ expects "Admin registered security info". The 2026 capture records "Create Temporary Access Pass method for user" | E5 matches both names |
 | Kerberoasting run as SYSTEM | Tickets for 25 services in ten minutes, requested by the computer account `AR-WIN-2$`. SigmaHQ's Kerberoasting rule and my first version of W1 both skip computer requesters. SigmaHQ's RC4 rule expects ticket options `0x40810000`; these tickets carry `0x60810010` | W1 now counts computer requesters (see below) and ignores ticket options |
@@ -38,10 +43,11 @@ files, checks their SHA-256 and fails if the report changes.
 
 ## First run and the two changes after it
 
-Before the first run, I wrote down which rules should fire on each file in
-[`sources.json`](sources.json). The first run caught 17 of 22 expected rule-file pairs, with no
-alerts on files a rule wasn't meant for. It exposed two design flaws, which I fixed instead of
-changing any thresholds:
+Before the first scoring run, I wrote down in [`sources.json`](sources.json) which of my first 12
+rules (W1–W4, E1–E8) should fire on each file. I had already looked at the captures' event types
+and field names while writing the rules. The first run caught 17 of 22 expected rule-file pairs,
+with no alerts on files a rule wasn't meant for (its raw output isn't published). It exposed two
+design flaws, which I fixed instead of changing any thresholds:
 
 1. **W1 skipped computer requesters**, copying SigmaHQ's noise filter. A burst rule doesn't need
    that filter, and it hid Kerberoasting run as SYSTEM.
@@ -106,8 +112,9 @@ python -m unittest detections.identity.test_identity
 
 ## Limits
 
-- The captures come from Splunk's attack lab and hold little normal traffic. Zero alerts on the
-  wrong files is a sanity check, not a false-alarm rate for a real network.
+- The captures come from Splunk's attack lab and hold little normal traffic. Each of my rules ran
+  on 3 to 9 captures it wasn't meant for, and most of those hold none of the events the rule
+  reads. Zero alerts there is a misfire check, not a false-positive rate for a real network.
 - I decided which rules should fire on each file. For everything except W5, I wrote that down
   before the first run.
 - The rules ran in SQLite through pySigma, not in Splunk or Sentinel. Field names follow

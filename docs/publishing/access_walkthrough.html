@@ -146,13 +146,13 @@
 <div class="split">
 <div class="inset">
 <h3>0 / 24 inputs collected</h3>
-<p>The later enterprise collector started its native processes, but none of the frozen source inputs reached the archive. The integration failed its acceptance check.</p>
+<p>The last attempt with the original collector launcher started its native processes, but none of the frozen source inputs reached the archive. The integration failed its acceptance check.</p>
 <p>This result is separate from the earlier successful 64-event Wazuh pilot in the evidence library.</p>
 </div>
 <div class="inset">
 <h3>The finding changed the design</h3>
-<p>On its first start, the collector began at the end of the preloaded file. The launcher was retired. A different approach starts with empty monitored files, verifies readiness, then publishes the fixed events.</p>
-<p>That replacement has no successful native execution yet.</p>
+<p>On its first start, the collector began at the end of the preloaded file. The launcher was retired. A different approach starts with empty monitored files, verifies readiness, then publishes the fixed events.</p>{% if report.later_runs %}
+<p>That approach ran natively later the same day: run {{ report.later_runs.collection.run_id|slice:":8" }} archived {{ report.later_runs.collection.archived_inputs }} of {{ report.later_runs.collection.expected_inputs }} inputs from this source run and raised the {{ report.later_runs.collection.alerted_inputs }} expected alerts, each once. <a href="../docs/evidence/{{ report.later_runs.collection.receipt }}">Collection receipt</a></p>{% endif %}
 </div>
 </div>
 <details>
@@ -175,9 +175,11 @@
 <a href="../docs/evidence/{{ receipt_name }}">Read the native execution receipt →</a>
 </div>
 <div>{% if report.wazuh %}<h3>What still needs proving</h3>
-<p>Native Wazuh collection of this source snapshot is recorded above. Continuous source-to-tool operation, interruption recovery and native rotation still require their own execution evidence.</p>{% else %}<h3>What connects next</h3>
-<p>23 minimal observations and one SignalBridge-generated finding were staged for Wazuh. The source run staged those packets; the later collector attempt and its failure are recorded above. A forwarded finding is not independent Wazuh rediscovery.</p>{% endif %}<p>The existing evidence library contains the earlier genuine Wazuh and ZAP pilots. Continuous enterprise collection, authenticated ZAP, native Keycloak/MFA and Shuffle remain unfinished.</p>
-<a href="index.html">Inspect the earlier tool executions →</a>
+<p>Native Wazuh collection of this source snapshot is recorded above. Continuous source-to-tool operation, interruption recovery and native rotation still require their own execution evidence.</p>{% else %}<h3>What ran next</h3>
+<p>The source run staged 23 minimal observations and one SignalBridge-generated finding for Wazuh. The collector runs that consumed them are recorded above. A forwarded finding is not independent Wazuh rediscovery.</p>{% endif %}{% if report.later_runs %}<p>Later native runs in the same lab, each with its receipt:</p>
+<ul>{% for run in report.later_runs.runs %}<li>{{ run.tool }} · {{ run.date }}: {{ run.figure }} {{ run.figure_label }} (<a href="../{{ run.receipts.0.path }}">receipt</a>)</li>{% endfor %}</ul>
+<p>The planned 24-hour run ended after 13.5 hours, with Wazuh capturing the first 10.6; a replacement run was started and stopped, so no full 24-hour result exists.</p>{% endif %}
+<a href="index.html#october">See every October run in the evidence viewer →</a>
 </div>
 </div>
 </section>

@@ -1,4 +1,4 @@
-# Fixed ZAP pilot runtime handoff
+# Fixed ZAP pilot runtime contract
 
 This is the reviewed execution contract, **not a record of a completed run**.
 The pilot makes three anonymous GET requests to a deliberately simple synthetic
@@ -161,4 +161,4 @@ The application import remains `claimed_report` with unknown coverage, including
 when the separate pilot passes. Do not turn tool-supplied report data into verified
 execution metadata. Public evidence should contain only sanitized rule/path
 metadata and retained execution receipt references. Actual runtime results belong
-in a dated parent execution report; leave this source handoff frozen for that run.
+in a dated execution report; leave this contract frozen for that run.

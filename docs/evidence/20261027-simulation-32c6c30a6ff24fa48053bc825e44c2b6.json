@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-offline-simulation-receipt",
+  "run_id": "32c6c30a6ff24fa48053bc825e44c2b6",
+  "execution_verified": true,
+  "source_sha256": "5123c56f8ecae3cc271d7e694eafde11eae3f096b2bd3b849a79a48cb0968bfa",
+  "source_file_count": 691,
+  "source_unchanged": true,
+  "git_head_at_execution": "126d43b468afd261f936237450ed7fc3646743aa",
+  "working_tree_dirty_at_execution": true,
+  "python": "3.14.4",
+  "exit_code": 0,
+  "result_sha256": "7ba32efa0ee517406ca3c65f540f4d9d0076c20d2f4300b3bfc36623402cdfb3",
+  "provenance_sha256": "0e8980fa0bb0798427044da0ff93fff3505429e038e23506fa8764349f6749c3",
+  "log_sha256": {
+    "stdout.txt": "06a7d2f05e7f2c4a4c6418acc6185ffac99f30903f0d4db1a05bca2e002fc00e",
+    "stderr.txt": "bd4a5b2e0540346f6d6518d5626d204dcb5807e19f4bce2297b93133371fd679"
+  },
+  "results": {
+    "schema_version": 1,
+    "kind": "signalbridge-offline-capability-simulation",
+    "started_at": "2026-10-27T18:40:47.908482+00:00",
+    "finished_at": "2026-10-27T18:40:51.206362+00:00",
+    "execution_status": "completed",
+    "database": "disposable in-memory SQLite",
+    "transport": "Django in-process test client",
+    "safety": {
+      "synthetic_only": true,
+      "network_guard": true,
+      "child_process_guard": true,
+      "production_database": false,
+      "max_requests": 750,
+      "max_worker_records": 700
+    },
+    "scenarios": [
+      {
+        "id": "authorized_read",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "distinct_private_failures",
+        "expected_rule": "R1",
+        "observed_rules": [
+          "R1"
+        ],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "same_resource_retries",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "below_threshold",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "bucket_boundary_gap",
+        "expected_rule": "R1",
+        "observed_rules": [
+          "R1"
+        ],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "revoked_read_allowed",
+        "expected_rule": "R2",
+        "observed_rules": [
+          "R2"
+        ],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "controlled_policy_fault",
+        "expected_rule": "R2",
+        "observed_rules": [
+          "R2"
+        ],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "successful_membership_change",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "session_errors_not_private_reads",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "dependency_errors",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "mixed_sources",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "cross_application",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "mixed_environments",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "out_of_order",
+        "expected_rule": "R1",
+        "observed_rules": [
+          "R1"
+        ],
+        "known_limitation": false,
+        "coverage_met": true
+      },
+      {
+        "id": "duplicate_delivery",
+        "expected_rule": null,
+        "observed_rules": [],
+        "known_limitation": false,
+        "coverage_met": true
+      }
+    ],
+    "controls": {
+      "tampered_signature_rejected_without_event": true,
+      "duplicate_content_conflict_rejected": true,
+      "configured_600_per_minute_limit": true
+    },
+    "not_tested": [
+      "Endpoint or cloud inventory",
+      "Live adversary exploitation",
+      "Production traffic",
+      "Multi-node availability",
+      "PostgreSQL concurrency or crash durability",
+      "Network HTTP latency",
+      "Competitor products",
+      "Independent blind holdout",
+      "Automated external response"
+    ],
+    "detection_quality": {
+      "true_positive_scenarios": 5,
+      "false_negative_scenarios": 0,
+      "false_positive_scenarios": 0,
+      "true_negative_scenarios": 10,
+      "recall": 1.0,
+      "precision": 1.0,
+      "denominator": "15 declared, builder-authored synthetic scenarios; not independent production prevalence"
+    },
+    "bounded_load": {
+      "accepted_events": 600,
+      "processed_events": 600,
+      "source_rate_limit": "600 per application per minute",
+      "ingest_seconds": 1.872922,
+      "processing_seconds": 1.194127,
+      "in_process_requests_per_second": 320.36,
+      "in_process_request_p50_ms": 3.004,
+      "in_process_request_p95_ms": 3.833,
+      "alerts_from_benign_load": 0,
+      "limits": "Single-process SQLite harness timing includes test-client overhead; not network or production capacity."
+    },
+    "scenario_records_processed": 34,
+    "final_queue": {
+      "processed": 634,
+      "pending": 0,
+      "dead": 0
+    },
+    "duration_seconds": 3.297876,
+    "requests_executed": 639
+  },
+  "limits": [
+    "Historical builder-operated fixture evidence, not an independent audit or enterprise benchmark.",
+    "Source manifests identify the recorded code; the current checkout and current runtime are not compared.",
+    "Known missed scenarios remain coverage failures even when the harness exits successfully.",
+    "Python network/process guards are not an OS sandbox for arbitrary hostile code.",
+    "Local filesystem administrators can replace results, provenance and their hashes.",
+    "Only result/provenance bytes are read; recorded log hashes are not independently rehashed here.",
+    "Aggregate timing is retained and checked for consistency; raw latency samples are unavailable."
+  ]
+}

@@ -11,7 +11,7 @@
     "license": "Detection Rule License 1.1",
     "url": "https://raw.githubusercontent.com/SigmaHQ/sigma/{commit}/{path}"
   },
-  "expectations_note": "Which rules should fire on each file was decided from the file's description and technique before the first run, not from the results.",
+  "expectations_note": "Expectations for W1-W4 and E1-E8 were set from each file's description and technique before the first scoring run, after a look at the captures' event types and field names while writing the rules. W5's were added after the first run (see changes_after_first_run).",
   "changes_after_first_run": [
     "W1: computer-account requesters are no longer filtered out; the first run showed Kerberoasting run as SYSTEM requests as the computer account.",
     "W5: added for sprays seen only as NTLM checks (4776), which name a workstation instead of an IP address. Its expectations were set after the first run."

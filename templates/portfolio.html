@@ -16,7 +16,7 @@
 <div class="brand">
 <span class="mark" aria-hidden="true">sb</span>SignalBridge</div>
 <nav class="top-links" aria-label="Page sections">
-{% if native %}<a href="#october">October runs</a>{% endif %}<a href="#investigate">Integrations</a>{% if story.authorization %}<a href="#authorization-proof">Access checks</a>{% endif %}<a href="#measured-evidence">Test results</a>
+{% if native %}<a href="#october">October runs</a>{% endif %}{% if identity %}<a href="#identity">Identity detections</a>{% endif %}<a href="#investigate">Integrations</a>{% if story.authorization %}<a href="#authorization-proof">Access checks</a>{% endif %}<a href="#measured-evidence">Test results</a>
 <a href="#engineering">Design</a>
 </nav>
 </header>
@@ -86,11 +86,55 @@
 <p class="run-receipts">{% for receipt in run.receipts %}<a href="../{{ receipt.path }}">{{ receipt.label }} receipt</a>{% endfor %}</p>
 </li>{% endfor %}</ul>
 </section>{% endif %}
+{% if identity %}<section class="demo native-runs" id="identity" aria-labelledby="identity-title">
+  <div class="demo-head">
+<div class="section-head">
+<div>
+<div class="eyebrow">Identity detections · public attack captures</div>
+<h2 id="identity-title">Sigma rules for identity attacks, scored on logs I didn't write.</h2>
+</div>
+<span class="badge">{{ identity.captures }} pinned captures</span>
+</div>
+<p>I wrote {{ identity.mine.rules }} Sigma rules for Windows domain controller and Microsoft Entra ID attacks and scored them, beside SigmaHQ's {{ identity.sigmahq.rules }} rules for the same attacks, on captures from Splunk's attack_data (commit {{ identity.attack_data_commit }}). Figures are read from the score report when this page is built.</p>
+</div>
+  <ul class="native-grid">
+<li class="evidence-box">
+<div class="run-meta">
+<span>My rules · W1–W5, E1–E8</span>
+</div>
+<h3>Attack files flagged by my rules</h3>
+<p class="run-figure">{{ identity.mine.files_flagged }} / {{ identity.mine.files_targeted }} <small>files my rules target</small>
+</p>
+<ul class="run-facts"><li>{{ identity.mine.rules_with_data }} of {{ identity.mine.rules }} rules had test data; {{ identity.mine.without_data|join:", " }} has none yet</li><li>{{ identity.mine.pairs_caught }} of {{ identity.mine.pairs_expected }} expected rule-file pairs</li><li>{{ identity.mine.unexpected }} alerts on files a rule wasn't meant for</li></ul>
+<p class="run-limit">I wrote down which rules should fire on each file before the first scoring run, except W5, which I added after it.</p>
+</li>
+<li class="evidence-box">
+<div class="run-meta">
+<span>SigmaHQ · commit {{ identity.sigmahq_commit }}</span>
+</div>
+<h3>Attack files flagged by SigmaHQ's rules</h3>
+<p class="run-figure">{{ identity.sigmahq.files_flagged }} / {{ identity.sigmahq.files_targeted }} <small>files their rules cover</small>
+</p>
+<ul class="run-facts"><li>{{ identity.sigmahq.rules_with_data }} of {{ identity.sigmahq.rules }} rules had test data</li><li>{{ identity.sigmahq.pairs_caught }} of {{ identity.sigmahq.pairs_expected }} expected rule-file pairs</li><li>{{ identity.sigmahq.message_field_rules }} Entra rules match a <code>properties.message</code> field these records don't have</li></ul>
+<p class="run-limit">Scored the same way as my rules, on the same files.</p>
+</li>
+<li class="evidence-box">
+<div class="run-meta">
+<span>Both rule sets</span>
+</div>
+<h3>Flagged by either</h3>
+<p class="run-figure">{{ identity.together_flagged }} / {{ identity.together_targeted }} <small>attack files</small>
+</p>
+<ul class="run-facts"><li>Inputs pinned by SHA-256 and re-scored in CI</li><li>pySigma compiles each rule to SQLite and runs it on that file's events</li></ul>
+<p class="run-limit">Zero alerts on other files is a misfire check, not a false-positive rate: the captures hold almost no normal traffic.</p>
+<p class="run-receipts"><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/detections/identity/README.md">Identity detections README</a><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/detections/identity/score-report.json">Score report</a></p>
+</li></ul>
+</section>{% endif %}
 <section class="current-evidence" aria-labelledby="current-evidence-title">
 <div>
 <p class="eyebrow">Latest recorded application proof · October 2</p>
 <h2 id="current-evidence-title">Permission removed. Private access observed. One investigation.</h2>
-<p>Follow the genuine reference-app run: 23 processed events, a detected document-access defect and verified restoration controls. The later Wazuh collection failure is retained alongside it.</p>
+<p>Follow the genuine reference-app run: 23 processed events, a detected document-access defect and verified restoration controls. It also shows the last attempt with the original Wazuh launcher, which failed, and the later October 3 run that collected the same records.</p>
 </div>
 <a href="access-assurance.html">Follow the access evidence &#8594;</a>
 </section>
@@ -345,7 +389,7 @@
 </div>
 <aside class="case-question">
 <strong>Project ownership</strong>
-<p>Aman Agarwal · Management Information Systems student with a cybersecurity minor.<br>Focus: security automation and evidence-based investigation.</p>
+<p>Aman Agarwal · Management Information Systems student at Iowa State (Cybersecurity Engineering minor), graduating December 2026.<br>Focus: security automation and evidence-based investigation.</p>
 </aside>
 </div>
         {% if story.engineering %}<p class="light-muted">Inspect a failure condition, the control built for it, and the adverse test. These are offline regressions in the core suite; native tool executions have their separate receipts.</p>
@@ -378,7 +422,7 @@
 <p>
 <strong>What you can inspect:</strong> implementation, tests, source-linked receipts, safe lab constraints and the decisions behind the boundaries.</p>
 </div>
-        <p class="case-limit">Shuffle is deferred and has no verified workflow. Wazuh/ZAP results are historical pilots. No overall Cortex XSIAM, Wiz or Splunk parity is claimed.</p>
+        <p class="case-limit">Shuffle ran natively on October 5 (nine scenarios in an offline VM). The Wazuh and ZAP records in this panel are the September pilots; the October native runs are listed above. No overall Cortex XSIAM, Wiz or Splunk parity is claimed.</p>
       </article>
     </div>
   </div>
@@ -495,7 +539,7 @@
 </div>
 <span class="badge {% if detection_challenge.status != 'passed' %}warning{% endif %}">{{ detection_challenge.status }}</span>
 </div>
-  <p>All existing rule checks passed, but three broader capability probes did not alert. That distinction matters: correct implementation is not complete threat coverage. This challenge was written by the builder with knowledge of the rules.</p>
+  <p>All existing rule checks passed, but three broader capability probes did not alert. That distinction matters: correct implementation is not complete threat coverage. I wrote this challenge knowing the rules.</p>
   <div class="numbers">
 <div>
 <strong>{{ detection_challenge.results.summary.rule_contract.met }} / {{ detection_challenge.results.summary.rule_contract.total }}</strong>
@@ -627,7 +671,7 @@
 <section class="section">
 <div class="section-head">
 <h2>Fixing a missed scenario</h2>
-<span class="badge muted-badge">Builder-authored synthetic lab</span>
+<span class="badge muted-badge">Synthetic scenarios I wrote</span>
 </div>
 <p>The original simulation exposed a time-window boundary gap. Compare recorded outcomes on the same declared scenarios, and inspect the individual results below.</p>
 {% if same_declared_scenarios %}<div class="grid">
@@ -748,7 +792,7 @@
 </dd>
 <dt>Recorded result hash</dt>
 <dd>
-<code>{{ run.result_sha256 }}</code> · private original bytes not reread by this page builder</dd>
+<code>{{ run.result_sha256 }}</code> · private original bytes not reread when this page was built</dd>
 </dl>
 <p class="small">Not tested in this simulation:</p>
 <ul class="limits">{% for limit in run.results.not_tested %}<li>{{ limit }}</li>{% endfor %}</ul>

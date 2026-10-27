@@ -6,10 +6,14 @@ experiment: a security engineer can trace a rule to its input and see why it did
 or did not match. It does not install software, start a container, change Windows,
 monitor the host, or take automatic action.
 
-**Current evidence: offline preparation checks only.** Wazuh has not been executed
-by this preparation task. A valid XML document and passing Python checks do not
-establish that Wazuh accepts the configuration or produces the expected alerts.
-The parent task owns actual runtime validation and any resulting evidence.
+**Status:** a synthetic pilot ran on 2026-09-24
+([receipt](../../docs/evidence/20260924-wazuh-synthetic-pilot.json)). On 2026-10-03 a native
+run ([0d137b47](../../docs/evidence/20261003-wazuh-native-collection-0d137b4720ad476faa68d36754b7357f.json))
+archived 24 of 24 inputs with 8 alerts, and a recovery run
+([4a5748dc](../../docs/evidence/20261003-wazuh-native-recovery-4a5748dcc7a74525a7469dc8d802438a.json))
+survived a collector stop/restart and an input-file rotation. Those runs use the enterprise
+profile in `integrations/wazuh_enterprise/`; this page describes the original preparation
+package.
 
 ## Files and contract
 
@@ -96,8 +100,8 @@ not a vendor-validated replacement for the documented full stack.
 [Official Docker deployment](https://documentation.wazuh.com/current/deployment-options/docker/wazuh-container.html).
 
 The selected official image is `wazuh/wazuh-manager:4.14.8`, linux/amd64, pinned
-by the platform manifest digest in `image-lock.json`. The parent task's read-only
-registry check found approximately **906.2 MiB compressed layers**. Unpacked
+by the platform manifest digest in `image-lock.json`. A read-only registry check
+found approximately **906.2 MiB compressed layers**. Unpacked
 layers, Docker's retained compressed data and logs consume additional disk;
 their actual footprint is unmeasured until the controlled pull. Do not treat
 compressed size as an installation-size promise. The version and image choice
@@ -260,8 +264,7 @@ Even synthetic raw alerts remain private until reviewed; `event_id` can link
 evidence across systems. No raw credentials, source application content, real
 user data, external notification or automated remediation is in scope.
 
-The parent task received approval for the limited image pull and bounded local
-pilot; this preparation task does not perform the pull or launch it. Additional
-capacity, host settings, broad privileges,
+The image pull and the bounded local pilot ran separately (see the status above);
+this package performs neither. Additional capacity, host settings, broad privileges,
 network exposure, host agents, cloud or paid components require a separate
 decision. This package requests none of those extensions and performs none of them.
