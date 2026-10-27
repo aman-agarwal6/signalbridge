@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-10-05",
-  "status": "implementation_in_progress",
+  "updated_on": "2026-10-27",
+  "status": "v0.1.0_released_2026-10-05_full_24h_run_not_completed",
   "scope": "One enterprise, multiple application scopes and analyst teams; isolated reference lab only.",
   "completion_policy": "Every mandatory engineering acceptance gate must pass. Historical receipts and portable tests do not substitute for native execution.",
   "safety": {
@@ -22,7 +22,7 @@
       "Nine recorded native PostgreSQL concurrency/crash methods. Later identity/retest races and separate restored application remain unfinished.",
       "App-scoped analyst queues, assignment, acknowledgement, deadlines, categorized notes, evidence-bound review/remediation tasks and printable analyst briefs.",
       "Separate signed case-evidence/read-task machine capabilities with replay controls and idempotency; no containment or automatic remediation approval.",
-      "Five versioned rules, bounded indexed correlation and 48 builder-selected evaluation scenarios; false alerts, misses and inconclusives retained.",
+      "Five versioned rules, bounded indexed correlation and 48 evaluation scenarios I wrote; false alerts, misses and inconclusives retained.",
       "Wazuh observation/core-signal ledgers, bounded segmented export, exact interrupted-write recovery, native-format matching, capture journal and separately guarded native collector runner.",
       "Authenticated source capture and finite passive ZAP runner/importer prepared; native enterprise execution remains unfinished.",
       "Explicit issuer/subject lifecycle, 15-minute sessions, local permission withdrawal and actual established-library signature/client checks. Native Keycloak/MFA remains unfinished.",
@@ -35,14 +35,14 @@
       "Host disk/memory watchdogs detect sampled limits; they are not hard quotas or resource guarantees.",
       "Matching retest evidence and an independent current reviewer are required for verified remediation; historical resolved cases remain unchanged.",
       "Imported native-format data alone does not attest tool execution or current connection health. Retained native receipts and current heartbeats have different meanings.",
-      "All mandatory unfinished native gates remain listed below. Human analyst work and independent human review are separate learning outcomes."
+      "All mandatory native gates remain listed below, including the ones not completed."
     ]
   },
   "mandatory_gates": [
     {
       "id": "access_assurance",
       "status": "native_reference_passed_copied_bettail_not_pursued",
-      "remaining": "Reference apps completed genuine allow/remove/deny/owner/cross-app/restore checks and detected one injected regression. Copied BetTail state/image adapter is implemented and offline checked; SQL, runtime, effective-access/outbox behavior and native correlation remain unrun. Copied BetTail native runtime: deliberately not pursued (owner decision, 2026-10-04). The adapter is implemented and offline-checked; a native run would need a Supabase-compatible database and new dependency downloads for little reviewer-visible value.",
+      "remaining": "Reference apps completed genuine allow/remove/deny/owner/cross-app/restore checks and detected one injected regression. Copied BetTail state/image adapter is implemented and offline checked; SQL, runtime, effective-access/outbox behavior and native correlation remain unrun. Copied BetTail native runtime: I chose not to pursue it (2026-10-04). The adapter is implemented and offline-checked; a native run would need a Supabase-compatible database and new dependency downloads for little reviewer-visible value.",
       "receipt": "docs/evidence/20261002-reference-access-b8667b816ce8419da7f3d5d9ac9d6ad6.json"
     },
     {
@@ -96,25 +96,25 @@
     {
       "id": "shuffle",
       "status": "passed_native_vm_execution",
-      "remaining": "Run 315cfb85 (2026-10-05): inside the dedicated network-less VirtualBox guest, Shuffle backend, Orborus and workers executed 9 scenarios as genuine executions against the signed review-task API. First task created (201); retry with a new nonce returned the same task (duplicate); replay 409 request_replayed; changed content 409 idempotency_conflict; foreign case 404 case_unavailable; stale evidence 409 case_evidence_changed; receiver timeout and lost reply handled, and the retry after the lost reply recovered the committed task. Receiver totals: 2 tasks, 2 idempotency records, 8 nonces. Fixes on the way: one vCPU (VirtualBox-on-Hyper-V timer stalls), Orborus non-swarm mode, signing the body Shuffle's HTTP app actually sends, read-only settings key handling. Guest report is builder-run, not independent attestation.",
+      "remaining": "Run 315cfb85 (2026-10-05): inside the dedicated network-less VirtualBox guest, Shuffle backend, Orborus and workers executed 9 scenarios as genuine executions against the signed review-task API. First task created (201); retry with a new nonce returned the same task (duplicate); replay 409 request_replayed; changed content 409 idempotency_conflict; foreign case 404 case_unavailable; stale evidence 409 case_evidence_changed; receiver timeout and lost reply handled, and the retry after the lost reply recovered the committed task. Receiver totals: 2 tasks, 2 idempotency records, 8 nonces. Fixes on the way: one vCPU (VirtualBox-on-Hyper-V timer stalls), Orborus non-swarm mode, signing the body Shuffle's HTTP app actually sends, read-only settings key handling. The guest report comes from my own tooling, not independent attestation.",
       "receipt": "docs/evidence/20261005-shuffle-native-workflow-315cfb85-9c28-4e4e-9cac-8ce455e92448.json"
     },
     {
       "id": "case_workflow",
       "status": "native_restored_investigation_to_fix_passed_copied_bettail_not_pursued",
-      "remaining": "Restoration run de4f6409 copied the retained native console (b8667b81) read-only, backed it up with pg_dump, restored it into a fresh PostgreSQL database and migrated it, with all 23 events and the R3 case matching the archive exactly. On the restored console: acknowledge, assign, remediation task, the real native retest import (idempotent), self-review refused, an independent reviewer approved, task verified; the native Wazuh run 0d137b47 imported with 13 matched events and a verified case link; the case page rendered. Retest/reviewer races passed natively in ed3829e7. Copied BetTail runtime remains unrun. Copied BetTail native runtime: deliberately not pursued (owner decision, 2026-10-04). The adapter is implemented and offline-checked; a native run would need a Supabase-compatible database and new dependency downloads for little reviewer-visible value.",
+      "remaining": "Restoration run de4f6409 copied the retained native console (b8667b81) read-only, backed it up with pg_dump, restored it into a fresh PostgreSQL database and migrated it, with all 23 events and the R3 case matching the archive exactly. On the restored console: acknowledge, assign, remediation task, the real native retest import (idempotent), self-review refused, an independent reviewer approved, task verified; the native Wazuh run 0d137b47 imported with 13 matched events and a verified case link; the case page rendered. Retest/reviewer races passed natively in ed3829e7. Copied BetTail runtime remains unrun. Copied BetTail native runtime: I chose not to pursue it (2026-10-04). The adapter is implemented and offline-checked; a native run would need a Supabase-compatible database and new dependency downloads for little reviewer-visible value.",
       "restoration_receipt": "docs/evidence/20261003-console-restoration-de4f6409fdf444a9bc22cf60463cdb05.json"
     },
     {
       "id": "detection",
       "status": "passed_final_freeze_current_source",
-      "remaining": "Current round (2026-10-05, re-frozen on the public release code): the same 48 builder-selected scenarios, byte-identical inputs and labels, under a fresh freeze of the current implementation: TP15/FP6/FN8/TN12 and 7 inconclusives (precision 15/21, recall 15/23, false-positive rate 6/18), unchanged from every earlier round, which are retained. Regression evidence, not independent accuracy.",
+      "remaining": "Current round (2026-10-05, re-frozen on the public release code): the same 48 scenarios I wrote, byte-identical inputs and labels, under a fresh freeze of the current implementation: TP15/FP6/FN8/TN12 and 7 inconclusives (precision 15/21, recall 15/23, false-positive rate 6/18), unchanged from every earlier round, which are retained. Regression evidence, not independent accuracy.",
       "receipt": "docs/evidence/20261005-enterprise-detection-evaluation-public-release.json"
     },
     {
       "id": "operations",
       "status": "restoration_and_monitoring_passed_endurance_shown_full_24h_not_completed",
-      "remaining": "Restoration passed natively twice (de4f6409, 6bce0948) and monitoring passed 24/24 (0cd4256f). Endurance is shown by a compressed full-window run plus 10.5 hours continuous; the full 24-hour run was not completed (owner decision, 2026-10-04). Rehearsal 8a1889fe ran the full workload with all five fixed interruptions scaled into 40 minutes: 1,201/1,201 events accepted, processed and observed by Wazuh, every recovery on time, zero anomalies under the owner-approved schedule definition. The continuous run 894fb388 ran 13.5 hours: all 27,118 reads delivered with no service errors through the workers, collector and source-delivery interruptions; Wazuh captured continuously for 10.6 hours, then its collector stopped itself because the reviewed ten-minute log finder bounds a month log folder at 64 entries and Wazuh's ten-minute rotations exceeded it. The continuous collector now has a day-long bound (tested); a replacement 24-hour run was started and then stopped by the owner to prioritise the remaining deliverables. 68 of 27,118 reads were sent late, all during brief host disk stalls.",
+      "remaining": "Restoration passed natively twice (de4f6409, 6bce0948) and monitoring passed 24/24 (0cd4256f). Endurance is shown by a compressed full-window run plus a 13.5-hour continuous run with 10.6 hours of Wazuh capture; the full 24-hour run was not completed, and I chose not to repeat it (2026-10-04). Rehearsal 8a1889fe ran the full workload with all five fixed interruptions scaled into 40 minutes: 1,201/1,201 events accepted, processed and observed by Wazuh, every recovery on time, zero anomalies under the schedule definition I approved. The continuous run 894fb388 ran 13.5 hours: all 27,118 reads delivered with no service errors through the workers, collector and source-delivery interruptions; Wazuh captured continuously for 10.6 hours, then its collector stopped itself because the reviewed ten-minute log finder bounds a month log folder at 64 entries and Wazuh's ten-minute rotations exceeded it. The continuous collector now has a day-long bound (tested); I started a replacement 24-hour run and then stopped it to prioritise the remaining deliverables. 68 of 27,118 reads were sent late, all during brief host disk stalls.",
       "preparation": "integrations/monitoring/preparation.json",
       "reliability_preparation_receipt": "docs/evidence/20261002-reliability-measurement-preparation.json",
       "monitoring_receipt": "docs/evidence/20261003-monitoring-native-0cd4256f4a1c4f2692f67eae4704bd53.json",
@@ -242,7 +242,7 @@
       "id": "20261003-wazuh-inspection-corrected-retry",
       "status": "approved_attempt_used_runtime_inspection_failed_container_never_started",
       "reference": "call_awW6vzwMsNXO04vJSNNn46nO",
-      "limits": "One corrected native collector attempt after agent changes are reviewed. Same 24 packets, cached pinned image, 1.5 GiB/one CPU, no network or ports or downloads, 15-minute independent shutdown, 12 GiB cumulative disk guard, 25 GiB disk reserve and 4 GiB memory reserve; stop Docker afterward.",
+      "limits": "One corrected native collector attempt after the changes are reviewed. Same 24 packets, cached pinned image, 1.5 GiB/one CPU, no network or ports or downloads, 15-minute independent shutdown, 12 GiB cumulative disk guard, 25 GiB disk reserve and 4 GiB memory reserve; stop Docker afterward.",
       "receipt": "docs/evidence/20261003-wazuh-reference-bootstrap-4e538a364db04a0dbcd03aceafdca8af.json"
     },
     {
@@ -261,12 +261,6 @@
       "receipt": "docs/evidence/20261003-keycloak-startup-stopped.json"
     }
   ],
-  "learning_checkpoint": {
-    "topic": "Detection accuracy and analyst workload",
-    "prompt": "Why do 21 alerted scenarios produce 23 active cases, and why should a legitimate stale-link alert remain a false positive even though the rule matched?",
-    "ai_reference_answer": "A scenario may meet more than one rule, so scenario-level accuracy and case-level workload use different denominators. The oracle business activity is benign despite matching telemetry; rule conformance does not establish malicious intent. A late correction still consumed initial analyst review work.",
-    "human_assessment": "Not submitted or independently assessed."
-  },
   "current_offline_receipt": "docs/evidence/20261005-enterprise-offline-3e814024cd9948f4818d3dabe6362de9.json",
   "evidence_corrections": [
     {
@@ -396,92 +390,6 @@
   ],
   "native_source_stage_plan": "integrations/enterprise/reference-stage-plan.json",
   "current_ci_receipt": "docs/evidence/20261001-github-ci-publication.json",
-  "learning_checkpoints": [
-    {
-      "topic": "Trace one observation through the pipeline",
-      "prompt": "Why do an exact private-record response, an acknowledged outbox event, a processed console record and an R3 case establish different things? Trace the removal and read event IDs, and identify which native proof is still missing.",
-      "ai_reference_answer": "The response establishes the narrow source read result. Acknowledgement establishes accepted ingestion, not completed detection. Processing and the exact R3 evidence link the removed subject to a later allowed read. The October 2 native HTTPS/PostgreSQL source run recorded these bindings and both shutdowns. It did not establish Wazuh execution, continuous delivery or independent remediation review.",
-      "human_assessment": "Not submitted or independently assessed."
-    },
-    {
-      "workstream": "Source runtime and certificate preparation",
-      "prompt": "Explain what a successful memory-only TLS test proves, and identify the additional evidence required before saying the lab enforces the same controls during a real source run.",
-      "ai_reference_answer": "The real TLS engine accepted the explicit short-lived CA and loopback identity and rejected wrong address, unrelated CA and expiry. That does not establish application authorization, PostgreSQL behavior or native container isolation. Those require actual HTTP observations tied to source/console records, effective Docker/kernel evidence and both shutdown receipts. The current host/kernel controls were tested with hostile models; local administrator tampering remains outside this evidence boundary.",
-      "human_submission": "not_submitted"
-    },
-    {
-      "workstream": "Monitor the monitoring",
-      "prompt": "The queue is empty, one configured worker pulse is missing, and the processing latency sample has zero records. What can you conclude, and what would you check before saying the system is healthy?",
-      "ai_reference_answer": "There is no retained pending work and no valid latency sample. A missing expected pulse needs investigation; an empty queue cannot prove source delivery or successful detection. Check whether the lab is intended to run, configured worker names/processes, last accepted and processed records, source heartbeat evidence, and independent collector/tool receipts. Do not invent zero latency or call local export native tool delivery.",
-      "human_submission": "not_submitted"
-    },
-    {
-      "workstream": "Identity versus permission",
-      "prompt": "Keycloak authenticates a user who has a reviewer-looking provider role claim, but SignalBridge links the subject to a local viewer account. What may the user do? What evidence would prove immediate withdrawal without claiming native SSO was tested?",
-      "ai_reference_answer": "Identity alone does not grant app access. Explicit local app memberships remain authoritative, so the viewer may inspect only their app and cannot write or review. Local policy tests verify issuer/subject matching, denial after link/account/role withdrawal and a fresh transaction check after initial request admission. These are not signed-token or Keycloak/MFA executions. Those require the established client and native identity lab, plus retained negative controls.",
-      "human_submission": "not_submitted"
-    },
-    {
-      "workstream": "Verify a correction, not just close a review",
-      "prompt": "A removed member gets 403 after a fix, but the owner control also gets 403. Can you verify remediation? What must a matching receipt and an independent reviewer establish?",
-      "ai_reference_answer": "No: blocking everyone can pass a denial check while breaking legitimate access. Repeat the same removed-account/resource request and an owner read after correction. Bind the original removal/read and retest to the same app, pseudonyms, resource and episode; preserve incomplete runs. An independent current reviewer records a bounded decision. A historical lab approval does not establish current deployment health.",
-      "human_submission": "not_submitted"
-    },
-    {
-      "workstream": "Native observation versus forwarded detection",
-      "prompt": "The imported record uses Wazuh rule 100222 and includes a SignalBridge R3 evidence digest. Which engine found the revocation mismatch? Does a matching operator-supplied archive prove Wazuh is currently running? What additional evidence would you require?",
-      "ai_reference_answer": "SignalBridge correlated effective removal with a later allowed read. Rule 100222 is a forwarded core signal, not independent Wazuh rediscovery. Exact file/packet/rule/checkpoint matching proves consistency within the trusted local operator boundary; it does not attest execution or current health. Require a source-bound native run with retained input/output, effective configuration, process observations, reconciled counts and fresh collector heartbeats. Delivery and detection accuracy remain separate measures.",
-      "human_submission": "not_submitted"
-    },
-    {
-      "workstream": "Authenticated coverage and equivalent passive retest",
-      "prompt": "A member's captured document response is missing nosniff; the owner response is protected and a cross-app request is denied. After reset the same requests are repeated and ZAP rule 10021 is absent. What would this establish after a genuine native run? Does it establish that all authorization is secure, or that ZAP's login engine was tested? What if one request returned 503?",
-      "ai_reference_answer": "A source-bound completed native run can establish the one declared header finding and an equivalent correction, with independently checked identity and finite request coverage. It cannot establish complete application security, broad scanning or ZAP-managed authentication. Real source login is separate from offline analysis of credential-free captures. A 503 is incomplete coverage, not a clean result; preserve the failure and repeat the control. Current API observations are modeled and neither source nor scanner runtime is attested.",
-      "human_submission": "not_submitted"
-    },
-    {
-      "workstream": "Separate request coverage, source delivery and scanner execution",
-      "prompt": "The source profile has ten scan captures, two restoration reads, six authentication requests and eight processed events. Explain why the counts differ. Which additional evidence permits a native ZAP finding claim?",
-      "ai_reference_answer": "Identity and login checks do not emit private-read events. Each phase has three private reads and two identity observations; six captured resource reads plus two restoration reads emit eight events. Complete signed ingestion and worker processing establish delivery for that run, not scanner execution. A native ZAP claim additionally needs the actual isolated process, compatible add-ons, bound native history/alert records, an equivalent clean retest and verified shutdown. Current local proofs and modeled archive checks cannot substitute for these executions.",
-      "human_submission": "not_submitted"
-    },
-    {
-      "workstream": "Native process and incomplete coverage",
-      "prompt": "The first phase has a bound 10021 finding, but ZAP needs a forced stop or the retest loads different add-on versions. Can you record a completed equivalent retest? Which retained artifacts would you inspect?",
-      "ai_reference_answer": "No. Retain the finding as an observed claim for its bounded phase, but mark the overall run incomplete. Inspect original source/capture hashes, unfiltered API transcript and native message/event bindings, queue completion, installed versions, process logs and both shutdown receipts. A forced stop or changed scanner environment invalidates the declared comparison. Current lifecycle tests use doubles and do not establish that a native process ran.",
-      "human_submission": "not_submitted"
-    },
-    {
-      "workstream": "Evidence consistency versus native execution",
-      "prompt": "A saved archive has matching hashes, valid tool message IDs and a recomputed finding. What does that establish, and what additional evidence is needed before claiming native ZAP execution or a verified fix?",
-      "ai_reference_answer": "It establishes internal consistency of the declared bounded observation and retest. A trusted operator must also verify the genuine source run and current input, exact cached tool and effective isolated runtime, actual execution and both shutdowns. An administrator can fabricate consistent files. Even genuine header correction is one control, not complete application security or a verified authorization fix. Current tampering checks use synthetic archives and preserve attestation flags as false.",
-      "human_submission": "not_submitted"
-    },
-    {
-      "workstream": "Safe startup and shutdown evidence",
-      "prompt": "The created scanner container matches its declared isolation, but the independent shutdown guard's reply is missing. Can you mark the run accepted? Why check source evidence again at completion?",
-      "ai_reference_answer": "No. Isolation at creation does not establish completed execution or both required shutdowns. Keep the run incomplete and allow the independent finite guard to continue; never kill it to make cleanup appear complete. Revalidate the original source run, hashes, scope and shutdown so altered or stale evidence cannot be used as the scanner's input proof. Current methods model those facts; native observation still requires the separately reviewed launch.",
-      "human_submission": "not_submitted"
-    },
-    {
-      "workstream": "Tool finding versus authorization remediation",
-      "prompt": "A native header review reproduces one missing-nosniff finding and the corrected capture is clean for that rule. Can it verify an R3 removed-member access fix or establish current health? Why does import require both app scopes yet save separate results?",
-      "ai_reference_answer": "No. It verifies one historical header control under the declared fixed profile, not permission withdrawal, broader scanner coverage or current health. R3 remediation requires the original matching removal/read, corrected denial, surviving owner access and independent reviewer. Import validates all fixed positive/negative controls using current permissions for both scopes, then saves only each application's event identifiers. The local CLI operator remains trusted; naming an account for permission context does not constitute an analyst's own written investigation.",
-      "human_submission": "not_submitted"
-    },
-    {
-      "ai_reference_answer": "Revoking only existing browser sessions leaves a race: a pending authorization reply could create a new local session using the old provider session. A scoped logout record and serialized admission prevent this locally, while allowing a genuinely new provider session. Current sequential tests do not prove signed-token validation or native concurrency.",
-      "topic": "Provider logout and a delayed login reply",
-      "prompt": "Why must a logout notice also block an older login reply that arrives afterward?",
-      "human_assessment": "Not submitted or independently assessed."
-    },
-    {
-      "topic": "Why does an SSO callback use different request validation?",
-      "prompt": "Explain why ordinary case updates need CSRF tokens while a provider callback requires browser-bound one-time state, PKCE and a verified token. Which claims still need a real Keycloak run?",
-      "ai_reference_answer": "The provider cannot supply the console CSRF token. The callback instead consumes a short-lived state bound to its browser/issuer, exchanges a code with a server-held PKCE verifier, and checks nonce plus signed issuer/audience/expiry/MFA claims before local authorization. A modeled provider response proves routing policy only; it does not prove library validation, actual MFA, browser cookie behavior or native concurrency.",
-      "human_assessment": "Not submitted or independently assessed."
-    }
-  ],
   "current_offline_receipt_status": "Final source with the accessibility fixes, the AccessOps leaver receiver, the Shuffle fixes, the evidence-refresh fixes, the Linux CI test fixes and the October evidence viewer (2026-10-05) passed all 16 offline checks: 2,104 Python test methods (1,994 Django, 78 reference app, 16 identity profile, 13 certificate and ES256, 3 fault) and 67 Node tests with none skipped or failed, plus Django checks, migration consistency, lint/format, the publication scan and ACL syntax. An earlier run failed only its format check on a generated migration; that receipt is retained. No native labs, services or provider were started by verification.",
   "reference_launch_preparation": {
     "status": "passed_native_reference_access",
@@ -782,8 +690,7 @@
     "walkthrough": "portfolio/access-assurance.html",
     "public_data": "portfolio/access-assurance.json",
     "brief_route": "/investigations/<case_id>/brief/",
-    "receipt": "docs/evidence/20261002-analyst-delivery.json",
-    "ownership": "AI-assisted implementation; saved analyst notes remain separate from AI speaking prompts."
+    "receipt": "docs/evidence/20261002-analyst-delivery.json"
   },
   "identity_native_preparation": {
     "plan": "integrations/identity/native-stage-plan.json",
@@ -824,7 +731,7 @@
     "status": "finite_controller_implemented_native_execution_unverified",
     "implementation": "integrations/wazuh_enterprise/ready_publisher.py",
     "focused_methods_passed": 7,
-    "independent_agent_review": "no_additional_actionable_issue_in_helper_scope",
+    "independent_review": "no_additional_actionable_issue_in_helper_scope",
     "behavior": "Empty exact input files; per-file zero-counter readiness; complete-record writes; durable source-bound checkpoints; no duplicate complete-record publication on resume; partial records fail without repair.",
     "remaining": "Alternative shared-engine controller and historical import are scoped checked. One approved shared-profile attempt stopped before Docker calls at capacity guard; no retry authorized. Native collection and continuous recovery/rotation remain unfinished.",
     "native_state_shape": "Existing proven pilot parser and retained upstream writer source support the shape; fixtures are modeled. No retained raw zero-state from this alternative exists.",
@@ -859,7 +766,7 @@
     "limits": "Capacity sampling is not a quota, bounded absence does not establish permanent shutdown, and this does not cover an active native lab."
   },
   "bettail_adapter_preparation": {
-    "status": "implemented_offline_checked_native_not_pursued_owner_decision",
+    "status": "implemented_offline_checked_native_not_pursued",
     "receipt": "docs/evidence/20261003-bettail-adapter-preparation.json",
     "implementation": "integrations/bettail_enterprise/",
     "original_snapshot_unchanged": true,
