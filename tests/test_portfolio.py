@@ -12,6 +12,7 @@ from unittest.mock import patch
 
 from scripts import portfolio as p
 from scripts import portfolio_native as native
+from scripts.portfolio_identity import REPORT as IDENTITY_REPORT
 from scripts.portfolio_integrations import RECEIPTS, canonical_sha
 
 
@@ -114,6 +115,41 @@ class PortfolioTests(TestCase):
         html = (self.root / "portfolio/index.html").read_text(encoding="utf8")
         self.assertNotIn('id="october"', html)
         self.assertIn("Historical collection result", html)
+
+    def copy_identity_report(self, report=None):
+        target = self.root / IDENTITY_REPORT
+        target.parent.mkdir(parents=True)
+        if report is None:
+            shutil.copyfile(p.ROOT / IDENTITY_REPORT, target)
+        else:
+            target.write_text(json.dumps(report), encoding="utf8")
+
+    def test_identity_card_recomputes_its_figures_from_the_score_report(self):
+        self.copy_identity_report()
+        report = json.loads((p.ROOT / IDENTITY_REPORT).read_text(encoding="utf8"))
+        figures = self.build()["identity"]
+        for side in ("mine", "sigmahq"):
+            summary = report["summary"][side]
+            self.assertEqual(figures[side]["pairs_caught"], summary["caught"])
+            self.assertEqual(figures[side]["pairs_expected"], summary["expected"])
+            self.assertEqual(figures[side]["without_data"], summary["rules_without_public_data"])
+            self.assertLessEqual(figures[side]["files_flagged"], figures[side]["files_targeted"])
+        html = (self.root / "portfolio/index.html").read_text(encoding="utf8")
+        mine = figures["mine"]
+        self.assertIn('id="identity"', html)
+        self.assertIn(f"{mine['files_flagged']} / {mine['files_targeted']} <small>", html)
+        self.assertIn("misfire check, not a false-positive rate", html)
+
+    def test_absent_identity_report_leaves_no_identity_claims(self):
+        self.assertIsNone(self.build()["identity"])
+        html = (self.root / "portfolio/index.html").read_text(encoding="utf8")
+        self.assertNotIn('id="identity"', html)
+
+    def test_identity_summary_that_does_not_reconcile_cannot_be_exported(self):
+        report = json.loads((p.ROOT / IDENTITY_REPORT).read_text(encoding="utf8"))
+        report["summary"]["mine"]["caught"] += 1
+        self.copy_identity_report(report)
+        self.assert_rejected()
 
     def test_partial_or_modified_october_snapshot_cannot_be_exported(self):
         self.copy_native_receipts()

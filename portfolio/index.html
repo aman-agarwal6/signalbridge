@@ -2064,7 +2064,7 @@ code {
 <div class="brand">
 <span class="mark" aria-hidden="true">sb</span>SignalBridge</div>
 <nav class="top-links" aria-label="Page sections">
-<a href="#october">October runs</a><a href="#investigate">Integrations</a><a href="#authorization-proof">Access checks</a><a href="#measured-evidence">Test results</a>
+<a href="#october">October runs</a><a href="#identity">Identity detections</a><a href="#investigate">Integrations</a><a href="#authorization-proof">Access checks</a><a href="#measured-evidence">Test results</a>
 <a href="#engineering">Design</a>
 </nav>
 </header>
@@ -2208,11 +2208,55 @@ code {
 <p class="run-receipts"><a href="../docs/evidence/20261003-monitoring-native-0cd4256f4a1c4f2692f67eae4704bd53.json">Monitoring run receipt</a></p>
 </li></ul>
 </section>
+<section class="demo native-runs" id="identity" aria-labelledby="identity-title">
+  <div class="demo-head">
+<div class="section-head">
+<div>
+<div class="eyebrow">Identity detections · public attack captures</div>
+<h2 id="identity-title">Sigma rules for identity attacks, scored on logs I didn't write.</h2>
+</div>
+<span class="badge">23 pinned captures</span>
+</div>
+<p>I wrote 13 Sigma rules for Windows domain controller and Microsoft Entra ID attacks and scored them, beside SigmaHQ's 10 rules for the same attacks, on captures from Splunk's attack_data (commit 7be4e72). Figures are read from the score report when this page is built.</p>
+</div>
+  <ul class="native-grid">
+<li class="evidence-box">
+<div class="run-meta">
+<span>My rules · W1–W5, E1–E8</span>
+</div>
+<h3>Attack files flagged by my rules</h3>
+<p class="run-figure">18 / 21 <small>files my rules target</small>
+</p>
+<ul class="run-facts"><li>12 of 13 rules had test data; E8 has none yet</li><li>22 of 26 expected rule-file pairs</li><li>0 alerts on files a rule wasn't meant for</li></ul>
+<p class="run-limit">I wrote down the expectations for W1–W4 and E1–E8 before the first scoring run. W5 was added after it.</p>
+</li>
+<li class="evidence-box">
+<div class="run-meta">
+<span>SigmaHQ · commit 05d1031</span>
+</div>
+<h3>Attack files flagged by SigmaHQ's rules</h3>
+<p class="run-figure">6 / 12 <small>files their rules cover</small>
+</p>
+<ul class="run-facts"><li>9 of 10 rules had test data</li><li>7 of 14 expected rule-file pairs</li><li>3 Entra rules match a <code>properties.message</code> field these records don't have</li></ul>
+<p class="run-limit">Scored the same way as my rules, on the same files.</p>
+</li>
+<li class="evidence-box">
+<div class="run-meta">
+<span>Both rule sets</span>
+</div>
+<h3>Flagged by either</h3>
+<p class="run-figure">20 / 21 <small>attack files</small>
+</p>
+<ul class="run-facts"><li>Inputs pinned by SHA-256 and re-scored in CI</li><li>pySigma compiles each rule to SQLite and runs it on that file's events</li></ul>
+<p class="run-limit">Zero alerts on other files is a misfire check, not a false-positive rate: the captures hold almost no normal traffic.</p>
+<p class="run-receipts"><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/detections/identity/README.md">Identity detections README</a><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/detections/identity/score-report.json">Score report</a></p>
+</li></ul>
+</section>
 <section class="current-evidence" aria-labelledby="current-evidence-title">
 <div>
 <p class="eyebrow">Latest recorded application proof · October 2</p>
 <h2 id="current-evidence-title">Permission removed. Private access observed. One investigation.</h2>
-<p>Follow the genuine reference-app run: 23 processed events, a detected document-access defect and verified restoration controls. The later Wazuh collection failure is retained alongside it.</p>
+<p>Follow the genuine reference-app run: 23 processed events, a detected document-access defect and verified restoration controls. It also shows the first Wazuh collection attempt, which failed, and the October 3 run that collected the same records.</p>
 </div>
 <a href="access-assurance.html">Follow the access evidence &#8594;</a>
 </section>
@@ -5285,7 +5329,7 @@ code {
 </div>
 <aside class="case-question">
 <strong>Project ownership</strong>
-<p>Aman Agarwal · Management Information Systems student with a cybersecurity minor.<br>Focus: security automation and evidence-based investigation.</p>
+<p>Aman Agarwal · Management Information Systems student at Iowa State (Cybersecurity Engineering minor), graduating December 2026.<br>Focus: security automation and evidence-based investigation.</p>
 </aside>
 </div>
         <p class="light-muted">Inspect a failure condition, the control built for it, and the adverse test. These are offline regressions in the core suite; native tool executions have their separate receipts.</p>
@@ -5381,7 +5425,7 @@ code {
 <p>
 <strong>What you can inspect:</strong> implementation, tests, source-linked receipts, safe lab constraints and the decisions behind the boundaries.</p>
 </div>
-        <p class="case-limit">Shuffle is deferred and has no verified workflow. Wazuh/ZAP results are historical pilots. No overall Cortex XSIAM, Wiz or Splunk parity is claimed.</p>
+        <p class="case-limit">Shuffle ran natively on October 5 (nine scenarios in an offline VM). The Wazuh and ZAP records in this panel are the September pilots; the October native runs are listed above. No overall Cortex XSIAM, Wiz or Splunk parity is claimed.</p>
       </article>
     </div>
   </div>
@@ -5583,7 +5627,7 @@ code {
 <div class="metrics">
 <div class="metric">
 <div class="eyebrow">Offline verification</div>
-<strong>2059</strong>
+<strong>2062</strong>
 <small>Executed Python and Node tests · zero failures or skips</small>
 </div>
 <div class="metric">
@@ -5604,7 +5648,7 @@ code {
 </div>
 <span class="badge warning">partial</span>
 </div>
-  <p>All existing rule checks passed, but three broader capability probes did not alert. That distinction matters: correct implementation is not complete threat coverage. This challenge was written by the builder with knowledge of the rules.</p>
+  <p>All existing rule checks passed, but three broader capability probes did not alert. That distinction matters: correct implementation is not complete threat coverage. I wrote this challenge knowing the rules.</p>
   <div class="numbers">
 <div>
 <strong>16 / 16</strong>
@@ -5843,25 +5887,25 @@ code {
 </div>
     <dl class="identity">
 <dt>Execution</dt>
-<dd>2026-10-05T17:30:16.004585+00:00 → 2026-10-05T17:30:16.424502+00:00</dd>
+<dd>2026-10-27T18:40:57.363238+00:00 → 2026-10-27T18:40:57.769734+00:00</dd>
 <dt>Run ID</dt>
 <dd>
-<code>8b86fb3dec004b42a35d650257aaea24</code>
+<code>63f5d25f3a124505a0c8aa1fbbf8f10f</code>
 </dd>
 <dt>Source content</dt>
 <dd>
-<code>74f652fd84c22a6cc29fd22b7bc37ff2791901ea3529152e3845dce6e3988f35</code> · 690 files · matched at generation</dd>
+<code>5123c56f8ecae3cc271d7e694eafde11eae3f096b2bd3b849a79a48cb0968bfa</code> · 691 files · matched at generation</dd>
 <dt>Predeclared catalog</dt>
 <dd>
 <code>6709461d435e6dad7f89cf9e447f3629423caf9728e11118858ddcdae0cf8345</code>
 </dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20261005-challenge-8b86fb3dec004b42a35d650257aaea24.json</code>
+<code>20261027-challenge-63f5d25f3a124505a0c8aa1fbbf8f10f.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>ace8a0ca3915aad934335c1b56f39d7bee616cf8ff1b30e816e46edf80107eb9</code>
+<code>7d8e50083a3fef613bca596701d9ad2b8a24f66149e74dc5dc6d47973a77ecd8</code>
 </dd>
 </dl>
     <ul class="limits"><li>Predeclared builder-authored cases; authors knew the rules. Not an independent blind holdout.</li><li>Rule-contract checks and desired capability probes have separate denominators.</li><li>A completed execution can contain contract failures and unsupported capabilities.</li><li>Synthetic source labels are fixture metadata; no real access or attacker activity was observed.</li><li>Membership changes lack an authoritative affected-member relationship in this event contract.</li><li>In-process SQLite with accidental network/process guards; not production capacity or an OS sandbox.</li></ul>
@@ -5891,48 +5935,48 @@ code {
 <tbody><tr>
 <td>django-tests</td>
 <td class="check">Passed</td>
-<td>1997</td>
-<td>95.313</td>
+<td>2000</td>
+<td>88.915</td>
 </tr><tr>
 <td>django-check</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>1.392</td>
+<td>1.622</td>
 </tr><tr>
 <td>migration-drift</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>1.419</td>
+<td>1.688</td>
 </tr><tr>
 <td>ruff-check</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>0.042</td>
+<td>0.045</td>
 </tr><tr>
 <td>ruff-format</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>0.041</td>
+<td>0.035</td>
 </tr><tr>
 <td>publication-scan</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>17.29</td>
+<td>17.148</td>
 </tr><tr>
 <td>node-courier-tests</td>
 <td class="check">Passed</td>
 <td>22</td>
-<td>0.253</td>
+<td>0.302</td>
 </tr><tr>
 <td>node-http-harness-mock-tests</td>
 <td class="check">Passed</td>
 <td>17</td>
-<td>0.125</td>
+<td>0.121</td>
 </tr><tr>
 <td>node-bettail-route-mock-tests</td>
 <td class="check">Passed</td>
 <td>23</td>
-<td>0.136</td>
+<td>0.131</td>
 </tr></tbody>
 </table>
 </div>
@@ -5941,26 +5985,26 @@ code {
 <div class="details-body">
 <dl class="identity">
 <dt>Execution started</dt>
-<dd>2026-10-05T17:28:04.562929+00:00</dd>
+<dd>2026-10-27T18:38:51.837004+00:00</dd>
 <dt>Execution finished</dt>
-<dd>2026-10-05T17:30:02.792896+00:00</dd>
+<dd>2026-10-27T18:40:44.224833+00:00</dd>
 <dt>Run ID</dt>
 <dd>
-<code>20261005T172804562269Z-73bbd2b8</code>
+<code>20261027T183851836383Z-9ce0fe8e</code>
 </dd>
 <dt>Git revision</dt>
 <dd>
-<code>e404062a53fb04a0010ed49029c2d21998277c00</code> · working tree had changes</dd>
+<code>126d43b468afd261f936237450ed7fc3646743aa</code> · working tree had changes</dd>
 <dt>Source content</dt>
 <dd>
-<code>74f652fd84c22a6cc29fd22b7bc37ff2791901ea3529152e3845dce6e3988f35</code> · 690 files</dd>
+<code>5123c56f8ecae3cc271d7e694eafde11eae3f096b2bd3b849a79a48cb0968bfa</code> · 691 files</dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20261005T172804562269Z-73bbd2b8.json</code>
+<code>20261027T183851836383Z-9ce0fe8e.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>af918701901708e1f38002c2396609436d4045f88d2f7098aeb15f0b0d1ffb04</code>
+<code>e2d5753382c4a6127fbcf50287506f48cdc77f3f86f70207fc5ea2ae548dd024</code>
 </dd>
 </dl>
 <ul class="limits"><li>Builder-operated local core verification; not an independent audit.</li><li>Node courier, HTTP-harness and BetTail route suites use mocks; they do not contact real services.</li><li>No real Supabase auth, source-app HTTP/storage, PostgreSQL concurrency or container tests.</li><li>No dependency advisory lookup, remote CI, deployment or production validation.</li><li>Hashes identify content; a filesystem administrator can replace logs and receipts.</li><li>Documentation and generated evidence are excluded from the source digest.</li></ul>
@@ -5974,7 +6018,7 @@ code {
 <section class="section">
 <div class="section-head">
 <h2>Fixing a missed scenario</h2>
-<span class="badge muted-badge">Builder-authored synthetic lab</span>
+<span class="badge muted-badge">Synthetic lab I wrote</span>
 </div>
 <p>The original simulation exposed a time-window boundary gap. Compare recorded outcomes on the same declared scenarios, and inspect the individual results below.</p>
 <div class="grid">
@@ -6014,7 +6058,7 @@ code {
 <span style="width:100%">
 </span>
 </div>
-<p class="small">2026-10-05T17:30:10.126627+00:00 · Source matched at page generation.</p>
+<p class="small">2026-10-27T18:40:51.206362+00:00 · Source matched at page generation.</p>
 </article>
 </div>
 <p class="coverage">The comparison uses five expected-alert and ten expected-no-alert scenarios. These development cases are not an independent holdout or a measurement of production detection accuracy. A code change and its retest are separate recorded executions.</p>
@@ -6023,7 +6067,7 @@ code {
 <h3>Current simulation · 15 / 15 scenarios met</h3>
 <span class="badge ">passed</span>
 </div>
-<p class="small">Executed 2026-10-05T17:30:06.420945+00:00 → 2026-10-05T17:30:10.126627+00:00 · disposable in-memory SQLite · Django in-process test client</p>
+<p class="small">Executed 2026-10-27T18:40:47.908482+00:00 → 2026-10-27T18:40:51.206362+00:00 · disposable in-memory SQLite · Django in-process test client</p>
 <div class="table-wrap">
 <table>
 <thead>
@@ -6141,25 +6185,25 @@ code {
 <dl class="identity">
 <dt>Run ID</dt>
 <dd>
-<code>e69afefc6019460cbbbac918f04f637d</code>
+<code>32c6c30a6ff24fa48053bc825e44c2b6</code>
 </dd>
 <dt>Git revision</dt>
 <dd>
-<code>e404062a53fb04a0010ed49029c2d21998277c00</code> · working tree had changes</dd>
+<code>126d43b468afd261f936237450ed7fc3646743aa</code> · working tree had changes</dd>
 <dt>Source content</dt>
 <dd>
-<code>74f652fd84c22a6cc29fd22b7bc37ff2791901ea3529152e3845dce6e3988f35</code> · 690 files</dd>
+<code>5123c56f8ecae3cc271d7e694eafde11eae3f096b2bd3b849a79a48cb0968bfa</code> · 691 files</dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20261005-simulation-e69afefc6019460cbbbac918f04f637d.json</code>
+<code>20261027-simulation-32c6c30a6ff24fa48053bc825e44c2b6.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>5724ccf83f6c21b3d02bd60111aadd4c4f5fd06677e444f766930fb1651321de</code>
+<code>26a8dae197cde556a69f9b3823b3ae938664d40171f1e5b34b98bedf8a153a48</code>
 </dd>
 <dt>Recorded result hash</dt>
 <dd>
-<code>084157f3a123e80e8d26d0e6531931e7be9157e62e122d2953c07c8c1b975026</code> · private original bytes not reread by this page builder</dd>
+<code>7ba32efa0ee517406ca3c65f540f4d9d0076c20d2f4300b3bfc36623402cdfb3</code> · private original bytes not reread when this page was built</dd>
 </dl>
 <p class="small">Not tested in this simulation:</p>
 <ul class="limits"><li>Endpoint or cloud inventory</li><li>Live adversary exploitation</li><li>Production traffic</li><li>Multi-node availability</li><li>PostgreSQL concurrency or crash durability</li><li>Network HTTP latency</li><li>Competitor products</li><li>Independent blind holdout</li><li>Automated external response</li></ul>
@@ -6306,7 +6350,7 @@ code {
 </dd>
 <dt>Recorded result hash</dt>
 <dd>
-<code>5ee88efc509d50f5e393cbc3e0b0b7680f99bdb9689f3e33c0e0b27cf14ea673</code> · private original bytes not reread by this page builder</dd>
+<code>5ee88efc509d50f5e393cbc3e0b0b7680f99bdb9689f3e33c0e0b27cf14ea673</code> · private original bytes not reread when this page was built</dd>
 </dl>
 <p class="small">Not tested in this simulation:</p>
 <ul class="limits"><li>Endpoint or cloud inventory</li><li>Live adversary exploitation</li><li>Production traffic</li><li>Multi-node availability</li><li>PostgreSQL concurrency or crash durability</li><li>Network HTTP latency</li><li>Competitor products</li><li>Independent blind holdout</li><li>Automated external response</li></ul>
@@ -6336,7 +6380,7 @@ code {
 </div>
 </article>
 </section>
-<footer class="footer">Page generated 2026-10-05T17:30:19.238123+00:00. Execution times are shown separately above. All dates are UTC. SignalBridge · Public, read-only portfolio artifact. The evidence viewer works as one HTML file. Source, receipt and metrics links point to files in the same repository.</footer>
+<footer class="footer">Page generated 2026-10-27T18:41:00.624820+00:00. Execution times are shown separately above. All dates are UTC. SignalBridge · Public, read-only portfolio artifact. The evidence viewer works as one HTML file. Source, receipt and metrics links point to files in the same repository.</footer>
 </main>
 </body>
 </html>

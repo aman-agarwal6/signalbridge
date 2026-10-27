@@ -611,7 +611,7 @@
     "Recorded synthetic reference lab; not production or live monitoring.",
     "One deliberately introduced regression is not a detection-accuracy benchmark.",
     "The case remained open; reset checks are not independent analyst approval of remediation.",
-    "Wazuh inputs were staged in the source run. A later native collector attempt collected zero of 24 inputs and its launcher was retired. No successful enterprise collection is claimed.",
+    "Wazuh inputs were staged in the source run. The first native collector attempt collected zero of 24 inputs and its launcher was retired. A later native run (0d137b47) archived 24 of 24 inputs and raised the 8 expected alerts, each once. Wazuh received the R3 finding from SignalBridge; it did not rediscover it independently.",
     "The recorded source hash identifies the executed revision, not subsequent UI changes.",
     "Local administrators can replace receipts; hashes are not independent attestation."
   ],
@@ -630,5 +630,71 @@
     "independent_shutdown_reason": "control_error",
     "launcher_retired": true,
     "claim_boundary": "Retained failed execution and diagnosis; no collection success, continuous operation or independent attestation."
+  },
+  "later_runs": {
+    "collection": {
+      "run_id": "0d137b4720ad476faa68d36754b7357f",
+      "started_at": "2026-10-03T07:04:49.192624+00:00",
+      "receipt": "20261003-wazuh-native-collection-0d137b4720ad476faa68d36754b7357f.json",
+      "archived_inputs": 24,
+      "expected_inputs": 24,
+      "alerted_inputs": 8,
+      "expected_alerts": 8,
+      "independent_r3_rediscovery": false
+    },
+    "runs": [
+      {
+        "tool": "Wazuh",
+        "date": "October 3",
+        "title": "Every record archived, every alert raised once",
+        "figure": "24 / 24",
+        "figure_label": "records archived",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261003-wazuh-native-collection-0d137b4720ad476faa68d36754b7357f.json",
+            "label": "Collection run"
+          }
+        ]
+      },
+      {
+        "tool": "OWASP ZAP",
+        "date": "October 3",
+        "title": "A finding on the faulty build, gone after the fix",
+        "figure": "1 \u2192 0",
+        "figure_label": "findings before and after the fix",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261003-authenticated-zap-offline-d975b97fad814c9b8e4304e114c776e5.json",
+            "label": "Scan run"
+          }
+        ]
+      },
+      {
+        "tool": "Keycloak \u00b7 Chromium",
+        "date": "October 4",
+        "title": "Password and TOTP sign-in, attacked and walked through",
+        "figure": "28 / 28",
+        "figure_label": "protocol controls passed",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261004-identity-native-73632025aeee400bb7ee49b69fba7c99.json",
+            "label": "Identity run"
+          }
+        ]
+      },
+      {
+        "tool": "Shuffle SOAR",
+        "date": "October 5",
+        "title": "A real workflow through nine failure cases",
+        "figure": "9 / 9",
+        "figure_label": "scenarios answered as designed",
+        "receipts": [
+          {
+            "path": "docs/evidence/20261005-shuffle-native-workflow-315cfb85-9c28-4e4e-9cac-8ce455e92448.json",
+            "label": "Workflow run"
+          }
+        ]
+      }
+    ]
   }
 }

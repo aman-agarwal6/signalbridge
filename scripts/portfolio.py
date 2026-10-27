@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from bridge.simulation_evidence import json_document, stamp, validate_result
+from scripts.portfolio_identity import load_identity
 from scripts.portfolio_integrations import load_integrations
 from scripts.portfolio_native import load_native
 from scripts.portfolio_story import load_story
@@ -356,6 +357,7 @@ def reconstruct_metrics(
             "same_declared_scenarios": comparison,
             "integrations": load_integrations(root, read_public, require),
             "native": load_native(root, read_public, require),
+            "identity": load_identity(root, unlinked, json_document, require),
             "limits": [
                 "Self-run evidence, not an outside audit or an enterprise benchmark.",
                 "Core verification and synthetic simulation are different executions with separate dates.",
@@ -480,6 +482,13 @@ def recheck_evidence(root, metrics):
     for receipt in receipts:
         _, digest = read_public(root, receipt["receipt"])
         require(digest == receipt["receipt_sha256"], "Receipt changed while building.")
+    if metrics["identity"]:
+        current = load_identity(root, unlinked, json_document, require)
+        require(
+            current is not None
+            and current["report_sha256"] == metrics["identity"]["report_sha256"],
+            "Identity score report changed while building.",
+        )
     if metrics["story"]:
         for source in metrics["story"]["sources"]:
             path = root / source["path"]
