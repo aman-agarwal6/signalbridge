@@ -2228,7 +2228,7 @@ code {
 <p class="run-figure">18 / 21 <small>files my rules target</small>
 </p>
 <ul class="run-facts"><li>12 of 13 rules had test data; E8 has none yet</li><li>22 of 26 expected rule-file pairs</li><li>0 alerts on files a rule wasn't meant for</li></ul>
-<p class="run-limit">I wrote down the expectations for W1–W4 and E1–E8 before the first scoring run. W5 was added after it.</p>
+<p class="run-limit">I wrote down which rules should fire on each file before the first scoring run, except W5, which I added after it.</p>
 </li>
 <li class="evidence-box">
 <div class="run-meta">
@@ -2256,7 +2256,7 @@ code {
 <div>
 <p class="eyebrow">Latest recorded application proof · October 2</p>
 <h2 id="current-evidence-title">Permission removed. Private access observed. One investigation.</h2>
-<p>Follow the genuine reference-app run: 23 processed events, a detected document-access defect and verified restoration controls. It also shows the first Wazuh collection attempt, which failed, and the October 3 run that collected the same records.</p>
+<p>Follow the genuine reference-app run: 23 processed events, a detected document-access defect and verified restoration controls. It also shows the last attempt with the original Wazuh launcher, which failed, and the later October 3 run that collected the same records.</p>
 </div>
 <a href="access-assurance.html">Follow the access evidence &#8594;</a>
 </section>
@@ -5887,25 +5887,25 @@ code {
 </div>
     <dl class="identity">
 <dt>Execution</dt>
-<dd>2026-10-27T18:40:57.363238+00:00 → 2026-10-27T18:40:57.769734+00:00</dd>
+<dd>2026-10-27T19:17:55.531470+00:00 → 2026-10-27T19:17:55.926473+00:00</dd>
 <dt>Run ID</dt>
 <dd>
-<code>63f5d25f3a124505a0c8aa1fbbf8f10f</code>
+<code>378ea6cca74d41ce8dad531260f8cbda</code>
 </dd>
 <dt>Source content</dt>
 <dd>
-<code>5123c56f8ecae3cc271d7e694eafde11eae3f096b2bd3b849a79a48cb0968bfa</code> · 691 files · matched at generation</dd>
+<code>be7bd0ebb6cbd1cedf8d9b95082ead90fcc7a25a6d544237d1a778732f38416e</code> · 691 files · matched at generation</dd>
 <dt>Predeclared catalog</dt>
 <dd>
 <code>6709461d435e6dad7f89cf9e447f3629423caf9728e11118858ddcdae0cf8345</code>
 </dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20261027-challenge-63f5d25f3a124505a0c8aa1fbbf8f10f.json</code>
+<code>20261027-challenge-378ea6cca74d41ce8dad531260f8cbda.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>7d8e50083a3fef613bca596701d9ad2b8a24f66149e74dc5dc6d47973a77ecd8</code>
+<code>da615cefbb916fa6116c42481322f93932fd1d7be319f03654e41c2bf9d755c0</code>
 </dd>
 </dl>
     <ul class="limits"><li>Predeclared builder-authored cases; authors knew the rules. Not an independent blind holdout.</li><li>Rule-contract checks and desired capability probes have separate denominators.</li><li>A completed execution can contain contract failures and unsupported capabilities.</li><li>Synthetic source labels are fixture metadata; no real access or attacker activity was observed.</li><li>Membership changes lack an authoritative affected-member relationship in this event contract.</li><li>In-process SQLite with accidental network/process guards; not production capacity or an OS sandbox.</li></ul>
@@ -5936,47 +5936,47 @@ code {
 <td>django-tests</td>
 <td class="check">Passed</td>
 <td>2000</td>
-<td>88.915</td>
+<td>86.177</td>
 </tr><tr>
 <td>django-check</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>1.622</td>
+<td>1.284</td>
 </tr><tr>
 <td>migration-drift</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>1.688</td>
+<td>1.334</td>
 </tr><tr>
 <td>ruff-check</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>0.045</td>
+<td>0.043</td>
 </tr><tr>
 <td>ruff-format</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>0.035</td>
+<td>0.036</td>
 </tr><tr>
 <td>publication-scan</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>17.148</td>
+<td>17.044</td>
 </tr><tr>
 <td>node-courier-tests</td>
 <td class="check">Passed</td>
 <td>22</td>
-<td>0.302</td>
+<td>0.348</td>
 </tr><tr>
 <td>node-http-harness-mock-tests</td>
 <td class="check">Passed</td>
 <td>17</td>
-<td>0.121</td>
+<td>0.127</td>
 </tr><tr>
 <td>node-bettail-route-mock-tests</td>
 <td class="check">Passed</td>
 <td>23</td>
-<td>0.131</td>
+<td>0.138</td>
 </tr></tbody>
 </table>
 </div>
@@ -5985,29 +5985,29 @@ code {
 <div class="details-body">
 <dl class="identity">
 <dt>Execution started</dt>
-<dd>2026-10-27T18:38:51.837004+00:00</dd>
+<dd>2026-10-27T19:15:54.221873+00:00</dd>
 <dt>Execution finished</dt>
-<dd>2026-10-27T18:40:44.224833+00:00</dd>
+<dd>2026-10-27T19:17:43.147632+00:00</dd>
 <dt>Run ID</dt>
 <dd>
-<code>20261027T183851836383Z-9ce0fe8e</code>
+<code>20261027T191554221152Z-fb9c8de1</code>
 </dd>
 <dt>Git revision</dt>
 <dd>
-<code>126d43b468afd261f936237450ed7fc3646743aa</code> · working tree had changes</dd>
+<code>0a3020f80343bede5ad4e0b25ea8d06968ea7148</code></dd>
 <dt>Source content</dt>
 <dd>
-<code>5123c56f8ecae3cc271d7e694eafde11eae3f096b2bd3b849a79a48cb0968bfa</code> · 691 files</dd>
+<code>be7bd0ebb6cbd1cedf8d9b95082ead90fcc7a25a6d544237d1a778732f38416e</code> · 691 files</dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20261027T183851836383Z-9ce0fe8e.json</code>
+<code>20261027T191554221152Z-fb9c8de1.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>e2d5753382c4a6127fbcf50287506f48cdc77f3f86f70207fc5ea2ae548dd024</code>
+<code>487b841240154318d7f87287134812ef0a6f0748dc308eec0bdc2ca720974ad2</code>
 </dd>
 </dl>
-<ul class="limits"><li>Builder-operated local core verification; not an independent audit.</li><li>Node courier, HTTP-harness and BetTail route suites use mocks; they do not contact real services.</li><li>No real Supabase auth, source-app HTTP/storage, PostgreSQL concurrency or container tests.</li><li>No dependency advisory lookup, remote CI, deployment or production validation.</li><li>Hashes identify content; a filesystem administrator can replace logs and receipts.</li><li>Documentation and generated evidence are excluded from the source digest.</li></ul>
+<ul class="limits"><li>Self-run local core verification; not an independent audit.</li><li>Node courier, HTTP-harness and BetTail route suites use mocks; they do not contact real services.</li><li>No real Supabase auth, source-app HTTP/storage, PostgreSQL concurrency or container tests.</li><li>No dependency advisory lookup, remote CI, deployment or production validation.</li><li>Hashes identify content; a filesystem administrator can replace logs and receipts.</li><li>Documentation and generated evidence are excluded from the source digest.</li></ul>
 </div>
 </details>
 </div>
@@ -6018,7 +6018,7 @@ code {
 <section class="section">
 <div class="section-head">
 <h2>Fixing a missed scenario</h2>
-<span class="badge muted-badge">Synthetic lab I wrote</span>
+<span class="badge muted-badge">Synthetic scenarios I wrote</span>
 </div>
 <p>The original simulation exposed a time-window boundary gap. Compare recorded outcomes on the same declared scenarios, and inspect the individual results below.</p>
 <div class="grid">
@@ -6058,7 +6058,7 @@ code {
 <span style="width:100%">
 </span>
 </div>
-<p class="small">2026-10-27T18:40:51.206362+00:00 · Source matched at page generation.</p>
+<p class="small">2026-10-27T19:17:49.887739+00:00 · Source matched at page generation.</p>
 </article>
 </div>
 <p class="coverage">The comparison uses five expected-alert and ten expected-no-alert scenarios. These development cases are not an independent holdout or a measurement of production detection accuracy. A code change and its retest are separate recorded executions.</p>
@@ -6067,7 +6067,7 @@ code {
 <h3>Current simulation · 15 / 15 scenarios met</h3>
 <span class="badge ">passed</span>
 </div>
-<p class="small">Executed 2026-10-27T18:40:47.908482+00:00 → 2026-10-27T18:40:51.206362+00:00 · disposable in-memory SQLite · Django in-process test client</p>
+<p class="small">Executed 2026-10-27T19:17:46.623598+00:00 → 2026-10-27T19:17:49.887739+00:00 · disposable in-memory SQLite · Django in-process test client</p>
 <div class="table-wrap">
 <table>
 <thead>
@@ -6185,25 +6185,25 @@ code {
 <dl class="identity">
 <dt>Run ID</dt>
 <dd>
-<code>32c6c30a6ff24fa48053bc825e44c2b6</code>
+<code>d80adaf71a8644e69674ccd4e6935a7d</code>
 </dd>
 <dt>Git revision</dt>
 <dd>
-<code>126d43b468afd261f936237450ed7fc3646743aa</code> · working tree had changes</dd>
+<code>0a3020f80343bede5ad4e0b25ea8d06968ea7148</code> · working tree had changes</dd>
 <dt>Source content</dt>
 <dd>
-<code>5123c56f8ecae3cc271d7e694eafde11eae3f096b2bd3b849a79a48cb0968bfa</code> · 691 files</dd>
+<code>be7bd0ebb6cbd1cedf8d9b95082ead90fcc7a25a6d544237d1a778732f38416e</code> · 691 files</dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20261027-simulation-32c6c30a6ff24fa48053bc825e44c2b6.json</code>
+<code>20261027-simulation-d80adaf71a8644e69674ccd4e6935a7d.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>26a8dae197cde556a69f9b3823b3ae938664d40171f1e5b34b98bedf8a153a48</code>
+<code>d994ce7f8a9c87d865027ed2f827248bfc700b525d24cbb098b12a432dc63ddb</code>
 </dd>
 <dt>Recorded result hash</dt>
 <dd>
-<code>7ba32efa0ee517406ca3c65f540f4d9d0076c20d2f4300b3bfc36623402cdfb3</code> · private original bytes not reread when this page was built</dd>
+<code>05f36fb6abba311ef065e9c843061c87b96e1a4c6cf3dd815f33fd028d89e9d1</code> · private original bytes not reread when this page was built</dd>
 </dl>
 <p class="small">Not tested in this simulation:</p>
 <ul class="limits"><li>Endpoint or cloud inventory</li><li>Live adversary exploitation</li><li>Production traffic</li><li>Multi-node availability</li><li>PostgreSQL concurrency or crash durability</li><li>Network HTTP latency</li><li>Competitor products</li><li>Independent blind holdout</li><li>Automated external response</li></ul>
@@ -6380,7 +6380,7 @@ code {
 </div>
 </article>
 </section>
-<footer class="footer">Page generated 2026-10-27T18:41:00.624820+00:00. Execution times are shown separately above. All dates are UTC. SignalBridge · Public, read-only portfolio artifact. The evidence viewer works as one HTML file. Source, receipt and metrics links point to files in the same repository.</footer>
+<footer class="footer">Page generated 2026-10-27T19:17:58.622079+00:00. Execution times are shown separately above. All dates are UTC. SignalBridge · Public, read-only portfolio artifact. The evidence viewer works as one HTML file. Source, receipt and metrics links point to files in the same repository.</footer>
 </main>
 </body>
 </html>

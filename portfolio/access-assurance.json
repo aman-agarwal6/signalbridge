@@ -611,7 +611,7 @@
     "Recorded synthetic reference lab; not production or live monitoring.",
     "One deliberately introduced regression is not a detection-accuracy benchmark.",
     "The case remained open; reset checks are not independent analyst approval of remediation.",
-    "Wazuh inputs were staged in the source run. The first native collector attempt collected zero of 24 inputs and its launcher was retired. A later native run (0d137b47) archived 24 of 24 inputs and raised the 8 expected alerts, each once. Wazuh received the R3 finding from SignalBridge; it did not rediscover it independently.",
+    "Wazuh inputs were staged in the source run. The last attempt with the original collector launcher collected zero of 24 inputs, and that launcher was retired. A later native run (0d137b47) archived 24 of 24 inputs and raised the 8 expected alerts, each once. Wazuh received the R3 finding from SignalBridge; it did not rediscover it independently.",
     "The recorded source hash identifies the executed revision, not subsequent UI changes.",
     "Local administrators can replace receipts; hashes are not independent attestation."
   ],

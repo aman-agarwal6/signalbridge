@@ -110,15 +110,15 @@ Receipts are kept exactly as recorded, with their original wording.
 
 **Limits.** Synthetic test workers in a local lab. A signal shows what AccessOps observed and signed, not what the session accessed. See the [receiver README](../integrations/ssf/README.md).
 
-### Accessibility ([axe scan](evidence/20261005-accessibility-axe-scan.json), [viewer rescan](evidence/20261027-accessibility-axe-scan-viewer.json))
+### Accessibility ([axe scan](evidence/20261005-accessibility-axe-scan.json), [viewer rescan](evidence/20261027-accessibility-axe-scan-viewer-2.json))
 
 **What happened.** On 5 October 2026 at 02:43 UTC, axe-core 4.13 ran in headless Chrome against 16 console pages (overview, integrations, detections, events, findings, scans, investigations and one case with its printable brief, checks, replay, practice, requirements, the capability lab, a 404 page and sign-in) and the three evidence viewer pages: 19 pages, 38 page runs in light and dark color schemes, using WCAG 2.0-2.2 A/AA and best-practice rules. It ran on a disposable copy of the console with synthetic data, signed in as the synthetic analyst. It found six kinds of problem, all fixed: an activity chart whose `role="img"` hid its links from screen readers, invalid definition-list markup, an empty table header, low contrast (a mint link color inherited inside a light panel at 1.29:1, and small grey text just under 4.5:1), a skipped heading level, and a bare default 404 page without a main landmark. After the fixes: 0 violations on all 38 page runs.
 
-The three viewer pages changed after that scan (commits `f1630d5`, `4a93db2` and `16bcc03`, then the 27 October refresh). On 27 October I rescanned the regenerated pages with the same scanner and axe-core version: 0 violations on 6 page runs. The console templates and stylesheets haven't changed since the first scan, so the console pages were not rescanned.
+The three evidence viewer pages changed after that scan (commits `f1630d5`, `4a93db2` and `16bcc03`, then the 27 October refresh). On 27 October I rescanned the regenerated pages with the same scanner and axe-core version: 0 violations on 6 page runs. The record holds each page's SHA-256. The console templates and stylesheets haven't changed since the first scan, so the console pages were not rescanned.
 
 **Read.** `found_before_fixes` (cause and fix for each), `pages` (per page and color scheme), `scanner.sha256` for `scripts/accessibility_scan.mjs`. In the rescan: `result`, `pages`, `scope`.
 
-**Limits.** Automated rules catch only part of WCAG. There was no manual screen-reader, zoom or full keyboard audit, and 40 items axe marks for manual review were not reviewed. One desktop viewport only.
+**Limits.** Automated rules catch only part of WCAG. There was no manual screen-reader, zoom or full keyboard audit, and 40 items axe marks for manual review were not reviewed, nor were 6 more in the 27 October rescan. One desktop viewport only.
 
 ### Detection ([evaluation](evidence/20261005-enterprise-detection-evaluation-public-release.json))
 

@@ -865,7 +865,7 @@ p,li {
 <div class="split">
 <div class="inset">
 <h3>0 / 24 inputs collected</h3>
-<p>The first enterprise collector run started its native processes, but none of the frozen source inputs reached the archive. The integration failed its acceptance check.</p>
+<p>The last attempt with the original collector launcher started its native processes, but none of the frozen source inputs reached the archive. The integration failed its acceptance check.</p>
 <p>This result is separate from the earlier successful 64-event Wazuh pilot in the evidence library.</p>
 </div>
 <div class="inset">
@@ -896,7 +896,7 @@ p,li {
 <div><h3>What ran next</h3>
 <p>The source run staged 23 minimal observations and one SignalBridge-generated finding for Wazuh. The collector runs that consumed them are recorded above. A forwarded finding is not independent Wazuh rediscovery.</p><p>Later native runs in the same lab, each with its receipt:</p>
 <ul><li>Wazuh · October 3: 24 / 24 records archived (<a href="../docs/evidence/20261003-wazuh-native-collection-0d137b4720ad476faa68d36754b7357f.json">receipt</a>)</li><li>OWASP ZAP · October 3: 1 → 0 findings before and after the fix (<a href="../docs/evidence/20261003-authenticated-zap-offline-d975b97fad814c9b8e4304e114c776e5.json">receipt</a>)</li><li>Keycloak · Chromium · October 4: 28 / 28 protocol controls passed (<a href="../docs/evidence/20261004-identity-native-73632025aeee400bb7ee49b69fba7c99.json">receipt</a>)</li><li>Shuffle SOAR · October 5: 9 / 9 scenarios answered as designed (<a href="../docs/evidence/20261005-shuffle-native-workflow-315cfb85-9c28-4e4e-9cac-8ce455e92448.json">receipt</a>)</li></ul>
-<p>The planned 24-hour run stopped at 10.6 hours of Wazuh capture and was not repeated.</p>
+<p>The planned 24-hour run ended after 13.5 hours, with Wazuh capturing the first 10.6; a replacement run was started and stopped, so no full 24-hour result exists.</p>
 <a href="index.html#october">See every October run in the evidence viewer →</a>
 </div>
 </div>
@@ -917,7 +917,7 @@ p,li {
 </section>
 <section class="limits">
 <h2>Evidence boundary</h2>
-<ul><li>Recorded synthetic reference lab; not production or live monitoring.</li><li>One deliberately introduced regression is not a detection-accuracy benchmark.</li><li>The case remained open; reset checks are not independent analyst approval of remediation.</li><li>Wazuh inputs were staged in the source run. The first native collector attempt collected zero of 24 inputs and its launcher was retired. A later native run (0d137b47) archived 24 of 24 inputs and raised the 8 expected alerts, each once. Wazuh received the R3 finding from SignalBridge; it did not rediscover it independently.</li><li>The recorded source hash identifies the executed revision, not subsequent UI changes.</li><li>Local administrators can replace receipts; hashes are not independent attestation.</li></ul>
+<ul><li>Recorded synthetic reference lab; not production or live monitoring.</li><li>One deliberately introduced regression is not a detection-accuracy benchmark.</li><li>The case remained open; reset checks are not independent analyst approval of remediation.</li><li>Wazuh inputs were staged in the source run. The last attempt with the original collector launcher collected zero of 24 inputs, and that launcher was retired. A later native run (0d137b47) archived 24 of 24 inputs and raised the 8 expected alerts, each once. Wazuh received the R3 finding from SignalBridge; it did not rediscover it independently.</li><li>The recorded source hash identifies the executed revision, not subsequent UI changes.</li><li>Local administrators can replace receipts; hashes are not independent attestation.</li></ul>
 <p class="identifier">Native run: b8667b816ce8419da7f3d5d9ac9d6ad6<br>Executed source SHA-256: 6a0b6fb937544bb51fa673b34cb99a0cd5f522f3ac84871c609c379a89ff1471</p>
 </section>
 </main>

@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "kind": "signalbridge-accessibility-axe-scan",
+  "run_id": "59fc37b6eec14cbfa254f3e4bdd8fef7",
+  "recorded_at": "2026-10-27T19:19:24.344048+00:00",
+  "tool": {
+    "name": "axe-core",
+    "version": "4.13.0",
+    "license": "MPL-2.0",
+    "npm_integrity": "sha512-UzGt8zg7Ny8djbYMhxl2zuEevVa7r2gJjYY5Lwr1xM7+XU2nd6CkIWFTVcCIbAP63vSz71NaVyyuSk9lHKcy0A==",
+    "axe_min_js_sha256": "c24f097bd2f451d4f933e8bc7d8d539f8672a2ebcb5cc9f9f3eec8ca9470a0c1",
+    "acquisition": "Taken from an existing local npm install whose lockfile pins the registry integrity above (the same version and integrity as the 5 October scan); not vendored. Three separate local installs had the same axe.min.js SHA-256."
+  },
+  "browser": "Chrome/156.0.8078.48 (headless, throwaway profile)",
+  "scanner": {
+    "path": "scripts/accessibility_scan.mjs",
+    "sha256": "f5b2d44c2e7d4934a6f8e3e3849fb2f6d30c5ba6b49c4021dddff1f90ca2309e"
+  },
+  "rule_tags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa",
+    "wcag22aa",
+    "best-practice"
+  ],
+  "environment": "The three regenerated evidence-viewer pages, copied to a scratch folder and opened as local files; no console was started and the pages load no network resources. Viewport 1280x900, light and dark color schemes.",
+  "scope": "Rescan of the three evidence viewer pages only, after their final rebuild on 27 October 2026. It replaces the earlier same-day viewer rescan (docs/evidence/20261027-accessibility-axe-scan-viewer.json), which covered the pages before a wording-only rebuild. Console pages were not rescanned; their templates and stylesheets have not changed since the 5 October scan (docs/evidence/20261005-accessibility-axe-scan.json).",
+  "result": {
+    "pages": 3,
+    "page_runs": 6,
+    "violations": 0,
+    "needs_manual_review_total": 6
+  },
+  "pages": [
+    {
+      "page": "file: portfolio/index.html",
+      "sha256": "a4625072a8724160eae237ab3fa7ff5f4c830d6d40b497d266d426c2c916f661",
+      "stylesheets": 1,
+      "light": {
+        "violations": 0,
+        "passed_rules": 48,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 48,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "file: portfolio/access-assurance.html",
+      "sha256": "0b1699f4960bf8c53598479d7457ed6f13e4a650d328fb20edbd408d6f7a862a",
+      "stylesheets": 1,
+      "light": {
+        "violations": 0,
+        "passed_rules": 33,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 33,
+        "needs_manual_review": 1
+      }
+    },
+    {
+      "page": "file: portfolio/evaluation.html",
+      "sha256": "c6003a5d230a5665547da21a5375fe6643381e779afdf58909d17f245acfb5d1",
+      "stylesheets": 1,
+      "light": {
+        "violations": 0,
+        "passed_rules": 32,
+        "needs_manual_review": 1
+      },
+      "dark": {
+        "violations": 0,
+        "passed_rules": 32,
+        "needs_manual_review": 1
+      }
+    }
+  ],
+  "violations": [],
+  "limits": [
+    "Automated rules catch only part of WCAG; no manual screen-reader, zoom/reflow, cognitive or full keyboard-order audit was done.",
+    "Items axe marks as needing manual review were counted but not reviewed.",
+    "Static viewer pages only; the console pages keep their 5 October result.",
+    "One desktop viewport; no mobile viewport or high-contrast mode."
+  ]
+}
