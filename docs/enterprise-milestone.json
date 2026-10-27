@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_on": "2026-10-27",
-  "status": "v0.1.0_released_2026-10-05_full_24h_run_not_completed",
+  "status": "released_full_24h_run_not_completed",
   "scope": "One enterprise, multiple application scopes and analyst teams; isolated reference lab only.",
   "completion_policy": "Every mandatory engineering acceptance gate must pass. Historical receipts and portable tests do not substitute for native execution.",
   "safety": {
@@ -19,14 +19,14 @@
       "PostgreSQL app-first SKIP LOCKED queue claims; atomic evidence/completion; SQLite serial fallback; processing timestamps, committed attempts, worker identity and failed-retry visibility.",
       "Source-owned document/expense authorization, app-scoped pseudonyms, effective-access assertions, transactional outbox and collector-assigned instrumented_lab provenance; wire v1/v2 preserved.",
       "Genuine isolated reference run: 31 HTTP controls, 23 processed source events across two scopes, one R3 investigation, defect reset/restoration and both shutdown checks. Exact receipt is native_reference_access.receipt.",
-      "Nine recorded native PostgreSQL concurrency/crash methods. Later identity/retest races and separate restored application remain unfinished.",
+      "Nine recorded native PostgreSQL concurrency/crash methods. The identity and retest races later passed natively (ed3829e7, 14 checks), and a restored console ran the case workflow (de4f6409).",
       "App-scoped analyst queues, assignment, acknowledgement, deadlines, categorized notes, evidence-bound review/remediation tasks and printable analyst briefs.",
       "Separate signed case-evidence/read-task machine capabilities with replay controls and idempotency; no containment or automatic remediation approval.",
       "Five versioned rules, bounded indexed correlation and 48 evaluation scenarios I wrote; false alerts, misses and inconclusives retained.",
       "Wazuh observation/core-signal ledgers, bounded segmented export, exact interrupted-write recovery, native-format matching, capture journal and separately guarded native collector runner.",
-      "Authenticated source capture and finite passive ZAP runner/importer prepared; native enterprise execution remains unfinished.",
-      "Explicit issuer/subject lifecycle, 15-minute sessions, local permission withdrawal and actual established-library signature/client checks. Native Keycloak/MFA remains unfinished.",
-      "Protected bounded monitoring exporter, worker freshness and operational console indicators. Native monitoring and 24-hour execution remain unfinished."
+      "Authenticated source capture and finite passive ZAP runner/importer. The native scan (d975b97f) and operator import (6bce0948) later passed.",
+      "Explicit issuer/subject lifecycle, 15-minute sessions, local permission withdrawal and actual established-library signature/client checks. Native Keycloak/MFA later passed (73632025).",
+      "Protected bounded monitoring exporter, worker freshness and operational console indicators. Native monitoring later passed (0cd4256f); the full 24-hour run was not completed."
     ],
     "limitations": [
       "Raw receipts identify their exact historical source revision and scope; earlier preparation statements are historical. Later code does not inherit native verification.",
@@ -114,7 +114,7 @@
     {
       "id": "operations",
       "status": "restoration_and_monitoring_passed_endurance_shown_full_24h_not_completed",
-      "remaining": "Restoration passed natively twice (de4f6409, 6bce0948) and monitoring passed 24/24 (0cd4256f). Endurance is shown by a compressed full-window run plus a 13.5-hour continuous run with 10.6 hours of Wazuh capture; the full 24-hour run was not completed, and I chose not to repeat it (2026-10-04). Rehearsal 8a1889fe ran the full workload with all five fixed interruptions scaled into 40 minutes: 1,201/1,201 events accepted, processed and observed by Wazuh, every recovery on time, zero anomalies under the schedule definition I approved. The continuous run 894fb388 ran 13.5 hours: all 27,118 reads delivered with no service errors through the workers, collector and source-delivery interruptions; Wazuh captured continuously for 10.6 hours, then its collector stopped itself because the reviewed ten-minute log finder bounds a month log folder at 64 entries and Wazuh's ten-minute rotations exceeded it. The continuous collector now has a day-long bound (tested); I started a replacement 24-hour run and then stopped it to prioritise the remaining deliverables. 68 of 27,118 reads were sent late, all during brief host disk stalls.",
+      "remaining": "Restoration passed natively twice (de4f6409, 6bce0948) and monitoring passed 24/24 (0cd4256f). Endurance is shown by a compressed full-window run plus a 13.5-hour continuous run with 10.6 hours of Wazuh capture; the full 24-hour run was not completed (2026-10-04). Rehearsal 8a1889fe ran the full workload with all five fixed interruptions scaled into 40 minutes: 1,201/1,201 events accepted, processed and observed by Wazuh, every recovery on time, zero anomalies under the schedule definition I approved. The continuous run 894fb388 ran 13.5 hours: all 27,118 reads delivered with no service errors through the workers, collector and source-delivery interruptions; Wazuh captured continuously for 10.6 hours, then its collector stopped itself because the reviewed ten-minute log finder bounds a month log folder at 64 entries and Wazuh's ten-minute rotations exceeded it. The continuous collector now has a day-long bound (tested); I started a replacement 24-hour run and then stopped it to prioritise the remaining deliverables. 68 of 27,118 reads were sent late, all during brief host disk stalls.",
       "preparation": "integrations/monitoring/preparation.json",
       "reliability_preparation_receipt": "docs/evidence/20261002-reliability-measurement-preparation.json",
       "monitoring_receipt": "docs/evidence/20261003-monitoring-native-0cd4256f4a1c4f2692f67eae4704bd53.json",
@@ -132,8 +132,8 @@
     },
     {
       "id": "presentation",
-      "status": "recorded_walkthrough_and_analyst_brief_delivered_final_milestone_pending",
-      "remaining": "New recorded native access walkthrough and authenticated printable analyst brief implemented; final all-integration demonstration still depends on unfinished native gates."
+      "status": "recorded_walkthrough_and_analyst_brief_delivered",
+      "remaining": "Recorded native access walkthrough and authenticated printable analyst brief delivered. The walkthrough lists the later October Wazuh, ZAP, Keycloak and Shuffle runs with their receipts; it is not a single all-integration demonstration."
     }
   ],
   "approvals": [
@@ -160,35 +160,30 @@
     {
       "id": "postgresql_internal_network_stage",
       "status": "approved_attempt_used_startup_failed_shutdown_verified",
-      "reference": "call_H3KllLzCpps3RLux73ir4LJ6",
       "limits": "One revised attempt; two cached-image containers 512 MiB/one CPU each, six official pinned wheels <=20 MiB, no runtime egress or published ports, eight GiB whole-stage guard including prior consumption, twenty-five GiB reserve and independent thirty-minute shutdown.",
       "receipt": "docs/evidence/20261001-postgresql-in-network-861397ae7e3b47deae9a47dbfaddf08d.json"
     },
     {
       "id": "postgresql_internal_cached_retry",
       "status": "approved_attempt_used_disk_guard_shutdown_verified",
-      "reference": "call_66ztBlErLWqmhLV4AnSFVLoU",
       "limits": "One corrected retry; all limits unchanged; reverify and reuse six retained wheels, no new downloads.",
       "receipt": "docs/evidence/20261001-postgresql-in-network-6f99948c35ad46c7a42c658013c25ae7.json"
     },
     {
       "id": "postgresql_internal_cached_retry_12gib",
       "status": "approved_attempt_used_driver_import_failed_shutdown_verified",
-      "reference": "call_cs46ZyeapBylPsMAB6Bgx2AM",
       "limits": "One cached-package attempt, twelve GiB total guard including all prior consumption; all other two-container/internal-network/resource/reserve/shutdown limits unchanged. No downloads.",
       "receipt": "docs/evidence/20261001-postgresql-in-network-60d537d6368647da98033b074795b184.json"
     },
     {
       "id": "postgresql_dependency_mount_retry",
       "status": "approved_attempt_used_temporary_install_capacity_failed_shutdown_verified",
-      "reference": "call_4ldpfNuPG98xHX7KrgMi33vm",
       "limits": "One corrected retry with separate 64 MiB noexec scratch and 128 MiB executable dependency storage; cached wheels only; all twelve GiB/resource/isolation/reserve/watchdog limits retained.",
       "receipt": "docs/evidence/20261001-postgresql-in-network-7c8753e06c3d4fc59565b362557b5aac.json"
     },
     {
       "id": "postgresql_install_staging_retry",
       "status": "approved_attempt_used_nine_native_checks_passed_shutdown_verified",
-      "reference": "call_DHhwYu87PrkFFmaGPHvpCT9T",
       "limits": "One retry, unchanged mounts and resource caps; optional bytecode disabled, staging inside existing dependency mount, verified footprint before launch. No downloads.",
       "receipt": "docs/evidence/20261001-postgresql-in-network-1d8fd148036e43b0915fbbe86606d013.json"
     },
@@ -201,7 +196,7 @@
     },
     {
       "id": "native_header_source_launch",
-      "status": "requested_awaiting_explicit_reply",
+      "status": "superseded",
       "plan": "integrations/zap_enterprise/source-stage-plan.json",
       "limits": "One header-source attempt; Docker Desktop, two cached images and six cached verified wheels; 512 MiB/one CPU each, no ports/runtime egress/Docker socket/other-project mounts, fixed five-minute header-only fault, eight reconciled events, twelve GiB whole-stage guard including prior consumption, twenty-five GiB free disk, four GiB host memory headroom and independent thirty-minute scoped shutdown. No downloads or native ZAP. Stop before launch on unexpected workloads or missing cache; retain evidence/volumes and both shutdown receipts."
     },
@@ -220,36 +215,33 @@
     {
       "id": "reference_source_diagnostic_retry_20261002",
       "status": "approved_used_passed_shutdown_verified",
-      "authority": "User explicitly approved both outstanding questions in this chat.",
+      "approved_on": "2026-10-02",
       "limits": "One corrected access source-stage run; cached images/wheels; prior 12 GiB cumulative guard, 25 GiB disk and 4 GiB memory reserves; 30-minute watchdog; no downloads or profile expansion.",
       "receipt": "docs/evidence/20261002-reference-access-b8667b816ce8419da7f3d5d9ac9d6ad6.json"
     },
     {
       "id": "identity_dependency_environment_20261002",
       "status": "approved_used_installed",
-      "authority": "User explicitly approved both outstanding questions in this chat.",
+      "approved_on": "2026-10-02",
       "limits": "Separate local SSO test environment; 4,895,036 bytes official hash-pinned downloads, 8 MiB download cap, 1 GiB growth cap, ten minutes, 25 GiB reserve; no Keycloak/service startup or changes to existing Python.",
       "receipt": "docs/evidence/20261002-identity-dependencies-2d151d900f1745688c762d215237fb92.json"
     },
     {
       "id": "20261003-user-wazuh-collector",
       "status": "approved_attempt_used_image_preflight_failed_no_container_created",
-      "reference": "call_No637RGc5WRIGlN3CIRU40yP",
       "limits": "One native collector run against the completed reference source snapshot (23 observations and one forwarded R3 signal). Cached pinned Wazuh image only, 1.5 GiB RAM, one CPU, no network or ports, 15-minute independent shutdown, 12 GiB cumulative disk guard, 25 GiB disk and 4 GiB host memory reserve; no downloads. Start Docker Desktop and stop it afterward; stop before launch if cached image missing or other containers running.",
       "receipt": "docs/evidence/20261003-wazuh-reference-bootstrap-bdd940033d094724bb052e25512b36f9.json"
     },
     {
       "id": "20261003-wazuh-inspection-corrected-retry",
       "status": "approved_attempt_used_runtime_inspection_failed_container_never_started",
-      "reference": "call_awW6vzwMsNXO04vJSNNn46nO",
       "limits": "One corrected native collector attempt after the changes are reviewed. Same 24 packets, cached pinned image, 1.5 GiB/one CPU, no network or ports or downloads, 15-minute independent shutdown, 12 GiB cumulative disk guard, 25 GiB disk reserve and 4 GiB memory reserve; stop Docker afterward.",
       "receipt": "docs/evidence/20261003-wazuh-reference-bootstrap-4e538a364db04a0dbcd03aceafdca8af.json"
     },
     {
       "id": "20261003-wazuh-final-metadata-attempt",
       "status": "final_attempt_used_daemons_ran_zero_records_launcher_retired",
-      "reference": "call_vvXAxCdGfWAXFRHLcYmC3Vns",
-      "limits": "One LAST attempt of this setup with corrected optional metadata and CAP_ spelling. Same24 inputs, cached image,1.5GiB/oneCPU, no network/ports/downloads,15minute watchdog,12GiB cumulative growth,25GiB disk and4GiB memory reserves. If unsuccessful, stop Docker, preserve evidence and move on or propose another solution. No more retries of this launcher.",
+      "limits": "One last attempt of this setup with corrected optional metadata and CAP_ spelling. Same 24 inputs, cached image, 1.5 GiB/one CPU, no network/ports/downloads, 15-minute watchdog, 12 GiB cumulative growth, 25 GiB disk and 4 GiB memory reserves. If unsuccessful, stop Docker, keep the evidence and retire this launcher; no more retries.",
       "receipt": "docs/evidence/20261003-wazuh-reference-bootstrap-009bc11e4fe649649d7dd44887be8b72.json"
     },
     {
@@ -257,7 +249,6 @@
       "status": "approved_attempt_used_startup_crash_no_containers",
       "plan": "integrations/identity/native-stage-plan.json",
       "limits": "One stage: reviewed pinned Keycloak image (~253 MiB compressed) and two wheels (~4.74 MiB, capped at 8 MiB), start Docker Desktop, three isolated containers totaling 3 GiB RAM/one CPU each, four GiB whole-stage growth from before Docker/downloads, 25 GiB free disk and 4 GiB host memory reserve, existing 30 GiB milestone guard, 30-minute independent shutdown and 60-second drain. No published ports, runtime internet, Docker socket, other-project mounts, host trust changes, paid services or production access. Stop if required cached PostgreSQL/Python images are missing or other workloads are running. No automatic retry.",
-      "reference": "call_zEB0RPOoKEYoVFAe1k2iXANg",
       "receipt": "docs/evidence/20261003-keycloak-startup-stopped.json"
     }
   ],
@@ -439,7 +430,6 @@
     "live_migrations": "not_applied",
     "scope": "Trusted local operator and already-validated internal identity contract. The contract dataclass is not cryptographic evidence.",
     "verification_receipt": "docs/evidence/20261002-enterprise-offline-fb9dc6b7885e402fa565e554c74271fb.json",
-    "human_handoff_review": "var/audit/enterprise-handoff/final-review.json",
     "protocol_adapter": "integrations/identity/protocol.py",
     "protocol_tests": "integrations/identity/protocol_tests.py",
     "dependency_controller": "scripts/prepare_identity_runtime.py",
@@ -493,8 +483,7 @@
     "scope": "Historical document-lab R3 correction only; not current deployment health or generic remediation coverage.",
     "verification_receipt": "docs/evidence/20261002-enterprise-offline-edc3428f772d4dfcb97b6e7b5eae9684.json",
     "source_profile_controls": 31,
-    "source_profile_logical_events": 23,
-    "human_handoff_review": "var/audit/enterprise-handoff/final-review.json"
+    "source_profile_logical_events": 23
   },
   "wazuh_enterprise_preparation": {
     "status": "final_native_collection_attempt_failed_preloaded_snapshot_launcher_retired",
@@ -524,7 +513,6 @@
     "runtime_attestation_and_heartbeat": "kernel_controls_and_process_heartbeat_observed_on_final_attempt; not_external_attestation_or_collection_acceptance",
     "verification_receipt": "docs/evidence/20261002-enterprise-offline-f18c899868e849a889ca247133f2fbef.json",
     "assurance_boundary": "Trusted local database/file operator; native-format matches do not establish a running manager or independent R3 rediscovery.",
-    "human_handoff_review": "var/audit/enterprise-handoff/final-review.json",
     "collector_bootstrap": {
       "status": "final_native_attempt_incomplete_launcher_retired",
       "recipe": "integrations/wazuh_enterprise/collector-stage-plan.json",
@@ -590,7 +578,6 @@
     "console_import": "implemented_locally_checked_native_execution_unrun",
     "native_zap_login_engine": "outside_this_fixed_capture_profile",
     "verification_receipt": "docs/evidence/20261002-enterprise-offline-b95d414604984c82bd25fde501f10bf1.json",
-    "human_handoff_review": "var/audit/enterprise-handoff/final-review.json",
     "native_profile_control_methods": 9,
     "source_recipe": "integrations/enterprise/compose.header.yaml",
     "native_source_controller": "implemented_locally_checked_not_launched",
@@ -612,7 +599,7 @@
   },
   "native_header_source_stage_plan": "integrations/zap_enterprise/source-stage-plan.json",
   "reference_header_launch_preparation": {
-    "status": "requested_awaiting_explicit_reply",
+    "status": "superseded",
     "launcher": "scripts/enterprise_reference_verify.py launch --profile header",
     "fixed_profile": "integrations/zap_enterprise/source-stage-plan.json",
     "offline_compose_parse": "passed_using_installed_cli_no_daemon",
@@ -622,8 +609,7 @@
       "measured_at": "2026-10-02T15:58:10-05:00",
       "probe": "Read-only Windows memory API and filesystem free space; not reserved capacity. Recheck before launch."
     },
-    "acceptance": "Actual private ACL/container/kernel/TLS/PostgreSQL evidence, eight reconciled source events, reset, child-process shutdown and both host shutdown receipts remain required. This is not the permission-revocation profile or native ZAP acceptance.",
-    "human_handoff_review": "var/audit/enterprise-handoff/final-review.json"
+    "acceptance": "Actual private ACL/container/kernel/TLS/PostgreSQL evidence, eight reconciled source events, reset, child-process shutdown and both host shutdown receipts remain required. This is not the permission-revocation profile or native ZAP acceptance."
   },
   "zap_scanner_preparation": {
     "status": "host_controller_prepared_requires_genuine_source_and_review_not_authorized",
@@ -637,7 +623,6 @@
     "independent_scanner_watchdog": "implemented_locally_checked_not_executed",
     "raw_native_evidence_verifier": "implemented_locally_checked_file_consistency_only_not_native_attestation",
     "verification_receipt": "docs/evidence/20261002-enterprise-offline-b95d414604984c82bd25fde501f10bf1.json",
-    "human_handoff_review": "var/audit/enterprise-handoff/final-review.json",
     "driver_runtime_methods": 22,
     "evidence_revalidation_methods": 13,
     "evidence_verifier": "integrations/zap_enterprise/scanner_host_evidence.py",
@@ -845,7 +830,7 @@
     "available_memory_bytes_at_preparation": 8464347136,
     "conservative_loss_bytes_at_preparation": 30000032482,
     "remaining_guard_margin_bytes_at_preparation": 2212222238,
-    "limits": "Same 25 GiB disk and4 GiB memory reserves,1.5 GiB/one CPU collector, no downloads/Desktop changes, unchanged original baseline. Native execution requires fresh exact review/approval. These are sampled guards, not hard quotas.",
+    "limits": "Same 25 GiB disk and 4 GiB memory reserves, 1.5 GiB/one CPU collector, no downloads/Desktop changes, unchanged original baseline. Native execution requires fresh exact review/approval. These are sampled guards, not hard quotas.",
     "attempt_receipt": "docs/evidence/20261003-wazuh-capacity-preservation-stopped.json",
     "approval_used": true,
     "retry_authorized": false

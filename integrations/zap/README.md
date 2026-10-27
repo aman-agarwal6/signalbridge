@@ -1,12 +1,11 @@
 # ZAP integration: bounded synthetic pilot preparation
 
-**Status: a synthetic ZAP pilot ran on 2026-09-24
+**Status:** a synthetic pilot ran on 2026-09-24
 ([receipt](../../docs/evidence/20260924-zap-synthetic-pilot.json)), and an authenticated scan
 ran on 2026-10-03 ([d975b97f](../../docs/evidence/20261003-authenticated-zap-offline-d975b97fad814c9b8e4304e114c776e5.json)):
-one finding on the faulty build, none after the fix.** The authenticated profile lives in
-`integrations/zap_enterprise/`. This page describes the earlier synthetic pilot. Preparation
-and mocked tests alone establish no live connection or security finding. [Runtime
-instructions](RUNTIME.md) require a separate container inspection gate and retained execution
+one finding on the faulty build, none after the fix. The authenticated profile is in
+`integrations/zap_enterprise/`; this page describes the earlier synthetic pilot, and the
+[runtime instructions](RUNTIME.md) cover its container inspection gate and retained execution
 evidence.
 
 The business purpose is to add reviewable web-security observations alongside
