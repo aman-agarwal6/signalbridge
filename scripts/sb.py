@@ -320,7 +320,7 @@ def test_apps(app="all"):
         )
     if not (ROOT / "node_modules/@electric-sql/pglite/package.json").is_file():
         raise SystemExit(
-            "The optional PGlite package is missing. See docs/GETTING_STARTED.md for source-app labs."
+            "The optional PGlite package is missing. See README.md#run-the-lightweight-console."
         )
     run("node", "integrations/check-apps.mjs", app)
 
@@ -395,7 +395,9 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if args.command != "doctor":
         if not project_python():
-            raise SystemExit("Use this checkout's .venv Python. See docs/GETTING_STARTED.md.")
+            raise SystemExit(
+                "Use this checkout's .venv Python. See README.md#run-the-lightweight-console."
+            )
         local_environment()
     {
         "doctor": doctor,
