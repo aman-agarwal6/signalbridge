@@ -6,10 +6,15 @@ experiment: a security engineer can trace a rule to its input and see why it did
 or did not match. It does not install software, start a container, change Windows,
 monitor the host, or take automatic action.
 
-**Current evidence: offline preparation checks only.** Wazuh has not been executed
-by this preparation task. A valid XML document and passing Python checks do not
-establish that Wazuh accepts the configuration or produces the expected alerts.
-The parent task owns actual runtime validation and any resulting evidence.
+**Status: a synthetic Wazuh pilot ran on 2026-09-24
+([receipt](../../docs/evidence/20260924-wazuh-synthetic-pilot.json)). On 2026-10-03 a native
+run ([0d137b47](../../docs/evidence/20261003-wazuh-native-collection-0d137b4720ad476faa68d36754b7357f.json))
+archived 24 of 24 inputs with 8 alerts, and a recovery run
+([4a5748dc](../../docs/evidence/20261003-wazuh-native-recovery-4a5748dcc7a74525a7469dc8d802438a.json))
+survived a collector stop and log rotation.** Those October runs use the enterprise profile in
+`integrations/wazuh_enterprise/`. This page describes the original preparation package. A valid
+XML document and passing Python checks alone do not establish that Wazuh accepts the
+configuration or produces the expected alerts; the receipts above record what actually ran.
 
 ## Files and contract
 

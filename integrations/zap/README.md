@@ -1,9 +1,13 @@
 # ZAP integration: bounded synthetic pilot preparation
 
-**Status: parser, fixed request driver and synthetic fixture prepared; actual ZAP
-execution is pending.** No live connection or security finding is established by
-preparation or mocked tests. [Runtime instructions](RUNTIME.md) require a separate
-container inspection gate and retained execution evidence.
+**Status: a synthetic ZAP pilot ran on 2026-09-24
+([receipt](../../docs/evidence/20260924-zap-synthetic-pilot.json)), and an authenticated scan
+ran on 2026-10-03 ([d975b97f](../../docs/evidence/20261003-authenticated-zap-offline-d975b97fad814c9b8e4304e114c776e5.json)):
+one finding on the faulty build, none after the fix.** The authenticated profile lives in
+`integrations/zap_enterprise/`. This page describes the earlier synthetic pilot. Preparation
+and mocked tests alone establish no live connection or security finding. [Runtime
+instructions](RUNTIME.md) require a separate container inspection gate and retained execution
+evidence.
 
 The business purpose is to add reviewable web-security observations alongside
 SignalBridge's authorization evidence. This first scope concerns three anonymous

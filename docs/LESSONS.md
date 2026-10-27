@@ -14,6 +14,15 @@ Running SignalBridge against real components found problems that unit tests and 
 
 **Lesson:** each class of bug needed the real component to appear: a real browser, a real database engine and a real SOC tool. That is the case for keeping native runs in the delivery, not just unit tests.
 
+## Found by testing and scanning
+
+| What broke | How it showed up | Fix |
+| --- | --- | --- |
+| A case write could rely on a permission check made earlier in the same request | Tests that downgraded the user's role, removed their membership or disabled the account after that check: all 4 writes still went through | Account and role are re-read inside the write transaction; 13 regression tests. These were deterministic SQLite tests, not a timed exploit ([record](evidence/20260925-authorization-refresh.json)) |
+| The Supabase lab used for the BetTail test copy kept a known default database password, and 3 backend services were set to publish host ports | Scanner triage on 24 September and a hardening preflight check | All 8 database role passwords rotated and each checked (32/32); host-port bindings 3 → 0; memory and CPU capped ([record](evidence/20260925-bettail-hardening-complete.json)) |
+
+**Lesson:** a check made at the start of a request can be stale by the time the write commits. The permission check belongs inside the same transaction as the write.
+
 ## Wrong assumptions about third-party tools
 
 - **Wazuh's log collector ignores files that do not exist when it starts**, and does not read content already present. The first smoke test captured nothing. Fix: create all 32 monitored files empty before start and append afterwards.
@@ -24,6 +33,8 @@ Running SignalBridge against real components found problems that unit tests and 
 - **Shuffle's upstream compose turns on swarm mode** (`SHUFFLE_SWARM_CONFIG=run`). On a single offline host that is not a swarm manager, Orborus never started a worker, so every execution timed out. Fix: plain-container mode, where workers copy Orborus' network.
 - **Shuffle's HTTP app rewrites JSON bodies** with `json.dumps(ast.literal_eval(body))`, changing the separators. SignalBridge signs the exact body bytes, so every request through Shuffle failed authentication (401). The control worked as designed. Fix: the dispatcher signs the form the app sends and refuses to send a body the app would change.
 - **Wazuh's bundled Python 3.10** cannot parse Wazuh's own `+0000` time-zone offsets, which masked a collector failure. Fix: normalize `+HHMM` to `+HH:MM`, verified under that Python by replaying the failed run.
+- **pySigma's Splunk query for R5 compiled, but Splunk refused to run it.** The backend chains the correlation as `multisearch` with `stats` inside, and Splunk allows only streaming commands there. The generated SPL also uses fixed time bins, which split windows the Python rules treat as rolling. Fix: hand-written SPL with `streamstats time_window`, labeled apart from the generated queries. See the [detections README](../detections/README.md).
+- **Three SigmaHQ Entra rules match a field these exports don't have.** The device code, Temporary Access Pass and app credential rules read `properties.message`, which no record in the Entra diagnostic-settings captures carries, so they can't fire there. My E3, E5 and E7 match fields the records do have (`authenticationProtocol`, the operation name).
 
 **Lesson:** pin exact image digests and record observed behavior in tests. Several of these changed between versions, and a floating tag would have hidden which one ran.
 
@@ -47,4 +58,6 @@ Running SignalBridge against real components found problems that unit tests and 
 - **Report early from slow environments.** The Shuffle guest reported only at the end, so a stalled boot cost 35 minutes per attempt. It now sends a "started" record first, so the host can spot a stalled boot within five minutes.
 - **Guards earn their keep.** The memory floor, the disk guard and the "no other project's containers" check each stopped or refused a run during this work. Each time nothing was left running, both shutdown checks passed where something had started, and no other project's data was touched.
 - **Keep the failures.** Failed and incomplete receipts stay in `docs/evidence/`. Re-measurements are new files, not edits, and the front page states what was not completed.
+- **Copying a community filter copies its blind spot.** My first Kerberoasting rule (W1) skipped computer-account requesters, like SigmaHQ's rule. On a public capture of Kerberoasting run as SYSTEM, the tickets were requested by the computer account, so both missed it. A burst rule doesn't need that filter, so W1 now counts computer requesters. These attack captures can't show how much noise that adds on a real network.
+- **Write expectations down before the first score, and say when you didn't.** For my first 12 identity rules (W1–W4, E1–E8) I recorded which should fire on each file before the first scoring run. That run showed an NTLM-only spray no rule could see, so I added W5 and set its expectations after seeing the data. The README and `sources.json` say so, and W5's catch is reported with that caveat.
 - **Automation sandboxes are part of the environment.** Early Wazuh runs failed at folder-permission setup because the sandboxed shell they ran in couldn't change access-control lists. It was not a script bug. Native stages now run outside that sandbox.

@@ -6,21 +6,26 @@
 
 ## At a glance
 
-- **13 Sigma rules for identity attacks**, including password spraying, Kerberoasting, MFA fatigue, device code phishing and backdoored app credentials. They read Windows domain controller and Microsoft Entra ID logs. On 23 public attack captures they flagged 18 of 21 attacks and raised no alerts on files a rule wasn't meant for.
-- **Community rules checked against real exports.** Three of SigmaHQ's Entra rules (device code, Temporary Access Pass, app credentials) can't fire on these logs. SigmaHQ's Kerberoasting rule and my own first version both missed Kerberoasting run as SYSTEM.
-- **Access that should have ended.** In the lab, a planted authorization bug let a removed member read a private document, and rule R3 opened the investigation. Testing also found a race that let a just-removed user make 4 writes, now fixed inside the database transaction.
-- **Works with [AccessOps](https://github.com/aman-agarwal6/AccessOps).** SignalBridge verifies AccessOps' signed leaver events. When a departed test account was used again, it opened a critical case.
+- **13 Sigma rules for identity attacks**, including password spraying, Kerberoasting, MFA fatigue, device code phishing and backdoored app credentials. They read Windows domain controller and Microsoft Entra ID logs. On public attack captures, the 12 rules with test data flagged 18 of the 21 files they target, and none fired on a file it wasn't meant for.
+- **Community rules checked on the same captures.** Three of SigmaHQ's Entra rules (device code, Temporary Access Pass, app credentials) can't fire on these captures' export format. SigmaHQ's Kerberoasting rule and my own first version both missed Kerberoasting run as SYSTEM.
+- **Access that should have ended.** In the lab, a planted authorization bug let a removed member read a private document, and rule R3 opened the investigation. Testing also found that case writes could rely on a permission check made earlier in the same request; that is now re-checked inside the database transaction.
+- **Works with [AccessOps](https://github.com/aman-agarwal6/AccessOps).** SignalBridge verifies AccessOps' signed leaver events. When a departed test account was re-enabled and used, it opened a critical case.
 
 ## Identity attack detections
 
 Scored on [Splunk's attack_data](https://github.com/splunk/attack_data) captures, which I didn't write, beside SigmaHQ's rules for the same attacks. Inputs are pinned by SHA-256, and CI re-scores them on every change.
 
-| | My 13 rules | SigmaHQ's 10 rules for the same attacks |
+| | My rules (12 with test data) | SigmaHQ's rules (9 with test data) |
 | --- | --- | --- |
 | Attack files flagged | **18 of 21** | 6 of the 12 their rules cover |
 | Alerts on files a rule wasn't meant for | 0 | 0 |
 
-My rules miss one RC4 ticket (by design; SigmaHQ's rule catches it), a spray spread across many addresses, and an account with only two MFA failures. Rules, findings, the first run and the two fixes after it are in the [identity detections README](detections/identity/README.md).
+- 12 of my 13 rules had a capture to catch; E8 (disabled-account sign-in) has none yet. 9 of SigmaHQ's 10 did. The rules without data still ran on every sign-in capture.
+- For W1–W4 and E1–E8, I wrote down which rules should fire on each file before the first scoring run. I added W5 after that run, with its expectations set after seeing the results.
+- Zero alerts on other files is a misfire check, not a false-positive rate: most of those files hold none of the events a rule reads, and the captures have almost no normal traffic.
+- The three SigmaHQ Entra rules above match a `properties.message` field that these Entra diagnostic-settings records don't have.
+
+My rules miss one RC4 ticket (by design; SigmaHQ's rule catches it), a spray spread across many addresses, and an account with only two MFA failures. Rules, findings, the first run and the two changes after it are in the [identity detections README](detections/identity/README.md).
 
 ## The access lab
 
@@ -43,10 +48,10 @@ flowchart LR
 
 | Problem | Before the fix | Now |
 | --- | --- | --- |
-| Write race | A user just removed from a workspace could still make 4 case writes | Permissions re-checked inside the database transaction; 13 regression tests |
+| Write race | A case write could rely on a permission check made earlier in the same request. When a test downgraded the user's role, removed their membership or disabled the account after that check, all 4 test writes still went through | Permissions re-checked inside the database transaction; 13 [regression tests](tests/test_authorization_refresh.py) ([record](docs/evidence/20260925-authorization-refresh.json)). Deterministic SQLite tests at fixed points in the request, not a timed exploit |
 | Sign-in blocked | A keyboard-only browser test showed the console's Content-Security-Policy blocked the redirect to Keycloak | Policy fixed, with its own regression test |
 | Generated Splunk query | pySigma's Splunk output for R5 compiled, but Splunk refused to run it | Hand-written SPL with rolling windows; generated and hand-written queries labeled |
-| Default lab password | Scanner triage flagged a default database password and open backend ports | All 8 database credentials rotated, ports closed, memory and CPU capped |
+| Default lab password | Scanner triage flagged a known default database password in the Supabase lab used for the BetTail test copy; a configuration check found 3 backend services set to publish host ports | All 8 database role passwords rotated (32/32 checks: new accepted, old default and wrong password rejected, retest passed); host-port bindings 3 → 0; memory and CPU capped ([record](docs/evidence/20260925-bettail-hardening-complete.json)) |
 | Wazuh log limit | The collector stopped at 10.6 hours of a planned 24-hour run | Log-folder limit fixed |
 
 [Lessons learned](docs/LESSONS.md) covers each of these and the other failures the lab runs uncovered.
@@ -66,8 +71,8 @@ October 1–5, 2026, with synthetic data. The runs used real components (Postgre
 | Monitoring | Prometheus and Grafana: backlog alerts fired and cleared; 24 checks passed | [0cd4256f](docs/evidence/20261003-monitoring-native-0cd4256f4a1c4f2692f67eae4704bd53.json) |
 | Endurance | A compressed 40-minute run recovered from all five planned interruptions with every event delivered and seen by Wazuh. A continuous run delivered all 27,118 reads over 13.5 hours | [rehearsal](docs/evidence/20261004-reliability-rehearsal-8a1889fec8ef49f5acde3c01bfa88e63-remeasured.json), [continuous](docs/evidence/20261004-reliability-continuous-894fb388a2004b43b6b1643e93342df4-summary.json) |
 | Shuffle | A Shuffle workflow in a VM with no network adapter ran nine scenarios against the signed review-task API: retries returned the original task; replayed, changed, wrong-app and stale requests were refused; a lost reply was recovered | [315cfb85](docs/evidence/20261005-shuffle-native-workflow-315cfb85-9c28-4e4e-9cac-8ce455e92448.json) |
-| Leaver signals | Polled [AccessOps](https://github.com/aman-agarwal6/AccessOps)' signed Shared Signals events: 38 tokens across two live rounds verified (ES256), stored once, then acknowledged. In round two, a contained test account was re-enabled and used, and SignalBridge opened a critical "access after departure" case | [dry run](docs/evidence/20261005-accessops-leaver-dry-run-f567427abbbc4929ad50e25be2c84724.json), [round 1](docs/evidence/20261005-accessops-leaver-poll-eefe76ecded04ffe9892bd174c973232.json), [round 2](docs/evidence/20261005-accessops-leaver-poll-931402fb1ee44209b58c60063f63150f.json) |
-| Accessibility | axe-core 4.13 on 19 console and portfolio pages in light and dark mode: 0 violations after fixing six issue types | [axe scan](docs/evidence/20261005-accessibility-axe-scan.json) |
+| Leaver signals | Polled [AccessOps](https://github.com/aman-agarwal6/AccessOps)' signed Shared Signals events: 38 tokens across two live rounds verified (ES256), stored once, then acknowledged. Round one's 3 critical cases were test-induced: AccessOps' intake test backdated each departure by 5 seconds. In round two, a contained test account was re-enabled and used, and SignalBridge opened a critical "access after departure" case: a genuine detection | [dry run](docs/evidence/20261005-accessops-leaver-dry-run-f567427abbbc4929ad50e25be2c84724.json), [round 1](docs/evidence/20261005-accessops-leaver-poll-eefe76ecded04ffe9892bd174c973232.json), [round 2](docs/evidence/20261005-accessops-leaver-poll-931402fb1ee44209b58c60063f63150f.json) |
+| Accessibility | axe-core 4.13 on 16 console pages and the 3 viewer pages in light and dark mode: 0 violations after fixing six issue types. The regenerated viewer pages were rescanned on 27 October: 0 violations | [axe scan](docs/evidence/20261005-accessibility-axe-scan.json), [viewer rescan](docs/evidence/20261027-accessibility-axe-scan-viewer.json) |
 | Detection | 48 scenarios: precision 15/21, recall 15/23, false-positive rate 6/18, 7 inconclusive | [evaluation](docs/evidence/20261005-enterprise-detection-evaluation-public-release.json) |
 | Detection as code | R1–R5 rewritten as [Sigma rules](detections/README.md) with ATT&CK tags, plus SPL and KQL, each run on the same 48 scenarios. KQL in Microsoft's Kusto emulator matched the Python rules in 48; hand-written SPL in Splunk Free in 45 (events exactly on a window edge); compiled Sigma in 45 (re-grants it can't express) | [Splunk](detections/engines/splunk-run.json), [Kusto](detections/engines/kusto-run.json), [Sigma replay](detections/sigma/replay-report.json) |
 
@@ -78,14 +83,14 @@ October 1–5, 2026, with synthetic data. The runs used real components (Postgre
 | If you want to | Open |
 | --- | --- |
 | See each tool run with its record | [Evidence viewer](https://aman-agarwal6.github.io/signalbridge/portfolio/) |
-| Watch the finding unfold | [Recorded access walkthrough](portfolio/access-assurance.html) |
+| Watch the finding unfold | [Recorded access walkthrough](https://aman-agarwal6.github.io/signalbridge/portfolio/access-assurance.html) |
 | Review the implementation | [Engineering reference](docs/DESIGN.md): code map, security boundaries, rules and verification |
 | Check the security design | [Threat model](docs/THREAT_MODEL.md): trust boundaries, threats, controls and the test or run that checks each |
 | Download a fixed version | [Releases](https://github.com/aman-agarwal6/signalbridge/releases): source archive, SBOM and Sigstore provenance, built only after CI passes on that commit |
 
 ## Run the lightweight console
 
-Requires Python 3.11+ and Node 24+. This local SQLite demo needs no Docker. From the repository root:
+Requires Python 3.11+ and Node 24+. CI and the recorded test runs use Python 3.14, and the checks in `detections/` need 3.14. This local SQLite demo needs no Docker. From the repository root:
 
 ```powershell
 python -m venv .venv
