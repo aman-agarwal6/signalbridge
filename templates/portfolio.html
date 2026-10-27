@@ -106,7 +106,7 @@
 <p class="run-figure">{{ identity.mine.files_flagged }} / {{ identity.mine.files_targeted }} <small>files my rules target</small>
 </p>
 <ul class="run-facts"><li>{{ identity.mine.rules_with_data }} of {{ identity.mine.rules }} rules had test data; {{ identity.mine.without_data|join:", " }} has none yet</li><li>{{ identity.mine.pairs_caught }} of {{ identity.mine.pairs_expected }} expected rule-file pairs</li><li>{{ identity.mine.unexpected }} alerts on files a rule wasn't meant for</li></ul>
-<p class="run-limit">I wrote down the expectations for W1–W4 and E1–E8 before the first scoring run. W5 was added after it.</p>
+<p class="run-limit">I wrote down which rules should fire on each file before the first scoring run, except W5, which I added after it.</p>
 </li>
 <li class="evidence-box">
 <div class="run-meta">
@@ -134,7 +134,7 @@
 <div>
 <p class="eyebrow">Latest recorded application proof · October 2</p>
 <h2 id="current-evidence-title">Permission removed. Private access observed. One investigation.</h2>
-<p>Follow the genuine reference-app run: 23 processed events, a detected document-access defect and verified restoration controls. It also shows the first Wazuh collection attempt, which failed, and the October 3 run that collected the same records.</p>
+<p>Follow the genuine reference-app run: 23 processed events, a detected document-access defect and verified restoration controls. It also shows the last attempt with the original Wazuh launcher, which failed, and the later October 3 run that collected the same records.</p>
 </div>
 <a href="access-assurance.html">Follow the access evidence &#8594;</a>
 </section>
@@ -671,7 +671,7 @@
 <section class="section">
 <div class="section-head">
 <h2>Fixing a missed scenario</h2>
-<span class="badge muted-badge">Synthetic lab I wrote</span>
+<span class="badge muted-badge">Synthetic scenarios I wrote</span>
 </div>
 <p>The original simulation exposed a time-window boundary gap. Compare recorded outcomes on the same declared scenarios, and inspect the individual results below.</p>
 {% if same_declared_scenarios %}<div class="grid">

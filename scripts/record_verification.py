@@ -52,7 +52,7 @@ PRIVATE_PARTS = {
     "__pycache__",
 }
 LIMITS = [
-    "Builder-operated local core verification; not an independent audit.",
+    "Self-run local core verification; not an independent audit.",
     "Node courier, HTTP-harness and BetTail route suites use mocks; they do not contact real services.",
     "No real Supabase auth, source-app HTTP/storage, PostgreSQL concurrency or container tests.",
     "No dependency advisory lookup, remote CI, deployment or production validation.",

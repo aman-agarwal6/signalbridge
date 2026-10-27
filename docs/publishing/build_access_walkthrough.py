@@ -91,6 +91,14 @@ def later_runs():
         and receipt["source_binding"]["independent_wazuh_r3_rediscovery"] is False
     ):
         raise ValueError("The Wazuh collection run does not consume this source run.")
+    # The page says the expected alerts were each raised once; require exactly that.
+    if not (
+        coverage["alerted_logical_inputs"] == coverage["expected_alert_inputs"]
+        and coverage["missing_alert_inputs"] == 0
+        and coverage["extra_alert_copies"] == 0
+        and coverage["repeated_alert_tool_ids"] == 0
+    ):
+        raise ValueError("The Wazuh collection alerts do not match the page's wording.")
     return {
         "collection": {
             "run_id": receipt["run_id"],
@@ -226,8 +234,9 @@ def build():
         if report["wazuh_attempt"]:
             collection = report["later_runs"]["collection"]
             report["limits"][3] = (
-                "Wazuh inputs were staged in the source run. The first native collector attempt "
-                "collected zero of 24 inputs and its launcher was retired. A later native run "
+                "Wazuh inputs were staged in the source run. The last attempt with the original "
+                "collector launcher collected zero of 24 inputs, and that launcher was retired. "
+                "A later native run "
                 f"({collection['run_id'][:8]}) archived {collection['archived_inputs']} of "
                 f"{collection['expected_inputs']} inputs and raised the "
                 f"{collection['alerted_inputs']} expected alerts, each once. Wazuh received the "

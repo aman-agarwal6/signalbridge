@@ -320,7 +320,7 @@ def test_apps(app="all"):
         )
     if not (ROOT / "node_modules/@electric-sql/pglite/package.json").is_file():
         raise SystemExit(
-            "The optional PGlite package is missing. See README.md#run-the-lightweight-console."
+            "The optional PGlite package is missing. Run npm ci in the repository root."
         )
     run("node", "integrations/check-apps.mjs", app)
 
