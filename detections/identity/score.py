@@ -1,10 +1,10 @@
 """Score the identity rules, and SigmaHQ's rules for the same attacks, on public attack logs.
 
 The logs are Splunk's attack_data captures, pinned in sources.json and fetched by fetch.py. For
-each file, sources.json says which rules should fire; that was decided from the file's
-description before the first run. Every rule is compiled with pySigma's SQLite backend and run on
-an in-memory table holding that file's events for the rule's log source. A rule fires if its
-query returns any row.
+each file, sources.json says which rules should fire. Expectations for W1-W4 and E1-E8 were set
+before the first scoring run; W5's were added after it (see changes_after_first_run). Every rule
+is compiled with pySigma's SQLite backend and run on an in-memory table holding that file's
+events for the rule's log source. A rule fires if its query returns any row.
 
 Matching follows Sigma's rules: string comparisons ignore letter case (the table's columns use
 COLLATE NOCASE; the SQLite backend alone would compare exact strings case-sensitively).
@@ -256,7 +256,9 @@ def build_report():
             "is compiled by pySigma-backend-sqlite and run on an in-memory table of that file's "
             "rows for the rule's log source, with case-insensitive columns. A rule fires on a file "
             "if its query returns any row; 'hits' counts the rows. Which rules should fire on "
-            "each file comes from sources.json, set before the first run."
+            "each file comes from sources.json. Expectations for W1-W4 and E1-E8 were set "
+            "before the first scoring run; W5's were added after it (see "
+            "changes_after_first_run in sources.json)."
         ),
         "entra_columns": {column: list(paths) for column, paths in ENTRA_COLUMNS.items()},
         "summary": {side: totals(summary) for side, summary in rules.items()},
