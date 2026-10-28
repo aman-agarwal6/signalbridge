@@ -95,7 +95,7 @@
 </div>
 <span class="badge">{{ identity.captures }} pinned captures</span>
 </div>
-<p>I wrote {{ identity.mine.rules }} Sigma rules for Windows domain controller and Microsoft Entra ID attacks and scored them, beside SigmaHQ's {{ identity.sigmahq.rules }} rules for the same attacks, on captures from Splunk's attack_data (commit {{ identity.attack_data_commit }}). Figures are read from the score report when this page is built.</p>
+<p>I wrote {{ identity.mine.rules }} Sigma rules for Windows domain controller and Microsoft Entra ID attacks and scored them, beside SigmaHQ's {{ identity.sigmahq.rules }} rules for the same attacks, on captures from Splunk's attack_data (commit {{ identity.attack_data_commit }}).{% if identity.baseline %} I also ran the Windows rules on a week of real network logs to count false alarms.{% endif %} Figures are read from the reports when this page is built.</p>
 </div>
   <ul class="native-grid">
 <li class="evidence-box">
@@ -128,7 +128,18 @@
 <ul class="run-facts"><li>Inputs pinned by SHA-256 and re-scored in CI</li><li>pySigma compiles each rule to SQLite and runs it on that file's events</li></ul>
 <p class="run-limit">Zero alerts on other files is a misfire check, not a false-positive rate: the captures hold almost no normal traffic.</p>
 <p class="run-receipts"><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/detections/identity/README.md">Identity detections README</a><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/detections/identity/score-report.json">Score report</a></p>
-</li></ul>
+</li>{% if identity.baseline %}
+<li class="evidence-box wide">
+<div class="run-meta">
+<span>LANL host logs · {{ identity.baseline.days }} days</span>
+</div>
+<h3>False alarms on a week of real network logs</h3>
+<p class="run-figure">{{ identity.baseline.events_million }} million <small>de-identified Windows events from Los Alamos National Laboratory</small>
+</p>
+<ul class="run-facts">{% for rule in identity.baseline.rules %}<li>{% if rule.measured %}{{ rule.rule }}: {{ rule.per_day }} alerts a day{% if rule.groups %}, from {{ rule.groups }} {{ rule.group_kind }}{{ rule.groups|pluralize }}{% endif %}{% else %}{{ rule.rule }}: not measured; these logs have no {{ rule.absent|join:", " }} events{% endif %}</li>{% endfor %}</ul>
+<p class="run-limit">The logs aren't labeled, so every alert counts as false. W2 and W3 run only partly on them, and the Entra rules have no public normal-traffic logs to run on.</p>
+<p class="run-receipts"><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/detections/identity/README.md#false-alarms-on-a-week-of-real-network-logs">False-alarm results</a><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/detections/identity/baseline-report.json">Baseline report</a></p>
+</li>{% endif %}</ul>
 </section>{% endif %}
 <section class="current-evidence" aria-labelledby="current-evidence-title">
 <div>

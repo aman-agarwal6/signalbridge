@@ -1932,6 +1932,10 @@ code {
   color:#17342a
 }
 
+.native-grid .evidence-box.wide {
+  grid-column:1/-1
+}
+
 .native-grid h3 {
   font-size:19px;
   line-height:1.35;

@@ -485,9 +485,8 @@ def recheck_evidence(root, metrics):
     if metrics["identity"]:
         current = load_identity(root, unlinked, json_document, require)
         require(
-            current is not None
-            and current["report_sha256"] == metrics["identity"]["report_sha256"],
-            "Identity score report changed while building.",
+            current is not None and current == metrics["identity"],
+            "Identity reports changed while building.",
         )
     if metrics["story"]:
         for source in metrics["story"]["sources"]:
