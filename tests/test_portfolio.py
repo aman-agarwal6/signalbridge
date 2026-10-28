@@ -12,6 +12,7 @@ from unittest.mock import patch
 
 from scripts import portfolio as p
 from scripts import portfolio_native as native
+from scripts.portfolio_identity import BASELINE as IDENTITY_BASELINE
 from scripts.portfolio_identity import REPORT as IDENTITY_REPORT
 from scripts.portfolio_integrations import RECEIPTS, canonical_sha
 
@@ -116,13 +117,17 @@ class PortfolioTests(TestCase):
         self.assertNotIn('id="october"', html)
         self.assertIn("Historical collection result", html)
 
-    def copy_identity_report(self, report=None):
+    def copy_identity_report(self, report=None, baseline=True):
         target = self.root / IDENTITY_REPORT
         target.parent.mkdir(parents=True)
         if report is None:
             shutil.copyfile(p.ROOT / IDENTITY_REPORT, target)
         else:
             target.write_text(json.dumps(report), encoding="utf8")
+        if baseline is True:
+            shutil.copyfile(p.ROOT / IDENTITY_BASELINE, self.root / IDENTITY_BASELINE)
+        elif baseline:
+            (self.root / IDENTITY_BASELINE).write_text(json.dumps(baseline), encoding="utf8")
 
     def test_identity_card_recomputes_its_figures_from_the_score_report(self):
         self.copy_identity_report()
@@ -139,16 +144,38 @@ class PortfolioTests(TestCase):
         self.assertIn('id="identity"', html)
         self.assertIn(f"{mine['files_flagged']} / {mine['files_targeted']} <small>", html)
         self.assertIn("misfire check, not a false-positive rate", html)
+        baseline = json.loads((p.ROOT / IDENTITY_BASELINE).read_text(encoding="utf8"))
+        rules = {rule["rule"]: rule for rule in figures["baseline"]["rules"]}
+        self.assertEqual(set(rules), set(baseline["rules"]["mine"]))
+        for key, rule in baseline["rules"]["mine"].items():
+            self.assertEqual(rules[key]["alerts"], rule["alerts"])
+        self.assertIn("False alarms on a week of real network logs", html)
+        self.assertIn(f"W1: {rules['W1']['per_day']} alerts a day", html)
+        self.assertIn("W4: not measured", html)
 
     def test_absent_identity_report_leaves_no_identity_claims(self):
         self.assertIsNone(self.build()["identity"])
         html = (self.root / "portfolio/index.html").read_text(encoding="utf8")
         self.assertNotIn('id="identity"', html)
 
+    def test_absent_baseline_report_leaves_no_false_alarm_claims(self):
+        self.copy_identity_report(baseline=False)
+        figures = self.build()["identity"]
+        self.assertIsNone(figures["baseline"])
+        html = (self.root / "portfolio/index.html").read_text(encoding="utf8")
+        self.assertIn('id="identity"', html)
+        self.assertNotIn("False alarms on a week", html)
+
     def test_identity_summary_that_does_not_reconcile_cannot_be_exported(self):
         report = json.loads((p.ROOT / IDENTITY_REPORT).read_text(encoding="utf8"))
         report["summary"]["mine"]["caught"] += 1
         self.copy_identity_report(report)
+        self.assert_rejected()
+
+    def test_identity_baseline_that_does_not_reconcile_cannot_be_exported(self):
+        baseline = json.loads((p.ROOT / IDENTITY_BASELINE).read_text(encoding="utf8"))
+        baseline["rules"]["mine"]["W1"]["alerts"] += 1
+        self.copy_identity_report(baseline=baseline)
         self.assert_rejected()
 
     def test_partial_or_modified_october_snapshot_cannot_be_exported(self):

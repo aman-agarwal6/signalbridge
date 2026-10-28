@@ -1940,6 +1940,10 @@ code {
   color:#17342a
 }
 
+.native-grid .evidence-box.wide {
+  grid-column:1/-1
+}
+
 .native-grid h3 {
   font-size:19px;
   line-height:1.35;
@@ -2217,7 +2221,7 @@ code {
 </div>
 <span class="badge">23 pinned captures</span>
 </div>
-<p>I wrote 13 Sigma rules for Windows domain controller and Microsoft Entra ID attacks and scored them, beside SigmaHQ's 10 rules for the same attacks, on captures from Splunk's attack_data (commit 7be4e72). Figures are read from the score report when this page is built.</p>
+<p>I wrote 13 Sigma rules for Windows domain controller and Microsoft Entra ID attacks and scored them, beside SigmaHQ's 10 rules for the same attacks, on captures from Splunk's attack_data (commit 7be4e72). I also ran the Windows rules on a week of real network logs to count false alarms. Figures are read from the reports when this page is built.</p>
 </div>
   <ul class="native-grid">
 <li class="evidence-box">
@@ -2250,6 +2254,17 @@ code {
 <ul class="run-facts"><li>Inputs pinned by SHA-256 and re-scored in CI</li><li>pySigma compiles each rule to SQLite and runs it on that file's events</li></ul>
 <p class="run-limit">Zero alerts on other files is a misfire check, not a false-positive rate: the captures hold almost no normal traffic.</p>
 <p class="run-receipts"><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/detections/identity/README.md">Identity detections README</a><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/detections/identity/score-report.json">Score report</a></p>
+</li>
+<li class="evidence-box wide">
+<div class="run-meta">
+<span>LANL host logs · 7 days</span>
+</div>
+<h3>False alarms on a week of real network logs</h3>
+<p class="run-figure">402 million <small>de-identified Windows events from Los Alamos National Laboratory</small>
+</p>
+<ul class="run-facts"><li>W1: 20.1 alerts a day, from 1 account</li><li>W2: 0 alerts a day</li><li>W3: 8,824.7 alerts a day, from 22 accounts</li><li>W4: not measured; these logs have no 4738 events</li><li>W5: 9.3 alerts a day, from 1 workstation</li></ul>
+<p class="run-limit">The logs aren't labeled, so every alert counts as false. W2 and W3 run only partly on them, and the Entra rules have no public normal-traffic logs to run on.</p>
+<p class="run-receipts"><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/detections/identity/README.md#false-alarms-on-a-week-of-real-network-logs">False-alarm results</a><a href="https://github.com/aman-agarwal6/signalbridge/blob/main/detections/identity/baseline-report.json">Baseline report</a></p>
 </li></ul>
 </section>
 <section class="current-evidence" aria-labelledby="current-evidence-title">
@@ -5627,7 +5642,7 @@ code {
 <div class="metrics">
 <div class="metric">
 <div class="eyebrow">Offline verification</div>
-<strong>2062</strong>
+<strong>2064</strong>
 <small>Executed Python and Node tests · zero failures or skips</small>
 </div>
 <div class="metric">
@@ -5887,25 +5902,25 @@ code {
 </div>
     <dl class="identity">
 <dt>Execution</dt>
-<dd>2026-10-27T19:17:55.531470+00:00 → 2026-10-27T19:17:55.926473+00:00</dd>
+<dd>2026-10-28T04:40:33.733709+00:00 → 2026-10-28T04:40:34.187665+00:00</dd>
 <dt>Run ID</dt>
 <dd>
-<code>378ea6cca74d41ce8dad531260f8cbda</code>
+<code>20e1fb5cedd5454095da75ddaa1afd1b</code>
 </dd>
 <dt>Source content</dt>
 <dd>
-<code>be7bd0ebb6cbd1cedf8d9b95082ead90fcc7a25a6d544237d1a778732f38416e</code> · 691 files · matched at generation</dd>
+<code>32e0d46956a3b8809d9ae1ea8623ebc648df1840ee6f1380ae12d56cc370f8c6</code> · 691 files · matched at generation</dd>
 <dt>Predeclared catalog</dt>
 <dd>
 <code>6709461d435e6dad7f89cf9e447f3629423caf9728e11118858ddcdae0cf8345</code>
 </dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20261027-challenge-378ea6cca74d41ce8dad531260f8cbda.json</code>
+<code>20261028-challenge-20e1fb5cedd5454095da75ddaa1afd1b.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>da615cefbb916fa6116c42481322f93932fd1d7be319f03654e41c2bf9d755c0</code>
+<code>e808d447e55ced739e93ae10a6d51db31eb4aa91c6c8bc87f0c29919c97e5e2e</code>
 </dd>
 </dl>
     <ul class="limits"><li>Predeclared builder-authored cases; authors knew the rules. Not an independent blind holdout.</li><li>Rule-contract checks and desired capability probes have separate denominators.</li><li>A completed execution can contain contract failures and unsupported capabilities.</li><li>Synthetic source labels are fixture metadata; no real access or attacker activity was observed.</li><li>Membership changes lack an authoritative affected-member relationship in this event contract.</li><li>In-process SQLite with accidental network/process guards; not production capacity or an OS sandbox.</li></ul>
@@ -5935,48 +5950,48 @@ code {
 <tbody><tr>
 <td>django-tests</td>
 <td class="check">Passed</td>
-<td>2000</td>
-<td>86.177</td>
+<td>2002</td>
+<td>117.023</td>
 </tr><tr>
 <td>django-check</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>1.284</td>
+<td>1.889</td>
 </tr><tr>
 <td>migration-drift</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>1.334</td>
+<td>1.996</td>
 </tr><tr>
 <td>ruff-check</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>0.043</td>
+<td>0.08</td>
 </tr><tr>
 <td>ruff-format</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>0.036</td>
+<td>0.055</td>
 </tr><tr>
 <td>publication-scan</td>
 <td class="check">Passed</td>
 <td>—</td>
-<td>17.044</td>
+<td>27.701</td>
 </tr><tr>
 <td>node-courier-tests</td>
 <td class="check">Passed</td>
 <td>22</td>
-<td>0.348</td>
+<td>0.592</td>
 </tr><tr>
 <td>node-http-harness-mock-tests</td>
 <td class="check">Passed</td>
 <td>17</td>
-<td>0.127</td>
+<td>0.198</td>
 </tr><tr>
 <td>node-bettail-route-mock-tests</td>
 <td class="check">Passed</td>
 <td>23</td>
-<td>0.138</td>
+<td>0.199</td>
 </tr></tbody>
 </table>
 </div>
@@ -5985,26 +6000,26 @@ code {
 <div class="details-body">
 <dl class="identity">
 <dt>Execution started</dt>
-<dd>2026-10-27T19:15:54.221873+00:00</dd>
+<dd>2026-10-28T04:37:45.299485+00:00</dd>
 <dt>Execution finished</dt>
-<dd>2026-10-27T19:17:43.147632+00:00</dd>
+<dd>2026-10-28T04:40:18.142807+00:00</dd>
 <dt>Run ID</dt>
 <dd>
-<code>20261027T191554221152Z-fb9c8de1</code>
+<code>20261028T043745298682Z-750aaee3</code>
 </dd>
 <dt>Git revision</dt>
 <dd>
-<code>0a3020f80343bede5ad4e0b25ea8d06968ea7148</code></dd>
+<code>7f07bcb62b46f2386cb3d50a853e70560c3656c9</code></dd>
 <dt>Source content</dt>
 <dd>
-<code>be7bd0ebb6cbd1cedf8d9b95082ead90fcc7a25a6d544237d1a778732f38416e</code> · 691 files</dd>
+<code>32e0d46956a3b8809d9ae1ea8623ebc648df1840ee6f1380ae12d56cc370f8c6</code> · 691 files</dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20261027T191554221152Z-fb9c8de1.json</code>
+<code>20261028T043745298682Z-750aaee3.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>487b841240154318d7f87287134812ef0a6f0748dc308eec0bdc2ca720974ad2</code>
+<code>5840b036c583330c27d1c853ab1610bd3b8fd7436766107da2381af9a6a932de</code>
 </dd>
 </dl>
 <ul class="limits"><li>Self-run local core verification; not an independent audit.</li><li>Node courier, HTTP-harness and BetTail route suites use mocks; they do not contact real services.</li><li>No real Supabase auth, source-app HTTP/storage, PostgreSQL concurrency or container tests.</li><li>No dependency advisory lookup, remote CI, deployment or production validation.</li><li>Hashes identify content; a filesystem administrator can replace logs and receipts.</li><li>Documentation and generated evidence are excluded from the source digest.</li></ul>
@@ -6058,7 +6073,7 @@ code {
 <span style="width:100%">
 </span>
 </div>
-<p class="small">2026-10-27T19:17:49.887739+00:00 · Source matched at page generation.</p>
+<p class="small">2026-10-28T04:40:26.409006+00:00 · Source matched at page generation.</p>
 </article>
 </div>
 <p class="coverage">The comparison uses five expected-alert and ten expected-no-alert scenarios. These development cases are not an independent holdout or a measurement of production detection accuracy. A code change and its retest are separate recorded executions.</p>
@@ -6067,7 +6082,7 @@ code {
 <h3>Current simulation · 15 / 15 scenarios met</h3>
 <span class="badge ">passed</span>
 </div>
-<p class="small">Executed 2026-10-27T19:17:46.623598+00:00 → 2026-10-27T19:17:49.887739+00:00 · disposable in-memory SQLite · Django in-process test client</p>
+<p class="small">Executed 2026-10-28T04:40:22.768753+00:00 → 2026-10-28T04:40:26.409006+00:00 · disposable in-memory SQLite · Django in-process test client</p>
 <div class="table-wrap">
 <table>
 <thead>
@@ -6185,25 +6200,25 @@ code {
 <dl class="identity">
 <dt>Run ID</dt>
 <dd>
-<code>d80adaf71a8644e69674ccd4e6935a7d</code>
+<code>1fdfb209173a4e2f914cab588c7ca658</code>
 </dd>
 <dt>Git revision</dt>
 <dd>
-<code>0a3020f80343bede5ad4e0b25ea8d06968ea7148</code> · working tree had changes</dd>
+<code>7f07bcb62b46f2386cb3d50a853e70560c3656c9</code> · working tree had changes</dd>
 <dt>Source content</dt>
 <dd>
-<code>be7bd0ebb6cbd1cedf8d9b95082ead90fcc7a25a6d544237d1a778732f38416e</code> · 691 files</dd>
+<code>32e0d46956a3b8809d9ae1ea8623ebc648df1840ee6f1380ae12d56cc370f8c6</code> · 691 files</dd>
 <dt>Public receipt</dt>
 <dd>
-<code>20261027-simulation-d80adaf71a8644e69674ccd4e6935a7d.json</code>
+<code>20261028-simulation-1fdfb209173a4e2f914cab588c7ca658.json</code>
 </dd>
 <dt>Receipt SHA-256</dt>
 <dd>
-<code>d994ce7f8a9c87d865027ed2f827248bfc700b525d24cbb098b12a432dc63ddb</code>
+<code>5f89c1c6ca67681fafdc343e3710521e211ecd80a9d4148ecc9ada37acc289fd</code>
 </dd>
 <dt>Recorded result hash</dt>
 <dd>
-<code>05f36fb6abba311ef065e9c843061c87b96e1a4c6cf3dd815f33fd028d89e9d1</code> · private original bytes not reread when this page was built</dd>
+<code>600546f1fe78b2250543ebd1d41ca8b419c6992ec32fa7275aa44e8b6d435776</code> · private original bytes not reread when this page was built</dd>
 </dl>
 <p class="small">Not tested in this simulation:</p>
 <ul class="limits"><li>Endpoint or cloud inventory</li><li>Live adversary exploitation</li><li>Production traffic</li><li>Multi-node availability</li><li>PostgreSQL concurrency or crash durability</li><li>Network HTTP latency</li><li>Competitor products</li><li>Independent blind holdout</li><li>Automated external response</li></ul>
@@ -6380,7 +6395,7 @@ code {
 </div>
 </article>
 </section>
-<footer class="footer">Page generated 2026-10-27T19:17:58.622079+00:00. Execution times are shown separately above. All dates are UTC. SignalBridge · Public, read-only portfolio artifact. The evidence viewer works as one HTML file. Source, receipt and metrics links point to files in the same repository.</footer>
+<footer class="footer">Page generated 2026-10-28T04:40:37.711468+00:00. Execution times are shown separately above. All dates are UTC. SignalBridge · Public, read-only portfolio artifact. The evidence viewer works as one HTML file. Source, receipt and metrics links point to files in the same repository.</footer>
 </main>
 </body>
 </html>
