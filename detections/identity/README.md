@@ -23,6 +23,12 @@ targets.
 The full per-file record is [`score-report.json`](score-report.json). CI downloads the same pinned
 files, checks their SHA-256 and fails if the report changes.
 
+I also ran the Windows rules on a week of real network logs from Los Alamos National Laboratory.
+W2 raised no alerts. W1 and W5 raised about 20 and 9 a day, each from a single account or
+workstation. W3 raised about 8,800 a day, 94% of them from two accounts. The Entra rules have no
+public normal-traffic logs to run on. See
+[False alarms on a week of real network logs](#false-alarms-on-a-week-of-real-network-logs).
+
 ## What the comparison found
 
 | Finding | What happened | My rules |
@@ -56,6 +62,71 @@ design flaws, which I fixed instead of changing any thresholds:
    data, so it gets less credit than the rest.
 
 Now: 22 of 26 expected pairs, still no alerts on files a rule wasn't meant for.
+
+## False alarms on a week of real network logs
+
+Zero alerts on the other attack captures only shows that a rule doesn't misfire. Those captures
+hold almost no normal traffic. To count false alarms, I ran the Windows rules on the first 7 days
+of the [LANL Unified Host and Network Data Set (2017)](https://csr.lanl.gov/data/2017/):
+de-identified Windows logs from most of Los Alamos National Laboratory's Windows computers. That
+is about 402 million events, 58 million of them event types the rules read. LANL doesn't label
+the data, so I count every alert as a false alarm, which makes these figures an upper bound.
+
+A correlation rule's alert is one run of overlapping 10-minute windows for one account or source.
+W3 is a single-event rule, so every matching event is an alert. "Busiest normal count" is the
+highest value any account or source reached in 10 minutes, against the rule's threshold.
+
+| Rule | Alerts in 7 days | Per day | Where they came from | Busiest normal count |
+| --- | --- | --- | --- | --- |
+| W1 Kerberoasting burst | 141 | 20.1 | One account: Administrator in one domain, asking for tickets to the same 6 user-run services all week (1.1 million tickets, 80% of the week's tickets for user-run services) | 6 services vs 5, every day |
+| W2 Password spray by source | 0 | 0 | None | 8 accounts vs 10 |
+| W3 Disabled account | 61,773 | 8,825 | 22 accounts, 4 to 12 a day. Two account for 94%: one was retried from one workstation for 4 days and then stopped, the other every hour of the week | Single event |
+| W4 Pre-authentication turned off | Not measured | | LANL doesn't include account changes (4738) | |
+| W5 NTLM spray by workstation | 65 | 9.3 | One workstation failing NTLM about 100 times an hour around the clock, mostly for 23 account names that don't exist | Up to 12 accounts vs 10; 10 or more on 4 of 7 days |
+
+What I take from it:
+- **W2 has headroom.** The busiest source reached 8 of the 10 accounts. Only failed logons (4625)
+  were tested, though; see the coverage gaps below.
+- **W1 and W5 fire on one identity each.** A SOC would handle that with one reviewed exception for
+  the Administrator account's six services and one ticket to fix the workstation, not a threshold
+  change. LANL has only 48 user-run services in the whole week. A network with more service
+  accounts gives W1 more chances to fire.
+- **W3 is noisy as a raw event stream.** Grouped to one alert per account per day, which is how
+  I'd deploy it, the week has 60 alerts. SigmaHQ's failed-logon-reasons rule matched the same
+  61,773 events plus 2, so the noise comes from stale credentials on the network, not from W3's
+  extra branches. A device that still holds a disabled account's password is what W3 exists to
+  find, but in an ordinary week it's a cleanup ticket, not an incident.
+
+I didn't change any rule after this run, and `changes_after_first_run` in
+[`sources.json`](sources.json) still lists only the two attack-scoring changes. Raising W1 to 7
+services or W5 to 13 accounts would make this week silent, but that would be tuning the rules to
+the test data.
+
+**What this week can't measure:**
+- LANL has no 4771 events and no failed 4768 events. W2 ran on failed logons only, and W3's
+  Kerberos branch (code 0x12, which also covers locked-out and expired accounts) didn't run.
+- LANL gives failed logons (4625) a text reason instead of a status code, so W3 only ran on NTLM
+  checks (4776).
+- 36% of failed logons have no source address, and 78% of failed NTLM checks name no workstation.
+  W2 and W5 can't group those events.
+- W4 can't run (no 4738 events). SigmaHQ's Kerberoasting and RC4 rules can't fire either: LANL
+  leaves out the ticket encryption type.
+- LANL merged all domain controllers into one host and replaced user and computer names.
+- **Entra (E1–E8): no baseline.** I found no public data set of an organization's Entra sign-in
+  and audit logs in normal operation, and my Entra ID Free test tenant has no regular traffic.
+  Their false-alarm rate is unmeasured.
+
+The full record, with alerts, accounts and raw rows per rule per day, is
+[`baseline-report.json`](baseline-report.json). The files come from Imperial College London's
+mirror of the data set (LANL's own download needs a registration form), each pinned by SHA-256 in
+[`sources.json`](sources.json) under `baseline`. The download is about 3 GB, scoring needs about
+10 GB of temporary disk and took a little over 2 hours on my PC, so CI doesn't rerun it. A test
+fails if a rule changes without the report being regenerated.
+
+```bash
+python -m detections.identity.baseline fetch
+python -m detections.identity.baseline score
+```
 
 ## The rules
 
@@ -115,6 +186,8 @@ python -m unittest detections.identity.test_identity
 - The captures come from Splunk's attack lab and hold little normal traffic. Each of my rules ran
   on 3 to 9 captures it wasn't meant for, and most of those hold none of the events the rule
   reads. Zero alerts there is a misfire check, not a false-positive rate for a real network.
+- The false-alarm figures come from one unlabeled week of one organization's logs. They cover
+  W1, W2, W3 and W5, some only in part, and none of the Entra rules.
 - I decided which rules should fire on each file. For everything except W5, I wrote that down
   before the first run.
 - The rules ran in SQLite through pySigma, not in Splunk or Sentinel. Field names follow

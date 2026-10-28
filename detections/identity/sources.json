@@ -11,6 +11,60 @@
     "license": "Detection Rule License 1.1",
     "url": "https://raw.githubusercontent.com/SigmaHQ/sigma/{commit}/{path}"
   },
+  "baseline": {
+    "name": "LANL Unified Host and Network Data Set (2017), Windows host logs, days 1-7",
+    "publisher": "Los Alamos National Laboratory",
+    "citation": "M. Turcotte, A. Kent and C. Hash, \"Unified Host and Network Data Set\", in Data Science for Cyber-Security, World Scientific, 2018, pp. 1-22. https://arxiv.org/abs/1708.07518",
+    "license": "CC0-1.0",
+    "landing_page": "https://csr.lanl.gov/data/2017/",
+    "mirror": "https://lanl.ma.ic.ac.uk/data/2017/",
+    "url": "https://lanl.ma.ic.ac.uk/data/2017/wls/{path}",
+    "note": "LANL's own download needs a registration form; these files come from Imperial College London's mirror, which needs none. LANL de-identified users and hosts and merged some redundant hosts, including all domain controllers (ActiveDirectory). The data are not labeled.",
+    "files": [
+      {
+        "path": "wls_day-01.bz2",
+        "day": 1,
+        "sha256": "65621c6bf500bd69ff24104cae8540fa6e24a70546acbbd802a40bf934b23643",
+        "bytes": 408954096
+      },
+      {
+        "path": "wls_day-02.bz2",
+        "day": 2,
+        "sha256": "e6faf4c57f688d60403111000787b855604e3c188d1e58a3e020ef5811e32527",
+        "bytes": 484427415
+      },
+      {
+        "path": "wls_day-03.bz2",
+        "day": 3,
+        "sha256": "6700881bf9f40153902dd3cfb8d245cd1e6a11290420d80a0a4eef88b428e759",
+        "bytes": 493528066
+      },
+      {
+        "path": "wls_day-04.bz2",
+        "day": 4,
+        "sha256": "150f131b2340835d6ff960c35f407a76ec1224201bd656d8fe12383cea2625f6",
+        "bytes": 493201954
+      },
+      {
+        "path": "wls_day-05.bz2",
+        "day": 5,
+        "sha256": "966fcb1b98b3f3e63ffb8d8061a186e46db5487759645016269772b1551e0d87",
+        "bytes": 407647143
+      },
+      {
+        "path": "wls_day-06.bz2",
+        "day": 6,
+        "sha256": "7b6d93b50b2d885c076e0cc21f2c29e1623d51ec0c72e0f8ea968fa005523a78",
+        "bytes": 339312134
+      },
+      {
+        "path": "wls_day-07.bz2",
+        "day": 7,
+        "sha256": "0141ed32126d4862d1205e191b2d9f4d032b10828ed9cf3d219115a4552617c4",
+        "bytes": 331918186
+      }
+    ]
+  },
   "expectations_note": "Expectations for W1-W4 and E1-E8 were set from each file's description and technique before the first scoring run, after a look at the captures' event types and field names while writing the rules. W5's were added after the first run (see changes_after_first_run).",
   "changes_after_first_run": [
     "W1: computer-account requesters are no longer filtered out; the first run showed Kerberoasting run as SYSTEM requests as the computer account.",

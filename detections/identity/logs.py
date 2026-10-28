@@ -15,11 +15,17 @@ Hubs deliver. A row holds:
 
 Every row is tagged with the Sigma log source it belongs to. Records of other kinds
 (non-interactive and service principal sign-ins, risk events) are counted and set aside.
+
+LANL host events (the false-alarm baseline, see baseline.py): one JSON record per line, with
+attribute names LANL standardized and values it de-identified. lanl_row gives each attribute its
+Windows EventData name (LANL_FIELDS). Source becomes Workstation on NTLM checks (4776), as Windows
+names it there, and IpAddress on the other events.
 """
 
 import json
 import re
 from collections import Counter
+from datetime import datetime, timedelta
 from xml.etree import ElementTree
 
 WINDOWS_SECURITY = "windows/security"
@@ -48,6 +54,21 @@ ENTRA_COLUMNS = {
     "TargetResources": ("properties.targetResources",),
     "AdditionalDetails": ("properties.additionalDetails",),
 }
+
+# LANL host-log attribute -> Windows EventData name. LANL renamed TargetUserName to UserName.
+LANL_FIELDS = {
+    "Computer": "Computer",
+    "LogHost": "Computer",
+    "UserName": "TargetUserName",
+    "DomainName": "TargetDomainName",
+    "ServiceName": "ServiceName",
+    "Status": "Status",
+    "FailureReason": "FailureReason",
+    "LogonType": "LogonType",
+    "AuthenticationPackage": "AuthenticationPackage",
+}
+# LANL gives seconds from the start of collection, not dates; rows count them from this time.
+LANL_START = datetime(1970, 1, 1)
 
 EVENT = re.compile(r"<Event[\s>].*?</Event>", re.DOTALL)
 ISO_TIME = re.compile(r"(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})(?:\.(\d+))?(?:Z|\+00:00)?")
@@ -165,6 +186,24 @@ def entra_rows(text, ignored):
             ignored[str(record.get("category"))] += 1
             continue
         yield source, entra_row(record)
+
+
+def lanl_row(record):
+    """One LANL host event as a Windows Security row."""
+    seconds = record.get("Time")
+    if not isinstance(seconds, int) or isinstance(seconds, bool) or seconds < 0:
+        raise ValueError(f"unexpected LANL time: {seconds!r}")
+    event_id = text_value(record.get("EventID"))
+    row = {
+        "timestamp": (LANL_START + timedelta(seconds=seconds)).strftime("%Y-%m-%d %H:%M:%S.000"),
+        "EventID": event_id,
+    }
+    for name, column in LANL_FIELDS.items():
+        if record.get(name) is not None and column not in row:
+            row[column] = text_value(record[name])
+    if record.get("Source") is not None:
+        row["Workstation" if event_id == "4776" else "IpAddress"] = text_value(record["Source"])
+    return row
 
 
 def read_rows(path, log_format):

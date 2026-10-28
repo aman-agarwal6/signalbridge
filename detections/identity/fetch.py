@@ -60,9 +60,9 @@ def is_verified(path, sha256, size):
     return path.is_file() and matches(path.read_bytes(), sha256, size)
 
 
-def check_url(url):
+def check_url(url, hosts=ALLOWED_HOSTS):
     parts = urlsplit(url)
-    if parts.scheme != "https" or parts.hostname not in ALLOWED_HOSTS:
+    if parts.scheme != "https" or parts.hostname not in hosts:
         raise ValueError(f"refusing to fetch from {parts.scheme}://{parts.hostname}")
 
 
