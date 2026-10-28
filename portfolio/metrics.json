@@ -1,15 +1,15 @@
 {
   "schema_version": 2,
   "kind": "signalbridge-public-portfolio",
-  "generated_at": "2026-10-27T19:17:58.622079+00:00",
+  "generated_at": "2026-10-28T04:40:37.711468+00:00",
   "core": {
     "checks": [
       {
-        "duration_seconds": 86.177,
+        "duration_seconds": 117.023,
         "exit_code": 0,
         "log_sha256": {
-          "stderr": "1678b43a55f0d14a390e4b35ead35a0f6f027d1277979e8dc806664102f2d782",
-          "stdout": "87d8d58568fa5de7c7c13ca294580c607ba182457b7a2be4c80f46cc2ad2480b"
+          "stderr": "aac93019edf558d189c23ed151fb60104e81482ecb40800dbc5003605269c559",
+          "stdout": "38391117c5871767b875e2e8e1dfeef689b74faa34b6ee73f7f4404b53cb0dab"
         },
         "name": "django-tests",
         "passed": true,
@@ -19,12 +19,12 @@
           "failures": 0,
           "skipped": 0,
           "successful_summary": true,
-          "tests_run": 2000,
+          "tests_run": 2002,
           "unexpected_successes": 0
         }
       },
       {
-        "duration_seconds": 1.284,
+        "duration_seconds": 1.889,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -34,7 +34,7 @@
         "passed": true
       },
       {
-        "duration_seconds": 1.334,
+        "duration_seconds": 1.996,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -44,7 +44,7 @@
         "passed": true
       },
       {
-        "duration_seconds": 0.043,
+        "duration_seconds": 0.08,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -54,7 +54,7 @@
         "passed": true
       },
       {
-        "duration_seconds": 0.036,
+        "duration_seconds": 0.055,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -64,21 +64,21 @@
         "passed": true
       },
       {
-        "duration_seconds": 17.044,
+        "duration_seconds": 27.701,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "b83833681cdb51857ff1606ed090f3c65480b521940fce05fad6beddd4898a2e"
+          "stdout": "acf01034807cf552bce5d2e39693443e86da591510995d764bb0dbc8613a2398"
         },
         "name": "publication-scan",
         "passed": true
       },
       {
-        "duration_seconds": 0.348,
+        "duration_seconds": 0.592,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "f853f76a2f5392fe9512c2f278470c3cd07ea9e3c05ad54dc18b4e4950f08391"
+          "stdout": "01143abfbb5828c93e56338b9cda450d06d4d6f6ca5558b664bb8916e5d69e7b"
         },
         "name": "node-courier-tests",
         "passed": true,
@@ -94,11 +94,11 @@
         }
       },
       {
-        "duration_seconds": 0.127,
+        "duration_seconds": 0.198,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "30a6a87417186e8f1892cd65efc0d319787c5f3ddcc5eb69b59d3945079d26e3"
+          "stdout": "a6b5a821b6215a1a0151e3d411914976fb6ab41996b8c6dd221830dbefe4b1f6"
         },
         "name": "node-http-harness-mock-tests",
         "passed": true,
@@ -114,11 +114,11 @@
         }
       },
       {
-        "duration_seconds": 0.138,
+        "duration_seconds": 0.199,
         "exit_code": 0,
         "log_sha256": {
           "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "stdout": "e373cf8d23d0482135ec79212a97044220a0a20f4ab5136eaf5142fb46b116eb"
+          "stdout": "01801eec6cf44a7c8675079b3bcd4cce085581503dfc0859aa49a0e410e5dd62"
         },
         "name": "node-bettail-route-mock-tests",
         "passed": true,
@@ -142,20 +142,20 @@
       "Hashes identify content; a filesystem administrator can replace logs and receipts.",
       "Documentation and generated evidence are excluded from the source digest."
     ],
-    "duration_seconds": 108.926,
-    "finished_at": "2026-10-27T19:17:43.147632+00:00",
+    "duration_seconds": 152.843,
+    "finished_at": "2026-10-28T04:40:18.142807+00:00",
     "kind": "signalbridge-core-verification-receipt",
     "passed": true,
-    "revision": "0a3020f80343bede5ad4e0b25ea8d06968ea7148",
-    "run_id": "20261027T191554221152Z-fb9c8de1",
+    "revision": "7f07bcb62b46f2386cb3d50a853e70560c3656c9",
+    "run_id": "20261028T043745298682Z-750aaee3",
     "schema_version": 1,
     "source_file_count": 691,
-    "source_sha256": "be7bd0ebb6cbd1cedf8d9b95082ead90fcc7a25a6d544237d1a778732f38416e",
+    "source_sha256": "32e0d46956a3b8809d9ae1ea8623ebc648df1840ee6f1380ae12d56cc370f8c6",
     "source_unchanged": true,
-    "started_at": "2026-10-27T19:15:54.221873+00:00",
+    "started_at": "2026-10-28T04:37:45.299485+00:00",
     "working_tree_dirty": false,
-    "receipt": "20261027T191554221152Z-fb9c8de1.json",
-    "receipt_sha256": "487b841240154318d7f87287134812ef0a6f0748dc308eec0bdc2ca720974ad2"
+    "receipt": "20261028T043745298682Z-750aaee3.json",
+    "receipt_sha256": "5840b036c583330c27d1c853ab1610bd3b8fd7436766107da2381af9a6a932de"
   },
   "historical_baseline": {
     "receipt": "20260924-offline-simulation.json",
@@ -357,23 +357,23 @@
     }
   },
   "current_simulation": {
-    "receipt": "20261027-simulation-d80adaf71a8644e69674ccd4e6935a7d.json",
-    "receipt_sha256": "d994ce7f8a9c87d865027ed2f827248bfc700b525d24cbb098b12a432dc63ddb",
-    "run_id": "d80adaf71a8644e69674ccd4e6935a7d",
-    "source_sha256": "be7bd0ebb6cbd1cedf8d9b95082ead90fcc7a25a6d544237d1a778732f38416e",
+    "receipt": "20261028-simulation-1fdfb209173a4e2f914cab588c7ca658.json",
+    "receipt_sha256": "5f89c1c6ca67681fafdc343e3710521e211ecd80a9d4148ecc9ada37acc289fd",
+    "run_id": "1fdfb209173a4e2f914cab588c7ca658",
+    "source_sha256": "32e0d46956a3b8809d9ae1ea8623ebc648df1840ee6f1380ae12d56cc370f8c6",
     "source_file_count": 691,
-    "revision": "0a3020f80343bede5ad4e0b25ea8d06968ea7148",
+    "revision": "7f07bcb62b46f2386cb3d50a853e70560c3656c9",
     "working_tree_dirty": true,
     "python": "3.14.4",
-    "result_sha256": "05f36fb6abba311ef065e9c843061c87b96e1a4c6cf3dd815f33fd028d89e9d1",
-    "provenance_sha256": "ce48c98c4dbbb09e084e0222d84658dcf549843e613fc6869d2704b4b32ed7c4",
+    "result_sha256": "600546f1fe78b2250543ebd1d41ca8b419c6992ec32fa7275aa44e8b6d435776",
+    "provenance_sha256": "01cad0204e6f80c6a1d6d213d79302417978412ad0efb7ca1f28edc2dfe464c6",
     "status": "passed",
     "matches_current_source": true,
     "results": {
       "schema_version": 1,
       "kind": "signalbridge-offline-capability-simulation",
-      "started_at": "2026-10-27T19:17:46.623598+00:00",
-      "finished_at": "2026-10-27T19:17:49.887739+00:00",
+      "started_at": "2026-10-28T04:40:22.768753+00:00",
+      "finished_at": "2026-10-28T04:40:26.409006+00:00",
       "execution_status": "completed",
       "database": "disposable in-memory SQLite",
       "transport": "Django in-process test client",
@@ -531,11 +531,11 @@
         "accepted_events": 600,
         "processed_events": 600,
         "source_rate_limit": "600 per application per minute",
-        "ingest_seconds": 1.81095,
-        "processing_seconds": 1.219424,
-        "in_process_requests_per_second": 331.32,
-        "in_process_request_p50_ms": 2.951,
-        "in_process_request_p95_ms": 3.356,
+        "ingest_seconds": 1.979173,
+        "processing_seconds": 1.357296,
+        "in_process_requests_per_second": 303.16,
+        "in_process_request_p50_ms": 3.144,
+        "in_process_request_p95_ms": 4.196,
         "alerts_from_benign_load": 0,
         "limits": "Single-process SQLite harness timing includes test-client overhead; not network or production capacity."
       },
@@ -545,7 +545,7 @@
         "pending": 0,
         "dead": 0
       },
-      "duration_seconds": 3.264137,
+      "duration_seconds": 3.640247,
       "requests_executed": 639,
       "coverage": {
         "met": 15,
@@ -556,23 +556,23 @@
     }
   },
   "detection_challenge": {
-    "receipt": "20261027-challenge-378ea6cca74d41ce8dad531260f8cbda.json",
-    "receipt_sha256": "da615cefbb916fa6116c42481322f93932fd1d7be319f03654e41c2bf9d755c0",
-    "run_id": "378ea6cca74d41ce8dad531260f8cbda",
-    "source_sha256": "be7bd0ebb6cbd1cedf8d9b95082ead90fcc7a25a6d544237d1a778732f38416e",
+    "receipt": "20261028-challenge-20e1fb5cedd5454095da75ddaa1afd1b.json",
+    "receipt_sha256": "e808d447e55ced739e93ae10a6d51db31eb4aa91c6c8bc87f0c29919c97e5e2e",
+    "run_id": "20e1fb5cedd5454095da75ddaa1afd1b",
+    "source_sha256": "32e0d46956a3b8809d9ae1ea8623ebc648df1840ee6f1380ae12d56cc370f8c6",
     "source_file_count": 691,
-    "revision": "0a3020f80343bede5ad4e0b25ea8d06968ea7148",
+    "revision": "7f07bcb62b46f2386cb3d50a853e70560c3656c9",
     "working_tree_dirty": true,
     "python": "3.14.4",
-    "result_sha256": "04688bcf3c7ce8fd3a1366c053da5b309aa38b279884d1cb19791e56cbda0f00",
-    "provenance_sha256": "fb386c09cc8b5de78b39632c959745cd19249a39ca137c3df21adb4b5fff7da1",
+    "result_sha256": "a33f152e0fc78fd3949e00b0553df8dfdc8566cd0a12b46352c0e95185791ec0",
+    "provenance_sha256": "a3cacb20b8f12041b618adc0a04eb520b9fb5a80c416addb61596a1e99856676",
     "status": "partial",
     "matches_current_source": true,
     "results": {
       "schema_version": 1,
       "kind": "detection-challenge-v1",
       "declaration_sha256": "6709461d435e6dad7f89cf9e447f3629423caf9728e11118858ddcdae0cf8345",
-      "started_at": "2026-10-27T19:17:55.531470+00:00",
+      "started_at": "2026-10-28T04:40:33.733709+00:00",
       "execution_status": "completed",
       "database": "disposable in-memory SQLite",
       "transport": "Django in-process test client",
@@ -768,8 +768,8 @@
           ]
         }
       },
-      "finished_at": "2026-10-27T19:17:55.926473+00:00",
-      "duration_seconds": 0.395475
+      "finished_at": "2026-10-28T04:40:34.187665+00:00",
+      "duration_seconds": 0.454499
     }
   },
   "same_declared_scenarios": true,
@@ -2252,7 +2252,66 @@
       "message_field_rules": 3
     },
     "together_targeted": 21,
-    "together_flagged": 20
+    "together_flagged": 20,
+    "baseline": {
+      "report": "detections/identity/baseline-report.json",
+      "report_sha256": "11cc5f55c6646b2c8cec48ffc78dd2ab43fe31600bff69354ac6c7592a603ca8",
+      "days": 7,
+      "events_million": 402,
+      "rules": [
+        {
+          "rule": "W1",
+          "measured": true,
+          "absent": [],
+          "alerts": 141,
+          "per_day": "20.1",
+          "groups": 1,
+          "group_kind": "account"
+        },
+        {
+          "rule": "W2",
+          "measured": true,
+          "absent": [
+            "4771"
+          ],
+          "alerts": 0,
+          "per_day": "0",
+          "groups": 0,
+          "group_kind": "account"
+        },
+        {
+          "rule": "W3",
+          "measured": true,
+          "absent": [
+            "4771"
+          ],
+          "alerts": 61773,
+          "per_day": "8,824.7",
+          "groups": 22,
+          "group_kind": "account"
+        },
+        {
+          "rule": "W4",
+          "measured": false,
+          "absent": [
+            "4738"
+          ],
+          "alerts": 0,
+          "per_day": "0",
+          "groups": 0,
+          "group_kind": "account"
+        },
+        {
+          "rule": "W5",
+          "measured": true,
+          "absent": [],
+          "alerts": 65,
+          "per_day": "9.3",
+          "groups": 1,
+          "group_kind": "workstation"
+        }
+      ]
+    }
   },
   "limits": [
     "Self-run evidence, not an outside audit or an enterprise benchmark.",
