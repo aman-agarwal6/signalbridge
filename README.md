@@ -7,6 +7,7 @@
 ## At a glance
 
 - **13 Sigma rules for identity attacks**, including password spraying, Kerberoasting, MFA fatigue, device code phishing and backdoored app credentials. They read Windows domain controller and Microsoft Entra ID logs. On 23 public attack captures they flagged 18 of the 21 attack files they target, with no alerts on files a rule wasn't meant for (12 of the 13 rules had test data).
+- **False alarms measured on a week of real network logs.** On Los Alamos National Laboratory's de-identified Windows logs (about 402 million events), three Windows rules raised 0 to 20 alerts a day, each from at most one account or workstation. The disabled-account rule raised about 8,800 a day, 94% from two stale accounts, and SigmaHQ's closest rule matched the same events.
 - **Community rules checked on the same captures.** Three of SigmaHQ's Entra rules (device code, Temporary Access Pass, app credentials) can't fire on these captures' export format. SigmaHQ's Kerberoasting rule and my own first version both missed Kerberoasting run as SYSTEM.
 - **Access that should have ended.** In the lab, a planted authorization bug let a removed member read a private document, and rule R3 opened the investigation. Testing also found a stale permission check: when a user was downgraded, removed or disabled mid-request, all 4 test writes still went through. Permissions are now re-checked inside the database transaction.
 - **Works with [AccessOps](https://github.com/aman-agarwal6/AccessOps).** SignalBridge verifies AccessOps' signed leaver events. When a departed test account was re-enabled and used, it opened a critical case.
@@ -23,6 +24,17 @@ Scored on [Splunk's attack_data](https://github.com/splunk/attack_data) captures
 E8 (disabled-account sign-in) and one SigmaHQ rule have no public capture to catch yet; both still ran on every sign-in capture without firing. I wrote down which rules should fire on each file before the first scoring run, except W5, which I added after it.
 
 My rules miss one RC4 ticket (by design; SigmaHQ's rule catches it), a spray spread across many addresses, and an account with only two MFA failures. Rules, findings, the first run and the two changes after it are in the [identity detections README](detections/identity/README.md).
+
+**False alarms.** I ran the Windows rules on the first week of [LANL's 2017 host logs](https://csr.lanl.gov/data/2017/), real traffic from most of Los Alamos National Laboratory's Windows computers. The data isn't labeled, so every alert counts as false.
+
+| Rule | Alerts per day | Where they came from |
+| --- | --- | --- |
+| W1 Kerberoasting burst | 20.1 | One Administrator account calling the same 6 services all week (6 vs a threshold of 5) |
+| W2 Password spray by source | 0 | Busiest source reached 8 of 10 accounts |
+| W3 Disabled account | 8,825 | 22 accounts, 94% from two that kept being tried; 60 alerts in the week at one per account per day |
+| W5 NTLM spray by workstation | 9.3 | One workstation failing for names that don't exist, around the clock |
+
+I didn't change any rule after the run. W4 can't run on these logs, W2 and W3 only partly, and the Entra rules have no public normal-traffic logs to run on. The [README](detections/identity/README.md#false-alarms-on-a-week-of-real-network-logs) lists the gaps.
 
 ## The access lab
 
@@ -101,7 +113,7 @@ python -m venv .venv
 ## Limits
 
 - Synthetic data in an isolated lab on one PC; not a production deployment.
-- The identity rules ran on attack-lab captures through SQLite, not in a production SIEM. Zero alerts on other files is a misfire check, not a false-positive rate; their own [limits](detections/identity/README.md#limits) list the rest.
+- The identity rules ran through SQLite, not in a production SIEM. Their false-alarm figures come from one unlabeled week of one organization's logs and cover four Windows rules, some only in part, and none of the Entra rules; their own [limits](detections/identity/README.md#limits) list the rest.
 - I wrote the access lab's 48 evaluation scenarios knowing the rules, so those scores catch regressions rather than measure real-world accuracy.
 - The planned 24-hour run ended after 13.5 hours, with Wazuh capturing the first 10.6. I started a replacement run and stopped it, so there is no full 24-hour result.
 - The console trusts local administrators and must not be exposed publicly. See [SECURITY.md](SECURITY.md).

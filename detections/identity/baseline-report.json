@@ -1,0 +1,985 @@
+{
+  "kind": "signalbridge-identity-baseline",
+  "baseline": {
+    "name": "LANL Unified Host and Network Data Set (2017), Windows host logs, days 1-7",
+    "publisher": "Los Alamos National Laboratory",
+    "citation": "M. Turcotte, A. Kent and C. Hash, \"Unified Host and Network Data Set\", in Data Science for Cyber-Security, World Scientific, 2018, pp. 1-22. https://arxiv.org/abs/1708.07518",
+    "license": "CC0-1.0",
+    "landing_page": "https://csr.lanl.gov/data/2017/",
+    "mirror": "https://lanl.ma.ic.ac.uk/data/2017/",
+    "url": "https://lanl.ma.ic.ac.uk/data/2017/wls/{path}",
+    "note": "LANL's own download needs a registration form; these files come from Imperial College London's mirror, which needs none. LANL de-identified users and hosts and merged some redundant hosts, including all domain controllers (ActiveDirectory). The data are not labeled.",
+    "files": [
+      {
+        "path": "wls_day-01.bz2",
+        "day": 1,
+        "sha256": "65621c6bf500bd69ff24104cae8540fa6e24a70546acbbd802a40bf934b23643",
+        "bytes": 408954096
+      },
+      {
+        "path": "wls_day-02.bz2",
+        "day": 2,
+        "sha256": "e6faf4c57f688d60403111000787b855604e3c188d1e58a3e020ef5811e32527",
+        "bytes": 484427415
+      },
+      {
+        "path": "wls_day-03.bz2",
+        "day": 3,
+        "sha256": "6700881bf9f40153902dd3cfb8d245cd1e6a11290420d80a0a4eef88b428e759",
+        "bytes": 493528066
+      },
+      {
+        "path": "wls_day-04.bz2",
+        "day": 4,
+        "sha256": "150f131b2340835d6ff960c35f407a76ec1224201bd656d8fe12383cea2625f6",
+        "bytes": 493201954
+      },
+      {
+        "path": "wls_day-05.bz2",
+        "day": 5,
+        "sha256": "966fcb1b98b3f3e63ffb8d8061a186e46db5487759645016269772b1551e0d87",
+        "bytes": 407647143
+      },
+      {
+        "path": "wls_day-06.bz2",
+        "day": 6,
+        "sha256": "7b6d93b50b2d885c076e0cc21f2c29e1623d51ec0c72e0f8ea968fa005523a78",
+        "bytes": 339312134
+      },
+      {
+        "path": "wls_day-07.bz2",
+        "day": 7,
+        "sha256": "0141ed32126d4862d1205e191b2d9f4d032b10828ed9cf3d219115a4552617c4",
+        "bytes": 331918186
+      }
+    ]
+  },
+  "sigmahq": {
+    "repository": "https://github.com/SigmaHQ/sigma",
+    "commit": "05d1031f537e830b76da53bae2400c5814c89165",
+    "license": "Detection Rule License 1.1",
+    "url": "https://raw.githubusercontent.com/SigmaHQ/sigma/{commit}/{path}"
+  },
+  "packages": {
+    "pySigma": "1.5.1",
+    "pySigma-backend-sqlite": "2.0.0"
+  },
+  "rules_sha256": {
+    "entra/e1_password_spray.yml": "9182827a3e00eb2036b586c583843ede63a2069a4d9e3c7b288faa417ba08e01",
+    "entra/e2_mfa_fatigue.yml": "71bb6243b077078c606a6a6ecaf8a4aaade4cf0dbdd1955e0d0fe32a5447dfb0",
+    "entra/e3_device_code_signin.yml": "49d1e8012b58223777e925d9d9351d592974c8196506e8026c5defefb082b4f6",
+    "entra/e4_auth_method_registered.yml": "77f61b1b3285928678444478deb8cdc275068b4e9dbc1e63cf5bc2445e213316",
+    "entra/e5_temporary_access_pass.yml": "25a978f0f14d07dfb57676e41aaa2462c5d8fd42231f2456b86b2ce9534de7a5",
+    "entra/e6_app_consent.yml": "f2c841eece6a2b90373b019377c78822fc57c86581577d23e15a89f0a8ea45a0",
+    "entra/e7_app_credential_added.yml": "bdbca0e35b24c48a0c6b6038503d5670720dd4808276e99947862b1ebb34879f",
+    "entra/e8_disabled_account_signin.yml": "8634403714e17245bf99222b79e55638cb17a93f89d495f42742aa94ee5c92ab",
+    "windows/w1_kerberoasting_burst.yml": "bc37c69e835bfeb39ff31cbb3a5344fa427d623070760760fc2f440c7fb9ad07",
+    "windows/w2_password_spray.yml": "00610bf236542440cd68ecb4dcd0415c70cbf6269c4de0add7f7f7cc342e77b4",
+    "windows/w3_disabled_account_logon.yml": "e3612e5434f3b68f9a82871cb08d64bc93c5e937a38b58937113cfffab5854b6",
+    "windows/w4_kerberos_preauth_disabled.yml": "6af6ce1e4f0c53506fa53bcf939e89b70abef0deaf8afffd316cafe6d60362c0",
+    "windows/w5_ntlm_password_spray.yml": "105e0e30c4deb423759b65f67a3d343122c078aeb05a1c85c9c7eaa6f0376f1e"
+  },
+  "method": "Each pinned day of LANL host logs is read line by line; events whose EventID one of the Windows rules names become rows with Windows EventData field names (logs.py, lanl_row). Every rule is compiled by pySigma-backend-sqlite and run on the week an hour at a time, with the longest correlation window before each hour also loaded. A correlation alert is a run of overlapping qualifying windows for one group; a single-event alert is one matching event. LANL doesn't label the data, so every alert counts as a false alarm.",
+  "event_ids_loaded": [
+    "4625",
+    "4738",
+    "4768",
+    "4769",
+    "4771",
+    "4776"
+  ],
+  "days": {
+    "day-01": {
+      "events": 55609151,
+      "loaded": {
+        "4625": 335425,
+        "4768": 696025,
+        "4769": 1762893,
+        "4776": 5505769
+      }
+    },
+    "day-02": {
+      "events": 64844144,
+      "loaded": {
+        "4625": 328437,
+        "4768": 797467,
+        "4769": 2204465,
+        "4776": 5949762
+      }
+    },
+    "day-03": {
+      "events": 66352868,
+      "loaded": {
+        "4625": 259319,
+        "4768": 674814,
+        "4769": 2057776,
+        "4776": 6399667
+      }
+    },
+    "day-04": {
+      "events": 66457930,
+      "loaded": {
+        "4625": 168062,
+        "4768": 763328,
+        "4769": 2187946,
+        "4776": 6563802
+      }
+    },
+    "day-05": {
+      "events": 55624222,
+      "loaded": {
+        "4625": 115057,
+        "4768": 694740,
+        "4769": 1843815,
+        "4776": 5506217
+      }
+    },
+    "day-06": {
+      "events": 47421060,
+      "loaded": {
+        "4625": 110897,
+        "4768": 504567,
+        "4769": 1394793,
+        "4776": 5051476
+      }
+    },
+    "day-07": {
+      "events": 45654562,
+      "loaded": {
+        "4625": 119663,
+        "4768": 522263,
+        "4769": 1404446,
+        "4776": 4472231
+      }
+    }
+  },
+  "week_loaded": {
+    "by_event_and_status": {
+      "4625 -": 1436860,
+      "4768 0x0": 4653204,
+      "4769 0x0": 12856134,
+      "4776 0x0": 34375680,
+      "4776 0xc0000064": 1929759,
+      "4776 0xc000006a": 823922,
+      "4776 0xc000006e": 480,
+      "4776 0xc0000070": 2,
+      "4776 0xc0000071": 35,
+      "4776 0xc0000072": 61773,
+      "4776 0xc0000199": 7363,
+      "4776 0xc0000224": 29,
+      "4776 0xc0000234": 2249881
+    },
+    "logon_failure_reasons": {
+      "Unknown user name or bad password.": 612581,
+      "An Error occured during Logon.": 558802,
+      "The specified account's password has expired.": 147912,
+      "Account locked out.": 63041,
+      "The user has not been granted the requested logon type at this machine.": 50912,
+      "Account currently disabled.": 3349,
+      "The NetLogon component is not active.": 261,
+      "User not allowed to logon at this computer.": 2
+    }
+  },
+  "rules": {
+    "mine": {
+      "W1": {
+        "title": "Kerberoasting Burst - Tickets for Many User-Run Services",
+        "level": "high",
+        "kind": "correlation",
+        "event_ids": [
+          "4769"
+        ],
+        "event_ids_absent": [],
+        "fields_never_present": [],
+        "alerts": 141,
+        "alerts_per_day": 20.1,
+        "groups": 1,
+        "per_day": {
+          "day-01": {
+            "alerts": 16,
+            "groups": 1,
+            "rows": 6794
+          },
+          "day-02": {
+            "alerts": 21,
+            "groups": 1,
+            "rows": 13368
+          },
+          "day-03": {
+            "alerts": 23,
+            "groups": 1,
+            "rows": 14267
+          },
+          "day-04": {
+            "alerts": 18,
+            "groups": 1,
+            "rows": 14889
+          },
+          "day-05": {
+            "alerts": 17,
+            "groups": 1,
+            "rows": 13402
+          },
+          "day-06": {
+            "alerts": 20,
+            "groups": 1,
+            "rows": 8527
+          },
+          "day-07": {
+            "alerts": 26,
+            "groups": 1,
+            "rows": 10406
+          }
+        },
+        "top_groups": [
+          {
+            "group": {
+              "TargetUserName": "administrator"
+            },
+            "alerts": 141,
+            "peak": 6
+          }
+        ],
+        "alerts_by_account_kind": {
+          "user": 141
+        },
+        "threshold": 5,
+        "peak_per_day": {
+          "day-01": {
+            "value": 6,
+            "group": {
+              "TargetUserName": "administrator"
+            }
+          },
+          "day-02": {
+            "value": 6,
+            "group": {
+              "TargetUserName": "administrator"
+            }
+          },
+          "day-03": {
+            "value": 6,
+            "group": {
+              "TargetUserName": "administrator"
+            }
+          },
+          "day-04": {
+            "value": 6,
+            "group": {
+              "TargetUserName": "administrator"
+            }
+          },
+          "day-05": {
+            "value": 6,
+            "group": {
+              "TargetUserName": "administrator"
+            }
+          },
+          "day-06": {
+            "value": 6,
+            "group": {
+              "TargetUserName": "administrator"
+            }
+          },
+          "day-07": {
+            "value": 6,
+            "group": {
+              "TargetUserName": "administrator"
+            }
+          }
+        },
+        "base_events": {
+          "events": 1430573,
+          "with_group_fields": 1430573
+        }
+      },
+      "W2": {
+        "title": "Password Spray - One Source Fails for Many Windows Accounts",
+        "level": "high",
+        "kind": "correlation",
+        "event_ids": [
+          "4625",
+          "4768",
+          "4771"
+        ],
+        "event_ids_absent": [
+          "4771"
+        ],
+        "fields_never_present": [],
+        "alerts": 0,
+        "alerts_per_day": 0.0,
+        "groups": 0,
+        "per_day": {
+          "day-01": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-02": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-03": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-04": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-05": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-06": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-07": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          }
+        },
+        "top_groups": [],
+        "threshold": 10,
+        "peak_per_day": {
+          "day-01": {
+            "value": 8,
+            "group": {
+              "Computer": "comp032115",
+              "IpAddress": "comp032115"
+            }
+          },
+          "day-02": {
+            "value": 6,
+            "group": {
+              "Computer": "enterpriseappserver",
+              "IpAddress": "enterpriseappserver"
+            }
+          },
+          "day-03": {
+            "value": 7,
+            "group": {
+              "Computer": "enterpriseappserver",
+              "IpAddress": "enterpriseappserver"
+            }
+          },
+          "day-04": {
+            "value": 7,
+            "group": {
+              "Computer": "enterpriseappserver",
+              "IpAddress": "enterpriseappserver"
+            }
+          },
+          "day-05": {
+            "value": 4,
+            "group": {
+              "Computer": "comp323153",
+              "IpAddress": "comp323153"
+            }
+          },
+          "day-06": {
+            "value": 6,
+            "group": {
+              "Computer": "enterpriseappserver",
+              "IpAddress": "enterpriseappserver"
+            }
+          },
+          "day-07": {
+            "value": 3,
+            "group": {
+              "Computer": "comp529351",
+              "IpAddress": "comp529351"
+            }
+          }
+        },
+        "base_events": {
+          "events": 1436860,
+          "with_group_fields": 913724
+        }
+      },
+      "W3": {
+        "title": "Logon Attempt with a Disabled Windows Account",
+        "level": "medium",
+        "kind": "single event",
+        "event_ids": [
+          "4625",
+          "4768",
+          "4771",
+          "4776"
+        ],
+        "event_ids_absent": [
+          "4771"
+        ],
+        "fields_never_present": [
+          "SubStatus"
+        ],
+        "alerts": 61773,
+        "alerts_per_day": 8824.7,
+        "groups": 22,
+        "per_day": {
+          "day-01": {
+            "alerts": 23535,
+            "groups": 10,
+            "rows": 23535
+          },
+          "day-02": {
+            "alerts": 7389,
+            "groups": 10,
+            "rows": 7389
+          },
+          "day-03": {
+            "alerts": 8701,
+            "groups": 11,
+            "rows": 8701
+          },
+          "day-04": {
+            "alerts": 8569,
+            "groups": 12,
+            "rows": 8569
+          },
+          "day-05": {
+            "alerts": 5707,
+            "groups": 9,
+            "rows": 5707
+          },
+          "day-06": {
+            "alerts": 3835,
+            "groups": 4,
+            "rows": 3835
+          },
+          "day-07": {
+            "alerts": 4037,
+            "groups": 4,
+            "rows": 4037
+          }
+        },
+        "top_groups": [
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "user615370"
+            },
+            "alerts": 31339
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "user596884"
+            },
+            "alerts": 26751
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "user094603"
+            },
+            "alerts": 1666
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain002",
+              "TargetUserName": "user775940"
+            },
+            "alerts": 570
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain002",
+              "TargetUserName": "administrator"
+            },
+            "alerts": 436
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "user448912"
+            },
+            "alerts": 297
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "user637832"
+            },
+            "alerts": 218
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "administrator"
+            },
+            "alerts": 104
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "user808167"
+            },
+            "alerts": 80
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "comp999028$"
+            },
+            "alerts": 77
+          }
+        ],
+        "alerts_by_account_kind": {
+          "computer": 77,
+          "user": 61696
+        },
+        "alerts_by_event": {
+          "4776 0xc0000072": 61773
+        },
+        "alerts_logged_by": {
+          "domain controllers": 60367,
+          "other computers": 1406
+        }
+      },
+      "W4": {
+        "title": "Kerberos Pre-Authentication Turned Off for an Account",
+        "level": "medium",
+        "kind": "single event",
+        "event_ids": [
+          "4738"
+        ],
+        "event_ids_absent": [
+          "4738"
+        ],
+        "fields_never_present": [
+          "UserAccountControl"
+        ],
+        "alerts": 0,
+        "alerts_per_day": 0.0,
+        "groups": 0,
+        "per_day": {
+          "day-01": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-02": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-03": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-04": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-05": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-06": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-07": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          }
+        },
+        "top_groups": [],
+        "alerts_by_event": {},
+        "alerts_logged_by": {
+          "domain controllers": 0,
+          "other computers": 0
+        }
+      },
+      "W5": {
+        "title": "Password Spray - One Workstation Fails NTLM for Many Accounts",
+        "level": "high",
+        "kind": "correlation",
+        "event_ids": [
+          "4776"
+        ],
+        "event_ids_absent": [],
+        "fields_never_present": [],
+        "alerts": 65,
+        "alerts_per_day": 9.3,
+        "groups": 1,
+        "per_day": {
+          "day-01": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-02": {
+            "alerts": 15,
+            "groups": 1,
+            "rows": 380
+          },
+          "day-03": {
+            "alerts": 24,
+            "groups": 1,
+            "rows": 839
+          },
+          "day-04": {
+            "alerts": 22,
+            "groups": 1,
+            "rows": 480
+          },
+          "day-05": {
+            "alerts": 4,
+            "groups": 1,
+            "rows": 91
+          },
+          "day-06": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-07": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          }
+        },
+        "top_groups": [
+          {
+            "group": {
+              "Computer": "comp916004",
+              "Workstation": "comp916004"
+            },
+            "alerts": 65,
+            "peak": 12
+          }
+        ],
+        "threshold": 10,
+        "peak_per_day": {
+          "day-01": {
+            "value": 8,
+            "group": {
+              "Computer": "comp916004",
+              "Workstation": "comp916004"
+            }
+          },
+          "day-02": {
+            "value": 11,
+            "group": {
+              "Computer": "comp916004",
+              "Workstation": "comp916004"
+            }
+          },
+          "day-03": {
+            "value": 12,
+            "group": {
+              "Computer": "comp916004",
+              "Workstation": "comp916004"
+            }
+          },
+          "day-04": {
+            "value": 11,
+            "group": {
+              "Computer": "comp916004",
+              "Workstation": "comp916004"
+            }
+          },
+          "day-05": {
+            "value": 10,
+            "group": {
+              "Computer": "comp916004",
+              "Workstation": "comp916004"
+            }
+          },
+          "day-06": {
+            "value": 8,
+            "group": {
+              "Computer": "comp916004",
+              "Workstation": "comp916004"
+            }
+          },
+          "day-07": {
+            "value": 7,
+            "group": {
+              "Computer": "comp916004",
+              "Workstation": "comp916004"
+            }
+          }
+        },
+        "base_events": {
+          "events": 5073244,
+          "with_group_fields": 1134457
+        }
+      }
+    },
+    "sigmahq": {
+      "win_security_kerberoasting_activity": {
+        "title": "Kerberoasting Activity - Initial Query",
+        "level": "medium",
+        "kind": "single event",
+        "event_ids": [
+          "4769"
+        ],
+        "event_ids_absent": [],
+        "fields_never_present": [
+          "TicketEncryptionType"
+        ],
+        "alerts": 0,
+        "alerts_per_day": 0.0,
+        "groups": 0,
+        "per_day": {
+          "day-01": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-02": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-03": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-04": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-05": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-06": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-07": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          }
+        },
+        "top_groups": [],
+        "alerts_by_event": {},
+        "alerts_logged_by": {
+          "domain controllers": 0,
+          "other computers": 0
+        }
+      },
+      "win_security_susp_rc4_kerberos": {
+        "title": "Suspicious Kerberos RC4 Ticket Encryption",
+        "level": "medium",
+        "kind": "single event",
+        "event_ids": [
+          "4769"
+        ],
+        "event_ids_absent": [],
+        "fields_never_present": [
+          "TicketEncryptionType",
+          "TicketOptions"
+        ],
+        "alerts": 0,
+        "alerts_per_day": 0.0,
+        "groups": 0,
+        "per_day": {
+          "day-01": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-02": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-03": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-04": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-05": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-06": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          },
+          "day-07": {
+            "alerts": 0,
+            "groups": 0,
+            "rows": 0
+          }
+        },
+        "top_groups": [],
+        "alerts_by_event": {},
+        "alerts_logged_by": {
+          "domain controllers": 0,
+          "other computers": 0
+        }
+      },
+      "win_security_susp_failed_logon_reasons": {
+        "title": "Account Tampering - Suspicious Failed Logon Reasons",
+        "level": "medium",
+        "kind": "single event",
+        "event_ids": [
+          "4625",
+          "4776"
+        ],
+        "event_ids_absent": [],
+        "fields_never_present": [
+          "SubStatus",
+          "SubjectUserSid"
+        ],
+        "alerts": 61775,
+        "alerts_per_day": 8825.0,
+        "groups": 23,
+        "per_day": {
+          "day-01": {
+            "alerts": 23535,
+            "groups": 10,
+            "rows": 23535
+          },
+          "day-02": {
+            "alerts": 7389,
+            "groups": 10,
+            "rows": 7389
+          },
+          "day-03": {
+            "alerts": 8701,
+            "groups": 11,
+            "rows": 8701
+          },
+          "day-04": {
+            "alerts": 8569,
+            "groups": 12,
+            "rows": 8569
+          },
+          "day-05": {
+            "alerts": 5707,
+            "groups": 9,
+            "rows": 5707
+          },
+          "day-06": {
+            "alerts": 3837,
+            "groups": 5,
+            "rows": 3837
+          },
+          "day-07": {
+            "alerts": 4037,
+            "groups": 4,
+            "rows": 4037
+          }
+        },
+        "top_groups": [
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "user615370"
+            },
+            "alerts": 31339
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "user596884"
+            },
+            "alerts": 26751
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "user094603"
+            },
+            "alerts": 1666
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain002",
+              "TargetUserName": "user775940"
+            },
+            "alerts": 570
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain002",
+              "TargetUserName": "administrator"
+            },
+            "alerts": 436
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "user448912"
+            },
+            "alerts": 297
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "user637832"
+            },
+            "alerts": 218
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "administrator"
+            },
+            "alerts": 104
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "user808167"
+            },
+            "alerts": 80
+          },
+          {
+            "group": {
+              "TargetDomainName": "domain001",
+              "TargetUserName": "comp999028$"
+            },
+            "alerts": 77
+          }
+        ],
+        "alerts_by_account_kind": {
+          "computer": 77,
+          "user": 61698
+        },
+        "alerts_by_event": {
+          "4776 0xc0000070": 2,
+          "4776 0xc0000072": 61773
+        },
+        "alerts_logged_by": {
+          "domain controllers": 60369,
+          "other computers": 1406
+        }
+      }
+    }
+  },
+  "not_measured": {
+    "entra": "E1-E8 have no benign baseline: no public data set of an organization's Entra sign-in and audit logs in normal operation was found, and the Entra ID Free test tenant has no regular traffic."
+  }
+}

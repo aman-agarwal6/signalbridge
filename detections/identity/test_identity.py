@@ -3,11 +3,14 @@
 python -m unittest discover -s detections -t . -p "test_*.py"
 
 The rule tests use small hand-made rows. The report test needs the pinned inputs
-(python -m detections.identity.fetch) and is skipped without them.
+(python -m detections.identity.fetch) and is skipped without them. The false-alarm baseline is
+about 3 GB and isn't fetched here; its tests check the committed baseline-report.json against
+the current rules and pins.
 """
 
 import json
 import re
+import sqlite3
 import unittest
 from collections import Counter
 from datetime import datetime, timedelta
@@ -15,9 +18,18 @@ from datetime import datetime, timedelta
 from sigma.collection import SigmaCollection
 from sigma.correlations import SigmaCorrelationRule
 
+from . import baseline
 from .fetch import check_url, is_verified, load_sources, local_file, safe_relative
-from .logs import ENTRA_AUDIT, ENTRA_SIGNIN, WINDOWS_SECURITY, entra_rows, read_rows, windows_rows
-from .score import DETECTIONS, REPORT, RULES, build_report, hits, own_rules
+from .logs import (
+    ENTRA_AUDIT,
+    ENTRA_SIGNIN,
+    WINDOWS_SECURITY,
+    entra_rows,
+    lanl_row,
+    read_rows,
+    windows_rows,
+)
+from .score import DETECTIONS, REPORT, RULES, build_report, hits, own_rules, sha256
 
 # Technique IDs checked by hand against MITRE ATT&CK Enterprise.
 ATTACK_TAGS = {
@@ -47,9 +59,9 @@ def fires(key, rows):
     return hits(rows, [RULES_BY_KEY[key]])[key] > 0
 
 
-def ticket(second, requester, service, status="0x0"):
+def ticket(second, requester, service, status="0x0", timestamp=None):
     return {
-        "timestamp": at(second),
+        "timestamp": timestamp or at(second),
         "EventID": "4769",
         "Status": status,
         "TargetUserName": requester,
@@ -222,6 +234,32 @@ class Readers(unittest.TestCase):
         self.assertNotIn("category", a_row, "the Sentinel column wins over a raw name")
         self.assertEqual(a_row["ConsentContext.IsAdminConsent"], "False")
 
+    def test_lanl_records_get_windows_field_names(self):
+        ticket_row = lanl_row(
+            {
+                "EventID": 4769,
+                "UserName": "User624729",
+                "ServiceName": "Comp883934$",
+                "DomainName": "Domain002",
+                "Status": "0x0",
+                "Source": "Comp309534",
+                "LogHost": "ActiveDirectory",
+                "Time": 90061,
+            }
+        )
+        self.assertEqual(ticket_row["timestamp"], "1970-01-02 01:01:01.000")
+        self.assertEqual(
+            {key: ticket_row[key] for key in ("EventID", "TargetUserName", "Computer")},
+            {"EventID": "4769", "TargetUserName": "User624729", "Computer": "ActiveDirectory"},
+        )
+        self.assertEqual(ticket_row["IpAddress"], "Comp309534")
+        ntlm = lanl_row({"EventID": 4776, "UserName": "u", "Source": "Comp1", "Time": 0})
+        self.assertEqual(ntlm["Workstation"], "Comp1")
+        self.assertNotIn("IpAddress", ntlm, "NTLM checks name a workstation, not an address")
+        for bad in (-1, "5", 1.5, True, None):
+            with self.assertRaises(ValueError, msg=bad):
+                lanl_row({"EventID": 4769, "Time": bad})
+
 
 class Detections(unittest.TestCase):
     def test_w1_counts_distinct_user_run_services_from_any_requester(self):
@@ -336,6 +374,66 @@ class Detections(unittest.TestCase):
         self.assertFalse(fires("E8", [signin(0, 50126)]))
 
 
+class Baseline(unittest.TestCase):
+    def test_loaded_events_cover_every_windows_rule(self):
+        for side in baseline.windows_rules().values():
+            for key, rule in side.items():
+                self.assertTrue(baseline.event_ids(rule.rule), key)
+        self.assertEqual(baseline.event_ids(RULES_BY_KEY["W1"].rule), {"4769"})
+        self.assertEqual(
+            baseline.event_ids(RULES_BY_KEY["W3"].rule), {"4625", "4768", "4771", "4776"}
+        )
+
+    def test_fetch_only_uses_the_mirror(self):
+        check_url("https://lanl.ma.ic.ac.uk/data/2017/wls/wls_day-01.bz2", baseline.ALLOWED_HOSTS)
+        for url in ("http://lanl.ma.ic.ac.uk/x.bz2", "https://csr.lanl.gov/x.bz2"):
+            with self.assertRaises(ValueError, msg=url):
+                check_url(url, baseline.ALLOWED_HOSTS)
+
+    def test_overlapping_windows_are_one_alert(self):
+        def window(group, end):
+            return {
+                "group_keys": json.dumps({"TargetUserName": group}),
+                "window_start": end - 600,
+                "window_end": end,
+                "metric_value": 5,
+            }
+
+        alerts = baseline.episodes(
+            [window("a", 1000), window("a", 1300), window("a", 1590), window("a", 2500)]
+            + [window("b", 1000)]
+        )
+        self.assertEqual(
+            [(json.loads(a["group"])["TargetUserName"], a["windows"]) for a in alerts],
+            [
+                ("a", 3),
+                ("a", 1),
+                ("b", 1),
+            ],
+        )
+
+    def test_lowered_threshold_leaves_the_rule_alone(self):
+        rule = RULES_BY_KEY["W1"]
+        low = baseline.lowered(rule)
+        self.assertIn(">= 1)", low.query)
+        self.assertIn(">= 5)", rule.query)
+        self.assertEqual(rule.rule.condition.count, 5)
+
+    def test_hourly_scoring_keeps_windows_that_cross_the_hour(self):
+        rules = {"W1": RULES_BY_KEY["W1"]}
+        columns = baseline.baseline_columns(rules.values())
+        db = sqlite3.connect(":memory:")
+        db.execute(baseline.table_sql("week", columns))
+        for i in range(5):
+            row = ticket(0, "bob", f"svc{i}", timestamp=baseline.stamp(3360 + i * 60))
+            db.execute(
+                f"INSERT INTO week VALUES ({', '.join('?' for _ in columns)})",
+                [row.get(column) for column in columns],
+            )
+        found = baseline.run_week(db, rules, columns)["W1"]
+        self.assertEqual([row["time"] for row in found], [3600], "services at 00:56-01:00")
+
+
 class Report(unittest.TestCase):
     def test_report_is_current(self):
         sources = load_sources()
@@ -348,6 +446,29 @@ class Report(unittest.TestCase):
             self.skipTest("pinned inputs not fetched; run python -m detections.identity.fetch")
         expected = json.dumps(build_report(), indent=2, ensure_ascii=False) + "\n"
         self.assertEqual(REPORT.read_text(encoding="utf-8"), expected)
+
+    def test_baseline_report_matches_the_rules_and_pins(self):
+        report = json.loads(baseline.REPORT.read_text(encoding="utf-8"))
+        current = {
+            path.relative_to(RULES).as_posix(): sha256(path)
+            for path in sorted(RULES.rglob("*.yml"))
+        }
+        self.assertEqual(report["rules_sha256"], current, "rerun the baseline after a rule change")
+        sources = load_sources()
+        self.assertEqual(report["baseline"], sources["baseline"])
+        self.assertEqual(report["sigmahq"], sources["sigmahq"])
+        sides = baseline.windows_rules()
+        self.assertEqual(
+            {side: set(r) for side, r in report["rules"].items()},
+            {side: set(r) for side, r in sides.items()},
+        )
+        days = [f"day-{item['day']:02d}" for item in sources["baseline"]["files"]]
+        for side in report["rules"].values():
+            for key, result in side.items():
+                self.assertEqual(list(result["per_day"]), days, key)
+                self.assertEqual(
+                    sum(d["alerts"] for d in result["per_day"].values()), result["alerts"]
+                )
 
     def test_reader_counts_every_pinned_dataset_format(self):
         for item in load_sources()["datasets"]:
