@@ -30,8 +30,9 @@ pySigma-backend-kusto==1.0.1 \
     --hash=sha256:8b6a6763a2839b8bc75e333ea2bcb2f3bb07d98b46072a1bef602c1e9b504799
 pysigma-backend-splunk==2.1.0 \
     --hash=sha256:90da654b17c7a396ba23af14a29ed559c562ae5bb60c4ceda47cd9744dd3581c
-pySigma-backend-sqlite==2.0.0 \
-    --hash=sha256:08b94d016912c3d14f80197d39c5e0b87a6f51c159f9aca3e06a377e753da67c
+pySigma-backend-sqlite==2.1.1 \
+    --hash=sha256:1fe1941943dcc9ed14a66836b1ed96b1456ad750df84dedb9136a1db979ab967 \
+    --hash=sha256:df500e04a1589b8604436bdb0106d4b89a7ab31159b59789be9435fdd255a35f
 pySigma==1.5.1 \
     --hash=sha256:1e6e080bde31db6039eb5d87d43322bf416534f30048091c65038e88225b8200
 PyYAML==6.0.3 \
